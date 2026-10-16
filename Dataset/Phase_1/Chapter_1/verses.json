@@ -1,0 +1,464 @@
+[
+  {
+    "id": "1_1",
+    "sanskrit": "धृतराष्ट्र उवाच । धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः । मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥",
+    "iast": "dhṛtarāṣṭra uvāca। dharma-kṣetre kuru-kṣetre samavetā yuyutsavaḥ। māmakāḥ pāṇḍavāś caiva kim akurvata sañjaya॥",
+    "simple": "dhrutarashtra uvacha, dharmakshetre kurukshetre samaveta yuyutsavah, mamakah pandavash chaiva kim akurvata sanjaya",
+    "meaning_en": "Dhritarashtra asked Sanjaya: What did my sons and the sons of Pandu do when they gathered on the sacred land of Kurukshetra, eager to fight?",
+    "meaning_hi": "धृतराष्ट्र ने संजय से पूछा: हे संजय! धर्मभूमि कुरुक्षेत्र में युद्ध की इच्छा से एकत्र हुए मेरे और पांडु के पुत्रों ने क्या किया?",
+    "emotional_tone": [
+      "calm",
+      "observational"
+    ],
+    "core_theme": [
+      "conflict",
+      "anticipation",
+      "uncertainty"
+    ],
+    "life_situations": [
+      "waiting for results",
+      "fear of outcome",
+      "exam or interview anxiety"
+    ],
+    "notification_short": {
+      "en": "When outcomes are uncertain, pause and observe calmly.",
+      "hi": "जब परिणाम अनिश्चित हों, तो शांत होकर स्थिति को देखें।"
+    }
+  },
+  {
+    "id": "1_2",
+    "sanskrit": "सञ्जय उवाच । दृष्ट्वा तु पाण्डवानीकं व्यूढं दुर्योधनस्तदा । आचार्यमुपसंगम्य राजा वचनमब्रवीत् ॥",
+    "iast": "sañjaya uvāca। dṛṣṭvā tu pāṇḍavānīkaṃ vyūḍhaṃ duryodhanas tadā। ācāryam upasaṅgamya rājā vacanam abravīt॥",
+    "simple": "sanjaya uvacha, drishtva tu pandava anikam vyudham duryodhanas tada, acharyam upasangamya raja vachanam abravit",
+    "meaning_en": "Sanjaya said: Seeing the Pandavas’ army arranged for battle, King Duryodhana approached his teacher and spoke.",
+    "meaning_hi": "संजय ने कहा: पांडवों की सेना को युद्ध के लिए सुसज्जित देखकर राजा दुर्योधन अपने गुरु के पास गया और बोला।",
+    "emotional_tone": [
+      "uneasy",
+      "alert"
+    ],
+    "core_theme": [
+      "comparison",
+      "insecurity",
+      "reaction"
+    ],
+    "life_situations": [
+      "comparing yourself with others",
+      "competitive pressure",
+      "feeling threatened"
+    ],
+    "notification_short": {
+      "en": "Comparison often awakens fear before action begins.",
+      "hi": "तुलना अक्सर कार्य शुरू होने से पहले ही भय पैदा करती है।"
+    }
+  },
+  {
+    "id": "1_3",
+    "sanskrit": "पश्यैतां पाण्डुपुत्राणामाचार्य महतीं चमूम् । व्यूढां द्रुपदपुत्रेण तव शिष्येण धीमता ॥",
+    "iast": "paśyaitāṃ pāṇḍu-putrāṇām ācārya mahatīṃ camūm। vyūḍhāṃ drupada-putreṇa tava śiṣyeṇa dhīmatā॥",
+    "simple": "pashyaitam pandu putranam acharya mahateem chamoom, vyudham drupada putrena tava shishyena dheemata",
+    "meaning_en": "Duryodhana said: O teacher, behold the mighty army of the sons of Pandu, arranged so skillfully by your intelligent disciple.",
+    "meaning_hi": "दुर्योधन ने कहा: हे आचार्य! आपके बुद्धिमान शिष्य द्वारा कुशलता से सजाई गई पांडु पुत्रों की विशाल सेना को देखिए।",
+    "emotional_tone": [
+      "defensive",
+      "hidden fear"
+    ],
+    "core_theme": [
+      "ego",
+      "self-validation",
+      "pride mixed with fear"
+    ],
+    "life_situations": [
+      "masking fear with confidence",
+      "ego conflicts",
+      "public pressure"
+    ],
+    "notification_short": {
+      "en": "Sometimes confidence is used to hide inner fear.",
+      "hi": "कभी-कभी आत्मविश्वास के पीछे भीतर का भय छिपा होता है।"
+    }
+  },
+  {
+    "id": "1_4",
+    "sanskrit": "अत्र शूरा महेष्वासा भीमार्जुनसमा युधि । युयुधानो विराटश्च द्रुपदश्च महारथः ॥",
+    "iast": "atra śūrā maheṣvāsā bhīmārjuna-samā yudhi। yuyudhāno virāṭaś ca drupadaś ca mahārathaḥ॥",
+    "simple": "atra shura maheshvasa bhimarjuna sama yudhi, yuyudhano viratash cha drupadash cha maharathaḥ",
+    "meaning_en": "Here are heroes equal to Bhima and Arjuna in battle—great warriors such as Yuyudhana, Virata, and Drupada.",
+    "meaning_hi": "यहाँ भीम और अर्जुन के समान युद्ध करने वाले वीर हैं—जैसे युयुधान, विराट और महारथी द्रुपद।",
+    "emotional_tone": [
+      "competitive",
+      "calculative"
+    ],
+    "core_theme": [
+      "comparison of strength",
+      "assessment",
+      "strategic thinking"
+    ],
+    "life_situations": [
+      "evaluating competition",
+      "measuring yourself against others",
+      "entering a high-stakes situation"
+    ],
+    "notification_short": {
+      "en": "Before acting, the mind often measures strength and opposition.",
+      "hi": "कार्य से पहले मन अक्सर अपनी और सामने वाले की शक्ति को तौलता है।"
+    }
+  },
+  {
+    "id": "1_5",
+    "sanskrit": "धृष्टकेतुश्चेकितानः काशिराजश्च वीर्यवान् । पुरुजित्कुन्तिभोजश्च शैब्यश्च नरपुङ्गवः ॥",
+    "iast": "dhṛṣṭaketuś cekitānaḥ kāśirājaś ca vīryavān। purujit kuntibhojaś ca śaibyaś ca nara-puṅgavaḥ॥",
+    "simple": "dhrishtaketush chekitanaḥ kashirajascha veeryavaan, purujit kuntibhojash cha shaibyashcha narapungavah",
+    "meaning_en": "Also present are mighty warriors like Dhrishtaketu, Chekitana, the valiant king of Kashi, Purujit, Kuntibhoja, and Shaibya.",
+    "meaning_hi": "इसके अतिरिक्त धृष्टकेतु, चेकितान, पराक्रमी काशी नरेश, पुरुजित, कुन्तीभोज और शैव्य जैसे महान योद्धा भी हैं।",
+    "emotional_tone": [
+      "heightened alertness",
+      "unease"
+    ],
+    "core_theme": [
+      "growing awareness",
+      "pressure",
+      "realization of challenge"
+    ],
+    "life_situations": [
+      "feeling overwhelmed by many challenges",
+      "realizing the scale of a problem",
+      "stress before a major event"
+    ],
+    "notification_short": {
+      "en": "Seeing many challenges at once can make the mind uneasy.",
+      "hi": "एक साथ कई चुनौतियाँ दिखने पर मन विचलित हो सकता है।"
+    }
+  },
+  {
+    "id": "1_6",
+    "sanskrit": "युधामन्युश्च विक्रान्त उत्तमौजाश्च वीर्यवान् । सौभद्रो द्रौपदेयाश्च सर्वे एव महारथाः ॥",
+    "iast": "yudhāmanyus ca vikrānta uttamaujāś ca vīryavān। saubhadro draupadeyāś ca sarve eva mahārathāḥ॥",
+    "simple": "yudhamanyushcha vikranta uttamojashcha veeryavaan, saubhadro draupadeyashcha sarve eva maharathah",
+    "meaning_en": "Know also, O best of the twice-born, the prominent leaders on our side. I will name them for your awareness.",
+    "meaning_hi": "हे द्विजश्रेष्ठ! हमारी ओर के प्रमुख योद्धाओं को भी जानिए। आपकी जानकारी के लिए मैं उनके नाम बताता हूँ।",
+    "emotional_tone": [
+      "assertive",
+      "self-assuring"
+    ],
+    "core_theme": [
+      "self-reinforcement",
+      "seeking reassurance",
+      "authority appeal"
+    ],
+    "life_situations": [
+      "trying to boost confidence",
+      "seeking validation before action",
+      "preparing mentally for a challenge"
+    ],
+    "notification_short": {
+      "en": "The mind often reassures itself before taking a bold step.",
+      "hi": "बड़ा कदम उठाने से पहले मन खुद को आश्वस्त करना चाहता है।"
+    }
+  },
+  {
+    "id": "1_7",
+    "sanskrit": "अस्माकं तु विशिष्टा ये तान्निबोध द्विजोत्तम । नायका मम सैन्यस्य संज्ञार्थं तान्मब्रवीमि ते ॥",
+    "iast": "asmākaṃ tu viśiṣṭā ye tān nibodha dvijottama। nāyakā mama sainyasya sañjñārthaṃ tān bravīmi te॥",
+    "simple": "asmaakam tu vishishta ye tan nibodha dvijottama, nayaka mama sainyasya sanjnartham tan bravimi te",
+    "meaning_en": "Know also, O best of the twice-born, the prominent leaders on our side. I will name them for your awareness.",
+    "meaning_hi": "हे द्विजश्रेष्ठ! हमारी ओर के प्रमुख योद्धाओं को भी जानिए। आपकी जानकारी के लिए मैं उनके नाम बताता हूँ।",
+    "emotional_tone": [
+      "assertive",
+      "self-assuring"
+    ],
+    "core_theme": [
+      "self-reinforcement",
+      "seeking reassurance",
+      "authority appeal"
+    ],
+    "life_situations": [
+      "trying to boost confidence",
+      "seeking validation before action",
+      "preparing mentally for a challenge"
+    ],
+    "notification_short": {
+      "en": "The mind often reassures itself before taking a bold step.",
+      "hi": "बड़ा कदम उठाने से पहले मन खुद को आश्वस्त करना चाहता है।"
+    }
+  },
+  {
+    "id": "1_8",
+    "sanskrit": "भवान्भीष्मश्च कर्णश्च कृपश्च समितिंजयः । अश्वत्थामा विकर्णश्च सौमदत्तिस्तथैव च ॥",
+    "iast": "bhavān bhīṣmaś ca karṇaś ca kṛpaś ca samitiṃ-jayaḥ। aśvatthāmā vikarṇaś ca saumadattis tathaiva ca॥",
+    "simple": "bhavan bheeshmash cha karnash cha kripashcha samitinjayah, ashwatthama vikarnashcha saumadattis tathaiva cha",
+    "meaning_en": "There are personalities like yourself, Bhishma, Karna, Kripa—victors in battle—along with Ashvatthama, Vikarna, and the son of Somadatta.",
+    "meaning_hi": "आप स्वयं, भीष्म, कर्ण, कृपाचार्य—युद्ध में विजयी—तथा अश्वत्थामा, विकर्ण और सोमदत्त का पुत्र भी हमारी ओर हैं।",
+    "emotional_tone": [
+      "defensive confidence",
+      "dependence"
+    ],
+    "core_theme": [
+      "reliance on strength",
+      "external support",
+      "confidence through association"
+    ],
+    "life_situations": [
+      "depending on strong allies",
+      "borrowing confidence from others",
+      "seeking security in authority figures"
+    ],
+    "notification_short": {
+      "en": "Confidence is often borrowed from those we trust.",
+      "hi": "कई बार आत्मविश्वास उन लोगों से मिलता है जिन पर हम भरोसा करते हैं।"
+    }
+  },
+  {
+    "id": "1_9",
+    "sanskrit": "अनेकशस्त्रप्रहरणाः सर्वे युद्धविशारदाः ।",
+    "iast": "aneka-śastra-praharaṇāḥ sarve yuddha-viśāradāḥ।",
+    "simple": "aneka shastra praharanah sarve yuddha visharadah",
+    "meaning_en": "There are many other heroes as well, equipped with various weapons, ready to give up their lives for my sake.",
+    "meaning_hi": "इसके अतिरिक्त अनेक अन्य वीर योद्धा भी हैं, जो विभिन्न शस्त्रों से सुसज्जित हैं और मेरे लिए प्राण देने को तत्पर हैं।",
+    "emotional_tone": [
+      "forceful",
+      "anxious resolve"
+    ],
+    "core_theme": [
+      "need for control",
+      "fear masked by numbers",
+      "assertion of power"
+    ],
+    "life_situations": [
+      "using numbers to feel secure",
+      "overcompensating for inner fear",
+      "trying to control outcomes"
+    ],
+    "notification_short": {
+      "en": "The urge to control often hides a deeper fear of loss.",
+      "hi": "नियंत्रण की इच्छा के पीछे अक्सर खोने का भय छिपा होता है।"
+    }
+  },
+  {
+    "id": "1_10",
+    "sanskrit": "अपर्याप्तं तदस्माकं बलं भीष्माभिरक्षितम् । पर्याप्तं त्विदमेतेषां बलं भीमाभिरक्षितम् ॥",
+    "iast": "aparyāptaṃ tad asmākaṃ balaṃ bhīṣmābhirakṣitam। paryāptaṃ tv idam eteṣāṃ balaṃ bhīmābhirakṣitam॥",
+    "simple": "aparyaptam tadasmakam balam bheeshmabhirakshitam, paryaptam tv idam etesham balam bheemabhirakshitam"
+  },
+  {
+    "id": "1_11",
+    "sanskrit": "अयनेषु च सर्वेषु यथाभागमवस्थिताः । भीष्ममेवाभिरक्षन्तु भवन्तः सर्व एव हि ॥",
+    "iast": "ayaneṣu ca sarveṣu yathā-bhāgam avasthitāḥ। bhīṣmam evābhirakṣantu bhavantaḥ sarva eva hi॥",
+    "simple": "ayaneshu cha sarveshu yathabhagam avasthitah, bheeshmam evabhirakshantu bhavantah sarva eva hi"
+  },
+  {
+    "id": "1_12",
+    "sanskrit": "तस्य सञ्जनयन्हर्षं कुरुवृद्धः पितामहः । सिंहनादं विनद्योच्चैः शङ्खं दध्मौ प्रतापवान् ॥",
+    "iast": "tasya sañjanayan harṣaṃ kuru-vṛddhaḥ pitāmahaḥ। siṃha-nādaṃ vinadyo cchaiḥ śaṅkhaṃ dadhmau pratāpavān॥",
+    "simple": "tasya sanjanayan harsham kuru vriddhah pitamahah, simhanadam vinadyo chchaih shankham dadhmau pratapavan"
+  },
+  {
+    "id": "1_13",
+    "sanskrit": "ततः शङ्खाश्च भेर्यश्च पणवानकगोमुखाः । सहसैवाभ्यहन्यन्त स शब्दस्तुमुलोऽभवत् ॥",
+    "iast": "tataḥ śaṅkhāś ca bheryaś ca paṇavānaka-gomukhāḥ। sahasaivābhyahanyanta sa śabdas tumulo ’bhavat॥",
+    "simple": "tatah shankhashcha bheryashcha panavanaka gomukhah, sahasaivabhyahanyanta sa shabdas tumulo abhavat"
+  },
+  {
+    "id": "1_14",
+    "sanskrit": "ततः श्वेतैर्हयैर्युक्ते महति स्यन्दने स्थितौ । माधवः पाण्डवश्चैव दिव्यौ शङ्खौ प्रदध्मतुः ॥",
+    "iast": "tataḥ śvetair hayair yukte mahati syandane sthitau। mādhavaḥ pāṇḍavaś caiva divyau śaṅkhau pradadhmatuḥ॥",
+    "simple": "tatah shvetair hayair yukte mahati syandane sthitau, madhavah pandavash chaiva divyau shankhau pradadhmatuh"
+  },
+  {
+    "id": "1_15",
+    "sanskrit": "पाञ्चजन्यं हृषीकेशो देवदत्तं धनञ्जयः । पौण्ड्रं दध्मौ महाशङ्खं भीमकर्मा वृकोदरः ॥",
+    "iast": "pāñcajanyaṃ hṛṣīkeśo devadattaṃ dhanañjayaḥ। pauṇḍraṃ dadhmau mahā-śaṅkhaṃ bhīma-karmā vṛkodaraḥ॥",
+    "simple": "panchajanyam hrishikesho devadattam dhananjayah, paundram dadhmau mahashankham bheema karma vrikodarah"
+  },
+  {
+    "id": "1_16",
+    "sanskrit": "अनन्तविजयं राजा कुन्तीपुत्रो युधिष्ठिरः । नकुलः सहदेवश्च सुघोषमणिपुष्पकौ ॥",
+    "iast": "ananta-vijayaṃ rājā kuntī-putro yudhiṣṭhiraḥ। nakulaḥ sahadevaś ca sughoṣa-maṇipuṣpakau॥",
+    "simple": "ananta vijayam raja kuntiputro yudhishthirah, nakulah sahadevashcha sughosha manipushpakau"
+  },
+  {
+    "id": "1_17",
+    "sanskrit": "काश्यश्च परमेष्वासः शिखण्डी च महारथः । धृष्टद्युम्नो विराटश्च सात्यकिश्चापराजितः ॥",
+    "iast": "kāśyaś ca parameṣvāsaḥ śikhaṇḍī ca mahā-rathaḥ। dhṛṣṭadyumno virāṭaś ca sātyakiś cāparājitaḥ॥",
+    "simple": "kashyashcha parameshvasah shikhandi cha maharathah, dhrishtadyumno viratashcha satyakish cha aparajitah"
+  },
+  {
+    "id": "1_18",
+    "sanskrit": "द्रुपदो द्रौपदेयाश्च सर्वशः पृथिवीपते । सौभद्रश्च महाबाहुः शङ्खान्दध्मुः पृथक्पृथक् ॥",
+    "iast": "drupado draupadeyāś ca sarvaśaḥ pṛthivī-pate। saubhadraś ca mahā-bāhuḥ śaṅkhān dadhmuḥ pṛthak pṛthak॥",
+    "simple": "drupado draupadeyashcha sarvashah prithivi pate, saubhadra shcha mahabahuh shankhan dadhmuh prithak prithak"
+  },
+  {
+    "id": "1_19",
+    "sanskrit": "स घोषो धार्तराष्ट्राणां हृदयानि व्यदारयत् । नभश्च पृथिवीं चैव तुमुलो व्यनुनादयन् ॥",
+    "iast": "sa ghoṣo dhārtarāṣṭrāṇāṃ hṛdayāni vyadārayat। nabhaś ca pṛthivīṃ caiva tumulo vyanunādayan॥",
+    "simple": "sa ghosho dhartarashtranam hridayani vyadarayat, nabhashcha prithivim chaiva tumulo vyanunadayan"
+  },
+  {
+    "id": "1_20",
+    "sanskrit": "अथ व्यवस्थितान् दृष्ट्वा धार्तराष्ट्रान् कपिध्वजः । प्रवृत्ते शस्त्रसम्पाते धनुरुद्यम्य पाण्डवः ॥",
+    "iast": "atha vyavasthitān dṛṣṭvā dhārtarāṣṭrān kapi-dhvajaḥ। pravṛtte śastra-sampāte dhanur udyamya pāṇḍavaḥ॥",
+    "simple": "atha vyavasthitan drishtva dhartarashtran kapi dhvajah, pravritte shastra sampate dhanur udyamya pandavah"
+  },
+  {
+    "id": "1_21",
+    "sanskrit": "अर्जुन उवाच । सेनयोरुभयोर्मध्ये रथं स्थापय मेऽच्युत ॥",
+    "iast": "arjuna uvāca। senayor ubhayor madhye rathaṃ sthāpaya me ’cyuta॥",
+    "simple": "arjuna uvacha, senayor ubhayor madhye ratham sthapaya me achyuta"
+  },
+  {
+    "id": "1_22",
+    "sanskrit": "यावदेतान्निरीक्षेऽहं योद्धुकामानवस्थितान् । कैर्मया सह योद्धव्यमस्मिन् रणसमुद्यमे ॥",
+    "iast": "yāvad etān nirīkṣe ’haṃ yoddhu-kāmān avasthitān। kair mayā saha yoddhavyam asmin raṇa-samudyame॥",
+    "simple": "yavad etan nireekshe aham yoddhukaman avasthitan, kair maya saha yoddhavyam asmin rana samudyame"
+  },
+  {
+    "id": "1_23",
+    "sanskrit": "योत्स्यमानानवेक्षेऽहं य एतेऽत्र समागताः । धार्तराष्ट्रस्य दुर्बुद्धेर्युद्धे प्रियचिकीर्षवः ॥",
+    "iast": "yotsyamānān avekṣe ’haṃ ya ete ’tra samāgatāḥ। dhārtarāṣṭrasya durbuddher yuddhe priya-cikīrṣavaḥ॥",
+    "simple": "yotsyamanan avekshe aham ya ete atra samagatah, dhartarashtrasya durbuddher yuddhe priya chikirsavah"
+  },
+  {
+    "id": "1_24",
+    "sanskrit": "एवमुक्तो हृषीकेशो गुडाकेशेन भारत । सेनयोरुभयोर्मध्ये स्थापयित्वा रथोत्तमम् ॥",
+    "iast": "evam ukto hṛṣīkeśo guḍākeśena bhārata। senayor ubhayor madhye sthāpayitvā rathottamam॥",
+    "simple": "evam ukto hrishikesho gudakeshena bharata, senayor ubhayor madhye sthapayitva rathottamam"
+  },
+  {
+    "id": "1_25",
+    "sanskrit": "भीष्मद्रोणप्रमुखतः सर्वेषां च महीक्षिताम् । उवाच पार्थ पश्यैतान् समवेतान् कुरूनिति ॥",
+    "iast": "bhīṣma-droṇa-pramukhataḥ sarveṣāṃ ca mahī-kṣitām। uvāca pārtha paśyaitān samavetān kurūn iti॥",
+    "simple": "bheeshma drona pramukhatah sarvesham cha mahikshitam, uvacha partha pashyaitan samavetan kurun iti"
+  },
+  {
+    "id": "1_26",
+    "sanskrit": "तत्रापश्यत्स्थितान् पार्थः पितॄनथ पितामहान् । आचार्यान् मातुलान् भ्रातॄन् पुत्रान् पौत्रान् सखींस्तथा ॥",
+    "iast": "tatrāpaśyat sthitān pārthaḥ pitṝn atha pitāmahān। ācāryān mātulān bhrātṝn putrān pautrān sakhīṃs tathā॥",
+    "simple": "tatra apashyat sthitan parthah pitrun atha pitamahan, acharyan matulan bhratrun putran pautran sakheen tatha"
+  },
+  {
+    "id": "1_27",
+    "sanskrit": "श्वशुरान् सुहृदश्चैव सेनयोरुभयोरपि । तान्समीक्ष्य स कौन्तेयः सर्वान् बन्धूनवस्थितान् ॥",
+    "iast": "śvaśurān suhṛdaś caiva senayor ubhayor api। tān samīkṣya sa kaunteyaḥ sarvān bandhūn avasthitān॥",
+    "simple": "shvashuran suhridash chaiva senayor ubhayor api, tan sameekshya sa kaunteyah sarvan bandhuna vasthitan"
+  },
+  {
+    "id": "1_28",
+    "sanskrit": "कृपया परयाऽविष्टो विषीदन्निदमब्रवीत् ।",
+    "iast": "kṛpayā parayā ’viṣṭo viṣīdann idam abravīt॥",
+    "simple": "kripaya paraya avishto vishidann idam abravit"
+  },
+  {
+    "id": "1_29",
+    "sanskrit": "अर्जुन उवाच । दृष्ट्वेमं स्वजनं कृष्ण युयुत्सुं समुपस्थितम् ।",
+    "iast": "arjuna uvāca। dṛṣṭvemam sva-janaṃ kṛṣṇa yuyutsum samupasthitam॥",
+    "simple": "arjuna uvacha, drishtvemam svajanam krishna yuyutsum samupasthitam"
+  },
+  {
+    "id": "1_30",
+    "sanskrit": "सीदन्ति मम गात्राणि मुखं च परिशुष्यति । वेपथुश्च शरीरे मे रोमहर्षश्च जायते ॥",
+    "iast": "sīdanti mama gātrāṇi mukhaṃ ca pariśuṣyati। vepathuś ca śarīre me roma-harṣaś ca jāyate॥",
+    "simple": "seedanti mama gatrani mukham cha parishushyati, vepathush cha sharire me roma harshash cha jayate"
+  },
+  {
+    "id": "1_31",
+    "sanskrit": "न च शक्नोम्यवस्थातुं भ्रमतीव च मे मनः । निमित्तानि च पश्यामि विपरीतानि केशव ॥",
+    "iast": "na ca śaknomy avasthātuṃ bhramatīva ca me manaḥ। nimittāni ca paśyāmi viparītāni keśava॥",
+    "simple": "na cha shaknomy avasthatum bhramateeva cha me manah, nimittani cha pashyami vipareetani keshava"
+  },
+  {
+    "id": "1_32",
+    "sanskrit": "न काङ्क्षे विजयं कृष्ण न च राज्यं सुखानि च । किं नो राज्येन गोविन्द किं भोगैर्जीवितेन वा ॥",
+    "iast": "na kāṅkṣe vijayaṃ kṛṣṇa na ca rājyaṃ sukhāni ca। kiṃ no rājyena govinda kiṃ bhogair jīvitena vā॥",
+    "simple": "na kankshe vijayam krishna na cha rajyam sukhani cha, kim no rajyena govinda kim bhogair jeevitena va"
+  },
+  {
+    "id": "1_33",
+    "sanskrit": "येषामर्थे काङ्क्षितं नो राज्यं भोगाः सुखानि च । त इमेऽवस्थिता युद्धे प्राणांस्त्यक्त्वा धनानि च ॥",
+    "iast": "yeṣām arthe kāṅkṣitaṃ no rājyaṃ bhogāḥ sukhāni ca। ta ime ’vasthitā yuddhe prāṇāṃs tyaktvā dhanāni ca॥",
+    "simple": "yesham arthe kanksitam no rajyam bhogah sukhani cha, ta ime avasthita yuddhe pranams tyaktva dhanani cha"
+  },
+  {
+    "id": "1_34",
+    "sanskrit": "आचार्याः पितरः पुत्रास्तथैव च पितामहाः । मातुलाः श्वशुराः पौत्राः श्यालाः सम्बन्धिनस्तथा ॥",
+    "iast": "ācāryāḥ pitaraḥ putrās tathaiva ca pitāmahāḥ। mātulāḥ śvaśurāḥ pautrāḥ śyālāḥ sambandhinas tathā॥",
+    "simple": "acharyah pitarah putras tathaiva cha pitamahah, matulah shvashurah pautrah shyalah sambandhinas tatha"
+  },
+  {
+    "id": "1_35",
+    "sanskrit": "एतान्न हन्तुमिच्छामि घ्नतोऽपि मधुसूदन । अपि त्रैलोक्यराज्यस्य हेतोः किं नु महीकृते ॥",
+    "iast": "etān na hantum icchāmi ghnato ’pi madhusūdana। api trailokya-rājyasya hetoḥ kiṃ nu mahī-kṛte॥",
+    "simple": "etan na hantum ichhami ghnato api madhusudana, api trailokya rajyasya hetoh kim nu mahikrite"
+  },
+  {
+    "id": "1_36",
+    "sanskrit": "निहत्य धार्तराष्ट्रान्नः का प्रीतिः स्याज्जनार्दन । पापमेवाश्रयेदस्मान्हत्वैतानाततायिनः ॥",
+    "iast": "nihatya dhārtarāṣṭrān naḥ kā prītiḥ syāj janārdana। pāpam evāśrayed asmān hatvaitān ātatāyinaḥ॥",
+    "simple": "nihatya dhartarashtran nah ka preetih syaj janardana, papam evashrayed asman hatvaitan atatayinah"
+  },
+  {
+    "id": "1_37",
+    "sanskrit": "तस्मान्नार्हा वयं हन्तुं धार्तराष्ट्रान्स्वबान्धवान् । स्वजनं हि कथं हत्वा सुखिनः स्याम माधव ॥",
+    "iast": "tasmān nārhā vayaṃ hantuṃ dhārtarāṣṭrān sva-bāndhavān। sva-janaṃ hi kathaṃ hatvā sukhinaḥ syāma mādhava॥",
+    "simple": "tasman narha vayam hantum dhartarashtran svabandhavan, svajanam hi katham hatva sukhinah syama madhava"
+  },
+  {
+    "id": "1_38",
+    "sanskrit": "यद्यप्येते न पश्यन्ति लोभोपहतचेतसः । कुलक्षयकृतं दोषं मित्रद्रोहे च पातकम् ॥",
+    "iast": "yady apy ete na paśyanti lobhopahata-cetasaḥ। kula-kṣaya-kṛtaṃ doṣaṃ mitra-drohe ca pātakam॥",
+    "simple": "yadyapy ete na pashyanti lobhopahata chetasah, kula kshaya kritam dosham mitra drohe cha patakam"
+  },
+  {
+    "id": "1_39",
+    "sanskrit": "कथं न ज्ञेयमस्माभिः पापादस्मान्निवर्तितुम् । कुलक्षयकृतं दोषं प्रपश्यद्भिर्जनार्दन ॥",
+    "iast": "kathaṃ na jñeyam asmābhiḥ pāpād asmān nivartitum। kula-kṣaya-kṛtaṃ doṣaṃ prapaśyadbhir janārdana॥",
+    "simple": "katham na jneyam asmabhir papad asman nivartitum, kula kshaya kritam dosham prapashyadbhir janardana"
+  },
+  {
+    "id": "1_40",
+    "sanskrit": "कुलक्षये प्रणश्यन्ति कुलधर्माः सनातनाः । धर्मे नष्टे कुलं कृत्स्नमधर्मोऽभिभवत्युत ॥",
+    "iast": "kula-kṣaye praṇaśyanti kula-dharmāḥ sanātanāḥ। dharme naṣṭe kulaṃ kṛtsnam adharmo ’bhibhavaty uta॥",
+    "simple": "kula kshaye pranashyanti kula dharmah sanatanah, dharme nashte kulam kritsnam adharmo abhibhavaty uta"
+  },
+  {
+    "id": "1_41",
+    "sanskrit": "अधर्माभिभवात्कृष्ण प्रदुष्यन्ति कुलस्त्रियः । स्त्रीषु दुष्टासु वार्ष्णेय जायते वर्णसङ्करः ॥",
+    "iast": "adharmābhibhavāt kṛṣṇa praduṣyanti kula-striyaḥ। strīṣu duṣṭāsu vārṣṇeya jāyate varṇa-saṅkaraḥ॥",
+    "simple": "adharmabhibhavat krishna pradushyanti kula striyah, streeshhu dushtasu varshneya jayate varna sankarah"
+  },
+  {
+    "id": "1_42",
+    "sanskrit": "सङ्करो नरकायैव कुलघ्नानां कुलस्य च । पतन्ति पितरो ह्येषां लुप्तपिण्डोदकक्रियाः ॥",
+    "iast": "saṅkaro narakāyaiva kula-ghnānāṃ kulasya ca। patanti pitaro hy eṣāṃ lupta-piṇḍodaka-kriyāḥ॥",
+    "simple": "sankaro narakayai va kulaghnanam kulasya cha, patanti pitaro hyesham lupta pindodaka kriyah"
+  },
+  {
+    "id": "1_43",
+    "sanskrit": "दोषैरेतैः कुलघ्नानां वर्णसङ्करकारकैः । उत्साद्यन्ते जातिधर्माः कुलधर्माश्च शाश्वताः ॥",
+    "iast": "doṣair etaiḥ kula-ghnānāṃ varṇa-saṅkara-kārakaiḥ। utsādyante jāti-dharmāḥ kula-dharmāś ca śāśvatāḥ॥",
+    "simple": "doshair etaih kulaghnanam varna sankara karakaih, utsadyante jati dharmah kula dharmash cha shashvatah"
+  },
+  {
+    "id": "1_44",
+    "sanskrit": "उत्सन्नकुलधर्माणां मनुष्याणां जनार्दन । नरके नियतं वासो भवतीत्यनुशुश्रुम ॥",
+    "iast": "utsanna-kula-dharmāṇāṃ manuṣyāṇāṃ janārdana। narake niyataṃ vāso bhavatīty anuśuśruma॥",
+    "simple": "utsanna kula dharmanam manushyanam janardana, narake niyatam vaso bhavateety anushushruma"
+  },
+  {
+    "id": "1_45",
+    "sanskrit": "अहो बत महत्पापं कर्तुं व्यवसिता वयम् । यद्राज्यसुखलोभेन हन्तुं स्वजनमुद्यताः ॥",
+    "iast": "aho bata mahat pāpaṃ kartuṃ vyavasitā vayam। yad rājya-sukha-lobhena hantuṃ sva-janam udyatāḥ॥",
+    "simple": "aho bata mahat papam kartum vyavasita vayam, yad rajya sukha lobhena hantum svajanam udyatah"
+  },
+  {
+    "id": "1_46",
+    "sanskrit": "यदि मामप्रतीकारमशस्त्रं शस्त्रपाणयः । धार्तराष्ट्रा रणे हन्युस्तन्मे क्षेमतरं भवेत् ॥",
+    "iast": "yadi mām apratīkāram aśastraṃ śastra-pāṇayaḥ। dhārtarāṣṭrā raṇe hanyus tan me kṣemataram bhavet॥",
+    "simple": "yadi mam apratikaram ashastam shastra panayah, dhartarashtra rane hanyus tan me kshemataram bhavet"
+  },
+  {
+    "id": "1_47",
+    "sanskrit": "सञ्जय उवाच । एवमुक्त्वाऽर्जुनः सङ्ख्ये रथोपस्थ उपाविशत् । विसृज्य सशरं चापं शोकसंविग्नमानसः ॥",
+    "iast": "sañjaya uvāca। evam uktvā ’rjunaḥ saṅkhye rathopastha upāviśat। visṛjya sa-śaraṃ cāpaṃ śoka-saṃvigna-mānasaḥ॥",
+    "simple": "sanjaya uvacha, evam uktva arjunah sankhye rathopastha upavishat, visrijya sasharam chapam shoka samvigna manasah"
+  }
+]

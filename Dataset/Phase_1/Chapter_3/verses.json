@@ -1,0 +1,1120 @@
+[
+  {
+    "id": "3_1",
+    "sanskrit": "अर्जुन उवाच । ज्यायसी चेत्कर्मणस्ते मता बुद्धिर्जनार्दन । तत्किं कर्मणि घोरे मां नियोजयसि केशव ॥",
+    "iast": "arjuna uvāca। jyāyasī cet karmaṇas te matā buddhir janārdana। tat kiṃ karmaṇi ghore māṃ niyojayasi keśava॥",
+    "simple": "arjuna uvacha, jayayasi chet karmanaste mata buddhir janardana, tat kim karmani ghore mam niyojayasi keshava",
+    "meaning_en": "Arjuna said: O Janardana, O Keshava, why do You want to engage me in this ghastly warfare, if You think that intelligence is better than fruitive work?",
+    "meaning_hi": "अर्जुन ने कहा: हे जनार्दन! हे केशव! यदि आप बुद्धि को सकाम कर्म से श्रेष्ठ मानते हैं, तो फिर आप मुझे इस घोर युद्ध में क्यों लगाना चाहते हैं?",
+    "emotional_tone": [
+      "confused",
+      "questioning"
+    ],
+    "core_theme": [
+      "confusion",
+      "action vs knowledge",
+      "seeking clarity"
+    ],
+    "life_situations": [
+      "intellectual confusion",
+      "analysis paralysis",
+      "not understanding advice"
+    ],
+    "notification_short": {
+      "en": "If peace is better, why must I fight? Confusion precedes clarity.",
+      "hi": "यदि शांति बेहतर है, तो मुझे क्यों लड़ना चाहिए? स्पष्टता से पहले भ्रम आता है।"
+    }
+  },
+  {
+    "id": "3_2",
+    "sanskrit": "व्यामिश्रेणेव वाक्येन बुद्धिं मोहयसीव मे । तदेकं वद निश्चित्य येन श्रेयोऽहमाप्नुयाम् ॥",
+    "iast": "vyāmiśreṇeva vākyena buddhiṃ mohayasīva me। tad ekaṃ vada niścitya yena śreyo ’ham āpnuyām॥",
+    "simple": "vyamishreneva vakyena buddhim mohayasiva me, tad ekam vada nishchitya yena shreyo aham apnuyam",
+    "meaning_en": "My intelligence is bewildered by Your equivocal instructions. Therefore, please tell me decisively which will be most beneficial for me.",
+    "meaning_hi": "आप अपने मिले-जुले वचनों से मेरी बुद्धि को मोहित कर रहे हैं। इसलिए निश्चय करके उस एक बात को कहिए, जिससे मैं कल्याण को प्राप्त हो सकूं।",
+    "emotional_tone": [
+      "frustrated",
+      "seeking direction"
+    ],
+    "core_theme": [
+      "decisiveness",
+      "need for guidance",
+      "clarity"
+    ],
+    "life_situations": [
+      "needing a straight answer",
+      "feeling misled",
+      "seeking mentorship"
+    ],
+    "notification_short": {
+      "en": "Don't confuse me. Tell me the one true path.",
+      "hi": "मुझे भ्रमित न करें। मुझे एक सच्चा रास्ता बताएं।"
+    }
+  },
+  {
+    "id": "3_3",
+    "sanskrit": "श्रीभगवानुवाच । लोकेऽस्मिन्द्विविधा निष्ठा पुरा प्रोक्ता मयानघ । ज्ञानयोगेन साङ्ख्यानां कर्मयोगेन योगिनाम् ॥",
+    "iast": "śrī-bhagavān uvāca। loke ’smin dvi-vidhā niṣṭhā purā proktā mayānagha। jñāna-yogena sāṅkhyānāṃ karma-yogena yoginām॥",
+    "simple": "shri bhagavan uvacha, loke asmin dvi vidha nishtha pura prokta mayanagha, jnana yogena sankhyanam karma yogena yoginam",
+    "meaning_en": "The Supreme Personality of Godhead said: O sinless Arjuna, I have already explained that there are two classes of men who try to realize the self. Some are inclined to understand it by empirical, philosophical speculation, and others by devotional service.",
+    "meaning_hi": "श्री भगवान ने कहा: हे निष्पाप अर्जुन! इस लोक में दो प्रकार की निष्ठा (मार्ग) मेरे द्वारा पहले कही गई है। ज्ञानियों के लिए ज्ञान योग और योगियों के लिए कर्म योग।",
+    "emotional_tone": [
+      "informative",
+      "guiding"
+    ],
+    "core_theme": [
+      "two paths",
+      "jnana yoga",
+      "karma yoga"
+    ],
+    "life_situations": [
+      "choosing a career path",
+      "understanding different learning styles",
+      "finding your fit"
+    ],
+    "notification_short": {
+      "en": "Knowledge or Action? Both lead to the same goal.",
+      "hi": "ज्ञान या कर्म? दोनों एक ही लक्ष्य की ओर ले जाते हैं।"
+    }
+  },
+  {
+    "id": "3_4",
+    "sanskrit": "न कर्मणामनारम्भान्नैष्कर्म्यं पुरुषोऽश्नुते । न च संन्यसनादेव सिद्धिं समधिगच्छति ॥",
+    "iast": "na karmaṇām anārambhān naiṣkarmyaṃ puruṣo ’śnute। na ca saṃnyasanād eva siddhiṃ samadhigacchati॥",
+    "simple": "na karmanam anarambhan naishkarmyam purusho ashnute, na cha sanyasanad eva siddhim samadhigachchhati",
+    "meaning_en": "Not by merely abstaining from work can one achieve freedom from reaction, nor by renunciation alone can one attain perfection.",
+    "meaning_hi": "न तो कर्मों का आरम्भ किए बिना मनुष्य निष्कर्मता को प्राप्त होता है और न ही केवल त्याग (संन्यास) से सिद्धि (पूर्णता) को प्राप्त होता है।",
+    "emotional_tone": [
+      "practical",
+      "corrective"
+    ],
+    "core_theme": [
+      "action vs inaction",
+      "false renunciation",
+      "importance of work"
+    ],
+    "life_situations": [
+      "avoiding work",
+      "thinking doing nothing is spiritual",
+      "laziness disguised as peace"
+    ],
+    "notification_short": {
+      "en": "You cannot escape work by just stopping. Freedom comes through action.",
+      "hi": "आप केवल रुककर काम से नहीं बच सकते। स्वतंत्रता कर्म से मिलती है।"
+    }
+  },
+  {
+    "id": "3_5",
+    "sanskrit": "न हि कश्चित्क्षणमपि जातु तिष्ठत्यकर्मकृत् । कार्यते ह्यवशः कर्म सर्वः प्रकृतिजैर्गुणैः ॥",
+    "iast": "na hi kaścit kṣaṇam api jātu tiṣṭhaty akarma-kṛt। kāryate hy avaśaḥ karma sarvaḥ prakṛti-jair guṇaiḥ॥",
+    "simple": "na hi kashchit kshanam api jatu tishtaty akarma krit, karyate hy avashah karma sarvah prakriti jair gunaih",
+    "meaning_en": "Everyone is forced to act helplessly according to the qualities he has acquired from the modes of material nature; therefore no one can refrain from doing something, not even for a moment.",
+    "meaning_hi": "असमर्थ हुआ कोई भी मनुष्य क्षण भर भी बिना कर्म किए नहीं रहता; क्योंकि प्रकृति से उत्पन्न गुण सभी को विवश करके कर्म करवाते हैं।",
+    "emotional_tone": [
+      "factual",
+      "observational"
+    ],
+    "core_theme": [
+      "inevitability of action",
+      "nature's drive",
+      "restlessness"
+    ],
+    "life_situations": [
+      "feeling restless",
+      "compulsion to do something",
+      "understanding human nature"
+    ],
+    "notification_short": {
+      "en": "To live is to act. Even silence is an action.",
+      "hi": "जीना ही कर्म करना है। मौन भी एक कर्म है।"
+    }
+  },
+  {
+    "id": "3_6",
+    "sanskrit": "कर्मेन्द्रियाणि संयम्य य आस्ते मनसा स्मरन् । इन्द्रियार्थान्विमूढात्मा मिथ्याचारः स उच्यते ॥",
+    "iast": "karmendriyāṇi saṃyamya ya āste manasā smaran। indriyārthān vimūḍhātmā mithyācāraḥ sa ucyate॥",
+    "simple": "karmendriyani samyamya ya aste manasa smaran, indriyarthan vimudhatma mithyacharah sa uchyate",
+    "meaning_en": "One who restrains the senses of action but whose mind dwells on sense objects certainly deludes himself and is called a pretender.",
+    "meaning_hi": "जो मूढ़ बुद्धि वाला मनुष्य कर्मेंद्रियों को हठपूर्वक रोककर, मन से इंद्रिय-विषयों का चिंतन करता रहता है, वह मिथ्याचारी (दंभी) कहा जाता है।",
+    "emotional_tone": [
+      "warning",
+      "critical"
+    ],
+    "core_theme": [
+      "hypocrisy",
+      "mental impurity",
+      "pretense"
+    ],
+    "life_situations": [
+      "faking goodness",
+      "suppressing desires",
+      "being honest with yourself"
+    ],
+    "notification_short": {
+      "en": "Don't pretend to be calm if your mind is a storm.",
+      "hi": "शांत होने का दिखावा न करें यदि आपका मन तूफान में है।"
+    }
+  },
+  {
+    "id": "3_7",
+    "sanskrit": "यस्त्विन्द्रियाणि मनसा नियम्यारभतेऽर्जुन । कर्मेन्द्रियैः कर्मयोगमसक्तः स विशिष्यते ॥",
+    "iast": "yas tv indriyāṇi manasā niyamyārabhate ’rjuna। karmendriyaiḥ karma-yogam asaktaḥ sa viśiṣyate॥",
+    "simple": "yas tv indriyani manasa niyamyārabhate arjuna, karmendriyaih karma yogam asaktah sa vishishyate",
+    "meaning_en": "On the other hand, if a sincere person tries to control the active senses by the mind and begins karma-yoga [in Krishna consciousness] without attachment, he is by far superior.",
+    "meaning_hi": "किंतु हे अर्जुन! जो पुरुष मन से इंद्रियों को वश में करके, अनासक्त होकर कर्मेंद्रियों द्वारा कर्म योग का आचरण करता है, वही श्रेष्ठ है।",
+    "emotional_tone": [
+      "approving",
+      "encouraging"
+    ],
+    "core_theme": [
+      "sincere effort",
+      "karma yoga",
+      "detached action"
+    ],
+    "life_situations": [
+      "working without attachment",
+      "doing your best",
+      "combining work and wisdom"
+    ],
+    "notification_short": {
+      "en": "Control the mind, then act freely. This is the path.",
+      "hi": "मन को नियंत्रित करो, फिर स्वतंत्र रूप से कार्य करो। यही रास्ता है।"
+    }
+  },
+  {
+    "id": "3_8",
+    "sanskrit": "नियतं कुरु कर्म त्वं कर्म ज्यायो ह्यकर्मणः । शरीरयात्रापि च ते न प्रसिद्ध्येदकर्मणः ॥",
+    "iast": "niyataṃ kuru karma tvaṃ karma jyāyo hy akarmaṇaḥ। śarīra-yātrāpi ca te na prasiddhyed akarmaṇaḥ॥",
+    "simple": "niyatam kuru karma tvam karma jayo hy akarmanah, sharira yatra api cha te na prasiddhyed akarmanah",
+    "meaning_en": "Perform your prescribed duty, for doing so is better than not working. One cannot even maintain one's physical body without work.",
+    "meaning_hi": "तू शास्त्रविहित कर्तव्य कर्म कर, क्योंकि कर्म न करने की अपेक्षा कर्म करना श्रेष्ठ है। कर्म न करने से तेरा शरीर निर्वाह भी सिद्ध नहीं होगा।",
+    "emotional_tone": [
+      "pragmatic",
+      "directives"
+    ],
+    "core_theme": [
+      "necessity of work",
+      "survival",
+      "duty"
+    ],
+    "life_situations": [
+      "earning a living",
+      "taking responsibility",
+      "avoiding idleness"
+    ],
+    "notification_short": {
+      "en": "Work is better than idleness. Do what must be done.",
+      "hi": "आलस्य से काम बेहतर है। जो करना है वो करो।"
+    }
+  },
+  {
+    "id": "3_9",
+    "sanskrit": "यज्ञार्थात्कर्मणोऽन्यत्र लोकोऽयं कर्मबन्धनः । तदर्थं कर्म कौन्तेय मुक्तसङ्गः समाचर ॥",
+    "iast": "yajñārthāt karmaṇo ’nyatra loko ’yaṃ karma-bandhanaḥ। tad-arthaṃ karma kaunteya mukta-saṅgaḥ samācara॥",
+    "simple": "yajñarthat karmano anyatra loko ayam karma bandhanah, tadartham karma kaunteya mukta sangah samachara",
+    "meaning_en": "Work done as a sacrifice for Vishnu has to be performed; otherwise work causes bondage in this material world. Therefore, O son of Kunti, perform your prescribed duties for His satisfaction, and in that way you will always remain free from bondage.",
+    "meaning_hi": "यज्ञ (कर्तव्य/परमात्मा) के निमित्त किए जाने वाले कर्मों के अतिरिक्त, दूसरे कर्मों में लगा हुआ यह मनुष्य समुदाय कर्म बंधन में बंधता है। इसलिए हे अर्जुन! आसक्ति रहित होकर उस यज्ञ के लिए ही कर्तव्य कर्म कर।",
+    "emotional_tone": [
+      "liberating",
+      "sacred"
+    ],
+    "core_theme": [
+      "work as worship",
+      "freedom from bondage",
+      "sacrifice"
+    ],
+    "life_situations": [
+      "dedicating work to a higher cause",
+      "selfless service",
+      "avoiding burnout"
+    ],
+    "notification_short": {
+      "en": "Turn your work into worship to be free.",
+      "hi": "मुक्त होने के लिए अपने काम को पूजा में बदल दें।"
+    }
+  },
+  {
+    "id": "3_10",
+    "sanskrit": "सहयज्ञाः प्रजाः सृष्ट्वा पुरोवाच प्रजापतिः । अनेन प्रसविष्यध्वमेष वोऽस्त्विष्टकामधुक् ॥",
+    "iast": "saha-yajñāḥ prajāḥ sṛṣṭvā purovāca prajāpatiḥ। anena prasaviṣyadhvam eṣa vo ’stv iṣṭa-kāma-dhuk॥",
+    "simple": "saha yajnah prajah srishtva purovacha prajapatih, anena prasavishyadhvam esha vo astu ishta kama dhuk",
+    "meaning_en": "In the beginning of creation, the Lord of all creatures sent forth generations of men and demigods, along with sacrifices for Vishnu, and blessed them by saying, 'Be thou happy by this yajna [sacrifice] because its performance will bestow upon you everything desirable for living and happily achieve liberation.'",
+    "meaning_hi": "प्रजापति ब्रह्मा ने कल्प के आदि में यज्ञ सहित प्रजाओं को रचकर कहा कि इस यज्ञ द्वारा तुम लोग वृद्धि को प्राप्त होओ और यह यज्ञ तुम लोगों को इच्छित भोग प्रदान करने वाला हो।",
+    "emotional_tone": [
+      "universal",
+      "benevolent"
+    ],
+    "core_theme": [
+      "creation",
+      "cooperation",
+      "abundance"
+    ],
+    "life_situations": [
+      "understanding nature's laws",
+      "giving back to receiving",
+      "abundance mindset"
+    ],
+    "notification_short": {
+      "en": "Give, and you shall receive. This is the law of creation.",
+      "hi": "दो, और तुम पाओगे। यही सृष्टि का नियम है।"
+    }
+  },
+  {
+    "id": "3_11",
+    "sanskrit": "देवान्भावयतानेन ते देवा भावयन्तु वः । परस्परं भावयन्तः श्रेयः परमवाप्स्यथ ॥",
+    "iast": "devān bhāvayatānena te devā bhāvayantu vaḥ। parasparaṃ bhāvayantaḥ śreyaḥ param avāpsyatha॥",
+    "simple": "devan bhavayatanena te deva bhavayantu vah, parasparam bhavayantah shreyah param avapsyatha",
+    "meaning_en": "The demigods, being pleased by sacrifices, will also please you, and thus, by cooperation between men and demigods, prosperity will reign for all.",
+    "meaning_hi": "तुम लोग इस यज्ञ द्वारा देवताओं को उन्नत करो और वे देवता तुम्हें उन्नत करें। इस प्रकार नि:स्वार्थ भाव से एक-दूसरे को उन्नत करते हुए तुम लोग परम कल्याण को प्राप्त हो जाओगे।",
+    "emotional_tone": [
+      "cooperative",
+      "harmonious"
+    ],
+    "core_theme": [
+      "synergy",
+      "mutual respect",
+      "ecosystem"
+    ],
+    "life_situations": [
+      "teamwork",
+      "community living",
+      "mutual benefit"
+    ],
+    "notification_short": {
+      "en": "Support others, and they will support you. We rise together.",
+      "hi": "दूसरों का समर्थन करें, और वे आपका समर्थन करेंगे। हम एक साथ उठते हैं।"
+    }
+  },
+  {
+    "id": "3_12",
+    "sanskrit": "इष्टान्भोगान्हि वो देवा दास्यन्ते यज्ञभाविताः । तैर्दत्तानप्रदायैभ्यो यो भुङ्क्ते स्तेन एव सः ॥",
+    "iast": "iṣṭān bhogān hi vo devā dāsyante yajña-bhāvitāḥ। tair dattān apradāyaibhyo yo bhuṅkte stena eva saḥ॥",
+    "simple": "ishtan bhogan hi vo deva dasyante yajna bhavitah, tair dattan apradayaibhyo yo bhunkte stena eva sah",
+    "meaning_en": "In charge of the various necessities of life, the demigods, being satisfied by the performance of yajna [sacrifice], will supply all necessities to you. But he who enjoys such gifts without offering them to the demigods in return is certainly a thief.",
+    "meaning_hi": "यज्ञ से पुष्ट हुए देवता तुम्हें बिना मांगे ही इच्छित भोग प्रदान करेंगे। उनके दिए हुए भोगों को जो बिना उन्हें अर्पण किए स्वयं भोगता है, वह चोर ही है।",
+    "emotional_tone": [
+      "stern",
+      "warning"
+    ],
+    "core_theme": [
+      "gratitude",
+      "reciprocity",
+      "theft"
+    ],
+    "life_situations": [
+      "taking without giving",
+      "ungratefulness",
+      "resource consumption"
+    ],
+    "notification_short": {
+      "en": "Don't be a thief of nature's gifts. Give thanks.",
+      "hi": "प्रकृति के उपहारों का चोर न बनें। धन्यवाद दें।"
+    }
+  },
+  {
+    "id": "3_13",
+    "sanskrit": "यज्ञशिष्टाशिनः सन्तो मुच्यन्ते सर्वकिल्बिषैः । भुञ्जते ते त्वघं पापा ये पचन्त्यात्मकारणात् ॥",
+    "iast": "yajña-śiṣṭāśinaḥ santo mucyante sarva-kilbiṣaiḥ। bhuñjate te tv aghaṃ pāpā ye pacanty ātma-kāraṇāt॥",
+    "simple": "yajna shishtashinah santo muchyante sarva kilbishaih, bhunjate te tv agham papa ye pachantyatma karanat",
+    "meaning_en": "The devotees of the Lord are released from all kinds of sins because they eat food which is offered first for sacrifice. Others, who prepare food for personal sense enjoyment, verily eat only sin.",
+    "meaning_hi": "यज्ञ से बचे हुए को खाने वाले श्रेष्ठ पुरुष सब पापों से छूट जाते हैं; और जो पापी केवल अपने शरीर पोषण के लिए ही पकाते हैं, वे तो पाप को ही खाते हैं।",
+    "emotional_tone": [
+      "pure",
+      "warning"
+    ],
+    "core_theme": [
+      "sanctified food",
+      "sin",
+      "selfishness"
+    ],
+    "life_situations": [
+      "cooking with love",
+      "sharing food",
+      "conscious eating"
+    ],
+    "notification_short": {
+      "en": "Sharing purifies. Hoarding selfishly brings pain.",
+      "hi": "बांटना शुद्ध करता है। स्वार्थ से जमा करना दर्द लाता है।"
+    }
+  },
+  {
+    "id": "3_14",
+    "sanskrit": "अन्नाद्भवन्ति भूतानि पर्जन्यादन्नसम्भवः । यज्ञाद्भवति पर्जन्यो यज्ञः कर्मसमुद्भवः ॥",
+    "iast": "annād bhavanti bhūtāni parjanyād anna-sambhavaḥ। yajñād bhavati parjanyo yajñaḥ karma-samudbhavaḥ॥",
+    "simple": "annad bhavanti bhutani parjanyad anna sambhavah, yajnad bhavati parjanyo yajnah karma samudbhavah",
+    "meaning_en": "All living bodies subsist on food grains, which are produced from rains. Rains are produced by performance of yajna [sacrifice], and yajna is born of prescribed duties.",
+    "meaning_hi": "सम्पूर्ण प्राणी अन्न से उत्पन्न होते हैं, अन्न की उत्पत्ति वर्षा से होती है, वर्षा यज्ञ से होती है और यज्ञ कर्मों से उत्पन्न होता है।",
+    "emotional_tone": [
+      "scientific",
+      "connected"
+    ],
+    "core_theme": [
+      "cycle of life",
+      "interdependence",
+      "ecology"
+    ],
+    "life_situations": [
+      "understanding food sources",
+      "ecology",
+      "chain of cause and effect"
+    ],
+    "notification_short": {
+      "en": "Everything connects. Work creates rain creates food creates life.",
+      "hi": "सब कुछ जुड़ता है। कर्म वर्षा, वर्षा भोजन और भोजन जीवन बनाता है।"
+    }
+  },
+  {
+    "id": "3_15",
+    "sanskrit": "कर्म ब्रह्मोद्भवं विद्धि ब्रह्माक्षरसमुद्भवम् । तस्मात्सर्वगतं ब्रह्म नित्यं यज्ञे प्रतिष्ठितम् ॥",
+    "iast": "karma brahmodbhavaṃ viddhi brahmākṣara-samudbhavam। tasmāt sarva-gataṃ brahma nityaṃ yajñe pratiṣṭhitam॥",
+    "simple": "karma brahmodbhavam viddhi brahmakshara samudbhavam, tasmat sarvagatam brahma nityam yajne pratishthitam",
+    "meaning_en": "Regulated activities are prescribed in the Vedas, and the Vedas are directly manifested from the Supreme Personality of Godhead. Consequently the all-pervading Transcendence is eternally situated in acts of sacrifice.",
+    "meaning_hi": "कर्म को वेद से उत्पन्न और वेद को अविनाशी परमात्मा से उत्पन्न जान। इसलिए वह सर्वव्यापी परम अक्षर परमात्मा यज्ञ (कर्तव्य) में सदा प्रतिष्ठित है।",
+    "emotional_tone": [
+      "reverent",
+      "philosophical"
+    ],
+    "core_theme": [
+      "divine origin of duty",
+      "omnipresence",
+      "scriptural authority"
+    ],
+    "life_situations": [
+      "finding God in work",
+      "respecting tradition",
+      "seeing the divine in daily tasks"
+    ],
+    "notification_short": {
+      "en": "The Divine is present in your selfless work.",
+      "hi": "आपके निस्वार्थ कार्य में परमात्मा मौजूद है।"
+    }
+  },
+  {
+    "id": "3_16",
+    "sanskrit": "एवं प्रवर्तितं चक्रं नानुवर्तयतीह यः । अघायुरिन्द्रियारामो मोघं पार्थ स जीवति ॥",
+    "iast": "evaṃ pravartitaṃ cakraṃ nānuvartayatīha yaḥ। aghāyur indriyārāmo moghaṃ pārtha sa jīvati॥",
+    "simple": "evam pravartitam chakram nanurvartayati iha yah, aghayur indriyaramo mogham partha sa jivati",
+    "meaning_en": "My dear Arjuna, one who does not follow in human life the cycle of sacrifice thus established by the Vedas certainly leads a life full of sin. Living only for the satisfaction of the senses, such a person lives in vain.",
+    "meaning_hi": "हे पार्थ! जो पुरुष इस लोक में इस प्रकार चलाए हुए चक्र के अनुसार नहीं चलता (अपने कर्तव्य का पालन नहीं करता), वह इंद्रियों के सुख में जीने वाला पापी व्यर्थ ही जीता है।",
+    "emotional_tone": [
+      "harsh",
+      "urgent"
+    ],
+    "core_theme": [
+      "wasted life",
+      "duty vs indulgence",
+      "responsibility"
+    ],
+    "life_situations": [
+      "wasting time",
+      "living without purpose",
+      "selfish living"
+    ],
+    "notification_short": {
+      "en": "Live for more than just pleasure, or act in vain.",
+      "hi": "केवल सुख से अधिक के लिए जियो, वरना व्यर्थ जियो।"
+    }
+  },
+  {
+    "id": "3_17",
+    "sanskrit": "यस्त्वात्मरतिरेव स्यादात्मतृप्तश्च मानवः । आत्मन्येव च सन्तुष्टस्तस्य कार्यं न विद्यते ॥",
+    "iast": "yas tv ātma-ratir eva syād ātma-tṛptaś ca mānavaḥ। ātmany eva ca santuṣṭas tasya kāryaṃ na vidyate॥",
+    "simple": "yas tv atmaratir eva syad atmatriptash cha manavah, atmanyeva cha santushtas tasya karyam na vidyate",
+    "meaning_en": "But for one who takes pleasure in the self, whose human life is one of self-realization, and who is satisfied in the self only, fully satiated—for him there is no duty.",
+    "meaning_hi": "परंतु जो मनुष्य आत्मा में ही रमण करने वाला, आत्मा में ही तृप्त और आत्मा में ही संतुष्ट हो, उसके लिए कोई कर्तव्य नहीं है।",
+    "emotional_tone": [
+      "serene",
+      "liberated"
+    ],
+    "core_theme": [
+      "self-realization",
+      "beyond duty",
+      "inner fullness"
+    ],
+    "life_situations": [
+      "finding complete satisfaction",
+      "need nothing",
+      "spiritual climax"
+    ],
+    "notification_short": {
+      "en": "When you are full within, you need nothing from without.",
+      "hi": "जब आप भीतर से भरे होते हैं, तो आपको बाहर से कुछ नहीं चाहिए होता।"
+    }
+  },
+  {
+    "id": "3_18",
+    "sanskrit": "नैव तस्य कृतेनार्थो नाकृतेनेह कश्चन । न चास्य सर्वभूतेषु कश्चिदर्थव्यपाश्रयः ॥",
+    "iast": "naiva tasya kṛtenārtho nākṛteneha kaścana। na cāsya sarva-bhūteṣu kaścid artha-vyapāśrayaḥ॥",
+    "simple": "naiva tasya kritenartho nakriteneha kashchana, na chasya sarva bhuteshu kashchid artha vyapashrayah",
+    "meaning_en": "A self-realized man has no purpose to fulfill in the discharge of his prescribed duties, nor has he any reason not to perform such work. Nor has he any need to depend on any other living being.",
+    "meaning_hi": "उस महापुरुष का इस विश्व में न तो कर्म करने से कोई प्रयोजन रहता है और न कर्म न करने से; तथा सम्पूर्ण प्राणियों में भी इसका कोई स्वार्थ-संबंध नहीं रहता।",
+    "emotional_tone": [
+      "detached",
+      "free"
+    ],
+    "core_theme": [
+      "absolute freedom",
+      "no ulterior motive",
+      "independence"
+    ],
+    "life_situations": [
+      "true independence",
+      "acting freely",
+      "needing no one"
+    ],
+    "notification_short": {
+      "en": "Act because you choose to, not because you need to.",
+      "hi": "इसलिए कार्य करें क्योंकि आप चुनते हैं, इसलिए नहीं कि आपको जरूरत है।"
+    }
+  },
+  {
+    "id": "3_19",
+    "sanskrit": "तस्मादसक्तः सततं कार्यं कर्म समाचर । असक्तो ह्याचरन्कर्म परमाप्नोति पुरुषः ॥",
+    "iast": "tasmād asaktaḥ satataṃ kāryaṃ karma samācara। asakto hy ācaran karma param āpnoti puruṣaḥ॥",
+    "simple": "tasmat asaktah satatam karyam karma samachara, asakto hy acharan karma param apnoti purushah",
+    "meaning_en": "Therefore, without being attached to the fruits of activities, one should act as a matter of duty, for by working without attachment one attains the Supreme.",
+    "meaning_hi": "इसलिए तू निरंतर आसक्ति से रहित होकर कर्तव्य कर्म का भलीभांति आचरण कर; क्योंकि आसक्ति रहित होकर कर्म करता हुआ मनुष्य परमात्मा को प्राप्त हो जाता है।",
+    "emotional_tone": [
+      "encouraging",
+      "definitive"
+    ],
+    "core_theme": [
+      "nishkama karma",
+      "path to supreme",
+      "practice"
+    ],
+    "life_situations": [
+      "practicing detachment",
+      "doing your job well regardless",
+      "spiritual practice in daily life"
+    ],
+    "notification_short": {
+      "en": "Do your duty without getting sticky. That is the way.",
+      "hi": "चिपके बिना अपना कर्तव्य करो। यही रास्ता है।"
+    }
+  },
+  {
+    "id": "3_20",
+    "sanskrit": "कर्मणैव हि संसिद्धिमास्थिता जनकादयः । लोकसङ्ग्रहमेवापि सम्पश्यन्कर्तुमर्हसि ॥",
+    "iast": "karmaṇaiva hi saṃsiddhim āsthitā janakādayaḥ। loka-saṅgraham evāpi sampaśyan kartum arhasi॥",
+    "simple": "karmanaiva hi samsiddhim asthita janakadayaḥ, loka sangraham evapi sampashyan kartum arhasi",
+    "meaning_en": "Kings such as Janaka attained perfection solely by performance of prescribed duties. Therefore, just for the sake of educating the people in general, you should perform your work.",
+    "meaning_hi": "जनक जैसे राजा भी कर्मों के द्वारा ही परम सिद्धि को प्राप्त हुए। इसलिए लोक संग्रह (जनता को उन्मार्ग से रोकने) को देखते हुए भी तुझे कर्म करना चाहिए।",
+    "emotional_tone": [
+      "exemplary",
+      "social responsibility"
+    ],
+    "core_theme": [
+      "leadership",
+      "role models",
+      "loka-sangraha"
+    ],
+    "life_situations": [
+      "setting an example",
+      "leadership",
+      "social responsibility"
+    ],
+    "notification_short": {
+      "en": "Lead by example. Your actions teach more than your words.",
+      "hi": "उदाहरण बनकर नेतृत्व करें। आपके कार्य आपके शब्दों से अधिक सिखाते हैं।"
+    }
+  },
+  {
+    "id": "3_21",
+    "sanskrit": "यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः । स यत्प्रमाणं कुरुते लोकस्तदनुवर्तते ॥",
+    "iast": "yad yad ācarati śreṣṭhas tat tad evetaro janaḥ। sa yat pramāṇaṃ kurute lokas tad anuvartate॥",
+    "simple": "yad yad acharati shreshthas tat tad evetaro janah, sa yat pramanam kurute lokas tad anuvartate",
+    "meaning_en": "Whatever action a great man performs, common men follow. And whatever standards he sets by exemplary acts, all the world pursues.",
+    "meaning_hi": "श्रेष्ठ पुरुष जैसा आचरण करता है, अन्य पुरुष भी वैसा ही आचरण करते हैं। वह जो कुछ प्रमाण (मान्यता) कर देता है, समस्त मनुष्य समुदाय उसी के अनुसार बरतने लग जाता है (अनुकरण करता है)।",
+    "emotional_tone": [
+      "influential",
+      "responsible"
+    ],
+    "core_theme": [
+      "influence",
+      "responsibility of leaders",
+      "following greatness"
+    ],
+    "life_situations": [
+      "parenting",
+      "leading a team",
+      "being an older sibling"
+    ],
+    "notification_short": {
+      "en": "Be carefully good; people are watching and following.",
+      "hi": "सावधानी से अच्छे बनें; लोग देख रहे हैं और अनुसरण कर रहे हैं।"
+    }
+  },
+  {
+    "id": "3_22",
+    "sanskrit": "न मे पार्थास्ति कर्तव्यं त्रिषु लोकेषु किञ्चन । नानवाप्तमवाप्तव्यं वर्त एव च कर्मणि ॥",
+    "iast": "na me pārthāsti kartavyaṃ triṣu lokeṣu kiñcana। nānavāptam avāptavyaṃ varta eva ca karmaṇi॥",
+    "simple": "na me parthasti kartavyam trishu lokeshu kinchana, nanavaptam avaptavyam varta eva cha karmani",
+    "meaning_en": "O son of Prtha, there is no work prescribed for Me within all the three planetary systems. Nor am I in want of anything, nor have I a need to obtain anything—and yet I am engaged in prescribed duties.",
+    "meaning_hi": "हे अर्जुन! मुझे इन तीनों लोकों में न तो कुछ कर्तव्य है और न ही कोई प्राप्त करने योग्य वस्तु अप्राप्त है, फिर भी मैं कर्म में ही बरतता हूं।",
+    "emotional_tone": [
+      "divine",
+      "exemplary"
+    ],
+    "core_theme": [
+      "divine action",
+      "leading by example",
+      "freedom from duty"
+    ],
+    "life_situations": [
+      "leading when you don't have to",
+      "setting the standard",
+      "working for others' sake"
+    ],
+    "notification_short": {
+      "en": "Even the Lord works, not for need, but to lead.",
+      "hi": "भगवान भी काम करते हैं, जरूरत के लिए नहीं, बल्कि नेतृत्व करने के लिए।"
+    }
+  },
+  {
+    "id": "3_23",
+    "sanskrit": "यदि ह्यहं न वर्तेयं जातु कर्मण्यतन्द्रितः । मम वर्त्मानुवर्तन्ते मनुष्याः पार्थ सर्वशः ॥",
+    "iast": "yadi hy ahaṃ na varteyaṃ jātu karmaṇy atandritaḥ। mama vartmānuvartante manuṣyāḥ pārtha sarvaśaḥ॥",
+    "simple": "yadi hy aham na varteyam jatu karmany atandritah, mama vartmanuvartante manushyah partha sarvashah",
+    "meaning_en": "For if I ever failed to engage in carefully performing prescribed duties, O Partha, certainly all men would follow My path.",
+    "meaning_hi": "क्योंकि हे पार्थ! यदि कदाचित मैं सावधान होकर कर्मों में न बरतूं, तो बड़ी हानि हो जाए; क्योंकि मनुष्य सब प्रकार से मेरे ही मार्ग का अनुसरण करते हैं।",
+    "emotional_tone": [
+      "responsible",
+      "warning"
+    ],
+    "core_theme": [
+      "responsibility",
+      "consequences of inaction",
+      "influence"
+    ],
+    "life_situations": [
+      "impact of laziness",
+      "responsibility of power",
+      "others follow you"
+    ],
+    "notification_short": {
+      "en": "The world follows your steps. Walk carefully.",
+      "hi": "दुनिया आपके कदमों का अनुसरण करती है। सावधानी से चलें।"
+    }
+  },
+  {
+    "id": "3_24",
+    "sanskrit": "उत्सीदेयुरिमे लोका न कुर्यां कर्म चेदहम् । सङ्करस्य च कर्ता स्यामुपहन्यामिमाः प्रजाः ॥",
+    "iast": "utsīdeyur ime lokā na kuryāṃ karma ced aham। saṅkarasya ca kartā syām upahanyām imāḥ prajāḥ॥",
+    "simple": "utsideyur ime loka na kuryam karma ched aham, sankarasya cha karta syam upahanyam imah prajah",
+    "meaning_en": "If I did not perform prescribed duties, all these worlds would be put to ruination. I would be the cause of creating unwanted population, and I would thereby destroy the peace of all living beings.",
+    "meaning_hi": "यदि मैं कर्म न करूं तो ये सब लोक भ्रष्ट हो जाएं और मैं वर्णसंकर का करने वाला होऊं तथा इस सारी प्रजा को नष्ट करने वाला बनूं।",
+    "emotional_tone": [
+      "grave",
+      "protective"
+    ],
+    "core_theme": [
+      "maintenance of order",
+      "preventing chaos",
+      "social stability"
+    ],
+    "life_situations": [
+      "maintaining order",
+      "doing your part",
+      "preventing chaos"
+    ],
+    "notification_short": {
+      "en": "Your inaction can cause chaos.",
+      "hi": "आपकी निष्क्रियता अराजकता का कारण बन सकती है।"
+    }
+  },
+  {
+    "id": "3_25",
+    "sanskrit": "सक्ताः कर्मण्यविद्वांसो यथा कुर्वन्ति भारत । कुर्याद्विद्वांस्तथाऽसक्तश्चिकीर्षुर्लोकसङ्ग्रहम् ॥",
+    "iast": "saktāḥ karmaṇy avidvāṃso yathā kurvanti bhārata। kuryād vidvāṃs tathā ’saktaś cikīrṣur loka-saṅgraham॥",
+    "simple": "saktah karmany avidvamso yatha kurvanti bharata, kuryad vidvams tatha asaktash chikirsur loka sangraham",
+    "meaning_en": "As the ignorant perform their duties with attachment to results, the learned may similarly act, but without attachment, for the sake of leading people on the right path.",
+    "meaning_hi": "हे भारत! कर्म में आसक्त हुए अज्ञानीजन जैसे कर्म करते हैं, वैसे ही आसक्ति रहित विद्वान भी लोक संग्रह करना चाहता हुआ कर्म करे।",
+    "emotional_tone": [
+      "enlightened",
+      "altruistic"
+    ],
+    "core_theme": [
+      "educated action",
+      "leading the ignorant",
+      "detached involvement"
+    ],
+    "life_situations": [
+      "teaching by doing",
+      "participating without getting entangled",
+      "guiding others"
+    ],
+    "notification_short": {
+      "en": "Act like the ignorant (work hard), but think like the wise (be free).",
+      "hi": "अज्ञानियों की तरह कार्य करें (कड़ी मेहनत करें), लेकिन ज्ञानियों की तरह सोचें (मुक्त रहें)।"
+    }
+  },
+  {
+    "id": "3_26",
+    "sanskrit": "न बुद्धिभेदं जनयेदज्ञानां कर्मसङ्गिनाम् । जोषयेत्सर्वकर्माणि विद्वान्युक्तः समाचरन् ॥",
+    "iast": "na buddhi-bhedaṃ janayed ajñānāṃ karma-saṅginām। joṣayet sarva-karmāṇi vidvān yuktaḥ samācaran॥",
+    "simple": "na buddhi bhedam janayed ajnanam karma sanginam, joshayet sarva karmani vidvan yuktah samacharan",
+    "meaning_en": "So as not to disrupt the minds of ignorant men attached to the fruitive results of prescribed duties, a learned person should not induce them to stop work. Rather, by working in the spirit of devotion, he should engage them in all sorts of activities [for the gradual development of Krishna consciousness].",
+    "meaning_hi": "परमात्मा के स्वरूप में अटल स्थित हुए ज्ञानी पुरुष को चाहिए कि वह शास्त्रविहित कर्मों में आसक्ति वाले अज्ञानियों की बुद्धि में भ्रम (कर्वों में अश्रद्धा) उत्पन्न न करे, किंतु स्वयं शास्त्रविहित समस्त कर्म भलीभांति करता हुआ उनसे भी वैसे ही करवाए।",
+    "emotional_tone": [
+      "wise",
+      "considerate"
+    ],
+    "core_theme": [
+      "gradual upliftment",
+      "respecting levels",
+      "not discouraging"
+    ],
+    "life_situations": [
+      "mentoring avoiding overwhelm",
+      "meeting people where they are",
+      "encouraging small steps"
+    ],
+    "notification_short": {
+      "en": "Don't confuse beginners with advanced philosophy. Encourage their good work.",
+      "hi": "शुरुआत करने वालों को उच्च दर्शन से भ्रमित न करें। उनके अच्छे कार्यों को प्रोत्साहित करें।"
+    }
+  },
+  {
+    "id": "3_27",
+    "sanskrit": "प्रकृतेर्गुणसम्मूढाः सज्जन्ते गुणकर्मसु । तानकृत्स्नविदो मन्दान्कृत्स्नविन्न विचालयेत् ॥",
+    "iast": "prakṛter guṇa-sammūḍhāḥ sajjante guṇa-karmasu। tān akṛtsna-vido mandān kṛtsna-vin na vicālayet॥",
+    "simple": "prakriter guna sammudhah sajjante guna karmasu, tan akritsna vido mandan kritsna vin na vichalayet",
+    "meaning_en": "Bewildered by the modes of material nature, the ignorant fully engage themselves in material activities and become attached. But the wise should not unsettle them, although these duties are inferior due to the performers' lack of knowledge.",
+    "meaning_hi": "प्रकृति के गुणों से अत्यंत मोहित हुए मनुष्य गुणों में और कर्मों में आसक्त रहते हैं, उन पूर्णतया न समझने वाले मंदबुद्धि शिथिल पुरुषों को पूर्णतया जानने वाला ज्ञानी विचलित न करे।",
+    "emotional_tone": [
+      "compassionate",
+      "patient"
+    ],
+    "core_theme": [
+      "patience with ignorance",
+      "non-disturbance",
+      "understanding limitations"
+    ],
+    "life_situations": [
+      "dealing with stubborn people",
+      "patience with family",
+      "allowing growth at own pace"
+    ],
+    "notification_short": {
+      "en": "Be patient with those who don't understand yet.",
+      "hi": "जो अभी नहीं समझते, उनके साथ धैर्य रखें।"
+    }
+  },
+  {
+    "id": "3_28",
+    "sanskrit": "तत्त्ववित्तु महाबाहो गुणकर्मविभागयोः । गुणा गुणेषु वर्तन्त इति मत्वा न सज्जते ॥",
+    "iast": "tattva-vit tu mahā-bāho guṇa-karma-vibhāgayoḥ। guṇā guṇeṣu vartanta iti matvā na sajjate॥",
+    "simple": "tattva vit tu mahabaho guna karma vibhagayoh, guna guneshu vartanta iti matva na sajjate",
+    "meaning_en": "One who is in knowledge of the Absolute Truth, O mighty-armed, does not engage himself in the senses and sense gratification, knowing well the differences between work in devotion and work for fruitive results.",
+    "meaning_hi": "परंतु हे महाबाहो! गुण विभाग और कर्म विभाग के तत्व को जानने वाला ज्ञानी- 'सम्पूर्ण गुण ही गुणों में बरत रहे हैं', ऐसा मानकर उनमें आसक्त नहीं होता।",
+    "emotional_tone": [
+      "observational",
+      "detached"
+    ],
+    "core_theme": [
+      "insight",
+      "separation of self and nature",
+      "observer mode"
+    ],
+    "life_situations": [
+      "watching your emotions",
+      "not identifying with reactions",
+      "mindfulness"
+    ],
+    "notification_short": {
+      "en": "The senses interact with the world. You are the watcher.",
+      "hi": "इंद्रियां दुनिया के साथ बातचीत करती हैं। आप देखने वाले हैं।"
+    }
+  },
+  {
+    "id": "3_29",
+    "sanskrit": "प्रकृतेः क्रियमाणानि गुणैः कर्माणि सर्वशः । अहङ्कारविमूढात्मा कर्ताहमिति मन्यते ॥",
+    "iast": "prakṛteḥ kriyamāṇāni guṇaiḥ karmāṇi sarvaśaḥ। ahaṅkāra-vimūḍhātmā kartāham iti manyate॥",
+    "simple": "prakriteh kriyamanani gunaih karmani sarvashah, ahankara vimudhatma karta aham iti manyate",
+    "meaning_en": "The spirit soul bewildered by the influence of false ego thinks himself the doer of activities that are in actuality carried out by the three modes of material nature.",
+    "meaning_hi": "वास्तव में सम्पूर्ण कर्म सब प्रकार से प्रकृति के गुणों द्वारा किए जाते हैं, तो भी जिसका अंतःकरण अहंकार से मोहित हो रहा है, ऐसा अज्ञानी 'मैं कर्ता हूं' ऐसा मानता है।",
+    "emotional_tone": [
+      "revelatory",
+      "humbling"
+    ],
+    "core_theme": [
+      "false ego",
+      "illusion of agency",
+      "nature as doer"
+    ],
+    "life_situations": [
+      "dropping the ego",
+      "realizing you are not in control",
+      "humility"
+    ],
+    "notification_short": {
+      "en": "You are not the doer. Nature acts; you witness.",
+      "hi": "आप कर्ता नहीं हैं। प्रकृति कार्य करती है; आप साक्षी हैं।"
+    }
+  },
+  {
+    "id": "3_30",
+    "sanskrit": "मयि सर्वाणि कर्माणि संन्यस्याध्यात्मचेतसा । निराशीर्निर्ममो भूत्वा युध्यस्व विगतज्वरः ॥",
+    "iast": "mayi sarvāṇi karmāṇi saṃnyasyādhyātma-cetasā। nirāśīr nirmamo bhūtvā yudhyasva vigata-jvaraḥ॥",
+    "simple": "mayi sarvani karmani sannyasya adhyatma chetasa, nirashir nirmamo bhutva yudhyasva vigata jvarah",
+    "meaning_en": "Therefore, O Arjuna, surrendering all your works unto Me, with full knowledge of Me, without desires for profit, with no claims to proprietorship, and free from lethargy, fight.",
+    "meaning_hi": "इसलिए सारे कर्मों को मुझमें अर्पण करके (चित्त को मुझमें लगाकर), आशा, ममता और संताप से रहित होकर युद्ध कर।",
+    "emotional_tone": [
+      "surrender",
+      "empowering"
+    ],
+    "core_theme": [
+      "surrender",
+      "devotion",
+      "fighting spirit"
+    ],
+    "life_situations": [
+      "letting go and doing it",
+      "overcoming anxiety",
+      "dedicating work"
+    ],
+    "notification_short": {
+      "en": "Surrender your work to the Divine and fight without fear.",
+      "hi": "अपने काम को परमात्मा को सौंप दें और बिना डर के लड़ें।"
+    }
+  },
+  {
+    "id": "3_31",
+    "sanskrit": "ये मे मतमिदं नित्यमनुतिष्ठन्ति मानवाः । श्रद्धावन्तोऽनसूयन्तो मुच्यन्ते तेऽपि कर्मभिः ॥",
+    "iast": "ye me matam idaṃ nityam anutiṣṭhanti mānavāḥ। śraddhāvanto ’nasūyanto mucyante te ’pi karmabhiḥ॥",
+    "simple": "ye me matam idam nityam anutishthanti manavah, shraddhavanto anasuyanto muchyante te api karmabhih",
+    "meaning_en": "Those persons who execute these duties according to My injunctions and who follow this teaching faithfully, without envy, become free from the bondage of fruitive actions.",
+    "meaning_hi": "जो कोई मनुष्य दोष दृष्टि से रहित और श्रद्धा से युक्त होकर मेरे इस मत का सदा अनुसरण करते हैं, वे भी सम्पूर्ण कर्मों से छूट जाते हैं।",
+    "emotional_tone": [
+      "promising",
+      "faithful"
+    ],
+    "core_theme": [
+      "faith",
+      "following instructions",
+      "liberation"
+    ],
+    "life_situations": [
+      "having faith in the process",
+      "following mentorship",
+      "trusting the path"
+    ],
+    "notification_short": {
+      "en": "Follow the path with faith, and you will be free.",
+      "hi": "श्रद्धा के साथ रास्ते पर चलें, और आप मुक्त हो जाएंगे।"
+    }
+  },
+  {
+    "id": "3_32",
+    "sanskrit": "ये त्वेतदभ्यसूयन्तो नानुतिष्ठन्ति मे मतम् । सर्वज्ञानविमूढांस्तान्विद्धि नष्टानचेतसः ॥",
+    "iast": "ye tv etad abhyasūyanto nānutiṣṭhanti me matam। sarva-jñāna-vimūḍhāṃs tān viddhi naṣṭān acetasaḥ॥",
+    "simple": "ye tv etad abhyasuyanto nanutishthanti me matam, sarva jnana vimudhan stan viddhi nashtan achetasah",
+    "meaning_en": "But those who, out of envy, disregard these teachings and do not follow them are to be considered bereft of all knowledge, befooled, and ruined in their endeavors for perfection.",
+    "meaning_hi": "परंतु जो मनुष्य मुझमें दोषारोपण करते हुए मेरे इस मत के अनुसार नहीं चलते हैं, उन मूर्खों को तू समस्त ज्ञानों में मोहित और नष्ट हुआ ही जान।",
+    "emotional_tone": [
+      "stern",
+      "warning"
+    ],
+    "core_theme": [
+      "consequences of envy",
+      "ignorance",
+      "spiritual ruin"
+    ],
+    "life_situations": [
+      "ignoring good advice",
+      "letting ego block learning",
+      "downfall of arrogance"
+    ],
+    "notification_short": {
+      "en": "Ignoring wisdom out of envy leads to ruin.",
+      "hi": "ईर्ष्या के कारण ज्ञान की अनदेखी करना विनाश की ओर ले जाता है।"
+    }
+  },
+  {
+    "id": "3_33",
+    "sanskrit": "सदृशं चेष्टते स्वस्याः प्रकृतेर्ज्ञानवानपि । प्रकृतिं यान्ति भूतानि निग्रहः किं करिष्यति ॥",
+    "iast": "sadṛśaṃ ceṣṭate svasyāḥ prakṛter jñānavān api। prakṛtiṃ yānti bhūtāni nigrahaḥ kiṃ kariṣyati॥",
+    "simple": "sadrisham cheshtate svasyah prakriter jnanavan api, prakritim yanti bhutani nigrahah kim karishyati",
+    "meaning_en": "Even a man of knowledge acts according to his own nature, for everyone follows the nature he has acquired from the three modes. What can repression accomplish?",
+    "meaning_hi": "सभी प्राणी प्रकृति को प्राप्त होते हैं (अर्थात अपने स्वभाव के परवश हुए कर्म करते हैं), ज्ञानवान भी अपनी प्रकृति के अनुसार चेष्टा करता है। फिर इसमें किसी का हठ क्या करेगा?",
+    "emotional_tone": [
+      "realistic",
+      "accepting"
+    ],
+    "core_theme": [
+      "power of nature",
+      "futility of repression",
+      "natural tendency"
+    ],
+    "life_situations": [
+      "accepting your nature",
+      "not fighting against yourself",
+      "understanding behavior"
+    ],
+    "notification_short": {
+      "en": "You cannot suppress your true nature. Work with it, not against it.",
+      "hi": "आप अपने सच्चे स्वभाव को दबा नहीं सकते। इसके साथ काम करें, इसके खिलाफ नहीं।"
+    }
+  },
+  {
+    "id": "3_34",
+    "sanskrit": "इन्द्रियस्येन्द्रियस्यार्थे रागद्वेषौ व्यवस्थितौ । तयोर्न वशमागच्छेत्तौ ह्यस्य परिपन्थिनौ ॥",
+    "iast": "indriyasya indriyasya arthe rāga-dveṣau vyavasthitau। tayor na vaśam āgacchet tau hy asya paripanthinau॥",
+    "simple": "indriyasya indriyasya arthe raga dveshau vyavasthitau, tayor na vasham agachchhet tau hy asya paripanthinau",
+    "meaning_en": "There are principles to regulate attachment and aversion pertaining to the senses and their objects. One should not come under the control of such attachment and aversion, because they are stumbling blocks on the path of self-realization.",
+    "meaning_hi": "इंद्रिय-इंद्रिय के अर्थ में (प्रत्येक इंद्रिय के विषय में) राग और द्वेष छिपे हुए स्थित हैं। मनुष्य को उन दोनों के वश में नहीं होना चाहिए, क्योंकि वे दोनों ही इसके कल्याण मार्ग में विघ्न करने वाले महान शत्रु हैं।",
+    "emotional_tone": [
+      "vigilant",
+      "cautious"
+    ],
+    "core_theme": [
+      "attachment and aversion",
+      "hidden enemies",
+      "middle path"
+    ],
+    "life_situations": [
+      "managing likes and dislikes",
+      "not being swayed by preferences",
+      "objectivity"
+    ],
+    "notification_short": {
+      "en": "Don't be controlled by your likes and dislikes.",
+      "hi": "अपनी पसंद और नापसंद से नियंत्रित न हों।"
+    }
+  },
+  {
+    "id": "3_35",
+    "sanskrit": "श्रेयान्स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात् । स्वधर्मे निधनं श्रेयः परधर्मो भयावहः ॥",
+    "iast": "śreyān sva-dharmo viguṇaḥ para-dharmāt sv-anuṣṭhitāt। sva-dharme nidhanaṃ śreyaḥ para-dharmo bhayāvahaḥ॥",
+    "simple": "shreyan svadharmo vigunah paradharmat svanushthitat, svadharme nidhanam shreyah paradharmo bhayavahah",
+    "meaning_en": "It is far better to discharge one's prescribed duties, even though faultily, than another's duties perfectly. Destruction in the course of performing one's own duty is better than engaging in another's duty, for to follow another's path is dangerous.",
+    "meaning_hi": "अच्छी प्रकार आचरण में लाए हुए दूसरे के धर्म से गुणरहित भी अपना धर्म अति उत्तम है। अपने धर्म में तो मरना भी कल्याणकारक है और दूसरे का धर्म भय को देने वाला है।",
+    "emotional_tone": [
+      "assuring",
+      "validating"
+    ],
+    "core_theme": [
+      "svadharma",
+      "authenticity",
+      "danger of limitation"
+    ],
+    "life_situations": [
+      "being yourself",
+      "following your own path",
+      "not copying others"
+    ],
+    "notification_short": {
+      "en": "Better your own imperfect path than someone else's perfect one.",
+      "hi": "किसी और के सही रास्ते से बेहतर है अपना अधूरा रास्ता।"
+    }
+  },
+  {
+    "id": "3_36",
+    "sanskrit": "अर्जुन उवाच । अथ केन प्रयुक्तोऽयं पापं चरति पूरुषः । अनिच्छन्नपि वार्ष्णेय बलादिव नियोजितः ॥",
+    "iast": "arjuna uvāca। atha kena prayukto ’yaṃ pāpaṃ carati pūruṣaḥ। anicchann api vārṣṇeya balād iva niyojitaḥ॥",
+    "simple": "arjuna uvacha, atha kena prayukto ayam papam charati purushah, anichchhann api varshneya balad iva niyojitah",
+    "meaning_en": "Arjuna said: O descendant of Vrishni, by what is one impelled to sinful acts, even unwittingly, as if engaged by force?",
+    "meaning_hi": "अर्जुन ने पूछा: हे कृष्ण! तो फिर यह मनुष्य स्वयं न चाहता हुआ भी बलात् लगाए हुए की भांति किससे प्रेरित होकर पाप का आचरण करता है?",
+    "emotional_tone": [
+      "curious",
+      "desperate"
+    ],
+    "core_theme": [
+      "root of sin",
+      "compulsion",
+      "inner struggle"
+    ],
+    "life_situations": [
+      "why do I do this?",
+      "fighting addiction",
+      "internal conflict"
+    ],
+    "notification_short": {
+      "en": "Why do we do what we know is wrong?",
+      "hi": "हम वह क्यों करते हैं जो हम जानते हैं कि गलत है?"
+    }
+  },
+  {
+    "id": "3_37",
+    "sanskrit": "श्रीभगवानुवाच । काम एष क्रोध एष रजोगुणसमुद्भवः । महाशनो महापाप्मा विद्ध्येनमिह वैरिणम् ॥",
+    "iast": "śrī-bhagavān uvāca। kāma eṣa krodha eṣa rajo-guṇa-samudbhavaḥ। mahāśano mahā-pāpmā viddhy enam iha vairiṇam॥",
+    "simple": "shri bhagavan uvacha, kama esha krodha esha rajo guna samudbhavah, mahashano maha papma viddhy enam iha vairinam",
+    "meaning_en": "The Supreme Personality of Godhead said: It is lust only, Arjuna, which is born of contact with the material mode of passion and later transformed into wrath, and which is the all-devouring sinful enemy of this world.",
+    "meaning_hi": "श्री भगवान ने कहा: इसका कारण रजोगुण से उत्पन्न हुआ काम (इच्छा) है, जो क्रोध का रूप धारण करता है। यह महाअशन (बहुत खाने वाला) और महापापी है। इसको ही तू यहाँ वैरी जान।",
+    "emotional_tone": [
+      "definitive",
+      "serious"
+    ],
+    "core_theme": [
+      "lust and anger",
+      "mode of passion",
+      "the real enemy"
+    ],
+    "life_situations": [
+      "identifying the enemy",
+      "understanding desire",
+      "managing anger"
+    ],
+    "notification_short": {
+      "en": "Desire and Anger are the enemies. They devour everything.",
+      "hi": "इच्छा और क्रोध शत्रु हैं। वे सब कुछ खा जाते हैं।"
+    }
+  },
+  {
+    "id": "3_38",
+    "sanskrit": "धूमेनाव्रियते वह्निर्यथाऽऽदर्शो मलेन च । यथोल्बेनावृतो गर्भस्तथा तेनेदमावृतम् ॥",
+    "iast": "dhūmenāvriyate vahnir yathā ’darśo malena ca। yatholbenāvṛto garbhas tathā tenedam āvṛtam॥",
+    "simple": "dhumenavriyate vahnir yatha adarsho malena cha, yatholbenavrito garbhas tatha tenedam avritam",
+    "meaning_en": "As fire is covered by smoke, as a mirror is covered by dust, or as the embryo is covered by the womb, the living entity is similarly covered by different degrees of this lust.",
+    "meaning_hi": "जैसे धुएं से अग्नि और मैल से दर्पण ढका जाता है तथा जैसे जेर से गर्भ ढका रहता है, वैसे ही उस काम के द्वारा यह ज्ञान ढका रहता है।",
+    "emotional_tone": [
+      "metaphorical",
+      "enlightening"
+    ],
+    "core_theme": [
+      "layers of ignorance",
+      "degrees of covering",
+      "obscuration"
+    ],
+    "life_situations": [
+      "feeling clouded",
+      "cleaning your mind",
+      "uncovering the truth"
+    ],
+    "notification_short": {
+      "en": "Your wisdom is covered by desire like a mirror by dust. Wipe it clean.",
+      "hi": "आपकी बुद्धि इच्छा से ढकी है जैसे दर्पण धूल से। इसे साफ करें।"
+    }
+  },
+  {
+    "id": "3_39",
+    "sanskrit": "आवृतं ज्ञानमेतेन ज्ञानिनो नित्यवैरिणा । कामरूपेण कौन्तेय दुष्पूरेणानलेन च ॥",
+    "iast": "āvṛtaṃ jñānam etena jñānino nitya-vairiṇā। kāma-rūpeṇa kaunteya duṣpūreṇānalena ca॥",
+    "simple": "avritam jnanam etena jnanino nitya vairina, kama rupena kaunteya dushpurena analena cha",
+    "meaning_en": "Thus the wise living entity's pure consciousness becomes covered by his eternal enemy in the form of lust, which is never satisfied and which burns like fire.",
+    "meaning_hi": "और हे अर्जुन! इस अग्नि के समान कभी न पूर्ण होने वाले काम रूपी ज्ञानियों के नित्य बैरी द्वारा मनुष्य का ज्ञान ढका हुआ है।",
+    "emotional_tone": [
+      "warning",
+      "urgent"
+    ],
+    "core_theme": [
+      "insatiable desire",
+      "eternal enemy",
+      "fire of lust"
+    ],
+    "life_situations": [
+      "never being satisfied",
+      "chasing happiness",
+      "understanding cravings"
+    ],
+    "notification_short": {
+      "en": "Desire is a fire that never goes out by feeding it.",
+      "hi": "इच्छा एक ऐसी आग है जो खिलाने से कभी नहीं बुझती।"
+    }
+  },
+  {
+    "id": "3_40",
+    "sanskrit": "इन्द्रियाणि मनो बुद्धिरस्याधिष्ठानमुच्यते । एतैर्विमोहयत्येष ज्ञानमावृत्य देहिनम् ॥",
+    "iast": "indriyāṇi mano buddhir asyādhiṣṭhānam ucyate। etair vimohayaty eṣa jñānam āvṛtya dehinam॥",
+    "simple": "indriyani mano buddhir asyadhishthanam uchyate, etair vimohayaty esha jnanam avrittya dehinam",
+    "meaning_en": "The senses, the mind and the intelligence are the sitting places of this lust. Through them lust covers the real knowledge of the living entity and bewilders him.",
+    "meaning_hi": "इंद्रियां, मन और बुद्धि- ये सब इसके वास स्थान कहे जाते हैं। यह काम इन सबके द्वारा ही ज्ञान को ढककर देहधारी जीवात्मा को मोहित करता है।",
+    "emotional_tone": [
+      "analytical",
+      "diagnostic"
+    ],
+    "core_theme": [
+      "seat of desire",
+      "mechanism of illusion",
+      "anatomy of fall"
+    ],
+    "life_situations": [
+      "where temptation lives",
+      "mind games",
+      "intellectual rationalization"
+    ],
+    "notification_short": {
+      "en": "Desire hides in your senses, mind, and intellect. Watch them.",
+      "hi": "इच्छा आपकी इंद्रियों, मन और बुद्धि में छिपी है। उन पर नजर रखें।"
+    }
+  },
+  {
+    "id": "3_41",
+    "sanskrit": "तस्मात्त्वमिन्द्रियाण्यादौ नियम्य भरतर्षभ । पाप्मानं प्रजहि ह्येनं ज्ञानविज्ञाननाशनम् ॥",
+    "iast": "tasmāt tvam indriyāṇy ādau niyamya bharatarṣabha। pāpmānaṃ prajahi hy enaṃ jñāna-vijñāna-nāśanam॥",
+    "simple": "tasmat tvam indriyany adau niyamya bharatarshabha, papmanam prajahi hy enam jnana vijnana nashanam",
+    "meaning_en": "Therefore, O Arjuna, best of the Bharatas, in the very beginning curb this great symbol of sin [lust] by regulating the senses, and slay this destroyer of knowledge and self-realization.",
+    "meaning_hi": "इसलिए हे अर्जुन! तू पहले इंद्रियों को वश में करके, इस ज्ञान और विज्ञान का नाश करने वाले महान पापी काम को अवश्य ही मार डाल।",
+    "emotional_tone": [
+      "commanding",
+      "strategic"
+    ],
+    "core_theme": [
+      "control senses first",
+      "kill the enemy",
+      "strategy"
+    ],
+    "life_situations": [
+      "starting self-control",
+      "discipline",
+      "winning the inner battle"
+    ],
+    "notification_short": {
+      "en": "Control the senses first. Stop the enemy at the gate.",
+      "hi": "पहले इंद्रियों को नियंत्रित करें। दुश्मन को गेट पर ही रोकें।"
+    }
+  },
+  {
+    "id": "3_42",
+    "sanskrit": "इन्द्रियाणि पराण्याहुरिन्द्रियेभ्यः परं मनः । मनसस्तु परा बुद्धिर्यो बुद्धेः परतस्तु सः ॥",
+    "iast": "indriyāṇi parāṇy āhur indriyebhyaḥ paraṃ manaḥ। manasas tu parā buddhir yo buddheḥ paratas tu saḥ॥",
+    "simple": "indriyani parany ahur indriyebhyah param manah, manasas tu para buddhir yo buddheh paratas tu sah",
+    "meaning_en": "The working senses are superior to dull matter; mind is higher than the senses; intelligence is still higher than the mind; and he [the soul] is even higher than the intelligence.",
+    "meaning_hi": "इंद्रियों को स्थूल शरीर से पर (श्रेष्ठ) कहते हैं; इंद्रियों से पर मन है; मन से भी पर बुद्धि है और जो बुद्धि से भी अत्यंत पर है, वह आत्मा है।",
+    "emotional_tone": [
+      "elevated",
+      "hierarchical"
+    ],
+    "core_theme": [
+      "hierarchy of being",
+      "soul supremacy",
+      "self-knowledge"
+    ],
+    "life_situations": [
+      "regaining perspective",
+      "knowing who you are",
+      "rising above the mind"
+    ],
+    "notification_short": {
+      "en": "You are higher than your mind and intelligence. Remember that.",
+      "hi": "आप अपने मन और बुद्धि से ऊंचा हैं। यह याद रखें।"
+    }
+  },
+  {
+    "id": "3_43",
+    "sanskrit": "एवं बुद्धेः परं बुद्ध्वा संस्तभ्यात्मानमात्मना । जहि शत्रुं महाबाहो कामरूपं दुरासदम् ॥",
+    "iast": "evaṃ buddheḥ paraṃ buddhvā saṃstabhya ātmānam ātmanā। jahi śatruṃ mahā-bāho kāma-rūpaṃ durāsadam॥",
+    "simple": "evam buddheh param buddhva samstabhya atmanam atmana, jahi shatrum mahabaho kama rupam durasadam",
+    "meaning_en": "Thus knowing oneself to be transcendental to the material senses, mind and intelligence, O mighty-armed Arjuna, one should steady the mind by deliberate spiritual intelligence and thus—by spiritual strength—conquer this insatiable enemy known as lust.",
+    "meaning_hi": "इस प्रकार बुद्धि से पर अर्थात सूक्ष्म, बलवान और अत्यंत श्रेष्ठ आत्मा को जानकर और बुद्धि के द्वारा मन को अपने वश में करके, हे महाबाहो! तू इस काम रूप दुर्जय शत्रु को मार डाल।",
+    "emotional_tone": [
+      "victorious",
+      "powerful"
+    ],
+    "core_theme": [
+      "conquest",
+      "spiritual strength",
+      "final victory"
+    ],
+    "life_situations": [
+      "overcoming addiction",
+      "mastering yourself",
+      "spiritual victory"
+    ],
+    "notification_short": {
+      "en": "Know your true Self, steady your mind, and conquer the enemy.",
+      "hi": "अपने सच्चे स्वरूप को जानो, अपने मन को स्थिर करो और शत्रु को जीतो।"
+    }
+  }
+]

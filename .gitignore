@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Local backups (pre-redesign snapshots)
+.backups/
+
+# Environment & secrets — commit .env.example instead
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Coverage & caches
+coverage/
+.cache/
+.vite/
+.eslintcache
+
+# OS & editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/

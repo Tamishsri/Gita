@@ -1,0 +1,1224 @@
+[
+    {
+        "id": "6_1",
+        "sanskrit": "श्रीभगवानुवाच । अनाश्रितः कर्मफलं कार्यं कर्म करोति यः । स संन्यासी च योगी च न निरग्निर्न चाक्रियः ॥",
+        "iast": "śrī-bhagavān uvāca। anāśritaḥ karma-phalaṃ kāryaṃ karma karoti yaḥ। sa saṃnyāsī ca yogī ca na niragnir na cākriyaḥ॥",
+        "simple": "shri bhagavan uvacha, anashritah karma phalam karyam karma karoti yah, sa sannyasi cha yogi cha na niragnir na chakriyah",
+        "meaning_en": "The Personality of Godhead said: One who is unattached to the fruits of his work and who works as he is obligated is in the renounced order of life, and he is the true mystic, not he who lights no fire and performs no duty.",
+        "meaning_hi": "श्री भगवान ने कहा: जो पुरुष कर्मफल का आश्रय न लेकर करने योग्य कर्म करता है, वह संन्यासी और योगी है; और जो केवल अग्नि का त्यागी है तथा केवल क्रियाओं का त्यागी है, वह संन्यासी और योगी नहीं है।",
+        "emotional_tone": [
+            "defining",
+            "clarifying"
+        ],
+        "core_theme": [
+            "true renunciation",
+            "duty vs ritual",
+            "definition of yogi"
+        ],
+        "life_situations": [
+            "understanding true spirituality",
+            "doing your duty without expectation",
+            "avoiding fake renunciation"
+        ],
+        "notification_short": {
+            "en": "True renunciation is doing your duty without expecting a reward.",
+            "hi": "सच्चा संन्यास बिना किसी इनाम की उम्मीद के अपना कर्तव्य निभाना है।"
+        }
+    },
+    {
+        "id": "6_2",
+        "sanskrit": "यं संन्यासमिति प्राहुर्व्योगं तं विद्धि पाण्डव । न ह्यसंन्यस्तसङ्कल्पो योगी भवति कश्चन ॥",
+        "iast": "yaṃ saṃnyāsam iti prāhur yogaṃ taṃ viddhi pāṇḍava। na hy asaṃnyasta-saṅkalpo yogī bhavati kaścana॥",
+        "simple": "yam sannyasam iti prahur yogam tam viddhi pandava, na hy asannyasta sankalpo yogi bhavati kashchana",
+        "meaning_en": "What is called renunciation you should know to be the same as yoga, or linking oneself with the Supreme, O son of Pandu, for one can never become a yogi unless he renounces the desire for sense gratification.",
+        "meaning_hi": "हे अर्जुन! जिसको संन्यास ऐसा कहते हैं, उसी को तू योग जान; क्योंकि संकल्पों का त्याग न करने वाला कोई भी पुरुष योगी नहीं होता।",
+        "emotional_tone": [
+            "instructional",
+            "unifying"
+        ],
+        "core_theme": [
+            "yoga is renunciation",
+            "giving up desire",
+            "unity of paths"
+        ],
+        "life_situations": [
+            "learning to let go",
+            "overcoming selfish desires",
+            "practicing yoga in daily life"
+        ],
+        "notification_short": {
+            "en": "You cannot be a Yogi without giving up selfish desires.",
+            "hi": "आप स्वार्थी इच्छाओं को छोड़े बिना योगी नहीं बन सकते।"
+        }
+    },
+    {
+        "id": "6_3",
+        "sanskrit": "आरुरुक्षोर्मुनेर्योगं कर्म कारणमुच्यते । योगारूढस्य तस्यैव शमः कारणमुच्यते ॥",
+        "iast": "ārurukṣor muner yogaṃ karma kāraṇam ucyate। yogārūḍhasya tasyaiva śamaḥ kāraṇam ucyate॥",
+        "simple": "arurukshor muner yogam karma karanam uchyate, yogarudhasya tasyaiva shamah karanam uchyate",
+        "meaning_en": "For one who is a neophyte in the eightfold yoga system, work is said to be the means; and for one who is already elevated in yoga, cessation of all material activities is said to be the means.",
+        "meaning_hi": "योग में आरूढ़ होने की इच्छा वाले मननशील पुरुष के लिए योग की प्राप्ति में निष्काम भाव से कर्म करना ही हेतु कहा जाता है और योगारूढ़ हो जाने पर उस योगारूढ़ पुरुष का शम (शांति) ही कल्याण में हेतु कहा जाता है।",
+        "emotional_tone": [
+            "guiding",
+            "progressive"
+        ],
+        "core_theme": [
+            "stages of yoga",
+            "action vs stillness",
+            "progression"
+        ],
+        "life_situations": [
+            "starting a spiritual practice",
+            "knowing when to act and when to be still",
+            "spiritual growth"
+        ],
+        "notification_short": {
+            "en": "First, work to discipline yourself. Then, find peace in stillness.",
+            "hi": "पहले, खुद को अनुशासित करने के लिए काम करें। फिर, स्थिरता में शांति पाएं।"
+        }
+    },
+    {
+        "id": "6_4",
+        "sanskrit": "यदा हि नेन्द्रियार्थेषु न कर्मस्वनुषज्जते । सर्वसङ्कल्पसंन्यासी योगारूढस्तदोच्यते ॥",
+        "iast": "yadā hi nendriyārtheṣu na karmasv anuṣajjate। sarva-saṅkalpa-saṃnyāsī yogārūḍhas tadocyate॥",
+        "simple": "yada hi nendriyartheshu na karmasv anushajjate, sarva sankalpa sannyasi yogarudhah tadocyate",
+        "meaning_en": "A person is said to be elevated in yoga when, having renounced all material desires, he neither acts for sense gratification nor engages in fruitive activities.",
+        "meaning_hi": "जिस काल में न तो इंद्रियों के भोगों में और न कर्मों में ही आसक्त होता है, उस काल में सर्वसंकल्पों का त्यागी पुरुष योगारूढ़ कहा जाता है।",
+        "emotional_tone": [
+            "elevated",
+            "detached"
+        ],
+        "core_theme": [
+            "yogarudha",
+            "abandoning desire",
+            "non-attachment"
+        ],
+        "life_situations": [
+            "reaching a high state of mind",
+            "breaking free from addictions",
+            "mastering the self"
+        ],
+        "notification_short": {
+            "en": "When you are attached neither to pleasure nor to work, you are elevated.",
+            "hi": "जब आप न तो सुख से और न ही काम से जुड़े होते हैं, तो आप ऊपर उठ जाते हैं।"
+        }
+    },
+    {
+        "id": "6_5",
+        "sanskrit": "उद्धरेदात्मनाऽऽत्मानं नात्मानमवसादयेत् । आत्मैव ह्यात्मनो बन्धुरात्मैव रिपुरात्मनः ॥",
+        "iast": "uddhared ātmanā ’tmānaṃ nātmānam avasādayet। ātmaiva hy ātmano bandhur ātmaiva ripur ātmanaḥ॥",
+        "simple": "uddhared atmana atmanam natmanam avasadayet, atmaiva hy atmano bandhur atmaiva ripur atmanah",
+        "meaning_en": "One must deliver himself with the help of his mind, and not degrade himself. The mind is the friend of the conditioned soul, and his enemy as well.",
+        "meaning_hi": "अपने द्वारा अपना संसार-समुद्र से उद्धार करे और अपने को अधोगति में न डाले; क्योंकि यह मनुष्य आप ही तो अपना मित्र है और आप ही अपना शत्रु है।",
+        "emotional_tone": [
+            "empowering",
+            "cautionary"
+        ],
+        "core_theme": [
+            "self-help",
+            "mind as friend/enemy",
+            "personal responsibility"
+        ],
+        "life_situations": [
+            "self-motivation",
+            "overcoming negative self-talk",
+            "being your own best friend"
+        ],
+        "notification_short": {
+            "en": "You are your own best friend and your own worst enemy. Choose wisely.",
+            "hi": "आप अपने सबसे अच्छे दोस्त और अपने सबसे बड़े दुश्मन हैं। बुद्धिमानी से चुनें।"
+        }
+    },
+    {
+        "id": "6_6",
+        "sanskrit": "बन्धुरात्मात्मनस्तस्य येनात्मैवात्मना जितः । अनात्मनस्तु शत्रुत्वे वर्तेतात्मैव शत्रुवत् ॥",
+        "iast": "bandhur ātmātmanas tasya yenātmaivātmanā jitaḥ। anātmanas tu śatrutve vartetātmaiva śatru-vat॥",
+        "simple": "bandhur atmatmanas tasya yenatmaivatmana jitah, anatmanas tu shatrutve vartetatmaiva shatruvat",
+        "meaning_en": "For him who has conquered the mind, the mind is the best of friends; but for one who has failed to do so, his mind will remain the greatest enemy.",
+        "meaning_hi": "जिस जीवात्मा द्वारा मन और इंद्रियों सहित शरीर जीता हुआ है, उसके लिए उसी का आत्मा मित्र है और जिसके द्वारा मन तथा इंद्रियों सहित शरीर नहीं जीता गया है, उसके लिए वह आप ही शत्रु के सदृश शत्रुता में बरतता है।",
+        "emotional_tone": [
+            "definitive",
+            "contrasting"
+        ],
+        "core_theme": [
+            "conqueing the mind",
+            "friend vs foe",
+            "self-control"
+        ],
+        "life_situations": [
+            "battling inner demons",
+            "mastering your thoughts",
+            "turning the mind into an ally"
+        ],
+        "notification_short": {
+            "en": "Conquer your mind, and it is your friend. Let it loose, and it is your enemy.",
+            "hi": "अपने मन पर विजय प्राप्त करें, और यह आपका मित्र है। इसे ढीला छोड़ दें, और यह आपका दुश्मन है।"
+        }
+    },
+    {
+        "id": "6_7",
+        "sanskrit": "जितात्मनः प्रशान्तस्य परमात्मा समाहितः । शीतोष्णसुखदुःखेषु तथा मानापमानयोः ॥",
+        "iast": "jitātmanaḥ praśāntasya paramātmā samāhitaḥ। śītoṣṇa-sukha-duḥkheṣu tathā mānāpamānayoḥ॥",
+        "simple": "jitatmanah prashantasya paramatma samahitah, shitoshna sukha duhkheshu tatha manapamanayoh",
+        "meaning_en": "For one who has conquered the mind and is thus tranquil, the Supersoul is already reached, for he has attained tranquility. To such a man happiness and distress, heat and cold, honor and dishonor are all the same.",
+        "meaning_hi": "सर्दी-गर्मी और सुख-दुःख आदि में तथा मान और अपमान में जिसके अंतःकरण की वृत्तियां भलीभांति शांत हैं, ऐसे स्वाधीन आत्मा वाले पुरुष में सच्चिदानंदघन परमात्मा सम्यक् प्रकार से स्थित है।",
+        "emotional_tone": [
+            "tranquil",
+            "balanced"
+        ],
+        "core_theme": [
+            "equanimity",
+            "divine connection",
+            "dualities"
+        ],
+        "life_situations": [
+            "staying calm in chaos",
+            "not reacting to praise or insult",
+            "finding god in silence"
+        ],
+        "notification_short": {
+            "en": "Stay calm in heat and cold, honor and dishonor. God is with the tranquil.",
+            "hi": "गर्मी और सर्दी, मान और अपमान में शांत रहें। भगवान शांत लोगों के साथ हैं।"
+        }
+    },
+    {
+        "id": "6_8",
+        "sanskrit": "ज्ञानविज्ञानतृप्तात्मा कूटस्थो विजितेन्द्रियः । युक्त इत्युच्यते योगी समलोष्टाश्मकाञ्चनः ॥",
+        "iast": "jñāna-vijñāna-tṛptātmā kūṭastho vijitendriyaḥ। yukta ity ucyate yogī sama-loṣṭāśma-kāñcanaḥ॥",
+        "simple": "jnana vijnana triptatma kutastho vijitendriyah, yukta ity uchyate yogi sama loshtashma kanchanah",
+        "meaning_en": "A person is said to be established in self-realization and is called a yogi [or mystic] when he is fully satisfied by virtue of acquired knowledge and realization. Such a person is situated in transcendence and is self-controlled. He sees everything—whether it be pebbles, stones or gold—as the same.",
+        "meaning_hi": "जिसका अंतःकरण ज्ञान-विज्ञान से तृप्त है, जो कूटस्थ (विकाररहित) है, जिसकी इंद्रियां भलीभांति जीती हुई हैं और जिसके लिए मिट्टी, पत्थर और सुवर्ण समान हैं, वह योगी 'युक्त' कहा जाता है।",
+        "emotional_tone": [
+            "satisfied",
+            "transcendent"
+        ],
+        "core_theme": [
+            "satisfaction in knowledge",
+            "equal vision",
+            "material insignificance"
+        ],
+        "life_situations": [
+            "valuing wisdom over wealth",
+            "seeing the emptiness of materialism",
+            "being content"
+        ],
+        "notification_short": {
+            "en": "To a true Yogi, a stone and gold are the same. See beyond material value.",
+            "hi": "एक सच्चे योगी के लिए, पत्थर और सोना एक ही हैं। भौतिक मूल्य से परे देखें।"
+        }
+    },
+    {
+        "id": "6_9",
+        "sanskrit": "सुहृन्मित्रार्युदासीनमध्यस्थद्वेष्यबन्धुषु । साधुष्वपि च पापेषु समबुद्धिर्विशिष्यते ॥",
+        "iast": "suhṛn-mitrāry-udāsīna-madhyastha-dveṣya-bandhuṣu। sādhuṣv api ca pāpeṣu sama-buddhir viśiṣyate॥",
+        "simple": "suhrin mitrary udasina madhyastha dveshya bandhuṣu, sadhushv api cha papeshu sama buddhir vishishyate",
+        "meaning_en": "A person is considered still further advanced when he regards honest well-wishers, affectionate benefactors, the neutral, mediators, the envious, friends and enemies, the pious and the sinners all with an equal mind.",
+        "meaning_hi": "सहृदयी (स्वार्थरहित हित करने वाला), मित्र, बैरी, उदासीन (पक्षपातरहित), मध्यस्थ (भला-बुरा न चाहने वाला), द्वेष्य और बंधुगणों में, धर्मात्माओं में और पापियों में भी समान भाव रखने वाला अत्यंत श्रेष्ठ है।",
+        "emotional_tone": [
+            "compassionate",
+            "non-judgmental"
+        ],
+        "core_theme": [
+            "universal equality",
+            "beyond judgment",
+            "advanced yoga"
+        ],
+        "life_situations": [
+            "loving your enemies",
+            "not judging people",
+            "treating everyone with respect"
+        ],
+        "notification_short": {
+            "en": "See friends and enemies, saints and sinners with an equal eye.",
+            "hi": "मित्रों और शत्रुओं, संतों और पापियों को एक समान दृष्टि से देखें।"
+        }
+    },
+    {
+        "id": "6_10",
+        "sanskrit": "योगी युञ्जीत सततमात्मानं रहसि स्थितः । एकाकी यतचित्तात्मा निराशीरपरिग्रहः ॥",
+        "iast": "yogī yuñjīta satatam ātmānaṃ rahasi sthitaḥ। ekākī yata-cittātmā nirāśīr aparigrahaḥ॥",
+        "simple": "yogi yunjita satatam atmanam rahasi sthitah, ekaki yata chittatma nirashir aparigrahah",
+        "meaning_en": "A transcendentalist should always engage his body, mind and self in relationship with the Supreme; he should live alone in a secluded place and should always carefully control his mind. He should be free from desires and feelings of possessiveness.",
+        "meaning_hi": "मन और इंद्रियों सहित शरीर को वश में रखने वाला, आशारहित और संग्रहरहित योगी अकेला ही एकांत स्थान में स्थित होकर आत्मा को निरंतर परमात्मा में लगावे।",
+        "emotional_tone": [
+            "disciplined",
+            "solitary"
+        ],
+        "core_theme": [
+            "meditation practice",
+            "solitude",
+            "freedom from possession"
+        ],
+        "life_situations": [
+            "spending time alone",
+            "practicing meditation",
+            "simplifying your life"
+        ],
+        "notification_short": {
+            "en": "Practice yoga in solitude. Control your mind and let go of possessions.",
+            "hi": "एकांत में योग का अभ्यास करें। अपने मन को नियंत्रित करें और संपत्ति को छोड़ दें।"
+        }
+    },
+    {
+        "id": "6_11",
+        "sanskrit": "शुचौ देशे प्रतिष्ठाप्य स्थिरमासनमात्मनः । नात्युच्छ्रितं नातिनीचं चैलाजिनकुशोत्तरम् ॥",
+        "iast": "śucau deśe pratiṣṭhāpya sthiram āsanam ātmanaḥ। nātyucchritaṃ nātinīcaṃ cailājina-kuśottaram॥",
+        "simple": "shuchau deshe pratishthapya sthiram asanam atmanah, natyuchchritam natinicham chailajina kushottaram",
+        "meaning_en": "To practice yoga, one should go to a secluded place and should lay kusha grass on the ground and then cover it with a deerskin and a soft cloth. The seat should be neither too high nor too low and should be situated in a sacred place.",
+        "meaning_hi": "शुद्ध भूमि में, जिसके ऊपर क्रमशः कुशा, मृगछाला और वस्त्र बिछे हैं, जो न बहुत ऊंचा है और न बहुत नीचा, ऐसे अपने आसन को स्थिर स्थापना करके...",
+        "emotional_tone": [
+            "instructional",
+            "preparatory"
+        ],
+        "core_theme": [
+            "yoga seat",
+            "preparation",
+            "sacred space"
+        ],
+        "life_situations": [
+            "setting up a meditation space",
+            "creating a sacred environment",
+            "preparation for practice"
+        ],
+        "notification_short": {
+            "en": "Find a clean place. Sit comfortably. Prepare for meditation.",
+            "hi": "एक साफ जगह खोजें। आराम से बैठें। ध्यान के लिए तैयार रहें।"
+        }
+    },
+    {
+        "id": "6_12",
+        "sanskrit": "तत्रैकाग्रं मनः कृत्वा यतचित्तेन्द्रियक्रियः । उपविश्यासने युञ्ज्याद्योगमात्मविशुद्धये ॥",
+        "iast": "tatraikāgraṃ manaḥ kṛtvā yata-cittendriya-kriyaḥ। upaviśyāsane yuñjyād yogam ātma-viśuddhaye॥",
+        "simple": "tatraikagram manah kritva yata chittendriya kriyah, upavishyasaney yunjyad yogam atma vishuddhaye",
+        "meaning_en": "The yogi should then sit on it very firmly and practice yoga to purify the heart by controlling his mind, senses and activities and fixing the mind on one point.",
+        "meaning_hi": "...उस आसन पर बैठकर चित्त और इंद्रियों की क्रियाओं को वश में रखते हुए मन को एकाग्र करके अंतःकरण की शुद्धि के लिए योग का अभ्यास करे।",
+        "emotional_tone": [
+            "focused",
+            "purifying"
+        ],
+        "core_theme": [
+            "one-pointed mind",
+            "purification",
+            "concentration"
+        ],
+        "life_situations": [
+            "focusing the mind",
+            "mental detox",
+            "concentration exercises"
+        ],
+        "notification_short": {
+            "en": "Sit firmly and focus your mind on one point to purify your heart.",
+            "hi": "दृढ़ता से बैठें और अपने दिल को शुद्ध करने के लिए अपने दिमाग को एक बिंदु पर केंद्रित करें।"
+        }
+    },
+    {
+        "id": "6_13",
+        "sanskrit": "समं कायशिरोग्रीवं धारयन्नचलं स्थिरः । सम्प्रेक्ष्य नासिकाग्रं स्वं दिशश्चानवलोकयन् ॥",
+        "iast": "samaṃ kāya-śiro-grīvaṃ dhārayann acalaṃ sthiraḥ। samprekṣya nāsikāgraṃ svaṃ diśaś cānavalokayan॥",
+        "simple": "samam kaya shiro grivam dharayann achalam sthirah, samprekshya nasikagram svam dishash chanavalokayan",
+        "meaning_en": "One should hold one's body, neck and head erect in a straight line and stare steadily at the tip of the nose. Thus, with an unagitated, subdued mind, devoid of fear, completely free from sex life...",
+        "meaning_hi": "काया, सिर और गले को समान और अचल धारण करके और स्थिर होकर, अपनी नासिका के अग्रभाग पर दृष्टि जमाकर, अन्य दिशाओं को न देखता हुआ...",
+        "emotional_tone": [
+            "steady",
+            "disciplined"
+        ],
+        "core_theme": [
+            "posture",
+            "gaze",
+            "physical discipline"
+        ],
+        "life_situations": [
+            "improving posture",
+            "steadying the body",
+            "physical stillness"
+        ],
+        "notification_short": {
+            "en": "Hold your body straight. Gaze at the tip of your nose. be steady.",
+            "hi": "अपने शरीर को सीधा रखें। अपनी नाक की नोक पर टकटकी लगाएँ। स्थिर रहो।"
+        }
+    },
+    {
+        "id": "6_14",
+        "sanskrit": "प्रशान्तात्मा विगतभीर्ब्रह्मचारिव्रते स्थितः । मनः संयम्य मच्चित्तो युक्त आसीत मत्परः ॥",
+        "iast": "praśāntātmā vigata-bhīr brahmacāri-vrate sthitaḥ। manaḥ saṃyamya mac-citto yukta āsīta mat-paraḥ॥",
+        "simple": "prashantatma vigatabhir brahmachari vrate sthitah, manah sanyamya machchitto yukta asita mat parah",
+        "meaning_en": "...one should meditate upon Me within the heart and make Me the ultimate goal of life.",
+        "meaning_hi": "...ब्रह्मचारी के व्रत में स्थित, भयरहित तथा भलीभांति शांत अंतःकरण वाला, सावधान योगी मन को रोककर, मुझमें चित्त वाला और मेरे परायण होकर स्थित होवे।",
+        "emotional_tone": [
+            "devotional",
+            "peaceful"
+        ],
+        "core_theme": [
+            "meditating on god",
+            "fearlessness",
+            "celibacy/discipline"
+        ],
+        "life_situations": [
+            "dedicating life to a higher purpose",
+            "overcoming fear",
+            "centering on the divine"
+        ],
+        "notification_short": {
+            "en": "Be fearless and calm. Meditate on Me as the highest goal.",
+            "hi": "निडर और शांत रहें। मुझे सर्वोच्च लक्ष्य मानकर मेरा ध्यान करो।"
+        }
+    },
+    {
+        "id": "6_15",
+        "sanskrit": "युञ्जन्नेवं सदाऽऽत्मानं योगी नियतमानसः । शान्तिं निर्वाणपरमां मत्संस्थामधिगच्छति ॥",
+        "iast": "yuñjann evaṃ sadā ’tmānaṃ yogī niyata-mānasaḥ। śāntiṃ nirvāṇa-paramāṃ mat-saṃsthām adhigacchati॥",
+        "simple": "yunjann evam sada atmanam yogi niyata manasah, shantim nirvana paramam mat sanstham adhigachchhati",
+        "meaning_en": "Thus practicing constant control of the body, mind and activities, the mystic transcendentalist, his mind regulated, attains to the kingdom of God [or the abode of Krishna] by cessation of material existence.",
+        "meaning_hi": "वश में किए हुए मन वाला योगी इस प्रकार आत्मा को निरंतर मुझ परमेश्वर के स्वरूप में लगाता हुआ, मुझमें रहने वाली परमानन्द की पराकाष्ठारूप शांति को प्राप्त होता है।",
+        "emotional_tone": [
+            "blissful",
+            "ultimate"
+        ],
+        "core_theme": [
+            "attaining peace",
+            "nirvana",
+            "result of yoga"
+        ],
+        "life_situations": [
+            "finding ultimate peace",
+            "reaching the goal",
+            "spiritual fulfillment"
+        ],
+        "notification_short": {
+            "en": "Control your mind always, and you will reach the peace of My abode.",
+            "hi": "अपने मन को हमेशा नियंत्रित रखें, और आप मेरे धाम की शांति तक पहुँच जाएंगे।"
+        }
+    },
+    {
+        "id": "6_16",
+        "sanskrit": "नात्यश्नतस्तु योगोऽस्ति न चैकान्तमनश्नतः । न चातिस्वप्नशीलस्य जाग्रतो नैव चार्जुन ॥",
+        "iast": "nātyaśnatas tu yogo ’sti na caikāntam anaśnataḥ। na cāti-svapna-śīlasya jāgrato naiva cārjuna॥",
+        "simple": "natyashnatas tu yogo asti na chaikantam anashnatah, na chati svapna shilasya jagrato naiva charjuna",
+        "meaning_en": "There is no possibility of one's becoming a yogi, O Arjuna, if one eats too much or eats too little, sleeps too much or does not sleep enough.",
+        "meaning_hi": "हे अर्जुन! यह योग न तो बहुत खाने वाले का, न बिल्कुल न खाने वाले का, न बहुत सोने वाले का और न सदा जागने वाले का ही सिद्ध होता है।",
+        "emotional_tone": [
+            "balanced",
+            "practical"
+        ],
+        "core_theme": [
+            "moderation",
+            "balance in habits",
+            "middle path"
+        ],
+        "life_situations": [
+            "avoiding extremes",
+            "building healthy habits",
+            "self-care"
+        ],
+        "notification_short": {
+            "en": "Don't eat or sleep too much or too little. Find the balance.",
+            "hi": "बहुत ज्यादा या बहुत कम न खाएं और न ही सोएं। संतुलन खोजें।"
+        }
+    },
+    {
+        "id": "6_17",
+        "sanskrit": "युक्ताहारविहारस्य युक्तचेष्टस्य कर्मसु । युक्तस्वप्नावबोधस्य योगो भवति दुःखहा ॥",
+        "iast": "yuktāhāra-vihārasya yukta-ceṣṭasya karmasu। yukta-svapnāvabodhasya yogo bhavati duḥkha-hā॥",
+        "simple": "yukta ahara viharasya yukta cheshtasya karmasu, yukta svapna avabodhasya yogo bhavati duhkha ha",
+        "meaning_en": "He who is regulated in his habits of eating, sleeping, recreation and work can mitigate all material pains by practicing the yoga system.",
+        "meaning_hi": "दुःखों का नाश करने वाला योग तो यथायोग्य आहार-विहार करने वाले का, कर्मों में यथायोग्य चेष्टा करने वाले का और यथायोग्य सोने तथा जागने वाले का ही सिद्ध होता है।",
+        "emotional_tone": [
+            "wholesome",
+            "pain-relieving"
+        ],
+        "core_theme": [
+            "regulated living",
+            "mitigating pain",
+            "discipline"
+        ],
+        "life_situations": [
+            "creating a balanced routine",
+            "stress relief through order",
+            "living well"
+        ],
+        "notification_short": {
+            "en": "Regulate your eating, sleeping, and working, and yoga will take away your pain.",
+            "hi": "अपने खाने-पीने, सोने और काम करने को नियमित करें, और योग आपके दर्द को दूर कर देगा।"
+        }
+    },
+    {
+        "id": "6_18",
+        "sanskrit": "यदा विनियतं चित्तमात्मन्येवावतिष्ठते । निःस्पृहः सर्वकामेभ्यो युक्त इत्युच्यते तदा ॥",
+        "iast": "yadā viniyataṃ cittaṃ ātmany evāvatiṣṭhate। niḥspṛhaḥ sarva-kāmebhyo yukta ity ucyate tadā॥",
+        "simple": "yada viniyatam chittam atmany evavatishthate, nihsprihah sarva kamebhyo yukta ity uchyate tada",
+        "meaning_en": "When the yogi, by practice of yoga, disciplines his mental activities and becomes situated in transcendence—devoid of all material desires—he is said to be well established in yoga.",
+        "meaning_hi": "अत्यंत वश में किया हुआ चित्त जिस काल में परमात्मा में ही भलीभांति स्थित हो जाता है, उस काल में सम्पूर्ण भोगों से स्पृहारहित पुरुष 'योगयुक्त' है, ऐसा कहा जाता है।",
+        "emotional_tone": [
+            "disciplined",
+            "established"
+        ],
+        "core_theme": [
+            "mental discipline",
+            "transcendence",
+            "desirelessness"
+        ],
+        "life_situations": [
+            "mastering the mind",
+            "being centered",
+            "overcoming cravings"
+        ],
+        "notification_short": {
+            "en": "When your mind is disciplined and free from desire, you are a true Yogi.",
+            "hi": "जब आपका मन अनुशासित होता है और इच्छा से मुक्त होता है, तो आप एक सच्चे योगी होते हैं।"
+        }
+    },
+    {
+        "id": "6_19",
+        "sanskrit": "यथा दीपो निवातस्थो नेङ्गते सोपमा स्मृता । योगिनो यतचित्तस्य युञ्जतो योगमात्मनः ॥",
+        "iast": "yathā dīpo nivāta-stho neṅgate sopamā smṛtā। yogino yata-cittasya yuñjato yogam ātmanaḥ॥",
+        "simple": "yatha deepo nivata stho nengate sopama smrita, yogino yata chittasya yunjato yogam atmanah",
+        "meaning_en": "As a lamp in a windless place does not waver, so the transcendentalist, whose mind is controlled, remains always steady in his meditation on the transcendent Self.",
+        "meaning_hi": "जिस प्रकार वायुरहित स्थान में स्थित दीपक चलायमान नहीं होता, वैसी ही उपमा परमात्मा के ध्यान में लगे हुए योगी के जीते हुए चित्त की कही गई है।",
+        "emotional_tone": [
+            "steady",
+            "illustrative"
+        ],
+        "core_theme": [
+            "lamp analogy",
+            "steadiness of mind",
+            "unwavering focus"
+        ],
+        "life_situations": [
+            "developing unwavering focus",
+            "stillness of mind",
+            "deep meditation"
+        ],
+        "notification_short": {
+            "en": "Be steady like a lamp in a windless place.",
+            "hi": "हवा रहित स्थान में दीपक की तरह स्थिर रहें।"
+        }
+    },
+    {
+        "id": "6_20",
+        "sanskrit": "यत्रोपरमते चित्तं निरुद्धं योगसेवया । यत्र चैवात्मनाऽऽत्मानं पश्यन्नात्मनि तुष्यति ॥",
+        "iast": "yatroparamate cittaṃ niruddhaṃ yoga-sevayā। yatra caivātmanā ’tmānaṃ paśyann ātmani tuṣyati॥",
+        "simple": "yatroparamate chittam niruddham yoga sevaya, yatra chaiva atmana atmanam pashyann atmani tushyati",
+        "meaning_en": "In the stage of perfection called trance, or samadhi, one's mind is completely restrained from material mental activities by practice of yoga. This perfection is characterized by one's ability to see the self by the pure mind and to relish and rejoice in the self.",
+        "meaning_hi": "योग के अभ्यास से निरुद्ध चित्त जिस अवस्था में उपराम हो जाता है और जिस अवस्था में परमात्मा के ध्यान से शुद्ध हुई सूक्ष्म बुद्धि द्वारा परमात्मा को साक्षात् करता हुआ सच्चिदानंदघन परमात्मा में ही संतुष्ट रहता है...",
+        "emotional_tone": [
+            "perfect",
+            "rejoicing"
+        ],
+        "core_theme": [
+            "samadhi",
+            "self-realization",
+            "relising the self"
+        ],
+        "life_situations": [
+            "finding joy within",
+            "spiritual perfection",
+            "seeing true self"
+        ],
+        "notification_short": {
+            "en": "Restrain your mind, see your true Self, and rejoice.",
+            "hi": "अपने मन को संयमित करें, अपनी सच्ची आत्मा को देखें, और आनंदित हों।"
+        }
+    },
+    {
+        "id": "6_21",
+        "sanskrit": "सुखमात्यन्तिकं यत्तद्बुद्धिग्राह्यमतीन्द्रियम् । वेत्ति यत्र न चैवायं स्थितश्चलति तत्त्वतः ॥",
+        "iast": "sukham ātyantikaṃ yat tad buddhi-grāhyam atīndriyam। vetti yatra na caivāyaṃ sthitaś calati tattvataḥ॥",
+        "simple": "sukham atyantikam yat tad buddhi grahyam atindriyam, vetti yatra na chaiva ayam sthitash chalati tattvatah",
+        "meaning_en": "In that joyous state, one is situated in boundless transcendental happiness, realized through transcendental senses. Established thus, one never departs from the truth.",
+        "meaning_hi": "इंद्रियों से अतीत और केवल शुद्ध हुई सूक्ष्म बुद्धि द्वारा ग्रहण करने योग्य जो अनंत आनंद है, उसको जिस अवस्था में अनुभव करता है और जिस अवस्था में स्थित यह योगी अपने स्वरूप से विचलित होता ही नहीं...",
+        "emotional_tone": [
+            "joyous",
+            "boundless"
+        ],
+        "core_theme": [
+            "transcendental happiness",
+            "beyond senses",
+            "unshakeable truth"
+        ],
+        "life_situations": [
+            "finding lasting happiness",
+            "connecting with the absolute",
+            "spiritual confidence"
+        ],
+        "notification_short": {
+            "en": "Experience the boundless joy beyond the senses. Never depart from truth.",
+            "hi": "इंद्रियों से परे असीम आनंद का अनुभव करें। सत्य से कभी न हटें।"
+        }
+    },
+    {
+        "id": "6_22",
+        "sanskrit": "यं लब्ध्वा चापरं लाभं मन्यते नाधिकं ततः । यस्मिन्स्थितो न दुःखेन गुरुणाऽपि विचाल्यते ॥",
+        "iast": "yaṃ labdhvā cāparaṃ lābhaṃ manyate nādhikaṃ tataḥ। yasmin sthito na duḥkhena guruṇā ’pi vicālyate॥",
+        "simple": "yam labdhva chaparam labham manyate nadhikam tatah, yasmin sthito na duhkhen guruna api vichalyate",
+        "meaning_en": "Upon gaining this he thinks there is no greater gain. Being situated in such a position, one is never shaken, even in the midst of greatest difficulty.",
+        "meaning_hi": "परमेश्वर की प्राप्ति रूप जिस लाभ को प्राप्त होकर उससे अधिक दूसरा कुछ भी लाभ नहीं मानता और भगवत्प्राप्ति रूप जिस अवस्था में स्थित योगी बड़े भारी दुःख से भी चलायमान नहीं होता...",
+        "emotional_tone": [
+            "satisfied",
+            "unshakable"
+        ],
+        "core_theme": [
+            "ultimate gain",
+            "resilience",
+            "cannot be shaken"
+        ],
+        "life_situations": [
+            "finding the greatest treasure",
+            "staying strong in hard times",
+            "unshakeable faith"
+        ],
+        "notification_short": {
+            "en": "Once you have this, you need nothing else. Even great sorrow cannot shake you.",
+            "hi": "एक बार जब आपके पास यह हो जाता है, तो आपको किसी और चीज की आवश्यकता नहीं होती है। बड़ा दुख भी आपको नहीं हिला सकता।"
+        }
+    },
+    {
+        "id": "6_23",
+        "sanskrit": "तं विद्याद् दुःखसंयोगवियोगं योगसंज्ञितम् । स निश्चयेन योक्तव्यो योगोऽनिर्विण्णचेतसा ॥",
+        "iast": "taṃ vidyād duḥkha-saṃyoga-viyogaṃ yoga-saṃjñitam। sa niścayena yoktavyo yogo ’nirviṇṇa-cetasā॥",
+        "simple": "tam vidyad duhkha sanyoga viyogam yoga sanjnitam, sa nishchayena yoktavyo yogo anirvinna chetasa",
+        "meaning_en": "This is real yoga—the actual freedom from all miseries arising from material contact.",
+        "meaning_hi": "...जो दुःख रूप संसार के संयोग से रहित है तथा जिसका नाम योग है, उसको जानना चाहिए। वह योग न उकताए हुए अर्थात धैर्य और उत्साहयुक्त चित्त से निश्चयपूर्वक करना कर्तव्य है।",
+        "emotional_tone": [
+            "liberating",
+            "defining"
+        ],
+        "core_theme": [
+            "definition of yoga",
+            "freedom from misery",
+            "determination"
+        ],
+        "life_situations": [
+            "breaking free from suffering",
+            "solving life's problems",
+            "determined practice"
+        ],
+        "notification_short": {
+            "en": "Yoga is the breaking of the bond with suffering.",
+            "hi": "योग पीड़ा के साथ बंधन को तोड़ना है।"
+        }
+    },
+    {
+        "id": "6_24",
+        "sanskrit": "सङ्कल्पप्रभवान्कामांस्त्यक्त्वा सर्वानशेषतः । मनसैवेन्द्रियग्रामं विनियम्य समन्ततः ॥",
+        "iast": "saṅkalpa-prabhavān kāmāṃs tyaktvā sarvān aśeṣataḥ। manasaivendriya-grāmaṃ viniyamya samantataḥ॥",
+        "simple": "sankalpa prabhavan kaman tyaktva sarvan asheshatah, manasaiva indriya gramam viniyamya samantatah",
+        "meaning_en": "One should engage oneself in the practice of yoga with determination and faith and not be deviated from the path. One should abandon, without exception, all material desires born of mental speculation and thus control all the senses on all sides by the mind.",
+        "meaning_hi": "संकल्प से उत्पन्न होने वाली सम्पूर्ण कामनाओं को निःशेष रूप से त्यागकर और मन द्वारा इंद्रिय समुदाय को सभी ओर से अच्छी तरह रोककर...",
+        "emotional_tone": [
+            "determined",
+            "renouncing"
+        ],
+        "core_theme": [
+            "abandoning desires",
+            "mental control",
+            "determination"
+        ],
+        "life_situations": [
+            "overcoming distractions",
+            "staying on the path",
+            "mental discipline"
+        ],
+        "notification_short": {
+            "en": "Give up all desires born of the mind. Control your senses with your mind.",
+            "hi": "मन से उत्पन्न सभी इच्छाओं को त्याग दें। अपने मन से अपनी इंद्रियों को नियंत्रित करें।"
+        }
+    },
+    {
+        "id": "6_25",
+        "sanskrit": "शनैः शनैरुपरमेद्बुद्ध्या धृतिगृहीतया । आत्मसंस्थं मनः कृत्वा न किञ्चिदपि चिन्तयेत् ॥",
+        "iast": "śanaiḥ śanair uparamed buddhyā dhṛti-gṛhītayā। ātma-saṃsthaṃ manaḥ kṛtvā na kiñcid api cintayet॥",
+        "simple": "shanaih shanair uparamed buddhya dhriti grihitaya, atma sanstham manah kritva na kinchid api chintayet",
+        "meaning_en": "Gradually, step by step, one should become situated in trance by means of intelligence sustained by full conviction, and thus the mind should be fixed on the Self alone and should think of nothing else.",
+        "meaning_hi": "क्रम-क्रम से अभ्यास करता हुआ उपरति को प्राप्त हो तथा धैर्ययुक्त बुद्धि द्वारा मन को परमात्मा में स्थित करके परमात्मा के सिवाय और कुछ भी चिंतन न करे।",
+        "emotional_tone": [
+            "patient",
+            "focused"
+        ],
+        "core_theme": [
+            "gradual progress",
+            "steadfast intelligence",
+            "stillness"
+        ],
+        "life_situations": [
+            "patience in practice",
+            "slow and steady progress",
+            "quieting the mind"
+        ],
+        "notification_short": {
+            "en": "Little by little, with patience, quiet your mind.",
+            "hi": "धीरे-धीरे, धैर्य के साथ, अपने मन को शांत करें।"
+        }
+    },
+    {
+        "id": "6_26",
+        "sanskrit": "यतो यतो निश्चरति मनश्चञ्चलमस्थिरम् । ततस्ततो नियम्यैतदात्मन्येव वशं नयेत् ॥",
+        "iast": "yato yato niścarati manaś cañcalam asthiram। tatas tato niyamya etad ātmany eva vaśaṃ nayet॥",
+        "simple": "yato yato nishcharati manash chanchalam asthiram, tatas tato niyamya etad atmany eva vasham nayet",
+        "meaning_en": "From wherever the mind wanders due to its flickering and unsteady nature, one must certainly withdraw it and bring it back under the control of the Self.",
+        "meaning_hi": "यह स्थिर न रहने वाला और चंचल मन जिस-जिस शब्द आदि वियष के निमित्त से संसार में विचरता है, उस-उस विषय से रोककर यानी हटाकर इसे बार-बार परमात्मा में ही निरुद्ध करे।",
+        "emotional_tone": [
+            "persistent",
+            "controlling"
+        ],
+        "core_theme": [
+            "restless mind",
+            "practice of withdrawal",
+            "bringing mind back"
+        ],
+        "life_situations": [
+            "dealing with distraction",
+            "refocusing",
+            "meditation struggle"
+        ],
+        "notification_short": {
+            "en": "Whenever your mind wanders, bring it back. Again and again.",
+            "hi": "जब भी आपका मन भटकता है, उसे वापस लाएं। बार बार।"
+        }
+    },
+    {
+        "id": "6_27",
+        "sanskrit": "प्रशान्तमनसं ह्येनं योगिनं सुखमुत्तमम् । उपैति शान्तरजसं ब्रह्मभूतमकल्मषम् ॥",
+        "iast": "praśānta-manasaṃ hy enaṃ yoginaṃ sukham uttamam। upaiti śānta-rajasam brahma-bhūtam akalmaṣam॥",
+        "simple": "prashanta manasam hy enam yoginam sukham uttamam, upaiti shanta rajasam brahma bhutam akalmasham",
+        "meaning_en": "The yogi whose mind is fixed on Me verily attains the highest perfection of transcendental happiness. He is beyond the mode of passion, he realizes his qualitative identity with the Supreme, and thus he is freed from all reactions to past deeds.",
+        "meaning_hi": "जिसका मन प्रशांत हो गया है, जिसके रजोगुण शांत हो गए हैं और जो पापरहित हो गया है, ऐसे इस सच्चिदानंदघन ब्रह्म के साथ एकीभाव हुए योगी को उत्तम आनंद प्राप्त होता है।",
+        "emotional_tone": [
+            "blissful",
+            "pure"
+        ],
+        "core_theme": [
+            "supreme happiness",
+            "peace of mind",
+            "freedom from passion"
+        ],
+        "life_situations": [
+            "finding inner peace",
+            "overcoming stress",
+            "feeling pure joy"
+        ],
+        "notification_short": {
+            "en": "Calm your mind and passion, and find the highest happiness.",
+            "hi": "अपने मन और जुनून को शांत करें, और उच्चतम खुशी पाएं।"
+        }
+    },
+    {
+        "id": "6_28",
+        "sanskrit": "युञ्जन्नेवं सदाऽऽत्मानं योगी विगतकल्मषः । सुखेन ब्रह्मसंस्पर्शमत्यन्तं सुखमश्नुते ॥",
+        "iast": "yuñjann evaṃ sadā ’tmānaṃ yogī vigata-kalmaṣaḥ। sukhena brahma-saṃsparśam atyantaṃ sukham aśnute॥",
+        "simple": "yunjann evam sada atmanam yogi vigata kalmashah, sukhena brahma samsparsham atyantam sukham ashnute",
+        "meaning_en": "Thus the self-controlled yogi, constantly engaged in yoga practice, becomes free from all material contamination and achieves the highest stage of perfect happiness in transcendental loving service to the Lord.",
+        "meaning_hi": "पापरहित योगी इस प्रकार निरंतर आत्मा को परमात्मा में लगाता हुआ सुखपूर्वक परब्रह्म परमात्मा की प्राप्ति रूप अनंत आनंद का अनुभव करता है।",
+        "emotional_tone": [
+            "ecstatic",
+            "clean"
+        ],
+        "core_theme": [
+            "touch of brahman",
+            "infinite bliss",
+            "constant practice"
+        ],
+        "life_situations": [
+            "spiritual ecstasy",
+            "feeling clean inside",
+            "constant connection"
+        ],
+        "notification_short": {
+            "en": "Touch the Divine and feel infinite happiness.",
+            "hi": "दिव्य को स्पर्श करें और अनंत सुख महसूस करें।"
+        }
+    },
+    {
+        "id": "6_29",
+        "sanskrit": "सर्वभूतस्थमात्मानं सर्वभूतानि चात्मनि । ईक्षते योगयुक्तात्मा सर्वत्र समदर्शनः ॥",
+        "iast": "sarva-bhūta-stham ātmānaṃ sarva-bhūtāni cātmani। īkṣate yoga-yuktātmā sarvatra sama-darśanaḥ॥",
+        "simple": "sarva bhuta stham atmanam sarva bhutani cha atmani, ikshate yoga yuktatma sarvatra sama darshanah",
+        "meaning_en": "A true yogi observes Me in all beings and also sees every being in Me. Indeed, the self-realized person sees Me, the same Supreme Lord, everywhere.",
+        "meaning_hi": "सर्वव्यापी अनंत चेतन में एकीभाव से स्थिति रूप योग से युक्त आत्मा वाला तथा सबमें समभाव से देखने वाला योगी आत्मा को सम्पूर्ण भूतों में स्थित और सम्पूर्ण भूतों को आत्मा में कल्पित देखता है।",
+        "emotional_tone": [
+            "universal",
+            "connected"
+        ],
+        "core_theme": [
+            "seeing god in all",
+            "oneness",
+            "unity"
+        ],
+        "life_situations": [
+            "seeing connectedness",
+            "empathy for all",
+            "spiritual vision"
+        ],
+        "notification_short": {
+            "en": "See the Divine in everyone, and everyone in the Divine.",
+            "hi": "हर किसी में परमात्मा को देखें, और हर किसी को परमात्मा में।"
+        }
+    },
+    {
+        "id": "6_30",
+        "sanskrit": "यो मां पश्यति सर्वत्र सर्वं च मयि पश्यति । तस्याहं न प्रणश्यामि स च मे न प्रणश्यति ॥",
+        "iast": "yo māṃ paśyati sarvatra sarvaṃ ca mayi paśyati। tasyāhaṃ na praṇaśyāmi sa ca me na praṇaśyati॥",
+        "simple": "yo mam pashyati sarvatra sarvam cha mayi pashyati, tasya aham na pranashyami sa cha me na pranashyati",
+        "meaning_en": "For one who sees Me everywhere and sees everything in Me, I am never lost, nor is he ever lost to Me.",
+        "meaning_hi": "जो पुरुष सम्पूर्ण भूतों में सबके आत्मरूप मुझ वासुदेव को ही व्यापक देखता है और सम्पूर्ण भूतों को मुझ वासुदेव के अंतर्गत देखता है, उसके लिए मैं अदृश्य नहीं होता और वह मेरे लिए अदृश्य नहीं होता।",
+        "emotional_tone": [
+            "reassured",
+            "intimate"
+        ],
+        "core_theme": [
+            "never lost",
+            "divine presence",
+            "intimacy with god"
+        ],
+        "life_situations": [
+            "feeling god's presence always",
+            "never feeling alone",
+            "security"
+        ],
+        "notification_short": {
+            "en": "See Me everywhere, and I will never be lost to you.",
+            "hi": "मुझे हर जगह देखो, और मैं तुम्हारे लिए कभी नहीं खोऊंगा।"
+        }
+    },
+    {
+        "id": "6_31",
+        "sanskrit": "सर्वभूतस्थितं यो मां भजत्येकत्वमास्थितः । सर्वथा वर्तमानोऽपि स योगी मयि वर्तते ॥",
+        "iast": "sarva-bhūta-sthitaṃ yo māṃ bhajaty ekatvam āsthitaḥ। sarvathā vartamāno ’pi sa yogī mayi vartate॥",
+        "simple": "sarva bhuta sthitam yo mam bhajaty ekatvam asthitah, sarvatha vartamano api sa yogi mayi vartate",
+        "meaning_en": "Such a yogi, who engages in the worshipful service of the Supersoul, knowing that I and the Supersoul are one, remains always in Me in all circumstances.",
+        "meaning_hi": "जो पुरुष एकीभाव में स्थित होकर सम्पूर्ण भूतों में आत्मरूप से स्थित मुझ सच्चिदानंदघन वासुदेव को भजता है, वह योगी सब प्रकार से बरतता हुआ भी मुझमें ही बरतता है।",
+        "emotional_tone": [
+            "devotional",
+            "inclusive"
+        ],
+        "core_theme": [
+            "worship in unity",
+            "abiding in god",
+            "living in the world"
+        ],
+        "life_situations": [
+            "living a spiritual life",
+            "worshipping through service",
+            "god in everyone"
+        ],
+        "notification_short": {
+            "en": "Serve the Divine in all beings. Live in Me always.",
+            "hi": "सभी प्राणियों में परमात्मा की सेवा करें। हमेशा मुझमें रहो।"
+        }
+    },
+    {
+        "id": "6_32",
+        "sanskrit": "आत्मौपम्येन सर्वत्र समं पश्यति योऽर्जुन । सुखं वा यदि वा दुःखं स योगी परमो मतः ॥",
+        "iast": "ātmaupamyena sarvatra samaṃ paśyati yo ’rjuna। sukhaṃ vā yadi vā duḥkhaṃ sa yogī paramo mataḥ॥",
+        "simple": "atmaupamyena sarvatra samam pashyati yo arjuna, sukham va yadi va duhkham sa yogi paramo matah",
+        "meaning_en": "He is a perfect yogi who, by comparison to his own self, sees the true equality of all beings, in both their happiness and their distress, O Arjuna!",
+        "meaning_hi": "हे अर्जुन! जो योगी अपनी भांति सम्पूर्ण भूतों में सम (लक्षण वाला) देखता है और सुख अथवा दुःख को भी सबमें सम (लक्षण वाला) देखता है, वह योगी परम श्रेष्ठ माना गया है।",
+        "emotional_tone": [
+            "empathetic",
+            "perfect"
+        ],
+        "core_theme": [
+            "empathy",
+            "golden rule",
+            "highest yogi"
+        ],
+        "life_situations": [
+            "practicing empathy",
+            "feeling others' pain",
+            "compassion"
+        ],
+        "notification_short": {
+            "en": "Feel the joy and pain of others as your own. That is true Yoga.",
+            "hi": "दूसरों के सुख और दुख को अपना महसूस करें। यही सच्चा योग है।"
+        }
+    },
+    {
+        "id": "6_33",
+        "sanskrit": "अर्जुन उवाच । योऽयं योगस्त्वया प्रोक्तः साम्येन मधुसूदन । एतस्याहं न पश्यामि चञ्चलत्वात्स्थितिं स्थिराम् ॥",
+        "iast": "arjuna uvāca। yo ’yaṃ yogas tvayā proktaḥ sāmyena madhusūdana। etasyāhaṃ na paśyāmi cañcalatvāt sthitiṃ sthirām॥",
+        "simple": "arjuna uvacha, yo ayam yogas tvaya proktah samyena madhusudana, etasyaham na pashyami chanchalatvat sthitim sthiram",
+        "meaning_en": "Arjuna said: O Madhusudana, the system of yoga which You have summarized appears impractical and unendurable to me, for the mind is restless and unsteady.",
+        "meaning_hi": "अर्जुन ने कहा: हे मधुसूदन! जो यह योग आपने समभाव से कहा है, मन के चंचल होने से मैं इसकी नित्य स्थिति को नहीं देखता हूँ।",
+        "emotional_tone": [
+            "skeptical",
+            "honest"
+        ],
+        "core_theme": [
+            "restless mind",
+            "practical difficulty",
+            "honesty"
+        ],
+        "life_situations": [
+            "admitting difficulty",
+            "struggling with meditation",
+            "questioning validity"
+        ],
+        "notification_short": {
+            "en": "The mind is so restless. How can I find peace?",
+            "hi": "मन कितना चंचल है। मुझे शांति कैसे मिल सकती है?"
+        }
+    },
+    {
+        "id": "6_34",
+        "sanskrit": "चञ्चलं हि मनः कृष्ण प्रमाथि बलवद्दृढम् । तस्याहं निग्रहं मन्ये वायोरिव सुदुष्करम् ॥",
+        "iast": "cañcalaṃ hi manaḥ kṛṣṇa pramāthi balavad dṛḍham। tasyāhaṃ nigrahaṃ manye vāyor iva suduṣkaram॥",
+        "simple": "chanchalam hi manah krishna pramathi balavad dridham, tasyaham nigraham manye vayor iva sudushkaram",
+        "meaning_en": "The mind is restless, turbulent, obstinate and very strong, O Krishna, and to subdue it, I think, is more difficult than controlling the wind.",
+        "meaning_hi": "क्योंकि हे श्रीकृष्ण! यह मन बड़ा चंचल, प्रमथन स्वभाव वाला, बड़ा दृढ़ और बलवान है। इसलिए उसका वश में करना मैं वायु को रोकने की भांति अत्यंत दुष्कर मानता हूँ।",
+        "emotional_tone": [
+            "desperate",
+            "realistic"
+        ],
+        "core_theme": [
+            "nature of mind",
+            "difficulty of control",
+            "turbulence"
+        ],
+        "life_situations": [
+            "feeling overwhelmed by thoughts",
+            "mental anxiety",
+            "struggle for control"
+        ],
+        "notification_short": {
+            "en": "Controlling the mind feels as hard as catching the wind.",
+            "hi": "मन को नियंत्रित करना हवा को पकड़ने जितना कठिन लगता है।"
+        }
+    },
+    {
+        "id": "6_35",
+        "sanskrit": "श्रीभगवानुवाच । असंशयं महाबाहो मनो दुर्निग्रहं चलम् । अभ्यासेन तु कौन्तेय वैराग्येण च गृह्यते ॥",
+        "iast": "śrī-bhagavān uvāca। asaṃśayaṃ mahā-bāho mano durnigrahaṃ calam। abhyāsena tu kaunteya vairāgyeṇa ca gṛhyate॥",
+        "simple": "shri bhagavan uvacha, asamshayam mahabaho mano durnigraham chalam, abhyasena tu kaunteya vairagyena cha grihyate",
+        "meaning_en": "Lord Sri Krishna said: O mighty-armed son of Kunti, it is undoubtedly very difficult to curb the restless mind, but it is possible by suitable practice and by detachment.",
+        "meaning_hi": "श्री भगवान ने कहा: हे महाबाहो! निःसंदेह मन चंचल और कठिनता से वश में होने वाला है; परन्तु हे कुंतीपुत्र अर्जुन! यह अभ्यास और वैराग्य से वश में होता है।",
+        "emotional_tone": [
+            "encouraging",
+            "instructive"
+        ],
+        "core_theme": [
+            "abhyasa",
+            "vairagya",
+            "practice and detachment"
+        ],
+        "life_situations": [
+            "how to control the mind",
+            "practice makes perfect",
+            "letting go"
+        ],
+        "notification_short": {
+            "en": "The mind is hard to tame. But with practice and detachment, it can be done.",
+            "hi": "मन को वश में करना कठिन है। लेकिन अभ्यास और वैराग्य से, यह किया जा सकता है।"
+        }
+    },
+    {
+        "id": "6_36",
+        "sanskrit": "असंयतात्मना योगो दुष्प्राप इति मे मतिः । वश्यात्मना तु यतता शक्योऽवाप्तुमुपायतः ॥",
+        "iast": "asaṃyatātmanā yogo duṣprāpa iti me matiḥ। vaśyātmanā tu yatatā śakyo ’vāptum upāyataḥ॥",
+        "simple": "asamyatatmana yogo dushprapa iti me matih, vashyatmana tu yatata shakyo avaptum upayatah",
+        "meaning_en": "For one whose mind is unbridled, self-realization is difficult work. But he whose mind is controlled and who strives by appropriate means is assured of success. That is My opinion.",
+        "meaning_hi": "जिसका मन वश में किया हुआ नहीं है, ऐसे पुरुष द्वारा योग दुष्प्राप्य है- ऐसा मेरा मत है; और वश में किए हुए मन वाले प्रयत्नशील पुरुष द्वारा साधन से उसका प्राप्त होना सहज है।",
+        "emotional_tone": [
+            "pragmatic",
+            "firm"
+        ],
+        "core_theme": [
+            "self-control necessity",
+            "success in yoga",
+            "striving"
+        ],
+        "life_situations": [
+            "importance of discipline",
+            "achieving goals",
+            "taking control"
+        ],
+        "notification_short": {
+            "en": "Without self-control, Yoga is hard. With control and effort, it is sure.",
+            "hi": "आत्म-नियंत्रण के बिना, योग कठिन है। नियंत्रण और प्रयास के साथ, यह निश्चित है।"
+        }
+    },
+    {
+        "id": "6_37",
+        "sanskrit": "अर्जुन उवाच । अयतिः श्रद्धयोपेतो योगाच्चलितमानसः । अप्राप्य योगसंसिद्धिं कां गतिं कृष्ण गच्छति ॥",
+        "iast": "arjuna uvāca। ayatiḥ śraddhayopeto yogāc calita-mānasaḥ। aprāpya yoga-saṃsiddhiṃ kāṃ gatiṃ kṛṣṇa gacchati॥",
+        "simple": "arjuna uvacha, ayatih shraddhayopeto yogach chalita manasah, aprapya yoga samsiddhim kam gatim krishna gachchhati",
+        "meaning_en": "Arjuna said: O Krishna, what is the destination of the unsuccessful transcendentalist, who in the beginning takes to the process of self-realization with faith but who later desists due to worldly-mindedness and thus does not attain perfection in mysticism?",
+        "meaning_hi": "अर्जुन ने कहा: हे कृष्ण! जो योग में श्रद्धा रखने वाला है, किन्तु संयमी नहीं है, इस कारण जिसका मन योग से विचलित हो गया है, ऐसा साधक योग सिद्धि को प्राप्त न होकर किस गति को प्राप्त होता है?",
+        "emotional_tone": [
+            "worried",
+            "curious"
+        ],
+        "core_theme": [
+            "unsuccessful yogi",
+            "spiritual failure",
+            "fate of the soul"
+        ],
+        "life_situations": [
+            "fear of failure",
+            "leaving the path",
+            "what happens if I quit"
+        ],
+        "notification_short": {
+            "en": "What happens if I try but fail? Am I lost?",
+            "hi": "अगर मैं कोशिश करता हूं लेकिन असफल हो जाता हूं तो क्या होगा? क्या मैं खो गया हूँ?"
+        }
+    },
+    {
+        "id": "6_38",
+        "sanskrit": "कच्चिन्नोभयविभ्रष्टश्छिन्नाभ्रमिव नश्यति । अप्रतिष्ठो महाबाहो विमूढो ब्रह्मणः पथि ॥",
+        "iast": "kaccin nobhaya-vibhraṣṭaś chinnābhram iva naśyati। apratiṣṭho mahā-bāho vimūḍho brahmaṇaḥ pathi॥",
+        "simple": "kachchin nobhaya vibhrashtash chhinnabhram iva nashyati, apratishto mahabaho vimudho brahmanah pathi",
+        "meaning_en": "O mighty-armed Krishna, does not such a man, who is bewildered from the path of transcendence, fall away from both spiritual and material success and perish like a riven cloud, with no position in any sphere?",
+        "meaning_hi": "हे महाबाहो! क्या वह भगवत्प्राप्ति के मार्ग में मोहित और आश्रयरहित पुरुष छिन्नाभ्र (छिन्न-भिन्न बादल) की भांति दोनों ओर से भ्रष्ट होकर नष्ट तो नहीं हो जाता?",
+        "emotional_tone": [
+            "anxious",
+            "doubtful"
+        ],
+        "core_theme": [
+            "fallen yogi",
+            "riven cloud",
+            "spiritual insecurity"
+        ],
+        "life_situations": [
+            "insecurity about future",
+            "fear of losing everything",
+            "existential dread"
+        ],
+        "notification_short": {
+            "en": "Does a fallen Yogi disappear like a broken cloud?",
+            "hi": "क्या एक गिरा हुआ योगी टूटे हुए बादल की तरह गायब हो जाता है?"
+        }
+    },
+    {
+        "id": "6_39",
+        "sanskrit": "एतन्मे संशयं कृष्ण छेत्तुमर्हस्यशेषतः । त्वदन्यः संशयस्यास्य छेत्ता न ह्युपपद्यते ॥",
+        "iast": "etan me saṃśayaṃ kṛṣṇa chettum arhasy aśeṣataḥ। tvad-anyaḥ saṃśayasyāsya chettā na hy upapadyate॥",
+        "simple": "etan me samshayam krishna chhettum arhasi asheshatah, tvad anyah samshayasya asya chhetta na hy upapadyate",
+        "meaning_en": "This is my doubt, O Krishna, and I ask You to dispel it completely. But for You, no one is to be found who can destroy this doubt.",
+        "meaning_hi": "हे कृष्ण! मेरे इस संशय को सम्पूर्ण रूप से छेदन करने के लिए आप ही योग्य हैं; क्योंकि आपके सिवाय दूसरा कोई इस संशय का छेदन करने वाला मिलना संभव नहीं है।",
+        "emotional_tone": [
+            "trusting",
+            "seeking answers"
+        ],
+        "core_theme": [
+            "dispelling doubt",
+            "guru reliance",
+            "supreme teacher"
+        ],
+        "life_situations": [
+            "seeking a mentor",
+            "asking for help",
+            "trusting wisdom"
+        ],
+        "notification_short": {
+            "en": "Only You can destroy this doubt. Please tell me.",
+            "hi": "केवल आप ही इस संदेह को नष्ट कर सकते हैं। कृपया मुझे बताएं।"
+        }
+    },
+    {
+        "id": "6_40",
+        "sanskrit": "श्रीभगवानुवाच । पार्थ नैवेह नामुत्र विनाशस्तस्य विद्यते । न हि कल्याणकृत्कश्चिद्दुर्गतिं तात गच्छति ॥",
+        "iast": "śrī-bhagavān uvāca। pārtha naiveha nāmutra vināśas tasya vidyate। na hi kalyāṇa-kṛt kaścid durgatiṃ tāta gacchati॥",
+        "simple": "shri bhagavan uvacha, partha naiveha namutra vinashas tasya vidyate, na hi kalyana krit kashchid durgatim tata gachchhati",
+        "meaning_en": "The Personality of Godhead said: Son of Prtha, a transcendentalist engaged in auspicious activities does not meet with destruction either in this world or in the spiritual world; one who does good, My friend, is never overcome by evil.",
+        "meaning_hi": "श्री भगवान ने कहा: हे पार्थ! उस पुरुष का न तो इस लोक में और न परलोक में ही नाश होता है; क्योंकि हे प्यारे! आत्म-उद्धार के लिए अर्थात भगवत्प्राप्ति के लिए कर्म करने वाला कोई भी मनुष्य दुर्गति को प्राप्त नहीं होता।",
+        "emotional_tone": [
+            "reassuring",
+            "loving"
+        ],
+        "core_theme": [
+            "no destruction",
+            "good deeds protection",
+            "divine assurance"
+        ],
+        "life_situations": [
+            "assurance of safety",
+            "karma yoga protection",
+            "faith in goodness"
+        ],
+        "notification_short": {
+            "en": "Do good, and you will never fall. Not here, not anywhere.",
+            "hi": "अच्छा करो, और तुम कभी नहीं गिरोगे। यहाँ नहीं, कहीं नहीं।"
+        }
+    },
+    {
+        "id": "6_41",
+        "sanskrit": "प्राप्य पुण्यकृतां लोकानुषित्वा शाश्वतीः समाः । शुचीनां श्रीमतां गेहे योगभ्रष्टोऽभिजायते ॥",
+        "iast": "prāpya puṇya-kṛtāṃ lokān uṣitvā śāśvatīḥ samāḥ। śucīnāṃ śrīmatāṃ gehe yoga-bhraṣṭo ’bhijāyate॥",
+        "simple": "prapya punya kritam lokan ushitva shashvatih samah, shuchinam shrimatam gehe yoga bhrashto abhijayate",
+        "meaning_en": "The unsuccessful yogi, after many, many years of enjoyment on the planets of the pious living entities, is born into a family of righteous people or into a family of rich aristocracy.",
+        "meaning_hi": "योगभ्रष्ट पुरुष पुण्यवानों के लोकों को अर्थात स्वर्गादि उत्तम लोकों को प्राप्त होकर, उनमें बहुत वर्षों तक निवास करके फिर शुद्ध आचरण वाले श्रीमान पुरुषों के घर में जन्म लेता है।",
+        "emotional_tone": [
+            "hopeful",
+            "rewarding"
+        ],
+        "core_theme": [
+            "rebirth",
+            "pious planets",
+            "second chance"
+        ],
+        "life_situations": [
+            "hope for the future",
+            "starting over",
+            "good karma"
+        ],
+        "notification_short": {
+            "en": "Even if you fail, you will be born again in a good family to try again.",
+            "hi": "भले ही तुम असफल हो जाओ, फिर से कोशिश करने के लिए एक अच्छे परिवार में तुम्हारा पुनर्जन्म होगा।"
+        }
+    },
+    {
+        "id": "6_42",
+        "sanskrit": "अथवा योगिनामेव कुले भवति धीमताम् । एतद्धि दुर्लभतरं लोके जन्म यदीदृशम् ॥",
+        "iast": "athavā yoginām eva kule bhavati dhī-matām। etad dhi durlabhataram loke janma yad īdṛśam॥",
+        "simple": "athava yoginam eva kule bhavati dhimatan, etaddhi durlabhataram loke janma yadidrisham",
+        "meaning_en": "Or [if unsuccessful after long practice of yoga] he takes his birth in a family of transcendentalists who are surely great in wisdom. Certainly, such a birth is rare in this world.",
+        "meaning_hi": "अथवा वैराग्यवान पुरुष उन लोकों में न जाकर ज्ञानवान योगियों के ही कुल में जन्म लेता है; परन्तु इस प्रकार का जो यह जन्म है, सो संसार में निःसंदेह अत्यंत दुर्लभ है।",
+        "emotional_tone": [
+            "rare",
+            "blessed"
+        ],
+        "core_theme": [
+            "rare birth",
+            "yogi family",
+            "spiritual heritage"
+        ],
+        "life_situations": [
+            "spiritual upbringing",
+            "being born wise",
+            "rare opportunity"
+        ],
+        "notification_short": {
+            "en": "To be born in a family of wise Yogis is very rare and blessed.",
+            "hi": "बुद्धिमान योगियों के परिवार में जन्म लेना बहुत दुर्लभ और धन्य है।"
+        }
+    },
+    {
+        "id": "6_43",
+        "sanskrit": "तत्र तं बुद्धिसंयोगं लभते पौर्वदेहिकम् । यतते च ततो भूयः संसिद्धौ कुरुनन्दन ॥",
+        "iast": "tatra taṃ buddhi-saṃyogaṃ labhate paurva-dehikam। yatate ca tato bhūyaḥ saṃsiddhau kuru-nandana॥",
+        "simple": "tatra tam buddhi sanyogam labhate paurva dehikam, yatate cha tato bhuyah samsiddhau kuru nandana",
+        "meaning_en": "On taking such a birth, he revives the divine consciousness of his previous life, and he again tries to make further progress in order to achieve complete success, O son of Kuru.",
+        "meaning_hi": "वहां उस पहले शरीर में संग्रह किए हुए बुद्धि-संयोग को अर्थात समबुद्धि रूप योग के संस्कारों को अनायास ही प्राप्त हो जाता है और हे कुरुनन्दन! उसके प्रभाव से वह फिर परमात्मा की प्राप्ति रूप सिद्धि के लिए पहले से भी बढ़कर प्रयत्न करता है।",
+        "emotional_tone": [
+            "continuing",
+            "progressive"
+        ],
+        "core_theme": [
+            "revival of consciousness",
+            "past life karma",
+            "continuing the journey"
+        ],
+        "life_situations": [
+            "picking up where you left off",
+            "innate wisdom",
+            "lifelong learning"
+        ],
+        "notification_short": {
+            "en": "You will pick up right where you left off in your last life.",
+            "hi": "आप अपने पिछले जीवन को ठीक वहीं से शुरू करेंगे जहां आपने इसे छोड़ा था।"
+        }
+    },
+    {
+        "id": "6_44",
+        "sanskrit": "पूर्वाभ्यासेन तेनैव ह्रियते ह्यवशोऽपि सः । जिज्ञासुरपि योगस्य शब्दब्रह्मातिवर्तते ॥",
+        "iast": "pūrvābhyāsena tenaiva hriyate hy avaśo ’pi saḥ। jijñāsur api yogasya śabda-brahmātivartate॥",
+        "simple": "purvabhyasena tenaiva hriyate hy avasho api sah, jijnasur api yogasya shabda brahma ativartate",
+        "meaning_en": "By virtue of the divine consciousness of his previous life, he automatically becomes attracted to the yogic principles—even without seeking them. Such an inquisitive transcendentalist stands always above the ritualistic principles of the scriptures.",
+        "meaning_hi": "वह (श्रीमानों के घर में जन्म लेने वाला योगभ्रष्ट) भी उस पहले के अभ्यास से ही निःसंदेह भगवान की ओर आकर्षित किया जाता है; (तथा) समबुद्धि रूप योग का जिज्ञासु भी वेद में कहे हुए सकाम कर्मों के फल का अतिक्रमण कर जाता है।",
+        "emotional_tone": [
+            "automatic",
+            "transcendent"
+        ],
+        "core_theme": [
+            "past practice force",
+            "attraction to yoga",
+            "transcending rituals"
+        ],
+        "life_situations": [
+            "feeling a calling",
+            "natural talent for spirituality",
+            "beyond rituals"
+        ],
+        "notification_short": {
+            "en": "Your past practice will pull you towards the Divine, even if you don't know why.",
+            "hi": "आपका पिछला अभ्यास आपको परमात्मा की ओर खींचेगा, भले ही आप यह न जानते हों कि क्यों।"
+        }
+    },
+    {
+        "id": "6_45",
+        "sanskrit": "प्रयत्नाद्यतमानस्तु योगी संशुद्धकिल्बिषः । अनेकजन्मसंसिद्धस्ततो याति परां गतिम् ॥",
+        "iast": "prayatnād yatamānas tu yogī saṃśuddha-kilbiṣaḥ। aneka-janma-saṃsiddhas tato yāti parāṃ gatim॥",
+        "simple": "prayatnad yatamanas tu yogi samshuddha kilbishah, aneka janma samsiddhas tato yati param gatim",
+        "meaning_en": "And when the yogi engages himself with sincere endeavor in making further progress, being washed of all contaminations, then ultimately, achieving perfection after many, many births of practice, he attains the supreme goal.",
+        "meaning_hi": "परन्तु प्रयत्नपूर्वक अभ्यास करने वाला योगी तो पिछले अनेक जन्मों के संस्कार बल से इसी जन्म में संसिद्ध होकर, सम्पूर्ण पापों से रहित होकर, फिर तत्काल ही परमगति को प्राप्त हो जाता है।",
+        "emotional_tone": [
+            "determined",
+            "ultimate"
+        ],
+        "core_theme": [
+            "many births",
+            "purification",
+            "supreme goal"
+        ],
+        "life_situations": [
+            "working hard for perfection",
+            "patience over lifetimes",
+            "final liberation"
+        ],
+        "notification_short": {
+            "en": "After many births of striving, the Yogi finally reaches the supreme goal.",
+            "hi": "अनेक जन्मों के प्रयास के बाद, योगी अंततः सर्वोच्च लक्ष्य तक पहुँचता है।"
+        }
+    },
+    {
+        "id": "6_46",
+        "sanskrit": "तपस्विभ्योऽधिको योगी ज्ञानिभ्योऽपि मतोऽधिकः । कर्मिभ्यश्चाधिको योगी तस्माद्योगी भवार्जुन ॥",
+        "iast": "tapasvibhyo ’dhiko yogī jñānibhyo ’pi mato ’dhikaḥ। karmibhyaś cādhiko yogī tasmād yogī bhavārjuna॥",
+        "simple": "tapasvibhyo adhiko yogi jnanibhyo api mato adhikah, karmibhyash chadhiko yogi tasmat yogi bhavarjuna",
+        "meaning_en": "A yogi is greater than the ascetic, greater than the empiricist and greater than the fruitive worker. Therefore, O Arjuna, in all circumstances, be a yogi.",
+        "meaning_hi": "योगी तपस्वियों से श्रेष्ठ है, शास्त्रज्ञानियों से भी श्रेष्ठ माना गया है और सकाम कर्म करने वालों से भी योगी श्रेष्ठ है; इससे हे अर्जुन! तू योगी हो।",
+        "emotional_tone": [
+            "inspiring",
+            "superior"
+        ],
+        "core_theme": [
+            "superiority of yoga",
+            "be a yogi",
+            "highest path"
+        ],
+        "life_situations": [
+            "choosing the best path",
+            "becoming a yogi",
+            "spiritual ambition"
+        ],
+        "notification_short": {
+            "en": "A Yogi is greater than a scholar or a worker. Be a Yogi.",
+            "hi": "योगी विद्वान या कार्यकर्ता से महान होता है। योगी बनो।"
+        }
+    },
+    {
+        "id": "6_47",
+        "sanskrit": "योगिनामपि सर्वेषां मद्गतेनान्तरात्मना । श्रद्धावान्भजते यो मां स मे युक्ततमो मतः ॥",
+        "iast": "yoginām api sarveṣāṃ mad-gatenāntarātmanā। śraddhāvān bhajate yo māṃ sa me yuktatamo mataḥ॥",
+        "simple": "yoginam api sarvesham mad gatenantaratmana, shraddhavan bhajate yo mam sa me yuktatamo matah",
+        "meaning_en": "And of all yogis, the one with great faith who always abides in Me, thinks of Me within himself, and renders transcendental loving service to Me—he is the most intimately united with Me in yoga and is the highest of all. That is My opinion.",
+        "meaning_hi": "सम्पूर्ण योगियों में भी जो श्रद्धावान योगी मुझमें लगे हुए अंतरात्मा से मुझको भजता है, वह योगी मुझे परम श्रेष्ठ मान्य है। (इति ध्यानयोग नामक छठा अध्याय)",
+        "emotional_tone": [
+            "faithful",
+            "highest"
+        ],
+        "core_theme": [
+            "bhakti yoga",
+            "highest yogi",
+            "faith"
+        ],
+        "life_situations": [
+            "devotion is highest",
+            "loving god",
+            "ultimate perfection"
+        ],
+        "notification_short": {
+            "en": "The highest Yogi is the one who loves and worships Me with faith.",
+            "hi": "सर्वोच्च योगी वह है जो मुझे श्रद्धा के साथ प्रेम और पूजा करता है।"
+        }
+    }
+]

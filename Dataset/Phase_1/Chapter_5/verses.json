@@ -1,0 +1,756 @@
+[
+    {
+        "id": "5_1",
+        "sanskrit": "अर्जुन उवाच । संन्यासं कर्मणां कृष्ण पुनर्योगं च शंससि । यच्छ्रेय एतयोरेकं तन्मे ब्रूहि सुनिश्चितम् ॥",
+        "iast": "arjuna uvāca। saṃnyāsaṃ karmaṇāṃ kṛṣṇa punar yogaṃ ca śaṃsasi। yac chreya etayor ekaṃ tan me brūhi suniścitam॥",
+        "simple": "arjuna uvacha, sannyasam karmanam krishna punar yogam cha shamsasi, yach shreya etayor ekam tan me bruhi sunishchitam",
+        "meaning_en": "Arjuna said: O Krishna, first of all You ask me to renounce work, and then again You recommend work with devotion. Now will You kindly tell me definitely which of the two is more beneficial?",
+        "meaning_hi": "अर्जुन ने कहा: हे कृष्ण! आप कर्मों के संन्यास की और फिर कर्मयोग की प्रशंसा करते हैं। इसलिए इन दोनों में से जो एक मेरे लिए भलीभांति कल्याणकारक हो, उसको कहिए।",
+        "emotional_tone": [
+            "confused",
+            "seeking clarity"
+        ],
+        "core_theme": [
+            "renunciation vs action",
+            "dilemma",
+            "seeking guidance"
+        ],
+        "life_situations": [
+            "confusion between two good options",
+            "deciding between action and letting go",
+            "seeking clarity"
+        ],
+        "notification_short": {
+            "en": "Should I act or should I let go? Tell me what is best.",
+            "hi": "क्या मुझे कार्य करना चाहिए या जाने देना चाहिए? मुझे बताओ कि सबसे अच्छा क्या है।"
+        }
+    },
+    {
+        "id": "5_2",
+        "sanskrit": "श्रीभगवानुवाच । संन्यासः कर्मयोगश्च निःश्रेयसकरावुभौ । तयोस्तु कर्मसंन्यासात्कर्मयोगो विशिष्यते ॥",
+        "iast": "śrī-bhagavān uvāca। saṃnyāsaḥ karma-yogaś ca niḥśreyasa-karāv ubhau। tayos tu karma-saṃnyāsāt karma-yogo viśiṣyate॥",
+        "simple": "shri bhagavan uvacha, sannyasah karma yogash cha nihshreyasa karav ubhau, tayos tu karma sannyasat karma yogo vishishyate",
+        "meaning_en": "The Personality of Godhead replied: The renunciation of work and work in devotion are both good for liberation. But, of the two, work in devotional service is better than renunciation of work.",
+        "meaning_hi": "श्री भगवान ने कहा: कर्म संन्यास और कर्मयोग- ये दोनों ही परम कल्याण के करने वाले हैं, परन्तु उन दोनों में भी कर्म संन्यास से कर्मयोग श्रेष्ठ है।",
+        "emotional_tone": [
+            "decisive",
+            "clarifying"
+        ],
+        "core_theme": [
+            "superiority of karma yoga",
+            "liberation paths",
+            "active devotion"
+        ],
+        "life_situations": [
+            "choosing action over inaction",
+            "finding spiritual growth in work",
+            "being active vs being a recluse"
+        ],
+        "notification_short": {
+            "en": "Both paths are good, but working with devotion is better than just giving up work.",
+            "hi": "दोनों रास्ते अच्छे हैं, लेकिन भक्ति के साथ काम करना काम छोड़ने से बेहतर है।"
+        }
+    },
+    {
+        "id": "5_3",
+        "sanskrit": "ज्ञेयः स नित्यसंन्यासी यो न द्वेष्टि न काङ्क्षति । निर्द्वन्द्वो हि महाबाहो सुखं बन्धात्प्रमुच्यते ॥",
+        "iast": "jñeyaḥ sa nitya-saṃnyāsī yo na dveṣṭi na kāṅkṣati। nirdvandvo hi mahā-bāho sukhaṃ bandhāt pramucyate॥",
+        "simple": "jneyah sa nitya sannyasi yo na dveshti na kankshati, nirdvandvo hi mahabaho sukham bandhat pramuchyate",
+        "meaning_en": "One who neither hates nor desires the fruits of his activities is known to be always renounced. Such a person, free from all dualities, easily overcomes material bondage and is completely liberated, O mighty-armed Arjuna.",
+        "meaning_hi": "हे महाबाहो! जो पुरुष न किसी से द्वेष करता है और न किसी की आकांक्षा करता है, वह कर्मयोगी सदा संन्यासी ही समझने योग्य है; क्योंकि राग-द्वेष आदि द्वंद्वों से रहित पुरुष सुखपूर्वक संसार बंधन से मुक्त हो जाता है।",
+        "emotional_tone": [
+            "liberated",
+            "balanced"
+        ],
+        "core_theme": [
+            "true renunciation",
+            "freedom from duality",
+            "bondage"
+        ],
+        "life_situations": [
+            "being free from hate and desire",
+            "emotional balance",
+            "true freedom"
+        ],
+        "notification_short": {
+            "en": "He who neither hates nor desires is the true renunciate.",
+            "hi": "जो न तो नफरत करता है और न ही इच्छा करता है, वही सच्चा संन्यासी है।"
+        }
+    },
+    {
+        "id": "5_4",
+        "sanskrit": "साङ्ख्ययोगौ पृथग्बालाः प्रवदन्ति न पण्डिताः । एकमप्यास्थितः सम्यगुभयोर्विन्दते फलम् ॥",
+        "iast": "sāṅkhya-yogau pṛthag bālāḥ pravadanti na paṇḍitāḥ। ekam apy āsthitaḥ samyag ubhayor vindate phalam॥",
+        "simple": "sankhya yogau prithag balah pravadanti na panditah, ekam apyasthitah samyag ubhayor vindate phalam",
+        "meaning_en": "Only the ignorant speak of devotional service [karma-yoga] as being different from the analytical study of the material world [Sankhya]. Those who are actually learned say that he who applies himself well to one of these paths achieves the results of both.",
+        "meaning_hi": "अज्ञानीजन सांख्य और योग को अलग-अलग फल वाले कहते हैं, न कि पंडितजन; क्योंकि दोनों में से एक में भी सम्यक् प्रकार से स्थित पुरुष दोनों के फल रूप परमात्मा को प्राप्त होता है।",
+        "emotional_tone": [
+            "unifying",
+            "insightful"
+        ],
+        "core_theme": [
+            "unity of paths",
+            "sankhya vs yoga",
+            "single goal"
+        ],
+        "life_situations": [
+            "seeing the big picture",
+            "different roads same destination",
+            "unity in diversity"
+        ],
+        "notification_short": {
+            "en": "Knowledge and action lead to the same goal. Don't see them as different.",
+            "hi": "ज्ञान और कर्म एक ही लक्ष्य की ओर ले जाते हैं। उन्हें अलग न देखें।"
+        }
+    },
+    {
+        "id": "5_5",
+        "sanskrit": "यत्साङ्ख्यैः प्राप्यते स्थानं तद्योगैरपि गम्यते । एकं साङ्ख्यं च योगं च यः पश्यति स पश्यति ॥",
+        "iast": "yat sāṅkhyaiḥ prāpyate sthānaṃ tad yogair api gamyate। ekaṃ sāṅkhyaṃ ca yogaṃ ca yaḥ paśyati sa paśyati॥",
+        "simple": "yat sankhyaih prapyate sthanam tad yogair api gamyate, ekam sankhyam cha yogam cha yah pashyati sa pashyati",
+        "meaning_en": "One who knows that the position reached by means of analytical study can also be attained by devotional service, and who therefore sees analytical study and devotional service to be on the same level, sees things as they are.",
+        "meaning_hi": "ज्ञानयोगियों द्वारा जो परमधाम प्राप्त किया जाता है, कर्मयोगियों द्वारा भी वही प्राप्त किया जाता है। इसलिए जो पुरुष सांख्य और योग को फल रूप में एक देखता है, वही यथार्थ देखता है।",
+        "emotional_tone": [
+            "wise",
+            "perceptive"
+        ],
+        "core_theme": [
+            "vision of unity",
+            "goal of yoga",
+            "true sight"
+        ],
+        "life_situations": [
+            "understanding the essence",
+            "avoiding dogma",
+            "seeing the truth"
+        ],
+        "notification_short": {
+            "en": "He who sees knowledge and work as one, sees truly.",
+            "hi": "जो ज्ञान और कर्म को एक देखता है, वही सच देखता है।"
+        }
+    },
+    {
+        "id": "5_6",
+        "sanskrit": "संन्यासस्तु महाबाहो दुःखमाप्तुमयोगतः । योगयुक्तो मुनिर्ब्रह्म नचिरेणाधिगच्छति ॥",
+        "iast": "saṃnyāsas tu mahā-bāho duḥkham āptum ayogataḥ। yoga-yukto munir brahma nacireṇādhigacchati॥",
+        "simple": "sannyasas tu mahabaho dukham aptum ayogatah, yoga yukto munir brahma nachirenadhigachchhati",
+        "meaning_en": "Merely renouncing all activities yet not engaging in the devotional service of the Lord cannot make one happy. But a thoughtful person engaged in devotional service can achieve the Supreme without delay.",
+        "meaning_hi": "परंतु हे महाबाहो! कर्मयोग के बिना संन्यास अर्थात मन, इंद्रिय और शरीर द्वारा होने वाले सम्पूर्ण कर्मों में कर्तापन का त्याग प्राप्त होना कठिन है और भगवत्स्वरूप को मनन करने वाला कर्मयोगी परब्रह्म परमात्मा को शीघ्र ही प्राप्त हो जाता है।",
+        "emotional_tone": [
+            "practical",
+            "warning"
+        ],
+        "core_theme": [
+            "difficulty of renunciation",
+            "ease of yoga",
+            "attaining brahman"
+        ],
+        "life_situations": [
+            "why just giving up is hard",
+            "finding an easier path",
+            "active spirituality"
+        ],
+        "notification_short": {
+            "en": "Renunciation is hard without devotion. Work with love to reach peace quickly.",
+            "hi": "भक्ति के बिना संन्यास कठिन है। शांति पाने के लिए प्रेम से कार्य करें।"
+        }
+    },
+    {
+        "id": "5_7",
+        "sanskrit": "योगयुक्तो विशुद्धात्मा विजितात्मा जितेन्द्रियः । सर्वभूतात्मभूतात्मा कुर्वन्नपि न लिप्यते ॥",
+        "iast": "yoga-yukto viśuddhātmā vijitātmā jitendriyaḥ। sarva-bhūtātma-bhūtātmā kurvann api na lipyate॥",
+        "simple": "yoga yukto vishuddhatma vijitatma jitendriyah, sarva bhutatma bhutatma kurvann api na lipyate",
+        "meaning_en": "One who works in devotion, who is a pure soul, and who controls his mind and senses is dear to everyone, and everyone is dear to him. Though always working, such a man is never entangled.",
+        "meaning_hi": "जिसका मन अपने वश में है, जो जितेंद्रिय और विशुद्ध अंतःकरण वाला है तथा सम्पूर्ण प्राणियों का आत्मरूप परमात्मा ही जिसका आत्मा है, ऐसा कर्मयोगी कर्म करता हुआ भी लिप्त नहीं होता।",
+        "emotional_tone": [
+            "pure",
+            "universal"
+        ],
+        "core_theme": [
+            "universal love",
+            "purity",
+            "non-attachment"
+        ],
+        "life_situations": [
+            "being loved by all",
+            "controlling senses",
+            "connecting with everyone"
+        ],
+        "notification_short": {
+            "en": "Pure in heart and controlling the senses, one is dear to all beings.",
+            "hi": "हृदय में शुद्ध और इंद्रियों को नियंत्रित करने वाला, सभी प्राणियों को प्रिय है।"
+        }
+    },
+    {
+        "id": "5_8",
+        "sanskrit": "नैव किञ्चित्करोमीति युक्तो मन्येत तत्त्ववित् । पश्यञ्शृण्वन्स्पृशञ्जिघ्रन्नश्नन्गच्छन्स्वपन्श्वसन् ॥",
+        "iast": "naiva kiñcit karomīti yukto manyeta tattva-vit। paśyan śṛṇvan spṛśañ jighrann aśnan gacchan svapan śvasan॥",
+        "simple": "naiva kinchit karomiti yukto manyeta tattvavit, pashyan shrinvan sprishan jighrann ashnan gachchan svapan shvasan",
+        "meaning_en": "A person in the divine consciousness, although engaged in seeing, hearing, touching, smelling, eating, moving about, sleeping and breathing, always knows within himself that he actually does nothing at all.",
+        "meaning_hi": "तत्व को जानने वाला सांख्ययोगी तो देखता, सुनता, स्पर्श करता, सूंघता, भोजन करता, गमन करता, सोता, श्वास लेता...",
+        "emotional_tone": [
+            "detached",
+            "conscious"
+        ],
+        "core_theme": [
+            "witness consciousness",
+            "inaction in action",
+            "not the doer"
+        ],
+        "life_situations": [
+            "mindfulness in daily actions",
+            "observing the self",
+            "spiritual detachment"
+        ],
+        "notification_short": {
+            "en": "The wise know: 'I do nothing.' The senses just do their work.",
+            "hi": "ज्ञानी जानते हैं: 'मैं कुछ नहीं करता।' इंद्रियां बस अपना काम करती हैं।"
+        }
+    },
+    {
+        "id": "5_9",
+        "sanskrit": "प्रलपन्विसृजन्गृह्णन्नुन्मिषन्निमिषन्नपि । इन्द्रियाणीन्द्रियार्थेषु वर्तन्त इति धारयन् ॥",
+        "iast": "pralapan visṛjan gṛhṇann unmiṣan nimiṣann api। indriyāṇīndriyārtheṣu vartanta iti dhārayan॥",
+        "simple": "pralapan visrijan grihnann unmishan nimishann api, indriyani indriyartheshu vartanta iti dharayan",
+        "meaning_en": "Because while speaking, evacuating, accepting, opening or closing his eyes, he always knows that only the material senses are engaged with their objects and that he is aloof from them.",
+        "meaning_hi": "...बोलता, त्यागता, ग्रहण करता तथा आंखों को खोलता और मूंदता हुआ भी 'सब इंद्रियां अपने-अपने अर्थों में बरत रही हैं'- इस प्रकार समझकर निःसंदेह ऐसा माने कि मैं कुछ भी नहीं करता हूँ।",
+        "emotional_tone": [
+            "observational",
+            "detached"
+        ],
+        "core_theme": [
+            "sense operations",
+            "aloofness",
+            "self-realization"
+        ],
+        "life_situations": [
+            "watching your body act",
+            "separation from body",
+            "staying centered"
+        ],
+        "notification_short": {
+            "en": "Even while acting, know that it is just the senses interacting with the world.",
+            "hi": "कार्य करते समय भी, यह जान लें कि यह केवल दुनिया के साथ बातचीत करने वाली इंद्रियां हैं।"
+        }
+    },
+    {
+        "id": "5_10",
+        "sanskrit": "ब्रह्मण्याधाय कर्माणि सङ्गं त्यक्त्वा करोति यः । लिप्यते न स पापेन पद्मपत्रमिवाम्भसा ॥",
+        "iast": "brahmaṇy ādhāya karmāṇi saṅgaṃ tyaktvā karoti yaḥ। lipyate na sa pāpena padma-patram ivāmbhasā॥",
+        "simple": "brahmany adhyaya karmani sangam tyaktva karoti yah, lipyate na sa papena padma patram ivambhasa",
+        "meaning_en": "One who performs his duty without attachment, surrendering the results unto the Supreme Lord, is unaffected by sinful action, as the lotus leaf is untouched by water.",
+        "meaning_hi": "जो पुरुष सब कर्मों को परमात्मा में अर्पण करके और आसक्ति को त्यागकर कर्म करता है, वह पुरुष जल से कमल के पत्ते की भांति पाप से लिप्त नहीं होता।",
+        "emotional_tone": [
+            "pure",
+            "untouched"
+        ],
+        "core_theme": [
+            "lotus leaf analogy",
+            "detachment",
+            "surrender"
+        ],
+        "life_situations": [
+            "being in the world but not of it",
+            "staying pure in a messy world",
+            "emotional resilience"
+        ],
+        "notification_short": {
+            "en": "Be like a lotus leaf: in the water, but untouched by it.",
+            "hi": "कमल के पत्ते की तरह बनें: पानी में, लेकिन उससे अछूता।"
+        }
+    },
+    {
+        "id": "5_11",
+        "sanskrit": "कायेन मनसा बुद्ध्या केवलैरिन्द्रियैरपि । योगिनः कर्म कुर्वन्ति सङ्गं त्यक्त्वाऽऽत्मशुद्धये ॥",
+        "iast": "kāyena manasā buddhyā kevalair indriyair api। yoginaḥ karma kurvanti saṅgaṃ tyaktvā ’tma-śuddhaye॥",
+        "simple": "kayena manasa buddhya kevalair indriyair api, yoginah karma kurvanti sangam tyaktva atma shuddhaye",
+        "meaning_en": "The yogis, abandoning attachment, act with body, mind, intelligence and even with the senses, only for the purpose of purification.",
+        "meaning_hi": "कर्मयोगी ममत्वबुद्धिरहित केवल इंद्रिय, मन, बुद्धि और शरीर द्वारा भी आसक्ति को त्यागकर अंतःकरण की शुद्धि के लिए कर्म करते हैं।",
+        "emotional_tone": [
+            "purifying",
+            "dedicated"
+        ],
+        "core_theme": [
+            "purification",
+            "selfless action",
+            "internal cleansing"
+        ],
+        "life_situations": [
+            "working for self-improvement",
+            "cleaning the heart",
+            "mindful action"
+        ],
+        "notification_short": {
+            "en": "Work with your body and mind only to purify your soul.",
+            "hi": "अपनी आत्मा को शुद्ध करने के लिए केवल अपने शरीर और मन से कार्य करें।"
+        }
+    },
+    {
+        "id": "5_12",
+        "sanskrit": "युक्तः कर्मफलं त्यक्त्वा शान्तिमाप्नोति नैष्ठिकीम् । अयुक्तः कामकारेण फले सक्तो निबध्यते ॥",
+        "iast": "yuktaḥ karma-phalaṃ tyaktvā śāntim āpnoti naiṣṭhikīm। ayuktaḥ kāma-kāreṇa phale sakto nibadhyate॥",
+        "simple": "yuktah karma phalam tyaktva shantim apnoti naisthikim, ayuktah kama karena phale sakto nibadhyate",
+        "meaning_en": "The steadily devoted soul attains unadulterated peace because he offers the result of all activities to Me; whereas a person who is not in union with the Divine, who is greedy for the fruits of his labor, becomes entangled.",
+        "meaning_hi": "कर्मयोगी कर्मों के फल का त्याग करके भगवत्प्राप्ति रूप शांति को प्राप्त होता है और सकाम पुरुष कामना की प्रेरणा से फल में आसक्त होकर बंधता है।",
+        "emotional_tone": [
+            "peaceful",
+            "contrasting"
+        ],
+        "core_theme": [
+            "peace vs bondage",
+            "attachment to fruit",
+            "result of devotion"
+        ],
+        "life_situations": [
+            "finding peace through letting go",
+            "stress of expectation",
+            "freedom from anxiety"
+        ],
+        "notification_short": {
+            "en": "Let go of the result and find peace. Hold on, and get tangled.",
+            "hi": "परिणाम को जाने दें और शांति पाएं। पकड़ कर रखें, और उलझ जाएं।"
+        }
+    },
+    {
+        "id": "5_13",
+        "sanskrit": "सर्वकर्माणि मनसा संन्यस्यास्ते सुखं वशी । नवद्वारे पुरे देही नैव कुर्वन्न कारयन् ॥",
+        "iast": "sarva-karmāṇi manasā saṃnyasyāste sukhaṃ vaśī। nava-dvāre pure dehī naiva kurvan na kārayan॥",
+        "simple": "sarva karmani manasa sannyasyaste sukham vashi, nava dvare pure dehi naiva kurvan na karayan",
+        "meaning_en": "When the embodied living being controls his nature and mentally renounces all actions, he resides happily in the city of nine gates [the material body], neither working nor causing work to be done.",
+        "meaning_hi": "अंतःकरण जिसके वश में है, ऐसा सांख्ययोग का आचरण करने वाला पुरुष न करता हुआ और न करवाता हुआ ही, नौ द्वारों वाले शरीर रूप घर में सब कर्मों को मन से त्यागकर आनंदपूर्वक सच्चिदानंदघन परमात्मा के स्वरूप में स्थित रहता है।",
+        "emotional_tone": [
+            "blissful",
+            "masterful"
+        ],
+        "core_theme": [
+            "city of nine gates",
+            "mental renunciation",
+            "inner happiness"
+        ],
+        "life_situations": [
+            "living happily in the body",
+            "being the master of your house",
+            "inner retirement"
+        ],
+        "notification_short": {
+            "en": "Live happily in the city of nine gates (your body), doing nothing.",
+            "hi": "नौ द्वारों (अपने शरीर) के शहर में खुशी से रहें, कुछ भी न करें।"
+        }
+    },
+    {
+        "id": "5_14",
+        "sanskrit": "न कर्तृत्वं न कर्माणि लोकस्य सृजति प्रभुः । न कर्मफलसंयोगं स्वभावस्तु प्रवर्तते ॥",
+        "iast": "na kartṛtvaṃ na karmāṇi lokasya sṛjati prabhuḥ। na karma-phala-saṃyogaṃ svabhāvas tu pravartate॥",
+        "simple": "na kartritvam na karmani lokasya srijati prabhuh, na karma phala sanyogam svabhavas tu pravartate",
+        "meaning_en": "The embodied spirit, master of the city of his body, does not create activities, nor does he induce people to act, nor does he create the fruits of action. All this is enacted by the modes of material nature.",
+        "meaning_hi": "परमेश्वर मनुष्यों के न तो कर्तापन की, न कर्मों की और न कर्मफल के संयोग की ही रचना करते हैं; किन्तु स्वभाव (प्रकृति) ही बरत रहा है।",
+        "emotional_tone": [
+            "neutral",
+            "philosophical"
+        ],
+        "core_theme": [
+            "nature acts",
+            "god is neutral",
+            "law of karma"
+        ],
+        "life_situations": [
+            "understanding how the world works",
+            "god doesn't micromanage",
+            "nature's laws"
+        ],
+        "notification_short": {
+            "en": "The Lord creates neither the work nor the result. Nature does it all.",
+            "hi": "भगवान न तो काम बनाते हैं और न ही परिणाम। प्रकृति यह सब करती है।"
+        }
+    },
+    {
+        "id": "5_15",
+        "sanskrit": "नादत्ते कस्यचित्पापं न चैव सुकृतं विभुः । अज्ञानेनावृतं ज्ञानं तेन मुह्यन्ति जन्तवः ॥",
+        "iast": "nādatte kasyacit pāpaṃ na caiva sukṛtaṃ vibhuḥ। ajñānenāvṛtaṃ jñānaṃ tena muhyanti jantavaḥ॥",
+        "simple": "naadatte kasyachit papam na chaiva sukritam vibhuh, ajnanenavritam jnanam tena muhyanti jantavah",
+        "meaning_en": "Nor does the Supreme Lord assume anyone's sinful or pious activities. Embodied beings, however, are bewildered because of the ignorance which covers their real knowledge.",
+        "meaning_hi": "सर्वव्यापी परमात्मा न किसी के पाप कर्म को और न किसी के शुभ कर्म को ही ग्रहण करता है; किन्तु अज्ञान द्वारा ज्ञान ढका हुआ है, उसी से सब अज्ञानी मनुष्य मोहित हो रहे हैं।",
+        "emotional_tone": [
+            "impartial",
+            "revealing"
+        ],
+        "core_theme": [
+            "divine impartiality",
+            "ignorance vs knowledge",
+            "bewilderment"
+        ],
+        "life_situations": [
+            "blaming god for problems",
+            "taking responsibility",
+            "overcoming ignorance"
+        ],
+        "notification_short": {
+            "en": "God takes no one's sin or merit. We are just confused by ignorance.",
+            "hi": "भगवान किसी का पाप या पुण्य नहीं लेते। हम बस अज्ञान से भ्रमित हैं।"
+        }
+    },
+    {
+        "id": "5_16",
+        "sanskrit": "ज्ञानेन तु तदज्ञानं येषां नाशितमात्मनः । तेषामादित्यवज्ज्ञानं प्रकाशयति तत्परम् ॥",
+        "iast": "jñānena tu tad ajñānaṃ yeṣāṃ nāśitam ātmanaḥ। teṣām āditya-vaj jñānaṃ prakāśayati tat param॥",
+        "simple": "jnanena tu tad ajnanam yesham nashitam atmanah, tesham aditya vaj jnanam prakashayati tat param",
+        "meaning_en": "When, however, one's is destroyed by the transcendental knowledge, then this knowledge reveals everything, as the sun lights up everything in the daytime.",
+        "meaning_hi": "परन्तु जिनका वह अज्ञान परमात्मा के तत्वज्ञान द्वारा नष्ट कर दिया गया है, उनका वह ज्ञान सूर्य के सदृश उस सच्चिदानंदघन परमात्मा को प्रकाशित कर देता है।",
+        "emotional_tone": [
+            "illuminating",
+            "bright"
+        ],
+        "core_theme": [
+            "power of knowledge",
+            "removing ignorance",
+            "sun analogy"
+        ],
+        "life_situations": [
+            "gaining clarity",
+            "understanding the truth",
+            "seeing clearly"
+        ],
+        "notification_short": {
+            "en": "Knowledge destroys ignorance like the sun chases away the dark.",
+            "hi": "ज्ञान अज्ञान को वैसे ही नष्ट कर देता है जैसे सूर्य अंधेरे को भगा देता है।"
+        }
+    },
+    {
+        "id": "5_17",
+        "sanskrit": "तद्बुद्धयस्तदात्मानस्तन्निष्ठास्तत्परायणाः । गच्छन्त्यपुनरावृत्तिं ज्ञाननिर्धूतकल्मषाः ॥",
+        "iast": "tad-buddhayas tad-ātmānas tan-niṣṭhās tat-parāyaṇāḥ। gacchanty apunar-āvṛttiṃ jñāna-nirdhūta-kalmaṣāḥ॥",
+        "simple": "tad buddhayah tad atmanas tan nishthas tat parayanah, gachchhanti apunar avrittim jnana nirdhuta kalmashah",
+        "meaning_en": "When one's intelligence, mind, faith and refuge are all fixed in the Supreme, then one becomes fully cleansed of misgivings through complete knowledge and thus proceeds straight on the path of liberation.",
+        "meaning_hi": "जिनका मन तद्रूप हो रहा है, जिनकी बुद्धि तद्रूप हो रही है और सच्चिदानंदघन परमात्मा में ही जिनकी निरंतर एकीभाव से स्थिति है, ऐसे तत्परायण पुरुष ज्ञान द्वारा पाप रहित होकर अपुनरावृत्ति को अर्थात परमगति को प्राप्त होते हैं।",
+        "emotional_tone": [
+            "focused",
+            "determined"
+        ],
+        "core_theme": [
+            "total absorption",
+            "liberation",
+            "cleansing by knowledge"
+        ],
+        "life_situations": [
+            "being fully committed",
+            "single-minded focus",
+            "seeking freedom"
+        ],
+        "notification_short": {
+            "en": "Fix your mind and intelligence on the Supreme, and you will be free.",
+            "hi": "अपने मन और बुद्धि को परमात्मा पर स्थिर करें, और आप मुक्त हो जाएंगे।"
+        }
+    },
+    {
+        "id": "5_18",
+        "sanskrit": "विद्याविनयसम्पन्ने ब्राह्मणे गवि हस्तिनि । शुनि चैव श्वपाके च पण्डिताः समदर्शिनः ॥",
+        "iast": "vidyā-vinaya-sampanne brāhmaṇe gavi hastini। śuni caiva śvapāke ca paṇḍitāḥ sama-darśinaḥ॥",
+        "simple": "vidya vinaya sampanne brahmane gavi hastini, shuni chaiva shvapake cha panditah sama darshinah",
+        "meaning_en": "The humble sages, by virtue of true knowledge, see with equal vision a learned and gentle brahmana, a cow, an elephant, a dog and a dog-eater [outcaste].",
+        "meaning_hi": "वे ज्ञानीजन विद्या और विनय युक्त ब्राह्मण में तथा गौ, हाथी, कुत्ते और चाण्डाल में भी समदर्शी (एक सा) ही देखते हैं।",
+        "emotional_tone": [
+            "equal",
+            "humble"
+        ],
+        "core_theme": [
+            "equal vision",
+            "seeing the soul",
+            "spiritual equality"
+        ],
+        "life_situations": [
+            "treating everyone equally",
+            "not judging by appearance",
+            "seeing the divine in all"
+        ],
+        "notification_short": {
+            "en": "The wise see the same Divine in a priest, a cow, an elephant, and a dog.",
+            "hi": "ज्ञानी एक पुजारी, एक गाय, एक हाथी और एक कुत्ते में एक ही परमात्मा को देखते हैं।"
+        }
+    },
+    {
+        "id": "5_19",
+        "sanskrit": "इहैव तैर्जितः सर्गो येषां साम्ये स्थितं मनः । निर्दोषं हि समं ब्रह्म तस्माद्ब्रह्मणि ते स्थिताः ॥",
+        "iast": "ihaiva tair jitaḥ sargo yeṣāṃ sāmye sthitaṃ manaḥ। nirdoṣaṃ hi samaṃ brahma tasmād brahmaṇi te sthitāḥ॥",
+        "simple": "ihaiva tair jitah sargo yesham samye sthitam manah, nirdosham hi samam brahma tasmat brahmani te sthitah",
+        "meaning_en": "Those whose minds are established in sameness and equanimity have already conquered the conditions of birth and death. They are flawless like Brahman, and thus they are already situated in Brahman.",
+        "meaning_hi": "जिनका मन समभाव में स्थित है, उनके द्वारा इस जीवित अवस्था में ही सम्पूर्ण संसार जीत लिया गया है; क्योंकि सच्चिदानंदघन परमात्मा निर्दोष और सम है, इससे वे सच्चिदानंदघन परमात्मा में ही स्थित हैं।",
+        "emotional_tone": [
+            "victorious",
+            "equanimous"
+        ],
+        "core_theme": [
+            "conquering samsara",
+            "equanimity",
+            "perfection"
+        ],
+        "life_situations": [
+            "keeping your cool",
+            "rising above circumstances",
+            "living in the eternal now"
+        ],
+        "notification_short": {
+            "en": "If your mind is even, you have conquered the world.",
+            "hi": "यदि आपका मन शांत है, तो आपने दुनिया को जीत लिया है।"
+        }
+    },
+    {
+        "id": "5_20",
+        "sanskrit": "न प्रहृष्येत्प्रियं प्राप्य नोद्विजेत्प्राप्य चाप्रियम् । स्थिरबुद्धिरसम्मूढो ब्रह्मविद् ब्रह्मणि स्थितः ॥",
+        "iast": "na prahṛṣyet priyaṃ prāpya nodvijet prāpya cāpriyam। sthira-buddhir asammūḍho brahma-vid brahmaṇi sthitaḥ॥",
+        "simple": "na prahrishyeta priyam prapya nodvijet prapya chapriyam, sthira buddhir asammudho brahma vid brahmani sthitah",
+        "meaning_en": "A person who neither rejoices upon achieving something pleasant nor laments upon obtaining something unpleasant, who is self-intelligent, who is unbewildered, and who knows the science of God, is already situated in transcendence.",
+        "meaning_hi": "जो पुरुष प्रिय को प्राप्त होकर हर्षित नहीं हो और अप्रिय को प्राप्त होकर उद्विग्न न हो, वह स्थिरबुद्धि, संशयरहित, ब्रह्मवेत्ता पुरुष सच्चिदानंदघन परब्रह्म परमात्मा में एकीभाव से नित्य स्थित है।",
+        "emotional_tone": [
+            "steady",
+            "calm"
+        ],
+        "core_theme": [
+            "steady intelligence",
+            "emotional balance",
+            "transcendence"
+        ],
+        "life_situations": [
+            "not getting too high or too low",
+            "maintaining perspective",
+            "emotional stability"
+        ],
+        "notification_short": {
+            "en": "Don't be overjoyed by gain or crushed by loss. Stay steady.",
+            "hi": "लाभ से बहुत खुश न हों या नुकसान से टूट न जाएं। स्थिर रहें।"
+        }
+    },
+    {
+        "id": "5_21",
+        "sanskrit": "बाह्यस्पर्शेष्वसक्तात्मा विन्दत्यात्मनि यत्सुखम् । स ब्रह्मयोगयुक्तात्मा सुखमक्षयमश्नुते ॥",
+        "iast": "bāhya-sparśeṣv asaktātmā vindaty ātmani yat sukham। sa brahma-yoga-yuktātmā sukham akṣayam aśnute॥",
+        "simple": "bahya sparsheshv asaktatma vindaty atmani yat sukham, sa brahma yoga yuktatma sukham akshayam ashnute",
+        "meaning_en": "Such a liberated person is not attracted to material sense pleasure but is always in trance, enjoying the pleasure within. In this way the self-realized person enjoys unlimited happiness, for he concentrates on the Supreme.",
+        "meaning_hi": "बाहर के विषयों में आसक्तिरहित अंतःकरण वाला साधक आत्मा में स्थित जो ध्यानजनित सात्विक आनंद है, उसको प्राप्त होता है। तदनंतर वह सच्चिदानंदघन परमात्मा के ध्यान रूप योग में अभिनिविष्ट सात्विक पुरुष अक्षय आनंद का अनुभव करता है।",
+        "emotional_tone": [
+            "blissful",
+            "internal"
+        ],
+        "core_theme": [
+            "inner happiness",
+            "detachment from external",
+            "unlimited joy"
+        ],
+        "life_situations": [
+            "finding happiness inside",
+            "boredom with material things",
+            "meditation"
+        ],
+        "notification_short": {
+            "en": "Look within for happiness. It is unlimited and never ends.",
+            "hi": "खुशी के लिए अपने भीतर देखें। यह असीमित है और कभी खत्म नहीं होती।"
+        }
+    },
+    {
+        "id": "5_22",
+        "sanskrit": "ये हि संस्पर्शजा भोगा दुःखयोनय एव ते । आद्यन्तवन्तः कौन्तेय न तेषु रमते बुधः ॥",
+        "iast": "ye hi saṃsparśa-jā bhogā duḥkha-yonaya eva te। ādy-antavantaḥ kaunteya na teṣu ramate budhaḥ॥",
+        "simple": "ye hi samsparsha ja bhoga duhkha yonaya eva te, adyantavantah kaunteya na teshu ramate budhah",
+        "meaning_en": "An intelligent person does not take part in the sources of misery, which are due to contact with the material senses. O son of Kunti, such pleasures have a beginning and an end, and so the wise man does not delight in them.",
+        "meaning_hi": "जो ये इंद्रिय तथा विषयों के संयोग से उत्पन्न होने वाले सब भोग हैं, वे यद्यपि विषयी पुरुषों को सुख रूप भासते हैं, तो भी दुःख के ही हेतु हैं और आदि-अंतवाले हैं अर्थात अनित्य हैं। इसलिए हे अर्जुन! बुद्धिमान विवेकी पुरुष उनमें नहीं रमता।",
+        "emotional_tone": [
+            "wise",
+            "cautionary"
+        ],
+        "core_theme": [
+            "temporary pleasures",
+            "source of misery",
+            "wisdom"
+        ],
+        "life_situations": [
+            "avoiding addictive behaviors",
+            "seeing long term",
+            "not chasing fleeting joy"
+        ],
+        "notification_short": {
+            "en": "Sense pleasures are the womb of suffering. They come and go. Don't chase them.",
+            "hi": "इंद्रिय सुख दुख का कारण हैं। वे आते हैं और जाते हैं। उनके पीछे मत भागो।"
+        }
+    },
+    {
+        "id": "5_23",
+        "sanskrit": "शक्नोतीहैव यः सोढुं प्राक्शरीरविमोक्षणात् । कामक्रोधोद्भवं वेगं स युक्तः स सुखी नरः ॥",
+        "iast": "śaknotīhaiva yaḥ soḍhuṃ prāk śarīra-vimokṣaṇāt। kāma-krodhodbhavaṃ vegaṃ sa yuktaḥ sa sukhī naraḥ॥",
+        "simple": "shaknotihaiva yah sodhum prak sharira vimokshanat, kama krodhodbhavam vegam sa yuktah sa sukhi narah",
+        "meaning_en": "Before giving up this present body, if one is able to tolerate the urges of the material senses and check the force of desire and anger, he is well situated and is happy in this world.",
+        "meaning_hi": "जो साधक इस मनुष्य शरीर में, शरीर का नाश होने से पहले-पहले ही काम-क्रोध से उत्पन्न होने वाले वेग को सहन करने में समर्थ हो जाता है, वही पुरुष योगी है और वही सुखी है।",
+        "emotional_tone": [
+            "strong",
+            "disciplined"
+        ],
+        "core_theme": [
+            "tolerating urges",
+            "controlling anger/desire",
+            "happiness here and now"
+        ],
+        "life_situations": [
+            "managing anger",
+            "resisting temptation",
+            "emotional strength"
+        ],
+        "notification_short": {
+            "en": "If you can control your anger and desire before you die, you are a true Yogi.",
+            "hi": "यदि आप मरने से पहले अपने क्रोध और इच्छा को नियंत्रित कर सकते हैं, तो आप एक सच्चे योगी हैं।"
+        }
+    },
+    {
+        "id": "5_24",
+        "sanskrit": "योऽन्तःसुखोऽन्तरारामस्तथान्तर्ज्योतिरेव यः । स योगी ब्रह्मनिर्वाणं ब्रह्मभूतोऽधिगच्छति ॥",
+        "iast": "yo ’ntaḥ-sukho ’ntar-ārāmas tathāntar-jyotir eva yaḥ। sa yogī brahma-nirvāṇaṃ brahma-bhūto ’dhigacchati॥",
+        "simple": "yo antah sukho antar aramas tathantar jyotir eva yah, sa yogi brahma nirvanam brahma bhuto adhigachchhati",
+        "meaning_en": "One whose happiness is within, who is active and rejoices within, and whose aim is inward is actually the perfect mystic. He is liberated in the Supreme, and ultimately he attains the Supreme.",
+        "meaning_hi": "जो पुरुष अंतरात्मा में ही सुख वाला है, आत्मा में ही रमण करने वाला है तथा जो आत्मा में ही ज्ञान वाला है, वह सच्चिदानंदघन परब्रह्म परमात्मा के साथ एकीभाव को प्राप्त सांख्ययोगी शांत ब्रह्म को प्राप्त होता है।",
+        "emotional_tone": [
+            "joyful",
+            "illumined"
+        ],
+        "core_theme": [
+            "inner light",
+            "brahman nirvana",
+            "internal contentment"
+        ],
+        "life_situations": [
+            "finding peace within",
+            "spiritual glowing",
+            "inner retreat"
+        ],
+        "notification_short": {
+            "en": "Find your happiness, your rest, and your light within.",
+            "hi": "अपनी खुशी, अपना आराम और अपना प्रकाश अपने भीतर खोजें।"
+        }
+    },
+    {
+        "id": "5_25",
+        "sanskrit": "लभन्ते ब्रह्मनिर्वाणमृषयः क्षीणकल्मषाः । छिन्नद्वैधा यतात्मानः सर्वभूतहिते रताः ॥",
+        "iast": "labhante brahma-nirvāṇaṃ ṛṣayaḥ kṣīṇa-kalmaṣāḥ। chinna-dvaidhā yatātmānaḥ sarva-bhūta-hite ratāḥ॥",
+        "simple": "labhante brahma nirvanam rishayah kshina kalmashah, chhinna dvaidha yata atmanah sarva bhuta hite ratah",
+        "meaning_en": "Those who are beyond the dualities that arise from doubts, whose minds are engaged within, who are always busy working for the welfare of all living beings and who are free from all sins achieve liberation in the Supreme.",
+        "meaning_hi": "जिनके सब पाप नष्ट हो गए हैं, जिनके सब संशय ज्ञान द्वारा निवृत्त हो गए हैं, जो सम्पूर्ण प्राणियों के हित में रत हैं और जिनका जीता हुआ मन निश्चल भाव से परमात्मा में स्थित है, वे ब्रह्मवेत्ता पुरुष शांत ब्रह्म को प्राप्त होते हैं।",
+        "emotional_tone": [
+            "altruistic",
+            "liberated"
+        ],
+        "core_theme": [
+            "welfare of all",
+            "destroying sin",
+            "liberation"
+        ],
+        "life_situations": [
+            "helping others",
+            "volunteering",
+            "being a good person"
+        ],
+        "notification_short": {
+            "en": "Work for the good of all beings and you will find freedom.",
+            "hi": "सभी प्राणियों की भलाई के लिए काम करें और आपको मुक्ति मिलेगी।"
+        }
+    },
+    {
+        "id": "5_26",
+        "sanskrit": "कामक्रोधवियुक्तानां यतीनां यतचेतसाम् । अभितो ब्रह्मनिर्वाणं वर्तते विदितात्मनाम् ॥",
+        "iast": "kāma-krodha-viyuktānāṃ yatīnāṃ yata-cetasām। abhito brahma-nirvāṇaṃ vartate viditātmanām॥",
+        "simple": "kama krodha viyuktanam yatinam yata chetasam, abhito brahma nirvanam vartate viditatmanam",
+        "meaning_en": "Those who are free from anger and all material desires, who are self-realized, self-disciplined and constantly endeavoring for perfection, are assured of liberation in the Supreme in the very near future.",
+        "meaning_hi": "काम-क्रोध से रहित, जीते हुए चित्त वाले, परब्रह्म परमात्मा का साक्षात्कार किए हुए ज्ञानी पुरुषों के लिए सब ओर से शांत परब्रह्म परमात्मा ही परिपूर्ण है।",
+        "emotional_tone": [
+            "assured",
+            "calm"
+        ],
+        "core_theme": [
+            "freedom from anger",
+            "self-realization",
+            "nearness of liberation"
+        ],
+        "life_situations": [
+            "overcoming negative emotions",
+            "being disciplined",
+            "expecting peace"
+        ],
+        "notification_short": {
+            "en": "Free from desire and anger, the wise find peace everywhere.",
+            "hi": "इच्छा और क्रोध से मुक्त, ज्ञानी हर जगह शांति पाते हैं।"
+        }
+    },
+    {
+        "id": "5_27",
+        "sanskrit": "स्पर्शान्कृत्वा बहिर्बाह्यांश्चक्षुश्चैवान्तरे भ्रुवोः । प्राणापानौ समौ कृत्वा नासाभ्यन्तरचारिणौ ॥",
+        "iast": "sparśān kṛtvā bahir bāhyāṃś cakṣuś caivāntare bhruvoḥ। prāṇāpānau samau kṛtvā nāsābhyantara-cāriṇau॥",
+        "simple": "sparshan kritva bahir bahyamsh chakshush chaiva antare bhruvoh, pranapanau samau kritva nasabhyantara charinau",
+        "meaning_en": "Shutting out all external sense objects, keeping the eyes and vision concentrated between the two eyebrows, suspending the inward and outward breaths within the nostrils, and thus controlling the mind, senses and intelligence...",
+        "meaning_hi": "बाहर के विषय-भोगों को न चिंतन करता हुआ बाहर ही निकालकर और नेत्रों की दृष्टि को भौंहों के बीच में स्थित करके तथा नासिका में विचरने वाले प्राण और अपानवायु को सम करके...",
+        "emotional_tone": [
+            "meditative",
+            "focused"
+        ],
+        "core_theme": [
+            "meditation technique",
+            "pranayama",
+            "withdrawal"
+        ],
+        "life_situations": [
+            "meditation practice",
+            "focusing inward",
+            "breath control"
+        ],
+        "notification_short": {
+            "en": "Shut out the world. Focus within. Breathe.",
+            "hi": "दुनिया को बंद करो। भीतर ध्यान लगाओ। सांस लो।"
+        }
+    },
+    {
+        "id": "5_28",
+        "sanskrit": "यतेन्द्रियमनobuddhirmunirmokṣपरायणः । विगतइच्छाभयक्रोधो यः सदा मुक्त एव सः ॥",
+        "iast": "yatendriya-mano-buddhir munir mokṣa-parāyaṇaḥ। vigata-icchā-bhaya-krodho yaḥ sadā mukta eva saḥ॥",
+        "simple": "yatendriya mano buddhir munir moksha parayanah, vigata ichchha bhaya krodho yah sada mukta eva sah",
+        "meaning_en": "...the transcendentalist aiming at liberation becomes free from desire, fear and anger. One who is always in this state is certainly liberated.",
+        "meaning_hi": "...जिसने इंद्रियां, मन और बुद्धि जीती हुई हैं, ऐसा जो मोक्षपरायण मुनि इच्छा, भय और क्रोध से रहित हो गया है, वह सदा मुक्त ही है।",
+        "emotional_tone": [
+            "liberated",
+            "eternal"
+        ],
+        "core_theme": [
+            "moksha",
+            "freedom from fear/desire",
+            "eternal freedom"
+        ],
+        "life_situations": [
+            "seeking final freedom",
+            "living without fear",
+            "mastery of self"
+        ],
+        "notification_short": {
+            "en": "Control your mind and senses, and be free forever.",
+            "hi": "अपने मन और इंद्रियों को नियंत्रित करें, और हमेशा के लिए मुक्त हो जाएं।"
+        }
+    },
+    {
+        "id": "5_29",
+        "sanskrit": "भोक्तारं यज्ञतपसां सर्वलोकमहेश्वरम् । सुहृदं सर्वभूतानां ज्ञात्वा मां शान्तिमृच्छति ॥",
+        "iast": "bhoktāraṃ yajña-tapasāṃ sarva-loka-maheśvaram। suhṛdaṃ sarva-bhūtānāṃ jñātvā māṃ śāntim ṛcchati॥",
+        "simple": "bhoktaram yajna tapasam sarva loka maheshvaram, suhridam sarva bhutanam jnatva mam shantim ricchati",
+        "meaning_en": "A person in full consciousness of Me, knowing Me to be the ultimate beneficiary of all sacrifices and austerities, the Supreme Lord of all planets and demigods, and the benefactor and well-wisher of all living entities, attains peace from the pangs of material miseries.",
+        "meaning_hi": "मेरा भक्त मुझ को सब यज्ञ और तपों का भोगने वाला, सम्पूर्ण लोकों के ईश्वरों का भी ईश्वर तथा सम्पूर्ण भूत-प्राणियों का सुहृद् (स्वार्थरहित दयालु और प्रेमी) तत्त्व से जानकर शांति को प्राप्त होता है। (इति कर्मसंन्यासयोग नामक पांचवां अध्याय)",
+        "emotional_tone": [
+            "peaceful",
+            "loving"
+        ],
+        "core_theme": [
+            "peace formula",
+            "friend of all",
+            "supreme enjoyer"
+        ],
+        "life_situations": [
+            "finding ultimate peace",
+            "feeling loved by god",
+            "offering everything to god"
+        ],
+        "notification_short": {
+            "en": "I am the friend of all beings. Know Me and find peace.",
+            "hi": "मैं सभी प्राणियों का मित्र हूँ। मुझे जानो और शांति पाओ।"
+        }
+    }
+]

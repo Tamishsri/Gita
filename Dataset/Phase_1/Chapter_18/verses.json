@@ -1,0 +1,2009 @@
+[
+  {
+    "id": "18_1",
+    "sanskrit": "अर्जुन उवाच । संन्यासस्य महाबाहो तत्त्वमिच्छामि वेदितुम् । त्यागस्य च हृषीकेश पृथक्केशिनिषूदन ॥",
+    "iast": "arjuna uvāca। saṃnyāsasya mahā-bāho tattvam icchāmi veditum। tyāgasya ca hṛṣīkeśa pṛthak keśi-niṣūdana॥",
+    "simple": "arjuna uvacha, sannyasasya maha baho tattvam ichchhami veditum, tyagasya cha hrishikesha prithak keshi nishudana",
+    "meaning_en": "Arjuna said: O mighty-armed one, O Hrishikesha, O slayer of Keshi, I wish to understand the purpose of renunciation (sannyasa) and of the renunciation of the fruits of action (tyaga), separately.",
+    "meaning_hi": "अर्जुन बोले- हे महाबाहो! हे हृषीकेश! हे केशीनिषूदन! मैं संन्यास और त्याग के तत्त्व को अलग-अलग जानना चाहता हूँ।",
+    "emotional_tone": [
+      "inquisitive",
+      "seeking clarity"
+    ],
+    "core_theme": [
+      "renunciation",
+      "tyaga vs sannyasa",
+      "final questions"
+    ],
+    "life_situations": [
+      "seeking final answers",
+      "understanding renunciation",
+      "retirement planning"
+    ],
+    "notification_short": {
+      "en": "What is the difference between Sannyasa (renunciation) and Tyaga (sacrifice)?",
+      "hi": "संन्यास और त्याग में क्या अंतर है?"
+    }
+  },
+  {
+    "id": "18_2",
+    "sanskrit": "श्रीभगवानुवाच । काम्यानां कर्मणां न्यासं संन्यासं कवयो विदुः । सर्वकर्मफलत्यागं प्राहुस्त्यागं विचक्षणाः ॥",
+    "iast": "śrī-bhagavān uvāca। kāmyānāṃ karmaṇāṃ nyāsaṃ saṃnyāsaṃ kavayo viduḥ। sarva-karma-phala-tyāgaṃ prāhus tyāgaṃ vicakṣaṇāḥ॥",
+    "simple": "shri bhagavan uvacha, kamyanam karmanam nyasam sannyasam kavayo viduh, sarva karma phala tyagam prahus tyagam vichakshanah",
+    "meaning_en": "The Supreme Personality of Godhead said: The learned understand sannyasa to be the renunciation of all works with a selfish interest. And the wise declare tyaga to be the abandonment of the fruits of all work.",
+    "meaning_hi": "श्री भगवान बोले- कामना से युक्त कर्मों के त्याग को विद्वान संन्यास के नाम से जानते हैं और सब कर्मों के फल के त्याग को विचक्षण पुरुष त्याग कहते हैं।",
+    "emotional_tone": [
+      "defining",
+      "clarifying"
+    ],
+    "core_theme": [
+      "sannyasa defined",
+      "tyaga defined",
+      "renunciation types"
+    ],
+    "life_situations": [
+      "distinguishing concepts",
+      "spiritual vocabulary",
+      "understanding paths"
+    ],
+    "notification_short": {
+      "en": "Sannyasa is renouncing selfish actions; Tyaga is renouncing fruits of all actions.",
+      "hi": "संन्यास है स्वार्थी कर्मों का त्याग; त्याग है सभी कर्मों के फल का त्याग।"
+    }
+  },
+  {
+    "id": "18_3",
+    "sanskrit": "त्याज्यं दोषवदित्येके कर्म प्राहुर्मनीषिणः । यज्ञदानतपःकर्म न त्याज्यमिति चापरे ॥",
+    "iast": "tyājyaṃ doṣa-vad ity eke karma prāhur manīṣiṇaḥ। yajña-dāna-tapaḥ-karma na tyājyam iti cāpare॥",
+    "simple": "tyajyam doshavad ity eke karma prahur manishinah, yajna dana tapah karma na tyajyam iti chapare",
+    "meaning_en": "Some learned men declare that all kinds of fruitive activities should be given up as faulty, yet other sages maintain that acts of sacrifice, charity and penance should never be abandoned.",
+    "meaning_hi": "कुछ विद्वान कहते हैं कि कर्म दोषयुक्त होने से त्याज्य है और अन्य विद्वान ऐसा कहते हैं कि यज्ञ, दान और तपरूप कर्म त्याज्य नहीं है।",
+    "emotional_tone": [
+      "presenting debate"
+    ],
+    "core_theme": [
+      "differing opinions",
+      "debate on renunciation",
+      "conflicting views"
+    ],
+    "life_situations": [
+      "hearing different opinions",
+      "philosophical debate",
+      "choosing guidance"
+    ],
+    "notification_short": {
+      "en": "Some say all actions are faulty; others say sacrifice, charity, and penance must not be renounced.",
+      "hi": "कुछ कहते हैं सब कर्म त्याज्य हैं; कुछ कहते हैं यज्ञ, दान और तप नहीं छोड़ने चाहिए।"
+    }
+  },
+  {
+    "id": "18_4",
+    "sanskrit": "निश्चयं शृणु मे तत्र त्यागे भरतसत्तम । त्यागो हि पुरुषव्याघ्र त्रिविधः सम्प्रकीर्तितः ॥",
+    "iast": "niścayaṃ śṛṇu me tatra tyāge bharata-sattama। tyāgo hi puruṣa-vyāghra tri-vidhaḥ samprakīrtitaḥ॥",
+    "simple": "nishchayam shrinu me tatra tyage bharata sattama, tyago hi purusha vyaghra tri vidhah samprakirtitah",
+    "meaning_en": "O best of the Bharatas, now hear from Me of the three kinds of renunciation, O tiger among men.",
+    "meaning_hi": "हे भरतश्रेष्ठ! उस त्याग के विषय में तू मेरा निश्चय सुन। हे पुरुषश्रेष्ठ! त्याग तीन प्रकार का कहा गया है।",
+    "emotional_tone": [
+      "authoritative",
+      "instructive"
+    ],
+    "core_theme": [
+      "three types of tyaga",
+      "divine teaching",
+      "final verdict"
+    ],
+    "life_situations": [
+      "getting expert opinion",
+      "hearing truth",
+      "resolving confusion"
+    ],
+    "notification_short": {
+      "en": "Now hear My conclusion about the three types of renunciation.",
+      "hi": "अब तीन प्रकार के त्याग के विषय में मेरा निश्चय सुनो।"
+    }
+  },
+  {
+    "id": "18_5",
+    "sanskrit": "यज्ञदानतपःकर्म न त्याज्यं कार्यमेव तत् । यज्ञो दानं तपश्चैव पावनानि मनीषिणाम् ॥",
+    "iast": "yajña-dāna-tapaḥ-karma na tyājyaṃ kāryam eva tat। yajño dānaṃ tapaś caiva pāvanāni manīṣiṇām॥",
+    "simple": "yajna dana tapah karma na tyajyam karyam eva tat, yajnyo danam tapash chaiva pavanani manishinam",
+    "meaning_en": "Acts of sacrifice, charity and penance are not to be given up; they must be performed. Indeed, sacrifice, charity and penance purify even the great souls.",
+    "meaning_hi": "यज्ञ, दान और तपरूप कर्म त्यागने योग्य नहीं है, बल्कि वह अवश्य कर्तव्य है क्योंकि यज्ञ, दान और तप- ये तीनों ही कर्म बुद्धिमान पुरुषों को पवित्र करने वाले हैं।",
+    "emotional_tone": [
+      "commanding",
+      "purifying"
+    ],
+    "core_theme": [
+      "essential duties",
+      "purifying actions",
+      "never abandon"
+    ],
+    "life_situations": [
+      "charitable giving",
+      "spiritual practices",
+      "purification"
+    ],
+    "notification_short": {
+      "en": "Sacrifice, charity, and penance are purifying and should never be abandoned.",
+      "hi": "यज्ञ, दान और तप पवित्र करने वाले हैं, इन्हें कभी न त्यागें।"
+    }
+  },
+  {
+    "id": "18_6",
+    "sanskrit": "एतान्यपि तु कर्माणि सङ्गं त्यक्त्वा फलानि च । कर्तव्यानीति मे पार्थ निश्चितं मतमुत्तमम् ॥",
+    "iast": "etāny api tu karmāṇi saṅgaṃ tyaktvā phalāni ca। kartavyānīti me pārtha niścitaṃ matam uttamam॥",
+    "simple": "etany api tu karmani sangam tyaktva phalani cha, kartavyaniti me partha nishchitam matam uttamam",
+    "meaning_en": "Yet even these works should be performed without attachment or expectation of result. They should be performed as a matter of duty, O son of Pritha. That is My final opinion.",
+    "meaning_hi": "हे पृथापुत्र! ऐसे यज्ञ, दान और तपरूप कर्म भी आसक्ति और फलों का त्याग करके कर्तव्यभाव से करने चाहिए- यह मेरा निश्चित किया हुआ उत्तम मत है।",
+    "emotional_tone": [
+      "decisive",
+      "conclusive"
+    ],
+    "core_theme": [
+      "do duty without attachment",
+      "renounce fruit not action",
+      "final verdict"
+    ],
+    "life_situations": [
+      "performing duties",
+      "detached service",
+      "selfless work"
+    ],
+    "notification_short": {
+      "en": "Perform these duties without attachment or desire for results. This is My final opinion.",
+      "hi": "इन कर्तव्यों को आसक्ति और फल की इच्छा के बिना करो। यही मेरा निश्चय है।"
+    }
+  },
+  {
+    "id": "18_7",
+    "sanskrit": "नियतस्य तु संन्यासः कर्मणो नोपपद्यते । मोहात्तस्य परित्यागस्तामसः परिकीर्तितः ॥",
+    "iast": "niyatasya tu saṃnyāsaḥ karmaṇo nopapadyate। mohāt tasya parityāgas tāmasaḥ parikīrtitaḥ॥",
+    "simple": "niyatasya tu sannyasah karmanah nopapadyate, mohat tasya parityagas tamasah parikirtitah",
+    "meaning_en": "Prescribed duties should never be renounced. If one gives up his prescribed duties because of illusion, such renunciation is said to be in the mode of ignorance.",
+    "meaning_hi": "परन्तु नियत कर्म का संन्यास उचित नहीं है। इसलिए मोह के कारण उसका त्याग करना तामस त्याग कहा गया है।",
+    "emotional_tone": [
+      "warning"
+    ],
+    "core_theme": [
+      "don't abandon duty",
+      "tamasic renunciation",
+      "delusion"
+    ],
+    "life_situations": [
+      "giving up responsibilities",
+      "escaping duties",
+      "spiritual bypassing"
+    ],
+    "notification_short": {
+      "en": "Giving up prescribed duties out of delusion is Tamasic renunciation.",
+      "hi": "मोहवश नियत कर्तव्य छोड़ना तामसी त्याग है।"
+    }
+  },
+  {
+    "id": "18_8",
+    "sanskrit": "दुःखमित्येव यत्कर्म कायक्लेशभयात्त्यजेत् । स कृत्वा राजसं त्यागं नैव त्यागफलं लभेत् ॥",
+    "iast": "duḥkham ity eva yat karma kāya-kleśa-bhayāt tyajet। sa kṛtvā rājasaṃ tyāgaṃ naiva tyāga-phalaṃ labhet॥",
+    "simple": "duhkham ity eva yat karma kaya klesha bhayat tyajet, sa kritva rajasam tyagam naiva tyaga phalam labhet",
+    "meaning_en": "Anyone who gives up prescribed duties as troublesome or out of fear of bodily discomfort is said to have renounced in the mode of passion. Such action never leads to the elevation of renunciation.",
+    "meaning_hi": "जो मनुष्य शरीर को कष्ट होने के भय से 'यह दुःखरूप है' ऐसा मान कर कर्तव्यकर्मों का त्याग कर देता है, वह राजस त्याग करके त्याग के फल को नहीं पाता।",
+    "emotional_tone": [
+      "lazy",
+      "fearful"
+    ],
+    "core_theme": [
+      "rajasic renunciation",
+      "avoiding discomfort",
+      "fear-based action"
+    ],
+    "life_situations": [
+      "avoiding hard work",
+      "quitting when it gets tough",
+      "comfort seeking"
+    ],
+    "notification_short": {
+      "en": "Giving up duties out of fear of discomfort is Rajasic renunciation and bears no fruit.",
+      "hi": "कष्ट के डर से कर्तव्य छोड़ना राजसी त्याग है और फलहीन होता है।"
+    }
+  },
+  {
+    "id": "18_9",
+    "sanskrit": "कार्यमित्येव यत्कर्म नियतं क्रियतेऽर्जुन । सङ्गं त्यक्त्वा फलं चैव स त्यागः सात्त्विको मतः ॥",
+    "iast": "kāryam ity eva yat karma niyataṃ kriyate 'rjuna। saṅgaṃ tyaktvā phalaṃ caiva sa tyāgaḥ sāttviko mataḥ॥",
+    "simple": "karyam ity eva yat karma niyatam kriyate arjuna, sangam tyaktva phalam chaiva sa tyagah sattviko matah",
+    "meaning_en": "But he who performs his prescribed duty only because it has to be done, and renounces all material association and attachment to the result—his renunciation is said to be in the mode of goodness, O Arjuna.",
+    "meaning_hi": "हे अर्जुन! जो कर्तव्यरूप नियत कर्म केवल 'करना चाहिए' इस भाव से आसक्ति और फल को त्यागकर किया जाता है, वह त्याग सात्त्विक माना गया है।",
+    "emotional_tone": [
+      "dutiful",
+      "pure"
+    ],
+    "core_theme": [
+      "sattvic renunciation",
+      "duty for duty's sake",
+      "detachment"
+    ],
+    "life_situations": [
+      "doing duty selflessly",
+      "working without expectation",
+      "pure action"
+    ],
+    "notification_short": {
+      "en": "Doing duty simply because it must be done, without attachment, is Sattvic renunciation.",
+      "hi": "कर्तव्य को बस इसलिए करना कि वह करना चाहिए, बिना आसक्ति के, सात्त्विक त्याग है।"
+    }
+  },
+  {
+    "id": "18_10",
+    "sanskrit": "न द्वेष्ट्यकुशलं कर्म कुशले नानुषज्जते । त्यागी सत्त्वसमाविष्टो मेधावी छिन्नसंशयः ॥",
+    "iast": "na dveṣṭy akuśalaṃ karma kuśale nānuṣajjate। tyāgī sattva-samāviṣṭo medhāvī chinna-saṃśayaḥ॥",
+    "simple": "na dveshty akushalam karma kushale nanushajjate, tyagi sattva samavishto medhavi chhinna samshayah",
+    "meaning_en": "The intelligent renouncer situated in the mode of goodness, neither hateful of disagreeable work nor attached to agreeable work, has no doubts about work.",
+    "meaning_hi": "जो त्यागी सत्त्वगुण से युक्त तथा मेधावी और संशयरहित है, वह न अप्रिय कर्म से द्वेष करता है और न प्रिय कर्म में आसक्त होता है।",
+    "emotional_tone": [
+      "balanced",
+      "wise"
+    ],
+    "core_theme": [
+      "balanced attitude",
+      "neither hate nor attachment",
+      "doubt-free"
+    ],
+    "life_situations": [
+      "equanimity",
+      "handling pleasant and unpleasant tasks",
+      "mental balance"
+    ],
+    "notification_short": {
+      "en": "The wise renouncer neither hates disagreeable work nor is attached to agreeable work.",
+      "hi": "बुद्धिमान त्यागी न अप्रिय कर्म से द्वेष करता है, न प्रिय कर्म में आसक्त होता है।"
+    }
+  },
+  {
+    "id": "18_11",
+    "sanskrit": "न हि देहभृता शक्यं त्यक्तुं कर्माण्यशेषतः । यस्तु कर्मफलत्यागी स त्यागीत्यभिधीयते ॥",
+    "iast": "na hi deha-bhṛtā śakyaṃ tyaktuṃ karmāṇy aśeṣataḥ। yas tu karma-phala-tyāgī sa tyāgīty abhidhīyate॥",
+    "simple": "na hi deha bhrita shakyam tyaktum karmani asheshatah, yas tu karma phala tyagi sa tyagity abhidhiyate",
+    "meaning_en": "It is indeed impossible for an embodied being to give up all activities. But he who renounces the fruits of action is called one who has truly renounced.",
+    "meaning_hi": "शरीरधारी किसी भी मनुष्य द्वारा सम्पूर्णतया सब कर्मों का त्याग किया जाना शक्य नहीं है, इसलिए जो कर्मफल का त्यागी है, वही त्यागी कहा जाता है।",
+    "emotional_tone": [
+      "realistic",
+      "practical"
+    ],
+    "core_theme": [
+      "impossible to give up all action",
+      "renounce results not action",
+      "true renunciation"
+    ],
+    "life_situations": [
+      "living in the world",
+      "practical spirituality",
+      "being realistic"
+    ],
+    "notification_short": {
+      "en": "Giving up all action is impossible. True renunciation is giving up the fruits of action.",
+      "hi": "सभी कर्म छोड़ना असंभव है। सच्चा त्याग है कर्मफल का त्याग।"
+    }
+  },
+  {
+    "id": "18_12",
+    "sanskrit": "अनिष्टमिष्टं मिश्रं च त्रिविधं कर्मणः फलम् । भवत्यत्यागिनां प्रेत्य न तु संन्यासिनां क्वचित् ॥",
+    "iast": "aniṣṭam iṣṭaṃ miśraṃ ca tri-vidhaṃ karmaṇaḥ phalam। bhavaty atyāgināṃ pretya na tu saṃnyāsināṃ kvacit॥",
+    "simple": "anishtam ishtam mishram cha tri vidham karmanah phalam, bhavaty atyaginam pretya na tu sannyasinam kvachit",
+    "meaning_en": "For one who is not renounced, the threefold fruits of action—desirable, undesirable and mixed—accrue after death. But those who are in the renounced order of life have no such result to suffer or enjoy.",
+    "meaning_hi": "कर्मफल का त्याग न करने वालों के कर्मों का शुभ, अशुभ और मिश्रित- ऐसा तीन प्रकार का फल मरने के बाद होता है, परन्तु कर्मफल का त्याग करने वालों के कर्मों का फल कभी नहीं होता।",
+    "emotional_tone": [
+      "consequential"
+    ],
+    "core_theme": [
+      "three fruits of action",
+      "karma after death",
+      "liberation from results"
+    ],
+    "life_situations": [
+      "consequences of attachment",
+      "freedom from karma",
+      "spiritual liberation"
+    ],
+    "notification_short": {
+      "en": "Non-renouncers face threefold results after death; renouncers face none.",
+      "hi": "जो त्याग नहीं करते, उन्हें मरने के बाद तीन प्रकार के फल मिलते हैं; त्यागियों को कोई फल नहीं।"
+    }
+  },
+  {
+    "id": "18_13",
+    "sanskrit": "पञ्चैतानि महाबाहो कारणानि निबोध मे । साङ्ख्ये कृतान्ते प्रोक्तानि सिद्धये सर्वकर्मणाम् ॥",
+    "iast": "pañcaitāni mahā-bāho kāraṇāni nibodha me। sāṅkhye kṛtānte proktāni siddhaye sarva-karmaṇām॥",
+    "simple": "pancha etani maha baho karanani nibodha me, sankhye kritante proktani siddhaye sarva karmanam",
+    "meaning_en": "O mighty-armed Arjuna, according to the Vedanta there are five causes for the accomplishment of all action. Now learn of these from Me.",
+    "meaning_hi": "हे महाबाहो! संपूर्ण कर्मों की सिद्धि के ये पाँच हेतु सांख्यशास्त्र में कहे गये हैं, उनको तू मुझसे भलीभाँति जान।",
+    "emotional_tone": [
+      "analytical",
+      "instructive"
+    ],
+    "core_theme": [
+      "five causes of action",
+      "vedanta teaching",
+      "karma mechanics"
+    ],
+    "life_situations": [
+      "understanding action",
+      "karma philosophy",
+      "deeper knowledge"
+    ],
+    "notification_short": {
+      "en": "There are five causes for the accomplishment of all action. Learn these from Me.",
+      "hi": "सभी कर्मों की सिद्धि के पाँच कारण हैं। इन्हें मुझसे जानो।"
+    }
+  },
+  {
+    "id": "18_14",
+    "sanskrit": "अधिष्ठानं तथा कर्ता करणं च पृथग्विधम् । विविधाश्च पृथक्चेष्टा दैवं चैवात्र पञ्चमम् ॥",
+    "iast": "adhiṣṭhānaṃ tathā kartā karaṇaṃ ca pṛthag-vidham। vividhāś ca pṛthak ceṣṭā daivaṃ caivātra pañcamam॥",
+    "simple": "adhishthanam tatha karta karanam cha prithag vidham, vividhaash cha prithak cheshta daivam chaiva atra panchamam",
+    "meaning_en": "The place of action (the body), the performer, the various senses, the many different kinds of endeavor, and ultimately the Supersoul—these are the five factors of action.",
+    "meaning_hi": "अधिष्ठान अर्थात शरीर और वैसे ही कर्ता तथा भिन्न-भिन्न प्रकार के करण और नाना प्रकार की अलग-अलग चेष्टाएँ तथा वैसे ही पाँचवाँ हेतु दैव अर्थात परमात्मा है।",
+    "emotional_tone": [
+      "technical",
+      "detailed"
+    ],
+    "core_theme": [
+      "body",
+      "doer",
+      "senses",
+      "effort",
+      "divine"
+    ],
+    "life_situations": [
+      "understanding how actions work",
+      "mechanics of karma",
+      "role of God"
+    ],
+    "notification_short": {
+      "en": "The five causes are: body, doer, senses, efforts, and the divine.",
+      "hi": "पाँच कारण हैं: शरीर, कर्ता, इंद्रियाँ, प्रयत्न और दैवी शक्ति।"
+    }
+  },
+  {
+    "id": "18_15",
+    "sanskrit": "शरीरवाङ्मनोभिर्यत्कर्म प्रारभते नरः । न्याय्यं वा विपरीतं वा पञ्चैते तस्य हेतवः ॥",
+    "iast": "śarīra-vāṅ-mano-bhir yat karma prārabhate naraḥ। nyāyyaṃ vā viparītaṃ vā pañcaite tasya hetavaḥ॥",
+    "simple": "sharira vang manobhir yat karma prarabhate narah, nyayyam va viparitam va panchaite tasya hetavah",
+    "meaning_en": "Whatever right or wrong action a man performs by body, mind or speech is caused by these five factors.",
+    "meaning_hi": "मनुष्य मन, वाणी और शरीर से शास्त्रानुकूल अथवा विपरीत जो कुछ भी कर्म करता है, उसके ये पाँचों कारण हैं।",
+    "emotional_tone": [
+      "explanatory"
+    ],
+    "core_theme": [
+      "all actions have five causes",
+      "right and wrong actions",
+      "comprehensive law"
+    ],
+    "life_situations": [
+      "understanding cause and effect",
+      "responsibility",
+      "karma creation"
+    ],
+    "notification_short": {
+      "en": "All actions, right or wrong, are caused by these five factors.",
+      "hi": "सभी कर्म, सही या गलत, इन पाँच कारणों से होते हैं।"
+    }
+  },
+  {
+    "id": "18_16",
+    "sanskrit": "तत्रैवं सति कर्तारमात्मानं केवलं तु यः । पश्यत्यकृतबुद्धित्वान्न स पश्यति दुर्मतिः ॥",
+    "iast": "tatraivaṃ sati kartāram ātmānaṃ kevalaṃ tu yaḥ। paśyaty akṛta-buddhitvān na sa paśyati durmatiḥ॥",
+    "simple": "tatra evam sati kartaram atmanam kevalam tu yah, pashyaty akrita buddhitvan na sa pashyati durmatih",
+    "meaning_en": "Therefore one who thinks himself the only doer, not considering the five factors, is certainly not very intelligent and cannot see things as they are.",
+    "meaning_hi": "ऐसा होने पर भी जो मनुष्य अशुद्ध बुद्धि होने से उस स्थिति में शुद्ध आत्मा को ही कर्ता समझता है, वह मलिन बुद्धि वाला मनुष्य यथार्थ नहीं समझता।",
+    "emotional_tone": [
+      "critical",
+      "warning"
+    ],
+    "core_theme": [
+      "false doership",
+      "ego of being the doer",
+      "ignorance"
+    ],
+    "life_situations": [
+      "taking all credit",
+      "ego problems",
+      "thinking I am the doer"
+    ],
+    "notification_short": {
+      "en": "One who thinks he alone is the doer is ignorant and does not see reality.",
+      "hi": "जो सिर्फ खुद को कर्ता मानता है, वह अज्ञानी है और सच्चाई नहीं देखता।"
+    }
+  },
+  {
+    "id": "18_17",
+    "sanskrit": "यस्य नाहंकृतो भावो बुद्धिर्यस्य न लिप्यते । हत्वाऽपि स इमाँल्लोकान्न हन्ति न निबध्यते ॥",
+    "iast": "yasya nāhaṅkṛto bhāvo buddhir yasya na lipyate। hatvā 'pi sa imāṃl lokān na hanti na nibadhyate॥",
+    "simple": "yasya nahankrito bhavo buddhir yasya na lipyate, hatva api sa iman lokan na hanti na nibadhyate",
+    "meaning_en": "One who is not motivated by false ego, whose intelligence is not entangled—though he kills men in this world, he does not kill. Nor is he bound by his actions.",
+    "meaning_hi": "जिसके अंतःकरण में 'मैं कर्ता हूँ' ऐसा भाव नहीं है तथा जिसकी बुद्धि लिप्त नहीं होती, वह इन सब लोकों को मारकर भी वास्तव में न मारता है और न बँधता है।",
+    "emotional_tone": [
+      "liberating",
+      "profound"
+    ],
+    "core_theme": [
+      "egoless action",
+      "non-attachment to killing",
+      "ultimate freedom"
+    ],
+    "life_situations": [
+      "duty in war",
+      "detachment in difficult actions",
+      "spiritual warrior"
+    ],
+    "notification_short": {
+      "en": "One without false ego and untainted intellect is not bound, even if he kills.",
+      "hi": "जिसमें अहंकार नहीं और बुद्धि लिप्त नहीं, वह मारकर भी बंधता नहीं।"
+    }
+  },
+  {
+    "id": "18_18",
+    "sanskrit": "ज्ञानं ज्ञेयं परिज्ञाता त्रिविधा कर्मचोदना । करणं कर्म कर्तेति त्रिविधः कर्मसंग्रहः ॥",
+    "iast": "jñānaṃ jñeyaṃ parijñātā tri-vidhā karma-codanā। karaṇaṃ karma karteti tri-vidhaḥ karma-saṅgrahaḥ॥",
+    "simple": "jnanam jneyam parijnata tri vidha karma chodana, karanam karma karteti tri vidhah karma sangrahah",
+    "meaning_en": "Knowledge, the object of knowledge, and the knower are the three factors that motivate action; the senses, the work and the doer are the three constituents of action.",
+    "meaning_hi": "ज्ञान, ज्ञेय और ज्ञाता- ये तीन प्रकार की कर्म-प्रेरणा है तथा करण, कर्म और कर्ता- ये तीन प्रकार का कर्म-संग्रह है।",
+    "emotional_tone": [
+      "categorizing"
+    ],
+    "core_theme": [
+      "three motivators of action",
+      "three components of action",
+      "anatomy of karma"
+    ],
+    "life_situations": [
+      "understanding motivation",
+      "dissecting actions",
+      "philosophy of action"
+    ],
+    "notification_short": {
+      "en": "Knowledge, object, and knower motivate action. Senses, work, and doer constitute action.",
+      "hi": "ज्ञान, ज्ञेय और ज्ञाता कर्म की प्रेरणा हैं। इंद्रियाँ, कर्म और कर्ता कर्म के घटक हैं।"
+    }
+  },
+  {
+    "id": "18_19",
+    "sanskrit": "ज्ञानं कर्म च कर्ता च त्रिधैव गुणभेदतः । प्रोच्यते गुणसङ्ख्याने यथावच्छृणु तान्यपि ॥",
+    "iast": "jñānaṃ karma ca kartā ca tridhaiva guṇa-bhedataḥ। procyate guṇa-saṅkhyāne yathāvac chṛṇu tāny api॥",
+    "simple": "jnanam karma cha karta cha tridhaiva guna bhedatah, prochyate guna sankhyane yathavat shrinu tany api",
+    "meaning_en": "According to the three different modes of material nature, there are three kinds of knowledge, action and performer of action. Now hear of them from Me.",
+    "meaning_hi": "गुण-विभाग करने वाले शास्त्र में ज्ञान, कर्म और कर्ता- ये तीनों ही तीन-तीन प्रकार के कहे गए हैं, उनको भी तू मुझसे भली प्रकार सुन।",
+    "emotional_tone": [
+      "systematic"
+    ],
+    "core_theme": [
+      "three types of knowledge",
+      "three types of action",
+      "three types of doer"
+    ],
+    "life_situations": [
+      "classifying personality",
+      "understanding modes",
+      "self-analysis"
+    ],
+    "notification_short": {
+      "en": "Knowledge, action, and doer are each of three kinds based on the three gunas.",
+      "hi": "ज्ञान, कर्म और कर्ता तीनों ही तीन-तीन प्रकार के होते हैं गुणों के अनुसार।"
+    }
+  },
+  {
+    "id": "18_20",
+    "sanskrit": "सर्वभूतेषु येनैकं भावमव्ययमीक्षते । अविभक्तं विभक्तेषु तज्ज्ञानं विद्धि सात्त्विकम् ॥",
+    "iast": "sarva-bhūteṣu yenaikaṃ bhāvam avyayam īkṣate। avibhaktaṃ vibhakteṣu taj jñānaṃ viddhi sāttvikam॥",
+    "simple": "sarva bhuteshu yenaikam bhavam avyayam ikshate, avibhaktam vibhakteshu taj jnanam viddhi sattvikam",
+    "meaning_en": "That knowledge by which one undivided spiritual nature is seen in all living entities, though they are divided into innumerable forms, you should understand to be in the mode of goodness.",
+    "meaning_hi": "जिस ज्ञान से मनुष्य पृथक्-पृथक् सब भूतों में एक अविनाशी परमात्म-भाव को विभागरहित समभाव से स्थित देखता है, उस ज्ञान को तू सात्त्विक जान।",
+    "emotional_tone": [
+      "unifying",
+      "spiritual"
+    ],
+    "core_theme": [
+      "sattvic knowledge",
+      "oneness in diversity",
+      "seeing unity"
+    ],
+    "life_situations": [
+      "spiritual vision",
+      "seeing God in all",
+      "unity consciousness"
+    ],
+    "notification_short": {
+      "en": "Sattvic knowledge sees the one imperishable reality in all diverse beings.",
+      "hi": "सात्त्विक ज्ञान सभी प्राणियों में एक अविनाशी सत्ता को देखता है।"
+    }
+  },
+  {
+    "id": "18_21",
+    "sanskrit": "पृथक्त्वेन तु यज्ज्ञानं नानाभावान्पृथग्विधान् । वेत्ति सर्वेषु भूतेषु तज्ज्ञानं विद्धि राजसम् ॥",
+    "iast": "pṛthaktvena tu yaj jñānaṃ nānā-bhāvān pṛthag-vidhān। vetti sarveṣu bhūteṣu taj jñānaṃ viddhi rājasam॥",
+    "simple": "prithaktvena tu yaj jnanam nana bhavan prithag vidhan, vetti sarveshu bhuteshu taj jnanam viddhi rajasam",
+    "meaning_en": "That knowledge by which one sees that in every different body there is a different type of living entity you should understand to be in the mode of passion.",
+    "meaning_hi": "परन्तु जिस ज्ञान से मनुष्य सम्पूर्ण प्राणियों में भिन्न-भिन्न प्रकार के नाना भावों को पृथक्-पृथक् जानता है, उस ज्ञान को तू राजस जान।",
+    "emotional_tone": [
+      "dividing",
+      "fragmented"
+    ],
+    "core_theme": [
+      "rajasic knowledge",
+      "separation",
+      "seeing difference"
+    ],
+    "life_situations": [
+      "discrimination",
+      "me vs them",
+      "diversity without unity"
+    ],
+    "notification_short": {
+      "en": "Rajasic knowledge sees separate and different entities in all beings.",
+      "hi": "राजसी ज्ञान सभी प्राणियों को अलग-अलग इकाइयों के रूप में देखता है।"
+    }
+  },
+  {
+    "id": "18_22",
+    "sanskrit": "यत्तु कृत्स्नवदेकस्मिन्कार्ये सक्तमहैतुकम् । अतत्त्वार्थवदल्पं च तत्तामसमुदाहृतम् ॥",
+    "iast": "yat tu kṛtsna-vad ekasmin kārye saktam ahaitukam। atattvārtha-vad alpaṃ ca tat tāmasam udāhṛtam॥",
+    "simple": "yat tu kritsnavad ekasmin karye saktam ahaitukam, atattvartha vad alpam cha tat tamasam udahritam",
+    "meaning_en": "And that knowledge by which one is attached to one kind of work as the all in all, without knowledge of the truth, and which is very meager, is said to be in the mode of darkness.",
+    "meaning_hi": "परन्तु जो ज्ञान एक कार्यरूप शरीर में ही सम्पूर्ण के समान आसक्त है तथा जो बिना युक्ति, तत्त्वार्थ से रहित और तुच्छ है, वह तामस कहा गया है।",
+    "emotional_tone": [
+      "narrow",
+      "deluded"
+    ],
+    "core_theme": [
+      "tamasic knowledge",
+      "attached to body",
+      "limited vision"
+    ],
+    "life_situations": [
+      "materialism",
+      "identification with body",
+      "ignorant attachment"
+    ],
+    "notification_short": {
+      "en": "Tamasic knowledge is narrow, attached to one thing, and devoid of truth.",
+      "hi": "तामसी ज्ञान संकुचित है, एक चीज़ से चिपका है और सत्य से रहित है।"
+    }
+  },
+  {
+    "id": "18_23",
+    "sanskrit": "नियतं सङ्गरहितमरागद्वेषतः कृतम् । अफलप्रेप्सुना कर्म यत्तत्सात्त्विकमुच्यते ॥",
+    "iast": "niyataṃ saṅga-rahitam arāga-dveṣataḥ kṛtam। aphala-prepsunā karma yat tat sāttvikam ucyate॥",
+    "simple": "niyatam sanga rahitam araga dveshatah kritam, aphala prepsuna karma yat tat sattvikam uchyate",
+    "meaning_en": "That action which is regulated and which is performed without attachment, without love or hatred, and without desire for fruitive results is said to be in the mode of goodness.",
+    "meaning_hi": "जो कर्म शास्त्रविधि से नियत किया हुआ और कर्तापन के अभिमान से रहित हो तथा फल न चाहने वाले पुरुष द्वारा बिना राग-द्वेष के किया गया हो, वह सात्त्विक कहा जाता है।",
+    "emotional_tone": [
+      "balanced",
+      "neutral"
+    ],
+    "core_theme": [
+      "sattvic action",
+      "duty without desire",
+      "prescribed action"
+    ],
+    "life_situations": [
+      "doing duty calmly",
+      "neutral performance",
+      "dispassionate work"
+    ],
+    "notification_short": {
+      "en": "Sattvic action is done as duty, without attachment, desire, or aversion.",
+      "hi": "सात्त्विक कर्म कर्तव्य के रूप में, बिना आसक्ति, इच्छा या द्वेष के किया जाता है।"
+    }
+  },
+  {
+    "id": "18_24",
+    "sanskrit": "यत्तु कामेप्सुना कर्म साहंकारेण वा पुनः । क्रियते बहुलायासं तद्राजसमुदाहृतम् ॥",
+    "iast": "yat tu kāmepṣunā karma sāhaṅkāreṇa vā punaḥ। kriyate bahulāyāsaṃ tad rājasaṃ udāhṛtam॥",
+    "simple": "yat tu kamepsuna karma sahankarena va punah, kriyate bahulayasaṃ tad rajasam udahritam",
+    "meaning_en": "But action performed with great effort by one seeking to gratify his desires, and enacted from a sense of false ego, is called action in the mode of passion.",
+    "meaning_hi": "परन्तु जो कर्म बहुत परिश्रम से युक्त है तथा कामनाओं को चाहने वाले पुरुष द्वारा अथवा 'मैं कर्ता हूँ' ऐसे भाव से किया जाता है, वह राजस कहा गया है।",
+    "emotional_tone": [
+      "strenuous",
+      "ambitious"
+    ],
+    "core_theme": [
+      "rajasic action",
+      "egoistic action",
+      "desire-driven"
+    ],
+    "life_situations": [
+      "ambitious projects",
+      "selfish work",
+      "ego-driven actions"
+    ],
+    "notification_short": {
+      "en": "Rajasic action is done with great effort, desire for rewards, and ego.",
+      "hi": "राजसी कर्म बहुत मेहनत, पुरस्कार की इच्छा और अहंकार के साथ किया जाता है।"
+    }
+  },
+  {
+    "id": "18_25",
+    "sanskrit": "अनुबन्धं क्षयं हिंसामनपेक्ष्य च पौरुषम् । मोहादारभ्यते कर्म यत्तत्तामसमुच्यते ॥",
+    "iast": "anubandhaṃ kṣayaṃ hiṃsām anapekṣya ca pauruṣam। mohād ārabhyate karma yat tat tāmasam ucyate॥",
+    "simple": "anubandham kshayam himsam anapekshya cha paurusham, mohad arabhyate karma yat tat tamasam uchyate",
+    "meaning_en": "That action performed in illusion, without consideration of future bondage, without consideration of loss or injury to others or to oneself, is said to be in the mode of ignorance.",
+    "meaning_hi": "जो कर्म परिणाम, हानि, हिंसा और सामर्थ्य को न विचारकर केवल मोह से आरम्भ किया जाता है, वह तामस कहा जाता है।",
+    "emotional_tone": [
+      "reckless",
+      "deluded"
+    ],
+    "core_theme": [
+      "tamasic action",
+      "heedless action",
+      "harmful action"
+    ],
+    "life_situations": [
+      "impulsive acts",
+      "destructive behavior",
+      "thoughtless actions"
+    ],
+    "notification_short": {
+      "en": "Tamasic action is done in delusion, disregarding consequences and harm.",
+      "hi": "तामसी कर्म मोह में, परिणाम और हानि की परवाह किए बिना किया जाता है।"
+    }
+  },
+  {
+    "id": "18_26",
+    "sanskrit": "मुक्तसङ्गोऽनहंवादी धृत्युत्साहसमन्वितः । सिद्ध्यसिद्ध्योर्निर्विकारः कर्ता सात्त्विक उच्यते ॥",
+    "iast": "mukta-saṅgo 'nahaṃ-vādī dhṛty-utsāha-samanvitaḥ। siddhy-asiddhyor nirvikāraḥ kartā sāttvika ucyate॥",
+    "simple": "mukta sangah anaham vadi dhriti utsaha samanvitah, siddhi asiddhyor nirvikarah karta sattvika uchyate",
+    "meaning_en": "One who performs his duty without association with the modes of material nature, without false ego, with great determination and enthusiasm, and without wavering in success or failure is said to be a worker in the mode of goodness.",
+    "meaning_hi": "जो कर्ता आसक्ति से रहित, अहंकार के वचन न बोलने वाला, धैर्य और उत्साह से युक्त तथा कार्य के सिद्ध होने और न होने में निर्विकार है, वह सात्त्विक कहा जाता है।",
+    "emotional_tone": [
+      "steady",
+      "enthusiastic"
+    ],
+    "core_theme": [
+      "sattvic doer",
+      "detached worker",
+      "balanced in success-failure"
+    ],
+    "life_situations": [
+      "steady worker",
+      "equanimous person",
+      "selfless servant"
+    ],
+    "notification_short": {
+      "en": "Sattvic doer is free from attachment, ego, and unaffected by success or failure.",
+      "hi": "सात्त्विक कर्ता आसक्ति, अहंकार से मुक्त है और सफलता-असफलता से अप्रभावित रहता है।"
+    }
+  },
+  {
+    "id": "18_27",
+    "sanskrit": "रागी कर्मफलप्रेप्सुर्लुब्धो हिंसात्मकोऽशुचिः । हर्षशोकान्वितः कर्ता राजसः परिकीर्तितः ॥",
+    "iast": "rāgī karma-phala-prepsur lubdho hiṃsātmako 'śuciḥ। harṣa-śokānvitah kartā rājasaḥ parikīrtitaḥ॥",
+    "simple": "ragi karma phala prepsur lubdho himsatmako ashuchih, harsha shokanvitah karta rajasah parikirtitah",
+    "meaning_en": "The worker who is attached to work and the fruits of work, desiring to enjoy those fruits, and who is greedy, always envious, impure, and moved by joy and sorrow, is said to be in the mode of passion.",
+    "meaning_hi": "जो कर्ता आसक्तियुक्त, कर्मों के फल को चाहने वाला, लोभी, हिंसा स्वभाव वाला, अशुद्ध और हर्ष-शोक से लिप्त है, वह राजस कहा गया है।",
+    "emotional_tone": [
+      "attached",
+      "greedy"
+    ],
+    "core_theme": [
+      "rajasic doer",
+      "fruit-seeking worker",
+      "impure"
+    ],
+    "life_situations": [
+      "greedy worker",
+      "selfish employee",
+      "emotional volatility"
+    ],
+    "notification_short": {
+      "en": "Rajasic doer is attached, greedy, impure, and swayed by joy and sorrow.",
+      "hi": "राजसी कर्ता आसक्त, लालची, अशुद्ध और सुख-दुःख से प्रभावित होता है।"
+    }
+  },
+  {
+    "id": "18_28",
+    "sanskrit": "अयुक्तः प्राकृतः स्तब्धः शठो नैष्कृतिकोऽलसः । विषादी दीर्घसूत्री च कर्ता तामस उच्यते ॥",
+    "iast": "ayuktaḥ prākṛtaḥ stabdhaḥ śaṭho naiṣkṛtiko 'lasaḥ। viṣādī dīrgha-sūtrī ca kartā tāmasa ucyate॥",
+    "simple": "ayuktah prakritah stabdhah shatho naishkritiko alasah, vishadi dirgha sutri cha karta tamasa uchyate",
+    "meaning_en": "The worker who is always engaged in work against the injunction of the scripture, who is materialistic, obstinate, cheating and expert in insulting others, and who is lazy, always morose and procrastinating is said to be a worker in the mode of ignorance.",
+    "meaning_hi": "जो कर्ता अयुक्त, अशिक्षित, घमंडी, धूर्त, दूसरों की जीविका नष्ट करने वाला, शोक करने वाला, आलसी और दीर्घसूत्री है, वह तामस कहा जाता है।",
+    "emotional_tone": [
+      "lazy",
+      "depressed"
+    ],
+    "core_theme": [
+      "tamasic doer",
+      "lazy worker",
+      "procrastinator"
+    ],
+    "life_situations": [
+      "lazy person",
+      "procrastination",
+      "depression"
+    ],
+    "notification_short": {
+      "en": "Tamasic doer is lazy, depressed, obstinate, cheating, and procrastinating.",
+      "hi": "तामसी कर्ता आलसी, उदास, हठी, धोखेबाज और टालमटोल करने वाला होता है।"
+    }
+  },
+  {
+    "id": "18_29",
+    "sanskrit": "बुद्धेर्भेदं धृतेश्चैव गुणतस्त्रिविधं शृणु । प्रोच्यमानमशेषेण पृथक्त्वेन धनञ्जय ॥",
+    "iast": "buddher bhedaṃ dhṛteś caiva guṇatas tri-vidhaṃ śṛṇu। procyamānam aśeṣeṇa pṛthaktvena dhanañjaya॥",
+    "simple": "buddher bhedam dhritesh chaiva gunatas tri vidham shrinu, prochyamanam asheshena prithaktvena dhananjaya",
+    "meaning_en": "O winner of wealth, now please listen as I tell you in detail of the three kinds of understanding and determination, according to the three modes of material nature.",
+    "meaning_hi": "हे धनंजय! अब तू बुद्धि के भेद को और धृति के भेद को भी तीनों गुणों के अनुसार मुझसे पृथक्-पृथक् सम्पूर्णता से कहे जाते हुए सुन।",
+    "emotional_tone": [
+      "instructive"
+    ],
+    "core_theme": [
+      "three types of intellect",
+      "three types of resolve",
+      "modes of nature"
+    ],
+    "life_situations": [
+      "understanding intelligence",
+      "types of determination",
+      "psychological classification"
+    ],
+    "notification_short": {
+      "en": "Now hear of the three types of intellect and determination based on the three gunas.",
+      "hi": "अब तीन गुणों के अनुसार बुद्धि और धृति के तीन प्रकार सुनो।"
+    }
+  },
+  {
+    "id": "18_30",
+    "sanskrit": "प्रवृत्तिं च निवृत्तिं च कार्याकार्ये भयाभये । बन्धं मोक्षं च या वेत्ति बुद्धिः सा पार्थ सात्त्विकी ॥",
+    "iast": "pravṛttiṃ ca nivṛttiṃ ca kāryākārye bhayābhaye। bandhaṃ mokṣaṃ ca yā vetti buddhiḥ sā pārtha sāttvikī॥",
+    "simple": "pravrittim cha nivrittim cha karyakarye bhayabhaye, bandham moksham cha ya vetti buddhih sa partha sattviki",
+    "meaning_en": "O son of Pritha, that understanding by which one knows what ought to be done and what ought not to be done, what is to be feared and what is not to be feared, what is binding and what is liberating, is in the mode of goodness.",
+    "meaning_hi": "हे पार्थ! जो बुद्धि प्रवृत्ति और निवृत्ति को, कर्तव्य और अकर्तव्य को, भय और अभय को तथा बंधन और मोक्ष को यथार्थ जानती है, वह बुद्धि सात्त्विकी है।",
+    "emotional_tone": [
+      "discriminating",
+      "wise"
+    ],
+    "core_theme": [
+      "sattvic intellect",
+      "right understanding",
+      "discernment"
+    ],
+    "life_situations": [
+      "making right choices",
+      "wisdom",
+      "ethical clarity"
+    ],
+    "notification_short": {
+      "en": "Sattvic intellect knows what to do and not do, what to fear and not fear, bondage and liberation.",
+      "hi": "सात्त्विक बुद्धि जानती है कि क्या करना है, क्या नहीं, किससे डरना है, बंधन और मोक्ष क्या है।"
+    }
+  },
+  {
+    "id": "18_31",
+    "sanskrit": "या प्रवृत्तिं च निवृत्तिं च कार्याकार्ये भयाभये । बन्धं मोक्षं च या वेत्ति बुद्धिः सा पार्थ राजसी ॥",
+    "iast": "yā pravṛttiṃ ca nivṛttiṃ ca kāryākārye bhayābhaye। bandhaṃ mokṣaṃ ca yā vetti buddhiḥ sā pārtha rājasī॥",
+    "simple": "ya pravrittim cha nivrittim cha karyakarye bhayabhaye, bandham moksham cha ya vetti buddhih sa partha rajasi",
+    "meaning_en": "O son of Pritha, that understanding which cannot distinguish between religion and irreligion, between action that should be done and action that should not be done, is in the mode of passion.",
+    "meaning_hi": "हे पार्थ! जिस बुद्धि से मनुष्य धर्म और अधर्म को तथा कर्तव्य और अकर्तव्य को भी यथार्थ नहीं जानता, वह बुद्धि राजसी है।",
+    "emotional_tone": [
+      "confused"
+    ],
+    "core_theme": [
+      "rajasic intellect",
+      "confusion",
+      "wrong understanding"
+    ],
+    "life_situations": [
+      "moral confusion",
+      "unclear priorities",
+      "mixed values"
+    ],
+    "notification_short": {
+      "en": "Rajasic intellect cannot distinguish right from wrong, duty from non-duty properly.",
+      "hi": "राजसी बुद्धि सही और गलत, कर्तव्य और अकर्तव्य में सही ढंग से भेद नहीं कर पाती।"
+    }
+  },
+  {
+    "id": "18_32",
+    "sanskrit": "अधर्मं धर्ममिति या मन्यते तमसावृता । सर्वार्थान्विपरीतांश्च बुद्धिः सा पार्थ तामसी ॥",
+    "iast": "adharmaṃ dharmam iti yā manyate tamasāvṛtā। sarvārthān viparītāṃś ca buddhiḥ sā pārtha tāmasī॥",
+    "simple": "adharmam dharmam iti ya manyate tamasa avruta, sarvarthan viparitamsh cha buddhih sa partha tamasi",
+    "meaning_en": "That understanding which, shrouded by darkness, accepts irreligion to be religion and thinks everything to be just the opposite of what it is, O son of Pritha, is in the mode of ignorance.",
+    "meaning_hi": "हे पार्थ! जो बुद्धि अधर्म को 'यह ही धर्म है' ऐसा मान लेती है तथा इसी प्रकार अन्य सब पदार्थों को भी विपरीत रूप से ग्रहण करती है, वह बुद्धि तामसी है।",
+    "emotional_tone": [
+      "deluded",
+      "inverted"
+    ],
+    "core_theme": [
+      "tamasic intellect",
+      "inverted understanding",
+      "seeing opposites"
+    ],
+    "life_situations": [
+      "calling evil good",
+      "moral inversion",
+      "delusion"
+    ],
+    "notification_short": {
+      "en": "Tamasic intellect sees wrong as right and understands everything in reverse.",
+      "hi": "तामसी बुद्धि गलत को सही मानती है और सब कुछ उल्टा समझती है।"
+    }
+  },
+  {
+    "id": "18_33",
+    "sanskrit": "धृत्या यया धारयते मनःप्राणेन्द्रियक्रियाः । योगेनाव्यभिचारिण्या धृतिः सा पार्थ सात्त्विकी ॥",
+    "iast": "dhṛtyā yayā dhārayate manaḥ-prāṇendriya-kriyāḥ। yogenāvyabhicāriṇyā dhṛtiḥ sā pārtha sāttvikī॥",
+    "simple": "dhritya yaya dharayate manah prana indriya kriyah, yogenavyabhicharinya dhritih sa partha sattviki",
+    "meaning_en": "O son of Pritha, that determination which is unbreakable, which is sustained with steadfastness by yoga practice, and which thus controls the activities of the mind, life and senses is determination in the mode of goodness.",
+    "meaning_hi": "हे पार्थ! जिस अव्यभिचारिणी धृति से मनुष्य योग के द्वारा मन, प्राण और इन्द्रियों की क्रियाओं को धारण करता है, वह धृति सात्त्विकी है।",
+    "emotional_tone": [
+      "steadfast",
+      "unwavering"
+    ],
+    "core_theme": [
+      "sattvic determination",
+      "yoga practice",
+      "mind control"
+    ],
+    "life_situations": [
+      "steady practice",
+      "discipline",
+      "self-control"
+    ],
+    "notification_short": {
+      "en": "Sattvic determination steadily controls mind, life-force, and senses through yoga.",
+      "hi": "सात्त्विक धृति योग के द्वारा मन, प्राण और इंद्रियों को नियंत्रित करती है।"
+    }
+  },
+  {
+    "id": "18_34",
+    "sanskrit": "यया तु धर्मकामार्थान्धृत्या धारयतेऽर्जुन । प्रसङ्गेन फलाकाङ्क्षी धृतिः सा पार्थ राजसी ॥",
+    "iast": "yayā tu dharma-kāmārthān dhṛtyā dhārayate 'rjuna। prasaṅgena phalākāṅkṣī dhṛtiḥ sā pārtha rājasī॥",
+    "simple": "yaya tu dharma kamarthan dhritya dharayate arjuna, prasangena phalakankshi dhritih sa partha rajasi",
+    "meaning_en": "But that determination by which one holds fast to fruitive results in religion, economic development and sense gratification is of the nature of passion, O Arjuna.",
+    "meaning_hi": "परन्तु हे अर्जुन! जिस धृति से आसक्ति युक्त मनुष्य फल की इच्छा से धर्म, अर्थ और काम को धारण करता है, वह धृति राजसी है।",
+    "emotional_tone": [
+      "attached",
+      "outcome-focused"
+    ],
+    "core_theme": [
+      "rajasic determination",
+      "desiring results",
+      "attached resolve"
+    ],
+    "life_situations": [
+      "goal-oriented materialism",
+      "attached effort",
+      "motivated by rewards"
+    ],
+    "notification_short": {
+      "en": "Rajasic determination clings to dharma, wealth, and pleasure with desire for results.",
+      "hi": "राजसी धृति धर्म, अर्थ और काम को फल की इच्छा के साथ पकड़ती है।"
+    }
+  },
+  {
+    "id": "18_35",
+    "sanskrit": "यया स्वप्नं भयं शोकं विषादं मदमेव च । न विमुञ्चति दुर्मेधा धृतिः सा पार्थ तामसी ॥",
+    "iast": "yayā svapnaṃ bhayaṃ śokaṃ viṣādaṃ madam eva ca। na vimuñcati durmedhā dhṛtiḥ sā pārtha tāmasī॥",
+    "simple": "yaya svapnam bhayam shokam vishadam madam eva cha, na vimunchati durmedha dhritih sa partha tamasi",
+    "meaning_en": "That determination which cannot go beyond dreaming, fearfulness, lamentation, moroseness and illusion—such unintelligent determination, O son of Pritha, is in the mode of darkness.",
+    "meaning_hi": "हे पार्थ! जिस धृति से दुर्बुद्धि मनुष्य निद्रा, भय, चिन्ता, दुःख और घमंड को भी नहीं छोड़ता, वह धृति तामसी है।",
+    "emotional_tone": [
+      "stuck",
+      "fearful"
+    ],
+    "core_theme": [
+      "tamasic determination",
+      "attachment to negativity",
+      "unintelligent resolve"
+    ],
+    "life_situations": [
+      "chronic anxiety",
+      "depression",
+      "stuck in negativity"
+    ],
+    "notification_short": {
+      "en": "Tamasic determination clings to sleep, fear, grief, depression, and arrogance.",
+      "hi": "तामसी धृति नींद, डर, शोक, उदासी और अहंकार से चिपकी रहती है।"
+    }
+  },
+  {
+    "id": "18_36",
+    "sanskrit": "सुखं त्विदानीं त्रिविधं शृणु मे भरतर्षभ । अभ्यासाद्रमते यत्र दुःखान्तं च निगच्छति ॥",
+    "iast": "sukhaṃ tv idānīṃ tri-vidhaṃ śṛṇu me bharatarṣabha। abhyāsād ramate yatra duḥkhāntaṃ ca nigacchati॥",
+    "simple": "sukham tu idanīm tri vidham shrinu me bharatarshabha, abhyasad ramate yatra duhkantam cha nigachchhati",
+    "meaning_en": "O best of the Bharatas, now please hear from Me about the three kinds of happiness by which the conditioned soul enjoys, and by which he sometimes comes to the end of all distress.",
+    "meaning_hi": "हे भरतश्रेष्ठ! अब तू तीन प्रकार के सुख को भी मुझसे सुन, जिसमें अभ्यास से रमण होता है और दुःखों का अंत हो जाता है।",
+    "emotional_tone": [
+      "hopeful"
+    ],
+    "core_theme": [
+      "three types of happiness",
+      "ending sorrow",
+      "practice and joy"
+    ],
+    "life_situations": [
+      "seeking happiness",
+      "ending suffering",
+      "types of pleasure"
+    ],
+    "notification_short": {
+      "en": "Now hear of the three types of happiness that end suffering through practice.",
+      "hi": "अब तीन प्रकार के सुख सुनो जो अभ्यास से दुःख का अंत करते हैं।"
+    }
+  },
+  {
+    "id": "18_37",
+    "sanskrit": "यत्तदग्रे विषमिव परिणामेऽमृतोपमम् । तत्सुखं सात्त्विकं प्रोक्तमात्मबुद्धिप्रसादजम् ॥",
+    "iast": "yat tad agre viṣam iva pariṇāme 'mṛtopamam। tat sukhaṃ sāttvikaṃ proktam ātma-buddhi-prasāda-jam॥",
+    "simple": "yat tad agre visham iva pariname amritopamam, tat sukham sattvikam proktam atma buddhi prasad jam",
+    "meaning_en": "That which in the beginning may be just like poison but at the end is just like nectar and which awakens one to self-realization is said to be happiness in the mode of goodness.",
+    "meaning_hi": "जो सुख भोगने के पहले विष की तरह प्रतीत होता है परन्तु परिणाम में अमृत के तुल्य है तथा आत्म-बुद्धि की प्रसन्नता से उत्पन्न होता है, वह सुख सात्त्विक कहा गया है।",
+    "emotional_tone": [
+      "initially difficult",
+      "ultimately blissful"
+    ],
+    "core_theme": [
+      "sattvic happiness",
+      "poison to nectar",
+      "self-realization"
+    ],
+    "life_situations": [
+      "spiritual practice",
+      "delayed gratification",
+      "meditation bliss"
+    ],
+    "notification_short": {
+      "en": "Sattvic happiness is like poison at first but becomes nectar, arising from self-realization.",
+      "hi": "सात्त्विक सुख पहले विष जैसा लगता है पर अमृत बन जाता है, आत्म-बोध से उत्पन्न होता है।"
+    }
+  },
+  {
+    "id": "18_38",
+    "sanskrit": "विषयेन्द्रियसंयोगाद्यत्तदग्रेऽमृतोपमम् । परिणामे विषमिव तत्सुखं राजसं स्मृतम् ॥",
+    "iast": "viṣayendriya-saṃyogād yat tad agre 'mṛtopamam। pariṇāme viṣam iva tat sukhaṃ rājasaṃ smṛtam॥",
+    "simple": "vishayendriya sanyogad yat tad agre amritopamam, pariname visham iva tat sukham rajasam smritam",
+    "meaning_en": "That happiness which is derived from contact of the senses with their objects and which appears like nectar at first but poison at the end is said to be of the nature of passion.",
+    "meaning_hi": "जो सुख विषय और इन्द्रियों के संयोग से होता है, वह पहले अमृत के तुल्य प्रतीत होता है, परन्तु परिणाम में विष के तुल्य है- वह सुख राजस कहा गया है।",
+    "emotional_tone": [
+      "initially sweet",
+      "ultimately bitter"
+    ],
+    "core_theme": [
+      "rajasic happiness",
+      "nectar to poison",
+      "sensory pleasure"
+    ],
+    "life_situations": [
+      "instant gratification",
+      "addiction",
+      "regretful pleasures"
+    ],
+    "notification_short": {
+      "en": "Rajasic happiness is like nectar at first but becomes poison from sense-object contact.",
+      "hi": "राजसी सुख पहले अमृत जैसा पर बाद में विष बन जाता है, इंद्रिय-विषय संयोग से।"
+    }
+  },
+  {
+    "id": "18_39",
+    "sanskrit": "यदग्रे चानुबन्धे च सुखं मोहनमात्मनः । निद्रालस्यप्रमादोत्थं तत्तामसमुदाहृतम् ॥",
+    "iast": "yad agre cānubandhe ca sukhaṃ mohanam ātmanaḥ। nidrālasya-pramādotthaṃ tat tāmasam udāhṛtam॥",
+    "simple": "yad agre cha anubandhe cha sukham mohanam atmanah, nidralasya pramadottham tat tamasam udahritam",
+    "meaning_en": "That happiness which is blind to self-realization, which is delusion from beginning to end and which arises from sleep, laziness and illusion is said to be of the nature of ignorance.",
+    "meaning_hi": "जो सुख भोगने के पहले और परिणाम में भी आत्मा को मोहित करने वाला है तथा निद्रा, आलस्य और प्रमाद से उत्पन्न होता है, वह तामस सुख कहा गया है।",
+    "emotional_tone": [
+      "delusional",
+      "dull"
+    ],
+    "core_theme": [
+      "tamasic happiness",
+      "delusion throughout",
+      "sleep and laziness"
+    ],
+    "life_situations": [
+      "oversleeping",
+      "escapism",
+      "drug-induced states"
+    ],
+    "notification_short": {
+      "en": "Tamasic happiness deludes from start to end, arising from sleep, laziness, and negligence.",
+      "hi": "तामसी सुख शुरू से अंत तक भ्रमित करता है, नींद, आलस्य और प्रमाद से उत्पन्न होता है।"
+    }
+  },
+  {
+    "id": "18_40",
+    "sanskrit": "न तदस्ति पृथिव्यां वा दिवि देवेषु वा पुनः । सत्त्वं प्रकृतिजैर्मुक्तं यदेभिः स्यात्त्रिभिर्गुणैः ॥",
+    "iast": "na tad asti pṛthivyāṃ vā divi deveṣu vā punaḥ। sattvaṃ prakṛti-jair muktaṃ yad ebhiḥ syāt tribhir guṇaiḥ॥",
+    "simple": "na tad asti prithivyam va divi deveshu va punah, sattvam prakriti jair muktam yad ebhih syat tribhir gunaih",
+    "meaning_en": "There is no being existing, either here or among the demigods in the higher planetary systems, which is freed from these three modes born of material nature.",
+    "meaning_hi": "पृथ्वी में अथवा स्वर्ग में देवताओं में भी अथवा और कहीं भी ऐसा कोई भी सत्त्व नहीं है, जो प्रकृति से उत्पन्न इन तीनों गुणों से रहित हो।",
+    "emotional_tone": [
+      "universal"
+    ],
+    "core_theme": [
+      "all under three gunas",
+      "universal law",
+      "none exempt"
+    ],
+    "life_situations": [
+      "understanding universality",
+      "everyone affected",
+      "no escape"
+    ],
+    "notification_short": {
+      "en": "There is no being on Earth or in heaven free from these three modes of nature.",
+      "hi": "पृथ्वी या स्वर्ग में कोई भी प्राणी इन तीन गुणों से मुक्त नहीं है।"
+    }
+  },
+  {
+    "id": "18_41",
+    "sanskrit": "ब्राह्मणक्षत्रियविशां शूद्राणां च परन्तप । कर्माणि प्रविभक्तानि स्वभावप्रभवैर्गुणैः ॥",
+    "iast": "brāhmaṇa-kṣatriya-viśāṃ śūdrāṇāṃ ca parantapa। karmāṇi pravibhaktāni sva-bhāva-prabhavair guṇaiḥ॥",
+    "simple": "brahmana kshatriya visham shudranam cha parantapa, karmani pravibhaktani svabhava prabhavair gunaih",
+    "meaning_en": "Brahmanas, kshatriyas, vaishyas and shudras are distinguished by the qualities born of their own natures in accordance with the material modes, O chastiser of the enemy.",
+    "meaning_hi": "हे परंतप! ब्राह्मण, क्षत्रिय और वैश्यों के तथा शूद्रों के कर्म स्वभाव से उत्पन्न गुणों द्वारा विभक्त किए गए हैं।",
+    "emotional_tone": [
+      "categorizing"
+    ],
+    "core_theme": [
+      "varna system",
+      "natural qualities",
+      "division of labor"
+    ],
+    "life_situations": [
+      "understanding social roles",
+      "natural talents",
+      "occupational aptitude"
+    ],
+    "notification_short": {
+      "en": "The duties of Brahmanas, Kshatriyas, Vaishyas, and Shudras are divided by their nature-born qualities.",
+      "hi": "ब्राह्मण, क्षत्रिय, वैश्य और शूद्र के कर्म उनके स्वभाव-जन्य गुणों से विभाजित हैं।"
+    }
+  },
+  {
+    "id": "18_42",
+    "sanskrit": "शमो दमस्तपः शौचं क्षान्तिरार्जवमेव च । ज्ञानं विज्ञानमास्तिक्यं ब्रह्मकर्म स्वभावजम् ॥",
+    "iast": "śamo damas tapaḥ śaucaṃ kṣāntir ārjavam eva ca। jñānaṃ vijñānam āstikyaṃ brahma-karma sva-bhāva-jam॥",
+    "simple": "shamo damas tapah shaucham kshantir arjavam eva cha, jnanam vijnanam astikyam brahma karma svabhavajam",
+    "meaning_en": "Peacefulness, self-control, austerity, purity, tolerance, honesty, knowledge, wisdom and religiousness—these are the natural qualities by which the brahmanas work.",
+    "meaning_hi": "मन का निग्रह करना, इन्द्रियों का दमन करना, धर्मपालन के लिए कष्ट सहना, बाहर-भीतर से शुद्ध रहना, दूसरों के अपराधों को क्षमा करना, मन-इन्द्रिय और शरीर को सरल रखना, वेद, शास्त्र, ईश्वर और परलोक आदि में श्रद्धा रखना, वेद-शास्त्रों का अध्ययन-अध्यापन करना और परमात्मा के तत्त्व का अनुभव करना- ये सब ब्राह्मण के स्वाभाविक कर्म हैं।",
+    "emotional_tone": [
+      "scholarly",
+      "pure"
+    ],
+    "core_theme": [
+      "brahmin qualities",
+      "priestly virtues",
+      "spiritual leadership"
+    ],
+    "life_situations": [
+      "spiritual leadership",
+      "teaching",
+      "priestly duties"
+    ],
+    "notification_short": {
+      "en": "Peacefulness, self-control, purity, tolerance, honesty, knowledge, and faith are Brahmin qualities.",
+      "hi": "शांति, आत्म-नियंत्रण, पवित्रता, सहनशीलता, ईमानदारी, ज्ञान और आस्तिकता ब्राह्मण के गुण हैं।"
+    }
+  },
+  {
+    "id": "18_43",
+    "sanskrit": "शौर्यं तेजो धृतिर्दाक्ष्यं युद्धे चाप्यपलायनम् । दानमीश्वरभावश्च क्षात्रं कर्म स्वभावजम् ॥",
+    "iast": "śauryaṃ tejo dhṛtir dākṣyaṃ yuddhe cāpy apalāyanam। dānam īśvara-bhāvaś ca kṣātraṃ karma sva-bhāva-jam॥",
+    "simple": "shauryam tejo dhritir dakshyam yuddhe chapy apalayanam, danam ishvara bhavash cha kshatram karma svabhavajam",
+    "meaning_en": "Heroism, power, determination, resourcefulness, courage in battle, generosity and leadership are the natural qualities of work for the kshatriyas.",
+    "meaning_hi": "शूरवीरता, तेज, धैर्य, चतुरता और युद्ध में न भागना, दान देना और स्वामिभाव- ये सब क्षत्रिय के स्वाभाविक कर्म हैं।",
+    "emotional_tone": [
+      "brave",
+      "commanding"
+    ],
+    "core_theme": [
+      "kshatriya qualities",
+      "warrior virtues",
+      "leadership"
+    ],
+    "life_situations": [
+      "military service",
+      "leadership roles",
+      "protection"
+    ],
+    "notification_short": {
+      "en": "Heroism, power, determination, courage, generosity, and leadership are Kshatriya qualities.",
+      "hi": "वीरता, शक्ति, दृढ़ता, साहस, दानशीलता और नेतृत्व क्षत्रिय के गुण हैं।"
+    }
+  },
+  {
+    "id": "18_44",
+    "sanskrit": "कृषिगौरक्ष्यवाणिज्यं वैश्यकर्म स्वभावजम् । परिचर्यात्मकं कर्म शूद्रस्यापि स्वभावजम् ॥",
+    "iast": "kṛṣi-gau-rakṣya-vāṇijyaṃ vaiśya-karma sva-bhāva-jam। paricaryātmakaṃ karma śūdrasyāpi sva-bhāva-jam॥",
+    "simple": "krishi gau rakshya vanijyam vaishya karma svabhavajam, paricharyatmakam karma shudrasyapi svabhavajam",
+    "meaning_en": "Farming, cow protection and business are the natural work for the vaishyas, and for the shudras there is labor and service to others.",
+    "meaning_hi": "खेती, गौपालन और सत्य व्यापार ये वैश्य के स्वाभाविक कर्म हैं तथा सेवा करना शूद्र का भी स्वाभाविक कर्म है।",
+    "emotional_tone": [
+      "productive",
+      "serving"
+    ],
+    "core_theme": [
+      "vaishya and shudra duties",
+      "economic roles",
+      "service"
+    ],
+    "life_situations": [
+      "farming",
+      "business",
+      "service industry"
+    ],
+    "notification_short": {
+      "en": "Farming, cow protection, and trade are Vaishya duties; service is the Shudra's duty.",
+      "hi": "खेती, गौपालन और व्यापार वैश्य के कर्म हैं; सेवा शूद्र का कर्म है।"
+    }
+  },
+  {
+    "id": "18_45",
+    "sanskrit": "स्वे स्वे कर्मण्यभिरतः संसिद्धिं लभते नरः । स्वकर्मनिरतः सिद्धिं यथा विन्दति तच्छृणु ॥",
+    "iast": "sve sve karmaṇy abhirataḥ saṃsiddhiṃ labhate naraḥ। sva-karma-nirataḥ siddhiṃ yathā vindati tac chṛṇu॥",
+    "simple": "sve sve karmany abhiratah samsiddhim labhate narah, svakarma niratah siddhim yatha vindati tach shrinu",
+    "meaning_en": "By following his qualities of work, every man can become perfect. Now please hear from Me how this can be done.",
+    "meaning_hi": "अपने-अपने स्वाभाविक कर्मों में तत्परता से लगा हुआ मनुष्य परम सिद्धि को प्राप्त हो जाता है। स्वकर्म में लगा हुआ मनुष्य जिस प्रकार से सिद्धि को प्राप्त होता है, उसको तू सुन।",
+    "emotional_tone": [
+      "encouraging"
+    ],
+    "core_theme": [
+      "perfection through own duty",
+      "swadharma",
+      "success formula"
+    ],
+    "life_situations": [
+      "finding your calling",
+      "doing your duty",
+      "path to success"
+    ],
+    "notification_short": {
+      "en": "By devotion to one's own duty, everyone can attain perfection. Now hear how.",
+      "hi": "अपने कर्तव्य में लगे रहकर हर कोई सिद्धि पा सकता है। अब सुनो कैसे।"
+    }
+  },
+  {
+    "id": "18_46",
+    "sanskrit": "यतः प्रवृत्तिर्भूतानां येन सर्वमिदं ततम् । स्वकर्मणा तमभ्यर्च्य सिद्धिं विन्दति मानवः ॥",
+    "iast": "yataḥ pravṛttir bhūtānāṃ yena sarvam idaṃ tatam। sva-karmaṇā tam abhyarcya siddhiṃ vindati mānavaḥ॥",
+    "simple": "yatah pravrittir bhutanam yena sarvam idam tatam, sva karmana tam abhyarchya siddhim vindati manavah",
+    "meaning_en": "By worship of the Lord, who is the source of all beings and who is all-pervading, a man can attain perfection through performing his own work.",
+    "meaning_hi": "जिस परमेश्वर से सम्पूर्ण प्राणियों की उत्पत्ति हुई है और जिससे यह सम्पूर्ण जगत व्याप्त है, मनुष्य अपने स्वाभाविक कर्मों द्वारा उस परमेश्वर की पूजा करके परम सिद्धि को प्राप्त हो जाता है।",
+    "emotional_tone": [
+      "worshipful"
+    ],
+    "core_theme": [
+      "worship through work",
+      "God as source",
+      "perfection through duty"
+    ],
+    "life_situations": [
+      "karma yoga",
+      "work as worship",
+      "spiritualizing daily life"
+    ],
+    "notification_short": {
+      "en": "By worshiping God through one's own work, one attains perfection.",
+      "hi": "अपने कर्म के द्वारा ईश्वर की पूजा करके मनुष्य सिद्धि पाता है।"
+    }
+  },
+  {
+    "id": "18_47",
+    "sanskrit": "श्रेयान्स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात् । स्वभावनियतं कर्म कुर्वन्नाप्नोति किल्बिषम् ॥",
+    "iast": "śreyān sva-dharmo viguṇaḥ para-dharmāt sv-anuṣṭhitāt। sva-bhāva-niyataṃ karma kurvan nāpnoti kilbiṣam॥",
+    "simple": "shreyan svadharmo vigunah paradharmat svanushthitat, svabhava niyatam karma kurvan napnoti kilbisham",
+    "meaning_en": "It is better to engage in one's own occupation, even though one may perform it imperfectly, than to accept another's occupation and perform it perfectly. Duties prescribed according to one's nature are never affected by sinful reactions.",
+    "meaning_hi": "अच्छी प्रकार आचरण में लाए हुए दूसरे के धर्म से गुणरहित भी अपना धर्म अति उत्तम है। स्वभाव से नियत किए हुए कर्म को करता हुआ मनुष्य पाप को नहीं प्राप्त होता।",
+    "emotional_tone": [
+      "validating"
+    ],
+    "core_theme": [
+      "better own duty imperfectly",
+      "swadharma superior",
+      "no sin in own duty"
+    ],
+    "life_situations": [
+      "staying in your lane",
+      "accepting your role",
+      "authenticity"
+    ],
+    "notification_short": {
+      "en": "Better is one's own duty done imperfectly than another's duty done perfectly.",
+      "hi": "दूसरे का कर्तव्य अच्छी तरह करने से भी अपना कर्तव्य अधूरा करना बेहतर है।"
+    }
+  },
+  {
+    "id": "18_48",
+    "sanskrit": "सहजं कर्म कौन्तेय सदोषमपि न त्यजेत् । सर्वारम्भा हि दोषेण धूमेनाग्निरिवावृताः ॥",
+    "iast": "sahajaṃ karma kaunteya sa-doṣam api na tyajet। sarvārambhā hi doṣeṇa dhūmenāgnir ivāvṛtāḥ॥",
+    "simple": "sahajam karma kaunteya sadosham api na tyajet, sarvarambha hi doshena dhumenagnir ivavritah",
+    "meaning_en": "Every endeavor is covered by some fault, just as fire is covered by smoke. Therefore one should not give up the work born of his nature, O son of Kunti, even if such work is full of fault.",
+    "meaning_hi": "हे कुन्तीपुत्र! सदोष होने पर भी सहज कर्म को नहीं त्यागना चाहिए क्योंकि धुएँ से अग्नि की तरह सभी कर्म किसी-न-किसी दोष से युक्त हैं।",
+    "emotional_tone": [
+      "realistic",
+      "accepting"
+    ],
+    "core_theme": [
+      "accept imperfection",
+      "all work has faults",
+      "don't abandon duty"
+    ],
+    "life_situations": [
+      "accepting flaws",
+      "imperfect action",
+      "doing despite limitations"
+    ],
+    "notification_short": {
+      "en": "Don't abandon your natural duty even if flawed; all endeavors have faults like fire has smoke.",
+      "hi": "दोषयुक्त होने पर भी अपना स्वाभाविक कर्म न छोड़ें; सभी कार्यों में दोष होते हैं जैसे अग्नि में धुआं।"
+    }
+  },
+  {
+    "id": "18_49",
+    "sanskrit": "असक्तबुद्धिः सर्वत्र जितात्मा विगतस्पृहः । नैष्कर्म्यसिद्धिं परमां संन्यासेनाधिगच्छति ॥",
+    "iast": "asakta-buddhiḥ sarvatra jitātmā vigata-spṛhaḥ। naiṣkarmya-siddhiṃ paramāṃ saṃnyāsenādhigacchati॥",
+    "simple": "asakta buddhih sarvatra jitatma vigata sprihah, naishkarmya siddhim paramam sannyasenadhigachchhati",
+    "meaning_en": "One who is self-controlled and unattached and who disregards all material enjoyments can obtain, by practice of renunciation, the highest perfect stage of freedom from reaction.",
+    "meaning_hi": "जिस मनुष्य की बुद्धि सब जगह आसक्तिरहित है, जो जीते हुए अंतःकरण वाला तथा स्पृहारहित है, वह संन्यास के द्वारा परम नैष्कर्म्य सिद्धि को प्राप्त होता है।",
+    "emotional_tone": [
+      "liberated"
+    ],
+    "core_theme": [
+      "supreme detachment",
+      "self-mastery",
+      "actionless perfection"
+    ],
+    "life_situations": [
+      "renunciation",
+      "spiritual perfection",
+      "liberation"
+    ],
+    "notification_short": {
+      "en": "One who is detached, self-controlled, and desireless attains the supreme state of actionlessness.",
+      "hi": "जो अनासक्त, आत्म-नियंत्रित और इच्छारहित है, वह संन्यास से परम नैष्कर्म्य सिद्धि पाता है।"
+    }
+  },
+  {
+    "id": "18_50",
+    "sanskrit": "सिद्धिं प्राप्तो यथा ब्रह्म तथाप्नोति निबोध मे । समासेनैव कौन्तेय निष्ठा ज्ञानस्य या परा ॥",
+    "iast": "siddhiṃ prāpto yathā brahma tathāpnoti nibodha me। samāsenaiva kaunteya niṣṭhā jñānasya yā parā॥",
+    "simple": "siddhim prapto yatha brahma tathapnoti nibodha me, samasenaiva kaunteya nishtha jnanasya ya para",
+    "meaning_en": "O son of Kunti, learn from Me briefly how one who has achieved this perfection can attain to the supreme perfectional stage, Brahman, by acting in the way I shall now summarize.",
+    "meaning_hi": "हे कुन्तीपुत्र! जिस परा निष्ठा द्वारा सिद्धि को प्राप्त हुआ पुरुष ब्रह्म को किस प्रकार से प्राप्त होता है, उस ज्ञान की पराकाष्ठा को तू मुझसे संक्षेप में ही जान।",
+    "emotional_tone": [
+      "instructive"
+    ],
+    "core_theme": [
+      "attaining Brahman",
+      "supreme knowledge",
+      "final stage"
+    ],
+    "life_situations": [
+      "spiritual culmination",
+      "final realization",
+      "ultimate goal"
+    ],
+    "notification_short": {
+      "en": "Now learn briefly how one who has attained perfection reaches Brahman.",
+      "hi": "अब संक्षेप में जानो कि जो सिद्धि पा चुका है वह ब्रह्म को कैसे प्राप्त करता है।"
+    }
+  },
+  {
+    "id": "18_51",
+    "sanskrit": "बुद्ध्या विशुद्धया युक्तो धृत्यात्मानं नियम्य च । शब्दादीन्विषयांस्त्यक्त्वा रागद्वेषौ व्युदस्य च ॥",
+    "iast": "buddhyā viśuddhayā yukto dhṛtyātmānaṃ niyamya ca। śabdādīn viṣayāṃs tyaktvā rāga-dveṣau vyudasya ca॥",
+    "simple": "buddhya vishuddhaya yukto dhritya atmanam niyamya cha, shabdadīn vishayans tyaktva raga dveshau vyudasya cha",
+    "meaning_en": "Being purified by his intelligence and controlling the mind with determination, giving up the objects of sense gratification, being freed from attachment and hatred...",
+    "meaning_hi": "विशुद्ध बुद्धि से युक्त तथा धैर्य से मन को वश में करके, शब्द आदि विषयों को त्यागकर और राग-द्वेष को भी दूर करके...",
+    "emotional_tone": [
+      "purifying",
+      "renouncing"
+    ],
+    "core_theme": [
+      "purification",
+      "detachment",
+      "control"
+    ],
+    "life_situations": [
+      "spiritual discipline",
+      "letting go",
+      "purifying mind"
+    ],
+    "notification_short": {
+      "en": "With pure intellect, controlling the mind, renouncing sense objects and attachment-aversion...",
+      "hi": "शुद्ध बुद्धि से, मन को वश में करके, विषय और राग-द्वेष त्यागकर..."
+    }
+  },
+  {
+    "id": "18_52",
+    "sanskrit": "विविक्तसेवी लघ्वाशी यतवाक्कायमानसः । ध्यानयोगपरो नित्यं वैराग्यं समुपाश्रितः ॥",
+    "iast": "vivikta-sevī laghv-āśī yata-vāk-kāya-mānasaḥ। dhyāna-yoga-paro nityaṃ vairāgyaṃ samupāśritaḥ॥",
+    "simple": "vivikta sevi laghvashi yata vak kaya manasah, dhyana yoga paro nityam vairagyam samupashritah",
+    "meaning_en": "...living in a secluded place, eating little, controlling body, speech and mind, always engaged in meditation and concentration, and taking shelter of detachment...",
+    "meaning_hi": "...एकान्त और शुद्ध देश का सेवन करके, थोड़ा और सात्त्विक भोजन करके, मन, वाणी और शरीर को वश में करके, ध्यान-योग में नित्य-निरन्तर लगे हुए, वैराग्य को भलीभाँति प्राप्त हुए...",
+    "emotional_tone": [
+      "ascetic",
+      "meditative"
+    ],
+    "core_theme": [
+      "solitude",
+      "moderation",
+      "meditation"
+    ],
+    "life_situations": [
+      "retreat",
+      "simple living",
+      "meditation practice"
+    ],
+    "notification_short": {
+      "en": "...living in solitude, eating little, controlling speech and mind, always meditating, taking refuge in detachment...",
+      "hi": "...एकांत में रहकर, कम खाकर, वाणी-मन को नियंत्रित करके, सदा ध्यान में लगे, वैराग्य में स्थित..."
+    }
+  },
+  {
+    "id": "18_53",
+    "sanskrit": "अहंकारं बलं दर्पं कामं क्रोधं परिग्रहम् । विमुच्य निर्ममः शान्तो ब्रह्मभूयाय कल्पते ॥",
+    "iast": "ahaṅkāraṃ balaṃ darpaṃ kāmaṃ krodhaṃ parigraham। vimucya nirmamaḥ śānto brahma-bhūyāya kalpate॥",
+    "simple": "ahankaram balam darpam kamam krodham parigraham, vimuchya nirmamah shanto brahma bhuyaya kalpate",
+    "meaning_en": "...freeing himself from ego, violence, arrogance, desire, anger, and the urge to accumulate property, freed from false proprietorship, and peaceful—such a person is qualified for self-realization.",
+    "meaning_hi": "...अहंकार, बल, घमंड, काम, क्रोध और परिग्रह को त्यागकर, ममतारहित, शांत पुरुष सच्चिदानन्दघन ब्रह्म में एकीभाव होने के लिए योग्य होता है।",
+    "emotional_tone": [
+      "liberated",
+      "peaceful"
+    ],
+    "core_theme": [
+      "giving up ego desire anger",
+      "qualification for Brahman",
+      "peaceful state"
+    ],
+    "life_situations": [
+      "spiritual qualification",
+      "final renunciation",
+      "inner peace"
+    ],
+    "notification_short": {
+      "en": "...freeing oneself from ego, desire, anger, and possessiveness, one becomes fit for Brahman-realization.",
+      "hi": "...अहंकार, इच्छा, क्रोध और संग्रह से मुक्त होकर, व्यक्ति ब्रह्म-साक्षात्कार के योग्य बनता है।"
+    }
+  },
+  {
+    "id": "18_54",
+    "sanskrit": "ब्रह्मभूतः प्रसन्नात्मा न शोचति न काङ्क्षति । समः सर्वेषु भूतेषु मद्भक्तिं लभते पराम् ॥",
+    "iast": "brahma-bhūtaḥ prasannātmā na śocati na kāṅkṣati। samaḥ sarveṣu bhūteṣu mad-bhaktiṃ labhate parām॥",
+    "simple": "brahma bhutah prasannatma na shochati na kankshati, samah sarveshu bhuteshu mad bhaktim labhate param",
+    "meaning_en": "One who is thus transcendentally situated at once realizes the Supreme Brahman and becomes fully joyful. He never laments or desires to have anything. He is equally disposed toward every living entity. In that state he attains pure devotional service unto Me.",
+    "meaning_hi": "ब्रह्मभूत अर्थात् परमात्मा में एकीभाव को प्राप्त हुआ प्रसन्न मन वाला योगी न किसी के लिए शोक करता है और न किसी की कामना करता है तथा सम्पूर्ण प्राणियों में सम भाव वाला वह योगी मेरी परा भक्ति को प्राप्त होता है।",
+    "emotional_tone": [
+      "joyful",
+      "equal-minded"
+    ],
+    "core_theme": [
+      "brahman-realized state",
+      "no sorrow or desire",
+      "pure devotion"
+    ],
+    "life_situations": [
+      "spiritual realization",
+      "equanimity",
+      "devotion"
+    ],
+    "notification_short": {
+      "en": "One established in Brahman is joyful, sorrowless, desireless, and equal to all, attaining pure devotion.",
+      "hi": "ब्रह्म में स्थित व्यक्ति प्रसन्न, शोकरहित, इच्छारहित और सबके प्रति समभावी होता है, शुद्ध भक्ति पाता है।"
+    }
+  },
+  {
+    "id": "18_55",
+    "sanskrit": "भक्त्या मामभिजानाति यावान्यश्चास्मि तत्त्वतः । ततो मां तत्त्वतो ज्ञात्वा विशते तदनन्तरम् ॥",
+    "iast": "bhaktyā mām abhijānāti yāvān yaś cāsmi tattvataḥ। tato māṃ tattvato jñātvā viśate tad-anantaram॥",
+    "simple": "bhaktya mam abhijanati yavan yash chasmi tattvatah, tato mam tattvato jnatva vishate tadanantaram",
+    "meaning_en": "One can understand Me as I am, as the Supreme Personality of Godhead, only by devotional service. And when one is in full consciousness of Me by such devotion, he can enter into the kingdom of God.",
+    "meaning_hi": "उस भक्ति से मनुष्य मुझ परमात्मा को तत्त्वतः जितना बड़ा हूँ और जो हूँ, वैसा जान लेता है। इस प्रकार तत्त्व से जानकर वह तत्काल ही मुझमें प्रवेश कर जाता है अर्थात् मुझे प्राप्त हो जाता है।",
+    "emotional_tone": [
+      "intimate",
+      "realized"
+    ],
+    "core_theme": [
+      "knowing God through devotion",
+      "entering God",
+      "ultimate realization"
+    ],
+    "life_situations": [
+      "spiritual culmination",
+      "god-realization",
+      "divine union"
+    ],
+    "notification_short": {
+      "en": "Only through devotion can one truly know Me and enter into Me.",
+      "hi": "केवल भक्ति के द्वारा ही कोई मुझे यथार्थ में जान सकता है और मुझमें प्रवेश कर सकता है।"
+    }
+  },
+  {
+    "id": "18_56",
+    "sanskrit": "सर्वकर्माण्यपि सदा कुर्वाणो मद्व्यपाश्रयः । मत्प्रसादादवाप्नोति शाश्वतं पदमव्ययम् ॥",
+    "iast": "sarva-karmāṇy api sadā kurvāṇo mad-vyapāśrayaḥ। mat-prasādād avāpnoti śāśvataṃ padam avyayam॥",
+    "simple": "sarva karmany api sada kurvano mad vyapashrayah, mat prasadat avapnoti shashvatam padam avyayam",
+    "meaning_en": "Though engaged in all kinds of activities, My pure devotee, under My protection, reaches the eternal and imperishable abode by My grace.",
+    "meaning_hi": "सब कर्म करता हुआ भी मेरे परायण भक्त मेरी कृपा से शाश्वत अविनाशी परम पद को प्राप्त हो जाता है।",
+    "emotional_tone": [
+      "protected",
+      "grace-filled"
+    ],
+    "core_theme": [
+      "devotee under protection",
+      "divine grace",
+      "eternal abode"
+    ],
+    "life_situations": [
+      "faith in grace",
+      "divine protection",
+      "salvation"
+    ],
+    "notification_short": {
+      "en": "Even while doing all actions, My devotee reaches the eternal abode by My grace.",
+      "hi": "सभी कर्म करते हुए भी, मेरा भक्त मेरी कृपा से शाश्वत धाम को प्राप्त होता है।"
+    }
+  },
+  {
+    "id": "18_57",
+    "sanskrit": "चेतसा सर्वकर्माणि मयि संन्यस्य मत्परः । बुद्धियोगमुपाश्रित्य मच्चित्तः सततं भव ॥",
+    "iast": "cetasā sarva-karmāṇi mayi saṃnyasya mat-paraḥ। buddhi-yogam upāśritya mac-cittaḥ satataṃ bhava॥",
+    "simple": "chetasā sarva karmani mayi sannyasya mat parah, buddhi yogam upashritya mach chittah satatam bhava",
+    "meaning_en": "In all activities just depend upon Me and work always under My protection. In such devotional service, be fully conscious of Me.",
+    "meaning_hi": "मन से सम्पूर्ण कर्मों को मुझमें अर्पण करके, मुझ परमेश्वर के परायण होकर, बुद्धियोग के आश्रित और सदा मुझमें ही चित्त वाला हो।",
+    "emotional_tone": [
+      "devoted",
+      "dedicated"
+    ],
+    "core_theme": [
+      "surrender all actions",
+      "God-conscious",
+      "devotional service"
+    ],
+    "life_situations": [
+      "offering all actions",
+      "constant remembrance",
+      "surrender"
+    ],
+    "notification_short": {
+      "en": "Surrender all actions to Me, depend on Me, and be always conscious of Me.",
+      "hi": "सभी कर्मों को मुझे अर्पित करो, मुझ पर निर्भर रहो और सदा मुझमें ही चित्त लगाओ।"
+    }
+  },
+  {
+    "id": "18_58",
+    "sanskrit": "मच्चित्तः सर्वदुर्गाणि मत्प्रसादात्तरिष्यसि । अथ चेतत्त्वमहंकारान्न श्रोष्यसि विनङ्क्ष्यसि ॥",
+    "iast": "mac-cittaḥ sarva-durgāṇi mat-prasādāt tariṣyasi। atha cet tvam ahaṅkārān na śroṣyasi vinaṅkṣyasi॥",
+    "simple": "mach chittah sarva durgani mat prasadat tarishyasi, atha chet tvam ahankaran na shroshyasi vinankshyasi",
+    "meaning_en": "If you become conscious of Me, you will pass over all the obstacles of conditioned life by My grace. If, however, you do not work in such consciousness but act through false ego, not hearing Me, you will be lost.",
+    "meaning_hi": "मुझमें चित्त वाला होकर तू मेरी कृपा से सम्पूर्ण संकटों को तर जाएगा और यदि तू अहंकार के कारण मेरे वचनों को नहीं सुनेगा तो नष्ट हो जाएगा।",
+    "emotional_tone": [
+      "warning",
+      "consequential"
+    ],
+    "core_theme": [
+      "God-consciousness saves",
+      "ego destroys",
+      "choice and consequence"
+    ],
+    "life_situations": [
+      "critical choice",
+      "listening to guidance",
+      "consequences of ego"
+    ],
+    "notification_short": {
+      "en": "God-conscious, you'll cross all obstacles by grace; with ego, ignoring Me, you'll be lost.",
+      "hi": "ईश्वर-चेतन होकर कृपा से सब बाधाएं पार करोगे; अहंकार से मुझे अनसुना करोगे तो नष्ट होगे।"
+    }
+  },
+  {
+    "id": "18_59",
+    "sanskrit": "यदहंकारमाश्रित्य न योत्स्य इति मन्यसे । मिथ्यैष व्यवसायस्ते प्रकृतिस्त्वां नियोक्ष्यति ॥",
+    "iast": "yad ahaṅkāram āśritya na yotsya iti manyase। mithyaiṣa vyavasāyas te prakṛtis tvāṃ niyokṣyati॥",
+    "simple": "yad ahankaram ashrittya na yotsya iti manyase, mithyaisha vyavasayas te prakritis tvam niyokshyati",
+    "meaning_en": "If you do not act according to My direction and do not fight, then you will be falsely directed. By your nature, you will have to be engaged in warfare.",
+    "meaning_hi": "जो तू अहंकार के आश्रित होकर 'मैं युद्ध नहीं करूँगा' ऐसा मानता है, तेरा यह निश्चय मिथ्या है क्योंकि तेरा स्वभाव तुझे युद्ध में लगा देगा।",
+    "emotional_tone": [
+      "inevitable"
+    ],
+    "core_theme": [
+      "nature will compel",
+      "false resolve",
+      "inevitable duty"
+    ],
+    "life_situations": [
+      "facing destiny",
+      "nature's force",
+      "unavoidable duty"
+    ],
+    "notification_short": {
+      "en": "If you think 'I won't fight' out of ego, this resolve is false—your nature will compel you.",
+      "hi": "अगर अहंकार से सोचते हो 'मैं नहीं लडूंगा', यह झूठा निश्चय है—तुम्हारा स्वभाव तुम्हें मजबूर करेगा।"
+    }
+  },
+  {
+    "id": "18_60",
+    "sanskrit": "स्वभावजेन कौन्तेय निबद्धः स्वेन कर्मणा । कर्तुं नेच्छसि यन्मोहात्करिष्यस्यवशोऽपि तत् ॥",
+    "iast": "sva-bhāva-jena kaunteya nibaddhaḥ svena karmaṇā। kartuṃ necchasi yan mohāt kariṣyasy avaśo 'pi tat॥",
+    "simple": "svabhavajena kaunteya nibaddhah svena karmana, kartum nechchhasi yan mohat karishyasy avasho api tat",
+    "meaning_en": "Under illusion you are now declining to act according to My direction. But, compelled by the work born of your own nature, you will act all the same, O son of Kunti.",
+    "meaning_hi": "हे कुन्तीपुत्र! तू अपने स्वभाव से उत्पन्न कर्म से बँधा हुआ है, इसलिए मोह के कारण जिसको तू नहीं करना चाहता, उस कर्म को भी परवश हुआ करेगा।",
+    "emotional_tone": [
+      "compelled"
+    ],
+    "core_theme": [
+      "bound by nature",
+      "helplessly do what refused",
+      "karma compels"
+    ],
+    "life_situations": [
+      "unable to escape",
+      "driven by conditioning",
+      "fate"
+    ],
+    "notification_short": {
+      "en": "Bound by your nature, you'll helplessly do what you now refuse to do out of delusion.",
+      "hi": "अपने स्वभाव से बंधे होकर, तुम विवश होकर वही करोगे जो अब मोह से करने से इनकार कर रहे हो।"
+    }
+  },
+  {
+    "id": "18_61",
+    "sanskrit": "ईश्वरः सर्वभूतानां हृद्देशेऽर्जुन तिष्ठति । भ्रामयन्सर्वभूतानि यन्त्रारूढानि मायया ॥",
+    "iast": "īśvaraḥ sarva-bhūtānāṃ hṛd-deśe 'rjuna tiṣṭhati। bhrāmayan sarva-bhūtāni yantrārūḍhāni māyayā॥",
+    "simple": "ishvarah sarva bhutanam hriddeshe arjuna tishthati, bhramayan sarva bhutani yantrarudhani mayaya",
+    "meaning_en": "The Supreme Lord is situated in everyone's heart, O Arjuna, and is directing the wanderings of all living entities, who are seated as on a machine, made of the material energy.",
+    "meaning_hi": "हे अर्जुन! सम्पूर्ण प्राणियों के हृदय में स्थित ईश्वर अपनी माया से सब भूतों को यंत्र पर आरूढ़ हुओं की तरह भ्रमण कराता है।",
+    "emotional_tone": [
+      "awe-inspiring"
+    ],
+    "core_theme": [
+      "God in all hearts",
+      "divine director",
+      "machine of maya"
+    ],
+    "life_situations": [
+      "God's omnipresence",
+      "surrender to director",
+      "understanding divine control"
+    ],
+    "notification_short": {
+      "en": "God dwells in all hearts, directing all beings as if mounted on a machine of maya.",
+      "hi": "ईश्वर सभी के हृदय में रहकर सभी प्राणियों को माया की मशीन पर बैठे हुए की तरह घुमाता है।"
+    }
+  },
+  {
+    "id": "18_62",
+    "sanskrit": "तमेव शरणं गच्छ सर्वभावेन भारत । तत्प्रसादात्परां शान्तिं स्थानं प्राप्स्यसि शाश्वतम् ॥",
+    "iast": "tam eva śaraṇaṃ gaccha sarva-bhāvena bhārata। tat-prasādāt parāṃ śāntiṃ sthānaṃ prāpsyasi śāśvatam॥",
+    "simple": "tam eva sharanam gachcha sarva bhavena bharata, tat prasadat param shantim sthanam prapsyasi shashvatam",
+    "meaning_en": "O scion of Bharata, surrender unto Him utterly. By His grace you will attain transcendental peace and the supreme and eternal abode.",
+    "meaning_hi": "हे भारत! तू सब प्रकार से उस परमेश्वर की ही शरण में जा। उस परमात्मा की कृपा से ही तू परम शांति को और सनातन परम धाम को प्राप्त होगा।",
+    "emotional_tone": [
+      "surrendering"
+    ],
+    "core_theme": [
+      "total surrender",
+      "divine grace",
+      "eternal peace"
+    ],
+    "life_situations": [
+      "complete surrender",
+      "seeking refuge",
+      "ultimate peace"
+    ],
+    "notification_short": {
+      "en": "Surrender to Him completely. By His grace you'll attain supreme peace and the eternal abode.",
+      "hi": "उसकी पूर्णतः शरण में जाओ। उसकी कृपा से परम शांति और शाश्वत धाम पाओगे।"
+    }
+  },
+  {
+    "id": "18_63",
+    "sanskrit": "इति ते ज्ञानमाख्यातं गुह्याद्गुह्यतरं मया । विमृश्यैतदशेषेण यथेच्छसि तथा कुरु ॥",
+    "iast": "iti te jñānam ākhyātaṃ guhyād guhyataraṃ mayā। vimṛśyaitad aśeṣeṇa yathecchasi tathā kuru॥",
+    "simple": "iti te jnanam akhyatam guhyad guhyataram maya, vimrishyaitad asheshena yathechchhasi tatha kuru",
+    "meaning_en": "Thus I have explained to you knowledge still more confidential. Deliberate on this fully, and then do what you wish to do.",
+    "meaning_hi": "इस प्रकार यह गुह्य से भी अति गुह्य ज्ञान मैंने तुझसे कह दिया। अब तू इसको पूर्णतया विचार कर, जैसे चाहता है वैसे कर।",
+    "emotional_tone": [
+      "respectful",
+      "freeing"
+    ],
+    "core_theme": [
+      "most secret knowledge",
+      "free will",
+      "choose after deliberation"
+    ],
+    "life_situations": [
+      "making free choices",
+      "pondering deeply",
+      "self-determination"
+    ],
+    "notification_short": {
+      "en": "This most secret knowledge I've shared. Reflect fully and then do as you wish.",
+      "hi": "यह अति गुह्य ज्ञान मैंने बताया। भली भांति विचार करो और फिर जैसे चाहो वैसे करो।"
+    }
+  },
+  {
+    "id": "18_64",
+    "sanskrit": "सर्वगुह्यतमं भूयः शृणु मे परमं वचः । इष्टोऽसि मे दृढमिति ततो वक्ष्यामि ते हितम् ॥",
+    "iast": "sarva-guhyatamaṃ bhūyaḥ śṛṇu me paramaṃ vacaḥ। iṣṭo 'si me dṛḍham iti tato vakṣyāmi te hitam॥",
+    "simple": "sarva guhyatamam bhuyah shrinu me paramam vachah, ishto asi me dridham iti tato vakshyami te hitam",
+    "meaning_en": "Because you are My very dear friend, I am speaking to you My supreme instruction, the most confidential knowledge of all. Hear this from Me, for it is for your benefit.",
+    "meaning_hi": "सब गुह्यों से भी अति गुह्य मेरे परम वचन को तू फिर भी सुन। तू मेरा अतिशय प्रिय है, इससे मैं तेरे हित की बात कहूँगा।",
+    "emotional_tone": [
+      "intimate",
+      "loving"
+    ],
+    "core_theme": [
+      "most secret teaching",
+      "dear friend",
+      "ultimate instruction"
+    ],
+    "life_situations": [
+      "receiving highest truth",
+      "intimate relationship",
+      "ultimate guidance"
+    ],
+    "notification_short": {
+      "en": "Hear My supreme instruction, most confidential of all. You are very dear to Me.",
+      "hi": "मेरे परम उपदेश को सुनो, सबसे गुह्य। तुम मुझे बहुत प्रिय हो।"
+    }
+  },
+  {
+    "id": "18_65",
+    "sanskrit": "मन्मना भव मद्भक्तो मद्याजी मां नमस्कुरु । मामेवैष्यसि सत्यं ते प्रतिजाने प्रियोऽसि मे ॥",
+    "iast": "man-manā bhava mad-bhakto mad-yājī māṃ namaskuru। mām evaiṣyasi satyaṃ te pratijāne priyo 'si me॥",
+    "simple": "manmana bhava madbhakto madyaji mam namaskuru, mam evaishyasi satyam te pratijane priyo asi me",
+    "meaning_en": "Always think of Me, become My devotee, worship Me and offer your homage unto Me. Thus you will come to Me without fail. I promise you this because you are My very dear friend.",
+    "meaning_hi": "मुझमें मन वाला हो, मेरा भक्त बन, मेरा पूजन करने वाला हो, मुझे नमस्कार कर, ऐसा करने से तू मुझे ही प्राप्त होगा- यह मैं तुझसे सत्य प्रतिज्ञा करता हूँ क्योंकि तू मेरा प्रिय सखा है।",
+    "emotional_tone": [
+      "promising",
+      "affectionate"
+    ],
+    "core_theme": [
+      "fourfold instruction",
+      "divine promise",
+      "dear friend"
+    ],
+    "life_situations": [
+      "following divine instruction",
+      "devotional practice",
+      "divine assurance"
+    ],
+    "notification_short": {
+      "en": "Think of Me, be My devotee, worship Me, bow to Me. You will come to Me—I promise, for you are dear to Me.",
+      "hi": "मुझमें मन लगाओ, मेरे भक्त बनो, मेरी पूजा करो, मुझे प्रणाम करो। तुम मुझे पाओगे—वादा करता हूं, तुम मुझे प्रिय हो।"
+    }
+  },
+  {
+    "id": "18_66",
+    "sanskrit": "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज । अहं त्वां सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः ॥",
+    "iast": "sarva-dharmān parityajya mām ekaṃ śaraṇaṃ vraja। ahaṃ tvāṃ sarva-pāpebhyo mokṣayiṣyāmi mā śucaḥ॥",
+    "simple": "sarva dharman parityajya mam ekam sharanam vraja, aham tvam sarva papebhyo mokshayishyami ma shuchah",
+    "meaning_en": "Abandon all varieties of religion and just surrender unto Me. I shall deliver you from all sinful reactions. Do not fear.",
+    "meaning_hi": "सम्पूर्ण धर्मों को अर्थात् सम्पूर्ण कर्तव्य कर्मों को मुझमें त्याग कर, तू केवल एक मुझ सर्वशक्तिमान, सर्वाधार परमेश्वर की ही शरण में आ जा। मैं तुझे सम्पूर्ण पापों से मुक्त कर दूँगा, तू शोक मत कर।",
+    "emotional_tone": [
+      "liberating",
+      "reassuring"
+    ],
+    "core_theme": [
+      "ultimate surrender",
+      "liberation from all sin",
+      "do not fear"
+    ],
+    "life_situations": [
+      "final refuge",
+      "complete surrender",
+      "divine assurance"
+    ],
+    "notification_short": {
+      "en": "Abandon all dharmas and surrender to Me alone. I will free you from all sins. Do not grieve.",
+      "hi": "सभी धर्मों को छोड़कर केवल मेरी शरण में आओ। मैं तुम्हें सभी पापों से मुक्त करूंगा। शोक मत करो।"
+    }
+  },
+  {
+    "id": "18_67",
+    "sanskrit": "इदं ते नातपस्काय नाभक्ताय कदाचन । न चाशुश्रूषवे वाच्यं न च मां योऽभ्यसूयति ॥",
+    "iast": "idaṃ te nātapaskāya nābhaktāya kadācana। na cāśuśrūṣave vācyaṃ na ca māṃ yo 'bhyasūyati॥",
+    "simple": "idam te natapaskaya nabhaktaya kadachana, na chashushrushave vachyam na cha mam yo abhyasuyati",
+    "meaning_en": "This confidential knowledge may never be explained to those who are not austere, or devoted, or engaged in devotional service, nor to one who is envious of Me.",
+    "meaning_hi": "यह गीता शास्त्र तुझे न तो तपरहित के प्रति, न भक्तिरहित के प्रति, न सुनने की इच्छा रहित के प्रति और न मुझमें दोष दृष्टि रखने वाले के प्रति कभी कहना योग्य नहीं है।",
+    "emotional_tone": [
+      "protective",
+      "cautionary"
+    ],
+    "core_theme": [
+      "not for everyone",
+      "qualified recipients",
+      "respect for teaching"
+    ],
+    "life_situations": [
+      "choosing students wisely",
+      "respecting sacred knowledge",
+      "qualification"
+    ],
+    "notification_short": {
+      "en": "Don't teach this to those without austerity, devotion, desire to hear, or who envy Me.",
+      "hi": "यह उन्हें मत सिखाओ जिनमें तप, भक्ति, सुनने की इच्छा न हो या जो मुझसे ईर्ष्या करते हों।"
+    }
+  },
+  {
+    "id": "18_68",
+    "sanskrit": "य इदं परमं गुह्यं मद्भक्तेष्वभिधास्यति । भक्तिं मयि परां कृत्वा मामेवैष्यत्यसंशयः ॥",
+    "iast": "ya idaṃ paramaṃ guhyaṃ mad-bhakteṣv abhidhāsyati। bhaktiṃ mayi parāṃ kṛtvā mām evaiṣyaty asaṃśayaḥ॥",
+    "simple": "ya idam paramam guhyam mad bhakteshu abhidhashyati, bhaktim mayi param kritva mam evaishyaty asamshayah",
+    "meaning_en": "For one who explains this supreme secret to the devotees, pure devotional service is guaranteed, and at the end he will come back to Me.",
+    "meaning_hi": "जो पुरुष इस परम रहस्ययुक्त गीता शास्त्र को मेरे भक्तों में कहेगा, वह मुझमें अनन्य भक्ति करके मुझको ही प्राप्त होगा- इसमें कोई संशय नहीं है।",
+    "emotional_tone": [
+      "promising"
+    ],
+    "core_theme": [
+      "teaching is service",
+      "spreading knowledge",
+      "guaranteed return"
+    ],
+    "life_situations": [
+      "teaching devotees",
+      "sharing wisdom",
+      "service through teaching"
+    ],
+    "notification_short": {
+      "en": "One who teaches this supreme secret to devotees will surely come to Me.",
+      "hi": "जो इस परम रहस्य को भक्तों को सिखाएगा, वह निश्चित ही मुझे प्राप्त होगा।"
+    }
+  },
+  {
+    "id": "18_69",
+    "sanskrit": "न च तस्मान्मनुष्येषु कश्चिन्मे प्रियकृत्तमः । भविता न च मे तस्मादन्यः प्रियतरो भुवि ॥",
+    "iast": "na ca tasmān manuṣyeṣu kaścin me priya-kṛttamaḥ। bhavitā na ca me tasmād anyaḥ priyataro bhuvi॥",
+    "simple": "na cha tasman manushyeshu kashchin me priya krittamah, bhavita na cha me tasmad anyah priyataro bhuvi",
+    "meaning_en": "There is no servant in this world more dear to Me than he, nor will there ever be one more dear.",
+    "meaning_hi": "उससे बढ़कर मेरा प्रिय कार्य करने वाला मनुष्यों में कोई भी नहीं है तथा पृथ्वी में उससे बढ़कर मेरा प्रिय दूसरा कोई होगा भी नहीं।",
+    "emotional_tone": [
+      "loving",
+      "honoring"
+    ],
+    "core_theme": [
+      "most dear servant",
+      "teacher's greatness",
+      "supreme love"
+    ],
+    "life_situations": [
+      "honor for teachers",
+      "value of teaching",
+      "divine appreciation"
+    ],
+    "notification_short": {
+      "en": "No one is dearer to Me than such a teacher, nor will there ever be.",
+      "hi": "ऐसे शिक्षक से बढ़कर मुझे कोई प्रिय नहीं, न कभी होगा।"
+    }
+  },
+  {
+    "id": "18_70",
+    "sanskrit": "अध्येष्यते च य इमं धर्म्यं संवादमावयोः । ज्ञानयज्ञेन तेनाहमिष्टः स्यामिति मे मतिः ॥",
+    "iast": "adhyeṣyate ca ya imaṃ dharmyaṃ saṃvādam āvayoḥ। jñāna-yajñena tenāham iṣṭaḥ syām iti me matiḥ॥",
+    "simple": "adhyeshyate cha ya imam dharmyam samvadam avayoh, jnana yajnena tenaham ishtah syam iti me matih",
+    "meaning_en": "And I declare that he who studies this sacred conversation of ours worships Me by his intelligence.",
+    "meaning_hi": "और जो मनुष्य हम दोनों के इस धर्ममय संवाद को पढ़ेगा, उसके द्वारा भी मैं ज्ञान यज्ञ से पूजित हूँगा- ऐसा मेरा मत है।",
+    "emotional_tone": [
+      "appreciative"
+    ],
+    "core_theme": [
+      "studying is worship",
+      "knowledge sacrifice",
+      "honoring study"
+    ],
+    "life_situations": [
+      "scriptural study",
+      "intellectual worship",
+      "learning path"
+    ],
+    "notification_short": {
+      "en": "One who studies this sacred dialogue worships Me through knowledge-sacrifice.",
+      "hi": "जो इस पवित्र संवाद का अध्ययन करता है, वह ज्ञान-यज्ञ से मेरी पूजा करता है।"
+    }
+  },
+  {
+    "id": "18_71",
+    "sanskrit": "श्रद्धावाननसूयश्च शृणुयादपि यो नरः । सोऽपि मुक्तः शुभाँल्लोकान्प्राप्नुयात्पुण्यकर्मणाम् ॥",
+    "iast": "śraddhāvān anasūyaś ca śṛṇuyād api yo naraḥ। so 'pi muktaḥ śubhāṃl lokān prāpnuyāt puṇya-karmaṇām॥",
+    "simple": "shraddhavan anasuyash cha shrinuyad api yo narah, so api muktah shubhan lokan prapnuyat punyakarmanam",
+    "meaning_en": "And one who listens with faith and without envy becomes free from sinful reactions and attains to the auspicious planets where the pious dwell.",
+    "meaning_hi": "और जो मनुष्य श्रद्धायुक्त तथा दोषदृष्टि से रहित होकर इस गीता शास्त्र को सुनेगा, वह भी पापों से मुक्त होकर उत्तम कर्म करने वालों के श्रेष्ठ लोकों को प्राप्त होगा।",
+    "emotional_tone": [
+      "hopeful"
+    ],
+    "core_theme": [
+      "listening with faith",
+      "freedom from sin",
+      "auspicious realms"
+    ],
+    "life_situations": [
+      "faithful listening",
+      "spiritual benefit",
+      "purification"
+    ],
+    "notification_short": {
+      "en": "One who listens with faith and without envy is freed from sin and attains auspicious realms.",
+      "hi": "जो श्रद्धा से और बिना ईर्ष्या के सुनता है, वह पाप से मुक्त होकर शुभ लोकों को पाता है।"
+    }
+  },
+  {
+    "id": "18_72",
+    "sanskrit": "कच्चिदेतच्छ्रुतं पार्थ त्वयैकाग्रेण चेतसा । कच्चिदज्ञानसम्मोहः प्रनष्टस्ते धनञ्जय ॥",
+    "iast": "kaccid etac chrutaṃ pārtha tvayaikāgreṇa cetasā। kaccid ajñāna-sammohaḥ pranaṣṭas te dhanañjaya॥",
+    "simple": "kachchid etach chrutam partha tvayaikagrena chetasa, kachchid ajnana sammohah pranashthas te dhananjaya",
+    "meaning_en": "O son of Pritha, O conqueror of wealth, have you heard this with an attentive mind? And have your ignorance and illusion now been dispelled?",
+    "meaning_hi": "हे पार्थ! क्या तूने एकाग्रचित्त से यह मेरा वचन सुना? और हे धनंजय! क्या तेरा अज्ञान जनित मोह नष्ट हो गया?",
+    "emotional_tone": [
+      "questioning",
+      "concerned"
+    ],
+    "core_theme": [
+      "testing understanding",
+      "dispelling delusion",
+      "clarity check"
+    ],
+    "life_situations": [
+      "checking comprehension",
+      "confirming transformation",
+      "teacher's concern"
+    ],
+    "notification_short": {
+      "en": "Arjuna, did you hear with focused mind? Has your delusion born of ignorance been destroyed?",
+      "hi": "अर्जुन, क्या तुमने एकाग्र मन से सुना? क्या अज्ञानजन्य मोह नष्ट हो गया?"
+    }
+  },
+  {
+    "id": "18_73",
+    "sanskrit": "अर्जुन उवाच । नष्टो मोहः स्मृतिर्लब्धा त्वत्प्रसादान्मयाच्युत । स्थितोऽस्मि गतसन्देहः करिष्ये वचनं तव ॥",
+    "iast": "arjuna uvāca। naṣṭo mohaḥ smṛtir labdhā tvat-prasādān mayācyuta। sthito 'smi gata-sandehaḥ kariṣye vacanaṃ tava॥",
+    "simple": "arjuna uvacha, nashto mohah smritir labdha tvat prasadan mayachyuta, sthito asmi gata sandehah karishye vachanam tava",
+    "meaning_en": "Arjuna said: My dear Krishna, O infallible one, my illusion is now gone. I have regained my memory by Your mercy. I am now firm and free from doubt and am prepared to act according to Your instructions.",
+    "meaning_hi": "अर्जुन बोले- हे अच्युत! आपकी कृपा से मेरा मोह नष्ट हो गया और मैंने स्मृति प्राप्त कर ली। अब मैं संशय रहित होकर स्थित हूँ, अतः आपकी आज्ञा का पालन करूँगा।",
+    "emotional_tone": [
+      "resolved",
+      "grateful"
+    ],
+    "core_theme": [
+      "delusion destroyed",
+      "clarity gained",
+      "ready to act"
+    ],
+    "life_situations": [
+      "spiritual breakthrough",
+      "transformation complete",
+      "commitment"
+    ],
+    "notification_short": {
+      "en": "Arjuna: My delusion is gone, memory restored by Your grace. I'm doubt-free and will follow Your command.",
+      "hi": "अर्जुन: मेरा मोह नष्ट हो गया, आपकी कृपा से स्मृति मिली। मैं संशयरहित हूं, आपकी आज्ञा मानूंगा।"
+    }
+  },
+  {
+    "id": "18_74",
+    "sanskrit": "सञ्जय उवाच । इत्यहं वासुदेवस्य पार्थस्य च महात्मनः । संवादमिममश्रौषमद्भुतं रोमहर्षणम् ॥",
+    "iast": "sañjaya uvāca। ity ahaṃ vāsudevasya pārthasya ca mahātmanaḥ। saṃvādam imam aśrauṣam adbhutaṃ roma-harṣaṇam॥",
+    "simple": "sanjaya uvacha, ity aham vasudevasya parthasya cha mahatmanah, samvadam imam ashrousham adbhutam roma harshanam",
+    "meaning_en": "Sanjaya said: Thus have I heard the conversation of two great souls, Krishna and Arjuna. And so wonderful is that message that my hair is standing on end.",
+    "meaning_hi": "संजय बोले- इस प्रकार मैंने भगवान वासुदेव और महात्मा अर्जुन के इस अद्भुत रोमांचकारी संवाद को सुना।",
+    "emotional_tone": [
+      "awestruck",
+      "thrilled"
+    ],
+    "core_theme": [
+      "witness testimony",
+      "wonder and awe",
+      "transmission"
+    ],
+    "life_situations": [
+      "witnessing greatness",
+      "transmission of knowledge",
+      "sacred moment"
+    ],
+    "notification_short": {
+      "en": "Sanjaya: I heard this wonderful dialogue between Krishna and Arjuna, making my hair stand on end!",
+      "hi": "संजय: मैंने कृष्ण और अर्जुन के इस अद्भुत संवाद को सुना, जिससे मेरे रोंगटे खड़े हो गए!"
+    }
+  },
+  {
+    "id": "18_75",
+    "sanskrit": "व्यासप्रसादाच्छुतवानेतद्गुह्यमहं परम् । योगं योगेश्वरात्कृष्णात्साक्षात्कथयतः स्वयम् ॥",
+    "iast": "vyāsa-prasādāc chrutavān etad guhyaṃ ahaṃ param। yogaṃ yogeśvarāt kṛṣṇāt sākṣāt kathayataḥ svayam॥",
+    "simple": "vyasa prasadat chrutavan etad guhyam aham param, yogam yogeshvarat krishnat sakshat kathayatah svayam",
+    "meaning_en": "By the mercy of Vyasa, I have heard these most confidential talks directly from the master of all mysticism, Krishna, who was speaking personally to Arjuna.",
+    "meaning_hi": "व्यास जी की कृपा से मैंने इस परम गोपनीय योग को साक्षात् कहते हुए योगेश्वर श्री कृष्ण से सुना।",
+    "emotional_tone": [
+      "blessed",
+      "grateful"
+    ],
+    "core_theme": [
+      "divine grace",
+      "mystical transmission",
+      "direct hearing"
+    ],
+    "life_situations": [
+      "receiving grace",
+      "spiritual transmission",
+      "gratitude"
+    ],
+    "notification_short": {
+      "en": "By Vyasa's grace, I heard this supreme secret directly from Krishna, the Lord of Yoga.",
+      "hi": "व्यास की कृपा से मैंने यह परम गुह्य योगेश्वर कृष्ण से प्रत्यक्ष सुना।"
+    }
+  },
+  {
+    "id": "18_76",
+    "sanskrit": "राजन्संस्मृत्य संस्मृत्य संवादमिममद्भुतम् । केशवार्जुनयोः पुण्यं हृष्यामि च मुहुर्मुहुः ॥",
+    "iast": "rājan saṃsmṛtya saṃsmṛtya saṃvādam imam adbhutam। keśavārjunayoḥ puṇyaṃ hṛṣyāmi ca muhur muhuḥ॥",
+    "simple": "rajan samsmrittya samsmrittya samvadam imam adbhutam, keshava arjunayoh punyam hrishyami cha muhur muhuh",
+    "meaning_en": "O King, as I repeatedly recall this wondrous and holy dialogue between Krishna and Arjuna, I take pleasure, being thrilled at every moment.",
+    "meaning_hi": "हे राजन्! श्री केशव और अर्जुन के इस अद्भुत पुण्यमय संवाद को बार-बार स्मरण करके मैं बार-बार हर्षित हो रहा हूँ।",
+    "emotional_tone": [
+      "joyful",
+      "ecstatic"
+    ],
+    "core_theme": [
+      "remembering brings joy",
+      "sacred dialogue",
+      "repeated delight"
+    ],
+    "life_situations": [
+      "recollection of scripture",
+      "spiritual joy",
+      "meditation"
+    ],
+    "notification_short": {
+      "en": "O King, remembering this wondrous dialogue of Krishna and Arjuna, I rejoice again and again!",
+      "hi": "हे राजन्! कृष्ण और अर्जुन के इस अद्भुत संवाद को याद करके मैं बार-बार हर्षित होता हूं!"
+    }
+  },
+  {
+    "id": "18_77",
+    "sanskrit": "तच्च संस्मृत्य संस्मृत्य रूपमत्यद्भुतं हरेः । विस्मयो मे महान् राजन्हृष्यामि च पुनः पुनः ॥",
+    "iast": "tac ca saṃsmṛtya saṃsmṛtya rūpam aty-adbhutaṃ hareḥ। vismayo me mahān rājan hṛṣyāmi ca punaḥ punaḥ॥",
+    "simple": "tach cha samsmrittya samsmrittya rupam aty adbhutam hareh, vismayo me mahan rajan hrishyami cha punah punah",
+    "meaning_en": "O King, as I remember the wonderful form of Lord Krishna, I am struck with wonder more and more, and I rejoice again and again.",
+    "meaning_hi": "हे राजन्! उस श्री हरि के अत्यन्त अद्भुत रूप को भी बार-बार स्मरण करके मेरे को महान आश्चर्य हो रहा है और मैं बार-बार हर्षित हो रहा हूँ।",
+    "emotional_tone": [
+      "amazed",
+      "delighted"
+    ],
+    "core_theme": [
+      "universal form",
+      "divine vision",
+      "perpetual wonder"
+    ],
+    "life_situations": [
+      "remembering divine vision",
+      "spiritual amazement",
+      "transcendent experience"
+    ],
+    "notification_short": {
+      "en": "O King, remembering Krishna's wonderful form, I'm amazed and rejoice again and again!",
+      "hi": "हे राजन्! कृष्ण के अद्भुत रूप को याद करके मैं चकित हूं और बार-बार हर्षित होता हूं!"
+    }
+  },
+  {
+    "id": "18_78",
+    "sanskrit": "यत्र योगेश्वरः कृष्णो यत्र पार्थो धनुर्धरः । तत्र श्रीर्विजयो भूतिर्ध्रुवा नीतिर्मतिर्मम ॥",
+    "iast": "yatra yogeśvaraḥ kṛṣṇo yatra pārtho dhanu-dharaḥ। tatra śrīr vijayo bhūtir dhruvā nītir matir mama॥",
+    "simple": "yatra yogeshvarah krishno yatra partho dhanurdharah, tatra shrir vijayo bhutir dhruva nitir matir mama",
+    "meaning_en": "Wherever there is Krishna, the master of all mystics, and wherever there is Arjuna, the supreme archer, there will also certainly be opulence, victory, extraordinary power, and morality. That is my opinion.",
+    "meaning_hi": "जहाँ योगेश्वर भगवान श्री कृष्ण हैं और जहाँ गाण्डीव धनुषधारी अर्जुन है, वहीं श्री, विजय, विभूति और अचल नीति है- ऐसा मेरा मत है।",
+    "emotional_tone": [
+      "certain",
+      "concluding"
+    ],
+    "core_theme": [
+      "divine presence ensures victory",
+      "Krishna and Arjuna together",
+      "final assurance"
+    ],
+    "life_situations": [
+      "faith in divine support",
+      "partnership with God",
+      "assured victory"
+    ],
+    "notification_short": {
+      "en": "Where Krishna and Arjuna are, there are prosperity, victory, power, and morality—this is my conviction.",
+      "hi": "जहां कृष्ण और अर्जुन हैं, वहां समृद्धि, विजय, शक्ति और नीति हैं—यही मेरा विश्वास है।"
+    }
+  }
+]

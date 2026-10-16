@@ -1,0 +1,725 @@
+[
+  {
+    "id": "17_1",
+    "sanskrit": "अर्जुन उवाच । ये शास्त्रविधिमुत्सृज्य यजन्ते श्रद्धयान्विताः । तेषां निष्ठा तु का कृष्ण सत्त्वमाहो रजस्तमः ॥",
+    "iast": "arjuna uvāca। ye śāstra-vidhim utsṛjya yajante śraddhayānvitāḥ। teṣāṃ niṣṭhā tu kā kṛṣṇa sattvam āho rajas tamaḥ॥",
+    "simple": "arjuna uvacha, ye shastra vidhim utsrijya yajante shraddhayanvitah, tesham nishtha tu ka krishna sattvam aho rajas tamah",
+    "meaning_en": "Arjuna said: O Krishna, what is the situation of those who do not follow the principles of scripture but worship according to their own imagination? Are they in goodness, in passion or in ignorance?",
+    "meaning_hi": "अर्जुन बोले- हे कृष्ण! जो मनुष्य शास्त्र विधि को त्यागकर श्रद्धा से युक्त होकर देवादिका पूजन करते हैं, उनकी स्थिति फिर कौन-सी है? सात्त्विकी है, अथवा राजसी या तामसी?",
+    "emotional_tone": [
+      "inquisitive"
+    ],
+    "core_theme": [
+      "nature of faith",
+      "unscriptural worship",
+      "questioning devotion"
+    ],
+    "life_situations": [
+      "questioning rules",
+      "blind faith",
+      "seeking clarity"
+    ],
+    "notification_short": {
+      "en": "What is the fate of those who worship with faith but ignore scripture?",
+      "hi": "जो शास्त्र को त्यागकर श्रद्धा से पूजा करते हैं, उनकी गति क्या है?"
+    }
+  },
+  {
+    "id": "17_2",
+    "sanskrit": "श्रीभगवानुवाच । त्रिविधा भवति श्रद्धा देहिनां सा स्वभावजा । सात्त्विकी राजसी चैव तामसी चेति तां शृणु ॥",
+    "iast": "śrī-bhagavān uvāca। tri-vidhā bhavati śraddhā dehināṃ sā sva-bhāva-jā। sāttvikī rājasī caiva tāmasī ceti tāṃ śṛṇu॥",
+    "simple": "shri bhagavan uvacha, tri vidha bhavati shraddha dehinam sa svabhavaja, sattviki rajasi chaiva tamasi cheti tam shrinu",
+    "meaning_en": "The Supreme Personality of Godhead said: According to the modes of nature acquired by the embodied soul, one's faith can be of three kinds—in goodness, in passion or in ignorance. Now hear about this.",
+    "meaning_hi": "श्री भगवान बोले- मनुष्यों की वह शास्त्रीय संस्कारों से रहित केवल स्वभाव से उत्पन्न श्रद्धा सात्त्विकी, राजसी और तामसी- ऐसे तीनों प्रकार की ही होती है। उसको तू मुझसे सुन।",
+    "emotional_tone": [
+      "informative"
+    ],
+    "core_theme": [
+      "three types of faith",
+      "inherent nature",
+      "modes of belief"
+    ],
+    "life_situations": [
+      "understanding belief systems",
+      "why people believe differently",
+      "analyzing faith"
+    ],
+    "notification_short": {
+      "en": "Faith is of three kinds: Goodness, Passion, and Ignorance, born of one's nature.",
+      "hi": "श्रद्धा तीन प्रकार की होती है: सात्त्विक, राजसी और तामसी, जो स्वभाव से उत्पन्न होती हैं।"
+    }
+  },
+  {
+    "id": "17_3",
+    "sanskrit": "सत्त्वानुरूपा सर्वस्य श्रद्धा भवति भारत । श्रद्धामयोऽयं पुरुषो यो यच्छ्रद्धः स एव सः ॥",
+    "iast": "sattvānurūpā sarvasya śraddhā bhavati bhārata। śraddhā-mayo ’yaṃ puruṣo yo yac-chraddhaḥ sa eva saḥ॥",
+    "simple": "sattvanurupa sarvasya shraddha bhavati bharata, shraddhamayo ayam purusho yo yachshraddhah sa eva sah",
+    "meaning_en": "O son of Bharata, according to one's existence under the various modes of nature, one evolves a particular kind of faith. The living being is said to be of a particular faith according to the modes he has acquired.",
+    "meaning_hi": "हे भारत! सभी मनुष्यों की श्रद्धा उनके अंतःकरण के अनुरूप होती है। यह पुरुष श्रद्धामय है, इसलिए जो पुरुष जैसी श्रद्धा वाला है, वह स्वयं भी वैसा ही है।",
+    "emotional_tone": [
+      "defining",
+      "reflective"
+    ],
+    "core_theme": [
+      "faith reflects character",
+      "we are our faith",
+      "inner nature"
+    ],
+    "life_situations": [
+      "self-reflection",
+      "understanding identity",
+      "power of belief"
+    ],
+    "notification_short": {
+      "en": "Man is made of his faith. As his faith is, so he is.",
+      "hi": "मनुष्य अपनी श्रद्धा से बना है। जैसी उसकी श्रद्धा है, वैसा ही वह है।"
+    }
+  },
+  {
+    "id": "17_4",
+    "sanskrit": "यजन्ते सात्त्विका देवान्यक्षरक्षांसि राजसाः । प्रेतान्भूतगणांश्चान्ये यजन्ते तामसा जनाः ॥",
+    "iast": "yajante sāttvikā devān yakṣa-rakṣāṃsi rājasāḥ। pretān bhūta-gaṇāṃś cānye yajante tāmasā janāḥ॥",
+    "simple": "yajante sattvika devan yaksha rakshamsi rajasah, pretan bhuta ganamsh chanye yajante tamasa janah",
+    "meaning_en": "Men in the mode of goodness worship the demigods; those in the mode of passion worship the demons; and those in the mode of ignorance worship ghosts and spirits.",
+    "meaning_hi": "सात्त्विक पुरुष देवों को पूजते हैं, राजस पुरुष यक्ष और राक्षसों को तथा अन्य जो तामस मनुष्य हैं, वे प्रेत और भूतगणों को पूजते हैं।",
+    "emotional_tone": [
+      "classifying"
+    ],
+    "core_theme": [
+      "objects of worship",
+      "three modes of worship",
+      "demigods vs demons vs ghosts"
+    ],
+    "life_situations": [
+      "choosing role models",
+      "spiritual alignment",
+      "avoiding dark occult"
+    ],
+    "notification_short": {
+      "en": "Good people worship gods; passionate worship demons; ignorant worship ghosts.",
+      "hi": "सात्त्विक लोग देवताओं को, राजसी यक्ष-राक्षसों को, और तामसी भूतों को पूजते हैं।"
+    }
+  },
+  {
+    "id": "17_5",
+    "sanskrit": "अशास्त्रविहितं घोरं तप्यन्ते ये तपो जनाः । दम्भाहंकारसंयुक्ताः कामरागबलान्विताः ॥",
+    "iast": "aśāstra-vihitaṃ ghoraṃ tapyante ye tapo janāḥ। dambhāhaṅkāra-saṃyuktāḥ kāma-rāga-balānvitāḥ॥",
+    "simple": "ashastra vihitam ghoram tapyante ye tapo janah, dambhahankara samyuktah kama raga balanvitah",
+    "meaning_en": "Those who undergo severe austerities and penances not recommended in the scriptures, performing them out of pride and egoism, who are impelled by lust and attachment...",
+    "meaning_hi": "जो मनुष्य शास्त्रविधि से रहित केवल मनकल्पित घोर तप को तपते हैं तथा दम्भ और अहंकार से युक्त एवं कामना, आसक्ति और बल के अभिमान से भी युक्त हैं...",
+    "emotional_tone": [
+      "severe",
+      "warning"
+    ],
+    "core_theme": [
+      "unauthorized austerity",
+      "pride and ego",
+      "harmful penance"
+    ],
+    "life_situations": [
+      "extremism",
+      "fanaticism",
+      "harmful discipline"
+    ],
+    "notification_short": {
+      "en": "Those who perform severe, unscriptural austerities out of pride and lust...",
+      "hi": "जो घमंड और कामना से प्रेरित होकर शास्त्र-विरुद्ध घोर तप करते हैं..."
+    }
+  },
+  {
+    "id": "17_6",
+    "sanskrit": "कर्षयन्तः शरीरस्थं भूतग्राममचेतसः । मां चैवान्तःशरीरस्थं तान्विद्ध्यासुरनिश्चयान् ॥",
+    "iast": "karṣayantaḥ śarīra-sthaṃ bhūta-grāmam acetasaḥ। māṃ caivāntaḥ-śarīra-sthaṃ tān viddhy āsura-niścayān॥",
+    "simple": "karshayanta sharira stham bhuta gramam achetasah, mam chaiva antah sharira stham tan viddhy asura nishchayan",
+    "meaning_en": "...who are foolish and who torture the material elements of the body as well as the Supersoul dwelling within, are to be known as demons.",
+    "meaning_hi": "...जो शरीर रूप से स्थित भूत समुदाय को और अंतःकरण में स्थित मुझ परमात्मा को भी कृश करने वाले हैं (दुःख देने वाले हैं), उन अज्ञानियों को तू आसुर निश्चय वाला जान।",
+    "emotional_tone": [
+      "condemning"
+    ],
+    "core_theme": [
+      "torturing the body",
+      "ignoring supersoul",
+      "demoniac resolve"
+    ],
+    "life_situations": [
+      "self-harm",
+      "eating disorders",
+      "disrespecting the body"
+    ],
+    "notification_short": {
+      "en": "...torturing their bodies and Me within. Know them to be demons.",
+      "hi": "...वे अपने शरीर और मुझ अंतर्यामी को कष्ट देते हैं। उन्हें असुर जानो।"
+    }
+  },
+  {
+    "id": "17_7",
+    "sanskrit": "आहारस्त्वपि सर्वस्य त्रिविधो भवति प्रियः । यज्ञस्तपस्तथा दानं तेषां भेदमिमं शृणु ॥",
+    "iast": "āhāras tv api sarvasya tri-vidho bhavati priyaḥ। yajñas tapas tathā dānaṃ teṣāṃ bhedam imaṃ śṛṇu॥",
+    "simple": "aharas tv api sarvasya tri vidho bhavati priyah, yajnah tapas tatha danam tesham bhedam imam shrinu",
+    "meaning_en": "Even the food each person prefers is of three kinds, according to the three modes of material nature. The same is true of sacrifices, austerities and charity. Now hear of the distinctions between them.",
+    "meaning_hi": "भोजन भी सबको अपनी-अपनी प्रकृति के अनुसार तीन प्रकार का प्रिय होता है और वैसे ही यज्ञ, तप और दान भी तीन-तीन प्रकार के होते हैं। उनके इस पृथक्-पृथक् भेद को तू मुझसे सुन।",
+    "emotional_tone": [
+      "analytical"
+    ],
+    "core_theme": [
+      "types of food",
+      "types of sacrifice",
+      "types of charity"
+    ],
+    "life_situations": [
+      "choosing diet",
+      "lifestyle choices",
+      "understanding preferences"
+    ],
+    "notification_short": {
+      "en": "Food, sacrifice, austerity, and charity are also of three kinds. Listen.",
+      "hi": "भोजन, यज्ञ, तप और दान भी तीन प्रकार के होते हैं। सुनो।"
+    }
+  },
+  {
+    "id": "17_8",
+    "sanskrit": "आयुःसत्त्वबलारोग्यसुखप्रीतिविवर्धनाः । रस्याः स्निग्धाः स्थिरा हृद्या आहाराः सात्त्विकप्रियाः ॥",
+    "iast": "āyuḥ-sattva-balārogya-sukha-prīti-vivardhanāḥ। rasyāḥ snigdhāḥ sthirā hṛdyā āhārāḥ sāttvika-priyāḥ॥",
+    "simple": "ayuh sattva bala arogya sukha priti vivardhanah, rasyah snigdhah sthira hridya aharah sattvika priyah",
+    "meaning_en": "Foods dear to those in the mode of goodness increase the duration of life, purify one's existence and give strength, health, happiness and satisfaction. Such foods are juicy, fatty, wholesome, and pleasing to the heart.",
+    "meaning_hi": "आयु, बुद्धि, बल, आरोग्य, सुख और प्रीति को बढ़ाने वाले, रसयुक्त, चिकने और स्थिर रहने वाले तथा स्वभाव से ही मन को प्रिय- ऐसे आहार अर्थात भोजन करने के पदार्थ सात्त्विक पुरुष को प्रिय होते हैं।",
+    "emotional_tone": [
+      "nourished",
+      "healthy"
+    ],
+    "core_theme": [
+      "sattvic food",
+      "health and longevity",
+      "wholesome diet"
+    ],
+    "life_situations": [
+      "healthy eating",
+      "nutrition",
+      "vegetarianism"
+    ],
+    "notification_short": {
+      "en": "Sattvic food promotes life, strength, and health. It is juicy and wholesome.",
+      "hi": "सात्त्विक भोजन आयु, बुद्धि और बल बढ़ाता है। यह रस युक्त और मनभावन होता है।"
+    }
+  },
+  {
+    "id": "17_9",
+    "sanskrit": "कट्वम्ललवणात्युष्णतीक्ष्णरूक्षविदाहिनः । आहारा राजसस्येष्टा दुःखशोकामयप्रदाः ॥",
+    "iast": "kaṭv-amla-lavaṇāty-uṣṇa-tīkṣṇa-rūkṣa-vidāhinaḥ। āhārā rājasasyeṣṭā duḥkha-śokāmaya-pradāḥ॥",
+    "simple": "katvamla lavanatyushna tikshna ruksha vidahinah, ahara rajasyeshta duhkha shoka amaya pradah",
+    "meaning_en": "Foods that are too bitter, too sour, salty, hot, pungent, dry and burning are dear to those in the mode of passion. Such foods cause distress, misery and disease.",
+    "meaning_hi": "कड़वे, खट्टे, लवणयुक्त, बहुत गरम, तीखे, रूखे, दाहजनक और दुःख, चिंता तथा रोगों को उत्पन्न करने वाले आहार अर्थात भोजन करने के पदार्थ राजस पुरुष को प्रिय होते हैं।",
+    "emotional_tone": [
+      "intense",
+      "painful"
+    ],
+    "core_theme": [
+      "rajasic food",
+      "spicy and hot",
+      "cause of disease"
+    ],
+    "life_situations": [
+      "acid reflux",
+      "stress eating",
+      "spicy food addiction"
+    ],
+    "notification_short": {
+      "en": "Rajasic food is bitter, sour, burning, and causes disease and distress.",
+      "hi": "राजसी भोजन कड़वा, खट्टा, बहुत गरम होता है और रोग व दुःख देता है।"
+    }
+  },
+  {
+    "id": "17_10",
+    "sanskrit": "यातयामं गतरसं पूति पर्युषितं च यत् । उच्छिष्टमपि चामेध्यं भोजनं तामसप्रियम् ॥",
+    "iast": "yāta-yāmaṃ gata-rasaṃ pūti paryuṣitaṃ ca yat। ucchiṣṭam api cāmedhyaṃ bhojanaṃ tāmasa-priyam॥",
+    "simple": "yatayamam gata rasam puti paryushitam cha yat, uchchhishtam api chamedhyam bhojanam tamasa priyam",
+    "meaning_en": "Food prepared more than three hours before being eaten, food that is tasteless, decomposed and putrid, and food consisting of remnants and untouchable things is dear to those in the mode of ignorance.",
+    "meaning_hi": "जो भोजन अधपका, रसरहित, दुर्गन्धयुक्त, बासी और उच्छिष्ट (जूठा) है तथा जो अपवित्र भी है, वह भोजन तामस पुरुष को प्रिय होता है।",
+    "emotional_tone": [
+      "stale",
+      "impure"
+    ],
+    "core_theme": [
+      "tamasic food",
+      "stale and putrid",
+      "leftovers"
+    ],
+    "life_situations": [
+      "eating junk",
+      "bad hygiene",
+      "unhealthy habits"
+    ],
+    "notification_short": {
+      "en": "Tamasic food is stale, tasteless, putrid, and impure.",
+      "hi": "तामसी भोजन बासी, बेस्वाद, दुर्गंधयुक्त और अपवित्र होता है।"
+    }
+  },
+  {
+    "id": "17_11",
+    "sanskrit": "अफलाकाङ्क्षिभिर्यज्ञो विधिदृष्टो य इज्यते । यष्टव्यमेवेति मनः समाधाय स सात्त्विकः ॥",
+    "iast": "aphalākāṅkṣibhir yajño vidhi-dṛṣṭo ya ijyate। yaṣṭavyam eveti manaḥ samādhāya sa sāttvikaḥ॥",
+    "simple": "aphalakankshibhir yajnyo vidhi drishto ya ijyate, yashtavyam eveti manah samadhaya sa sattvikah",
+    "meaning_en": "Of sacrifices, the sacrifice performed according to the directions of scripture, as a matter of duty, by those who desire no reward, is of the nature of goodness.",
+    "meaning_hi": "जो शास्त्रविधि से नियत, यज्ञ करना ही कर्तव्य है- ऐसे मन को समाधान करके, फल न चाहने वाले पुरुषों द्वारा किया जाता है, वह सात्त्विक है।",
+    "emotional_tone": [
+      "dutiful",
+      "pure"
+    ],
+    "core_theme": [
+      "sattvic sacrifice",
+      "duty without reward",
+      "following scripture"
+    ],
+    "life_situations": [
+      "doing duty",
+      "selfless service",
+      "religious observance"
+    ],
+    "notification_short": {
+      "en": "Sattvic sacrifice is performed according to duty, without desiring reward.",
+      "hi": "सात्त्विक यज्ञ कर्तव्य भावना से, फल की इच्छा के बिना किया जाता है।"
+    }
+  },
+  {
+    "id": "17_12",
+    "sanskrit": "अभिसन्धाय तु फलं दम्भार्थमपि चैव यत् । इज्यते भरतश्रेष्ठ तं यज्ञं विद्धि राजसम् ॥",
+    "iast": "abhisandhāya tu phalaṃ dambhārtham api caiva yat। ijyate bharata-śreṣṭha taṃ yajñaṃ viddhi rājasam॥",
+    "simple": "abhisandhaya tu phalam dambhartham api chaiva yat, ijyate bharata shreshtha tam yajnyam viddhi rajasam",
+    "meaning_en": "But the sacrifice performed for some material benefit, or for the sake of pride, O chief of the Bharatas, you should know to be in the mode of passion.",
+    "meaning_hi": "परन्तु हे अर्जुन! केवल दम्भाचरण के लिए अथवा फल को उद्देश्य रखकर जो यज्ञ किया जाता है, उस यज्ञ को तू राजस जान।",
+    "emotional_tone": [
+      "ostentatious",
+      "calculating"
+    ],
+    "core_theme": [
+      "rajasic sacrifice",
+      "pride and benefit",
+      "show-off"
+    ],
+    "life_situations": [
+      "charity for fame",
+      "political piety",
+      "strings attached"
+    ],
+    "notification_short": {
+      "en": "Rajasic sacrifice is performed for reward or out of pride.",
+      "hi": "राजसी यज्ञ फल की इच्छा या घमंड के लिए किया जाता है।"
+    }
+  },
+  {
+    "id": "17_13",
+    "sanskrit": "विधिहीनमसृष्टान्नं मन्त्रहीनमदक्षिणम् । श्रद्धाविरहितं यज्ञं तामसं परिचक्षते ॥",
+    "iast": "vidhi-hīnam asṛṣṭānnaṃ mantra-hīnam adakṣiṇam। śraddhā-virahitaṃ yajñaṃ tāmasaṃ paricakṣate॥",
+    "simple": "vidhi hinam asrishtannam mantra hinam adakshinam, shraddha virahitam yajnyam tamasam parichakshate",
+    "meaning_en": "Any sacrifice performed without regard for the directions of scripture, without distribution of prasadam [spiritual food], without chanting of Vedic hymns and remunerations to the priests, and without faith is considered to be in the mode of ignorance.",
+    "meaning_hi": "शास्त्रविधि से हीन, अन्नदान से रहित, बिना मंत्रों के, बिना दक्षिणा के और बिना श्रद्धा के किए जाने वाले यज्ञ को तामस यज्ञ कहते हैं।",
+    "emotional_tone": [
+      "chaotic",
+      "hollow"
+    ],
+    "core_theme": [
+      "tamasic sacrifice",
+      "no rules faithless",
+      "no charity"
+    ],
+    "life_situations": [
+      "careless worship",
+      "empty rituals",
+      "disrespectful acts"
+    ],
+    "notification_short": {
+      "en": "Tamasic sacrifice lacks faith, scripture, mantras, and charity.",
+      "hi": "तामसी यज्ञ बिना श्रद्धा, शास्त्र, मंत्र और दान के किया जाता है।"
+    }
+  },
+  {
+    "id": "17_14",
+    "sanskrit": "देवद्विजगुरुप्राज्ञपूजनं शौचमार्जवम् । ब्रह्मचर्यमहिंसा च शारीरं तप उच्यते ॥",
+    "iast": "deva-dvija-guru-prājña-pūjanaṃ śaucam ārjavam। brahmacaryam ahiṃsā ca śārīraṃ tapa ucyate॥",
+    "simple": "deva dvija guru prajna pujanam shaucham arjavam, brahmacharyam ahimsa cha shariram tapa uchyate",
+    "meaning_en": "Austerity of the body consists in worship of the Supreme Lord, the brahmanas, the spiritual master, and superiors like the father and mother, and in cleanliness, simplicity, celibacy and nonviolence.",
+    "meaning_hi": "देवता, ब्राह्मण, गुरु और ज्ञानीजनों का पूजन, पवित्रता, सरलता, ब्रह्मचर्य और अहिंसा- यह शरीर का तप कहा जाता है।",
+    "emotional_tone": [
+      "respectful",
+      "pure"
+    ],
+    "core_theme": [
+      "austerity of body",
+      "worship of elders",
+      "cleanliness and celibacy"
+    ],
+    "life_situations": [
+      "respecting elders",
+      "personal hygiene",
+      "practicing ahimsa"
+    ],
+    "notification_short": {
+      "en": "Worship of superiors, cleanliness, celibacy, and non-violence is austerity of the body.",
+      "hi": "बड़ों का आदर, पवित्रता, ब्रह्मचर्य और अहिंसा शरीर का तप है।"
+    }
+  },
+  {
+    "id": "17_15",
+    "sanskrit": "अनुद्वेगकरं वाक्यं सत्यं प्रियहितं च यत् । स्वाध्यायाभ्यसनं चैव वाङ्मयं तप उच्यते ॥",
+    "iast": "anudvega-karaṃ vākyaṃ satyaṃ priya-hitaṃ ca yat। svādhyāyābhyasanaṃ caiva vāṅ-mayaṃ tapa ucyate॥",
+    "simple": "anudvega karam vakyam satyam priya hitam cha yat, svadhyaya abhyasanam chaiva vangmayam tapa uchyate",
+    "meaning_en": "Austerity of speech consists in speaking words that are truthful, pleasing, beneficial, and not agitating to others, and also in regularly reciting Vedic literature.",
+    "meaning_hi": "जो उद्वेग न करने वाला, प्रिय और हितकारक व यथार्थ भाषण है तथा जो वेद-शास्त्रों के पठन-पाठन और परमेश्वर के नाम-जप का अभ्यास है- वही वाणी का तप कहा जाता है।",
+    "emotional_tone": [
+      "calm",
+      "truthful"
+    ],
+    "core_theme": [
+      "austerity of speech",
+      "truthful and pleasing",
+      "recitation"
+    ],
+    "life_situations": [
+      "communication skills",
+      "speaking truth",
+      "avoiding gossip"
+    ],
+    "notification_short": {
+      "en": "Speak words that are truthful, pleasing, and beneficial. This is austerity of speech.",
+      "hi": "ऐसे शब्द बोलें जो सत्य, प्रिय और हितकारी हों। यही वाणी का तप है।"
+    }
+  },
+  {
+    "id": "17_16",
+    "sanskrit": "मनःप्रसादः सौम्यत्वं मौनमात्मविनिग्रहः । भावसंशुद्धिरित्येतत्तपो मानसमुच्यते ॥",
+    "iast": "manaḥ-prasādaḥ saumyatvaṃ maunam ātma-vinigrahaḥ। bhāva-saṃśuddhir ity etat tapo mānasam ucyate॥",
+    "simple": "manah prasadah saumyatvam maunam atma vinigrahah, bhava samshuddhir ity etat tapo manasam uchyate",
+    "meaning_en": "And satisfaction, simplicity, gravity, self-control and purification of one's existence are the austerities of the mind.",
+    "meaning_hi": "मन की प्रसन्नता, शांतभाव, भगवच्चिन्तन करने का स्वभाव, मन का निग्रह और अंतःकरण के भावों की भलीभांति पवित्रता- इस प्रकार यह मन का तप कहा जाता है।",
+    "emotional_tone": [
+      "serene",
+      "controlled"
+    ],
+    "core_theme": [
+      "austerity of mind",
+      "serenity",
+      "self-control"
+    ],
+    "life_situations": [
+      "mental health",
+      "meditation",
+      "internal peace"
+    ],
+    "notification_short": {
+      "en": "Serenity, simplicity, silence, and self-control are austerities of the mind.",
+      "hi": "मन की प्रसन्नता, शांति, मौन और आत्म-निग्रह मन का तप है।"
+    }
+  },
+  {
+    "id": "17_17",
+    "sanskrit": "श्रद्धया परया तप्तं तपस्तत्त्रिविधं नरैः । अफलाकाङ्क्षिभिर्युक्तैः सात्त्विकं परिचक्षते ॥",
+    "iast": "śraddhayā parayā taptaṃ tapas tat tri-vidhaṃ naraiḥ। aphalākāṅkṣibhir yuktaiḥ sāttvikaṃ paricakṣate॥",
+    "simple": "shraddhaya paraya taptam tapas tat tri vidham naraih, aphalakankshibhir yuktaih sattvikam parichakshate",
+    "meaning_en": "This threefold austerity, performed with transcendental faith by men not expecting material benefits but engaged only for the sake of the Supreme, is called austerity in goodness.",
+    "meaning_hi": "फल की इच्छा न करने वाले योगी पुरुषों द्वारा परम श्रद्धा से किए हुए उस पूर्वोक्त तीन प्रकार के तप को सात्त्विक तप कहते हैं।",
+    "emotional_tone": [
+      "devout",
+      "selfless"
+    ],
+    "core_theme": [
+      "sattvic austerity",
+      "threefold austerity",
+      "no expectation"
+    ],
+    "life_situations": [
+      "selfless discipline",
+      "pure devotion",
+      "practicing yoga"
+    ],
+    "notification_short": {
+      "en": "Threefold austerity performed with faith and without desire for fruit is Sattvic.",
+      "hi": "श्रद्धा के साथ और फल की इच्छा के बिना किया गया तीन प्रकार का तप सात्त्विक है।"
+    }
+  },
+  {
+    "id": "17_18",
+    "sanskrit": "सत्कारमानपूजार्थं तपो दम्भेन चैव यत् । क्रियते तदिह प्रोक्तं राजसं चलमध्रुवम् ॥",
+    "iast": "satkāra-māna-pūjārthaṃ tapo dambhena caiva yat। kriyate tad iha proktaṃ rājasaṃ calam adhruvam॥",
+    "simple": "satkara mana pujartham tapo dambhena chaiva yat, kriyate tad iha proktam rajasam chalam adhruvam",
+    "meaning_en": "Penance performed out of pride and for the sake of gaining respect, honor and worship is said to be in the mode of passion. It is neither stable nor permanent.",
+    "meaning_hi": "जो तप सत्कार, मान और पूजा के लिए तथा अन्य किसी स्वार्थ के लिए भी पाखंड से किया जाता है, वह अनिश्चित और नाशवान फल वाला तप यहाँ राजस कहा गया है।",
+    "emotional_tone": [
+      "unstable",
+      "proud"
+    ],
+    "core_theme": [
+      "rajasic austerity",
+      "for respect and honor",
+      "temporary results"
+    ],
+    "life_situations": [
+      "seeking validation",
+      "doing good for likes",
+      "superficiality"
+    ],
+    "notification_short": {
+      "en": "Austerity performed for respect, honor, and show is Rajasic and unstable.",
+      "hi": "सम्मान और दिखावे के लिए किया गया तप राजसी और अस्थिर होता है।"
+    }
+  },
+  {
+    "id": "17_19",
+    "sanskrit": "मूढग्राहेणात्मनो यत्पीडया क्रियते तपः । परस्योत्सादनार्थं वा तत्तामसमुदाहृतम् ॥",
+    "iast": "mūḍha-grāheṇātmano yat pīḍayā kriyate tapaḥ। parasyotsādanārthaṃ vā tat tāmasam udāhṛtam॥",
+    "simple": "mudha grahena atmano yat pidaya kriyate tapah, parasya utsadanartham va tat tamasam udahritam",
+    "meaning_en": "Penance performed out of foolishness, with self-torture or to destroy or injure others, is said to be in the mode of ignorance.",
+    "meaning_hi": "जो तप मूढ़तापूर्वक हठ से, मन-वाणी और शरीर की पीड़ा सहित अथवा दूसरे का अनिष्ट करने के लिए किया जाता है, वह तप तामस कहा गया है।",
+    "emotional_tone": [
+      "destructive",
+      "foolish"
+    ],
+    "core_theme": [
+      "tamasic austerity",
+      "self-torture",
+      "harming others"
+    ],
+    "life_situations": [
+      "black magic",
+      "sadism/masochism",
+      "foolish vows"
+    ],
+    "notification_short": {
+      "en": "Austerity performed with self-torture or to harm others is Tamasic.",
+      "hi": "आत्म-पीड़ा या दूसरों को नुकसान पहुंचाने के लिए किया गया तप तामसी है।"
+    }
+  },
+  {
+    "id": "17_20",
+    "sanskrit": "दातव्यमिति यद्दानं दीयतेऽनुपकारिणे । देशे काले च पात्रे च तद्दानं सात्त्विकं स्मृतम् ॥",
+    "iast": "dātavyam iti yad dānaṃ dīyate ’nupakāriṇe। deśe kāle ca pātre ca tad dānaṃ sāttvikaṃ smṛtam॥",
+    "simple": "datavyam iti yad danam diyate anupakarine, deshe kale cha patre cha tad danam sattvikam smritam",
+    "meaning_en": "Charity given out of duty, without expectation of return, at the proper time and place, and to a worthy person is considered to be in the mode of goodness.",
+    "meaning_hi": "दान देना ही कर्तव्य है- ऐसे भाव से जो दान देश, काल और पात्र के प्राप्त होने पर उपकार न करने वाले के प्रति दिया जाता है, वह दान सात्त्विक कहा गया है।",
+    "emotional_tone": [
+      "generous",
+      "dutiful"
+    ],
+    "core_theme": [
+      "sattvic charity",
+      "proper time and place",
+      "worthy recipient"
+    ],
+    "life_situations": [
+      "intelligent charity",
+      "helping the needy",
+      "joy of giving"
+    ],
+    "notification_short": {
+      "en": "Charity given as duty to a worthy person, at the right time and place, is Sattvic.",
+      "hi": "सही समय और जगह पर, पात्र व्यक्ति को कर्तव्य भाव से दिया गया दान सात्त्विक है।"
+    }
+  },
+  {
+    "id": "17_21",
+    "sanskrit": "यत्तु प्रत्युपकारार्थं फलमुद्दिश्य वा पुनः । दीयते च परिक्लिष्टं तद्दानं राजसं स्मृतम् ॥",
+    "iast": "yat tu pratyupakārārthaṃ phalam uddiśya vā punaḥ। dīyate ca parikliṣṭaṃ tad dānaṃ rājasaṃ smṛtam॥",
+    "simple": "yat tu pratyupakarartham phalam uddishya va punah, diyate cha pariklishtam tad danam rajasam smritam",
+    "meaning_en": "But charity performed with the expectation of some return, or with a desire for fruitive results, or in a grudging mood, is said to be charity in the mode of passion.",
+    "meaning_hi": "किन्तु जो दान क्लेशपूर्वक तथा प्रत्युपकार के प्रयोजन से अथवा फल को दृष्टि में रखकर दिया जाता है, वह दान राजस कहा गया है।",
+    "emotional_tone": [
+      "grudging",
+      "expectant"
+    ],
+    "core_theme": [
+      "rajasic charity",
+      "expecting return",
+      "giving with regret"
+    ],
+    "life_situations": [
+      "reluctant giving",
+      "transactional kindness",
+      "giving for tax breaks"
+    ],
+    "notification_short": {
+      "en": "Charity given grudgingly or expecting something in return is Rajasic.",
+      "hi": "बेमन से या बदले में कुछ पाने की उम्मीद से दिया गया दान राजसी है।"
+    }
+  },
+  {
+    "id": "17_22",
+    "sanskrit": "अदेशकाले यद्दानमपात्रेभ्यश्च दीयते । असत्कृतमवज्ञातं तत्तामसमुदाहृतम् ॥",
+    "iast": "adeśa-kāle yad dānam apātrebhyaś ca dīyate। asat-kṛtam avajñātaṃ tat tāmasam udāhṛtam॥",
+    "simple": "adesha kale yad danam apatrebhyash cha diyate, asat kritam avajnatam tat tamasam udahritam",
+    "meaning_en": "And charity performed at an impure place, at an improper time, to unworthy persons, or without proper attention and respect is said to be in the mode of ignorance.",
+    "meaning_hi": "जो दान बिना सत्कार के अथवा तिरस्कारपूर्वक अयोग्य देश-काल में कुपात्रों के प्रति दिया जाता है, वह दान तामस कहा गया है।",
+    "emotional_tone": [
+      "disrespectful",
+      "careless"
+    ],
+    "core_theme": [
+      "tamasic charity",
+      "wrong place time",
+      "unworthy recipient"
+    ],
+    "life_situations": [
+      "funding bad causes",
+      "insulting the poor",
+      "mindless giving"
+    ],
+    "notification_short": {
+      "en": "Charity given at a wrong place/time, to unworthy persons, or with disrespect is Tamasic.",
+      "hi": "गलत जगह/समय पर, अयोग्य लोगों को या अनादर के साथ दिया गया दान तामसी है।"
+    }
+  },
+  {
+    "id": "17_23",
+    "sanskrit": "ॐ तत्सदिति निर्देशो ब्रह्मणस्त्रिविधः स्मृतः । ब्राह्मणास्तेन वेदाश्च यज्ञाश्च विहिताः पुरा ॥",
+    "iast": "oṃ tat sad iti nirdeśo brahmaṇas tri-vidhaḥ smṛtaḥ। brāhmaṇās tena vedāś ca yajñāś ca vihitāḥ purā॥",
+    "simple": "om tat sad iti nirdesho brahmanas tri vidhah smritah, brahmanas tena vedash cha yajnyash cha vihitah pura",
+    "meaning_en": "Om Tat Sat has been declared to be the threefold name of the Supreme Absolute Truth. By these three symbolic representations, better known as Brahmanas, the Vedic hymns, and sacrifices were ordained.",
+    "meaning_hi": "ॐ, तत्, सत्- ऐसे यह तीन प्रकार का सच्चिदानन्दघन ब्रह्म का नाम कहा है; उसी से सृष्टि के आदिकाल में ब्राह्मण और वेद तथा यज्ञ रचे गए।",
+    "emotional_tone": [
+      "sacred",
+      "foundational"
+    ],
+    "core_theme": [
+      "om tat sat",
+      "threefold name of god",
+      "sanctifying acts"
+    ],
+    "life_situations": [
+      "starting rituals",
+      "consecrating actions",
+      "spiritual formulas"
+    ],
+    "notification_short": {
+      "en": "'Om Tat Sat' is the threefold name of the Supreme, used to sanctify sacrifices.",
+      "hi": "'ॐ तत् सत्' परमात्मा का तीन प्रकार का नाम है, जिससे यज्ञ आदि पवित्र होते हैं।"
+    }
+  },
+  {
+    "id": "17_24",
+    "sanskrit": "तस्मादॐ इत्युदाहृत्य यज्ञदानतपःक्रियाः । प्रवर्तन्ते विधानोक्ताः सततं ब्रह्मवादिनाम् ॥",
+    "iast": "tasmād oṃ ity udāhṛtya yajña-dāna-tapaḥ-kriyāḥ। pravartante vidhānoktāḥ satataṃ brahma-vādinām॥",
+    "simple": "tasmad om ity udahritya yajna dana tapah kriyah, pravartante vidhanoktah satatam brahma vadinam",
+    "meaning_en": "Therefore, transcendentalists undertaking performances of sacrifice, charity and penance in accordance with scriptural regulations begin always with 'Om', to attain the Supreme.",
+    "meaning_hi": "इसलिए वेदवादि श्रेष्ठ पुरुषों की शास्त्रविधि से नियत यज्ञ, दान और तप रूप क्रियाएँ सदा 'ॐ' इस परमात्मा के नाम को उच्चारण करके ही आरम्भ होती हैं।",
+    "emotional_tone": [
+      "auspicious",
+      "beginning"
+    ],
+    "core_theme": [
+      "chanting om",
+      "beginning sacrifice",
+      "transcendentalists"
+    ],
+    "life_situations": [
+      "chanting om",
+      "starting new projects",
+      "seeking auspiciousness"
+    ],
+    "notification_short": {
+      "en": "Transcendentalists always begin sacrifices, charity, and penance with 'Om'.",
+      "hi": "योगी पुरुष हमेशा 'ॐ' के साथ यज्ञ, दान और तप शुरू करते हैं।"
+    }
+  },
+  {
+    "id": "17_25",
+    "sanskrit": "तदित्यनभिसन्धाय फलं यज्ञतपःक्रियाः । दानक्रियाश्च विविधाः क्रियन्ते मोक्षकाङ्क्षिभिः ॥",
+    "iast": "tad ity anabhisandhāya phalaṃ yajña-tapaḥ-kriyāḥ। dāna-kriyāś ca vividhāḥ kriyante mokṣa-kāṅkṣibhiḥ॥",
+    "simple": "tad ity anabhisandhaya phalam yajna tapah kriyah, dana kriyash cha vividha kriyante moksha kankshibhih",
+    "meaning_en": "Whatever sacrifice, penance or charity is performed with the word 'Tat', which indicates that the purpose of such activities is to get out of material entanglement.",
+    "meaning_hi": "तत् (अर्थात 'वह' परब्रह्म परमात्मा का नाम है), इस नाम से फल की इच्छा को छोड़कर नाना प्रकार की यज्ञ, तप और दान रूप क्रियाएँ कल्याण की इच्छा वाले पुरुषों द्वारा की जाती हैं।",
+    "emotional_tone": [
+      "liberating",
+      "detached"
+    ],
+    "core_theme": [
+      "chanting tat",
+      "seeking liberation",
+      "giving up fruit"
+    ],
+    "life_situations": [
+      "dedicating to god",
+      "acting for moksha",
+      "letting go of results"
+    ],
+    "notification_short": {
+      "en": "With 'Tat', those seeking liberation perform acts without desiring fruit.",
+      "hi": "'तत्' शब्द के साथ, मोक्ष चाहने वाले फल की इच्छा के बिना कर्म करते हैं।"
+    }
+  },
+  {
+    "id": "17_26",
+    "sanskrit": "सद्भावे साधुभावे च सदित्येतत्प्रयुज्यते । प्रशस्ते कर्मणि तथा सच्छब्दः पार्थ युज्यते ॥",
+    "iast": "sad-bhāve sādhu-bhāve ca sad ity etat prayujyate। praśaste karmaṇi tathā sac-chabdaḥ pārtha yujyate॥",
+    "simple": "sad bhave sadhu bhave cha sad ity etat prayujyate, prashaste karmani tatha sach shabdah partha yujyate",
+    "meaning_en": "The Absolute Truth is the objective of devotional sacrifice, and it is indicated by the word 'Sat'. The performer of such sacrifice is also called 'Sat', as are all works of sacrifice, penance and charity which, true to the absolute nature, are performed to please the Supreme Person, O son of Pritha.",
+    "meaning_hi": "'सत्'- यह नाम सत्यभाव में और श्रेष्ठभाव में प्रयोग किया जाता है तथा हे पार्थ! उत्तम कर्म में भी 'सत्' शब्द का प्रयोग किया जाता है।",
+    "emotional_tone": [
+      "good",
+      "eternal"
+    ],
+    "core_theme": [
+      "chanting sat",
+      "truth and goodness",
+      "supreme purpose"
+    ],
+    "life_situations": [
+      "being good",
+      "doing good",
+      "eternal nature"
+    ],
+    "notification_short": {
+      "en": "'Sat' indicates the Absolute Truth, goodness, and auspicious actions.",
+      "hi": "'सत्' शब्द का प्रयोग सत्य, अच्छाई और शुभ कार्यों के लिए किया जाता है।"
+    }
+  },
+  {
+    "id": "17_27",
+    "sanskrit": "यज्ञे तपसि दाने च स्थितिः सदिति चोच्यते । कर्म चैव तदर्थीयं सदित्येवाभिधीयते ॥",
+    "iast": "yajñe tapasi dāne ca sthitiḥ sad iti cocyate। karma caiva tad-arthīyaṃ sad ity evābhidhīyate॥",
+    "simple": "yajnyye tapasi dane cha sthitih sad iti chochyate, karma chaiva tad arthiyam sad ity evabhidhiyate",
+    "meaning_en": "And steadfastness in sacrifice, austerity and charity is called 'Sat' and any action for the sake of the Supreme is also called 'Sat'.",
+    "meaning_hi": "तथा यज्ञ, तप और दान में जो स्थिति है, वह भी 'सत्' कही जाती है और उस परमात्मा के लिए जो कर्म है, वह भी 'सत्' ऐसा कहा जाता है।",
+    "emotional_tone": [
+      "steadfast",
+      "divine"
+    ],
+    "core_theme": [
+      "steadfastness in sat",
+      "karma for god",
+      "supreme reality"
+    ],
+    "life_situations": [
+      "spiritual stability",
+      "dedication",
+      "sacred living"
+    ],
+    "notification_short": {
+      "en": "Steadfastness in sacrifice and works for the Supreme is called 'Sat'.",
+      "hi": "यज्ञ में स्थिरता और परमात्मा के लिए किए गए कर्म को 'सत्' कहा जाता है।"
+    }
+  },
+  {
+    "id": "17_28",
+    "sanskrit": "अश्रद्धया हुतं दत्तं तपस्तप्तं कृतं च यत् । असदित्युच्यते पार्थ न च तत्प्रेत्य नो इह ॥",
+    "iast": "aśraddhayā hutaṃ dattaṃ tapas taptaṃ kṛtaṃ ca yat। asad ity ucyate pārtha na ca tat pretya no iha॥",
+    "simple": "ashraddhaya hutam dattam tapas taptam kritam cha yat, asad ity uchyate partha na cha tat pretya no iha",
+    "meaning_en": "Anything done as sacrifice, charity or penance without faith in the Supreme, O son of Pritha, is impermanent. It is called 'Asat' and is useless both in this life and the next.",
+    "meaning_hi": "हे अर्जुन! बिना श्रद्धा के किया हुआ हवन, दिया हुआ दान और तपा हुआ तप तथा और भी जो कुछ किया हुआ शुभ कर्म है- वह समस्त 'असत्' कहा जाता है; इसलिए वह न तो इस लोक में लाभदायक है और न मरने के बाद ही।",
+    "emotional_tone": [
+      "useless",
+      "faithless"
+    ],
+    "core_theme": [
+      "asat",
+      "faithless action",
+      "uselessness"
+    ],
+    "life_situations": [
+      "doing things only for show",
+      "lack of conviction",
+      "wasted effort"
+    ],
+    "notification_short": {
+      "en": "Sacrifice, charity, or penance done without faith is 'Asat' (useless) here and hereafter.",
+      "hi": "बिना श्रद्धा के किया गया यज्ञ, दान या तप 'असत्' है और इसका कोई फल नहीं मिलता।"
+    }
+  }
+]

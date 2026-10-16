@@ -1,0 +1,520 @@
+[
+    {
+        "id": "12_1",
+        "sanskrit": "अर्जुन उवाच । एवं सततयुक्ता ये भक्तास्त्वां पर्युपासते । ये चाप्यक्षरमव्यक्तं तेषां के योगवित्तमाः ॥",
+        "iast": "arjuna uvāca। evaṃ satata-yuktā ye bhaktās tvāṃ paryupāsate। ye cāpy akṣaram avyaktaṃ teṣāṃ ke yoga-vittamāḥ॥",
+        "simple": "arjuna uvacha, evam satata yukta ye bhaktas tvam paryupasate, ye chapy aksharam avyaktam tesham ke yoga vittamah",
+        "meaning_en": "Arjuna said: Which are considered to be more perfect, those who are always properly engaged in Your devotional service or those who worship the impersonal Brahman, the unmanifested?",
+        "meaning_hi": "अर्जुन ने कहा: जो भक्त निरंतर आपके भजन में लगे रहकर (सगुण साकार) आपकी उपासना करते हैं, और जो (निर्गुण निराकार) अविनाशी अव्यक्त ब्रह्म की ही उपासना करते हैं- उन दोनों प्रकार के उपासकों में अति उत्तम योगवेत्ता कौन हैं?",
+        "emotional_tone": [
+            "curious",
+            "seeking clarity"
+        ],
+        "core_theme": [
+            "personal vs impersonal",
+            "bhakti vs jnana",
+            "best yogi"
+        ],
+        "life_situations": [
+            "choosing a path",
+            "confusion about methods",
+            "seeking the best way"
+        ],
+        "notification_short": {
+            "en": "Who is better: the devotee who worships You, or the one who worships the Unmanifest?",
+            "hi": "कौन बेहतर है: वह भक्त जो आपकी पूजा करता है, या वह जो अव्यक्त की पूजा करता है?"
+        }
+    },
+    {
+        "id": "12_2",
+        "sanskrit": "श्रीभगवानुवाच । मय्यावेश्य मनो ये मां नित्ययुक्ता उपासते । श्रद्धया परयोपेतास्ते मे युक्ततमा मताः ॥",
+        "iast": "śrī-bhagavān uvāca। mayy āveśya mano ye māṃ nitya-yuktā upāsate। śraddhayā parayopetās te me yukta-tamā matāḥ॥",
+        "simple": "shri bhagavan uvacha, mayy avesya mano ye mam nitya yukta upasate, shraddhaya parayopetas te me yuktatama matah",
+        "meaning_en": "The Supreme Personality of Godhead said: Those who fix their minds on My personal form and are always engaged in worshiping Me with great and transcendental faith are considered by Me to be the most perfect.",
+        "meaning_hi": "श्री भगवान ने कहा: जो मुझमें मन को एकाग्र करके, निरंतर मेरे भजन-ध्यान में लगे हुए, परम श्रद्धा से युक्त होकर मेरी उपासना करते हैं, वे मेरे मत में सर्वश्रेष्ठ योगी हैं।",
+        "emotional_tone": [
+            "definitive",
+            "validating"
+        ],
+        "core_theme": [
+            "power of faith",
+            "personal worship",
+            "yuktatama"
+        ],
+        "life_situations": [
+            "practicing devotion",
+            "faith",
+            "best spiritual practice"
+        ],
+        "notification_short": {
+            "en": "Those who fix their minds on Me with great faith are the most perfect yogis.",
+            "hi": "जो परम श्रद्धा के साथ मुझमें मन लगाते हैं, वे सर्वश्रेष्ठ योगी हैं।"
+        }
+    },
+    {
+        "id": "12_3",
+        "sanskrit": "ये त्वक्षरमनिर्देश्यमव्यक्तं पर्युपासते । सर्वत्रगमचिन्त्यं च कूटस्थमचलंध्रुवम् ॥",
+        "iast": "ye tv akṣaram anirdeśyam avyaktaṃ paryupāsate। sarvatra-gam acintyaṃ ca kūṭa-stham acalaṃ dhruvam॥",
+        "simple": "ye tu aksharam anirdeshyam avyaktam paryupasate, sarvatragam achintyam cha kuta stham achalam dhruvam",
+        "meaning_en": "But those who fully worship the unmanifested, that which lies beyond the perception of the senses, the all-pervading, inconceivable, unchanging, fixed and immovable...",
+        "meaning_hi": "परन्तु जो पुरुष इंद्रियों के समुदाय को भली प्रकार वश में करके; मन-बुद्धि से परे, सर्वव्यापी, अनिर्वचनीय और सदा एकरस रहने वाले...",
+        "emotional_tone": [
+            "descriptive"
+        ],
+        "core_theme": [
+            "impersonal brahman",
+            "unmanifest",
+            "attribute-less"
+        ],
+        "life_situations": [
+            "abstract meditation",
+            "focusing on the formless",
+            "intellectual spirituality"
+        ],
+        "notification_short": {
+            "en": "Those who worship the Unmanifest, the Inconceivable, the Unchanging...",
+            "hi": "जो अव्यक्त, अचिंत्य और अचल की उपासना करते हैं..."
+        }
+    },
+    {
+        "id": "12_4",
+        "sanskrit": "सन्नियम्येन्द्रियग्रामं सर्वत्र समबुद्धयः । ते प्राप्नुवन्ति मामेव सर्वभूतहिते रताः ॥",
+        "iast": "sanniyamyendriya-grāmaṃ sarvatra sama-buddhayaḥ। te prāpnuvanti mām eva sarva-bhūta-hite ratāḥ॥",
+        "simple": "sanniyamya indriya gramam sarvatra sama buddhayah, te prapnuvanti mam eva sarva bhuta hite ratah",
+        "meaning_en": "...controlling the various senses and being completely even-minded to everyone, such persons, engaged in the welfare of all, at last achieve Me.",
+        "meaning_hi": "...अचल, निराकार, अविनाशी सच्चिदानंदघन ब्रह्म की निरंतर एकीभाव से उपासना करते हैं, वे सम्पूर्ण भूतों के हित में रत और सब में समान भाव वाले योगी मुझको ही प्राप्त होते हैं।",
+        "emotional_tone": [
+            "inclusive",
+            "benevolent"
+        ],
+        "core_theme": [
+            "control of senses",
+            "welfare of all",
+            "attaining god"
+        ],
+        "life_situations": [
+            "serving others",
+            "controlling senses",
+            "equanimity"
+        ],
+        "notification_short": {
+            "en": "Controlling the senses and working for the welfare of all, they also reach Me.",
+            "hi": "इंद्रियों को वश में करके और सभी के कल्याण के लिए काम करके, वे भी मुझे प्राप्त करते हैं।"
+        }
+    },
+    {
+        "id": "12_5",
+        "sanskrit": "क्लेशोऽधिकतरस्तेषामव्यक्तासक्तचेतसाम् । अव्यक्ता हि गतिर्दुःखं देहवद्भिरवाप्यते ॥",
+        "iast": "kleśo ’dhikataras teṣām avyaktāsakta-cetasām। avyaktā hi gatir duḥkhaṃ deha-vadbhir avāpyate॥",
+        "simple": "klesho adhikataras tesham avyaktasakta chetasam, avyakta hi gatir duhkham dehavadbhir avapyate",
+        "meaning_en": "For those whose minds are attached to the unmanifested, impersonal feature of the Supreme, advancement is very troublesome. To make progress in that discipline is always difficult for those who are embodied.",
+        "meaning_hi": "उन अव्यक्त में आसक्त चित्त वाले पुरुषों के साधन में परिश्रम विशेष है; क्योंकि देहाभिमानियों द्वारा अव्यक्तविषयक गति दुःखपूर्वक प्राप्त की जाती है।",
+        "emotional_tone": [
+            "realistic",
+            "cautionary"
+        ],
+        "core_theme": [
+            "difficulty of impersonal path",
+            "struggle of embodied",
+            "bhakti vs harsh austerities"
+        ],
+        "life_situations": [
+            "choosing an easier path",
+            "acknowledging limitations",
+            "struggle in practice"
+        ],
+        "notification_short": {
+            "en": "The path of the unmanifest is difficult for those in a body.",
+            "hi": "शरीरधारी जीवों के लिए अव्यक्त का मार्ग कठिन है।"
+        }
+    },
+    {
+        "id": "12_6",
+        "sanskrit": "ये तु सर्वाणि कर्माणि मयि संन्यस्य मत्पराः । अनन्येनैव योगेन मां ध्यायन्त उपासते ॥",
+        "iast": "ye tu sarvāṇi karmāṇi mayi saṃnyasya mat-parāḥ। ananyenaiva yogena māṃ dhyāyanta upāsate॥",
+        "simple": "ye tu sarvani karmani mayi sannyasya mat parah, ananyenaiva yogena mam dhyayanta upasate",
+        "meaning_en": "But those who worship Me, giving up all their activities unto Me and being devoted to Me without deviation, engaged in devotional service and always meditating upon Me...",
+        "meaning_hi": "परन्तु जो मेरे पारायण रहने वाले भक्तजन सम्पूर्ण कर्मों को मुझमें अर्पण करके, मुझ सगुणरूप परमेश्वर को ही अनन्य भक्ति-योग से निरंतर चिंतन करते हुए भजते हैं...",
+        "emotional_tone": [
+            "devoted",
+            "focused"
+        ],
+        "core_theme": [
+            "renouncing actions to god",
+            "undivided attention",
+            "meditation on form"
+        ],
+        "life_situations": [
+            "surrendering work",
+            "daily devotion",
+            "focusing on god"
+        ],
+        "notification_short": {
+            "en": "Those who dedicate all actions to Me and worship Me with undivided yoga...",
+            "hi": "जो अपने सभी कर्म मुझे अर्पित करते हैं और अनन्य योग से मेरी पूजा करते हैं..."
+        }
+    },
+    {
+        "id": "12_7",
+        "sanskrit": "तेषामहं समुद्धर्ता मृत्युसंसारसागरात् । भवामि नचिरात्पार्थ मय्यावेशितचेतसाम् ॥",
+        "iast": "teṣām ahaṃ samuddhartā mṛtyu-saṃsāra-sāgarāt। bhavāmi na cirāt pārtha mayy āveśita-cetasām॥",
+        "simple": "tesham aham samuddharta mrityu samsara sagarat, bhavami na chirat partha mayy avesita chetasam",
+        "meaning_en": "For them, I am the swift deliverer from the ocean of birth and death, for their minds are fixed on Me.",
+        "meaning_hi": "...हे अर्जुन! उन मुझमें चित्त लगाने वाले प्रेमी भक्तों का मैं शीघ्र ही मृत्यु रूप संसार-समुद्र से उद्धार करने वाला होता हूँ।",
+        "emotional_tone": [
+            "reassuring",
+            "saving"
+        ],
+        "core_theme": [
+            "deliverer",
+            "ocean of death",
+            "swift rescue"
+        ],
+        "life_situations": [
+            "fear of death",
+            "seeking salvation",
+            "trusting god"
+        ],
+        "notification_short": {
+            "en": "I swiftly deliver them from the ocean of birth and death.",
+            "hi": "मैं शीघ्र ही उन्हें जन्म-मृत्यु के सागर से उबार लेता हूँ।"
+        }
+    },
+    {
+        "id": "12_8",
+        "sanskrit": "मय्येव मन आधत्स्व मयि बुद्धिं निवेशय । निवसिष्यसि मय्येव अत ऊर्ध्वं न संशयः ॥",
+        "iast": "mayy eva mana ādhatsva mayi buddhiṃ niveśaya। nivasiṣyasi mayy eva ata ūrdhvaṃ na saṃśayaḥ॥",
+        "simple": "mayy eva mana adhat sva mayi buddhim niveshaya, nivasisyasi mayy eva ata urdhvam na samshayah",
+        "meaning_en": "Just fix your mind upon Me, the Supreme Personality of Godhead, and engage all your intelligence in Me. Thus you will live in Me always, without a doubt.",
+        "meaning_hi": "मुझमें ही मन को लगा और मुझमें ही बुद्धि को लगा; इसके उपरांत तू मुझमें ही निवास करेगा, इसमें कुछ भी संशय नहीं है।",
+        "emotional_tone": [
+            "imperative",
+            "certain"
+        ],
+        "core_theme": [
+            "fix mind on me",
+            "live in god",
+            "total absorption"
+        ],
+        "life_situations": [
+            "mental focus",
+            "spiritual goal",
+            "living in the divine"
+        ],
+        "notification_short": {
+            "en": "Fix your mind and intelligence on Me, and you will live in Me always.",
+            "hi": "अपना मन और बुद्धि मुझमें लगाओ, और तुम सदा मुझमें ही निवास करोगे।"
+        }
+    },
+    {
+        "id": "12_9",
+        "sanskrit": "अथ चित्तं समाधातुं न शक्नोषि मयि स्थिरम् । अभ्यासयोगेन ततो मामिच्छाप्तुं धनञ्जय ॥",
+        "iast": "atha cittaṃ samādhātuṃ na śaknoṣi mayi sthiram। abhyāsa-yogena tato mām icchāptuṃ dhanañjaya॥",
+        "simple": "atha chittam samadhatum na shaknoshi mayi sthiram, abhyasa yogena tato mam ichchhaptum dhananjaya",
+        "meaning_en": "My dear Arjuna, O winner of wealth, if you cannot fix your mind upon Me without deviation, then follow the regulative principles of the yoga of practice. In this way develop a desire to attain Me.",
+        "meaning_hi": "यदि तू मन को मुझमें अचल स्थापित करने के लिए समर्थ नहीं है, तो हे अर्जुन! अभ्यास-योग के द्वारा मुझे प्राप्त करने की इच्छा कर।",
+        "emotional_tone": [
+            "practical",
+            "encouraging"
+        ],
+        "core_theme": [
+            "abhyasa yoga",
+            "practice",
+            "developing desire"
+        ],
+        "life_situations": [
+            "struggling to focus",
+            "building habits",
+            "spiritual practice"
+        ],
+        "notification_short": {
+            "en": "If you cannot fix your mind, then seek to reach Me through constant practice.",
+            "hi": "यदि तुम मन स्थिर नहीं कर सकते, तो अभ्यास योग द्वारा मुझे पाने की इच्छा करो।"
+        }
+    },
+    {
+        "id": "12_10",
+        "sanskrit": "अभ्यासेऽप्यसमर्थोऽसि मत्कर्मपरमो भव । मदर्थमपि कर्माणि कुर्वन्सिद्धिमवाप्स्यसि ॥",
+        "iast": "abhyāse ’py asamartho ’si mat-karma-paramo bhava। mad-artham api karmāṇi kurvan siddhim avāpsyasi॥",
+        "simple": "abhyase apy asamartho asi mat karma paramo bhava, mad artham api karmani kurvan siddhim avapsyasi",
+        "meaning_en": "If you cannot practice the regulations of bhakti-yoga, then just try to work for Me, because by working for Me you will come to the perfect stage.",
+        "meaning_hi": "यदि तू अभ्यास में भी असमर्थ है, तो केवल मेरे लिए कर्म करने के ही परायण हो जा। इस प्रकार मेरे निमित्त कर्मों को करता हुआ भी तू मेरी प्राप्ति रूप सिद्धि को ही प्राप्त होगा।",
+        "emotional_tone": [
+            "accommodating",
+            "service-oriented"
+        ],
+        "core_theme": [
+            "work for god",
+            "service",
+            "alternative path"
+        ],
+        "life_situations": [
+            "busy life",
+            "dedicating work",
+            "service as sadhana"
+        ],
+        "notification_short": {
+            "en": "If you cannot practice, then work for Me. By doing this, you will attain perfection.",
+            "hi": "यदि तुम अभ्यास नहीं कर सकते, तो मेरे लिए कर्म करो। इससे तुम सिद्धि प्राप्त करोगे।"
+        }
+    },
+    {
+        "id": "12_11",
+        "sanskrit": "अथैतदप्यशक्तोऽसि कर्तुं मद्योगमाश्रितः । सर्वकर्मफलत्यागं ततः कुरु यतात्मवान् ॥",
+        "iast": "athaitad apy aśakto ’si kartuṃ mad-yogam āśritaḥ। sarva-karma-phala-tyāgaṃ tataḥ kuru yatātmavān॥",
+        "simple": "athaitad apy ashakto asi kartum mad yogam ashritah, sarva karma phala tyagam tatah kuru yatatmavan",
+        "meaning_en": "If, however, you are unable to work in this consciousness of Me, then try to act giving up all results of your work and try to be self-situated.",
+        "meaning_hi": "यदि मेरी प्राप्ति रूप योग के आश्रित होकर यह करने में भी तू असमर्थ है, तो मन-बुद्धि आदि पर विजय प्राप्त करने वाला होकर सब कर्मों के फलों का त्याग कर।",
+        "emotional_tone": [
+            "pragmatic"
+        ],
+        "core_theme": [
+            "renounce fruits",
+            "karma phala tyaga",
+            "self-control"
+        ],
+        "life_situations": [
+            "letting go of results",
+            "selfless action",
+            "reducing stress"
+        ],
+        "notification_short": {
+            "en": "If you cannot do even that, then renounce the fruits of all your actions.",
+            "hi": "यदि तुम यह भी नहीं कर सकते, तो अपने सभी कर्मों के फलों का त्याग करो।"
+        }
+    },
+    {
+        "id": "12_12",
+        "sanskrit": "श्रेयः हि ज्ञानमभ्यासाज्ज्ञानाद्ध्यानं विशिष्यते । ध्यानात्कर्मफलत्यागस्त्यागाच्छान्तिरनन्तरम् ॥",
+        "iast": "śreyaḥ hi jñānam abhyāsāj jñānād dhyānaṃ viśiṣyate। dhyānāt karma-phala-tyāgas tyāgāc chāntir anantaram॥",
+        "simple": "shreyah hi jnanam abhyasaj jnanad dhyanam vishishyate, dhyanat karma phala tyagas tyagach shantir anantaram",
+        "meaning_en": "If you cannot take to this practice, then engage yourself in the cultivation of knowledge. Better than knowledge, however, is meditation, and better than meditation is renunciation of the fruits of action, for by such renunciation one can attain peace of mind.",
+        "meaning_hi": "मर्म को न जानकर किए हुए अभ्यास से ज्ञान श्रेष्ठ है; ज्ञान से ध्यान श्रेष्ठ है और ध्यान से भी सब कर्मों के फल का त्याग श्रेष्ठ है; क्योंकि त्याग से तत्काल ही परम शांति होती है।",
+        "emotional_tone": [
+            "comparative",
+            "peaceful"
+        ],
+        "core_theme": [
+            "knowledge vs meditation",
+            "superiority of renunciation",
+            "peace"
+        ],
+        "life_situations": [
+            "finding peace",
+            "value of letting go",
+            "understanding hierarchy"
+        ],
+        "notification_short": {
+            "en": "Renunciation of the fruits of action brings immediate peace.",
+            "hi": "कर्म फलों का त्याग ही तत्काल शांति लाता है।"
+        }
+    },
+    {
+        "id": "12_13",
+        "sanskrit": "अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च । निर्ममो निरहंकारः समदुःखसुखः क्षमी ॥",
+        "iast": "adveṣṭā sarva-bhūtānāṃ maitraḥ karuṇa eva ca। nirmamo nirahaṅkāraḥ sama-duḥkha-sukhaḥ kṣamī॥",
+        "simple": "adveshta sarva bhutanam maitrah karuna eva cha, nirmamo nirahankarah sama duhkha sukhah kshami",
+        "meaning_en": "One who is not envious but is a kind friend to all living entities, who does not think himself a proprietor and is free from false ego, who is equal in both happiness and distress, who is tolerant...",
+        "meaning_hi": "जो पुरुष सब भूतों में द्वेषभाव से रहित, स्वार्थरहित, सबका प्रेमी और हेतु रहित दयालु है तथा ममता से रहित एवं अहंकार से रहित, सुख-दुःखों की प्राप्ति में सम और क्षमावान है...",
+        "emotional_tone": [
+            "saintly",
+            "compassionate"
+        ],
+        "core_theme": [
+            "adveshta",
+            "friendliness",
+            "no ego"
+        ],
+        "life_situations": [
+            "being a good person",
+            "emotional stability",
+            "compassion"
+        ],
+        "notification_short": {
+            "en": "He who is friendly to all, free from ego, and equal in pain and pleasure...",
+            "hi": "जो सभी का मित्र है, अहंकार से मुक्त है, और दुख-सुख में समान है..."
+        }
+    },
+    {
+        "id": "12_14",
+        "sanskrit": "सन्तुष्टः सततं योगी यतात्मा दृढनिश्चयः । मय्यर्पितमनोबुद्धिर्यो मद्भक्तः स मे प्रियः ॥",
+        "iast": "santuṣṭaḥ satataṃ yogī yatātmā dṛḍha-niścayaḥ। mayy arpita-mano-buddhir yo mad-bhaktaḥ sa me priyaḥ॥",
+        "simple": "santushtah satatam yogi yatatma dridha nishchayah, mayy arpit mano buddhir yo mad bhaktah sa me priyah",
+        "meaning_en": "...always satisfied, self-controlled, and engaged in devotional service with determination, his mind and intelligence fixed on Me—such a devotee of Mine is very dear to Me.",
+        "meaning_hi": "...जो योगी निरंतर संतुष्ट है, मन-इन्द्रियों सहित शरीर को वश में किए हुए है और मुझमें दृढ़ निश्चय वाला है- वह मुझमें अर्पण किए हुए मन-बुद्धि वाला मेरा भक्त मुझे प्रिय है।",
+        "emotional_tone": [
+            "satisfied",
+            "loving"
+        ],
+        "core_theme": [
+            "contentment",
+            "determination",
+            "dear to god"
+        ],
+        "life_situations": [
+            "finding contentment",
+            "self-discipline",
+            "being dear to god"
+        ],
+        "notification_short": {
+            "en": "Always satisfied, self-controlled, and fixed on Me—such a devotee is dear to Me.",
+            "hi": "सदा संतुष्ट, संयमित और मुझमें स्थिर—ऐसा भक्त मुझे प्रिय है।"
+        }
+    },
+    {
+        "id": "12_15",
+        "sanskrit": "यस्मान्नोद्विजते लोको लोकान्नोद्विजते च यः । हर्षामर्षभयोद्वेगैर्मुक्तो यः स च मे प्रियः ॥",
+        "iast": "yasmān nodvijate loko lokān nodvijate ca yaḥ। harṣāmarṣa-bhayodvegair mukto yaḥ sa ca me priyaḥ॥",
+        "simple": "yasman nodvijate loko lokan nodvijate cha yah, harshamarsha bhayodvegair mukto yah sa cha me priyah",
+        "meaning_en": "He for whom no one is put into difficulty and who is not disturbed by anyone, who is equipoised in happiness and distress, fear and anxiety, is very dear to Me.",
+        "meaning_hi": "जिससे कोई भी जीव उद्वेग को प्राप्त नहीं होता और जो स्वयं भी किसी जीव से उद्वेग को प्राप्त नहीं होता; तथा जो हर्ष, अमर्ष, भय और उद्वेगादि से रहित है- वह भक्त मुझे प्रिय है।",
+        "emotional_tone": [
+            "harmless",
+            "undisturbed"
+        ],
+        "core_theme": [
+            "not checking others",
+            "not disturbed by others",
+            "freedom from anxiety"
+        ],
+        "life_situations": [
+            "managing stress",
+            "social harmony",
+            "emotional freedom"
+        ],
+        "notification_short": {
+            "en": "He who disturbs no one and is disturbed by no one is very dear to Me.",
+            "hi": "जो किसी को परेशान नहीं करता और किसी से परेशान नहीं होता, वह मुझे बहुत प्रिय है।"
+        }
+    },
+    {
+        "id": "12_16",
+        "sanskrit": "अनपेक्षः शुचिर्दक्ष उदासीनो गतव्यथः । सर्वारम्भपरित्यागी यो मद्भक्तः स मे प्रियः ॥",
+        "iast": "anapekṣaḥ śucir dakṣa udāsīno gata-vyathaḥ। sarvārambha-parityāgī yo mad-bhaktaḥ sa me priyaḥ॥",
+        "simple": "anapekshah shuchir daksha udasino gata vyathah, sarvarambha parityagi yo mad bhaktah sa me priyah",
+        "meaning_en": "My devotee who is not dependent on the ordinary course of activities, who is pure, expert, without cares, free from all pains, and not striving for some result, is very dear to Me.",
+        "meaning_hi": "जो आकांक्षा से रहित, बाहर-भीतर से शुद्ध, चतुर, पक्षपात से रहित और दुःखों से छूटा हुआ है- वह सब आरम्भों का त्यागी मेरा भक्त मुझे प्रिय है।",
+        "emotional_tone": [
+            "pure",
+            "detached"
+        ],
+        "core_theme": [
+            "purity",
+            "expertise",
+            "renunciation of enterprise"
+        ],
+        "life_situations": [
+            "being efficient",
+            "maintaining purity",
+            "working without anxiety"
+        ],
+        "notification_short": {
+            "en": "Pure, expert, unconcerned, and free from pain—such a devotee is dear to Me.",
+            "hi": "पवित्र, कुशल, उदासीन और पीड़ा से मुक्त—ऐसा भक्त मुझे प्रिय है।"
+        }
+    },
+    {
+        "id": "12_17",
+        "sanskrit": "यो न हृष्यति न द्वेष्टि न शोचति न काङ्क्षति । शुभाशुभपरित्यागी भक्तिमान्यः स मे प्रियः ॥",
+        "iast": "yo na hṛṣyati na dveṣṭi na śocati na kāṅkṣati। śubhāśubha-parityāgī bhaktimān yaḥ sa me priyaḥ॥",
+        "simple": "yo na hrishyati na dveshti na shochati na kankshati, shubhashubha parityagi bhaktiman yah sa me priyah",
+        "meaning_en": "One who neither rejoices nor grieves, who neither laments nor desires, and who renounces both auspicious and inauspicious things—such a devotee is very dear to Me.",
+        "meaning_hi": "जो न कभी हर्षित होता है, न द्वेष करता है, न शोक करता है, न कामना करता है तथा जो शुभ और अशुभ सम्पूर्ण कर्मों का त्यागी है- वह भक्त मुझे प्रिय है।",
+        "emotional_tone": [
+            "balanced",
+            "dispassionate"
+        ],
+        "core_theme": [
+            "no grief no desire",
+            "renouncing good and bad",
+            "equanimity"
+        ],
+        "life_situations": [
+            "accepting life",
+            "overcoming duality",
+            "mental peace"
+        ],
+        "notification_short": {
+            "en": "He who neither rejoices nor grieves, renouncing good and bad, is dear to Me.",
+            "hi": "जो न हर्षित होता है न शोक करता है, शुभ और अशुभ का त्याग करता है, वह मुझे प्रिय है।"
+        }
+    },
+    {
+        "id": "12_18",
+        "sanskrit": "समः शत्रौ च मित्रे च तथा मानापमानयोः । शीतोष्णसुखदुःखेषु समः सङ्गविवर्जितः ॥",
+        "iast": "samaḥ śatrau ca mitre ca tathā mānāpamānayoḥ। śītoṣṇa-sukha-duḥkheṣu samaḥ saṅga-vivarjitaḥ॥",
+        "simple": "samah shatrau cha mitre cha tatha manapamanayoh, shitoshna sukha duhkheshu samah sanga vivarjitah",
+        "meaning_en": "One who is equal to friends and enemies, who is equipoised in honor and dishonor, heat and cold, happiness and distress, fame and infamy, who is always free from contaminating association...",
+        "meaning_hi": "जो शत्रु-मित्र में और मान-अपमान में सम है तथा सर्दी-गर्मी और सुख-दुःखादि द्वंद्वों में सम है और आसक्ति से रहित है...",
+        "emotional_tone": [
+            "equal",
+            "unaffected"
+        ],
+        "core_theme": [
+            "equal to friend and foe",
+            "duality",
+            "freedom from attachment"
+        ],
+        "life_situations": [
+            "dealing with conflict",
+            "staying calm",
+            "rising above judgment"
+        ],
+        "notification_short": {
+            "en": "Equal to friend and foe, honor and dishonor, heat and cold—he is dear to Me.",
+            "hi": "शत्रु और मित्र, मान और अपमान, सर्दी और गर्मी में समान—वह मुझे प्रिय है।"
+        }
+    },
+    {
+        "id": "12_19",
+        "sanskrit": "तुल्यनिन्दास्तुतिर्मौनी सन्तुष्टो येन केनचित् । अनिकेतः स्थिरमतिर्भक्तिमान्मे प्रियो नरः ॥",
+        "iast": "tulya-nindā-stutir maunī santuṣṭo yena kenacit। aniketaḥ sthira-matir bhaktimān me priyo naraḥ॥",
+        "simple": "tulya ninda stutir mauni santushto yena kenachit, aniketah sthira matir bhaktiman me priyo narah",
+        "meaning_en": "...who is always silent and satisfied with anything, who doesn't care for any residence, who is fixed in knowledge and who is engaged in devotional service—such a person is very dear to Me.",
+        "meaning_hi": "...जो निंदा-स्तुति को समान समझने वाला, मननशील और जिस किसी प्रकार से भी शरीर का निर्वाह होने में सदा ही संतुष्ट है और रहने के स्थान में ममता और आसक्ति से रहित है- वह स्थिरबुद्धि भक्तिमान पुरुष मुझे प्रिय है।",
+        "emotional_tone": [
+            "silent",
+            "satisfied"
+        ],
+        "core_theme": [
+            "silence",
+            "homelessness",
+            "fixed mind"
+        ],
+        "life_situations": [
+            "simplicity",
+            "minimalism",
+            "inner silence"
+        ],
+        "notification_short": {
+            "en": "Silent, satisfied, fixed in wisdom and devotion—such a person is dear to Me.",
+            "hi": "मौन, संतुष्ट, ज्ञान और भक्ति में स्थिर—ऐसा व्यक्ति मुझे प्रिय है।"
+        }
+    },
+    {
+        "id": "12_20",
+        "sanskrit": "ये तु धर्म्यामृतमिदं यथोक्तं पर्युपासते । श्रद्धधाना मत्परमा भक्तास्तेऽतीव मे प्रियाः ॥",
+        "iast": "ye tu dharmyāmṛtam idaṃ yathoktaṃ paryupāsate। śraddadhānā mat-paramā bhaktās te ’tīva me priyāḥ॥",
+        "simple": "ye tu dharmy amritam idam yathoktam paryupasate, shraddadhana mat parama bhaktas te ativa me priyah",
+        "meaning_en": "He who follows this imperishable path of devotional service and who completely engages himself with faith, making Me the supreme goal, is very, very dear to Me.",
+        "meaning_hi": "परन्तु जो श्रद्धायुक्त पुरुष मेरे परायण होकर इस ऊपर कहे हुए धर्ममय अमृत को निष्काम प्रेमभाव से सेवन करते हैं, वे भक्त मुझे अतिशय प्रिय हैं।",
+        "emotional_tone": [
+            "beloved",
+            "supreme"
+        ],
+        "core_theme": [
+            "dharma amrita",
+            "supreme faith",
+            "extremely dear"
+        ],
+        "life_situations": [
+            "following the path",
+            "living with faith",
+            "being beloved of god"
+        ],
+        "notification_short": {
+            "en": "Those who follow this path of Dharma with faith are extremely dear to Me.",
+            "hi": "जो श्रद्धा के साथ इस धर्म-पथ का अनुसरण करते हैं, वे मुझे अत्यंत प्रिय हैं।"
+        }
+    }
+]

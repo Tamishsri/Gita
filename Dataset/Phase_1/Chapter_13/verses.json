@@ -1,0 +1,905 @@
+[
+  {
+    "id": "13_1",
+    "sanskrit": "अर्जुन उवाच । प्रकृतिं पुरुषं चैव क्षेत्रं क्षेत्रज्ञमेव च । एतद्वेदितुमिच्छामि ज्ञानं ज्ञेयं च केशव ॥",
+    "iast": "arjuna uvāca। prakṛtiṃ puruṣaṃ caiva kṣetraṃ kṣetrajñam eva ca। etad veditum icchāmi jñānaṃ jñeyaṃ ca keśava॥",
+    "simple": "arjuna uvacha, prakritim purusham chaiva kshetram kshetrajnam eva cha, etad veditum ichchhami jnanam jneyam cha keshava",
+    "meaning_en": "Arjuna said: O my dear Krishna, I wish to know about nature [prakriti], the enjoyer [purusha], and the field and the knower of the field, and of knowledge and the object of knowledge.",
+    "meaning_hi": "अर्जुन ने कहा: हे केशव! मैं प्रकृति एवं पुरुष, क्षेत्र एवं क्षेत्रज्ञ तथा ज्ञान एवं ज्ञेय के विषय में जानना चाहता हूँ।",
+    "emotional_tone": [
+      "curious",
+      "philosophical"
+    ],
+    "core_theme": [
+      "six questions",
+      "prakriti and purusha",
+      "kshetra and kshetrajna"
+    ],
+    "life_situations": [
+      "seeking deep knowledge",
+      "asking fundamental questions",
+      "intellectual curiosity"
+    ],
+    "notification_short": {
+      "en": "I wish to know about Nature, the Soul, the Field, and the Knower of the Field.",
+      "hi": "मैं प्रकृति, पुरुष, क्षेत्र और क्षेत्रज्ञ के बारे में जानना चाहता हूँ।"
+    }
+  },
+  {
+    "id": "13_2",
+    "sanskrit": "श्रीभगवानुवाच । इदं शरीरं कौन्तेय क्षेत्रमित्यभिधीयते । एतद्यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति तद्विदः ॥",
+    "iast": "śrī-bhagavān uvāca। idaṃ śarīraṃ kaunteya kṣetram ity abhidhīyate। etad yo vetti taṃ prāhuḥ kṣetrajña iti tad-vidaḥ॥",
+    "simple": "shri bhagavan uvacha, idam shariram kaunteya kshetram iti abhidhiyate, etad yo vetti tam prahuh kshetrajna iti tad vidah",
+    "meaning_en": "The Supreme Personality of Godhead said: This body, O son of Kunti, is called the field, and one who knows this body is called the knower of the field.",
+    "meaning_hi": "श्री भगवान ने कहा: हे कुन्तीपुत्र! यह शरीर ही 'क्षेत्र' इस नाम से कहा जाता है और इसको जो जानता है, उसे 'क्षेत्रज्ञ' कहते हैं।",
+    "emotional_tone": [
+      "instructive",
+      "definitive"
+    ],
+    "core_theme": [
+      "body is field",
+      "knower of field",
+      "kshetra definition"
+    ],
+    "life_situations": [
+      "understanding the body",
+      "self-awareness",
+      "distinguishing self from body"
+    ],
+    "notification_short": {
+      "en": "The body is the Field (Kshetra), and he who knows it is the Knower (Kshetrajna).",
+      "hi": "शरीर 'क्षेत्र' है, और जो इसे जानता है वह 'क्षेत्रज्ञ' है।"
+    }
+  },
+  {
+    "id": "13_3",
+    "sanskrit": "क्षेत्रज्ञं चापि मां विद्धि सर्वक्षेत्रेषु भारत । क्षेत्रक्षेत्रज्ञयोर्ज्ञानं यत्तज्ज्ञानं मतं मम ॥",
+    "iast": "kṣetrajñaṃ cāpi māṃ viddhi sarva-kṣetreṣu bhārata। kṣetra-kṣetrajñayor jñānaṃ yat tat jñānaṃ mataṃ mama॥",
+    "simple": "kshetrajnam chapi mam viddhi sarva kshetreshu bharata, kshetra kshetrajnyor jnanam yat tat jnanam matam mama",
+    "meaning_en": "O scion of Bharata, you should understand that I am also the knower in all bodies, and to understand this body and its knower is called knowledge. That is My opinion.",
+    "meaning_hi": "हे अर्जुन! तू सब क्षेत्रों में क्षेत्रज्ञ (जीवात्मा) भी मुझको ही जान और क्षेत्र-क्षेत्रज्ञ को जो जानना है, वही ज्ञान है- ऐसा मेरा मत है।",
+    "emotional_tone": [
+      "enlightening",
+      "universal"
+    ],
+    "core_theme": [
+      "god as supreme knower",
+      "true knowledge",
+      "unity of consciousness"
+    ],
+    "life_situations": [
+      "seeing god in all",
+      "universal consciousness",
+      "definition of wisdom"
+    ],
+    "notification_short": {
+      "en": "Know Me as the Knower in all bodies. This understanding is true knowledge.",
+      "hi": "मुझे सभी शरीरों में क्षेत्रज्ञ (ज्ञाता) जानो। यह समझ ही सच्चा ज्ञान है।"
+    }
+  },
+  {
+    "id": "13_4",
+    "sanskrit": "तत्क्षेत्रं यच्च यादृक्च यद्विकारि यतश्च यत् । स च यो यत्प्रभावश्च तत्समासेन मे शृणु ॥",
+    "iast": "tat kṣetraṃ yac ca yādṛk ca yad-vikāri yataś ca yat। sa ca yo yat-prabhāvaś ca tat samāsena me śṛṇu॥",
+    "simple": "tat kshetram yach cha yadrik cha yad vikari yatash cha yat, sa cha yo yat prabhavash cha tat samasena me shrinu",
+    "meaning_en": "Now please hear My brief description of this field of activity and how it is constituted, what its changes are, whence it is produced, who that knower of the field of activity is, and what his influences are.",
+    "meaning_hi": "वह क्षेत्र जो और जैसा है तथा जिन विकारों वाला है और जिससे जो पैदा होता है; तथा वह (क्षेत्रज्ञ) भी जो और जिस प्रभाव वाला है- वह सब संक्षेप में मुझसे सुन।",
+    "emotional_tone": [
+      "introductory"
+    ],
+    "core_theme": [
+      "nature of field",
+      "modifications",
+      "summary of knowledge"
+    ],
+    "life_situations": [
+      "learning the details",
+      "analyzing reality",
+      "study of nature"
+    ],
+    "notification_short": {
+      "en": "Listen briefly about the Field, its changes, its source, and the Knower.",
+      "hi": "क्षेत्र, उसके विकार, उसके स्रोत और क्षेत्रज्ञ के बारे में संक्षेप में सुनो।"
+    }
+  },
+  {
+    "id": "13_5",
+    "sanskrit": "ऋषिभिर्बहुधा गीतं छन्दोभिर्विविधैः पृथक् । ब्रह्मसूत्रपदैश्चैव हेतुमद्भिर्विनिश्चितैः ॥",
+    "iast": "ṛṣibhir bahudhā gītaṃ chando-bhir vividhaiḥ pṛthak। brahma-sūtra-padaiś caiva hetu-madbhir viniścitaiḥ॥",
+    "simple": "rishibhir bahudha gitam chhandobhih vividhaih prithak, brahma sutra padaish chaiva hetumadbhir vinishchitaih",
+    "meaning_en": "That knowledge of the field of activities and of the knower of activities is described by various sages in various Vedic writings. It is especially presented in the Vedanta-sutra with all reasoning as to cause and effect.",
+    "meaning_hi": "यह (क्षेत्र और क्षेत्रज्ञ का तत्त्व) ऋषियों द्वारा बहुत प्रकार से कहा गया है और विविध वेदमंत्रों द्वारा भी विभागपूर्वक कहा गया है तथा भलीभांति निश्चय किए हुए युक्तियुक्त ब्रह्मसूत्र के पदों द्वारा भी कहा गया है।",
+    "emotional_tone": [
+      "scholarly",
+      "referential"
+    ],
+    "core_theme": [
+      "vedic authority",
+      "brahma sutra",
+      "sages wisdom"
+    ],
+    "life_situations": [
+      "referencing authorities",
+      "scriptural study",
+      "reasoned knowledge"
+    ],
+    "notification_short": {
+      "en": "This knowledge has been sung by sages and explained in the Brahma-sutra.",
+      "hi": "यह ज्ञान ऋषियों द्वारा गाया गया है और ब्रह्मसूत्र में समझाया गया है।"
+    }
+  },
+  {
+    "id": "13_6",
+    "sanskrit": "महाभूतान्यहंकारो बुद्धिरव्यक्तमेव च । इन्द्रियाणि दशैकं च पञ्च चेन्द्रियगोचराः ॥",
+    "iast": "mahā-bhūtāny ahaṅkāro buddhir avyaktaṃ eva ca। indriyāṇi daśaikaṃ ca pañca cendriya-gocarāḥ॥",
+    "simple": "maha bhutani ahankaro buddhir avyaktam eva cha, indriyani dasha ekam cha pancha chendriya gocharah",
+    "meaning_en": "The five great elements, false ego, intelligence, the unmanifested, the ten senses and the mind, the five sense objects...",
+    "meaning_hi": "पाँच महाभूत, अहंकार, बुद्धि और मूल प्रकृति भी तथा दस इन्द्रियाँ, एक मन और पाँच इन्द्रियों के विषय...",
+    "emotional_tone": [
+      "analytical",
+      "enumerating"
+    ],
+    "core_theme": [
+      "24 elements",
+      "sankhya philosophy",
+      "constituents of field"
+    ],
+    "life_situations": [
+      "understanding composition",
+      "analyzing self",
+      "knowing constituents"
+    ],
+    "notification_short": {
+      "en": "The 5 elements, ego, intelligence, unmanifest, 10 senses, mind, and objects...",
+      "hi": "5 महाभूत, अहंकार, बुद्धि, अव्यक्त, 10 इन्द्रियाँ, मन और विषय..."
+    }
+  },
+  {
+    "id": "13_7",
+    "sanskrit": "इच्छा द्वेषः सुखं दुःखं सङ्घातश्चेतना धृतिः । एतत्क्षेत्रं समासेन सविकारमुदाहृतम् ॥",
+    "iast": "icchā dveṣaḥ sukhaṃ duḥkhaṃ saṅghātaś cetanā dhṛtiḥ। etat kṣetraṃ samāsena sa-vikāram udāhṛtam॥",
+    "simple": "ichchha dveshah sukham duhkham sanghatash chetana dhritih, etat kshetram samasena sa vikaram udahritam",
+    "meaning_en": "...desire, hatred, happiness, distress, the aggregate, the life symptoms, and convictions—all these are considered, in summary, to be the field of activities and its interactions.",
+    "meaning_hi": "...तथा इच्छा, द्वेष, सुख, दुःख, स्थूल देह का पिण्ड, चेतना और धृति- इस प्रकार विकारों सहित यह क्षेत्र संक्षेप में कहा गया है।",
+    "emotional_tone": [
+      "analytical"
+    ],
+    "core_theme": [
+      "modifications of field",
+      "desire and hate",
+      "interaction of elements"
+    ],
+    "life_situations": [
+      "emotions are field",
+      "observing mind",
+      "not the self"
+    ],
+    "notification_short": {
+      "en": "Desire, hate, pleasure, pain, and awareness—these are part of the Field.",
+      "hi": "इच्छा, द्वेष, सुख, दुख और चेतना—ये सब क्षेत्र का हिस्सा हैं।"
+    }
+  },
+  {
+    "id": "13_8",
+    "sanskrit": "अमानित्वमदम्भित्वमहिंसा क्षान्तिरार्जवम् । आचार्योपासनं शौचं स्थैर्यमात्मविनिग्रहः ॥",
+    "iast": "amānitvam adambhitvam ahiṃsā kṣāntir ārjavam। ācāryopāsanaṃ śaucaṃ sthairyam ātma-vinigrahaḥ॥",
+    "simple": "amanitvam adambhitvam ahimsa kshantir arjavam, acharyopasanam shaucham sthairyam atma vinigrahah",
+    "meaning_en": "Humility; pridelessness; nonviolence; tolerance; simplicity; approaching a bona fide spiritual master; cleanliness; steadiness; self-control...",
+    "meaning_hi": "श्रेष्ठता के अभिमान का अभाव, दंभाचरण का अभाव, अहिंसा, क्षमाभाव, सरलता, आचार्य की सेवा, पवित्रता, स्थिरता और मन-इन्द्रियों का निग्रह...",
+    "emotional_tone": [
+      "virtuous",
+      "peaceful"
+    ],
+    "core_theme": [
+      "virtues of knowledge",
+      "humility",
+      "non-violence"
+    ],
+    "life_situations": [
+      "building character",
+      "values for growth",
+      "spiritual discipline"
+    ],
+    "notification_short": {
+      "en": "True knowledge is humility, non-violence, tolerance, and self-control.",
+      "hi": "सच्चा ज्ञान विनम्रता, अहिंसा, सहनशीलता और आत्म-संयम है।"
+    }
+  },
+  {
+    "id": "13_9",
+    "sanskrit": "इन्द्रियार्थेषु वैराग्यमनहंकार एव च । जन्ममृत्युजराव्याधिदुःखदोषानुदर्शनम् ॥",
+    "iast": "indriyārtheṣu vairāgyam anahaṅkāra eva ca। janma-mṛtyu-jarā-vyādhi-duḥkha-doṣānudarśanam॥",
+    "simple": "indriyartheshu vairagyam anahankara eva cha, janma mrityu jara vyadhi duhkha doshanudarshanam",
+    "meaning_en": "...renunciation of the objects of sense gratification; absence of false ego; the perception of the evil of birth, death, old age and disease...",
+    "meaning_hi": "...इन्द्रियों के विषयों में वैराग्य, अहंकार का अभाव और जन्म, मृत्यु, जरा तथा रोग आदि में दुःख-दोषों का बार-बार विचार करना...",
+    "emotional_tone": [
+      "detached",
+      "realistic"
+    ],
+    "core_theme": [
+      "renunciation",
+      "no ego",
+      "suffering of life"
+    ],
+    "life_situations": [
+      "facing reality",
+      "overcoming ego",
+      "understanding suffering"
+    ],
+    "notification_short": {
+      "en": "See the suffering in birth, death, old age, and disease. Be free from ego.",
+      "hi": "जन्म, मृत्यु, बुढ़ापे और बीमारी में दुख को देखो। अहंकार से मुक्त रहो।"
+    }
+  },
+  {
+    "id": "13_10",
+    "sanskrit": "असक्तिरनभिष्वङ्गः पुत्रदारगृहादिषु । नित्यं च समचित्तत्वमिष्टानिष्टोपपत्तिषु ॥",
+    "iast": "asaktir anabhiṣvaṅgaḥ putra-dāra-gṛhādiṣu। nityaṃ ca sama-cittatvam iṣṭāniṣṭopapattiṣu॥",
+    "simple": "asaktir anabhishvangah putra dara grihadishu, nityam cha sama chittatvam ishta anishta upapattishu",
+    "meaning_en": "...detachment; freedom from entanglement with children, wife, home and the rest; even-mindedness amid pleasant and unpleasant events...",
+    "meaning_hi": "...पुत्र, स्त्री और घर आदि में आसक्ति का अभाव और ममता का न होना तथा प्रिय और अप्रिय की प्राप्ति में सदा ही चित्त का सम रहना...",
+    "emotional_tone": [
+      "detached",
+      "equanimous"
+    ],
+    "core_theme": [
+      "detachment from family",
+      "equanimity",
+      "freedom from attachment"
+    ],
+    "life_situations": [
+      "balancing family life",
+      "emotional stability",
+      "handling ups and downs"
+    ],
+    "notification_short": {
+      "en": "Be detached and even-minded in both pleasant and unpleasant events.",
+      "hi": "सुखद और दुखद दोनों घटनाओं में अनासक्त और समचित्त रहो।"
+    }
+  },
+  {
+    "id": "13_11",
+    "sanskrit": "मयि चानन्ययोगेन भक्तिरव्यभिचारिणी । विविक्तदेशसेवित्वमरतिर्जनसंसदि ॥",
+    "iast": "mayi cānanya-yogena bhaktir avyabhicāriṇī। vivikta-deśa-sevitvam aratir jana-saṃsadi॥",
+    "simple": "mayi cha ananya yogena bhaktir avyabhicharini, vivikta desha sevitvam aratir jana samsadi",
+    "meaning_en": "...constant and unalloyed devotion to Me; aspiring to live in a solitary place; detachment from the general mass of people...",
+    "meaning_hi": "...मुझ परमेश्वर में अनन्य योग द्वारा अव्यभिचारिणी भक्ति, एकांत देश में रहने का स्वभाव और जनसमुदाय में प्रेम का अभाव...",
+    "emotional_tone": [
+      "devotional",
+      "solitary"
+    ],
+    "core_theme": [
+      "unalloyed devotion",
+      "solitude",
+      "avoiding crowds"
+    ],
+    "life_situations": [
+      "deepening devotion",
+      "seeking solitude",
+      "spiritual focus"
+    ],
+    "notification_short": {
+      "en": "Practice constant devotion to Me and seek solitude.",
+      "hi": "मेरी निरंतर भक्ति करो और एकांत की तलाश करो।"
+    }
+  },
+  {
+    "id": "13_12",
+    "sanskrit": "अध्यात्मज्ञाननित्यत्वं तत्त्वज्ञानार्थदर्शनम् । एतज्ज्ञानमिति प्रोक्तमज्ञानं यदतोऽन्यथा ॥",
+    "iast": "adhyātma-jñāna-nityatvaṃ tattva-jñānārtha-darśanam। etaj jñānam iti proktam ajñānaṃ yad ato ’nyathā॥",
+    "simple": "adhyatma jnana nityatvam tattva jnana artha darshanam, etaj jnanam iti proktam ajnanam yad ato anyatha",
+    "meaning_en": "...accepting the importance of self-realization; and philosophical search for the Absolute Truth—all this is declared to be knowledge, and besides this whatever there may be is ignorance.",
+    "meaning_hi": "...अध्यात्म ज्ञान में नित्य स्थिति और तत्त्वज्ञान के अर्थ (परमात्मा) का दर्शन- यह सब 'ज्ञान' है और जो इससे विपरीत है, वह 'अज्ञान' है- ऐसा कहा गया है।",
+    "emotional_tone": [
+      "conclusive",
+      "wise"
+    ],
+    "core_theme": [
+      "what is knowledge",
+      "spiritual values",
+      "ignorance vs knowledge"
+    ],
+    "life_situations": [
+      "defining wisdom",
+      "prioritizing truth",
+      "spiritual values"
+    ],
+    "notification_short": {
+      "en": "Search for the Absolute Truth. This is knowledge; all else is ignorance.",
+      "hi": "परम सत्य की खोज करो। यही ज्ञान है; बाकी सब अज्ञान है।"
+    }
+  },
+  {
+    "id": "13_13",
+    "sanskrit": "ज्ञेयं यत्तत्प्रवक्ष्यामि यज्ज्ञात्वाऽमृतमश्नुते । अनादिमत्परं ब्रह्म न सत्तन्नासदुच्यते ॥",
+    "iast": "jñeyaṃ yat tat pravakṣyāmi yaj jñātvā ’mṛtam aśnute। anādi mat-paraṃ brahma na sat tan nāsad ucyate॥",
+    "simple": "jneyam yat tat pravakshyami yaj jnatva amritam ashnute, anadi mat param brahma na sat tan nasad uchyate",
+    "meaning_en": "I shall now explain the knowable, knowing which you will taste the eternal. Brahman, the spirit, beginningless and subordinate to Me, lies beyond the cause and effect of this material world.",
+    "meaning_hi": "जो जानने योग्य है, मैं उसे अच्छी तरह कहूँगा, जिसको जानकर मनुष्य अमरता का अनुभव करता है। वह अनादि वाला परमब्रह्म न सत् कहा जाता है, न असत्।",
+    "emotional_tone": [
+      "revelatory",
+      "mystical"
+    ],
+    "core_theme": [
+      "the knowable",
+      "beyond sat and asat",
+      "attaining immortality"
+    ],
+    "life_situations": [
+      "seeking immortality",
+      "understanding brahman",
+      "transcendence"
+    ],
+    "notification_short": {
+      "en": "I will tell you of the Knowable, knowing which one tastes immortality.",
+      "hi": "मैं तुम्हें ज्ञेय (जानने योग्य) के बारे में बताऊंगा, जिसे जानकर व्यक्ति अमरता का अनुभव करता है।"
+    }
+  },
+  {
+    "id": "13_14",
+    "sanskrit": "सर्वतः पाणिपादं तत्सर्वतोऽक्षिशिरोमुखम् । सर्वतः श्रुतिमल्लोके सर्वमावृत्य तिष्ठति ॥",
+    "iast": "sarvataḥ pāṇi-pādaṃ tat sarvato ’kṣi-śiro-mukham। sarvataḥ śrutimal loke sarvam āvṛtya tiṣṭhati॥",
+    "simple": "sarvatah pani padam tat sarvato akshi shiro mukham, sarvatah shrutimall loke sarvam avritya tishthati",
+    "meaning_en": "Everywhere are His hands and legs, His eyes, heads and faces, and He has ears everywhere. In this way the Supersoul exists, pervading everything.",
+    "meaning_hi": "उसके सब ओर हाथ और पैर हैं, सब ओर नेत्र, सिर और मुख हैं तथा सब ओर कान हैं। वह संसार में सबको व्याप्त करके स्थित है।",
+    "emotional_tone": [
+      "omnipresent",
+      "awe-inspiring"
+    ],
+    "core_theme": [
+      "omnipresence",
+      "universal hands and eyes",
+      "pervading all"
+    ],
+    "life_situations": [
+      "god is watching",
+      "never alone",
+      "universal presence"
+    ],
+    "notification_short": {
+      "en": "His hands, eyes, and ears are everywhere. He pervades everything.",
+      "hi": "उसके हाथ, आंखें और कान हर जगह हैं। वह हर चीज में व्याप्त है।"
+    }
+  },
+  {
+    "id": "13_15",
+    "sanskrit": "सर्वेन्द्रियगुणाभासं सर्वेन्द्रियविवर्जितम् । असक्तं सर्वभृच्चैव निर्गुणं गुणभोक्तृ च ॥",
+    "iast": "sarvendriya-guṇābhāsaṃ sarvendriya-vivarjitam। asaktaṃ sarva-bhṛc caiva nirguṇaṃ guṇa-bhoktṛ ca॥",
+    "simple": "sarvendriya guna abhasam sarvendriya vivarjitam, asaktam sarva bhrit chaiva nirgunam guna bhoktri cha",
+    "meaning_en": "The Supersoul is the original source of all senses, yet He is without senses. He is unattached, although He is the maintainer of all living beings. He transcends the modes of nature, and at the same time He is the master of all the modes.",
+    "meaning_hi": "वह सम्पूर्ण इन्द्रियों के विषयों को जानने वाला है, परन्तु वास्तव में सब इन्द्रियों से रहित है। वह आसक्ति रहित होने पर भी सबका पालन-पोषण करने वाला है और निर्गुण होने पर भी गुणों को भोगने वाला है।",
+    "emotional_tone": [
+      "paradoxical",
+      "transcendental"
+    ],
+    "core_theme": [
+      "nirguna vs saguna",
+      "maintainer",
+      "beyond senses"
+    ],
+    "life_situations": [
+      "understanding paradoxes",
+      "divine nature",
+      "transcendence"
+    ],
+    "notification_short": {
+      "en": "He has no senses, yet knows all. He is unattached, yet maintains all.",
+      "hi": "उसकी कोई इंद्रियां नहीं हैं, फिर भी वह सब जानता है। वह अनासक्त है, फिर भी सबका पालन करता है।"
+    }
+  },
+  {
+    "id": "13_16",
+    "sanskrit": "बहिरन्तश्च भूतानामचरं चरमेव च । सूक्ष्मत्वात्तदविज्ञेयं दूरस्थं चान्तिके च तत् ॥",
+    "iast": "bahir antaś ca bhūtānām acaram caram eva ca। sūkṣmatvāt tad avijñeyaṃ dūra-sthaṃ cāntike ca tat॥",
+    "simple": "bahir antash cha bhutanam acharam charam eva cha, sukshmatvat tad avijneyam durastham chantike cha tat",
+    "meaning_en": "The Supreme Truth exists outside and inside of all living beings, the moving and the nonmoving. Because He is subtle, He is beyond the power of the material senses to see or to know. Although far, far away, He is also near to all.",
+    "meaning_hi": "वह सब भूतों के बाहर और भीतर विद्यमान है तथा चर और अचर भी वही है। अति सूक्ष्म होने के कारण वह अविज्ञेय है और वह दूर से भी दूर और समीप से भी समीप है।",
+    "emotional_tone": [
+      "mystical",
+      "all-pervading"
+    ],
+    "core_theme": [
+      "inside and outside",
+      "far and near",
+      "subtle"
+    ],
+    "life_situations": [
+      "feeling god's presence",
+      "mystery of existence",
+      "nearness of god"
+    ],
+    "notification_short": {
+      "en": "He is inside and outside everything. He is far away, yet very near.",
+      "hi": "वह हर चीज के भीतर और बाहर है। वह बहुत दूर है, फिर भी बहुत करीब है।"
+    }
+  },
+  {
+    "id": "13_17",
+    "sanskrit": "अविभक्तं च भूतेषु विभक्तमिव च स्थितम् । भूतभर्तृ च तज्ज्ञेयं ग्रसिष्णु प्रभविष्णु च ॥",
+    "iast": "avibhaktaṃ ca bhūteṣu vibhaktam iva ca sthitam। bhūta-bhartṛ ca taj jñeyaṃ grasiṣṇu prabhaviṣṇu ca॥",
+    "simple": "avibhaktam cha bhuteshu vibhaktam iva cha sthitam, bhuta bhartri cha taj jneyam grasishnu prabhavishnu cha",
+    "meaning_en": "Although the Supersoul appears to be divided among all beings, He is never divided. He is situated as one. Although He is the maintainer of every living entity, it is to be understood that He devours and develops all.",
+    "meaning_hi": "वह परमात्मा विभाग रहित एक रूप से आकाश के सदृश परिपूर्ण होने पर भी चराचर सम्पूर्ण भूतों में विभक्त-सा स्थित प्रतीत होता है। उसे ही भूतों का धारण-पोषण करने वाला, संहार करने वाला और उत्पन्न करने वाला जानना चाहिए।",
+    "emotional_tone": [
+      "unified",
+      "powerful"
+    ],
+    "core_theme": [
+      "indivisible oneness",
+      "creation maintenance destruction",
+      "unity in diversity"
+    ],
+    "life_situations": [
+      "seeing unity",
+      "oneness of life",
+      "cycle of existence"
+    ],
+    "notification_short": {
+      "en": "He appears divided but is One. He creates, maintains, and destroys all.",
+      "hi": "वह विभाजित प्रतीत होता है लेकिन एक है। वह सबका सृजन, पालन और संहार करता है।"
+    }
+  },
+  {
+    "id": "13_18",
+    "sanskrit": "ज्योतिषामपि तज्ज्योतिस्तमसः परमुच्यते । ज्ञानं ज्ञेयं ज्ञानगम्यं हृदि सर्वस्य विष्ठितम् ॥",
+    "iast": "jyotiṣām api taj jyotis tamasaḥ param ucyate। jñānaṃ jñeyaṃ jñāna-gamyaṃ hṛdi sarvasya viṣṭhitam॥",
+    "simple": "jyotisham api taj jyotih tamasah param uchyate, jnanam jneyam jnana gamyam hridi sarvasya vishtitam",
+    "meaning_en": "He is the source of light in all luminous objects. He is beyond the darkness of matter and is unmanifested. He is knowledge, He is the object of knowledge, and He is the goal of knowledge. He is situated in everyone's heart.",
+    "meaning_hi": "वह ज्योतियों का भी ज्योति और माया-अंधकार से परे कहा जाता है। वह ज्ञानस्वरूप, जानने योग्य और ज्ञानगम्य (ज्ञान द्वारा प्राप्त होने वाला) है और सबके हृदय में विशेष रूप से स्थित है।",
+    "emotional_tone": [
+      "illuminating",
+      "divine"
+    ],
+    "core_theme": [
+      "light of lights",
+      "seated in heart",
+      "knowledge goal"
+    ],
+    "life_situations": [
+      "seeking inner light",
+      "meditation on heart",
+      "enlightenment"
+    ],
+    "notification_short": {
+      "en": "He is the Light of lights, seated in everyone's heart. He is the Goal of knowledge.",
+      "hi": "वह ज्योतियों की ज्योति है, सबके हृदय में स्थित है। वह ज्ञान का लक्ष्य है।"
+    }
+  },
+  {
+    "id": "13_19",
+    "sanskrit": "इति क्षेत्रं तथा ज्ञानं ज्ञेयं चोक्तं समासतः । मद्भक्त एतद्विज्ञाय मद्भावायोपपद्यते ॥",
+    "iast": "iti kṣetraṃ tathā jñānaṃ jñeyaṃ coktaṃ samāsataḥ। mad-bhakta etad vijñāya mad-bhāvāyopapadyate॥",
+    "simple": "iti kshetram tatha jnanam jneyam choktam samasatah, mad bhakta etad vijnaya mad bhavaya upapadyate",
+    "meaning_en": "Thus the field of activities [the body], knowledge and the knowable have been summarily described by Me. Only My devotees can understand this thoroughly and thus attain to My nature.",
+    "meaning_hi": "इस प्रकार क्षेत्र, ज्ञान और ज्ञेय का स्वरूप संक्षेप में कहा गया। मेरा भक्त इसको तत्त्व से जानकर मेरे स्वरूप को प्राप्त होता है।",
+    "emotional_tone": [
+      "summary",
+      "promising"
+    ],
+    "core_theme": [
+      "summary of kshetra jnana",
+      "devotee understands",
+      "attaining god's nature"
+    ],
+    "life_situations": [
+      "understanding summary",
+      "devotional qualification",
+      "goal of study"
+    ],
+    "notification_short": {
+      "en": "Thus I have described the Field and Knowledge. My devotee understands this and attains Me.",
+      "hi": "इस प्रकार मैंने क्षेत्र और ज्ञान का वर्णन किया है। मेरा भक्त इसे समझता है और मुझे प्राप्त करता है।"
+    }
+  },
+  {
+    "id": "13_20",
+    "sanskrit": "प्रकृतिं पुरुषं चैव विद्ध्यनादी उभावपि । विकारांश्च गुणांश्चैव विद्धि प्रकृतिसम्भवान् ॥",
+    "iast": "prakṛtiṃ puruṣaṃ caiva viddhy anādī ubhāv api। vikārāṃś ca guṇāṃś caiva viddhi prakṛti-sambhavān॥",
+    "simple": "prakritim purusham chaiva viddhy anadi ubhav api, vikarancha gunansh chaiva viddhi prakriti sambhavan",
+    "meaning_en": "Material nature and the living entities should be understood to be beginningless. Their transformations and the modes of matter are products of material nature.",
+    "meaning_hi": "प्रकृति और पुरुष- इन दोनों को ही तू अनादि जान और राग-द्वेषादि विकारों को तथा त्रिगुणात्मक सम्पूर्ण पदार्थों को भी तू प्रकृति से ही उत्पन्न जान।",
+    "emotional_tone": [
+      "analytical",
+      "eternal"
+    ],
+    "core_theme": [
+      "prakriti and purusha beginningless",
+      "transformations of nature",
+      "gunas"
+    ],
+    "life_situations": [
+      "understanding origins",
+      "philosophy of existence",
+      "separation of spirit and matter"
+    ],
+    "notification_short": {
+      "en": "Know that Nature and the Living Entity are both beginningless.",
+      "hi": "जान लो कि प्रकृति और पुरुष (जीव) दोनों ही अनादि हैं।"
+    }
+  },
+  {
+    "id": "13_21",
+    "sanskrit": "कार्यकारणकर्तृत्वे हेतुः प्रकृतिरुच्यते । पुरुषः सुखदुःखानां भोक्तृत्वे हेतुरुच्यते ॥",
+    "iast": "kārya-kāraṇa-kartṛtve hetuḥ prakṛtir ucyate। puruṣaḥ sukha-duḥkhānāṃ bhoktṛtve hetur ucyate॥",
+    "simple": "karya karana kartritve hetuh prakritir uchyate, purushah sukha duhkhanam bhoktritve hetur uchyate",
+    "meaning_en": "Nature is said to be the cause of all material causes and effects, whereas the living entity is the cause of the various sufferings and enjoyments in this world.",
+    "meaning_hi": "कार्य और करण को उत्पन्न करने में हेतु प्रकृति कही जाती है और जीवात्मा सुख-दुःखों के भोक्तापन में हेतु कहा जाता है।",
+    "emotional_tone": [
+      "philosophical"
+    ],
+    "core_theme": [
+      "nature causes action",
+      "soul experiences",
+      "doer vs enjoyer"
+    ],
+    "life_situations": [
+      "understanding agency",
+      "why we suffer",
+      "role of nature"
+    ],
+    "notification_short": {
+      "en": "Nature causes actions; the Soul experiences pleasure and pain.",
+      "hi": "प्रकृति कार्यों का कारण है; आत्मा सुख और दुख का अनुभव करती है।"
+    }
+  },
+  {
+    "id": "13_22",
+    "sanskrit": "पुरुषः प्रकृतिस्थो हि भुङ्क्ते प्रकृतिजान्गुणान् । कारणं गुणसङ्गोऽस्य सदसद्योनिजन्मसु ॥",
+    "iast": "puruṣaḥ prakṛti-stho hi bhuṅkte prakṛti-jān guṇān। kāraṇaṃ guṇa-saṅgo ’sya sad-asad-yoni-janmasu॥",
+    "simple": "purushah prakriti stho hi bhunkte prakriti jan gunan, karanam guna sango asya sad asad yoni janmasu",
+    "meaning_en": "The living entity in material nature thus follows the ways of life, enjoying the three modes of nature. This is due to his association with that material nature. Thus he meets with good and evil among various species.",
+    "meaning_hi": "प्रकृति में स्थित पुरुष प्रकृति से उत्पन्न त्रिगुणात्मक पदार्थों को भोगता है और इन गुणों का संग ही इस जीवात्मा के अच्छी-बुरी योनियों में जन्म लेने का कारण है।",
+    "emotional_tone": [
+      "explanatory",
+      "cautionary"
+    ],
+    "core_theme": [
+      "cause of rebirth",
+      "attachment to gunas",
+      "good and bad births"
+    ],
+    "life_situations": [
+      "breaking cycles",
+      "understanding karma",
+      "why we are here"
+    ],
+    "notification_short": {
+      "en": "Attachment to the modes of nature causes birth in good and evil wombs.",
+      "hi": "प्रकृति के गुणों से आसक्ति ही अच्छी और बुरी योनियों में जन्म का कारण है।"
+    }
+  },
+  {
+    "id": "13_23",
+    "sanskrit": "उपद्रष्टाऽनुमन्ता च भर्ता भोक्ता महेश्वरः । परमात्मेति चाप्युक्तो देहेऽस्मिन्पुरुषः परः ॥",
+    "iast": "upadraṣṭānumantā ca bhartā bhoktā maheśvaraḥ। paramātmeti cāpy ukto dehe ’smin puruṣaḥ paraḥ॥",
+    "simple": "upadrasta anumanta cha bharta bhokta maheshvarah, paramatmeti chapy ukto dehe asmin purushah parah",
+    "meaning_en": "Yet in this body there is another, a transcendental enjoyer, who is the Lord, the supreme proprietor, who exists as the overseer and permitter, and who is known as the Supersoul.",
+    "meaning_hi": "इस देह में स्थित यह आत्मा वास्तव में परमात्मा ही है। वह साक्षी, अनुमति देने वाला, धारण करने वाला, भोगने वाला, महेश्वर और परमात्मा- ऐसा कहा गया है।",
+    "emotional_tone": [
+      "sublime",
+      "reassuring"
+    ],
+    "core_theme": [
+      "upadrashta anumanta",
+      "supersoul roles",
+      "witness"
+    ],
+    "life_situations": [
+      "inner guidance",
+      "conscience",
+      "divine witness"
+    ],
+    "notification_short": {
+      "en": "Within this body is the Supreme Soul—the Witness, Permitter, and Lord.",
+      "hi": "इस शरीर में परमात्मा भी है—जो साक्षी, अनुमति देने वाला और ईश्वर है।"
+    }
+  },
+  {
+    "id": "13_24",
+    "sanskrit": "य एवं वेत्ति पुरुषं प्रकृतिं च गुणैः सह । सर्वथा वर्तमानोऽपि न स भूयोऽभिजायते ॥",
+    "iast": "ya evaṃ vetti puruṣaṃ prakṛtiṃ ca guṇaiḥ saha। sarvathā vartamāno ’pi na sa bhūyo ’bhijāyate॥",
+    "simple": "ya evam vetti purusham prakritim cha gunaih saha, sarvatha vartamano api na sa bhuyo abhijayate",
+    "meaning_en": "One who understands this philosophy concerning the material nature, the living entity and the interaction of the modes of nature will not take birth again, regardless of his present position.",
+    "meaning_hi": "जो इस प्रकार पुरुष और गुणों सहित प्रकृति को तत्त्व से जानता है, वह सब प्रकार से कर्तव्य कर्म करता हुआ भी फिर जन्म नहीं लेता।",
+    "emotional_tone": [
+      "liberating"
+    ],
+    "core_theme": [
+      "liberation through knowledge",
+      "no rebirth",
+      "knowing prakriti purusha"
+    ],
+    "life_situations": [
+      "overcoming fear of death",
+      "seeking liberation",
+      "spiritual freedom"
+    ],
+    "notification_short": {
+      "en": "He who understands Nature and the Soul will not take birth again.",
+      "hi": "जो प्रकृति और पुरुष को समझता है, वह फिर जन्म नहीं लेगा।"
+    }
+  },
+  {
+    "id": "13_25",
+    "sanskrit": "ध्यानेनात्मनि पश्यन्ति केचिदात्मानमात्मना । अन्ये सांख्येन योगेन कर्मयोगेन चापरे ॥",
+    "iast": "dhyānenātmani paśyanti kecid ātmānam ātmanā। anye sāṅkhyena yogena karma-yogena cāpare॥",
+    "simple": "dhyanenatmani pashyanti kechid atmanam atmana, anye sankhyena yogena karma yogena chapare",
+    "meaning_en": "Some perceive the Supersoul within themselves through meditation, others through the cultivation of knowledge, and still others through working without fruitive desires.",
+    "meaning_hi": "उस परमात्मा को कितने ही मनुष्य तो ध्यान-योग द्वारा हृदय में देखते हैं; दूसरे कितने ही सांख्य-योग (ज्ञान-योग) द्वारा और अन्य कितने ही कर्म-योग द्वारा देखते हैं।",
+    "emotional_tone": [
+      "inclusive"
+    ],
+    "core_theme": [
+      "paths to realization",
+      "dhyana sankhya karma",
+      "meditation"
+    ],
+    "life_situations": [
+      "choosing a path",
+      "practicing meditation",
+      "diversity of practice"
+    ],
+    "notification_short": {
+      "en": "Some see the Self by meditation, others by knowledge, others by work.",
+      "hi": "कुछ ध्यान से, कुछ ज्ञान से और कुछ कर्म से परमात्मा को देखते हैं।"
+    }
+  },
+  {
+    "id": "13_26",
+    "sanskrit": "अन्ये त्वेवमजानन्तः श्रुत्वान्येभ्य उपासते । तेऽपि चातितरन्त्येव मृत्युं श्रुतिपरायणाः ॥",
+    "iast": "anye tv evam ajānantaḥ śrutvān ye bhya upāsate। te ’pi cātitaranty eva mṛtyuṃ śruti-parāyaṇāḥ॥",
+    "simple": "anye tu evam ajanantah shrutvan yebhya upasate, te api cha atitaranty eva mrityum shruti parayanah",
+    "meaning_en": "Again there are those who, although not conversant in spiritual knowledge, begin to worship the Supreme Person upon hearing about Him from others. Because of their tendency to hear from authorities, they also transcend the path of birth and death.",
+    "meaning_hi": "परन्तु इनसे दूसरे (साधारण) मनुष्य स्वयं न जानते हुए दूसरों से सुनकर ही उपासना करते हैं। वे श्रवण-परायण पुरुष भी मृत्युरूप संसार-सागर को निःसंदेह तर जाते हैं।",
+    "emotional_tone": [
+      "hopeful",
+      "accessible"
+    ],
+    "core_theme": [
+      "hearing from authority",
+      "power of listening",
+      "transcending death"
+    ],
+    "life_situations": [
+      "learning from listening",
+      "trusting guidance",
+      "hope for beginners"
+    ],
+    "notification_short": {
+      "en": "Even those who just listen to others and worship can transcend death.",
+      "hi": "जो लोग केवल दूसरों से सुनकर उपासना करते हैं, वे भी मृत्यु को पार कर जाते हैं।"
+    }
+  },
+  {
+    "id": "13_27",
+    "sanskrit": "यावत्सञ्जायते किञ्चित्सत्त्वं स्थावरजङ्गमम् । क्षेत्रक्षेत्रज्ञसंयोगात्तद्विद्धि भरतर्षभ ॥",
+    "iast": "yāvat sañjāyate kiñcit sattvaṃ sthāvara-jaṅgamam। kṣetra-kṣetrajña-saṃyogāt tad viddhi bharatarṣabha॥",
+    "simple": "yavat sanjayate kinchit sattvam sthavara jangamam, kshetra kshetrajna samyogat tad viddhi bharatarshabha",
+    "meaning_en": "O chief of the Bharatas, know that whatever you see in existence, both the moving and the nonmoving, is only a combination of the field of activities and the knower of the field.",
+    "meaning_hi": "हे अर्जुन! यावन्मात्र जो कुछ भी स्थावर-जंगम वस्तु उत्पन्न होती है, उस सबको तू क्षेत्र और क्षेत्रज्ञ के संयोग से ही उत्पन्न जान।",
+    "emotional_tone": [
+      "informative"
+    ],
+    "core_theme": [
+      "combination of field and knower",
+      "origin of beings",
+      "matter and spirit"
+    ],
+    "life_situations": [
+      "understanding existence",
+      "nature of reality",
+      "seeing the mix"
+    ],
+    "notification_short": {
+      "en": "Everything moving or non-moving exists from the union of Field and Knower.",
+      "hi": "सभी चर और अचर वस्तुएं क्षेत्र और क्षेत्रज्ञ के संयोग से ही अस्तित्व में हैं।"
+    }
+  },
+  {
+    "id": "13_28",
+    "sanskrit": "समं सर्वेषु भूतेषु तिष्ठन्तं परमेश्वरम् । विनश्यत्स्वविनश्यन्तं यः पश्यति स पश्यति ॥",
+    "iast": "samaṃ sarveṣu bhūteṣu tiṣṭhantaṃ parameśvaram। vinaśyatsv avinaśyantaṃ yaḥ paśyati sa paśyati॥",
+    "simple": "samam sarveshu bhuteshu tishthantam parameshvaram, vinashyatsu avinashyantam yah pashyati sa pashyati",
+    "meaning_en": "One who sees the Supersoul accompanying the individual soul in all bodies, and who understands that neither the soul nor the Supersoul within the destructible body is ever destroyed, actually sees.",
+    "meaning_hi": "जो पुरुष नष्ट होते हुए सब चराचर भूतों में परमेश्वर को नाशरहित और समभाव से स्थित देखता है, वही (यथार्थ) देखता है।",
+    "emotional_tone": [
+      "wise",
+      "insightful"
+    ],
+    "core_theme": [
+      "seeing the imperishable",
+      "true vision",
+      "god in all"
+    ],
+    "life_situations": [
+      "true insight",
+      "looking beyond death",
+      "seeing the eternal"
+    ],
+    "notification_short": {
+      "en": "He who sees the Imperishable Lord within the perishable, he actually sees.",
+      "hi": "जो विनाशशील में अविनाशी ईश्वर को देखता है, वही वास्तव में देखता है।"
+    }
+  },
+  {
+    "id": "13_29",
+    "sanskrit": "समं पश्यन्हि सर्वत्र समवस्थितमीश्वरम् । न हिनस्त्यात्मनाऽऽत्मानं ततो याति परां गतिम् ॥",
+    "iast": "samaṃ paśyan hi sarvatra samavasthitam īśvaram। na hinasty ātmanā ’tmānaṃ tato yāti parāṃ gatim॥",
+    "simple": "samam pashyan hi sarvatra samavasthitam ishvaram, na hinasti atmana atmanam tato yati param gatim",
+    "meaning_en": "One who sees the Supersoul equally present everywhere, in every living being, does not degrade himself by his mind. Thus he approaches the transcendental destination.",
+    "meaning_hi": "क्योंकि जो पुरुष सबमें समभाव से स्थित परमेश्वर को समान देखता हुआ अपने द्वारा अपनी हिंसा नहीं करता, वह परम गति को प्राप्त होता है।",
+    "emotional_tone": [
+      "elevated"
+    ],
+    "core_theme": [
+      "seeing equality",
+      "not degrading self",
+      "supreme destination"
+    ],
+    "life_situations": [
+      "self-respect",
+      "equality",
+      "spiritual progress"
+    ],
+    "notification_short": {
+      "en": "Seeing God equally everywhere, he does not degrade himself and reaches the Supreme.",
+      "hi": "ईश्वर को सर्वत्र समान रूप से देखकर, वह अपना पतन नहीं करता और परम गति को पाता है।"
+    }
+  },
+  {
+    "id": "13_30",
+    "sanskrit": "प्रकृत्यैव च कर्माणि क्रियमाणानि सर्वशः । यः पश्यति तथाऽऽत्मानमकर्तारं स पश्यति ॥",
+    "iast": "prakṛtyaiva ca karmāṇi kriyamāṇāni sarvaśaḥ। yaḥ paśyati tathā ’tmānam akartāraṃ sa paśyati॥",
+    "simple": "prakrityeiva cha karmani kriyamanani sarvashah, yah pashyati tatha atmanam akartaram sa pashyati",
+    "meaning_en": "One who can see that all activities are performed by the body, which is created of material nature, and that he himself does nothing, actually sees.",
+    "meaning_hi": "जो पुरुष सम्पूर्ण कर्मों को सब प्रकार से प्रकृति द्वारा ही किए जाते हुए देखता है और आत्मा को अकर्ता देखता है, वही (यथार्थ) देखता है।",
+    "emotional_tone": [
+      "detached",
+      "observant"
+    ],
+    "core_theme": [
+      "nature does work",
+      "soul is non-doer",
+      "akartaram"
+    ],
+    "life_situations": [
+      "witnessing action",
+      "freedom from doership",
+      "objectivity"
+    ],
+    "notification_short": {
+      "en": "Nature performs all actions. The Self does nothing. He who sees this, sees truly.",
+      "hi": "सारे कर्म प्रकृति करती है। आत्मा कुछ नहीं करती। जो यह देखता है, वही सच देखता है।"
+    }
+  },
+  {
+    "id": "13_31",
+    "sanskrit": "यदा भूतपृथग्भावमेकस्थमनुपश्यति । तत एव च विस्तारं ब्रह्म सम्पद्यते तदा ॥",
+    "iast": "yadā bhūta-pṛthag-bhāvam eka-stham anupaśyati। tata eva ca vistāraṃ brahma sampadyate tadā॥",
+    "simple": "yada bhuta prithag bhavam ekastham anupashyati, tata eva cha vistaram brahma sampadyate tada",
+    "meaning_en": "When a sensible man ceases to see different identities due to different material bodies and he sees how beings are expanded everywhere, he attains to the Brahman conception.",
+    "meaning_hi": "जब यह पुरुष भूतों के पृथक-पृथक भाव को एक परमात्मा में ही स्थित देखता है और उसी से सबका विस्तार देखता है, तब वह ब्रह्म को प्राप्त हो जाता है।",
+    "emotional_tone": [
+      "unified",
+      "realized"
+    ],
+    "core_theme": [
+      "unity of diversity",
+      "brahman realization",
+      "oneness"
+    ],
+    "life_situations": [
+      "seeing oneness",
+      "overcoming separation",
+      "realization"
+    ],
+    "notification_short": {
+      "en": "When one sees the unity behind diverse bodies, one attains Brahman.",
+      "hi": "जब कोई विविध शरीरों के पीछे की एकता को देखता है, तो वह ब्रह्म को प्राप्त होता है।"
+    }
+  },
+  {
+    "id": "13_32",
+    "sanskrit": "अनादित्वान्निर्गुणत्वात्परमात्मायमव्ययः । शरीरस्थोऽपि कौन्तेय न करोति न लिप्यते ॥",
+    "iast": "anāditvān nirguṇatvāt paramātmāyam avyayaḥ। śarīra-stho ’pi kaunteya na karoti na lipyate॥",
+    "simple": "anaditvan nirgunatvat paramatmayam avyayah, sharira stho api kaunteya na karoti na lipyate",
+    "meaning_en": "Those with the vision of eternity can see that the imperishable soul is transcendental, eternal, and beyond the modes of nature. Despite contact with the material body, O Arjuna, the soul neither does anything nor is entangled.",
+    "meaning_hi": "हे अर्जुन! अनादि और निर्गुण होने से यह अविनाशी परमात्मा शरीर में स्थित होने पर भी वास्तव में न कुछ करता है और न लिप्त होता है।",
+    "emotional_tone": [
+      "transcendental",
+      "pure"
+    ],
+    "core_theme": [
+      "unaffected soul",
+      "nirguna",
+      "no entanglement"
+    ],
+    "life_situations": [
+      "remaining untouched",
+      "inner purity",
+      "untouched by luck"
+    ],
+    "notification_short": {
+      "en": "The Soul is eternal and without modes. Though in the body, it acts not nor is tainted.",
+      "hi": "आत्मा शाश्वत और निर्गुण है। शरीर में होते हुए भी, न तो वह करती है और न ही लिप्त होती है।"
+    }
+  },
+  {
+    "id": "13_33",
+    "sanskrit": "यथा सर्वगतं सौक्ष्म्यादाकाशं नोपलिप्यते । सर्वत्रावस्थितो देहे तथाऽऽत्मा नोपलिप्यते ॥",
+    "iast": "yathā sarva-gataṃ saukṣmyād ākāśaṃ nopalipyate। sarvatrāvasthito dehe tathā ’tmā nopalipyate॥",
+    "simple": "yatha sarva gatam saukshmyad akasham nopalipyate, sarvatra avasthito dehe tatha atma nopalipyate",
+    "meaning_en": "The sky, due to its subtle nature, does not mix with anything, although it is all-pervading. Similarly, the soul situated in Brahman vision does not mix with the body, though situated in that body.",
+    "meaning_hi": "जैसे सर्वत्र व्याप्त आकाश सूक्ष्म होने के कारण किसी से लिप्त नहीं होता, वैसे ही देह में सर्वत्र स्थित आत्मा भी (देह के गुणों से) लिप्त नहीं होती।",
+    "emotional_tone": [
+      "metaphorical",
+      "detached"
+    ],
+    "core_theme": [
+      "sky analogy",
+      "subtlety of soul",
+      "non-mixing"
+    ],
+    "life_situations": [
+      "remaining detached",
+      "being in world not of it",
+      "like the sky"
+    ],
+    "notification_short": {
+      "en": "Like the sky mixes with nothing due to subtlety, the Soul is not tainted by the body.",
+      "hi": "जैसे आकाश अपनी सूक्ष्मता के कारण किसी से नहीं मिलता, वैसे ही आत्मा शरीर से लिप्त नहीं होती।"
+    }
+  },
+  {
+    "id": "13_34",
+    "sanskrit": "यथा प्रकाशयत्येकः कृत्स्नं लोकमिमं रविः । क्षेत्रं क्षेत्री तथा कृत्स्नं प्रकाशयति भारत ॥",
+    "iast": "yathā prakāśayaty ekaḥ kṛtsnaṃ lokam imaṃ raviḥ। kṣetraṃ kṣetrī tathā kṛtsnaṃ prakāśayati bhārata॥",
+    "simple": "yatha prakashayaty ekah kritsnam lokam imam ravih, kshetram kshetri tatha kritsnam prakashayati bharata",
+    "meaning_en": "O son of Bharata, as the sun alone illuminates all this universe, so does the living entity, one within the body, illuminate the entire body by consciousness.",
+    "meaning_hi": "हे अर्जुन! जैसे एक ही सूर्य इस सम्पूर्ण ब्रह्मांड को प्रकाशित करता है, वैसे ही एक ही क्षेत्रज्ञ (आत्मा) सम्पूर्ण क्षेत्र को प्रकाशित करता है।",
+    "emotional_tone": [
+      "radiant",
+      "illuminating"
+    ],
+    "core_theme": [
+      "sun analogy",
+      "consciousness illuminates",
+      "soul power"
+    ],
+    "life_situations": [
+      "power of consciousness",
+      "being the light",
+      "awareness"
+    ],
+    "notification_short": {
+      "en": "As the sun illuminates the universe, the Soul illuminates the entire body.",
+      "hi": "जैसे सूर्य ब्रह्मांड को प्रकाशित करता है, वैसे ही आत्मा पूरे शरीर को प्रकाशित करती है।"
+    }
+  },
+  {
+    "id": "13_35",
+    "sanskrit": "क्षेत्रक्षेत्रज्ञयोरेवमन्तरं ज्ञानचक्षुषा । भूतप्रकृतिमोक्षं च ये विदुर्यान्ति ते परम् ॥",
+    "iast": "kṣetra-kṣetrajñayor evam antaraṃ jñāna-cakṣuṣā। bhūta-prakṛti-mokṣaṃ ca ye vidur yānti te param॥",
+    "simple": "kshetra kshetrajnyor evam antaram jnana chakshusha, bhuta prakriti moksham cha ye vidur yanti te param",
+    "meaning_en": "Those who see with eyes of knowledge the difference between the body and the knower of the body, and can also understand the process of liberation from bondage in material nature, attain to the supreme goal.",
+    "meaning_hi": "जो पुरुष ज्ञाननेत्रों द्वारा क्षेत्र और क्षेत्रज्ञ के भेद को तथा कार्य सहित प्रकृति से मुक्त होने को जानते हैं, वे परम पद को प्राप्त होते हैं।",
+    "emotional_tone": [
+      "liberated",
+      "final"
+    ],
+    "core_theme": [
+      "eyes of knowledge",
+      "distinction",
+      "supreme destination"
+    ],
+    "life_situations": [
+      "spiritual discrimination",
+      "freedom from nature",
+      "attaining the goal"
+    ],
+    "notification_short": {
+      "en": "Those who know the difference between the Field and Knower attain the Supreme.",
+      "hi": "जो क्षेत्र और क्षेत्रज्ञ के बीच का अंतर जानते हैं, वे परम पद को प्राप्त करते हैं।"
+    }
+  }
+]

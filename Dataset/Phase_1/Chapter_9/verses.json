@@ -1,0 +1,886 @@
+[
+    {
+        "id": "9_1",
+        "sanskrit": "श्रीभगवानुवाच । इदं तु ते गुह्यतमं प्रवक्ष्याम्यनसूयवे । ज्ञानं विज्ञानसहितं यज्ज्ञात्वा मोक्ष्यसेऽशुभात् ॥",
+        "iast": "śrī-bhagavān uvāca। idaṃ tu te guhyatamaṃ pravakṣyāmy anasūyave। jñānaṃ vijñāna-sahitaṃ yaj jñātvā mokṣyase 'śubhāt॥",
+        "simple": "shri bhagavan uvacha, idam tu te guhyatamam pravakshyamy anasuyave, jnanam vijnana sahitam yaj jnatva mokshyase ashubhat",
+        "meaning_en": "The Supreme Personality of Godhead said: My dear Arjuna, because you are never envious of Me, I shall impart to you this most confidential knowledge and realization, knowing which you shall be relieved of the miseries of material existence.",
+        "meaning_hi": "श्री भगवान ने कहा: हे अर्जुन! तू मुझ से ईर्ष्या न करने वाला है, इसलिए मैं तुझे इस अति गोपनीय ज्ञान को विज्ञान सहित कहूँगा, जिसे जानकर तू अशुभ (संसार) से मुक्त हो जाएगा।",
+        "emotional_tone": [
+            "confidential",
+            "liberating"
+        ],
+        "core_theme": [
+            "secret knowledge",
+            "freedom from suffering",
+            "divine grace"
+        ],
+        "life_situations": [
+            "receiving wisdom",
+            "trust in teacher",
+            "liberation"
+        ],
+        "notification_short": {
+            "en": "I will share the most secret knowledge. Know it and be free.",
+            "hi": "मैं सबसे गुप्त ज्ञान साझा करूँगा। इसे जानो और मुक्त हो जाओ।"
+        }
+    },
+    {
+        "id": "9_2",
+        "sanskrit": "राजविद्या राजगुह्यं पवित्रमिदमुत्तमम् । प्रत्यक्षावगमं धर्म्यं सुसुखं कर्तुमव्ययम् ॥",
+        "iast": "rāja-vidyā rāja-guhyaṃ pavitram idam uttamam। pratyakṣāvagamaṃ dharmyaṃ su-sukhaṃ kartum avyayam॥",
+        "simple": "raja vidya raja guhyam pavitram idam uttamam, pratyakshavagamam dharmyam su sukham kartum avyayam",
+        "meaning_en": "This knowledge is the king of education, the most secret of all secrets. It is the purest knowledge, and because it gives direct perception of the self by realization, it is the perfection of religion. It is everlasting, and it is joyfully performed.",
+        "meaning_hi": "यह ज्ञान सम्पूर्ण विद्याओं का राजा, सम्पूर्ण गोपनीयों में अति गोपनीय, अति पवित्र, उत्तम, साक्षात अनुभव में आने योग्य, धर्मयुक्त, साधन करने में अत्यंत सुगम और अविनाशी है।",
+        "emotional_tone": [
+            "supreme",
+            "joyful"
+        ],
+        "core_theme": [
+            "king of knowledge",
+            "direct experience",
+            "pure dharma"
+        ],
+        "life_situations": [
+            "seeking highest truth",
+            "experiential wisdom",
+            "joyful practice"
+        ],
+        "notification_short": {
+            "en": "This is the king of all knowledge—pure, joyful, eternal.",
+            "hi": "यह सभी ज्ञान का राजा है—शुद्ध, आनंदमय, शाश्वत।"
+        }
+    },
+    {
+        "id": "9_3",
+        "sanskrit": "अश्रद्दधानाः पुरुषा धर्मस्यास्य परन्तप । अप्राप्य मां निवर्तन्ते मृत्युसंसारवर्त्मनि ॥",
+        "iast": "aśraddadhānāḥ puruṣā dharmasyāsya parantapa। aprāpya māṃ nivartante mṛtyu-saṃsāra-vartmani॥",
+        "simple": "ashraddadhanah purusha dharmasya asya parantapa, aprapya mam nivartante mrityu samsara vartmani",
+        "meaning_en": "Those who are not faithful in this devotional service cannot attain Me, O conqueror of enemies. Therefore they return to the path of birth and death in this material world.",
+        "meaning_hi": "हे परंतप! इस धर्म में श्रद्धा न रखने वाले पुरुष मुझे प्राप्त न होकर मृत्यु रूप संसार चक्र में लौटते रहते हैं।",
+        "emotional_tone": [
+            "warning",
+            "deluded"
+        ],
+        "core_theme": [
+            "faithlessness",
+            "cycle of birth and death",
+            "samsara"
+        ],
+        "life_situations": [
+            "lacking faith",
+            "feeling stuck in life",
+            "fear of death"
+        ],
+        "notification_short": {
+            "en": "Without faith, one returns to the cycle of birth and death.",
+            "hi": "श्रद्धा के बिना, व्यक्ति जन्म और मृत्यु के चक्र में लौट आता है।"
+        }
+    },
+    {
+        "id": "9_4",
+        "sanskrit": "मया ततमिदं सर्वं जगदव्यक्तमूर्तिना । मत्स्थानि सर्वभूतानि न चाहं तेष्ववस्थितः ॥",
+        "iast": "mayā tatam idaṃ sarvaṃ jagad avyakta-mūrtinā। mat-sthāni sarva-bhūtāni na cāhaṃ teṣv avasthitaḥ॥",
+        "simple": "maya tatam idam sarvam jagad avyakta murtina, mat sthani sarva bhutani na chaham teshv avasthitah",
+        "meaning_en": "By Me, in My unmanifested form, this entire universe is pervaded. All beings are in Me, but I am not in them.",
+        "meaning_hi": "मुझ अव्यक्त मूर्ति से यह सम्पूर्ण जगत व्याप्त है। सम्पूर्ण भूत मुझमें स्थित हैं, परन्तु मैं उनमें स्थित नहीं हूँ।",
+        "emotional_tone": [
+            "omnipresent",
+            "detached"
+        ],
+        "core_theme": [
+            "all-pervading",
+            "unmanifest form",
+            "detached support"
+        ],
+        "life_situations": [
+            "understanding god's presence",
+            "feeling supported",
+            "detachment"
+        ],
+        "notification_short": {
+            "en": "I pervade the entire universe. All beings are in Me.",
+            "hi": "मैं सम्पूर्ण ब्रह्मांड में व्याप्त हूँ। सभी प्राणी मुझमें हैं।"
+        }
+    },
+    {
+        "id": "9_5",
+        "sanskrit": "न च मत्स्थानि भूतानि पश्य मे योगमैश्वरम् । भूतभृन्न च भूतस्थो ममात्मा भूतभावनः ॥",
+        "iast": "na ca mat-sthāni bhūtāni paśya me yogam aiśvaram। bhūta-bhṛn na ca bhūta-stho mamātmā bhūta-bhāvanaḥ॥",
+        "simple": "na cha mat sthani bhutani pashya me yogam aishvaram, bhuta bhrin na cha bhuta stho mama atma bhuta bhavanah",
+        "meaning_en": "And yet everything that is created does not rest in Me. Behold My mystic opulence! Although I am the maintainer of all living entities and although I am everywhere, I am not a part of this cosmic manifestation, for My Self is the very source of creation.",
+        "meaning_hi": "और वे भूत मुझमें स्थित नहीं हैं; मेरी ईश्वरीय योगशक्ति को देख! भूतों का धारण-पोषण करने वाला और भूतों को उत्पन्न करने वाला मेरा आत्मा भूतों में स्थित नहीं है।",
+        "emotional_tone": [
+            "mystical",
+            "paradoxical"
+        ],
+        "core_theme": [
+            "mystic opulence",
+            "source of creation",
+            "maintainer"
+        ],
+        "life_situations": [
+            "contemplating the divine mystery",
+            "god's power",
+            "awe"
+        ],
+        "notification_short": {
+            "en": "Behold My mystic power! I maintain all, but am not part of it.",
+            "hi": "मेरी रहस्यमयी शक्ति को देखो! मैं सबका पालन करता हूँ, लेकिन उसका हिस्सा नहीं हूँ।"
+        }
+    },
+    {
+        "id": "9_6",
+        "sanskrit": "यथाऽऽकाशस्थितो नित्यं वायुः सर्वत्रगो महान् । तथा सर्वाणि भूतानि मत्स्थानीत्युपधारय ॥",
+        "iast": "yathā 'kāśa-sthito nityaṃ vāyuḥ sarvatra-go mahān। tathā sarvāṇi bhūtāni mat-sthānīty upadhāraya॥",
+        "simple": "yatha akasha sthito nityam vayuh sarvatrago mahan, tatha sarvani bhutani mat sthani iti upadharaya",
+        "meaning_en": "Understand that as the mighty wind, blowing everywhere, rests always in the sky, all created beings rest in Me.",
+        "meaning_hi": "जैसे सब जगह विचरने वाला महान वायु नित्य आकाश में ही स्थित रहता है, वैसे ही सम्पूर्ण भूत मुझमें स्थित हैं- ऐसा मान।",
+        "emotional_tone": [
+            "illustrative",
+            "vast"
+        ],
+        "core_theme": [
+            "wind in sky analogy",
+            "resting in god",
+            "dependence"
+        ],
+        "life_situations": [
+            "feeling held by god",
+            "understanding relationship",
+            "trust"
+        ],
+        "notification_short": {
+            "en": "Like the wind rests in the sky, all beings rest in Me.",
+            "hi": "जैसे हवा आकाश में रहती है, वैसे ही सभी प्राणी मुझमें रहते हैं।"
+        }
+    },
+    {
+        "id": "9_7",
+        "sanskrit": "सर्वभूतानि कौन्तेय प्रकृतिं यान्ति मामिकाम् । कल्पक्षये पुनस्तानि कल्पादौ विसृजाम्यहम् ॥",
+        "iast": "sarva-bhūtāni kaunteya prakṛtiṃ yānti māmikām। kalpa-kṣaye punas tāni kalpādau visṛjāmy aham॥",
+        "simple": "sarva bhutani kaunteya prakritim yanti mamikam, kalpa kshaye punas tani kalpadau visrijamy aham",
+        "meaning_en": "O son of Kunti, at the end of the millennium all material manifestations enter into My nature, and at the beginning of another millennium, by My potency, I create them again.",
+        "meaning_hi": "हे अर्जुन! कल्पों के अंत में सब भूत मेरी प्रकृति को प्राप्त होते हैं अर्थात् प्रकृति में लीन होते हैं और कल्पों के आदि में उनको मैं फिर रचता हूँ।",
+        "emotional_tone": [
+            "cyclical",
+            "powerful"
+        ],
+        "core_theme": [
+            "creation and dissolution",
+            "cosmic cycle",
+            "power of creation"
+        ],
+        "life_situations": [
+            "accepting change",
+            "cycles of time",
+            "god's will"
+        ],
+        "notification_short": {
+            "en": "At the end of an age, all beings merge into Me. At the beginning, I create them again.",
+            "hi": "युग के अंत में, सभी प्राणी मुझमें विलीन हो जाते हैं। शुरुआत में, मैं उन्हें फिर से बनाता हूँ।"
+        }
+    },
+    {
+        "id": "9_8",
+        "sanskrit": "प्रकृतिं स्वामवष्टभ्य विसृजामि पुनः पुनः । भूतग्राममिमं कृत्स्नमवशं प्रकृतेर्वशात् ॥",
+        "iast": "prakṛtiṃ svām avaṣṭabhya visṛjāmi punaḥ punaḥ। bhūta-grāmam imaṃ kṛtsnam avaśaṃ prakṛter vaśāt॥",
+        "simple": "prakritim svam avashtabhya visrijami punah punah, bhuta gramam imam kritsnam avasham prakriter vashat",
+        "meaning_en": "The whole cosmic order is under Me. Under My will it is automatically manifested again and again, and under My will it is annihilated at the end.",
+        "meaning_hi": "अपनी प्रकृति को अंगीकार करके स्वभाव के वश में हुए इस सम्पूर्ण भूतसमुदाय को मैं बार-बार रचता हूँ।",
+        "emotional_tone": [
+            "controlling",
+            "automatic"
+        ],
+        "core_theme": [
+            "repeated creation",
+            "nature's control",
+            "divine will"
+        ],
+        "life_situations": [
+            "surrendering to divine will",
+            "understanding nature",
+            "acceptance"
+        ],
+        "notification_short": {
+            "en": "I create the world again and again, according to My will.",
+            "hi": "मैं अपनी इच्छा के अनुसार बार-बार दुनिया बनाता हूँ।"
+        }
+    },
+    {
+        "id": "9_9",
+        "sanskrit": "न च मां तानि कर्माणि निबध्नन्ति धनञ्जय । उदासीनवदासीनमसक्तं तेषु कर्मसु ॥",
+        "iast": "na ca māṃ tāni karmāṇi nibadhnanti dhanañjaya। udāsīna-vad āsīnam asaktaṃ teṣu karmasu॥",
+        "simple": "na cha mam tani karmani nibadhnanti dhananjaya, udasina vad asinamasaktam teshu karmasu",
+        "meaning_en": "O Dhananjaya, all this work cannot bind Me. I am ever detached from all these material activities, seated as though neutral.",
+        "meaning_hi": "हे अर्जुन! वे कर्म मुझे नहीं बांधते; उन कर्मों में आसक्तिरहित और उदासीन के सदृश स्थित मुझे वे कर्म नहीं बांधते।",
+        "emotional_tone": [
+            "detached",
+            "free"
+        ],
+        "core_theme": [
+            "non-binding action",
+            "neutrality",
+            "divine detachment"
+        ],
+        "life_situations": [
+            "practicing detachment",
+            "working without binding",
+            "freedom"
+        ],
+        "notification_short": {
+            "en": "Actions do not bind Me. I am neutral and detached.",
+            "hi": "कर्म मुझे नहीं बांधते। मैं तटस्थ और अनासक्त हूँ।"
+        }
+    },
+    {
+        "id": "9_10",
+        "sanskrit": "मयाध्यक्षेण प्रकृतिः सूयते सचराचरम् । हेतुनानेन कौन्तेय जगद्विपरिवर्तते ॥",
+        "iast": "mayādhyakṣeṇa prakṛtiḥ sūyate sa-carācaram। hetunānena kaunteya jagad viparivartate॥",
+        "simple": "mayadhyakshena prakritih suyate sa characharam, hetunanena kaunteya jagad viparivartate",
+        "meaning_en": "This material nature, which is one of My energies, is working under My direction, O son of Kunti, producing all moving and nonmoving beings. Under its rule this manifestation is created and annihilated again and again.",
+        "meaning_hi": "हे अर्जुन! मेरी अध्यक्षता में प्रकृति चराचर जगत को रचती है; और इसी कारण से यह संसार घूमता (परिवर्तित होता) रहता है।",
+        "emotional_tone": [
+            "sovereign",
+            "directing"
+        ],
+        "core_theme": [
+            "superintendence",
+            "nature's supervisor",
+            "cause of creation"
+        ],
+        "life_situations": [
+            "trusting the cosmic order",
+            "recognizing the director",
+            "awe"
+        ],
+        "notification_short": {
+            "en": "Nature works under My direction, creating all beings.",
+            "hi": "प्रकृति मेरे निर्देशन में काम करती है, सभी प्राणियों को बनाती है।"
+        }
+    },
+    {
+        "id": "9_11",
+        "sanskrit": "अवजानन्ति मां मूढा मानुषीं तनुमाश्रितम् । परं भावमजानन्तो मम भूतमहेश्वरम् ॥",
+        "iast": "avajānanti māṃ mūḍhā mānuṣīṃ tanum āśritam। paraṃ bhāvam ajānanto mama bhūta-maheśvaram॥",
+        "simple": "avajananti mam mudha manushim tanum ashritam, param bhavam ajananto mama bhuta maheshvaram",
+        "meaning_en": "Fools deride Me when I descend in the human form. They do not know My transcendental nature as the Supreme Lord of all that be.",
+        "meaning_hi": "मेरे परम भाव को न जानने वाले मूढ़ लोग मनुष्य शरीर का आश्रय लेने वाले मुझे तुच्छ समझते हैं; वे मुझे सम्पूर्ण भूतों का महान ईश्वर नहीं जानते।",
+        "emotional_tone": [
+            "misunderstood",
+            "majestic"
+        ],
+        "core_theme": [
+            "human form delusion",
+            "ignoring the divine",
+            "supreme lord"
+        ],
+        "life_situations": [
+            "being misunderstood",
+            "recognizing divinity",
+            "looking beyond appearance"
+        ],
+        "notification_short": {
+            "en": "Fools mock Me in human form, not knowing I am the Supreme Lord.",
+            "hi": "मूर्ख मानव रूप में मेरा मजाक उड़ाते हैं, यह नहीं जानते कि मैं सर्वोच्च भगवान हूँ।"
+        }
+    },
+    {
+        "id": "9_12",
+        "sanskrit": "मोघाशा मोघकर्माणो मोघज्ञाना विचेतसः । राक्षसीमासुरीं चैव प्रकृतिं मोहिनीं श्रिताः ॥",
+        "iast": "moghāśā mogha-karmāṇo mogha-jñānā vicetasaḥ। rākṣasīm āsurīṃ caiva prakṛtiṃ mohinīṃ śritāḥ॥",
+        "simple": "moghasha mogha karmano mogha jnana vicetasah, rakshasim asurim chaiva prakritim mohinim shritah",
+        "meaning_en": "Those who are thus bewildered are attracted by demonic and atheistic views. In that deluded condition, their hopes for liberation, their fruitive activities, and their culture of knowledge are all defeated.",
+        "meaning_hi": "वे व्यर्थ आशा, व्यर्थ कर्म और व्यर्थ ज्ञान वाले विक्षिप्तचित्त अज्ञानी राक्षस और आसुरी मोहिनी प्रकृति का ही आश्रय लेते हैं।",
+        "emotional_tone": [
+            "futile",
+            "deluded"
+        ],
+        "core_theme": [
+            "futile hopes",
+            "atheistic nature",
+            "delusion"
+        ],
+        "life_situations": [
+            "avoiding delusion",
+            "choosing right path",
+            "wasted effort"
+        ],
+        "notification_short": {
+            "en": "Those deluded by darkness have futile hopes and wasted actions.",
+            "hi": "अंधकार से भ्रमित लोगों की उम्मीदें व्यर्थ और कार्य बेकार होते हैं।"
+        }
+    },
+    {
+        "id": "9_13",
+        "sanskrit": "महात्मानस्तु मां पार्थ दैवीं प्रकृतिमाश्रिताः । भजन्त्यनन्यमनसो ज्ञात्वा भूतादिमव्ययम् ॥",
+        "iast": "mahātmānas tu māṃ pārtha daivīṃ prakṛtiṃ āśritāḥ। bhajanty ananya-manaso jñātvā bhūtādim avyayam॥",
+        "simple": "mahatmanas tu mam partha daivim prakritim ashritah, bhajanty ananya manaso jnatva bhutadim avyayam",
+        "meaning_en": "O son of Prtha, those who are not deluded, the great souls, are under the protection of the divine nature. They are fully engaged in devotional service because they know Me as the Supreme Personality of Godhead, original and inexhaustible.",
+        "meaning_hi": "परन्तु हे पार्थ! दैवी प्रकृति के आश्रित महात्माजन मुझे सम्पूर्ण भूतों का आदि और अविनाशी समझकर अनन्य मन से भजते हैं।",
+        "emotional_tone": [
+            "protected",
+            "devoted"
+        ],
+        "core_theme": [
+            "mahatmas",
+            "divine nature",
+            "unalloyed devotion"
+        ],
+        "life_situations": [
+            "seeking divine protection",
+            "practicing devotion",
+            "knowing the source"
+        ],
+        "notification_short": {
+            "en": "Great souls take shelter of the Divine and worship Me with a focused mind.",
+            "hi": "महान आत्माएँ परमात्मा की शरण लेती हैं और एकाग्र मन से मेरी पूजा करती हैं।"
+        }
+    },
+    {
+        "id": "9_14",
+        "sanskrit": "सततं कीर्तयन्तो मां यतन्तश्च दृढव्रताः । नमस्यन्तश्च मां भक्त्या नित्ययुक्ता उपासते ॥",
+        "iast": "satataṃ kīrtayanto māṃ yatantaś ca dṛḍha-vratāḥ। namasyantaś ca māṃ bhaktyā nitya-yuktā upāsate॥",
+        "simple": "satatam kirtayanto mam yatantash cha dridha vratah, namasyantash cha mam bhaktya nitya yukta upasate",
+        "meaning_en": "Always chanting My glories, endeavoring with great determination, bowing down before Me, these great souls perpetually worship Me with devotion.",
+        "meaning_hi": "वे दृढव्रती भक्त निरंतर मेरे नाम और गुणों का कीर्तन करते हुए तथा मेरी प्राप्ति के लिए यत्न करते हुए और मुझे बार-बार नमस्कार करते हुए सदा मेरे ध्यान में युक्त होकर मुझे भजते हैं।",
+        "emotional_tone": [
+            "devout",
+            "constant"
+        ],
+        "core_theme": [
+            "kirtan",
+            "determination",
+            "constant worship"
+        ],
+        "life_situations": [
+            "daily prayer",
+            "chanting",
+            "firm vows"
+        ],
+        "notification_short": {
+            "en": "Always chanting My names, determined and bowing down, they worship Me.",
+            "hi": "हमेशा मेरे नामों का जाप करते हुए, दृढ़ और नमन करते हुए, वे मेरी पूजा करते हैं।"
+        }
+    },
+    {
+        "id": "9_15",
+        "sanskrit": "ज्ञानयज्ञेन चाप्यन्ये यजन्तो मामुपासते । एकत्वेन पृथक्त्वेन बहुधा विश्वतोमुखम् ॥",
+        "iast": "jñāna-yajñena cāpy anye yajanto mām upāsate। ekatvena pṛthaktvena bahudhā viśvato-mukham॥",
+        "simple": "jnana yajnena chapy anye yajanto mam upasate, ekatvena prithaktvena bahudha vishvato mukham",
+        "meaning_en": "Others, who engage in sacrifice by the cultivation of knowledge, worship the Supreme Lord as the one without a second, as diverse in many, and in the universal form.",
+        "meaning_hi": "दूसरे ज्ञानयोगी मुझे ज्ञानयज्ञ द्वारा एकीभाव से पूजते हुए, तो कोई पृथकभाव से, और कोई बहुत प्रकार से विश्वरूप मानकर मेरी उपासना करते हैं।",
+        "emotional_tone": [
+            "philosophical",
+            "diverse"
+        ],
+        "core_theme": [
+            "jnana yajna",
+            "oneness",
+            "universal form"
+        ],
+        "life_situations": [
+            "seeing god in all",
+            "intellectual worship",
+            "unity in diversity"
+        ],
+        "notification_short": {
+            "en": "Some worship Me as the One, some as the Many, some as the Universe.",
+            "hi": "कुछ मुझे एक के रूप में पूजते हैं, कुछ अनेक के रूप में, कुछ ब्रह्मांड के रूप में।"
+        }
+    },
+    {
+        "id": "9_16",
+        "sanskrit": "अहं क्रतुरहं यज्ञः स्वधाऽहमहमौषधम् । मन्त्रोऽहमहमेवाज्यमहमग्निरहं हुतम् ॥",
+        "iast": "ahaṃ kratur ahaṃ yajñaḥ svadhā 'ham aham auṣadham। mantro 'ham aham evājyam aham agnir ahaṃ hutam॥",
+        "simple": "aham kratur aham yajnah svadha aham aham aushadham, mantro aham aham evajyam aham agnir aham hutam",
+        "meaning_en": "But I am the ritual, I am the sacrifice, the offering to the ancestors, the healing herb. I am the transcendental chant. I am the butter and the fire and the offering.",
+        "meaning_hi": "मैं ही क्रतु हूँ, मैं ही यज्ञ हूँ, मैं ही स्वधा हूँ, मैं ही औषधि हूँ, मैं ही मंत्र हूँ, मैं ही घी हूँ, मैं ही अग्नि हूँ और मैं ही हवन क्रिया हूँ।",
+        "emotional_tone": [
+            "all-encompassing",
+            "sacred"
+        ],
+        "core_theme": [
+            "god as ritual",
+            "god as offering",
+            "absolute identity"
+        ],
+        "life_situations": [
+            "performing rituals",
+            "seeing god in action",
+            "sacred living"
+        ],
+        "notification_short": {
+            "en": "I am the ritual, the offering, the fire, and the chant.",
+            "hi": "मैं अनुष्ठान, भेंट, अग्नि और मंत्र हूँ।"
+        }
+    },
+    {
+        "id": "9_17",
+        "sanskrit": "पिताऽहमस्य जगतो माता धाता पितामहः । वेद्यं पवित्रमोङ्कार ऋक्साम यजुरेव च ॥",
+        "iast": "pitā 'ham asya jagato mātā dhātā pitāmahaḥ। vedyaṃ pavitram oṃkāra ṛk-sāma yajur eva ca॥",
+        "simple": "pita aham asya jagato mata dhata pitamahah, vedyam pavitram omkara rik sama yajur eva cha",
+        "meaning_en": "I am the father of this universe, the mother, the support and the grandsire. I am the object of knowledge, the purifier and the syllable Om. I am also the Rig, the Sama and the Yajur Vedas.",
+        "meaning_hi": "मैं ही इस जगत का पिता, माता, धाता और पितामह हूँ। मैं ही जानने योग्य पवित्र ओंकार हूँ तथा ऋग्वेद, सामवेद और यजुर्वेद भी मैं ही हूँ।",
+        "emotional_tone": [
+            "parental",
+            "foundational"
+        ],
+        "core_theme": [
+            "universal parents",
+            "om",
+            "vedas"
+        ],
+        "life_situations": [
+            "feeling loved",
+            "seeking knowledge",
+            "connecting with roots"
+        ],
+        "notification_short": {
+            "en": "I am the Father, Mother, and Support of this universe.",
+            "hi": "मैं इस ब्रह्मांड का पिता, माता और आधार हूँ।"
+        }
+    },
+    {
+        "id": "9_18",
+        "sanskrit": "गतिर्भर्ता प्रभुः साक्षी निवासः शरणं सुहृत् । प्रभवः प्रलयः स्थानं निधानं बीजमव्ययम् ॥",
+        "iast": "gatir bhartā prabhuḥ sākṣī nivāsaḥ śaraṇaṃ suhṛt। prabhavaḥ pralayaḥ sthānaṃ nidhānaṃ bījam avyayam॥",
+        "simple": "gatir bharta prabhuh sakshi nivasa sharanam suhrit, prabhavah pralayah sthanam nidhanam bijam avyayam",
+        "meaning_en": "I am the goal, the sustainer, the master, the witness, the abode, the refuge, and the most dear friend. I am the creation and the annihilation, the basis of everything, the resting place and the eternal seed.",
+        "meaning_hi": "मैं ही गति, भर्ता, प्रभु, साक्षी, निवास, शरण, सुहृद, उत्पत्ति, प्रलय, स्थान, निधान और अविनाशी बीज हूँ।",
+        "emotional_tone": [
+            "reassuring",
+            "ultimate"
+        ],
+        "core_theme": [
+            "god is everything",
+            "refuge",
+            "friend"
+        ],
+        "life_situations": [
+            "loneliness",
+            "seeking shelter",
+            "finding purpose"
+        ],
+        "notification_short": {
+            "en": "I am your Goal, your Refuge, and your Best Friend.",
+            "hi": "मैं आपका लक्ष्य, आपकी शरण और आपका सबसे अच्छा दोस्त हूँ।"
+        }
+    },
+    {
+        "id": "9_19",
+        "sanskrit": "तपाम्यहमहं वर्षं निगृह्णाम्युत्सृजामि च । अमृतं चैव मृत्युश्च सदसच्चाहमर्जुन ॥",
+        "iast": "tapāmy aham ahaṃ varṣaṃ nigṛhṇāmy utsṛjāmi ca। amṛtaṃ caiva mṛtyuś ca sad asac cāham arjuna॥",
+        "simple": "tapamy aham aham varsham nigrihnamy utsrijami cha, amritam chaiva mrityush cha sad asach chaham arjuna",
+        "meaning_en": "O Arjuna, I give heat, and I withhold and send forth the rain. I am immortality, and I am also death personified. Both spirit and matter are in Me.",
+        "meaning_hi": "हे अर्जुन! मैं ही सूर्य रूप से तपता हूँ, वर्षा को रोकता हूँ और बरसाता हूँ। मैं ही अमृत हूँ और मृत्यु हूँ; तथा सत् और असत् भी मैं ही हूँ।",
+        "emotional_tone": [
+            "cosmic",
+            "dual"
+        ],
+        "core_theme": [
+            "cause of weather",
+            "life and death",
+            "sat and asat"
+        ],
+        "life_situations": [
+            "seeing god in nature",
+            "accepting dualities",
+            "life cycles"
+        ],
+        "notification_short": {
+            "en": "I bring the rain and the heat. I am both Immortality and Death.",
+            "hi": "मैं बारिश और गर्मी लाता हूँ। मैं अमरता और मृत्यु दोनों हूँ।"
+        }
+    },
+    {
+        "id": "9_20",
+        "sanskrit": "त्रैविद्या मां सोमपाः पूतपापा यज्ञैरिष्ट्वा स्वर्गतिं प्रार्थयन्ते । ते पुण्यमासाद्य सुरेन्द्रलोकम् अश्नन्ति दिव्यान्दिवि देवभोगान् ॥",
+        "iast": "traividyā māṃ soma-pāḥ pūta-pāpā yajñair iṣṭvā svargatiṃ prārthayante। te puṇyam āsādya surendra-lokam aśnanti divyān divi deva-bhogān॥",
+        "simple": "traividya mam soma pah puta papa yajnair ishtva svargatim prarthayante, te punyam asadya surendra lokam ashnanti divyan divi deva bhogan",
+        "meaning_en": "Those who study the Vedas and drink the soma juice, seeking the heavenly planets, worship Me indirectly. Purified of sinful reactions, they take birth on the pious, heavenly planet of Indra, where they enjoy godly delights.",
+        "meaning_hi": "तीनों वेदों को जानने वाले, सोमपा, पाप रहित पुरुष यज्ञों द्वारा मुझे पूजकर स्वर्ग की प्रार्थना करते हैं; वे पुण्य के फल रूप इंद्रलोक को प्राप्त होकर वहां देवताओं के दिव्य भोगों को भोगते हैं।",
+        "emotional_tone": [
+            "rewarding",
+            "temporary"
+        ],
+        "core_theme": [
+            "vedic rituals",
+            "heavenly enjoyment",
+            "karma kanda"
+        ],
+        "life_situations": [
+            "seeking rewards",
+            "ritual worship",
+            "desire for heaven"
+        ],
+        "notification_short": {
+            "en": "Those who seek heaven worship Me through rituals and enjoy divine pleasures.",
+            "hi": "जो स्वर्ग चाहते हैं, वे अनुष्ठानों के माध्यम से मेरी पूजा करते हैं और दिव्य सुख भोगते हैं।"
+        }
+    },
+    {
+        "id": "9_21",
+        "sanskrit": "ते तं भुक्त्वा स्वर्गलोकं विशालं क्षीणे पुण्ये मर्त्यलोकं विशन्ति । एवṃ त्रयीधर्ममनुप्रपन्ना गतागतं कामकामा लभन्ते ॥",
+        "iast": "te taṃ bhuktvā svarga-lokaṃ viśālaṃ kṣīṇe puṇye martya-lokaṃ viśanti। evaṃ trayī-dharmam anuprapannā gatāgataṃ kāma-kāmā labhante॥",
+        "simple": "te tam bhuktva svarga lokam vishalam kshine punye martya lokam vishanti, evam trayi dharmam anuprapanna gatagatam kama kama labhante",
+        "meaning_en": "When they have thus enjoyed vast heavenly sense pleasure and the results of their pious activities are exhausted, they return to this mortal planet again. Thus those who seek sense enjoyment by adhering to the principles of the three Vedas achieve only repeated birth and death.",
+        "meaning_hi": "वे उसे विशाल स्वर्गलोक को भोगकर पुण्य क्षीण होने पर मृत्युलोक (संसार) को प्राप्त होते हैं। इस प्रकार तीनों वेदों के धर्म का पालन करने वाले भोगों की कामना वाले पुरुष आवागमन को प्राप्त होते हैं।",
+        "emotional_tone": [
+            "transient",
+            "warning"
+        ],
+        "core_theme": [
+            "return to earth",
+            "exhaustion of merit",
+            "cycle of karma"
+        ],
+        "life_situations": [
+            "fleeting pleasure",
+            "consequences of desire",
+            "seeking permanence"
+        ],
+        "notification_short": {
+            "en": "When merit runs out, you fall from heaven. Only My abode is eternal.",
+            "hi": "जब पुण्य समाप्त हो जाता है, तो तुम स्वर्ग से गिर जाते हो। केवल मेरा धाम शाश्वत है।"
+        }
+    },
+    {
+        "id": "9_22",
+        "sanskrit": "अनन्याश्चिन्तयन्तो मां ये जनाः पर्युपासते । तेषां नित्याभियुक्तानां योगक्षेमं वहाम्यहम् ॥",
+        "iast": "ananyāś cintayanto māṃ ye janāḥ paryupāsate। teṣāṃ nityābhiyuktānāṃ yoga-kṣemaṃ vahāmy aham॥",
+        "simple": "ananyash chintayanto mam ye janah paryupasate, tesham nityabhiyuktanam yoga kshemam vahamy aham",
+        "meaning_en": "But those who always worship Me with exclusive devotion, meditating on My transcendental form—to them I carry what they lack, and I preserve what they have.",
+        "meaning_hi": "जो अनन्य प्रेमी भक्तजन मुझ परमेश्वर को निरंतर चिंतन करते हुए निष्कामभाव से भजते हैं, उन नित्य-निरंतर मेरा चिंतन करने वाले पुरुषों का योगक्षेम मैं स्वयं वहन करता हूँ।",
+        "emotional_tone": [
+            "protective",
+            "caring"
+        ],
+        "core_theme": [
+            "yoga kshema",
+            "divine providence",
+            "care for devotees"
+        ],
+        "life_situations": [
+            "worrying about needs",
+            "trusting god",
+            "security"
+        ],
+        "notification_short": {
+            "en": "Worship Me alone, and I will carry what you lack and preserve what you have.",
+            "hi": "अकेले मेरी पूजा करो, और मैं तुम्हारी कमी पूरी करूँगा और जो तुम्हारे पास है उसकी रक्षा करूँगा।"
+        }
+    },
+    {
+        "id": "9_23",
+        "sanskrit": "येऽप्यन्यदेवताभक्ता यजन्ते श्रद्धयान्विताः । तेऽपि मामेव कौन्तेय यजन्त्यविधिपूर्वकम् ॥",
+        "iast": "ye 'py anya-devatā-bhaktā yajante śraddhayānvitāḥ। te 'pi mām eva kaunteya yajanty avidhi-pūrvakam॥",
+        "simple": "ye api anya devata bhakta yajante shraddhayanvitah, te api mam eva kaunteya yajanti avidhi purvakam",
+        "meaning_en": "Those who are devotees of other gods and who worship them with faith actually worship only Me, O son of Kunti, but they do so in a wrong way.",
+        "meaning_hi": "हे अर्जुन! यद्यपि श्रद्धा से युक्त जो सकाम भक्त दूसरे देवताओं को पूजते हैं, वे भी मुझे ही पूजते हैं; किन्तु उनका वह पूजन अविधिपूर्वक है।",
+        "emotional_tone": [
+            "inclusive",
+            "corrective"
+        ],
+        "core_theme": [
+            "one god",
+            "unauthorized worship",
+            "all paths lead to one"
+        ],
+        "life_situations": [
+            "respecting other faiths",
+            "understanding unity",
+            "doing it right"
+        ],
+        "notification_short": {
+            "en": "Even those who worship other gods are worshiping Me, but without true understanding.",
+            "hi": "जो लोग अन्य देवताओं की पूजा करते हैं, वे भी मेरी ही पूजा कर रहे हैं, लेकिन सच्ची समझ के बिना।"
+        }
+    },
+    {
+        "id": "9_24",
+        "sanskrit": "अहं हि सर्वयज्ञानां भोक्ता च प्रभुरेव च । न तु मामभिजानन्ति तत्त्वेनातश्च्यवन्ति ते ॥",
+        "iast": "ahaṃ hi sarva-yajñānāṃ bhoktā ca prabhur eva ca। na tu mām abhijānanti tattvenātaś cyavanti te॥",
+        "simple": "aham hi sarva yajnanam bhokta cha prabhur eva cha, na tu mam abhijananti tattvena atash chyavanti te",
+        "meaning_en": "I am the only enjoyer and master of all sacrifices. Therefore, those who do not recognize My true transcendental nature fall down.",
+        "meaning_hi": "क्योंकि सम्पूर्ण यज्ञों का भोक्ता और स्वामी भी मैं ही हूँ; परन्तु वे मुझे तत्त्व से नहीं जानते, इसी से गिरते हैं (पुनर्जन्म को प्राप्त होते हैं)।",
+        "emotional_tone": [
+            "sovereign",
+            "warning"
+        ],
+        "core_theme": [
+            "master of sacrifice",
+            "enjoyer",
+            "falling down"
+        ],
+        "life_situations": [
+            "offering result to god",
+            "knowing the owner",
+            "avoiding fall"
+        ],
+        "notification_short": {
+            "en": "I am the Master of all sacrifices. Know Me, or you will fall.",
+            "hi": "मैं सभी यज्ञों का स्वामी हूँ। मुझे जानो, नहीं तो तुम गिर जाओगे।"
+        }
+    },
+    {
+        "id": "9_25",
+        "sanskrit": "यान्ति देवव्रता देवान् पितॄन् यान्ति पितृव्रताः । भूतानि यान्ति भूतेज्या यान्ति मद्याजिनोऽपि माम् ॥",
+        "iast": "yānti deva-vratā devān pitṝn yānti pitṛ-vratāḥ। bhūtāni yānti bhūtejyā yānti mad-yājino 'pi mām॥",
+        "simple": "yanti deva vrata devan pitrin yanti pitri vrata, bhutani yanti bhutejya yanti mad yajino api mam",
+        "meaning_en": "Those who worship the demigods will take birth among the demigods; those who worship the ancestors go to the ancestors; those who worship ghosts and spirits will take birth among such beings; and those who worship Me will live with Me.",
+        "meaning_hi": "देवताओं को पूजने वाले देवताओं को प्राप्त होते हैं, पितरों को पूजने वाले पितरों को प्राप्त होते हैं, भूतों को पूजने वाले भूतों को प्राप्त होते हैं और मेरा पूजन करने वाले मुझे ही प्राप्त होते हैं।",
+        "emotional_tone": [
+            "fair",
+            "destiny"
+        ],
+        "core_theme": [
+            "you go where you focus",
+            "worship determines destination",
+            "attaining god"
+        ],
+        "life_situations": [
+            "choosing role models",
+            "setting goals",
+            "destiny"
+        ],
+        "notification_short": {
+            "en": "Worship ghosts, go to ghosts. Worship Me, come to Me. You choose.",
+            "hi": "भूतों की पूजा करो, भूतों के पास जाओ। मेरी पूजा करो, मेरे पास आओ। तुम चुनते हो।"
+        }
+    },
+    {
+        "id": "9_26",
+        "sanskrit": "पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति । तदहं भक्त्युपहृतमश्नामि प्रयतात्मनः ॥",
+        "iast": "patraṃ puṣpaṃ phalaṃ toyaṃ yo me bhaktyā prayacchati। tad ahaṃ bhakty-upahṛtam aśnāmi prayatātmanaḥ॥",
+        "simple": "patram pushpam phalam toyam yo me bhaktya prayachchhati, tad aham bhakty upahritam ashnami prayatatmanah",
+        "meaning_en": "If one offers Me with love and devotion a leaf, a flower, a fruit or water, I will accept it.",
+        "meaning_hi": "जो कोई भक्त मेरे लिए प्रेम से पत्र, पुष्प, फल, जल आदि अर्पण करता है, उस शुद्धबुद्धि निष्काम प्रेमी भक्त का प्रेमपूर्वक अर्पण किया हुआ वह पत्रादि मैं खाता हूँ (स्वीकार करता हूँ)।",
+        "emotional_tone": [
+            "loving",
+            "simple"
+        ],
+        "core_theme": [
+            "simplicity of devotion",
+            "offering with love",
+            "bhakti"
+        ],
+        "life_situations": [
+            "simple offerings",
+            "giving with heart",
+            "easy worship"
+        ],
+        "notification_short": {
+            "en": "Offer Me a leaf, a flower, or water with love, and I will accept it.",
+            "hi": "मुझे प्यार से एक पत्ता, एक फूल या पानी चढ़ाओ, और मैं इसे स्वीकार करूँगा।"
+        }
+    },
+    {
+        "id": "9_27",
+        "sanskrit": "यत्करोषि यदश्नासि यज्जुहोषि ददासि यत् । यत्तपस्यसि कौन्तेय तत्कुरुष्व मदर्पणम् ॥",
+        "iast": "yat karoṣi yad aśnāsi yaj juhoṣi dadāsi yat। yat tapasyasi kaunteya tat kuruṣva mad-arpaṇam॥",
+        "simple": "yat karoshi yad ashnasi yaj juhoshi dadasi yat, yat tapasyasi kaunteya tat kurushva mad arpanam",
+        "meaning_en": "Whatever you do, whatever you eat, whatever you offer or give away, and whatever austerities you perform—do that, O son of Kunti, as an offering to Me.",
+        "meaning_hi": "हे अर्जुन! तू जो कर्म करता है, जो खाता है, जो हवन करता है, जो दान देता है और जो तप करता है, वह सब मुझे अर्पण कर।",
+        "emotional_tone": [
+            "devotional",
+            "surrendered"
+        ],
+        "core_theme": [
+            "offering everything",
+            "karma yoga",
+            "consecrated life"
+        ],
+        "life_situations": [
+            "dedicating daily life",
+            "eating",
+            "working for god"
+        ],
+        "notification_short": {
+            "en": "Whatever you do or eat, offer it to Me. Make your life an offering.",
+            "hi": "जो कुछ भी तुम करते हो या खाते हो, वह मुझे अर्पित करो। अपने जीवन को एक भेंट बनाओ।"
+        }
+    },
+    {
+        "id": "9_28",
+        "sanskrit": "शुभाशुभफलैरेवं मोक्ष्यसे कर्मबन्धनैः । संन्यासयोगयुक्तात्मा विमुक्तो मामुपैष्यसि ॥",
+        "iast": "śubhāśubha-phalair evaṃ mokṣyase karma-bandhanaiḥ। saṃnyāsa-yoga-yuktātmā vimukto mām upaiṣyasi॥",
+        "simple": "shubhashubha phalair evam mokshyase karma bandhanaih, sannyasa yoga yuktatma vimukto mam upaishyasi",
+        "meaning_en": "In this way you will be freed from bondage to work and its auspicious and inauspicious results. With your mind fixed on Me in this principle of renunciation, you will be liberated and come to Me.",
+        "meaning_hi": "इस प्रकार सर्वत्र मुझे अर्पण करने से तू शुभाशुभ फल वाले कर्मबंधनों से मुक्त हो जाएगा; और उनसे मुक्त होकर संन्यासयोग से युक्त चित्त वाला तू मुझे प्राप्त होगा।",
+        "emotional_tone": [
+            "liberating",
+            "freeing"
+        ],
+        "core_theme": [
+            "freedom from karma",
+            "renunciation",
+            "liberation"
+        ],
+        "life_situations": [
+            "breaking chains",
+            "seeking freedom",
+            "spiritual goal"
+        ],
+        "notification_short": {
+            "en": "Offer everything to Me, and you will be free from the bondage of actions.",
+            "hi": "सब कुछ मुझे अर्पित करो, और तुम कर्मों के बंधन से मुक्त हो जाओगे।"
+        }
+    },
+    {
+        "id": "9_29",
+        "sanskrit": "समोऽहं सर्वभूतेषु न मे द्वेष्योऽस्ति न प्रियः । ये भजन्ति तु मां भक्त्या मयि ते तेषु चाप्यहम् ॥",
+        "iast": "samo 'haṃ sarva-bhūteṣu na me dveṣyo 'sti na priyaḥ। ye bhajanti tu māṃ bhaktyā mayi te teṣu cāpy aham॥",
+        "simple": "samo aham sarva bhuteshu na me dveshyo asti na priyah, ye bhajanti tu mam bhaktya mayi te teshu chapy aham",
+        "meaning_en": "I envy no one, nor am I partial to anyone. I am equal to all. But whoever renders service unto Me in devotion is a friend, is in Me, and I am also a friend to him.",
+        "meaning_hi": "मैं सब भूतों में समभाव से व्यापक हूँ, न कोई मेरा अप्रिय है और न प्रिय; परन्तु जो भक्त मुझे प्रेम से भजते हैं, वे मुझमें हैं और मैं भी उनमें हूँ।",
+        "emotional_tone": [
+            "impartial",
+            "reciprocal"
+        ],
+        "core_theme": [
+            "equality of god",
+            "reciprocation of love",
+            "friendship with god"
+        ],
+        "life_situations": [
+            "seeking a friend",
+            "fairness",
+            "devotional relationship"
+        ],
+        "notification_short": {
+            "en": "I am equal to all. But if you offer Me love, I am your friend.",
+            "hi": "मैं सभी के लिए समान हूँ। लेकिन अगर तुम मुझे प्यार दोगे, तो मैं तुम्हारा दोस्त हूँ।"
+        }
+    },
+    {
+        "id": "9_30",
+        "sanskrit": "अपि चेत्सुदुराचारो भजते मामनन्यभाक् । साधुरेव स मन्तव्यः सम्यग्व्यवसितो हि सः ॥",
+        "iast": "api cet su-durācāro bhajate mām ananya-bhāk। sādhur eva sa mantavyaḥ samyag vyavasito hi saḥ॥",
+        "simple": "api chet suduracharo bhajate mam ananya bhak, sadhur eva sa mantavyah samyag vyavasito hi sah",
+        "meaning_en": "Even if one commits the most abominable action, if he is engaged in devotional service he is to be considered saintly because he is properly situated in his determination.",
+        "meaning_hi": "यदि कोई अति दुराचारी भी अनन्य भाव से मुझे भजता है तो उसे साधु ही मानना चाहिए; क्योंकि वह यथार्थ निश्चय वाला है।",
+        "emotional_tone": [
+            "forgiving",
+            "redeeming"
+        ],
+        "core_theme": [
+            "redemption",
+            "power of devotion",
+            "saintliness"
+        ],
+        "life_situations": [
+            "seeking forgiveness",
+            "turning a new leaf",
+            "hope for sinners"
+        ],
+        "notification_short": {
+            "en": "Even a sinner becomes a saint if he worships Me with determination.",
+            "hi": "एक पापी भी संत बन जाता है यदि वह दृढ़ता से मेरी पूजा करता है।"
+        }
+    },
+    {
+        "id": "9_31",
+        "sanskrit": "क्षिप्रं भवति धर्मात्मा शश्वच्छान्तिं निगच्छति । कौन्तेय प्रतिजानीहि न मे भक्तः प्रणश्यति ॥",
+        "iast": "kṣipraṃ bhavati dharmātmā śaśvac-chāntiṃ nigacchati। kaunteya pratijānīhi na me bhaktaḥ praṇaśyati॥",
+        "simple": "kshipram bhavati dharmatma shashvat shantim nigachchhati, kaunteya pratijanihi na me bhaktah pranashyati",
+        "meaning_en": "He quickly becomes righteous and attains lasting peace. O son of Kunti, declare it boldly that My devotee never perishes.",
+        "meaning_hi": "वह शीघ्र ही धर्मात्मा हो जाता है और सदा रहने वाली परम शांति को प्राप्त होता है। हे अर्जुन! तू निश्चयपूर्वक सत्य जान कि मेरा भक्त नष्ट नहीं होता।",
+        "emotional_tone": [
+            "reassuring",
+            "bold"
+        ],
+        "core_theme": [
+            "devotee never perishes",
+            "lasting peace",
+            "transformation"
+        ],
+        "life_situations": [
+            "guarantee of safety",
+            "finding peace",
+            "confidence"
+        ],
+        "notification_short": {
+            "en": "Declare it boldly: My devotee never perishes.",
+            "hi": "इसे साहसपूर्वक घोषित करो: मेरा भक्त कभी नष्ट नहीं होता।"
+        }
+    },
+    {
+        "id": "9_32",
+        "sanskrit": "मां हि पार्थ व्यपाश्रित्य येऽपि स्युः पापयोनयः । स्त्रियो वैश्यास्तथा शूद्रास्तेऽपि यान्ति परां गतिम् ॥",
+        "iast": "māṃ hi pārtha vyapāśritya ye 'pi syuḥ pāpa-yonayaḥ। striyo vaiśyās tathā śūdrās te 'pi yānti parāṃ gatim॥",
+        "simple": "mam hi partha vyapashritya ye api syuh papa yonayah, striyo vaishyas tatha shudras te api yanti param gatim",
+        "meaning_en": "O son of Prtha, those who take shelter in Me, though they be of lower birth—women, vaisyas [merchants] and sudras [workers]—can attain the supreme destination.",
+        "meaning_hi": "हे अर्जुन! स्त्री, वैश्य, शूद्र तथा पापयोनि- ये कोई भी हों, जो मेरे शरण होकर परमगति को ही प्राप्त होते हैं।",
+        "emotional_tone": [
+            "equality",
+            "inclusive"
+        ],
+        "core_theme": [
+            "spiritual equality",
+            "salvation for all",
+            "no discrimination"
+        ],
+        "life_situations": [
+            "overcoming social barriers",
+            "equality before god",
+            "opportunity for all"
+        ],
+        "notification_short": {
+            "en": "Anyone who takes shelter in Me can reach the supreme goal.",
+            "hi": "कोई भी जो मेरी शरण लेता है, सर्वोच्च लक्ष्य तक पहुँच सकता है।"
+        }
+    },
+    {
+        "id": "9_33",
+        "sanskrit": "किं पुनर्ब्राह्मणाः पुण्या भक्ता राजर्षयस्तथा । अनित्यमसुखं लोकमिमं प्राप्य भजस्व माम् ॥",
+        "iast": "kiṃ punar brāhmaṇāḥ puṇyā bhaktā rāja-ṛṣayas tathā। anityam asukhaṃ lokam imaṃ prāpya bhajasva mām॥",
+        "simple": "kim punar brahmanah punyah bhakta rajarshayas tatha, anityam asukham lokam imam prapya bhajasva mam",
+        "meaning_en": "How much more this is so of the righteous brahmanas, the devotees and the saintly kings. Therefore, having come to this temporary, miserable world, engage in loving service unto Me.",
+        "meaning_hi": "फिर क्या कहना है पुण्यशील ब्राह्मणों तथा राजर्षि भक्तों के विषय में! इसलिए तू सुख रहित और क्षणभंगुर इस मनुष्य शरीर को प्राप्त होकर निरंतर मेरा ही भजन कर।",
+        "emotional_tone": [
+            "urgent",
+            "persuasive"
+        ],
+        "core_theme": [
+            "miserable world",
+            "urgency of devotion",
+            "worship me"
+        ],
+        "life_situations": [
+            "seeking happiness",
+            "realizing emptiness of world",
+            "finding purpose"
+        ],
+        "notification_short": {
+            "en": "This world is temporary and miserable. Worship Me to find peace.",
+            "hi": "यह दुनिया अस्थायी और दुखी है। शांति पाने के लिए मेरी पूजा करो।"
+        }
+    },
+    {
+        "id": "9_34",
+        "sanskrit": "मन्मना भव मद्भक्तो मद्याजी मां नमस्कुरु । मामेवैष्यसि युक्त्वैवमात्मानं मत्परायणः ॥",
+        "iast": "man-manā bhava mad-bhakto mad-yājī māṃ namaskuru। mām evaiṣyasi yuktvaivam ātmānaṃ mat-parāyaṇaḥ॥",
+        "simple": "manmana bhava mad bhakto mad yaji mam namaskuru, mam evaishyasi yuktvaivam atmanam mat parayanah",
+        "meaning_en": "Engage your mind always in thinking of Me, become My devotee, offer obeisances to Me and worship Me. Being completely absorbed in Me, surely you will come to Me.",
+        "meaning_hi": "मुझमें मन वाला हो, मेरा भक्त बन, मेरा पूजन करने वाला हो, मुझको प्रणाम कर। इस प्रकार आत्मा को मुझमें नियुक्त करके मेरे पारायण होकर तू मुझे ही प्राप्त होगा।",
+        "emotional_tone": [
+            "summarizing",
+            "highest instruction"
+        ],
+        "core_theme": [
+            "essential instruction",
+            "four things to do",
+            "absorption in god"
+        ],
+        "life_situations": [
+            "summary of gita",
+            "complete surrender",
+            "how to live"
+        ],
+        "notification_short": {
+            "en": "Think of Me, become My devotee, worship Me, and bow to Me. You will come to Me.",
+            "hi": "मेरे बारे में सोचो, मेरे भक्त बनो, मेरी पूजा करो, और मुझे नमन करो। तुम मेरे पास आओगे।"
+        }
+    }
+]
