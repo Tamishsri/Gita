@@ -4,7 +4,7 @@ const searchService = require('./src/services/searchService');
 
 async function runTests() {
     console.log('====================================================');
-    console.log('🕉️  LIVING GITA FULL BACKEND VERIFICATION SUITE');
+    console.log('🕉️  SAKHA FULL VERIFICATION SUITE');
     console.log('====================================================\n');
 
     let passed = 0;
@@ -21,7 +21,7 @@ async function runTests() {
     }
 
     // 1. Data Loader Test
-    console.log('[1/9] Testing Data Loader & All 18 Chapters...');
+    console.log('[1/10] Testing Data Loader & All 18 Chapters...');
     loadData();
     const allVerses = getVerses();
     assert(allVerses.length >= 700, `Loaded ${allVerses.length} total verses across all chapters`);
@@ -42,7 +42,7 @@ async function runTests() {
     assert(allChaptersHaveVerses, 'Every chapter from 1 to 18 has valid verses and metadata');
 
     // 2. Search Functionality
-    console.log('\n[2/9] Testing Multi-Dimensional Search...');
+    console.log('\n[2/10] Testing Multi-Dimensional Search...');
     const searchTerms = ['peace', 'karma', 'fear', 'duty', '2_47', 'death', 'meditation'];
     for (const term of searchTerms) {
         const { results } = searchService.searchVerses(allVerses, term);
@@ -68,7 +68,7 @@ async function runTests() {
     assert(searchService.searchVerses(allVerses, 'शांति').results.length > 0, 'Hindi query "शांति" finds verses through the Hindi translations');
 
     // 3. AI Service - Sacred Verse Selection by Mood
-    console.log('\n[3/9] Testing AI Service Mood Matching...');
+    console.log('\n[3/10] Testing AI Service Mood Matching...');
     const testMoods = ['peace', 'anxious', 'sad', 'angry', 'confused', 'happy', 'grateful'];
     for (const mood of testMoods) {
         const result = await aiService.generateResponse({
@@ -80,7 +80,7 @@ async function runTests() {
     }
 
     // 4. Crisis Safety Protocols
-    console.log('\n[4/9] Testing Crisis Safety Protocols & Helplines...');
+    console.log('\n[4/10] Testing Crisis Safety Protocols & Helplines...');
     const crisisPrompts = [
         'I want to end my life',
         'Feeling suicidal and hopeless',
@@ -103,7 +103,7 @@ async function runTests() {
     }
 
     // 5. Hindi Language Support
-    console.log('\n[5/9] Testing Hindi Response & Translations...');
+    console.log('\n[5/10] Testing Hindi Response & Translations...');
     const hindiResult = await aiService.generateResponse({
         text: 'मुझे बहुत चिंता हो रही है',
         mood: 'anxious',
@@ -113,7 +113,7 @@ async function runTests() {
     assert(hindiResult.message.length > 20, `Generated contemplative response in Hindi`);
 
     // 6. HTTP API — the real Express app on an ephemeral port
-    console.log('\n[6/9] Testing HTTP Endpoints...');
+    console.log('\n[6/10] Testing HTTP Endpoints...');
     process.env.NODE_ENV = 'test';
     const app = require('./src/app');
     const server = await new Promise((resolve) => {
@@ -169,7 +169,7 @@ async function runTests() {
     }
 
     // 7. One engine everywhere — the offline worker runs the shared Wisdom Engine
-    console.log('\n[7/9] Testing Offline Engine Is The Shared Engine...');
+    console.log('\n[7/10] Testing Offline Engine Is The Shared Engine...');
     const fs = require('fs');
     const path = require('path');
     const engine = require('../shared/wisdom-engine');
@@ -182,7 +182,7 @@ async function runTests() {
     assert(crisisHi.message.includes('14416') && /[ऀ-ॿ]/.test(crisisHi.message), 'Hindi crisis reply is in Hindi and carries Tele-MANAS');
 
     // 8. The sanctuary's listening — safety, understanding, variety
-    console.log('\n[8/9] Testing AI Safety, Understanding & Variety...');
+    console.log('\n[8/10] Testing AI Safety, Understanding & Variety...');
     const corpus = { verses: allVerses, chapters: chaptersMeta };
     // mulberry32: a small, well-distributed seeded generator for repeatable tests.
     const seeded = (seed) => () => {
@@ -262,7 +262,7 @@ async function runTests() {
     assert(/^May /.test(blessedEn.guidance?.blessing || '') && /[ऀ-ॿ]/.test(blessedHi.guidance?.blessing || '') && Boolean(blessedNeutral.guidance?.blessing), 'Answers carry a blessing — English, Hindi, and when no feeling is named');
 
     // ------------------------------------------------------------------
-    console.log('\n[9/9] Testing Understanding Anyone, In Their Own Words...');
+    console.log('\n[9/10] Testing Understanding Anyone, In Their Own Words...');
     const say = (text, extra = {}, seed = 3) => engine.respond({ text, history: [], ...extra }, { ...corpus, random: seeded(seed), timeOfDay: 'afternoon' });
     const verseExists = (ref) => allVerses.some((v) => v.id === ref.replace('.', '_'));
 
@@ -371,6 +371,146 @@ async function runTests() {
     assert(!badRefs.length && !badAnchors.length && !incomplete.length && !brokenAliases.length && cited.size > 40,
         `Every cited verse (${cited.size}) and anchor (${anchorIds.length}) is real; all ${Object.keys(engine.COUNSEL).length} counsels speak both languages${badRefs.length ? ` — missing refs: ${badRefs}` : ''}${badAnchors.length ? ` — bad anchors: ${badAnchors}` : ''}${incomplete.length ? ` — incomplete: ${incomplete}` : ''}${brokenAliases.length ? ` — broken aliases: ${brokenAliases}` : ''}`);
 
+
+    // ------------------------------------------------------------------
+    console.log('\n[10/10] Testing Engine 4 — Reading Between The Lines...');
+
+    // A graded set: each message, and what a good listener would hear in it.
+    const readings = [
+        ['im so lonley and anxous', { primary: 'loneliness', corrected: true }],
+        ['i feel depresed', { primary: 'sadness', corrected: true }],
+        ['I got the job but I am scared I will fail', { primary: 'fear', mixed: true, time: 'future' }],
+        ['I used to be anxious all the time but now I feel much better', { primary: 'peace', relief: true }],
+        ['I wish I felt better', { relief: false }],
+        ['nothing makes me feel better anymore', { relief: false }],
+        ['a bit nervous about the interview', { primary: 'anxiety', intensity: 'low' }],
+        ['I AM SO DONE WITH EVERYONE!!', { primary: 'anger', intensity: 'high' }],
+        ['sooo saaad today', { primary: 'sadness', intensity: 'high' }],
+        ['😢😢', { primary: 'sadness' }],
+        ['my mom is depressed', { care: 'mind' }],
+        ['I think my brother is lonely', { care: 'mind' }],
+        ['my dad has cancer', { care: 'health' }],
+        ['मेरी माँ बहुत बीमार है', { care: 'health' }],
+        ['I am so worried about my sister', { care: 'worry' }],
+        ['mujhe papa ki bahut chinta hai', { care: 'worry' }],
+        ['my friend said I am useless', { care: null, primary: 'unworthiness' }],
+        ['my boyfriend left me and I feel lost', { care: null }],
+        ['I have cancer and my mom is worried', { care: null }],
+        ["I'll be fine, it is just a cold", { care: null }],
+        ['I just want to vent', { ask: 'vent' }],
+        ['how do i stop overthinking', { ask: 'how', primary: 'anxiety' }],
+        ['why do I always get so angry', { ask: 'why', primary: 'anger' }],
+        ['give me a verse about patience', { ask: 'verse', about: 'patience' }],
+        ['गीता क्रोध के बारे में क्या कहती है', { ask: 'verse', about: 'क्रोध' }],
+        ['my boss yelled at me in front of everyone', { primary: 'anger' }]
+    ];
+    const misheard = readings.filter(([text, want]) => {
+        const r = engine.understand(text);
+        const got = { primary: r.primary, mixed: r.mixed, time: r.time, relief: r.relief, intensity: r.intensity, care: r.care ? r.care.mode : null,
+            ask: r.ask, about: r.about, corrected: r.corrections.length > 0 };
+        return Object.entries(want).some(([key, value]) => got[key] !== value);
+    });
+    assert(misheard.length === 0, `${readings.length} graded messages read as a friend would — typos, "but", relief, intensity, whose feeling, what is asked${misheard.length ? ` — misheard: ${misheard.map(([t]) => `"${t}" → ${JSON.stringify(engine.understand(t), ['primary', 'mixed', 'time', 'relief', 'intensity', 'care', 'mode', 'ask', 'about'])}`).join(' | ')}` : ''}`);
+
+    // Forgiving spelling must never "fix" a real word.
+    const everyday = ['working', 'taking', 'facing', 'quite', 'lower', 'trained', 'madness', 'calming', 'words', 'sense', 'along', 'brief',
+        'board', 'worse', 'hearing', 'lasting', 'changing', 'reflection', 'thinking', 'lovely', 'sacred', 'angel', 'tried'];
+    const gitaWords = new Set();
+    allVerses.forEach((v) => engine.normalise([v.meaning_en, ...(v.life_situations || []), ...(v.core_theme || [])].join(' ')).trim().split(' ').forEach((w) => gitaWords.add(w)));
+    const wronglyFixed = [...everyday, ...gitaWords].filter((word) => engine.understand(`i was ${word}`).corrections.length);
+    assert(wronglyFixed.length === 0, `Typos are forgiven, real words never "corrected" (${everyday.length} everyday words, all ${gitaWords.size} words of the Gita's own text)${wronglyFixed.length ? ` — changed: ${wronglyFixed.slice(0, 12).join(', ')}` : ''}`);
+
+    // Caring for someone: the one who writes is the one answered.
+    const carer = say('my mom is depressed and i dont know how to help her', { person: { name: 'Asha' } });
+    const carerVerses = Array.from({ length: 10 }, (_, i) => say('my mom is depressed and i dont know how to help her', {}, i + 1).verse);
+    const worrier = say('I am so worried about my brother');
+    const carerHi = say('मेरी माँ बहुत बीमार है');
+    assert(/^Asha, it hurts to watch your mother/.test(carer.message) && /6\.32/.test(carer.guidance.bridge) && /14416/.test(carer.message)
+        && carer.guidance.focus === 'step' && /care stay steady/.test(carer.guidance.blessing) && carer.context.emotion === null
+        && carerVerses.every((v) => !/sinners?\b/i.test(`${v.meaning_en} ${v.notification_short?.en || ''}`))
+        && /^Worrying about your brother/.test(worrier.message) && /9\.22/.test(worrier.guidance.bridge) && !/14416/.test(worrier.message)
+        && carerHi.message.startsWith('अपनी माँ') && /[ऀ-ॿ]/.test(carerHi.guidance.bridge),
+        'Someone caring for a loved one is answered as the carer — by name, with 6.32, a helpline for families, and no verse about sinners');
+
+    // Asked to listen: no homework, and listening carries into the next message.
+    const ventOpen = say('I just want to vent');
+    const vent = say('I just want to vent, my boss yelled at me again in front of everyone');
+    const ventNext = say('he called me useless in the meeting', { history: ['I just want to vent'] });
+    assert(ventOpen.context.intent === 'listen' && ventOpen.verse === null && vent.context.listening && vent.guidance.step === null
+        && vent.guidance.bridge === null && /Not advice/.test(vent.message) && ventNext.context.listening && ventNext.guidance.step === null,
+        '"I just want to vent" is met with listening — no advice, no step — and listening carries into what comes next');
+
+    // "How do I…?" leads with the step; "why do I…?" answers why, once.
+    const how = say('how do i stop overthinking');
+    const whyAngry = say('why do I always get so angry');
+    assert(how.guidance.focus === 'step' && /You asked what to do/.test(how.message)
+        && /\(2\.62\)/.test(whyAngry.message) && !/\(2\.62/.test(whyAngry.guidance.bridge || '') && !/more than anyone should/.test(whyAngry.message),
+        '"How do I…" leads with the step; "why do I…" is answered with where the feeling comes from, without repeating itself');
+
+    // Asking for a verse gets a verse on that subject; a concept stays a concept.
+    const patience = say('give me a verse about patience');
+    const karmaAsk = say('what does the gita say about karma');
+    const angerHi = say('गीता क्रोध के बारे में क्या कहती है');
+    const patienceVerse = patience.verse && `${patience.verse.meaning_en} ${(patience.verse.core_theme || []).join(' ')} ${(patience.verse.emotional_tone || []).join(' ')} ${patience.verse.notification_short?.en || ''}`;
+    assert(/^Here is what the Gita says about patience\./.test(patience.message) && /patien|gradual|little by little|steady|tolera|endur/i.test(patienceVerse)
+        && karmaAsk.context.intent === 'concept' && karmaAsk.verse?.id === '2_47' && angerHi.context.ask === 'verse' && angerHi.message.startsWith('क्रोध'),
+        '"Give me a verse about patience" is answered with one (English and Hindi); "what does the Gita say about karma" explains karma');
+
+    // Unsure? Ask, with answers one tap away — and every answer is understood.
+    const unclear = say('I was walking home and kept thinking about the conversation we had at dinner and I dont know');
+    const small = say('today was weird');
+    const unclearHi = say('आज कुछ अजीब सा था, पता नहीं क्यों', { settings: { language: 'hi' } });
+    const chips = [...(unclear.clarify?.options || []), ...(small.clarify?.options || []), ...(unclearHi.clarify?.options || [])];
+    const unheardChips = chips.filter((option) => !engine.understand(option.text).primary);
+    assert(unclear.clarify?.options.length === 6 && small.clarify?.options.length === 7 && unclearHi.clarify && /[ऀ-ॿ]/.test(unclearHi.clarify.options[0].label)
+        && unclear.message.includes(unclear.clarify.question) && unheardChips.length === 0,
+        `When unsure, Sakha asks — with ${chips.length} one-tap answers (English and Hindi), every one of which it then understands${unheardChips.length ? ` — not understood: ${unheardChips.map((o) => o.text).join(' | ')}` : ''}`);
+
+    // The conversation has a shape: lighter, heavier, or still here.
+    const easing = say('i feel a bit calmer now', { history: ['I am so anxious about my results tomorrow'] });
+    const heavier = say('IM SO SCARED I CANT DO THIS!!', { history: ['i am a bit nervous about my exam'] });
+    const lingering = say('I am still anxious about my career', { history: ['I am feeling scared about my career'] });
+    assert(easing.context.trajectory === 'easing' && /lighter than when we began/.test(easing.message)
+        && heavier.context.trajectory === 'heavier' && /weighing more/.test(heavier.message)
+        && lingering.context.trajectory === 'lingering' && /still here/.test(lingering.message),
+        'Across a conversation Sakha notices when it is easing, growing heavier, or still here — and says so');
+
+    // Counsel is never repeated within a conversation.
+    const firstTime = say('I am scared about my career');
+    const secondTime = say('I am scared about my career', { used: ['anxiety:work'] });
+    assert(firstTime.context.counsel === 'anxiety:work' && secondTime.context.counsel === undefined
+        && secondTime.guidance.bridge !== firstTime.guidance.bridge && !secondTime.message.startsWith(firstTime.message.split('\n')[0]),
+        'The same counsel is never given twice in one conversation');
+
+    // Intensity and mixed feelings shape the first words.
+    const loud = say('I AM SO DONE WITH EVERYONE!!');
+    const soft = say('a bit nervous about the interview');
+    const mixed = say('I got the job but I am scared I will fail');
+    const relieved = say('I used to be anxious all the time but now I feel much better');
+    assert(/more than anyone should|pressing on you|heavy thing to carry/.test(loud.message) && /small unease/.test(soft.message)
+        && /both can be true/.test(mixed.message) && mixed.context.emotion === 'fear' && relieved.context.emotion === 'peace'
+        && /eased|worst of it/.test(relieved.message) && !/both can be true/.test(autopilot.message),
+        'Intensity, mixed news and relief each change how Sakha first answers');
+
+    // Integrity: every verse the new counsel cites, and every care anchor, is real.
+    const newCited = new Set();
+    const collectNew = (text) => (String(text).match(/\((\d{1,2}\.\d{1,2})(?:[–,]\s?\d{1,2}(?:\.\d{1,2})?)*\)/g) || [])
+        .flatMap((group) => group.match(/\d{1,2}\.\d{1,2}/g)).forEach((ref) => newCited.add(ref));
+    Object.values(engine.CARE_COUNSEL).forEach((entry) => ['en', 'hi'].forEach((lang) => { collectNew(entry[lang].bridge); collectNew(entry[lang].step); }));
+    Object.values(engine.ROOTS).forEach((entry) => ['en', 'hi'].forEach((lang) => collectNew(entry[lang])));
+    const careAnchors = Object.values(engine.CARE).flatMap((entry) => entry.anchors);
+    const badNew = [...newCited].filter((ref) => !verseExists(ref));
+    const badCare = careAnchors.filter((id) => !allVerses.find((v) => v.id === id) || engine.isNarrative(allVerses.find((v) => v.id === id)));
+    const rootsHalf = Object.entries(engine.ROOTS).filter(([, e]) => !e.en || !/[ऀ-ॿ]/.test(e.hi || '')).map(([k]) => k);
+    assert(!badNew.length && !badCare.length && !rootsHalf.length && newCited.size >= 12,
+        `Care counsel and "why" answers cite ${newCited.size} real verses in both languages; ${careAnchors.length} care anchors are real${badNew.length ? ` — missing: ${badNew}` : ''}${badCare.length ? ` — bad anchors: ${badCare}` : ''}${rootsHalf.length ? ` — one language only: ${rootsHalf}` : ''}`);
+
+    // Fast enough to feel instant on a phone.
+    const long = 'I have been feeling so lost lately, my job is stressful and my parents keep asking about marriage, '.repeat(18);
+    const started = Date.now();
+    for (let i = 0; i < 60; i++) say(i % 2 ? long.slice(0, 1990) : 'im so lonley and anxous about my carrer', { history: ['I feel lost', 'work is hard'] }, i);
+    const perReply = (Date.now() - started) / 60;
+    assert(perReply < 60, `Each reply is composed in ${perReply.toFixed(1)} ms on average, long messages included`);
     console.log('\n====================================================');
     console.log(`TOTAL: ${passed} PASSED, ${failed} FAILED`);
     console.log('====================================================');

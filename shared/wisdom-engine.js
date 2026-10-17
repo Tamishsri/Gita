@@ -2,8 +2,10 @@
  * Sakha — Wisdom Engine
  *
  * The single source of truth for how the sanctuary listens and answers:
- * crisis detection, emotion understanding (English, Hindi, Hinglish), verse
- * selection, search, and the daily verse.
+ * crisis detection; understand(), which reads a message the way a friend
+ * would (feelings and how strongly, whose they are, then or now, what is
+ * being asked — in English, Hindi and Hinglish, typos and emoji included);
+ * verse selection, search, and the daily verse.
  *
  * It is pure (no I/O, no globals) and runs in three places:
  *   - the Express API             require('../../../shared/wisdom-engine')
@@ -18,7 +20,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
-    const ENGINE_VERSION = '3.0.0';
+    const ENGINE_VERSION = '4.0.0';
 
     // -----------------------------------------------------------------------
     // Text normalisation
@@ -26,13 +28,17 @@
 
     // Keep letters, combining marks (Devanagari matras) and digits. Sentence
     // punctuation becomes a "|" clause marker (so negation never leaks across
-    // clauses); everything else becomes a space. Padded so phrases match on
-    // word edges.
+    // clauses); everything else becomes a space. Stretched words ("sooo
+    // saaad") fold back to their letters. Padded so phrases match on word edges.
     function normalise(text) {
         if (!text || typeof text !== 'string') return ' ';
         const cleaned = text
             .toLowerCase()
+            .replace(/(\p{L})\1{2,}/gu, '$1')
             .replace(/[’`]/g, "'")
+            // "I'll" is "I will", never "ill"; "won't" is a "not".
+            .replace(/\b(i|you|we|they|he|she|it|that|this|things|everything)'ll\b/g, '$1 will')
+            .replace(/\bwon't\b/g, 'will not')
             .replace(/[‌‍]/g, '')
             .replace(/[.,;:!?।॥]+/g, ' | ')
             .replace(/[^\p{L}\p{M}\p{N}'|]+/gu, ' ')
@@ -53,7 +59,8 @@
         u: 'you', ur: 'your', r: 'are', pls: 'please', plz: 'please', idk: 'i dont know', rn: 'right now',
         bc: 'because', cuz: 'because', coz: 'because', bcoz: 'because', bcz: 'because', tbh: 'honestly', ngl: 'honestly',
         gf: 'girlfriend', bf: 'boyfriend', bff: 'friend', mom: 'mother', mum: 'mother', mommy: 'mother', mummy: 'mother',
-        mumma: 'mother', maa: 'mother', dad: 'father', daddy: 'father', papa: 'father', bro: 'brother', sis: 'sister',
+        mumma: 'mother', maa: 'mother', moms: 'mother', mums: 'mother', dad: 'father', daddy: 'father', papa: 'father',
+        dads: 'father', bro: 'brother', sis: 'sister', mommys: 'mother',
         nhi: 'nahi', nahin: 'nahi', nai: 'nahi', nhin: 'nahi', kyu: 'kyun', kyon: 'kyun', kyoon: 'kyun',
         bht: 'bahut', bohot: 'bahut', boht: 'bahut', bhot: 'bahut', bhut: 'bahut', bahot: 'bahut',
         h: 'hai', hu: 'hoon', hun: 'hoon', hoo: 'hoon', mai: 'main', kr: 'kar', krna: 'karna', krta: 'karta', krti: 'karti',
@@ -133,14 +140,18 @@
         },
         stress: {
             terms: ['stress*', 'pressure', 'overwhelm*', 'forcing me', 'force kar*', 'pressurising me', 'pressurizing me', 'dabav', 'thak gaya', 'thak gayi', 'burnout', 'burnt out', 'burned out', 'workload', 'deadline*', 'too much',
-                'exhausted', 'drained', 'tired', 'thak*', 'तनाव', 'दबाव', 'थक*', 'बोझ'],
+                'exhausted', 'drained', 'tired', 'thak*', 'done with everything', 'so done', 'had enough', 'fed up', 'तनाव', 'दबाव', 'थक*',
+                'थकान', 'बोझ'],
             concepts: ['stress', 'managing stress', 'handling pressure', 'burnout', 'avoiding burnout', 'doing difficult tasks', 'balance', 'equanimity', 'detached action', 'steady', 'surrender', 'emotional overwhelm'],
             en: { adj: 'overwhelmed', noun: 'stress' },
             hi: { noun: 'तनाव', g: 'm' }
         },
         anger: {
             terms: ['angry', 'anger', 'furious', 'rage', 'mad at', 'irritat*', 'frustrat*', 'annoyed', 'resent*', 'hate', 'humiliat*',
-                'gussa', 'gussa*', 'naraz', 'गुस्सा', 'गुस्से', 'क्रोध*', 'नाराज़*', 'नाराज*', 'चिढ़*'],
+                'gussa', 'gussa*', 'naraz', 'krodh*', 'pissed', 'fed up with', 'sick of everyone', 'done with everyone', 'sick and tired of',
+                'yelled at me', 'shouted at me', 'screamed at me', 'insulted me', 'disrespected me', 'disrespect*', 'chillaya', 'chillata',
+                'chillati', 'chilla rahe', 'डांटा', 'डाँटा', 'चिल्ला*',
+                'गुस्सा', 'गुस्से', 'ग़ुस्सा', 'ग़ुस्से', 'क्रोध*', 'नाराज़*', 'नाराज*', 'चिढ़*'],
             concepts: ['anger', 'managing anger', 'self-control', 'self control', 'battling inner demons', 'mastering your thoughts', 'calm', 'forgiveness', 'desire', 'patience', 'tolerance', 'not disturbed by others'],
             en: { adj: 'angry', noun: 'anger' },
             hi: { noun: 'क्रोध', g: 'm' }
@@ -275,7 +286,8 @@
         },
         gratitude: {
             terms: ['grateful', 'gratitude', 'thankful', 'thank god', 'blessed', 'happy', 'joy*', 'khush', 'shukr*',
-                'आभार*', 'कृतज्ञ*', 'खुश', 'प्रसन्न', 'धन्य',
+                'आभार*', 'कृतज्ञ*', 'खुश', 'प्रसन्न', 'धन्य', 'feel good', 'feeling good', 'feel great', 'feeling great', 'good day',
+                'great day', 'mann accha', 'man accha', 'मन अच्छा', 'ख़ुश',
                 // Good news arrives in many words.
                 'i passed', 'passed my', 'passed the', 'got selected', 'got the job', 'got a job', 'got the offer', 'got promoted',
                 'got into', 'got admission', 'cracked', 'i made it', 'got through', 'nailed it', 'cleared my', 'got the promotion', 'got a promotion', 'proud of myself', 'so excited', 'good news', 'celebrat*', 'i got engaged', 'we got engaged', 'im getting married', 'i am getting married', 'it worked',
@@ -432,13 +444,7 @@
         'friendship', 'habits', 'self', 'faith', 'meaning', 'future', 'sleep'];
 
     function detectTopics(text) {
-        const normalised = normalise(text);
-        if (normalised === ' ') return [];
-        return Object.entries(TOPICS)
-            .map(([id, topic]) => ({ id, hits: topic.terms.reduce((sum, term) => sum + (has(normalised, term) ? (term.includes(' ') ? 2 : 1) : 0), 0) }))
-            .filter((item) => item.hits > 0)
-            .sort((a, b) => b.hits - a.hits || TOPIC_PRIORITY.indexOf(a.id) - TOPIC_PRIORITY.indexOf(b.id))
-            .map((item) => item.id);
+        return topicsIn(normalise(text));
     }
 
     // The moods offered on the home screen, plus a few common free-text names.
@@ -486,24 +492,9 @@
         'emptiness', 'fear', 'anger', 'pride', 'sadness', 'anxiety', 'stress', 'inertia', 'purpose', 'confusion', 'devotion',
         'love', 'peace', 'gratitude'];
 
+    // The feelings in a message, strongest first (see understand()).
     function detectEmotions(text) {
-        const normalised = normalise(text);
-        const found = [];
-        Object.entries(EMOTIONS).forEach(([name, emotion]) => {
-            let hits = 0;
-            emotion.terms.forEach((term) => {
-                const index = findTerm(normalised, term);
-                if (index !== -1 && !negated(normalised, index, term.split(' ').length)) hits += term.includes(' ') ? 2 : 1;
-            });
-            if (hits) found.push({ name, hits });
-        });
-        // A light feeling (joy, peace) leads only when it clearly outweighs a
-        // heavy one — "my friends are moving on and I feel stuck" is not joy.
-        const weight = (item) => item.hits - (['peace', 'gratitude', 'love', 'devotion'].includes(item.name) && found.some((other) =>
-            !['peace', 'gratitude', 'love', 'devotion'].includes(other.name)) ? 1.5 : 0);
-        return found
-            .sort((a, b) => weight(b) - weight(a) || SPECIFICITY.indexOf(a.name) - SPECIFICITY.indexOf(b.name))
-            .map((item) => item.name);
+        return understand(text).feelings.map((feeling) => feeling.id);
     }
 
     function emotionFromMood(mood) {
@@ -541,6 +532,489 @@
 
     function contentKeywords(text) {
         return [...new Set(normalise(text).trim().split(' ').filter((word) => word.length > 3 && !STOP_WORDS.has(word)))];
+    }
+
+    // =======================================================================
+    // Understanding
+    //
+    // Before answering, read the message the way a friend would. The result
+    // is a reading: which feelings are in it and how strongly, whose feelings
+    // they are, when it happened and whether it has eased, what the person is
+    // asking for, and how sure we can be. Everything after this answers the
+    // reading, not the raw words.
+    // =======================================================================
+
+    // --- A face often says more than the words around it -------------------
+
+    const EMOJI_FEELINGS = [
+        ['heartbreak', ['💔']],
+        ['sadness', ['😢', '😭', '😞', '😔', '☹', '🙁', '😿', '🥀']],
+        ['anger', ['😡', '😠', '🤬', '💢']],
+        ['fear', ['😨', '😱']],
+        ['anxiety', ['😰', '😟', '😥', '😓', '😬']],
+        ['stress', ['😩', '😫', '🥵', '🤯']],
+        ['loneliness', ['🥺']],
+        ['emptiness', ['😶', '😐', '🫥']],
+        ['inertia', ['😴', '🥱']],
+        ['peace', ['😌', '🧘', '☮']],
+        ['gratitude', ['😊', '😄', '😁', '🥳', '🎉', '😀', '😃', '🤩', '🥰', '😍', '❤', '💖', '💗']]
+    ];
+
+    function emojiFeelings(raw) {
+        const found = new Map();
+        EMOJI_FEELINGS.forEach(([id, marks]) => {
+            const count = marks.reduce((sum, mark) => sum + raw.split(mark).length - 1, 0);
+            if (count) found.set(id, Math.min(count, 3));
+        });
+        return found;
+    }
+
+    // --- Forgiving spelling, the way people type when they are hurting -----
+    // "im so lonley and anxous" is read as "lonely" and "anxious". Only a
+    // feeling word is ever the target, the first letter must agree, a swapped
+    // letter only counts when the keys sit side by side, and a word that is
+    // already real (in the lexicons, the Gita's own text, or this list) is
+    // never touched: "working" stays working, "quite" stays quite.
+
+    const NOT_TYPOS = new Set(('lovely lively likely lately tried tries sacred single simple angle angel scarf stare stared ' +
+        'piece dress press bless blessed house horse nurse purse curse hours greet great trust thrust earth death depth linger ' +
+        'finger longer danger ranger manager hanger hunger sorry story steady ready heady saddle paddle reader leader border ' +
+        'mirror error terror treasure measure nature mature lesson lessen tenses tennis cared shared share along brief carer ' +
+        'cried board worse ankle hated rated dated mated gated eager eagle hurry hurts heard heart hearts scare spare shore ' +
+        'score store fears years wears bears gears nears dears pears hears clear sadly badly madly gladly glade grade grace ' +
+        'place space trace brace bread tread treat cheat cheap sheep sleep sweep steep creep shine whine spine swine stone ' +
+        'phone shone drone prone throne angst amused abused accused excused focused cursed nursed versed suppose oppose expose ' +
+        'quite quiet quit lower closer loose lose loves lover loner drainage trained training facing racing lasting calming ' +
+        'working words works taking takes sense dense madness bearing hearing changing reflection thinking homeless ' +
+        'homelessness devotional deviation').split(' '));
+
+    // Common forms of the feeling words people misspell most.
+    const EXTRA_TARGETS = ['worried', 'worry', 'worrying', 'stressed', 'stressful', 'overwhelmed', 'overthinking', 'frustrated',
+        'frustrating', 'depressed', 'depression', 'hopeless', 'hopelessness', 'confused', 'confusing', 'jealous', 'jealousy',
+        'guilty', 'regret', 'regretting', 'humiliated', 'irritated', 'resentful', 'restless', 'panicking', 'dreading', 'grieving',
+        'mourning', 'crying', 'addicted', 'addiction', 'procrastinating', 'embarrassed', 'disappointed', 'heartbroken', 'exhausted',
+        'miserable', 'insecure', 'worthless', 'useless', 'anxious', 'lonely', 'scared', 'terrified', 'nervous', 'devastated'];
+    // Feeling words too close to everyday words to ever be guessed at.
+    const NEVER_TARGET = new Set(['racing', 'calling', 'direction', 'quiet', 'tense', 'tears', 'loser', 'peace', 'happy', 'alone',
+        'tired', 'shame', 'sexual', 'passion', 'smoking', 'drinking', 'cracked', 'nobody', 'failed', 'purpose', 'funeral',
+        'pressure', 'relationship', 'chanting', 'calling', 'tension', 'scrolling', 'stillness', 'blessed', 'drained', 'empty']);
+
+    const KEY_ROWS = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
+    const KEY_AT = new Map();
+    KEY_ROWS.forEach((row, r) => [...row].forEach((key, c) => KEY_AT.set(key, [r, c])));
+    function besideOnKeyboard(a, b) {
+        const [ra, ca] = KEY_AT.get(a) || [];
+        const [rb, cb] = KEY_AT.get(b) || [];
+        if (ra === undefined || rb === undefined) return false;
+        if (ra === rb) return Math.abs(ca - cb) === 1;
+        if (rb === ra - 1) return cb === ca || cb === ca + 1;
+        if (rb === ra + 1) return cb === ca || cb === ca - 1;
+        return false;
+    }
+
+    let vocabularyCache = null;
+
+    function feelingVocabulary() {
+        if (vocabularyCache) return vocabularyCache;
+        const targets = new Set(EXTRA_TARGETS);
+        const known = new Set([...NOT_TYPOS, ...STOP_WORDS, ...EXTRA_TARGETS]);
+        const prefixes = [];
+        const addTerm = (term, isTarget) => {
+            const words = term.split(' ');
+            words.forEach((word) => {
+                if (!/^[a-z]+\*?$/.test(word)) return;
+                if (word.endsWith('*')) {
+                    prefixes.push(word.slice(0, -1));
+                    return;
+                }
+                known.add(word);
+                if (isTarget && words.length === 1 && word.length >= 5 && !NEVER_TARGET.has(word)) targets.add(word);
+            });
+        };
+        Object.values(EMOTIONS).forEach((emotion) => emotion.terms.forEach((term) => addTerm(term, true)));
+        Object.values(TOPICS).forEach((topic) => topic.terms.forEach((term) => addTerm(term, false)));
+        Object.values(GLOSSARY).forEach((entry) => entry.terms.forEach((term) => addTerm(term, false)));
+        vocabularyCache = { targets: [...targets], known, prefixes };
+        return vocabularyCache;
+    }
+
+    // Optimal string alignment distance. Inserting, dropping or swapping two
+    // neighbouring letters costs 1; replacing a letter costs 1 only when the
+    // keys are side by side (a slipped finger), otherwise 2. Gives up as soon
+    // as the answer must exceed `max`.
+    function typoDistance(a, b, max) {
+        if (Math.abs(a.length - b.length) > max) return max + 1;
+        let before = null;
+        let previous = Array.from({ length: b.length + 1 }, (_, j) => j);
+        for (let i = 1; i <= a.length; i++) {
+            const current = [i];
+            let rowMin = i;
+            for (let j = 1; j <= b.length; j++) {
+                const cost = a[i - 1] === b[j - 1] ? 0 : besideOnKeyboard(a[i - 1], b[j - 1]) ? 1 : 2;
+                let value = Math.min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + cost);
+                if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) value = Math.min(value, before[j - 2] + 1);
+                current[j] = value;
+                if (value < rowMin) rowMin = value;
+            }
+            if (rowMin > max) return max + 1;
+            before = previous;
+            previous = current;
+        }
+        return previous[b.length];
+    }
+
+    function correctSpelling(normalised, lexicon) {
+        const { targets, known, prefixes } = feelingVocabulary();
+        const corrections = [];
+        const words = normalised.trim().split(' ').map((word) => {
+            if (word.length < 5 || !/^[a-z]+$/.test(word) || known.has(word) || lexicon?.has(word)) return word;
+            if (prefixes.some((root) => word.startsWith(root))) return word;
+            const max = word.length >= 9 ? 2 : 1;
+            let best = null;
+            let bestDistance = max + 1;
+            for (const candidate of targets) {
+                if (candidate[0] !== word[0]) continue;
+                const distance = typoDistance(word, candidate, Math.min(max, bestDistance - 1));
+                if (distance < bestDistance) {
+                    bestDistance = distance;
+                    best = candidate;
+                    if (distance === 1) break;
+                }
+            }
+            if (!best) return word;
+            corrections.push({ from: word, to: best });
+            return best;
+        });
+        return { text: ` ${words.join(' ')} `, corrections };
+    }
+
+    // --- What follows "but" is usually what matters ------------------------
+
+    const CONTRAST = new Set(['but', 'however', 'though', 'although', 'yet', 'lekin', 'magar', 'लेकिन', 'मगर', 'किंतु', 'परंतु']);
+
+    function splitClauses(normalised) {
+        const clauses = [];
+        let words = [];
+        let contrasted = false;
+        const close = (nextContrasted) => {
+            if (words.length) clauses.push({ words, contrasted });
+            words = [];
+            contrasted = nextContrasted;
+        };
+        normalised.trim().split(' ').forEach((word) => {
+            if (word === '|') close(false);
+            else if (CONTRAST.has(word)) close(true);
+            else if (word) words.push(word);
+        });
+        close(false);
+        clauses.forEach((clause, index) => {
+            clause.text = ` ${clause.words.join(' ')} `;
+            clause.weight = clause.contrasted ? 1.35 : 1;
+            if (clause.contrasted && clauses[index - 1]) clauses[index - 1].weight = Math.min(clauses[index - 1].weight, 0.7);
+        });
+        return clauses;
+    }
+
+    // --- "A bit nervous" is not "SO scared!!" -------------------------------
+
+    const INTENSIFIERS = new Set(['so', 'soo', 'very', 'really', 'extremely', 'too', 'super', 'deeply', 'completely', 'totally',
+        'absolutely', 'incredibly', 'terribly', 'awfully', 'utterly', 'insanely', 'bahut', 'itna', 'itni', 'kaafi', 'bilkul',
+        'ekdum', 'atyant', 'बहुत', 'इतना', 'इतनी', 'बेहद', 'काफ़ी', 'काफी', 'बिलकुल', 'बिल्कुल']);
+    const DIMINISHERS = new Set(['bit', 'little', 'slightly', 'somewhat', 'kinda', 'mildly', 'less', 'thoda', 'thodi', 'halka',
+        'थोड़ा', 'थोड़ी']);
+
+    function intensityOf(raw, multipliers) {
+        const letters = raw.match(/[A-Za-z]/g) || [];
+        const capitals = letters.filter((char) => char >= 'A' && char <= 'Z').length;
+        const shouting = letters.length >= 8 && capitals / letters.length > 0.6;
+        const exclaims = /!{2,}|\?{2,}/.test(raw);
+        const stretched = /(\p{L})\1{2,}/u.test(raw);
+        const strongest = multipliers.length ? Math.max(...multipliers) : 1;
+        const softest = multipliers.length ? Math.min(...multipliers) : 1;
+        let score = strongest > 1 ? 1.5 : softest < 1 ? 0.6 : 1;
+        if (shouting) score += 0.5;
+        if (exclaims) score += 0.25;
+        if (stretched) score += 0.25;
+        return { score, level: score >= 1.4 ? 'high' : score <= 0.7 ? 'low' : 'medium' };
+    }
+
+    // --- Then, now, or still to come ---------------------------------------
+
+    const PAST_MARKERS = ['used to', 'had been', 'last year', 'last month', 'last week', 'back then', 'in the past', 'years ago',
+        'months ago', 'weeks ago', 'when i was', 'pehle', 'पहले'];
+    const FUTURE_MARKERS = ['will', 'tomorrow', 'next week', 'next month', 'next year', 'going to', 'gonna', 'what if', 'soon',
+        'upcoming', 'coming up', 'hoga', 'hogi', 'agle', 'aane wala', 'aane wali', 'होगा', 'होगी', 'आने वाला', 'अगले'];
+    const RELIEF_TERMS = ['better now', 'feel better', 'feeling better', 'much better', 'okay now', 'ok now', 'fine now', 'lighter now',
+        'relieved', 'healed', 'over it', 'moved on', 'got through it', 'made it through', 'calmer now', 'at peace now',
+        'ab theek', 'ab thik', 'behtar', 'बेहतर', 'अब ठीक'];
+    const RELIEF_BLOCKERS = new Set([...NEGATIONS, 'want', 'wish', 'hope', 'need', 'cant', 'cannot', 'nothing', 'nobody', 'if',
+        'to', 'would', 'will', 'never', 'chahta', 'chahti', 'काश']);
+
+    function timeOf(clauseText) {
+        if (FUTURE_MARKERS.some((term) => has(clauseText, term))) return 'future';
+        if (PAST_MARKERS.some((term) => has(clauseText, term))) return 'past';
+        return 'present';
+    }
+
+    function reliefIn(clauseText) {
+        return RELIEF_TERMS.some((term) => {
+            const index = findTerm(clauseText, term);
+            if (index === -1) return false;
+            const before = clauseText.slice(0, index).trim().split(' ').slice(-3);
+            return !before.some((word) => RELIEF_BLOCKERS.has(word));
+        });
+    }
+
+    // --- Whose feeling is it: theirs, or someone they love? ----------------
+
+    const RELATIONS = {
+        mother: ['mother', 'ammi', 'mata', 'माँ', 'मां', 'मम्मी', 'माता'],
+        father: ['father', 'pitaji', 'abba', 'पापा', 'पिता', 'पिताजी'],
+        sister: ['sister', 'behen', 'bahen', 'didi', 'बहन', 'दीदी'],
+        brother: ['brother', 'bhai', 'bhaiya', 'भाई', 'भैया'],
+        partner: ['wife', 'husband', 'girlfriend', 'boyfriend', 'partner', 'fiance', 'fiancee', 'pati', 'patni', 'पति', 'पत्नी'],
+        child: ['son', 'daughter', 'child', 'kid', 'kids', 'children', 'beta', 'beti', 'बेटा', 'बेटी', 'बच्चा', 'बच्चे'],
+        friend: ['friend', 'best friend', 'dost', 'दोस्त'],
+        grandparent: ['grandmother', 'grandfather', 'grandma', 'grandpa', 'nani', 'dadi', 'nana', 'dada', 'दादी', 'नानी', 'दादा', 'नाना']
+    };
+    const SELF_WORDS = new Set(['i', 'im', 'ive', 'id', 'me', 'myself', 'mujhe', 'main', 'mujhko', 'मैं', 'मुझे', 'मुझको']);
+    const HELPING = ['how do i help', 'how can i help', 'how to help', 'help my', 'help him', 'help her', 'help them', 'support my',
+        'support him', 'support her', 'take care of my', 'caring for my', 'look after my', 'unki madad', 'madad karu', 'madad karun',
+        'kaise help', 'उनकी मदद', 'मदद करूँ', 'देखभाल'];
+    const ILLNESS = ['sick', 'ill', 'illness', 'health', 'cancer', 'hospital', 'hospitalised', 'hospitalized', 'icu', 'surgery',
+        'chemo*', 'diagnos*', 'disease', 'dementia', 'alzheimer*', 'stroke', 'heart attack', 'tumou*', 'tumor*', 'bimar*',
+        'beemar*', 'बीमार*', 'अस्पताल'];
+    // Feelings that, seen in someone else, call for care (not anger, envy…).
+    const CARE_FEELINGS = ['sadness', 'anxiety', 'fear', 'stress', 'loneliness', 'emptiness', 'unworthiness', 'failure', 'inertia',
+        'heartbreak', 'confusion', 'craving', 'guilt'];
+    const WORRY_FEELINGS = ['anxiety', 'fear', 'sadness', 'stress'];
+    const CARE_LINKS = new Set(['about', 'for', 'of', 'ki', 'ke', 'ka', 'की', 'के', 'का', 'को']);
+    const RELATION_WORDS = new Set(Object.values(RELATIONS).flat().filter((term) => !term.includes(' ')));
+    const OTHER_PEOPLE = new Set(['he', 'she', 'they', 'him', 'her', 'them', 'his', 'hes', 'shes', 'theyre', 'everyone', 'woh', 'wo',
+        'vo', 'unhe', 'unko', 'use', 'usko', 'वह', 'वो', 'उन्हें', 'उसे', 'उसको']);
+
+    function firstIndex(text, terms) {
+        return terms.reduce((first, term) => {
+            const at = findTerm(text, term);
+            return at !== -1 && (first === -1 || at < first) ? at : first;
+        }, -1);
+    }
+
+    function relationIn(clauseText) {
+        let best = null;
+        Object.entries(RELATIONS).forEach(([relation, terms]) => {
+            const index = firstIndex(clauseText, terms);
+            if (index !== -1 && (!best || index < best.index)) best = { relation, index };
+        });
+        return best;
+    }
+
+    const wordsBetween = (text, from, to) => text.slice(Math.min(from, to), Math.max(from, to)).trim().split(' ').slice(1);
+
+    // Is the feeling at `index` the speaker's own? "I'm scared" and "mujhe
+    // papa ki chinta hai" — yes. "I think my mom is depressed" — no, it is hers.
+    // span: the matched phrase's length — "left me", "hates me" land on the speaker.
+    function ownedBySelf(clause, index, span = 1) {
+        const after = clause.text.slice(index).trim().split(' ').slice(0, span + 1);
+        if (after.some((word) => SELF_WORDS.has(word))) return true;
+        const before = clause.text.slice(0, index).trim().split(' ').filter(Boolean).slice(-5);
+        let self = -1;
+        let other = -1;
+        before.forEach((word, i) => {
+            if (SELF_WORDS.has(word)) self = i;
+            else if (RELATION_WORDS.has(word) || OTHER_PEOPLE.has(word)) other = i;
+        });
+        if (self === -1) return false;
+        return other < self || CARE_LINKS.has(before[other + 1]);
+    }
+
+    function careIn(clauses, heavyAt, topHeavy, normalised) {
+        const selfIll = clauses.some((clause) => {
+            const at = firstIndex(clause.text, ILLNESS);
+            return at !== -1 && clause.text.slice(0, at).trim().split(' ').slice(-3).some((word) => SELF_WORDS.has(word));
+        });
+        if (selfIll) return null;
+        const order = [...clauses.keys()].sort((a, b) => (heavyAt?.clause === b) - (heavyAt?.clause === a));
+        for (const clauseIndex of order) {
+            const clause = clauses[clauseIndex];
+            const found = relationIn(clause.text);
+            if (!found) continue;
+            const illAt = firstIndex(clause.text, ILLNESS);
+            const state = illAt !== -1 && !has(clause.text, 'mental health') ? 'health' : 'mind';
+            const feeling = heavyAt && heavyAt.clause === clauseIndex ? heavyAt : null;
+            const own = feeling ? ownedBySelf(clause, feeling.index, feeling.span) : false;
+            // "my mom is depressed", "I think my brother is lonely"
+            if (feeling && !own && CARE_FEELINGS.includes(topHeavy.id) && feeling.index > found.index) return { relation: found.relation, state, kind: 'theirs' };
+            // "my dad has cancer", "my mom's health"
+            if (illAt !== -1 && found.index < illAt && !wordsBetween(clause.text, found.index, illAt).some((word) => SELF_WORDS.has(word))) {
+                return { relation: found.relation, state, kind: 'theirs' };
+            }
+            // "I'm so worried about my brother", "mujhe papa ki chinta hai"
+            if (feeling && own && WORRY_FEELINGS.includes(topHeavy.id)) {
+                const between = wordsBetween(clause.text, feeling.index, found.index);
+                if (between.length <= 3 && between.some((word) => CARE_LINKS.has(word))) return { relation: found.relation, state, kind: 'worry' };
+            }
+        }
+        if (HELPING.some((term) => has(normalised, term))) {
+            const found = relationIn(normalised);
+            const ill = firstIndex(normalised, ILLNESS) !== -1 && !has(normalised, 'mental health');
+            return { relation: found ? found.relation : 'someone', state: ill ? 'health' : 'mind', kind: 'helping' };
+        }
+        return null;
+    }
+
+    // --- What are they asking for? -----------------------------------------
+
+    const ASKS = {
+        vent: ['just want to vent', 'need to vent', 'just vent', 'just listen', 'just need someone to listen', 'need someone to listen',
+            'dont want advice', 'dont need advice', 'no advice', 'just want to talk', 'just need to talk', 'bas sun lo', 'bas sunna',
+            'sirf sun', 'बस सुनो', 'बस सुन लो', 'सिर्फ़ सुनो'],
+        how: ['how do i', 'how can i', 'how to', 'what should i do', 'what can i do', 'what do i do', 'any advice', 'help me', 'tips',
+            'kya karu', 'kya karun', 'kaise', 'कैसे', 'क्या करूँ', 'क्या करूं'],
+        why: ['why do i', 'why am i', 'why does', 'why is', 'why cant i', 'why me', 'kyun', 'क्यों']
+    };
+    const ABOUT = '([\\p{L}\\p{M}]+(?: [\\p{L}\\p{M}]+)?)';
+    const VERSE_ASKS = [
+        new RegExp(`(?:verse|verses|shlok|shloka|shlokas|sloka|श्लोक) (?:about|on|for|regarding) ${ABOUT}`, 'u'),
+        new RegExp(`(?:gita|geeta|गीता) (?:say|says|said|teach|teaches|tell|tells) (?:me )?(?:about )?${ABOUT}`, 'u'),
+        new RegExp(`${ABOUT} (?:par|पर) (?:koi |कोई |ek |एक )?(?:verse|shlok|shloka|श्लोक)`, 'u'),
+        new RegExp(`(?:gita|geeta|गीता) (?:mein |में )?${ABOUT} (?:ke bare me|ke bare mein|ke baare me|ke baare mein|par|के बारे में|पर) (?:kya |क्या )?(?:kehti|kahti|batati|कहती|बताती)`, 'u')
+    ];
+
+    function askOf(normalised) {
+        for (const pattern of VERSE_ASKS) {
+            const match = normalised.match(pattern);
+            const about = match ? match[1].split(' ').filter((word) => !STOP_WORDS.has(word) && !['koi', 'ek', 'कोई', 'एक'].includes(word)).join(' ') : '';
+            if (about) return { ask: 'verse', about };
+        }
+        for (const kind of ['vent', 'how', 'why']) {
+            if (ASKS[kind].some((term) => has(normalised, term))) return { ask: kind, about: null };
+        }
+        return { ask: null, about: null };
+    }
+
+    // --- The reading -------------------------------------------------------
+
+    function topicsIn(normalised) {
+        if (normalised.trim() === '') return [];
+        return Object.entries(TOPICS)
+            .map(([id, topic]) => ({ id, hits: topic.terms.reduce((sum, term) => sum + (has(normalised, term) ? (term.includes(' ') ? 2 : 1) : 0), 0) }))
+            .filter((item) => item.hits > 0)
+            .sort((a, b) => b.hits - a.hits || TOPIC_PRIORITY.indexOf(a.id) - TOPIC_PRIORITY.indexOf(b.id))
+            .map((item) => item.id);
+    }
+
+    const LIGHT = ['peace', 'gratitude', 'love', 'devotion'];
+    const EMPTY_READING = Object.freeze({
+        feelings: [], primary: null, topics: [], intensity: 'medium', intensityScore: 1, time: 'present', relief: false, care: null,
+        mixed: false, ask: null, about: null, corrections: [], emoji: [], confidence: 0, normalised: ' ', words: 0
+    });
+
+    /**
+     * Read one message. Pure; run it once per message.
+     * @param {string} text
+     * @param {{ lexicon?: Set<string> }} [options] lexicon: real words (the Gita's own) never "corrected"
+     * @returns {{ feelings: {id: string, score: number}[], primary: string|null, topics: string[], intensity: 'low'|'medium'|'high',
+     *   intensityScore: number, time: 'past'|'present'|'future', relief: boolean, care: {relation: string, state: string}|null,
+     *   ask: 'vent'|'how'|'why'|'verse'|null, about: string|null, corrections: {from: string, to: string}[], emoji: string[],
+     *   confidence: number, normalised: string, words: number }}
+     */
+    function understand(text, { lexicon = null } = {}) {
+        if (!text || typeof text !== 'string') return { ...EMPTY_READING };
+        const raw = text.slice(0, 4000);
+        const emoji = emojiFeelings(raw);
+        const { text: normalised, corrections } = correctSpelling(normalise(raw), lexicon);
+        if (normalised.trim() === '' && !emoji.size) return { ...EMPTY_READING };
+
+        const clauses = splitClauses(normalised);
+        const scores = new Map();
+        const where = new Map(); // feeling → its strongest mention: { clause, index, score }
+        const multipliers = [];
+
+        clauses.forEach((clause, clauseIndex) => {
+            Object.entries(EMOTIONS).forEach(([id, emotion]) => {
+                emotion.terms.forEach((term) => {
+                    const index = findTerm(clause.text, term);
+                    if (index === -1 || negated(clause.text, index, term.split(' ').length)) return;
+                    const before = clause.text.slice(0, index).trim().split(' ').slice(-2);
+                    const multiplier = before.some((word) => INTENSIFIERS.has(word)) ? 1.5 : before.some((word) => DIMINISHERS.has(word)) ? 0.6 : 1;
+                    multipliers.push(multiplier);
+                    const score = (term.includes(' ') ? 2 : 1) * clause.weight * multiplier;
+                    scores.set(id, (scores.get(id) || 0) + score);
+                    if (!where.has(id) || score > where.get(id).score) where.set(id, { clause: clauseIndex, index, score, span: term.split(' ').length });
+                });
+            });
+        });
+        emoji.forEach((count, id) => scores.set(id, (scores.get(id) || 0) + count));
+
+        // A light feeling leads only when it clearly outweighs a heavy one:
+        // "my friends are moving on and I feel stuck" is not joy.
+        const anyHeavy = [...scores.keys()].some((id) => !LIGHT.includes(id));
+        const feelings = [...scores.entries()]
+            .map(([id, score]) => ({ id, score: score - (LIGHT.includes(id) && anyHeavy ? 1.5 : 0) }))
+            .sort((a, b) => b.score - a.score || SPECIFICITY.indexOf(a.id) - SPECIFICITY.indexOf(b.id));
+
+        // When it happened, and whether it has eased.
+        const sortFeelings = () => feelings.sort((a, b) => b.score - a.score || SPECIFICITY.indexOf(a.id) - SPECIFICITY.indexOf(b.id));
+        const heaviest = () => feelings.find((feeling) => !LIGHT.includes(feeling.id)) || null;
+        let topHeavy = heaviest();
+        let heavyAt = topHeavy ? where.get(topHeavy.id) || null : null;
+        const time = timeOf(heavyAt ? clauses[heavyAt.clause].text : normalised);
+        // "I'm scared I'll fail" is fear of failing, not a failure.
+        if (time === 'future' && topHeavy?.id === 'failure' && feelings.some((feeling) => feeling.id === 'fear' || feeling.id === 'anxiety')) {
+            topHeavy.score -= 1;
+            sortFeelings();
+            topHeavy = heaviest();
+            heavyAt = where.get(topHeavy.id) || null;
+        }
+        const reliefAt = clauses.findIndex((clause) => reliefIn(clause.text));
+        const relief = reliefAt !== -1 && (!heavyAt || reliefAt >= heavyAt.clause || time === 'past');
+        if (relief) {
+            const peace = feelings.find((feeling) => feeling.id === 'peace');
+            if (peace) peace.score += 3;
+            else feelings.push({ id: 'peace', score: 3 });
+            sortFeelings();
+        }
+
+        // Good news of their own beside the heavy part: "I got the job, but…".
+        const light = feelings.find((feeling) => LIGHT.includes(feeling.id) && where.has(feeling.id));
+        const lightAt = light ? where.get(light.id) : null;
+        const mixed = Boolean(topHeavy && lightAt && !relief && lightAt.clause !== heavyAt?.clause
+            && ownedBySelf(clauses[lightAt.clause], lightAt.index, lightAt.span));
+
+        // Whose feeling is it — theirs, or someone they love?
+        const topics = topicsIn(normalised);
+        const grieving = topics.includes('loss') || topHeavy?.id === 'grief';
+        const care = grieving ? null : careIn(clauses, heavyAt, topHeavy, normalised);
+        if (care) {
+            care.own = heavyAt && ownedBySelf(clauses[heavyAt.clause], heavyAt.index, heavyAt.span) ? topHeavy.id : null;
+            // Worry, when nothing is said yet about how they are.
+            care.mode = care.kind === 'worry' && care.state === 'mind' ? 'worry' : care.state;
+        }
+
+        const { ask, about } = askOf(normalised);
+        const { score: intensityScore, level: intensity } = intensityOf(raw, multipliers);
+        const best = feelings[0]?.score || 0;
+        const confidence = Math.min(1, Math.max(0, best) / 2 + (topics.length ? 0.35 : 0) + (ask ? 0.25 : 0) + (care ? 0.4 : 0));
+
+        return {
+            feelings,
+            primary: feelings[0]?.id || null,
+            topics,
+            intensity,
+            intensityScore,
+            time,
+            relief,
+            mixed,
+            care,
+            ask,
+            about,
+            corrections,
+            emoji: [...emoji.keys()],
+            confidence: Math.round(confidence * 100) / 100,
+            normalised,
+            words: wordCount(normalised)
+        };
     }
 
     // -----------------------------------------------------------------------
@@ -586,7 +1060,7 @@
     // The plain-words headline is what a person reads first; the classic verses
     // on desire (3.37–41) may say "sin" in full translation, and stay welcome.
     function shameFraming(verse, profile) {
-        if (!SHAME_SENSITIVE.includes(profile.primary)) return 0;
+        if (!SHAME_SENSITIVE.includes(profile.primary) && !profile.care) return 0;
         let penalty = 0;
         if (SHAME_WORDS.test(verse.notification_short?.en || '')) penalty -= 22;
         if (/\b(sinners?|most sinful)\b/i.test(verse.meaning_en || '')) penalty -= 14;
@@ -616,10 +1090,25 @@
     function corpusIndex(verses) {
         if (indexCache && indexCache.has(verses)) return indexCache.get(verses);
         const df = new Map();
+        // Every word the Gita's text uses is a real word, never a typo to correct.
+        const lexicon = new Set();
         verses.forEach((verse) => {
-            new Set(verseWords(verse).map(stem)).forEach((root) => df.set(root, (df.get(root) || 0) + 1));
+            const words = verseWords(verse);
+            words.forEach((word) => lexicon.add(word));
+            new Set(words.map(stem)).forEach((root) => df.set(root, (df.get(root) || 0) + 1));
         });
-        const index = { df, size: verses.length || 1 };
+        // Each verse's fields, lower-cased once, and what each concept or word
+        // matches across the whole Gita — worked out the first time it is
+        // needed and remembered, so a reply costs lookups, not scans.
+        const prepared = new Map(verses.map((verse) => [verse.id, {
+            tones: lower(verse.emotional_tone),
+            themes: lower(verse.core_theme),
+            situations: lower(verse.life_situations),
+            meaning: (verse.meaning_en || '').toLowerCase(),
+            meaningHi: verse.meaning_hi || '',
+            short: `${verse.notification_short?.en || ''} ${verse.notification_short?.hi || ''}`.toLowerCase()
+        }]));
+        const index = { df, lexicon, prepared, conceptHits: new Map(), wordHits: new Map(), size: verses.length || 1 };
         if (indexCache) indexCache.set(verses, index);
         return index;
     }
@@ -629,35 +1118,55 @@
         return count ? Math.log(1 + index.size / count) : 0;
     }
 
-    function scoreVerse(verse, profile, context) {
-        const { helpsByChapter, index, resonance } = context;
-        let score = verse.meaning_en ? 10 : 0;
-        const tones = lower(verse.emotional_tone);
-        const themes = lower(verse.core_theme);
-        const situations = lower(verse.life_situations);
-        const meaning = (verse.meaning_en || '').toLowerCase();
+    function remembered(cache, key, build) {
+        if (!cache.has(key)) {
+            if (cache.size > 4000) cache.clear();
+            cache.set(key, build());
+        }
+        return cache.get(key);
+    }
 
-        profile.concepts.forEach(({ concept, weight }) => {
-            if (tones.some((tone) => conceptMatches(tone, concept))) score += 12 * weight;
-            if (situations.some((situation) => situation.includes(concept))) score += 10 * weight;
-            if (themes.some((theme) => conceptMatches(theme, concept))) score += 8 * weight;
-            if (concept.length > 3 && meaning.includes(concept)) score += 2 * weight;
+    // Points each verse earns for one concept (before its weight).
+    function conceptHits(index, concept) {
+        return remembered(index.conceptHits, concept, () => {
+            const hits = new Map();
+            index.prepared.forEach((fields, id) => {
+                let points = 0;
+                if (fields.tones.some((tone) => conceptMatches(tone, concept))) points += 12;
+                if (fields.situations.some((situation) => situation.includes(concept))) points += 10;
+                if (fields.themes.some((theme) => conceptMatches(theme, concept))) points += 8;
+                if (concept.length > 3 && fields.meaning.includes(concept)) points += 2;
+                if (points) hits.set(id, points);
+            });
+            return hits;
         });
+    }
 
+    // Points each verse earns for one of the person's own words (before its rarity).
+    function wordHits(index, root) {
+        return remembered(index.wordHits, root, () => {
+            const hits = new Map();
+            index.prepared.forEach((fields, id) => {
+                let points = 0;
+                if (fields.situations.some((situation) => situation.includes(root))) points += 2;
+                if (fields.themes.some((theme) => theme.includes(root))) points += 1.6;
+                if (fields.short.includes(root)) points += 1.4;
+                if (fields.meaning.includes(root) || fields.meaningHi.includes(root)) points += 0.6;
+                if (points) hits.set(id, points);
+            });
+            return hits;
+        });
+    }
+
+    function scoreVerse(verse, profile, context) {
+        const { helpsByChapter, index, resonance, concepts, words } = context;
+        let score = verse.meaning_en ? 10 : 0;
+        const { tones, themes } = index.prepared.get(verse.id) || { tones: lower(verse.emotional_tone), themes: lower(verse.core_theme) };
+
+        concepts.forEach(({ hits, weight }) => { score += (hits.get(verse.id) || 0) * weight; });
         // The person's own words, matched against what each verse is about,
         // weighted by how rare each word is in the Gita.
-        const short = `${verse.notification_short?.en || ''} ${verse.notification_short?.hi || ''}`.toLowerCase();
-        const meaningHi = verse.meaning_hi || '';
-        profile.keywords.forEach((keyword) => {
-            const root = stem(keyword);
-            if (root.length < 3) return;
-            const weight = Math.min(idf(index, root), 4.5);
-            if (!weight) return;
-            if (situations.some((situation) => situation.includes(root))) score += 2 * weight;
-            if (themes.some((theme) => theme.includes(root))) score += 1.6 * weight;
-            if (short.includes(root)) score += 1.4 * weight;
-            if (meaning.includes(root) || meaningHi.includes(root)) score += 0.6 * weight;
-        });
+        words.forEach(({ hits, weight }) => { score += (hits.get(verse.id) || 0) * weight; });
 
         score += profile.anchors?.get(verse.id) || 0;
 
@@ -682,11 +1191,25 @@
     // When a person names no feeling and no situation, lean toward verses that
     // steady and console rather than toward whatever their words brush against.
     const COMFORT_CONCEPTS = ['reassuring', 'hope', 'comforting', 'peace', 'enduring a hard time', 'divine assurance', 'encouraging'];
+    const COMFORT_ANCHORS = ['2_14', '9_22', '18_66', '2_40', '6_5', '5_29'];
 
-    function buildProfile({ text, mood, history = [], timeOfDay, person = null }) {
-        const textEmotions = detectEmotions(text);
+    // Caring for someone is its own situation: the verse is chosen for the one
+    // who cares, not for the feeling they describe in someone else.
+    const CARE = {
+        health: { anchors: ['6_32', '2_13', '18_66', '9_22', '12_13', '2_14'], concepts: ['compassion', 'caring', 'service', 'enduring a hard time', 'divine assurance'] },
+        mind: { anchors: ['6_32', '12_13', '9_22', '18_66', '2_47', '5_29'], concepts: ['compassion', 'friendship', 'kindness', 'caring', 'patience'] },
+        worry: { anchors: ['9_22', '18_66', '2_47', '6_32', '2_14', '12_13'], concepts: ['divine assurance', 'surrender', 'faith', 'protection', 'caring'] }
+    };
+
+    function buildProfile({ text, mood, history = [], timeOfDay, person = null, reading = null, lexicon = null }) {
+        const read = reading || understand(text, { lexicon });
+        const care = read.care;
+        // "A verse about patience": the subject they ask for is the whole need.
+        const subject = read.ask === 'verse' && read.about ? understand(read.about, { lexicon }) : null;
+        const textEmotions = subject ? subject.feelings.map((feeling) => feeling.id)
+            : care && !care.own ? [] : read.feelings.map((feeling) => feeling.id);
         // A follow-up like "how do I live this?" carries the feeling from before.
-        const carried = textEmotions.length ? [] : detectEmotions(history.slice(-3).join(' '));
+        const carried = textEmotions.length || care || subject ? [] : detectEmotions(history.slice(-3).join(' '));
         const moodEmotion = emotionFromMood(mood);
         const emotions = [...new Set([...textEmotions, ...carried, ...(moodEmotion ? [moodEmotion] : [])])].slice(0, 3);
 
@@ -699,44 +1222,52 @@
         if (moodEmotion) addConcepts(moodEmotion, text && textEmotions.length ? 0.5 : 1);
 
         // What the feeling is about: their situation, or the one from earlier.
-        const textTopics = detectTopics(text);
-        const carriedTopics = textTopics.length ? [] : detectTopics(history.slice(-3).join(' '));
+        const textTopics = subject ? subject.topics : read.topics;
+        const carriedTopics = textTopics.length || subject ? [] : detectTopics(history.slice(-3).join(' '));
         const topics = [...new Set([...textTopics, ...carriedTopics])].slice(0, 3);
         topics.forEach((id, index) => {
             TOPICS[id].concepts.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, index === 0 ? 0.55 : 0.35)));
         });
-        if (!emotions.length && !topics.length) {
+        if (care) CARE[care.mode].concepts.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, 0.8)));
+        if (!emotions.length && !topics.length && !care && !subject) {
             COMFORT_CONCEPTS.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, 0.35)));
         }
 
         // A situation named without a feeling ("my investors pulled out") still
         // carries one; take the feeling most people in that place would have.
-        const words = wordCount(normalise(text));
         // (Also when the only feeling is carried over from earlier: a new, serious situation is answered for itself.)
-        const inferred = !textEmotions.length && textTopics.length && words >= 6 ? TOPIC_DEFAULT[textTopics[0]] || null : null;
+        const inferred = !textEmotions.length && !care && !subject && textTopics.length && read.words >= 6 ? TOPIC_DEFAULT[textTopics[0]] || null : null;
         if (inferred) addConcepts(inferred, 0.5);
 
         // Hand-chosen verses for this feeling and situation come first.
         const anchors = new Map();
         const anchor = (ids, top, step) => (ids || []).forEach((id, index) => anchors.set(id, Math.max(anchors.get(id) || 0, top - index * step)));
-        emotions.forEach((name, index) => anchor(ANCHORS.emotions[name], index === 0 ? 26 : 10, index === 0 ? 2 : 1));
+        if (care) anchor(CARE[care.mode].anchors, 30, 2);
+        emotions.forEach((name, index) => anchor(ANCHORS.emotions[name], index === 0 ? (care ? 12 : 26) : 10, index === 0 ? 2 : 1));
         if (inferred) anchor(ANCHORS.emotions[inferred], 14, 1);
-        topics.forEach((id, index) => anchor(ANCHORS.topics[id], index === 0 ? 16 : 8, index === 0 ? 2 : 1));
+        if (!emotions.length && !topics.length && !care && !subject) anchor(COMFORT_ANCHORS, 18, 1);
+        topics.forEach((id, index) => anchor(ANCHORS.topics[id], index === 0 ? (care ? 6 : 16) : (care ? 3 : 8), index === 0 ? 2 : 1));
 
-        // A free-text mood such as a chapter theme ("fear of death") is a concept too.
-        if (mood && !MOOD_TO_EMOTION[String(mood).toLowerCase()]) {
-            weights.set(String(mood).toLowerCase(), Math.max(weights.get(String(mood).toLowerCase()) || 0, 0.8));
-        }
+        // A free-text mood such as a chapter theme ("fear of death") is a
+        // concept too — and so is the subject of a verse they ask for.
+        const freeText = subject ? read.about : mood && !MOOD_TO_EMOTION[String(mood).toLowerCase()] ? String(mood).toLowerCase() : null;
+        if (freeText) weights.set(freeText, Math.max(weights.get(freeText) || 0, subject ? 1 : 0.8));
 
         return {
             emotions,
             primary: textEmotions[0] || carried[0] || moodEmotion || null,
             fresh: textEmotions[0] || null,
             concepts: [...weights.entries()].map(([concept, weight]) => ({ concept, weight })),
-            keywords: contentKeywords(text),
+            keywords: contentKeywords(subject ? read.about : read.normalised),
             topics,
             inferred,
             anchors,
+            care,
+            ask: read.ask,
+            about: read.about,
+            relief: read.relief,
+            intensity: read.intensity,
+            time: read.time,
             resonant: Array.isArray(person?.resonant) ? person.resonant.slice(0, 40) : [],
             timeOfDay
         };
@@ -754,7 +1285,11 @@
                 lower(verse.core_theme).forEach((theme) => resonance.themes.add(theme));
             });
         }
-        const context = { helpsByChapter, index, resonance };
+        const concepts = profile.concepts.map(({ concept, weight }) => ({ hits: conceptHits(index, concept), weight }));
+        const words = profile.keywords.map(stem).filter((root) => root.length >= 3)
+            .map((root) => ({ hits: wordHits(index, root), weight: Math.min(idf(index, root), 4.5) }))
+            .filter((word) => word.weight > 0);
+        const context = { helpsByChapter, index, resonance, concepts, words };
         return verses
             .map((verse) => ({ verse, score: scoreVerse(verse, profile, context) }))
             .sort((a, b) => b.score - a.score);
@@ -762,13 +1297,14 @@
 
     // Choose among the strongest few, weighted towards the best, never
     // repeating what this person has recently been shown.
-    function pickVerse(ranked, { exclude = [], random = Math.random } = {}) {
+    // focused: a verse asked for by subject — only the closest few will do.
+    function pickVerse(ranked, { exclude = [], random = Math.random, focused = false } = {}) {
         const excluded = new Set(exclude);
         const pool = ranked.filter((item) => !excluded.has(item.verse.id));
         const candidates = (pool.length ? pool : ranked).slice(0, 12);
         if (!candidates.length) return null;
         const best = candidates[0].score;
-        const floor = best > 0 ? best * 0.66 : best - 1;
+        const floor = best > 0 ? best * (focused ? 0.88 : 0.66) : best - 1;
         const shortlist = candidates.filter((item) => item.score >= floor).slice(0, 6);
         // Linear, softened weights: the best verse is likeliest, but every
         // strong match gets its turn over the days.
@@ -1945,16 +2481,140 @@
         return profile.primary || profile.inferred || null;
     }
 
-    function counselFor(emotion, topics) {
+    // The counsel written for this feeling in this situation, as its key
+    // ("anxiety:work"), so a conversation can avoid hearing it twice.
+    function counselKeyFor(emotion, topics) {
         if (!emotion) return null;
         const ordered = [...topics].sort((a, b) => TOPIC_PRIORITY.indexOf(a) - TOPIC_PRIORITY.indexOf(b));
         for (const topic of ordered) {
             const key = `${emotion}:${topic}`;
-            const found = COUNSEL[key] || COUNSEL[COUNSEL_ALIASES[key]];
-            if (found) return found;
+            if (COUNSEL[key]) return key;
+            if (COUNSEL[COUNSEL_ALIASES[key]]) return COUNSEL_ALIASES[key];
         }
         return null;
     }
+
+    function counselFor(emotion, topics) {
+        const key = counselKeyFor(emotion, topics);
+        return key ? COUNSEL[key] : null;
+    }
+
+    // -----------------------------------------------------------------------
+    // Caring for someone — a parent in hospital, a brother who is struggling.
+    // The one who writes is the one being answered.
+    // -----------------------------------------------------------------------
+
+    const RELATION_NAMES = {
+        mother: { en: 'your mother', hi: 'अपनी माँ' },
+        father: { en: 'your father', hi: 'अपने पिता' },
+        sister: { en: 'your sister', hi: 'अपनी बहन' },
+        brother: { en: 'your brother', hi: 'अपने भाई' },
+        partner: { en: 'your partner', hi: 'अपने जीवनसाथी' },
+        child: { en: 'your child', hi: 'अपने बच्चे' },
+        friend: { en: 'your friend', hi: 'अपने दोस्त' },
+        grandparent: { en: 'your grandparent', hi: 'अपने बुज़ुर्गों' },
+        someone: { en: 'someone you love', hi: 'किसी अपने' }
+    };
+
+    const CARE_COUNSEL = {
+        health: {
+            practice: 'breaths',
+            en: {
+                ack: (who) => `Watching ${who} go through this is its own kind of pain.`,
+                bridge: 'The Gita’s picture of the dearest person is one who feels another’s sorrow as their own (6.32) — which is exactly what you are doing. It also asks you to give your part fully and let go of what is not in your hands (2.47): the healing is the doctors’ work and the body’s; your love and your presence are yours. The body changes, as it always has, but who they truly are is untouched (2.13). And you are not carrying them alone (18.66).',
+                step: 'Do one practical thing for them today — and one small thing for yourself. A carer who rests can keep caring.'
+            },
+            hi: {
+                ack: (who) => `${who} को इससे गुज़रते देखना अपने आप में एक दर्द है।`,
+                bridge: 'गीता की नज़र में सबसे प्रिय वह है जो दूसरे के दुःख को अपना दुःख मानता है (6.32) — और आप ठीक यही कर रहे हैं। गीता यह भी कहती है कि अपना हिस्सा पूरे मन से कीजिए और जो आपके हाथ में नहीं, उसे छोड़ दीजिए (2.47): इलाज डॉक्टरों और शरीर का काम है; आपका प्रेम और आपकी उपस्थिति आपकी है। शरीर बदलता है, जैसे हमेशा बदलता आया है, पर वे सचमुच जो हैं, उसे कुछ नहीं छूता (2.13)। और आप उन्हें अकेले नहीं थाम रहे (18.66)।',
+                step: 'आज उनके लिए एक व्यावहारिक काम कीजिए — और एक छोटा काम अपने लिए भी। जो देखभाल करने वाला आराम करता है, वही देखभाल करता रह पाता है।'
+            }
+        },
+        mind: {
+            practice: 'breaths',
+            en: {
+                ack: (who) => `It hurts to watch ${who} struggle inside, and not be able to fix it.`,
+                bridge: 'You cannot lift another person’s mind for them — the Gita says each of us must raise ourselves (6.5). But you can be the friend it describes: kind, steady, without judgement (12.13), feeling their sorrow as your own (6.32) without drowning in it. Speak gently and truthfully (17.15). Your part is presence, not repair — the outcome was never yours to carry (2.47).',
+                step: 'Ask them one gentle question today — "How are you, really?" — and then just listen, without fixing. If they seem to be sinking, help them reach someone trained.'
+            },
+            hi: {
+                ack: (who) => `${who} को भीतर-ही-भीतर जूझते देखना, और उसे ठीक न कर पाना — यह बहुत दुखता है।`,
+                bridge: 'किसी और का मन आप उसके लिए नहीं उठा सकते — गीता कहती है कि हर व्यक्ति को स्वयं अपने को ऊपर उठाना होता है (6.5)। पर आप वह मित्र बन सकते हैं जिसका गीता वर्णन करती है: दयालु, स्थिर, बिना किसी निर्णय के (12.13), उनके दुःख को अपना मानते हुए (6.32), पर उसमें डूबे बिना। कोमलता और सच्चाई से बोलिए (17.15)। आपका काम साथ होना है, ठीक करना नहीं — परिणाम का बोझ कभी आपका था ही नहीं (2.47)।',
+                step: 'आज उनसे एक कोमल प्रश्न पूछिए — "आप सच में कैसे हैं?" — और फिर बस सुनिए, सुधारने की कोशिश किए बिना। अगर वे डूबते-से लगें, तो किसी प्रशिक्षित व्यक्ति तक पहुँचने में उनकी मदद कीजिए।'
+            }
+        }
+    };
+
+    // Worry for someone, when nothing is said yet about how they are.
+    CARE_COUNSEL.worry = {
+        practice: 'breaths',
+        en: {
+            ack: (who) => `Worrying about ${who} is love that has nowhere to go yet.`,
+            bridge: 'Worry is love leaning into a future you cannot hold. The Gita’s answer is to do what is yours — call, visit, ask, be there (2.47) — and to entrust the rest: "I carry what they lack and preserve what they have" (9.22). Your love is real either way. The fear does not have to be.',
+            step: 'Reach out to them today — one message, no agenda. And when the worry returns tonight, say quietly: "They are held, and so am I."'
+        },
+        hi: {
+            ack: (who) => `${who} की चिंता वह प्रेम है जिसे अभी कोई रास्ता नहीं मिला।`,
+            bridge: 'चिंता वह प्रेम है जो उस भविष्य की ओर झुका है जिसे आप थाम नहीं सकते। गीता का उत्तर है कि जो आपका है वह कीजिए — फ़ोन, मुलाक़ात, एक प्रश्न, साथ होना (2.47) — और बाक़ी सौंप दीजिए: "जो उनके पास नहीं, वह मैं लाता हूँ; जो है, उसकी रक्षा करता हूँ" (9.22)। आपका प्रेम हर हाल में सच है। डर का होना ज़रूरी नहीं।',
+            step: 'आज उन्हें एक संदेश भेजिए — बिना किसी कारण के। और रात को जब चिंता लौटे, मन में कहिए: "वे थामे हुए हैं, और मैं भी।"'
+        }
+    };
+
+    const CARE_BLESSING = { en: 'May your care stay steady — and may someone care for you, too.', hi: 'आपकी देखभाल स्थिर रहे — और कोई आपकी भी देखभाल करे।' };
+
+    const CARE_LINE = {
+        en: 'Tele-MANAS (14416, India) helps families too — you can call for them, or with them.',
+        hi: 'टेली-मानस (14416) परिवारों की भी मदद करता है — आप उनके लिए, या उनके साथ, कॉल कर सकते हैं।'
+    };
+
+    // -----------------------------------------------------------------------
+    // "Why do I always…?" The Gita rarely answers why with a reason; it
+    // shows where a feeling comes from, which is often the first loosening.
+    // -----------------------------------------------------------------------
+
+    const ROOTS = {
+        anxiety: {
+            en: 'The Gita’s answer to "why" is that the mind runs ahead to outcomes it cannot hold, and suffers there (2.47). Worry is the mind living in a tomorrow that has not come.',
+            hi: '"क्यों" का गीता का उत्तर यह है कि मन उन परिणामों तक दौड़ जाता है जिन्हें वह थाम नहीं सकता, और वहीं दुःख पाता है (2.47)। चिंता मन का उस कल में रहना है जो अभी आया ही नहीं।'
+        },
+        anger: {
+            en: 'The Gita traces anger to its root: dwelling on something breeds attachment, attachment breeds desire, and desire that is blocked becomes anger (2.62). The fire usually starts with something you wanted very much.',
+            hi: 'गीता क्रोध को उसकी जड़ तक ले जाती है: किसी चीज़ का बार-बार चिंतन आसक्ति लाता है, आसक्ति से कामना जन्मती है, और रुकी हुई कामना क्रोध बन जाती है (2.62)। यह आग अक्सर किसी ऐसी चीज़ से शुरू होती है जिसे आप बहुत चाहते थे।'
+        },
+        sadness: {
+            en: 'The Gita says joy and sorrow arise from our contact with the world, and they come and go like winter and summer (2.14). This heaviness is a season, not who you are.',
+            hi: 'गीता कहती है कि सुख और दुःख संसार के संपर्क से उठते हैं, और सर्दी-गर्मी की तरह आते-जाते हैं (2.14)। यह भारीपन एक मौसम है — आपकी पहचान नहीं।'
+        },
+        fear: {
+            en: 'Fear, the Gita suggests, comes from forgetting what in you cannot be harmed — "weapons do not cut it, fire does not burn it" (2.23).',
+            hi: 'गीता के अनुसार भय तब आता है जब हम भूल जाते हैं कि हमारे भीतर क्या है जिसे कोई हानि नहीं पहुँचा सकती — "इसे शस्त्र काट नहीं सकते, आग जला नहीं सकती" (2.23)।'
+        },
+        stress: {
+            en: 'The Gita says the strain comes less from the work itself than from our grip on how it must turn out (2.47). Evenness — doing your part and letting the rest be — is what it calls yoga (2.48).',
+            hi: 'गीता कहती है कि बोझ काम से कम, और इस पकड़ से ज़्यादा आता है कि परिणाम कैसा होना ही चाहिए (2.47)। समता — अपना काम करना और बाक़ी को होने देना — इसी को गीता योग कहती है (2.48)।'
+        },
+        craving: {
+            en: 'The Gita names desire plainly: born of restlessness (rajas), never satisfied, like a fire that grows the more you feed it (3.37, 3.39). It is not a flaw in you — it is a force in nature, and it can be steered.',
+            hi: 'गीता कामना को साफ़ नाम देती है: रजोगुण से जन्मी, कभी तृप्त न होने वाली, उस आग की तरह जो जितना खिलाओ उतनी बढ़ती है (3.37, 3.39)। यह आपकी कमी नहीं — प्रकृति की एक शक्ति है, जिसे दिशा दी जा सकती है।'
+        },
+        loneliness: {
+            en: 'The Gita’s answer is that you are never truly unaccompanied: the One who dwells in every heart dwells in yours (18.61). Loneliness is real — and it is not the whole truth.',
+            hi: 'गीता का उत्तर है कि आप कभी सचमुच अकेले नहीं: जो हर हृदय में बसता है, वह आपके हृदय में भी है (18.61)। अकेलापन सच है — पर पूरा सच नहीं।'
+        },
+        guilt: {
+            en: 'Guilt is the conscience doing its work. The Gita does not ask you to drown in it, but to act rightly from here: even the one who has erred most crosses over on the raft of understanding (4.36).',
+            hi: 'अपराध-बोध अंतरात्मा का काम है। गीता आपसे उसमें डूबने को नहीं कहती, बल्कि यहाँ से सही कर्म करने को: सबसे अधिक भूल करने वाला भी ज्ञान की नाव से पार हो जाता है (4.36)।'
+        },
+        confusion: {
+            en: 'Confusion, the Gita shows, comes when two duties pull at once — Arjuna himself said, "my mind is confused about what is right" (2.7). It is the beginning of clarity, not its absence.',
+            hi: 'गीता दिखाती है कि उलझन तब आती है जब दो कर्तव्य एक साथ खींचते हैं — स्वयं अर्जुन ने कहा था, "मेरा मन धर्म के विषय में मोहित है" (2.7)। यह स्पष्टता की शुरुआत है, उसका अभाव नहीं।'
+        },
+        default: {
+            en: 'The Gita rarely answers "why" with a reason. It offers a way of seeing instead: feelings arise and pass, like seasons (2.14), and you are the one who watches them.',
+            hi: 'गीता "क्यों" का उत्तर अक्सर किसी कारण से नहीं देती। वह देखने का एक ढंग देती है: भाव मौसमों की तरह उठते और गुज़रते हैं (2.14), और आप वह हैं जो उन्हें देखता है।'
+        }
+    };
+    ROOTS.lust = ROOTS.craving;
 
     // -----------------------------------------------------------------------
     // Āśīrvāda — every answer ends with a blessing. The Gita meets despair
@@ -1989,11 +2649,15 @@
 
     const NEUTRAL_BLESSING = { en: 'May you leave a little lighter than you came.', hi: 'आप जितने आए थे, उससे थोड़े हल्के होकर जाएँ।' };
 
-    function guidanceFor(verse, profile, lang) {
+    // counselKey: the counsel chosen for this reply (null when it was already
+    // given in this conversation, so the general guidance speaks instead).
+    function guidanceFor(verse, profile, lang, { counselKey = null } = {}) {
         const feeling = counselFeeling(profile);
-        const counsel = counselFor(feeling, profile.topics)?.[lang];
+        const care = profile.care ? CARE_COUNSEL[profile.care.mode] : null;
+        const counsel = counselKey ? COUNSEL[counselKey]?.[lang] : null;
         const base = (feeling && GUIDANCE[feeling]) || NEUTRAL_GUIDANCE;
-        const entry = counsel ? { practice: base.practice, [lang]: { bridge: counsel.bridge, step: counsel.step } } : base;
+        const entry = care ? { practice: care.practice, [lang]: care[lang] }
+            : counsel ? { practice: base.practice, [lang]: { bridge: counsel.bridge, step: counsel.step } } : base;
         const simple = verse.notification_short && (verse.notification_short[lang] || verse.notification_short.en);
         const situation = lang === 'en' ? matchingSituation(verse, profile) : null;
         return {
@@ -2002,8 +2666,8 @@
             bridge: entry[lang].bridge,
             step: entry[lang].step,
             practice: entry.practice,
-            blessing: ((feeling && BLESSINGS[feeling]) || NEUTRAL_BLESSING)[lang],
-            counselled: Boolean(counsel),
+            blessing: care ? CARE_BLESSING[lang] : ((feeling && BLESSINGS[feeling]) || NEUTRAL_BLESSING)[lang],
+            counselled: Boolean(counsel || care),
             emotion: profile.primary
         };
     }
@@ -2045,7 +2709,8 @@
     const WANTING = ['want', 'how', 'need', 'wish', 'can i', 'could', 'chahta', 'chahti', 'चाहता', 'चाहती', 'kaise', 'कैसे'];
 
     const ACK_TERMS = ['ok', 'okay', 'okk', 'okay okay', 'ok ok', 'hmm', 'hm', 'hmm ok', 'hmmm', 'k', 'yes', 'yeah', 'yep', 'fine', 'alright',
-        'i see', 'got it', 'right', 'sure', 'acha', 'accha', 'achha', 'theek hai', 'thik hai', 'thik h', 'haan', 'ha', 'ठीक है', 'अच्छा', 'हाँ', 'हम्म'];
+        'i see', 'got it', 'right', 'sure', 'acha', 'accha', 'achha', 'theek hai', 'thik hai', 'thik h', 'haan', 'ha', 'ठीक है', 'अच्छा', 'हाँ', 'हम्म',
+        'hm ok', 'ok hm'];
 
     const SELF_TERMS = ['who are you', 'what are you', 'what can you do', 'how does this work', 'how do you work', 'are you real',
         'are you ai', 'are you an ai', 'are you a bot', 'are you human', 'are you a person', 'are you krishna', 'are you god',
@@ -2200,12 +2865,19 @@
 
     const wordCount = (normalised) => normalised.trim().split(' ').filter((word) => word && word !== '|').length;
 
-    function detectIntent(text, { lastVerseId = null } = {}) {
-        const normalised = normalise(text);
-        if (normalised === ' ') return null;
-        const words = wordCount(normalised);
-        const feelings = detectEmotions(text).filter((name) => !['peace', 'gratitude', 'love', 'devotion'].includes(name));
+    function detectIntent(text, { lastVerseId = null, reading = null } = {}) {
+        const read = reading || understand(text);
+        const normalised = read.normalised;
+        if (normalised.trim() === '') return null;
+        const words = read.words;
+        const feelings = read.feelings.filter((feeling) => !LIGHT_FEELINGS.includes(feeling.id));
 
+        // "What does the Gita say about karma?" is a question about karma;
+        // "…about anger" is a request for a verse, answered as one.
+        if (read.ask === 'verse') {
+            const concept = lookupConcept(` ${read.about} `);
+            return concept ? { kind: 'concept', concept } : null;
+        }
         // "What is karma?" — or just "karma?"
         const concept = lookupConcept(normalised);
         if (concept && (QUESTION_CUES.some((cue) => has(normalised, cue)) || words <= 2) && words <= 14) {
@@ -2217,11 +2889,13 @@
         if (!feelings.length && words <= 8 && THANKS_TERMS.some((term) => has(normalised, term)) && !WANTING.some((term) => has(normalised, term))) {
             return { kind: 'thanks' };
         }
-        if (!feelings.length && words <= 5 && !detectTopics(text).length) {
+        if (!feelings.length && words <= 5 && !read.topics.length) {
             const devotional = GREETINGS.devotional.find((item) => item.terms.some((term) => has(normalised, term)));
             if (devotional) return { kind: 'greeting', reply: devotional.reply };
             if (GREETINGS.plain.some((term) => has(normalised, term))) return { kind: 'greeting', reply: null };
         }
+        // "I just want to vent" — before anything is said, only an open door.
+        if (read.ask === 'vent' && !feelings.length && !read.topics.length && !read.care && words <= 12) return { kind: 'listen' };
         return null;
     }
 
@@ -2345,6 +3019,16 @@
                 : `${salutation} 🙏 I'm here${greetingName}.${continuity}\n\nWhat is on your heart today? A word is enough — or write everything.`;
             return { message, verse: null, context: { intent: 'greeting' } };
         }
+        if (intent.kind === 'listen') {
+            const message = lang === 'hi'
+                ? `${LISTEN.hi}
+
+लिखते जाइए${greetingName} — मैं यहीं हूँ।`
+                : `${LISTEN.en}
+
+Go on${greetingName} — I’m here.`;
+            return { message, verse: null, context: { intent: 'listen', listening: true } };
+        }
         if (intent.kind === 'ack') {
             const message = lang === 'hi'
                 ? `आराम से${greetingName}। अगर मन में कुछ और हो — या वही बात किसी और कोण से — तो मैं यहीं हूँ।`
@@ -2398,18 +3082,124 @@
         return null;
     }
 
+    // -----------------------------------------------------------------------
+    // Answering the reading — how strongly it is felt, whether it has eased,
+    // what is being asked, and how the conversation has moved.
+    // -----------------------------------------------------------------------
+
+    const INTENSE = {
+        en: ['This is more than anyone should have to hold alone.', 'I can feel how hard this is pressing on you.',
+            'That is a heavy thing to carry. Thank you for not carrying it in silence.'],
+        hi: ['यह बहुत भारी लगता है — इतना किसी को अकेले नहीं उठाना चाहिए।', 'मैं महसूस कर सकता हूँ कि यह आप पर कितना दबाव डाल रहा है।',
+            'यह उठाने में बहुत भारी है। इसे चुपचाप न ढोने के लिए धन्यवाद।']
+    };
+    const JOYFUL = {
+        en: ['I can feel your joy from here!', 'This is wonderful — let it fill the whole day.'],
+        hi: ['आपकी ख़ुशी यहाँ तक महसूस हो रही है!', 'यह अद्भुत है — इसे पूरे दिन में भर जाने दीजिए।']
+    };
+    const GENTLE = {
+        en: 'Even a small unease deserves care before it grows.',
+        hi: 'छोटी-सी बेचैनी भी बढ़ने से पहले देखभाल की हक़दार है।'
+    };
+    const MIXED = {
+        en: 'There is something good in this too — both can be true at once.',
+        hi: 'इसमें कुछ अच्छा भी है — दोनों बातें एक साथ सच हो सकती हैं।'
+    };
+    const AHEAD = {
+        en: 'What you are dreading has not happened yet. Right now you are here — and this is where the Gita meets you.',
+        hi: 'जिस बात का डर है, वह अभी हुई नहीं है। अभी आप यहाँ हैं — और गीता आपसे यहीं मिलती है।'
+    };
+    const RELIEF = {
+        ack: {
+            en: ['I am so glad it has eased.', 'It is good to hear you are through the worst of it.'],
+            hi: ['मुझे बहुत ख़ुशी है कि अब यह हल्का हुआ है।', 'यह सुनकर अच्छा लगा कि सबसे कठिन समय निकल गया।']
+        },
+        keep: {
+            en: 'Whatever helped you through is worth remembering — you may need it again, or someone you love might.',
+            hi: 'जिस बात ने आपको पार कराया, उसे याद रखिए — वह फिर काम आ सकती है, आपके या किसी अपने के।'
+        }
+    };
+    const LISTEN = {
+        en: 'I’m listening — no fixing, no lessons. Say all of it, just as it is.',
+        hi: 'मैं सुन रहा हूँ — न कोई सुधार, न कोई उपदेश। जो है, सब वैसा ही कह दीजिए।'
+    };
+    const LISTEN_REFLECTION = {
+        en: 'Not advice — only a verse to sit beside you.',
+        hi: 'कोई सलाह नहीं — बस आपके पास बैठने के लिए एक श्लोक।'
+    };
+    const HOW = {
+        en: 'You asked what to do. After the verse there is one small step to start with — it is enough for today.',
+        hi: 'आपने पूछा कि क्या करें। श्लोक के बाद शुरुआत के लिए एक छोटा क़दम है — आज के लिए इतना काफ़ी है।'
+    };
+    const VERSE_ON = {
+        en: (about) => `Here is what the Gita says about ${about}.`,
+        hi: (about) => `${about} के बारे में गीता यह कहती है।`
+    };
+    const TRAJECTORY = {
+        easing: {
+            en: 'It sounds a little lighter than when we began. I am glad.',
+            hi: 'जब हमने बात शुरू की थी, उससे अब कुछ हल्का लग रहा है। मुझे ख़ुशी है।'
+        },
+        heavier: {
+            en: 'This seems to be weighing more as we talk. Stay as long as you need — I am not going anywhere.',
+            hi: 'बात करते-करते यह और भारी होता लग रहा है। जितनी देर चाहें, रुकिए — मैं कहीं नहीं जा रहा।'
+        },
+        lingering: {
+            en: 'It is still here. That does not mean nothing is working — some knots take longer to loosen.',
+            hi: 'यह अब भी यहाँ है। इसका अर्थ यह नहीं कि कुछ काम नहीं कर रहा — कुछ गाँठें खुलने में समय लेती हैं।'
+        }
+    };
+
+    // When a message cannot be read with confidence, ask — with answers one
+    // tap away — rather than guess.
+    const CLARIFY = {
+        question: {
+            en: 'If you can, tell me which of these is closest — it helps me find the right verse.',
+            hi: 'अगर हो सके, बताइए इनमें से कौन-सा सबसे क़रीब है — इससे सही श्लोक ढूँढने में मदद मिलेगी।'
+        },
+        options: {
+            en: [['Worried', 'I feel worried about this'], ['Sad', 'I feel sad about this'], ['Angry', 'I feel angry about this'],
+                ['Lost', 'I feel lost and unsure what to do'], ['Alone', 'I feel alone with this'], ['Exhausted', 'I feel exhausted by all of this']],
+            hi: [['चिंता', 'मुझे इस बात की चिंता है'], ['उदासी', 'मैं इससे उदास हूँ'], ['ग़ुस्सा', 'मुझे इस पर ग़ुस्सा है'],
+                ['उलझन', 'मैं उलझन में हूँ, समझ नहीं आ रहा क्या करूँ'], ['अकेलापन', 'मुझे इसमें अकेलापन लगता है'], ['थकान', 'इन सब से मुझे बहुत थकान है']]
+        },
+        good: { en: ['Good, actually', 'I feel good today'], hi: ['अच्छा, सच में', 'आज मन अच्छा है'] }
+    };
+
+    function clarifyFor(lang, { includeGood = false } = {}) {
+        const options = CLARIFY.options[lang].map(([label, text]) => ({ label, text }));
+        if (includeGood) options.push({ label: CLARIFY.good[lang][0], text: CLARIFY.good[lang][1] });
+        return { question: CLARIFY.question[lang], options };
+    }
+
+    const LINGERING = ['still', 'again', 'abhi bhi', 'ab bhi', 'phir se', 'अब भी', 'अभी भी', 'फिर से'];
+
+    // How the conversation has moved: lighter than it began, heavier, or still here.
+    function trajectoryOf(reading, earlier) {
+        if (!earlier.length || !reading.primary) return null;
+        const wasHeavy = earlier.some((read) => HEAVY(read.primary) && !read.relief);
+        if (wasHeavy && (reading.relief || !HEAVY(reading.primary))) return 'easing';
+        const peak = Math.max(...earlier.map((read) => (HEAVY(read.primary) ? read.intensityScore : 0)));
+        if (wasHeavy && HEAVY(reading.primary) && reading.intensity === 'high' && reading.intensityScore > peak) return 'heavier';
+        if (wasHeavy && HEAVY(reading.primary) && LINGERING.some((term) => has(reading.normalised, term))) return 'lingering';
+        return null;
+    }
+
     /**
-     * @param {{ text?: string, mood?: string, settings?: object, history?: string[], exclude?: string[],
-     *           another?: boolean, lastVerseId?: string, person?: object }} input
+     * @param {{ text?: string, mood?: string, settings?: object, history?: string[], exclude?: string[], another?: boolean,
+     *           lastVerseId?: string, person?: object, used?: string[] }} input
+     *   history: the person's earlier messages in this conversation (most recent last)
+     *   used:    counsel already given in this conversation ("anxiety:work"), never repeated
      * @param {{ verses: object[], chapters: object[], timeOfDay?: string, random?: () => number, offline?: boolean }} corpus
      */
     function respond(input, corpus) {
-        const { text = null, mood = null, settings = {}, history = [], exclude = [], another = false, lastVerseId = null, person = null } = input || {};
+        const { text = null, mood = null, settings = {}, history = [], exclude = [], another = false, lastVerseId = null, person = null, used = [] } = input || {};
         const { verses = [], chapters = [], timeOfDay = null, random = Math.random, offline = false } = corpus || {};
         const lang = replyLanguage(text, settings);
         const depth = settings.depth || 'standard';
         const extra = offline ? { offline: true } : {};
         const name = cleanName(person?.name);
+        const stamp = (context) => ({ ...context, language: lang, engine: ENGINE_VERSION, ...extra });
 
         // Human help comes before scripture, always.
         if (detectCrisis(text) || (!text && detectCrisis(mood))) {
@@ -2427,23 +3217,33 @@
             };
         }
 
-        const profile = buildProfile({ text, mood, history, timeOfDay, person });
+        // Read the message once; everything below answers the reading.
+        const lexicon = verses.length ? corpusIndex(verses).lexicon : null;
+        const reading = understand(text, { lexicon });
+        const earlier = text && !another ? history.slice(-3).filter((line) => typeof line === 'string').map((line) => understand(line, { lexicon })) : [];
+        const profile = buildProfile({ text, mood, history, timeOfDay, person, reading, lexicon });
 
         // Not every message is a feeling: hello, thank you, "what is karma?",
-        // "who are you?", "I don't understand".
+        // "who are you?", "I don't understand", "I just want to vent".
         if (text && !another) {
-            const intent = detectIntent(text, { lastVerseId });
+            const intent = detectIntent(text, { lastVerseId, reading });
             if (intent) {
                 const reply = respondToIntent(intent, { verses, lang, name, person, profile, lastVerse: findVerse(verses, lastVerseId) });
-                if (reply) return { ...reply, context: { ...reply.context, language: lang, engine: ENGINE_VERSION, ...extra } };
+                if (reply) return { ...reply, context: stamp(reply.context) };
             }
         }
 
-        if (text && !another && !mood && !profile.primary && !profile.topics.length && wordCount(normalise(text)) <= 8 && !isQuestion(text)) {
-            return { message: PERSONAL.smalltalk[lang](name), verse: null, context: { intent: 'smalltalk', invite: true, language: lang, engine: ENGINE_VERSION, ...extra } };
+        if (text && !another && !mood && !profile.primary && !profile.topics.length && !profile.care && !reading.ask
+            && reading.words <= 8 && !isQuestion(text)) {
+            return {
+                message: PERSONAL.smalltalk[lang](name),
+                verse: null,
+                clarify: clarifyFor(lang, { includeGood: true }),
+                context: stamp({ intent: 'smalltalk', clarify: true })
+            };
         }
 
-        const verse = pickVerse(rankVerses(verses, chapters, profile), { exclude, random });
+        const verse = pickVerse(rankVerses(verses, chapters, profile), { exclude, random, focused: reading.ask === 'verse' && !another });
         if (!verse) {
             return {
                 message: lang === 'hi' ? 'क्षमा करें, अभी श्लोक तक नहीं पहुँच पा रहे। थोड़ी देर में फिर कोशिश करें।' : 'The verses are out of reach just now. Please try again in a moment.',
@@ -2454,6 +3254,11 @@
 
         const verseText = (lang === 'hi' ? verse.meaning_hi : verse.meaning_en) || verse.meaning_en || verse.meaning_hi;
         const topic = profile.topics[0] || null;
+        const care = profile.care;
+        const verseAsk = !another && reading.ask === 'verse' && reading.about ? reading.about : null;
+        // Listening carries on from "I just want to vent" to whatever comes next.
+        const listening = !another && !verseAsk && (reading.ask === 'vent' || earlier.slice(-1).some((read) => read.ask === 'vent'));
+        const relief = !another && reading.relief && !care;
         const context = {
             emotion: profile.primary,
             emotions: profile.emotions,
@@ -2467,40 +3272,84 @@
             return { message: `"${verseText}"`, verse, context: { ...context, silent_mode: true } };
         }
 
-        const heard = Boolean(profile.primary || profile.keywords.length || mood || topic);
+        const heard = Boolean(profile.primary || profile.keywords.length || mood || topic || care);
         const heavy = !profile.primary || HEAVY(profile.primary);
-        const understood = Boolean(profile.primary || topic || mood);
-        const counsel = counselFor(counselFeeling(profile), profile.topics)?.[lang] || null;
+        const understood = Boolean(profile.primary || topic || mood || care || verseAsk);
+        // Counsel written for this feeling in this life — once per conversation.
+        const counselKey = care || verseAsk || listening ? null : counselKeyFor(counselFeeling(profile), profile.topics);
+        const freshKey = counselKey && !(Array.isArray(used) && used.includes(counselKey)) ? counselKey : null;
+        const counsel = freshKey ? COUNSEL[freshKey][lang] : null;
+
+        // How this conversation has moved: lighter, heavier, or still here.
+        const trajectory = another ? null : trajectoryOf(reading, earlier);
 
         // First paragraph: being heard.
         const opening = [];
         if (!another && text && text.length > 280) opening.push(PERSONAL.long[lang]);
-        let ack = another
-            ? pick(ANOTHER[lang], random)
-            : counsel ? counsel.ack : heard ? acknowledge(profile, lang, random) : UNHEARD[lang];
+        if (listening && reading.ask === 'vent') opening.push(LISTEN[lang]);
+        let ack;
+        if (another) ack = pick(ANOTHER[lang], random);
+        else if (verseAsk) ack = VERSE_ON[lang](verseAsk);
+        else if (care) ack = CARE_COUNSEL[care.mode][lang].ack(RELATION_NAMES[care.relation][lang]);
+        else if (relief) ack = trajectory === 'easing' ? TRAJECTORY.easing[lang] : pick(RELIEF.ack[lang], random);
+        else if (counsel) ack = counsel.ack;
+        else ack = heard ? acknowledge(profile, lang, random) : UNHEARD[lang];
         const useName = !another && heard && name && (!history.length || random() < 0.35);
         if (useName) ack = withName(ack, name, lang);
         opening.push(ack);
-        if (!another && topic && heavy && !counsel) opening.push(TOPICS[topic].line[lang]);
+        if (!another && !verseAsk && !relief) {
+            if (reading.mixed && !care) opening.push(MIXED[lang]);
+            // "Why do I always get so angry?" asks about a pattern; it is not a cry.
+            const asking = reading.ask === 'why' || reading.ask === 'how';
+            if (heavy && reading.intensity === 'high' && profile.primary && !asking && !care) opening.push(pick(INTENSE[lang], random));
+            else if (heavy && reading.intensity === 'low' && profile.primary && !care) opening.push(GENTLE[lang]);
+            else if (!heavy && reading.intensity === 'high') opening.push(pick(JOYFUL[lang], random));
+            if (topic && heavy && !counsel && !care) opening.push(TOPICS[topic].line[lang]);
+            if (reading.time === 'future' && ['anxiety', 'fear', 'stress'].includes(profile.primary) && !counsel && !care) opening.push(AHEAD[lang]);
+        }
 
-        // Second paragraph: what this person has carried before (from their device).
+        // Second paragraph: what this person has carried before (from their
+        // device), or how this conversation has moved.
         let personal = null;
         const previous = topic && person?.topics?.[topic];
         const previousAgo = previous?.last ? (Date.now() - Date.parse(previous.last)) / 3600000 : 0;
-        if (!another && previous && previous.count >= 1 && previousAgo >= 6) {
+        if (relief) {
+            personal = RELIEF.keep[lang];
+        } else if (trajectory) {
+            personal = TRAJECTORY[trajectory][lang];
+        } else if (!another && !verseAsk && previous && previous.count >= 1 && previousAgo >= 6) {
             personal = PERSONAL.returning[lang](TOPICS[topic].label[lang]);
-        } else if (!another && HEAVY(profile.primary) && (person?.recurring?.[profile.primary] || 0) >= 2) {
+        } else if (!another && !verseAsk && HEAVY(profile.primary) && (person?.recurring?.[profile.primary] || 0) >= 2) {
             personal = PERSONAL.recurring[lang];
         }
 
+        // "Why do I always…?" — where the feeling comes from, as the Gita sees it.
+        const roots = !another && reading.ask === 'why' && HEAVY(profile.primary) && !care
+            ? (ROOTS[profile.primary] || ROOTS.default)[lang] : null;
+
         const ground = !heavy ? pick(LIGHT_GROUNDING[lang], random)
             : timeOfDay === 'night' && !another ? PERSONAL.night[lang] : pick(GROUNDING[lang], random);
-        const guidance = guidanceFor(verse, profile, lang);
+        const guidance = guidanceFor(verse, profile, lang, { counselKey: freshKey });
         if (name && guidance.blessing) guidance.blessing = withBlessingName(guidance.blessing, name, lang);
         const quality = person?.sankalpa && (person.sankalpa[lang] || person.sankalpa.en);
-        if (quality && HEAVY(profile.primary) && guidance.bridge) guidance.bridge += PERSONAL.sankalpa[lang](quality);
-        const invite = !another && !understood;
+        if (quality && HEAVY(profile.primary) && guidance.bridge && !listening) guidance.bridge += PERSONAL.sankalpa[lang](quality);
+        if (listening) {
+            // Someone who asked to be heard is not handed homework.
+            guidance.bridge = null;
+            guidance.step = null;
+        }
+        // The answer to "why" is already said above; the guidance need not repeat its verse.
+        const rootRef = roots && (roots.match(/\((\d{1,2}\.\d{1,2})/) || [])[1];
+        if (rootRef && guidance.bridge && guidance.bridge.includes(`(${rootRef}`)) guidance.bridge = null;
+        const howAsked = !another && !listening && reading.ask === 'how' && Boolean(guidance.step);
+        if (howAsked) guidance.focus = 'step';
+        const clarify = !another && text && !understood ? clarifyFor(lang) : null;
         const concern = Boolean(text) && detectConcern(text);
+        const careLine = care && care.mode === 'mind' && !another ? CARE_LINE[lang] : null;
+
+        const reflection = verseAsk ? null
+            : listening ? LISTEN_REFLECTION[lang]
+                : pick((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random);
 
         let message;
         if (depth === 'brief') {
@@ -2511,10 +3360,13 @@
             message = [
                 opening.join(' '),
                 personal,
-                pick((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random),
+                roots,
+                howAsked ? HOW[lang] : null,
+                reflection,
                 `"${verseText}"`,
-                `${ground}${invitation}`,
-                invite ? PERSONAL.invite[lang] : null,
+                verseAsk ? null : `${ground}${invitation}`,
+                clarify ? clarify.question : null,
+                careLine,
                 concern ? CONCERN_LINE[lang] : null
             ].filter(Boolean).join('\n\n');
         }
@@ -2523,7 +3375,27 @@
             message,
             verse,
             guidance,
-            context: { ...context, self_limited: !heard || undefined, invite: invite || undefined, remembered: Boolean(personal) || undefined, concern: concern || undefined }
+            clarify,
+            context: {
+                ...context,
+                self_limited: !heard || undefined,
+                remembered: (Boolean(personal) && !relief && !trajectory) || undefined,
+                concern: concern || undefined,
+                clarify: Boolean(clarify) || undefined,
+                counsel: freshKey || undefined,
+                care: care ? { relation: care.relation, mode: care.mode } : undefined,
+                ask: reading.ask || undefined,
+                listening: listening || undefined,
+                trajectory: trajectory || undefined,
+                reading: text ? {
+                    intensity: reading.intensity,
+                    time: reading.time,
+                    relief: reading.relief || undefined,
+                    mixed: reading.mixed || undefined,
+                    confidence: reading.confidence,
+                    corrected: reading.corrections.length ? reading.corrections : undefined
+                } : undefined
+            }
         };
     }
 
@@ -2604,6 +3476,9 @@
         GUIDANCE,
         COUNSEL,
         COUNSEL_ALIASES,
+        CARE,
+        CARE_COUNSEL,
+        ROOTS,
         ANCHORS,
         VOICE,
         detectTopics,
@@ -2611,6 +3486,7 @@
         detectSafety,
         detectConcern,
         normalise,
+        understand,
         detectCrisis,
         detectEmotions,
         emotionFromMood,

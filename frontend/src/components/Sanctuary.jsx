@@ -74,22 +74,26 @@ function SupportMessage({ content }) {
     );
 }
 
-// Ways to begin, for when it is hard to know how to start.
-const STARTER_KEYS = ['lately', 'worried', 'cantStop', 'today', 'good'];
-
-function Starters({ onPick }) {
+// When Sakha cannot tell what is meant, it asks — and the likely answers
+// are one tap away. Each is a sentence Sakha is certain to understand.
+function Clarify({ clarify, onPick, disabled }) {
     const { t } = useI18n();
+    const reduceMotion = useReducedMotion();
     return (
-        <div className="begin-chips" role="group" aria-label={t('sanctuary.startersLabel')}>
-            {STARTER_KEYS.map((key) => {
-                const text = t(`sanctuary.starter.${key}`);
-                return (
-                    <button key={key} type="button" className="begin-chip" onClick={() => onPick(`${text} `)}>
-                        {text}…
-                    </button>
-                );
-            })}
-        </div>
+        <motion.div
+            className="begin-chips begin-chips--answers"
+            role="group"
+            aria-label={t('sanctuary.clarifyLabel')}
+            initial={reduceMotion ? false : { opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.6 }}
+        >
+            {clarify.options.map((option) => (
+                <button key={option.text} type="button" className="begin-chip" onClick={() => onPick(option.text)} disabled={disabled}>
+                    {option.label}
+                </button>
+            ))}
+        </motion.div>
     );
 }
 
@@ -117,6 +121,15 @@ function Guidance({ guidance, verse, language }) {
         setWriting(false);
     };
 
+    // "How do I…?" — the step comes first; the teaching follows it.
+    const stepFirst = guidance.focus === 'step' && Boolean(guidance.step);
+    const bridge = (
+        <div className="guidance__block">
+            <span className="eyebrow">{t(stepFirst ? 'guidance.why' : 'guidance.forYou')}</span>
+            <p className="guidance__bridge">{typeset(guidance.bridge)}</p>
+        </div>
+    );
+
     return (
         <motion.section
             className="guidance"
@@ -125,15 +138,10 @@ function Guidance({ guidance, verse, language }) {
             transition={{ delay: 0.4, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             aria-label={t('guidance.label')}
         >
-            {guidance.bridge && (
-                <div className="guidance__block">
-                    <span className="eyebrow">{t('guidance.forYou')}</span>
-                    <p className="guidance__bridge">{typeset(guidance.bridge)}</p>
-                </div>
-            )}
+            {guidance.bridge && !stepFirst && bridge}
             {guidance.step && (
-                <div className="guidance__block guidance__block--step">
-                    <span className="eyebrow">{t('guidance.step')}</span>
+                <div className={`guidance__block guidance__block--step${stepFirst ? ' guidance__block--lead' : ''}`}>
+                    <span className="eyebrow">{t(stepFirst ? 'guidance.startHere' : 'guidance.step')}</span>
                     <p className="guidance__step">{typeset(guidance.step)}</p>
                     <div className="text-actions text-actions--start">
                         {practice && (
@@ -172,6 +180,7 @@ function Guidance({ guidance, verse, language }) {
                     </AnimatePresence>
                 </div>
             )}
+            {guidance.bridge && stepFirst && bridge}
             {guidance.blessing && (
                 <div className="guidance__blessing">
                     <SunGlyph size={26} className="guidance__blessing-glyph" />
@@ -202,6 +211,8 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
     const started = useRef(false);
     const shownIds = useRef([]);
     const history = useRef([]);
+    // Counsel already given in this conversation, so it is never repeated.
+    const usedCounsel = useRef([]);
     const lastVerseId = useRef(initialVerse?.id || null);
     // One conversation, so Sakha can tell "this visit" from "before".
     const session = useRef(`s${Date.now().toString(36)}`);
@@ -274,9 +285,11 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                 history: history.current.slice(-3),
                 exclude,
                 lastVerseId: lastVerseId.current,
+                used: usedCounsel.current,
                 person
             });
             if (text) history.current.push(text);
+            if (data.context?.counsel) usedCounsel.current.push(data.context.counsel);
             rememberConversation(session.current, data.context);
             const content = data.message || data.response || '';
             const id = nextId();
@@ -285,7 +298,15 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                 lastVerseId.current = data.verse.id;
                 recordPath('verse', { verseId: data.verse.id, emotion: data.context?.emotion || null, mood: moodContext || mood || null });
             }
-            setMessages((list) => [...list, { id, role: 'assistant', content, verse: data.verse, guidance: data.guidance, context: data.context || {} }]);
+            setMessages((list) => [...list, {
+                id,
+                role: 'assistant',
+                content,
+                verse: data.verse,
+                guidance: data.guidance,
+                clarify: data.clarify || null,
+                context: data.context || {}
+            }]);
             startReveal(id, splitMessage(content, Boolean(data.verse)).lead.join('\n\n'));
             scrollToMessage(id);
         } catch {
@@ -410,17 +431,6 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                         <Guidance guidance={message.guidance} verse={message.verse} language={language} />
                                     )}
 
-                                    {message.context?.invite && !isRevealing && index === messages.length - 1 && !settings.silentMode && (
-                                        <Starters onPick={(starter) => {
-                                            setInputText(starter);
-                                            requestAnimationFrame(() => {
-                                                const area = textareaRef.current;
-                                                area?.focus();
-                                                area?.setSelectionRange(starter.length, starter.length);
-                                            });
-                                        }} />
-                                    )}
-
                                     {trail.length > 0 && !isRevealing && (
                                         <motion.div
                                             className="msg__text msg__text--trail"
@@ -430,6 +440,10 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                         >
                                             {trail.map((paragraph, p) => <p key={p}>{typeset(paragraph)}</p>)}
                                         </motion.div>
+                                    )}
+
+                                    {message.clarify?.options?.length > 0 && !isRevealing && index === messages.length - 1 && !settings.silentMode && (
+                                        <Clarify clarify={message.clarify} onPick={(text) => send(text)} disabled={loading} />
                                     )}
 
                                     {message.failed && lastRequest && index === messages.length - 1 && (

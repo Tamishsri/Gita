@@ -18,7 +18,7 @@ const cleanList = (list, maxLength) => (Array.isArray(list)
     : []);
 
 /**
- * generateResponse({ text, mood, settings, history, exclude })
+ * generateResponse({ text, mood, settings, history, exclude, used })
  * generateResponse(text, mood, settings)   — legacy positional form
  */
 const generateResponse = (arg1, arg2, arg3) => {
@@ -33,6 +33,7 @@ const generateResponse = (arg1, arg2, arg3) => {
             settings: input.settings && typeof input.settings === 'object' ? input.settings : {},
             history: cleanList(input.history, 2000).slice(-3),
             exclude: cleanList(input.exclude, 12),
+            used: cleanList(input.used, 40),
             another: input.another === true
         },
         { verses: getVerses(), chapters: getChaptersMeta(), timeOfDay: getTimeOfDay() }
