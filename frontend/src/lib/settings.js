@@ -6,6 +6,7 @@ export const SETTINGS_KEY = 'livingGitaSettings';
 
 export const DEFAULT_SETTINGS = Object.freeze({
     language: 'en',
+    name: '',
     script: 'deva',
     theme: 'dawn',
     depth: 'standard',
@@ -50,7 +51,8 @@ const LOCAL_KEYS = [
     'lgDay',
     'lgJapa',
     'lgLearned',
-    'lgReading'
+    'lgReading',
+    'lgNameAsked'
 ];
 
 export function purgeLocalData() {

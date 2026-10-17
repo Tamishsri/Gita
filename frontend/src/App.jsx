@@ -46,6 +46,7 @@ import { REFLECTIONS_EVENT, WISDOM_CARD_EVENT, readReflections, verseRef } from 
 import { PRACTICE_EVENT, VERSE_EVENT } from './lib/bus';
 import { recordPath } from './lib/path';
 import { fetchDaily, fetchVerse } from './lib/gitaApi';
+import { prepareSakha } from './lib/localSakha';
 import { readJourney, startJourney } from './lib/journey';
 import { moodById } from './components/MoodSelector';
 
@@ -215,6 +216,13 @@ function AppContent({ settings, setSettings }) {
     // ----- global effects ---------------------------------------------------
 
     useEffect(() => installTapHaptics(), []);
+
+    // Bring the engine and the verses onto the device once the page is calm,
+    // so the first conversation answers without waiting.
+    useEffect(() => {
+        const timer = setTimeout(prepareSakha, 1200);
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => soundscape.setMood(session?.mood || null), [session, soundscape]);
 

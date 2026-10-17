@@ -1,5 +1,5 @@
 /*
- * Living Gita — Wisdom Engine
+ * Sakha — Wisdom Engine
  *
  * The single source of truth for how the sanctuary listens and answers:
  * crisis detection, emotion understanding (English, Hindi, Hinglish), verse
@@ -18,7 +18,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
-    const ENGINE_VERSION = '2.0.0';
+    const ENGINE_VERSION = '3.0.0';
 
     // -----------------------------------------------------------------------
     // Text normalisation
@@ -38,9 +38,28 @@
             .replace(/[^\p{L}\p{M}\p{N}'|]+/gu, ' ')
             .replace(/'/g, '')
             .replace(/\s+/g, ' ')
-            .trim();
+            .trim()
+            .split(' ')
+            .map((word) => SHORTHAND[word] ?? word)
+            .filter(Boolean)
+            .join(' ');
         return ` ${cleaned} `;
     }
+
+    // How people actually type: texting shorthand and the many spellings of
+    // Hinglish. Folded to one form so "jeena nhi chahta" is heard exactly like
+    // "jeena nahi chahta" — by the crisis check first of all.
+    const SHORTHAND = {
+        u: 'you', ur: 'your', r: 'are', pls: 'please', plz: 'please', idk: 'i dont know', rn: 'right now',
+        bc: 'because', cuz: 'because', coz: 'because', bcoz: 'because', bcz: 'because', tbh: 'honestly', ngl: 'honestly',
+        gf: 'girlfriend', bf: 'boyfriend', bff: 'friend', mom: 'mother', mum: 'mother', mommy: 'mother', mummy: 'mother',
+        mumma: 'mother', maa: 'mother', dad: 'father', daddy: 'father', papa: 'father', bro: 'brother', sis: 'sister',
+        nhi: 'nahi', nahin: 'nahi', nai: 'nahi', nhin: 'nahi', kyu: 'kyun', kyon: 'kyun', kyoon: 'kyun',
+        bht: 'bahut', bohot: 'bahut', boht: 'bahut', bhot: 'bahut', bhut: 'bahut', bahot: 'bahut',
+        h: 'hai', hu: 'hoon', hun: 'hoon', hoo: 'hoon', mai: 'main', kr: 'kar', krna: 'karna', krta: 'karta', krti: 'karti',
+        rha: 'raha', rhi: 'rahi', rhe: 'rahe', gya: 'gaya', gyi: 'gayi', gye: 'gaye', pta: 'pata', skta: 'sakta',
+        skti: 'sakti', kch: 'kuch', kuchh: 'kuch', sb: 'sab', jb: 'jab', tb: 'tab', kb: 'kab', yr: 'yaar', yrr: 'yaar'
+    };
 
     // A term matches on word boundaries. "worr*" is a prefix (worry, worried…).
     function findTerm(normalised, term) {
@@ -67,7 +86,7 @@
         'cannot go on living', 'no point living', 'no point in living', 'life is pointless', 'hurt myself',
         'harm myself', 'self harm', 'selfharm', 'cut myself', 'cutting myself', 'overdose', 'all my pills',
         'all the pills', 'hang myself', 'jump off a', 'disappear forever', 'never wake up', 'not wake up tomorrow',
-        'unalive', 'end everything', 'give up on life',
+        'unalive', 'end everything', 'give up on life', 'tired of living', 'tired of life', 'done with life', 'done with living',
         // Hindi
         'आत्महत्या', 'खुदकुशी', 'ख़ुदकुशी', 'मरना चाहता', 'मरना चाहती', 'मर जाना चाहता', 'मर जाना चाहती',
         'मर जाऊं', 'मर जाऊँ', 'मरना है', 'जीना नहीं चाहता', 'जीना नहीं चाहती', 'जीने का मन नहीं',
@@ -101,7 +120,7 @@
     const EMOTIONS = {
         anxiety: {
             terms: ['anxious', 'anxiety', 'worr*', 'nervous', 'panic*', 'uneasy', 'restless*', 'overthink*', 'racing', 'on edge',
-                'tension', 'tense', 'chinta', 'ghabrahat', 'bechain*', 'चिंता', 'चिंतित', 'घबराहट', 'बेचैन*', 'परेशान*'],
+                'tension', 'tense', 'chinta', 'ghabrahat', 'bechain*', 'pareshan*', 'replay*', 'cant stop thinking', 'keep thinking about', 'what if', 'preshan*', 'dara hua', 'dari hui', 'चिंता', 'चिंतित', 'घबराहट', 'बेचैन*', 'परेशान*'],
             concepts: ['fear', 'anxiety', 'freedom from anxiety', 'worry', 'worrying', 'uncertainty', 'restless', 'calm', 'steady', 'equanimity', 'emotional stability', 'staying calm', 'overthinking', 'security', 'trusting god', 'divine assurance', 'managing stress'],
             en: { adj: 'anxious', noun: 'anxiety' },
             hi: { noun: 'चिंता', g: 'f' }
@@ -113,7 +132,7 @@
             hi: { noun: 'डर', g: 'm' }
         },
         stress: {
-            terms: ['stress*', 'pressure', 'overwhelm*', 'burnout', 'burnt out', 'burned out', 'workload', 'deadline*', 'too much',
+            terms: ['stress*', 'pressure', 'overwhelm*', 'forcing me', 'force kar*', 'pressurising me', 'pressurizing me', 'dabav', 'thak gaya', 'thak gayi', 'burnout', 'burnt out', 'burned out', 'workload', 'deadline*', 'too much',
                 'exhausted', 'drained', 'tired', 'thak*', 'तनाव', 'दबाव', 'थक*', 'बोझ'],
             concepts: ['stress', 'managing stress', 'handling pressure', 'burnout', 'avoiding burnout', 'doing difficult tasks', 'balance', 'equanimity', 'detached action', 'steady', 'surrender', 'emotional overwhelm'],
             en: { adj: 'overwhelmed', noun: 'stress' },
@@ -127,7 +146,7 @@
             hi: { noun: 'क्रोध', g: 'm' }
         },
         sadness: {
-            terms: ['sad', 'sadness', 'depress*', 'unhappy', 'miserable', 'cry*', 'tears', 'hopeless*', 'heavy heart', 'feel down', 'feeling down',
+            terms: ['sad', 'sadness', 'depress*', 'unhappy', 'miserable', 'cry*', 'tears', 'hopeless*', 'heavy heart', 'feel down', 'feeling down', 'keep pretending', 'pretending to be', 'bura laga', 'bura lag raha', 'bura lagta', 'it hurts', 'really hurt', 'so hurt', 'pretend to be fine', 'fake smile', 'hiding my pain', 'hide my pain', 'brave face', 'dil bhari', 'rona aa',
                 'udaas', 'udas', 'dukhi', 'उदास*', 'दुखी', 'दुःख*', 'दुख', 'रो रहा', 'रो रही', 'निराश*'],
             concepts: ['grief', 'sorrow', 'sadness', 'compassion', 'hope', 'hopeful', 'comforting', 'enduring a hard time', 'staying strong in pain', 'bad phase', 'impermanence', 'resilient', 'end of grief', 'reassuring'],
             en: { adj: 'low', noun: 'sadness' },
@@ -148,20 +167,22 @@
             hi: { noun: 'अकेलापन', obl: 'अकेलेपन', g: 'm' }
         },
         confusion: {
-            terms: ['confus*', 'unsure', 'uncertain', 'dilemma', 'cant decide', 'cannot decide', 'should i', 'what should',
+            terms: ['confus*', 'unsure', 'uncertain', 'dilemma', 'cant decide', 'cannot decide', 'should i', 'what should', 'dont know what to do', 'what do i do',
                 'which path', 'direction', 'doubt*', 'lost', 'samajh nahi', 'उलझन', 'भ्रम', 'असमंजस', 'दुविधा', 'समझ नहीं'],
             concepts: ['confusion', 'clarity', 'seeking clarity', 'guidance', 'seeking guidance', 'doubt', 'duty', 'swadharma', 'decision', 'knowledge', 'wisdom'],
             en: { adj: 'uncertain', noun: 'confusion' },
             hi: { noun: 'उलझन', g: 'f' }
         },
         guilt: {
-            terms: ['guilt*', 'ashamed', 'shame', 'regret*', 'my fault', 'forgive me', 'messed up', 'पछतावा', 'शर्म*', 'गलती', 'ग़लती'],
+            terms: ['guilt*', 'ashamed', 'shame', 'regret*', 'my fault', 'forgive me', 'messed up', 'i cheated', 'i lied', 'i betrayed', 'i hurt her', 'i hurt him', 'i hurt my',
+                'cant forgive myself', 'cannot forgive myself', 'never forgive myself', 'maaf nahi', 'maaf nahin', 'khud ko maaf', 'apne aap ko maaf', 'galti ho gayi', 'galti ki', 'खुद को माफ़', 'ख़ुद को माफ़', 'माफ़ नहीं', 'पछतावा', 'शर्म*', 'गलती', 'ग़लती'],
             concepts: ['seeking forgiveness', 'forgiveness', 'overcoming a dark past', 'starting over', 'redemption', 'redemptive', 'freedom from sin', 'liberation from all sin', 'divine grace', 'purification'],
             en: { adj: 'weighed down by guilt', noun: 'guilt' },
             hi: { noun: 'पछतावा', obl: 'पछतावे', g: 'm' }
         },
         unworthiness: {
-            terms: ['worthless', 'useless', 'not good enough', 'inadequate', 'insecure', 'self doubt', 'hate myself', 'a disappointment',
+            terms: ['worthless', 'useless', 'not good enough', 'inadequate', 'insecure', 'self doubt', 'hate myself', 'smarter than me', 'better than me',
+                'not as good as', 'not smart enough', 'a burden', 'burden to', 'nobody needs me', 'no one needs me', 'imposter', 'impostor', 'a disappointment',
                 'loser', 'no confidence', 'बेकार', 'नाकाम*', 'nikamma', 'bekaar'],
             concepts: ['negative self-talk', 'being your own best friend', 'mind as friend', 'self-motivation', 'self-help', 'self-doubt', 'confidence', 'trying to boost confidence', 'inner strength', 'overcoming weakness', 'self-pity', 'empowering', 'encouraging'],
             en: { adj: 'not good enough', noun: 'self-doubt' },
@@ -181,15 +202,15 @@
             hi: { noun: 'ईर्ष्या', g: 'f' }
         },
         heartbreak: {
-            terms: ['breakup', 'broke up', 'break up', 'divorce*', 'betray*', 'cheated', 'heartbroken', 'heartbreak', 'my ex',
-                'relationship', 'relationship ended', 'left me', 'dhokha', 'धोखा', 'दिल टूट*', 'रिश्ता', 'रिश्ते'],
+            terms: ['breakup', 'broke up', 'break up', 'divorce*', 'betrayed me', 'heartbroken', 'heartbreak', 'my ex',
+                'relationship', 'relationship ended', 'left me', 'cheated on me', 'cheating on me', 'doesnt love me', 'does not love me', 'one sided', 'unrequited', 'ghosted', 'rejected me', 'moved on from me', 'dhokha', 'धोखा', 'दिल टूट*', 'रिश्ता', 'रिश्ते'],
             // Comfort first: a broken heart needs holding before it hears "detachment".
             concepts: ['feeling hurt', 'emotional pain', 'comfort in loss', 'letting go of the past', 'starting a new chapter', 'learning to let go', 'letting go', 'enduring a hard time', 'staying strong in pain', 'impermanence', 'love'],
             en: { adj: 'heartbroken', noun: 'heartbreak' },
             hi: { noun: 'दर्द', g: 'm' }
         },
         purpose: {
-            terms: ['purpose', 'meaning', 'meaningless', 'career', 'my job', 'quit', 'calling', 'passion', 'what am i doing',
+            terms: ['purpose', 'calling', 'passion', 'follow my heart', 'what am i doing with my life', 'my purpose', 'purpose in life', 'what should i do with my life',
                 'मकसद', 'उद्देश्य', 'नौकरी'],
             concepts: ['duty', 'swadharma', 'purpose', 'karma yoga', 'call to action', 'action', 'dedication', 'destiny', 'leadership'],
             en: { adj: 'searching for your path', noun: 'search for purpose' },
@@ -201,6 +222,51 @@
             en: { adj: 'pulled by cravings', noun: 'craving' },
             hi: { noun: 'लालसा', g: 'f' }
         },
+        lust: {
+            // Kāma. Named plainly and met without shame — the Gita itself does (7.11, 3.37).
+            terms: ['lust*', 'horny', 'sexual thought*', 'sexual urge*', 'sexual desire*', 'sexual fantas*', 'fantasiz*', 'fantasis*',
+                'masturbat*', 'nofap', 'no fap', 'porn', 'sexual', 'cant stop thinking about her body', 'cant stop thinking about his body',
+                'vasna', 'kaam vasna', 'hawas', 'वासना', 'हवस', 'काम वासना', 'कामवासना'],
+            concepts: ['desire', 'kama', 'lust', 'sense control', 'self-control', 'mastering desire', 'overcoming cravings', 'higher purpose', 'discipline'],
+            en: { adj: 'pulled by desire', noun: 'desire' },
+            hi: { noun: 'वासना', g: 'f' }
+        },
+        emptiness: {
+            terms: ['empty', 'emptiness', 'numb', 'feel nothing', 'feeling nothing', 'dead inside', 'hollow', 'nothing matters',
+                'whats the point', 'what is the point', 'directionless', 'autopilot', 'going through the motions', 'meaningless',
+                'khaali', 'khali', 'khalipan', 'sunapan', 'खाली', 'ख़ाली', 'खालीपन', 'ख़ालीपन', 'सूनापन'],
+            concepts: ['purpose', 'meaning', 'soul', 'happiness within', 'inner joy', 'self-knowledge', 'eternal nature', 'divine presence'],
+            en: { adj: 'empty', noun: 'emptiness' },
+            hi: { noun: 'ख़ालीपन', obl: 'ख़ालीपन', g: 'm' }
+        },
+        pride: {
+            terms: ['my ego', 'egoistic', 'egotistic', 'arrogant', 'arrogance', 'look down on', 'better than everyone', 'superior to',
+                'too proud', 'ahankar', 'ahankaar', 'ghamand', 'घमंड', 'अहंकार', 'अभिमान'],
+            concepts: ['humility', 'free from ego', 'ego', 'false ego', 'not the doer', 'surrender', 'equal vision'],
+            en: { adj: 'caught in ego', noun: 'pride' },
+            hi: { noun: 'अहंकार', obl: 'अहंकार', g: 'm' }
+        },
+        love: {
+            terms: ['in love', 'love her', 'love him', 'falling for', 'fell for', 'crush on', 'butterflies', 'attracted to', 'my soulmate',
+                'pyaar ho gaya', 'pyar ho gaya', 'pyaar hai', 'प्यार हो गया', 'प्रेम हो गया'],
+            concepts: ['love', 'devotion', 'friendship', 'caring', 'affectionate', 'compassion', 'loving'],
+            en: { adj: 'in love', noun: 'love' },
+            hi: { noun: 'प्रेम', obl: 'प्रेम', g: 'm' }
+        },
+        devotion: {
+            terms: ['closer to god', 'closer to krishna', 'love krishna', 'love for krishna', 'love god', 'bhakti', 'surrender to god',
+                'feel god', 'feel krishna', 'chanting', 'kirtan', 'bhajan', 'devotion', 'भक्ति', 'भजन', 'कीर्तन'],
+            concepts: ['devotion', 'bhakti', 'devotional', 'surrender', 'divine presence', 'loving', 'worshipful'],
+            en: { adj: 'drawn to the Divine', noun: 'devotion' },
+            hi: { noun: 'भक्ति', g: 'f' }
+        },
+        inertia: {
+            terms: ['lazy', 'laziness', 'unmotivated', 'no motivation', 'not motivated', 'cant get up', 'cant get out of bed',
+                'procrastinat*', 'wasting time', 'wasting my time', 'waste my time', 'cant start', 'cant focus on anything', 'aalas', 'aalsi', 'आलस', 'आलसी'],
+            concepts: ['action', 'call to action', 'overcoming weakness', 'discipline', 'determination', 'inner strength', 'self-motivation'],
+            en: { adj: 'stuck', noun: 'feeling of being stuck' },
+            hi: { noun: 'आलस', obl: 'आलस', g: 'm' }
+        },
         peace: {
             terms: ['peace', 'peaceful', 'calm', 'stillness', 'quiet', 'meditat*', 'serenity', 'shanti', 'sukoon', 'शांति', 'शान्ति', 'सुकून', 'ध्यान'],
             concepts: ['peace', 'meditation', 'stillness', 'serenity', 'finding peace', 'finding inner peace', 'calm', 'peaceful', 'meditative', 'samadhi'],
@@ -209,12 +275,171 @@
         },
         gratitude: {
             terms: ['grateful', 'gratitude', 'thankful', 'thank god', 'blessed', 'happy', 'joy*', 'khush', 'shukr*',
-                'आभार*', 'कृतज्ञ*', 'खुश', 'प्रसन्न', 'धन्य'],
+                'आभार*', 'कृतज्ञ*', 'खुश', 'प्रसन्न', 'धन्य',
+                // Good news arrives in many words.
+                'i passed', 'passed my', 'passed the', 'got selected', 'got the job', 'got a job', 'got the offer', 'got promoted',
+                'got into', 'got admission', 'cracked', 'i made it', 'got through', 'nailed it', 'cleared my', 'got the promotion', 'got a promotion', 'proud of myself', 'so excited', 'good news', 'celebrat*', 'i got engaged', 'we got engaged', 'im getting married', 'i am getting married', 'it worked',
+                'finally did it', 'so relieved', 'relieved', 'pass ho gaya', 'pass ho gayi', 'select ho gaya', 'select ho gayi',
+                'naukri lag gayi', 'खुशखबरी', 'पास हो गया', 'पास हो गई', 'चयन हो गया'],
             concepts: ['gratitude', 'joy', 'joyful', 'contentment', 'happiness', 'devotion', 'devotional', 'blissful', 'loving', 'worshipful'],
             en: { adj: 'grateful', noun: 'gratitude' },
             hi: { noun: 'कृतज्ञता', g: 'f' }
         }
     };
+
+    // -----------------------------------------------------------------------
+    // Life situations — what a feeling is about. A person rarely says "I feel
+    // anxiety"; they say "my exams", "my father", "the loan". Each situation
+    // brings its own verses, a human acknowledgement, and a label the person's
+    // private memory can keep (never their words).
+    // -----------------------------------------------------------------------
+
+    const TOPICS = {
+        study: {
+            terms: ['exam*', 'test', 'tests', 'marks', 'grades', 'result*', 'college', 'school', 'study', 'studies', 'studying',
+                'padhai', 'board exam*', 'boards', 'jee', 'neet', 'upsc', 'cat exam', 'semester', 'assignment*', 'university',
+                'percentage', 'rank', 'iit', 'iim', 'nit', 'admission', 'entrance', 'driving test', 'परीक्षा', 'पढ़ाई', 'नतीजे', 'कॉलेज', 'स्कूल'],
+            concepts: ['results', 'effort', 'duty without expectation', 'focus', 'discipline', 'steadiness', 'detached action', 'fear of failure'],
+            label: { en: 'your studies', hi: 'पढ़ाई' },
+            line: { en: 'Studies, results, and what others expect of you — that is a lot to hold at once.', hi: 'पढ़ाई, नतीजे और दूसरों की उम्मीदें — यह एक साथ बहुत कुछ थामना है।' }
+        },
+        work: {
+            terms: ['job', 'jobs', 'boss', 'office', 'career', 'colleague*', 'coworker*', 'manager', 'salary', 'fired', 'laid off',
+                'layoff*', 'interview*', 'business', 'startup', 'investor*', 'client*', 'workplace', 'internship', 'placement*', 'offer letter', 'hired', 'company', 'at work', 'go to work', 'my work', 'from work', 'after work', 'work life', 'work from home', 'naukri', 'kaam', 'नौकरी', 'काम', 'बॉस', 'दफ़्तर', 'दफ्तर'],
+            concepts: ['duty', 'karma yoga', 'doing your job', 'work', 'action', 'detached action', 'excellence in action', 'career'],
+            label: { en: 'your work', hi: 'काम' },
+            line: { en: 'Work can take more than our hours; it can take our peace too.', hi: 'काम कभी-कभी हमारे घंटों से ज़्यादा ले लेता है — हमारी शांति भी।' }
+        },
+        family: {
+            terms: ['mother', 'father', 'parents', 'parent', 'family', 'brother', 'sister', 'son', 'daughter', 'husband', 'wife',
+                'in laws', 'inlaws', 'grandmother', 'grandfather', 'kids', 'children', 'my child', 'my baby', 'bachche', 'bacche', 'बच्चे', 'बच्चों', 'nani', 'dadi', 'nana', 'dada', 'ghar wale', 'gharwale', 'bhai',
+                'behen', 'bahen', 'pati', 'patni', 'saas', 'परिवार', 'माँ', 'मां', 'पिता', 'पापा', 'भाई', 'बहन', 'पति', 'पत्नी', 'घरवाले'],
+            concepts: ['family', 'relationships', 'duty', 'love', 'compassion', 'forgiveness', 'patience', 'attachment'],
+            label: { en: 'your family', hi: 'परिवार' },
+            line: { en: 'Family is where we love most — and so where it can hurt most.', hi: 'परिवार वह जगह है जहाँ हम सबसे ज़्यादा प्रेम करते हैं — और इसलिए वहीं सबसे ज़्यादा चोट भी लगती है।' }
+        },
+        love: {
+            terms: ['girlfriend', 'boyfriend', 'partner', 'crush', 'in love', 'love her', 'love him', 'relationship', 'situationship',
+                'breakup', 'my ex', 'dating', 'pyaar', 'pyar', 'mohabbat', 'प्यार', 'प्रेम'],
+            concepts: ['love', 'attachment', 'letting go', 'relationships', 'devotion', 'feeling hurt', 'emotional pain'],
+            label: { en: 'love', hi: 'प्रेम' },
+            line: { en: 'Matters of the heart go deeper than anything we can explain.', hi: 'दिल की बातें उससे कहीं गहरी होती हैं जितना हम समझा पाते हैं।' }
+        },
+        marriage: {
+            terms: ['marriage', 'married', 'marry', 'wedding', 'arranged marriage', 'shaadi ke liye', 'shaadi ka', 'marriage pressure', 'shaadi', 'shadi', 'rishta', 'rishte', 'rishtey',
+                'vivah', 'शादी', 'विवाह', 'रिश्ता', 'रिश्ते'],
+            concepts: ['swadharma', 'duty', 'decision', 'clarity', 'family', 'love', 'equanimity'],
+            label: { en: 'marriage', hi: 'शादी' },
+            line: { en: 'Marriage carries so many hopes — yours, and everyone else’s.', hi: 'शादी के साथ कितनी उम्मीदें जुड़ी होती हैं — आपकी भी, और सबकी भी।' }
+        },
+        friendship: {
+            terms: ['friend', 'friends', 'friendship', 'dost', 'dosti', 'yaar log', 'best friend', 'left out', 'ignored me',
+                'ignoring me', 'दोस्त', 'दोस्ती'],
+            concepts: ['friendship', 'friend', 'loneliness', 'forgiveness', 'equanimity', 'caring'],
+            label: { en: 'your friendships', hi: 'दोस्ती' },
+            line: { en: 'When a friendship wavers, it shakes more than we expect.', hi: 'जब कोई दोस्ती डगमगाती है, तो वह हमें उम्मीद से ज़्यादा हिला देती है।' }
+        },
+        health: {
+            terms: ['sick', 'illness', 'ill', 'disease', 'hospital', 'surgery', 'operation', 'cancer', 'diagnos*', 'doctor said', 'doctors said', 'saw a doctor', 'health',
+                'chronic', 'pain in', 'my body', 'therapy', 'medicine*', 'chemo*', 'tumou*', 'tumor*', 'biopsy', 'scan results', 'icu', 'dialysis', 'pregnan*', 'miscarriage', 'bimar*', 'beemar*', 'बीमार*', 'अस्पताल', 'इलाज', 'ऑपरेशन'],
+            concepts: ['body', 'impermanence', 'enduring a hard time', 'staying strong in pain', 'courage', 'fear of death', 'surrender', 'soul'],
+            label: { en: 'your health', hi: 'सेहत' },
+            line: { en: 'When the body struggles, the mind carries it too.', hi: 'जब शरीर संघर्ष करता है, तो मन भी उसका भार उठाता है।' }
+        },
+        loss: {
+            terms: ['died', 'death', 'passed away', 'funeral', 'dying', 'lost my', 'no more with us', 'mar gaya', 'mar gayi',
+                'chal base', 'guzar gaye', 'गुजर गए', 'गुज़र गए', 'मृत्यु', 'मौत', 'नहीं रहे'],
+            concepts: ['death', 'soul', 'eternal', 'immortality', 'grief', 'comfort in loss', 'impermanence', 'cycle of life'],
+            label: { en: 'your loss', hi: 'बिछड़ना' },
+            line: { en: 'Losing someone changes the shape of every ordinary day.', hi: 'किसी को खोना हर साधारण दिन का आकार बदल देता है।' }
+        },
+        money: {
+            terms: ['money', 'debt', 'loan', 'loans', 'emi', 'bills', 'rent', 'broke', 'financial*', 'finances', 'savings', 'poor',
+                'poverty', 'paisa', 'paise', 'karza', 'karz', 'पैसा', 'पैसे', 'कर्ज', 'क़र्ज़', 'उधार'],
+            concepts: ['contentment', 'security', 'trust', 'duty', 'detachment', 'divine assurance', 'protection'],
+            label: { en: 'money', hi: 'पैसा' },
+            line: { en: 'Money worries have a way of reaching into everything.', hi: 'पैसों की चिंता धीरे-धीरे हर चीज़ में उतर आती है।' }
+        },
+        future: {
+            terms: ['future', 'what if', 'what will happen', 'uncertain*', 'tomorrow', 'next year', 'settle', 'settled', 'aage kya',
+                'bhavishya', 'भविष्य', 'आगे क्या'],
+            concepts: ['uncertainty', 'trusting god', 'surrender', 'action', 'faith', 'divine assurance', 'steady'],
+            label: { en: 'the future', hi: 'भविष्य' },
+            line: { en: 'Not knowing what comes next is one of the hardest things to sit with.', hi: 'आगे क्या होगा, यह न जानना सबसे कठिन बातों में से एक है।' }
+        },
+        faith: {
+            terms: ['god', 'bhagwan', 'bhagavan', 'ishwar', 'krishna', 'prayer', 'pray', 'praying', 'faith', 'believe in', 'religion',
+                'spiritual*', 'temple', 'mandir', 'karma', 'sin', 'paap', 'भगवान', 'ईश्वर', 'प्रार्थना', 'आस्था', 'पाप', 'मंदिर'],
+            concepts: ['devotion', 'faith', 'surrender', 'divine presence', 'bhakti', 'trusting god', 'divine assurance', 'grace'],
+            label: { en: 'faith', hi: 'आस्था' },
+            line: { en: 'Questions of faith are part of the path, not a step away from it.', hi: 'आस्था के प्रश्न मार्ग का हिस्सा हैं, उससे दूर जाना नहीं।' }
+        },
+        meaning: {
+            terms: ['meaning of life', 'point of life', 'point to life', 'point in life', 'any point', 'purpose of life', 'purpose in life', 'why am i here', 'why do we live', 'why are we here', 'who am i', 'why do i exist', 'existence',
+                'what is life', 'meaningless', 'pointless', 'zindagi ka matlab', 'जीवन का अर्थ', 'मैं कौन हूँ'],
+            concepts: ['purpose', 'self-knowledge', 'soul', 'swadharma', 'meaning', 'knowledge', 'eternal nature'],
+            label: { en: 'the meaning of it all', hi: 'जीवन का अर्थ' },
+            line: { en: 'These are the very questions Arjuna asked on the battlefield.', hi: 'यही प्रश्न अर्जुन ने रणभूमि में पूछे थे।' }
+        },
+        self: {
+            terms: ['confidence', 'self esteem', 'selfesteem', 'my looks', 'ugly', 'fat', 'body image', 'insecure', 'compare myself',
+                'comparing myself', 'comparison', 'social media', 'instagram', 'not enough', 'imposter', 'impostor', 'khud se nafrat',
+                'आत्मविश्वास', 'हीन'],
+            concepts: ['self-worth', 'confidence', 'inner strength', 'equal vision', 'swadharma', 'mind as friend', 'being your own best friend'],
+            label: { en: 'how you see yourself', hi: 'स्वयं को देखने का ढंग' },
+            line: { en: 'The way we see ourselves colours everything else we see.', hi: 'हम स्वयं को जैसे देखते हैं, वही बाक़ी सब कुछ रंग देता है।' }
+        },
+        habits: {
+            terms: ['procrastinat*', 'lazy', 'laziness', 'discipline', 'cant focus', 'cannot focus', 'distract*', 'screen time', 'scrolling',
+                'addict*', 'smoking', 'alcohol', 'drinking', 'porn', 'gaming', 'aalas', 'आलस', 'लत'],
+            concepts: ['self-control', 'discipline', 'sense control', 'practice', 'determination', 'abhyasa', 'mastering your thoughts'],
+            label: { en: 'your habits', hi: 'आदतें' },
+            line: { en: 'Habits are strong — and wanting to change one is already a beginning.', hi: 'आदतें मज़बूत होती हैं — और किसी एक को बदलना चाहना ही शुरुआत है।' }
+        },
+        sleep: {
+            terms: ['cant sleep', 'cannot sleep', 'couldnt sleep', 'insomnia', 'nightmare*', 'awake at night', 'awake for hours', 'no sleep',
+                'not sleeping', 'sleepless', 'up all night', 'neend nahi', 'नींद नहीं', 'सो नहीं'],
+            concepts: ['peace', 'calm', 'meditation', 'steady', 'stillness', 'surrender'],
+            label: { en: 'rest', hi: 'नींद' },
+            line: { en: 'A mind that will not rest makes the night very long.', hi: 'जो मन आराम नहीं करता, वह रात को बहुत लंबा बना देता है।' }
+        },
+        decision: {
+            terms: ['should i', 'decide', 'decision', 'choose', 'choice', 'dilemma', 'torn between', 'or should', 'want me to become',
+                'want me to be a', 'expect me to', 'pressure to become', 'follow my passion', 'follow my dream*', 'my dream', 'my passion',
+                'career choice', 'which career', 'which stream', 'which course', 'kya karu', 'kya karun',
+                'kya karoon', 'kya kru', 'क्या करूँ', 'क्या करूं', 'फ़ैसला', 'फैसला'],
+            concepts: ['swadharma', 'duty', 'decision', 'clarity', 'seeking clarity', 'right action', 'guidance'],
+            label: { en: 'a decision', hi: 'एक फ़ैसला' },
+            line: { en: 'Standing between two paths is exactly where the Gita begins.', hi: 'दो राहों के बीच खड़े होना — गीता ठीक यहीं से शुरू होती है।' }
+        },
+        conflict: {
+            terms: ['fight', 'fighting', 'fought', 'argument', 'argue*', 'conflict', 'quarrel', 'shouted', 'yelled', 'insulted',
+                'jhagda', 'jhagra', 'ladai', 'झगड़ा', 'लड़ाई', 'बहस'],
+            concepts: ['anger', 'forgiveness', 'patience', 'tolerance', 'equanimity', 'self-control', 'not disturbed by others'],
+            label: { en: 'a conflict', hi: 'एक झगड़ा' },
+            line: { en: 'Conflict with someone close leaves an echo long after the words.', hi: 'किसी अपने से झगड़ा शब्दों के बाद भी देर तक गूँजता रहता है।' }
+        },
+        injustice: {
+            terms: ['unfair', 'not fair', 'injustice', 'why me', 'deserve this', 'nobody cares', 'taken for granted', 'cheated me', 'bad things happen', 'suffering', 'why does god',
+                'used me', 'betrayed', 'anyay', 'अन्याय', 'मेरे साथ ही क्यों'],
+            concepts: ['equanimity', 'karma', 'patience', 'faith', 'divine assurance', 'tolerance', 'forgiveness'],
+            label: { en: 'unfairness', hi: 'अन्याय' },
+            line: { en: '"Why me?" is one of the oldest cries there is — and it deserves to be heard.', hi: '"मेरे साथ ही क्यों?" — यह सबसे पुरानी पुकारों में से है, और इसे सुना जाना चाहिए।' }
+        }
+    };
+
+    const TOPIC_PRIORITY = ['loss', 'health', 'marriage', 'money', 'study', 'work', 'decision', 'family', 'love', 'conflict', 'injustice',
+        'friendship', 'habits', 'self', 'faith', 'meaning', 'future', 'sleep'];
+
+    function detectTopics(text) {
+        const normalised = normalise(text);
+        if (normalised === ' ') return [];
+        return Object.entries(TOPICS)
+            .map(([id, topic]) => ({ id, hits: topic.terms.reduce((sum, term) => sum + (has(normalised, term) ? (term.includes(' ') ? 2 : 1) : 0), 0) }))
+            .filter((item) => item.hits > 0)
+            .sort((a, b) => b.hits - a.hits || TOPIC_PRIORITY.indexOf(a.id) - TOPIC_PRIORITY.indexOf(b.id))
+            .map((item) => item.id);
+    }
 
     // The moods offered on the home screen, plus a few common free-text names.
     const MOOD_TO_EMOTION = {
@@ -228,7 +453,9 @@
         fear: 'fear', afraid: 'fear',
         peace: 'peace', calm: 'peace',
         happy: 'gratitude', grateful: 'gratitude', gratitude: 'gratitude', joy: 'gratitude',
-        guilt: 'guilt', 'self-blame': 'guilt', 'self-doubt': 'unworthiness'
+        guilt: 'guilt', 'self-blame': 'guilt', 'self-doubt': 'unworthiness',
+        empty: 'emptiness', numb: 'emptiness', lustful: 'lust', desire: 'lust', ego: 'pride', proud: 'pride',
+        love: 'love', 'in love': 'love', devoted: 'devotion', devotion: 'devotion', lazy: 'inertia', stuck: 'inertia', unmotivated: 'inertia'
     };
 
     const NEGATIONS = new Set(['not', 'no', 'never', 'isnt', 'arent', 'wasnt', 'dont', 'doesnt', 'didnt', 'hardly', 'barely', 'nor', 'without']);
@@ -238,7 +465,7 @@
 
     // Look a few words either side of a match, never across a clause:
     // "not angry, just tired" negates "angry" but keeps "tired".
-    function negated(normalised, index) {
+    function negated(normalised, index, span = 1) {
         const before = [];
         for (const word of normalised.slice(0, index).trim().split(' ').reverse()) {
             if (CLAUSE_BREAKS.has(word) || before.length === 3) break;
@@ -246,7 +473,8 @@
         }
         if (before.some((word) => NEGATIONS.has(word))) return true;
         const after = [];
-        for (const word of normalised.slice(index).trim().split(' ').slice(1)) {
+        // Skip the matched phrase's own words: "maaf nahi" is not negated by its own "nahi".
+        for (const word of normalised.slice(index).trim().split(' ').slice(span)) {
             if (CLAUSE_BREAKS.has(word) || after.length === 3) break;
             after.push(word);
         }
@@ -254,8 +482,9 @@
     }
 
     // Ties go to the more specific feeling.
-    const SPECIFICITY = ['grief', 'heartbreak', 'failure', 'guilt', 'envy', 'craving', 'loneliness', 'unworthiness', 'fear',
-        'anger', 'sadness', 'anxiety', 'stress', 'purpose', 'confusion', 'peace', 'gratitude'];
+    const SPECIFICITY = ['grief', 'heartbreak', 'lust', 'failure', 'guilt', 'envy', 'craving', 'loneliness', 'unworthiness',
+        'emptiness', 'fear', 'anger', 'pride', 'sadness', 'anxiety', 'stress', 'inertia', 'purpose', 'confusion', 'devotion',
+        'love', 'peace', 'gratitude'];
 
     function detectEmotions(text) {
         const normalised = normalise(text);
@@ -264,12 +493,16 @@
             let hits = 0;
             emotion.terms.forEach((term) => {
                 const index = findTerm(normalised, term);
-                if (index !== -1 && !negated(normalised, index)) hits += term.includes(' ') ? 2 : 1;
+                if (index !== -1 && !negated(normalised, index, term.split(' ').length)) hits += term.includes(' ') ? 2 : 1;
             });
             if (hits) found.push({ name, hits });
         });
+        // A light feeling (joy, peace) leads only when it clearly outweighs a
+        // heavy one — "my friends are moving on and I feel stuck" is not joy.
+        const weight = (item) => item.hits - (['peace', 'gratitude', 'love', 'devotion'].includes(item.name) && found.some((other) =>
+            !['peace', 'gratitude', 'love', 'devotion'].includes(other.name)) ? 1.5 : 0);
         return found
-            .sort((a, b) => b.hits - a.hits || SPECIFICITY.indexOf(a.name) - SPECIFICITY.indexOf(b.name))
+            .sort((a, b) => weight(b) - weight(a) || SPECIFICITY.indexOf(a.name) - SPECIFICITY.indexOf(b.name))
             .map((item) => item.name);
     }
 
@@ -293,7 +526,11 @@
         'us very want was we were what when where which while who whom why will with would yes yet you your feel feeling feels ' +
         'felt going gonna honestly literally always anymore everything nothing something someone anyone people time day days ' +
         'way ok okay please help mujhe mujhko mera meri mere hai hain ho raha rahi rahe tha thi bahut bhi kya kyun ki ka ke ' +
-        'मुझे मेरा मेरी मेरे है हैं हो रहा रही रहे था थी बहुत भी क्या क्यों की का के को में से पर और यह वह'
+        'मुझे मेरा मेरी मेरे है हैं हो रहा रही रहे था थी बहुत भी क्या क्यों की का के को में से पर और यह वह ' +
+        'main hoon kar karna karta karti nahi sab kuch aur toh ye yeh wo woh kaise kab kahan apne apna apni saath liye lag ' +
+        'laga lagta lagti kyunki phir abhi bas yaar hota hoti hote gaya gayi gaye wala wali sakta sakti pata ' +
+        'actually basically kind sort maybe guess lately also again around back thats theres whats dont cant wont didnt ' +
+        'isnt wasnt doesnt havent hasnt'
     ).split(' '));
 
     function stem(word) {
@@ -340,10 +577,24 @@
         // Arjuna's own terror before the cosmic form (11.23–31) mirrors fear; it does not answer it.
         'disturbed', 'panicked', 'unstable', 'disoriented', 'begging', 'terrified', 'trembling'];
     const COLD_THEMES = ['rajasic', 'tamasic', 'demonic', 'asuric', 'futility', 'hell'];
-    const NO_WARMTH_NEEDED = ['peace', 'gratitude'];
+    const NO_WARMTH_NEEDED = ['peace', 'gratitude', 'love', 'devotion'];
+
+    // Someone already ashamed should not be handed a verse about sinners.
+    const SHAME_SENSITIVE = ['lust', 'unworthiness', 'emptiness', 'sadness', 'loneliness', 'heartbreak', 'failure', 'craving'];
+    const SHAME_WORDS = /\b(sin|sins|sinful|sinner|sinners|demon\w*|hell|wicked|evil-doer\w*)\b/i;
+
+    // The plain-words headline is what a person reads first; the classic verses
+    // on desire (3.37–41) may say "sin" in full translation, and stay welcome.
+    function shameFraming(verse, profile) {
+        if (!SHAME_SENSITIVE.includes(profile.primary)) return 0;
+        let penalty = 0;
+        if (SHAME_WORDS.test(verse.notification_short?.en || '')) penalty -= 22;
+        if (/\b(sinners?|most sinful)\b/i.test(verse.meaning_en || '')) penalty -= 14;
+        return penalty;
+    }
 
     function warmth(tones, themes, profile) {
-        if (!profile.primary || NO_WARMTH_NEEDED.includes(profile.primary)) return 0;
+        if (NO_WARMTH_NEEDED.includes(profile.primary)) return 0;
         let delta = 0;
         if (tones.some((tone) => WARM_TONES.includes(tone))) delta += 10;
         if (tones.some((tone) => COLD_TONES.includes(tone))) delta -= 14;
@@ -351,7 +602,35 @@
         return delta;
     }
 
-    function scoreVerse(verse, profile, helpsByChapter) {
+    // Rare words carry meaning: "chemotherapy" says more than "life". Each word
+    // a person uses is weighed by how few verses mention it (inverse document
+    // frequency), so even words no lexicon lists still find their verse.
+    const indexCache = typeof WeakMap === 'function' ? new WeakMap() : null;
+
+    function verseWords(verse) {
+        const parts = [verse.meaning_en, verse.meaning_hi, verse.notification_short?.en, verse.notification_short?.hi,
+            ...(verse.life_situations || []), ...(verse.core_theme || [])];
+        return normalise(parts.filter(Boolean).join(' ')).trim().split(' ').filter((word) => word.length > 2 && word !== '|');
+    }
+
+    function corpusIndex(verses) {
+        if (indexCache && indexCache.has(verses)) return indexCache.get(verses);
+        const df = new Map();
+        verses.forEach((verse) => {
+            new Set(verseWords(verse).map(stem)).forEach((root) => df.set(root, (df.get(root) || 0) + 1));
+        });
+        const index = { df, size: verses.length || 1 };
+        if (indexCache) indexCache.set(verses, index);
+        return index;
+    }
+
+    function idf(index, root) {
+        const count = index.df.get(root);
+        return count ? Math.log(1 + index.size / count) : 0;
+    }
+
+    function scoreVerse(verse, profile, context) {
+        const { helpsByChapter, index, resonance } = context;
         let score = verse.meaning_en ? 10 : 0;
         const tones = lower(verse.emotional_tone);
         const themes = lower(verse.core_theme);
@@ -365,14 +644,26 @@
             if (concept.length > 3 && meaning.includes(concept)) score += 2 * weight;
         });
 
-        // The person's own words, matched against what each verse is about.
+        // The person's own words, matched against what each verse is about,
+        // weighted by how rare each word is in the Gita.
+        const short = `${verse.notification_short?.en || ''} ${verse.notification_short?.hi || ''}`.toLowerCase();
+        const meaningHi = verse.meaning_hi || '';
         profile.keywords.forEach((keyword) => {
             const root = stem(keyword);
-            if (root.length < 4) return;
-            if (situations.some((situation) => situation.includes(root))) score += 7;
-            if (themes.some((theme) => theme.includes(root))) score += 5;
-            if (meaning.includes(root)) score += 2;
+            if (root.length < 3) return;
+            const weight = Math.min(idf(index, root), 4.5);
+            if (!weight) return;
+            if (situations.some((situation) => situation.includes(root))) score += 2 * weight;
+            if (themes.some((theme) => theme.includes(root))) score += 1.6 * weight;
+            if (short.includes(root)) score += 1.4 * weight;
+            if (meaning.includes(root) || meaningHi.includes(root)) score += 0.6 * weight;
         });
+
+        score += profile.anchors?.get(verse.id) || 0;
+
+        // Verses like the ones this person has kept before speak their language.
+        if (resonance.chapters.has(verse.chapter)) score += 2;
+        if (themes.some((theme) => resonance.themes.has(theme))) score += 3;
 
         // Chapter relevance counts once, not once per tag.
         const helps = helpsByChapter.get(verse.chapter) || [];
@@ -383,11 +674,16 @@
         if (verse.notification_short && verse.notification_short.en) score += 2;
         if (isNarrative(verse)) score -= 40;
         score += warmth(tones, themes, profile);
+        score += shameFraming(verse, profile);
 
         return score;
     }
 
-    function buildProfile({ text, mood, history = [], timeOfDay }) {
+    // When a person names no feeling and no situation, lean toward verses that
+    // steady and console rather than toward whatever their words brush against.
+    const COMFORT_CONCEPTS = ['reassuring', 'hope', 'comforting', 'peace', 'enduring a hard time', 'divine assurance', 'encouraging'];
+
+    function buildProfile({ text, mood, history = [], timeOfDay, person = null }) {
         const textEmotions = detectEmotions(text);
         // A follow-up like "how do I live this?" carries the feeling from before.
         const carried = textEmotions.length ? [] : detectEmotions(history.slice(-3).join(' '));
@@ -402,6 +698,31 @@
         carried.forEach((name) => addConcepts(name, 0.6));
         if (moodEmotion) addConcepts(moodEmotion, text && textEmotions.length ? 0.5 : 1);
 
+        // What the feeling is about: their situation, or the one from earlier.
+        const textTopics = detectTopics(text);
+        const carriedTopics = textTopics.length ? [] : detectTopics(history.slice(-3).join(' '));
+        const topics = [...new Set([...textTopics, ...carriedTopics])].slice(0, 3);
+        topics.forEach((id, index) => {
+            TOPICS[id].concepts.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, index === 0 ? 0.55 : 0.35)));
+        });
+        if (!emotions.length && !topics.length) {
+            COMFORT_CONCEPTS.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, 0.35)));
+        }
+
+        // A situation named without a feeling ("my investors pulled out") still
+        // carries one; take the feeling most people in that place would have.
+        const words = wordCount(normalise(text));
+        // (Also when the only feeling is carried over from earlier: a new, serious situation is answered for itself.)
+        const inferred = !textEmotions.length && textTopics.length && words >= 6 ? TOPIC_DEFAULT[textTopics[0]] || null : null;
+        if (inferred) addConcepts(inferred, 0.5);
+
+        // Hand-chosen verses for this feeling and situation come first.
+        const anchors = new Map();
+        const anchor = (ids, top, step) => (ids || []).forEach((id, index) => anchors.set(id, Math.max(anchors.get(id) || 0, top - index * step)));
+        emotions.forEach((name, index) => anchor(ANCHORS.emotions[name], index === 0 ? 26 : 10, index === 0 ? 2 : 1));
+        if (inferred) anchor(ANCHORS.emotions[inferred], 14, 1);
+        topics.forEach((id, index) => anchor(ANCHORS.topics[id], index === 0 ? 16 : 8, index === 0 ? 2 : 1));
+
         // A free-text mood such as a chapter theme ("fear of death") is a concept too.
         if (mood && !MOOD_TO_EMOTION[String(mood).toLowerCase()]) {
             weights.set(String(mood).toLowerCase(), Math.max(weights.get(String(mood).toLowerCase()) || 0, 0.8));
@@ -410,16 +731,32 @@
         return {
             emotions,
             primary: textEmotions[0] || carried[0] || moodEmotion || null,
+            fresh: textEmotions[0] || null,
             concepts: [...weights.entries()].map(([concept, weight]) => ({ concept, weight })),
             keywords: contentKeywords(text),
+            topics,
+            inferred,
+            anchors,
+            resonant: Array.isArray(person?.resonant) ? person.resonant.slice(0, 40) : [],
             timeOfDay
         };
     }
 
     function rankVerses(verses, chapters, profile) {
         const helpsByChapter = new Map((chapters || []).map((chapter) => [chapter.chapter, lower(chapter.helps_with)]));
+        const index = corpusIndex(verses);
+        const kept = new Set(profile.resonant || []);
+        const resonance = { chapters: new Set(), themes: new Set() };
+        if (kept.size) {
+            verses.forEach((verse) => {
+                if (!kept.has(verse.id)) return;
+                resonance.chapters.add(verse.chapter);
+                lower(verse.core_theme).forEach((theme) => resonance.themes.add(theme));
+            });
+        }
+        const context = { helpsByChapter, index, resonance };
         return verses
-            .map((verse) => ({ verse, score: scoreVerse(verse, profile, helpsByChapter) }))
+            .map((verse) => ({ verse, score: scoreVerse(verse, profile, context) }))
             .sort((a, b) => b.score - a.score);
     }
 
@@ -478,6 +815,16 @@
         hi: ['गीता इस पर यह कहती है।', 'गीता एक ऐसे व्यक्ति से शुरू होती है जो आपकी तरह गहराई से महसूस करता था। इसे धीरे-धीरे पढ़ें।', 'गीता इससे सीधे बात करती है।', 'इसे धीरे-धीरे पढ़ें, और इसे अपने समय में उत्तर देने दें।']
     };
 
+    const LIGHT_REFLECTIONS = {
+        en: ['Here is a verse to carry this with you.', 'The Gita has a word for moments like this.', 'A verse to hold alongside this feeling.'],
+        hi: ['इस भाव के साथ रखने के लिए एक श्लोक।', 'ऐसे पलों के लिए गीता के पास एक बात है।', 'इस एहसास के साथ थामने को एक श्लोक।']
+    };
+
+    const LIGHT_GROUNDING = {
+        en: ['Let yourself enjoy this fully.', 'Remember how this feels — it will steady you on harder days.', 'Stay with this a moment longer.'],
+        hi: ['इसका पूरा आनंद लीजिए।', 'याद रखिए यह कैसा लगता है — कठिन दिनों में यही आपको स्थिर रखेगा।', 'इसके साथ एक पल और रहिए।']
+    };
+
     const GROUNDING = {
         en: ['Take one slow breath before you go on.', 'Nothing needs to be solved in this moment.', 'Feelings come and go, the Gita says (2.14). You are the one who stays.', 'You are more than what you feel right now.'],
         hi: ['आगे बढ़ने से पहले एक धीमी साँस लें।', 'इस पल में कुछ भी सुलझाना ज़रूरी नहीं।', 'गीता कहती है, भाव आते और जाते हैं (2.14)। आप वह हैं जो बना रहता है।', 'आप अभी जो महसूस कर रहे हैं, उससे कहीं अधिक हैं।']
@@ -497,6 +844,22 @@
         en: "I may not have the right words for this — but you don't have to find them alone.",
         hi: 'हो सकता है मेरे पास इसके लिए सही शब्द न हों — पर आपको उन्हें अकेले नहीं ढूँढना है।'
     };
+
+    // Warning signs short of crisis: answered with the verse, and a quiet
+    // reminder that a human is a phone call away.
+    const CONCERN_TERMS = ['a burden', 'burden to', 'cant do this anymore', 'cannot do this anymore', 'no way out', 'trapped',
+        'want to disappear', 'giving up', 'give up', 'tired of everything', 'nobody would care', 'no one would care',
+        'nobody would notice', 'hopeless', 'thak gaya hoon zindagi se', 'sab khatam', 'बोझ हूँ', 'सब ख़त्म', 'सब खत्म'];
+
+    const CONCERN_LINE = {
+        en: 'If these thoughts ever turn toward hurting yourself, please reach a person — Tele-MANAS (14416, India) is free and answers at any hour. You deserve that care.',
+        hi: 'अगर ये विचार कभी ख़ुद को चोट पहुँचाने की ओर मुड़ें, तो कृपया किसी इंसान से बात कीजिए — टेली-मानस (14416) निःशुल्क है और हर समय उपलब्ध है। आप उस देखभाल के हक़दार हैं।'
+    };
+
+    function detectConcern(text) {
+        const normalised = normalise(text);
+        return normalised !== ' ' && CONCERN_TERMS.some((term) => has(normalised, term));
+    }
 
     const MIRROR_TERMS = ['drowning', 'cant take', 'cannot take', 'too much', 'breaking down', 'falling apart', 'collapsing', 'cant breathe', 'सह नहीं', 'टूट रहा', 'टूट रही'];
 
@@ -701,6 +1064,76 @@
         }
     };
 
+    // Feelings added in engine 3: desire, emptiness, ego, romantic love, devotion, inertia.
+    Object.assign(GUIDANCE, {
+        lust: {
+            practice: 'breaths',
+            en: {
+                bridge: 'Desire is not shameful. The Gita even says the Divine is present in desire that does not go against dharma (7.11). What it warns about is being ruled by it — the quiet slide from dwelling on something, to attachment, to craving, to frustration (2.62–63). The answer is not hating yourself; it is catching the very first thought, and giving that energy somewhere better (2.59).',
+                step: 'When the pull comes, don’t argue with it — stand up, take three slow breaths, and change what your hands are doing for ten minutes.'
+            },
+            hi: {
+                bridge: 'इच्छा शर्म की बात नहीं है। गीता तो यहाँ तक कहती है कि जो काम धर्म के विरुद्ध नहीं, उसमें ईश्वर स्वयं है (7.11)। गीता जिससे सावधान करती है, वह है उसके वश में हो जाना — किसी बात पर बार-बार सोचना, फिर आसक्ति, फिर लालसा, फिर झुँझलाहट (2.62–63)। उत्तर स्वयं से घृणा करना नहीं, बल्कि पहले ही विचार को पकड़ना और उस ऊर्जा को किसी बेहतर दिशा में देना है (2.59)।',
+                step: 'जब खिंचाव आए, उससे बहस मत कीजिए — उठिए, तीन धीमी साँसें लीजिए, और दस मिनट के लिए अपने हाथों का काम बदल दीजिए।'
+            }
+        },
+        emptiness: {
+            practice: 'dhyana',
+            en: {
+                bridge: 'Feeling empty is not proof that nothing is there. The Gita says there is a joy within you that depends on nothing outside (5.21) — covered, not gone. Arjuna, too, felt the meaning drain out of everything before he found it again (2.7).',
+                step: 'Do one small thing today only because it is good — water a plant, call someone, step outside. Meaning often returns through the hands before the head.'
+            },
+            hi: {
+                bridge: 'ख़ालीपन महसूस करना इस बात का प्रमाण नहीं कि भीतर कुछ नहीं है। गीता कहती है कि आपके भीतर एक आनंद है जो बाहर की किसी चीज़ पर निर्भर नहीं (5.21) — ढका हुआ है, गया नहीं। अर्जुन ने भी सब कुछ अर्थहीन होते देखा था, फिर उसे दोबारा पाया (2.7)।',
+                step: 'आज एक छोटा काम सिर्फ़ इसलिए कीजिए क्योंकि वह अच्छा है — पौधे को पानी, किसी को फ़ोन, बाहर कुछ क़दम। अर्थ अक्सर मन से पहले हाथों के रास्ते लौटता है।'
+            }
+        },
+        pride: {
+            practice: 'japa',
+            en: {
+                bridge: 'Noticing your own ego is rarer than you think — most people never do. The Gita names humility as the first mark of real knowledge (13.8), and reminds us that it is the deluded who think "I alone am the doer" (3.27). Much of what you are good at was, in some part, given.',
+                step: 'Today, give one person credit out loud for something you would usually take credit for yourself.'
+            },
+            hi: {
+                bridge: 'अपना अहंकार पहचान पाना जितना लगता है उससे दुर्लभ है — अधिकतर लोग कभी नहीं पहचानते। गीता विनम्रता को सच्चे ज्ञान का पहला लक्षण बताती है (13.8), और याद दिलाती है कि मोहग्रस्त ही सोचता है "मैं अकेला कर्ता हूँ" (3.27)। आप जिसमें अच्छे हैं, उसका बहुत कुछ किसी न किसी रूप में दिया हुआ है।',
+                step: 'आज किसी एक व्यक्ति को उस बात का श्रेय खुलकर दीजिए जिसका श्रेय आप आमतौर पर स्वयं लेते हैं।'
+            }
+        },
+        love: {
+            practice: 'journal',
+            en: {
+                bridge: 'Love is one of the ways the Divine shows itself — "whatever is beautiful comes from a spark of my splendour" (10.41). The Gita’s only caution is about clinging: love that needs to possess turns into worry (2.62). Love that wishes the other well, whatever happens, stays light (12.13).',
+                step: 'Do one kind thing for them today that asks for nothing back.'
+            },
+            hi: {
+                bridge: 'प्रेम उन रास्तों में से है जिनसे ईश्वर स्वयं को प्रकट करते हैं — "जो कुछ भी सुंदर है, वह मेरे तेज के अंश से है" (10.41)। गीता की एकमात्र सावधानी जकड़ने के बारे में है: जो प्रेम अधिकार चाहता है, वह चिंता बन जाता है (2.62)। जो प्रेम हर हाल में दूसरे का भला चाहता है, वह हल्का रहता है (12.13)।',
+                step: 'आज उनके लिए एक ऐसा अच्छा काम कीजिए जो बदले में कुछ न माँगे।'
+            }
+        },
+        devotion: {
+            practice: 'japa',
+            en: {
+                bridge: 'This longing is itself the answer. "As people approach me, so I receive them" (4.11) — and the Gita asks for nothing grand: a leaf, a flower, a little water, offered with love (9.26). The Divine’s longing for you is older than yours (9.29).',
+                step: 'Offer the first act of tomorrow — a glass of water, a breath, a word — silently, as a gift.'
+            },
+            hi: {
+                bridge: 'यह चाह स्वयं उत्तर है। "जो जैसे मेरी ओर आता है, मैं उसे वैसे ही स्वीकार करता हूँ" (4.11) — और गीता कुछ बड़ा नहीं माँगती: एक पत्ता, एक फूल, थोड़ा जल, प्रेम से अर्पित (9.26)। आपके लिए ईश्वर की चाह आपकी चाह से पुरानी है (9.29)।',
+                step: 'कल का पहला काम — एक गिलास पानी, एक साँस, एक शब्द — मौन में, एक भेंट की तरह अर्पित कीजिए।'
+            }
+        },
+        inertia: {
+            practice: 'sankalpa',
+            en: {
+                bridge: 'Heaviness like this is tamas — the guṇa of inertia — and the Gita meets it kindly but firmly: "Stand up" (2.3). Action is better than inaction (3.8), and you are your own best friend when you lift yourself, even a little (6.5). Motivation usually comes after starting, not before.',
+                step: 'Pick the smallest possible version of the thing — two minutes of it — and do only that, right now.'
+            },
+            hi: {
+                bridge: 'ऐसा भारीपन तमस् है — जड़ता का गुण — और गीता उससे दयालु पर दृढ़ होकर मिलती है: "उठो" (2.3)। कर्म न करने से कर्म करना श्रेष्ठ है (3.8), और जब आप स्वयं को थोड़ा भी ऊपर उठाते हैं, तब आप अपने सबसे अच्छे मित्र होते हैं (6.5)। प्रेरणा अक्सर शुरू करने के बाद आती है, पहले नहीं।',
+                step: 'उस काम का सबसे छोटा संभव रूप चुनिए — बस दो मिनट का — और अभी सिर्फ़ वही कीजिए।'
+            }
+        }
+    });
+
     const NEUTRAL_GUIDANCE = {
         practice: 'journal',
         en: {
@@ -737,6 +1170,793 @@
     }
 
     // -----------------------------------------------------------------------
+    // Voice — how a friend would first answer each feeling. Spoken to the
+    // person, never about them.
+    // -----------------------------------------------------------------------
+
+    const VOICE = {
+        anxiety: {
+            en: ['That sounds like a lot of worry to carry.', 'I can hear how much this is weighing on your mind.'],
+            hi: ['यह बहुत सारी चिंता है उठाने को।', 'मैं समझ सकता हूँ कि यह आपके मन पर कितना भारी है।']
+        },
+        fear: {
+            en: ['I can hear how scared you’re — and that is okay.', 'Fear like this is so human.'],
+            hi: ['मैं समझ सकता हूँ कि आप कितने डरे हुए हैं — और यह ठीक है।', 'ऐसा डर बहुत मानवीय है।']
+        },
+        stress: {
+            en: ['It sounds like you’re carrying too much right now.', 'That’s a lot of pressure for one person.'],
+            hi: ['लगता है आप इस समय बहुत कुछ उठाए हुए हैं।', 'एक व्यक्ति के लिए यह बहुत दबाव है।']
+        },
+        anger: {
+            en: ['That sounds really frustrating. Your anger makes sense.', 'Anger usually means something important was hurt.'],
+            hi: ['यह सचमुच झुँझलाने वाला लगता है। आपका गुस्सा समझ में आता है।', 'गुस्से का अर्थ अक्सर होता है कि कुछ ज़रूरी चीज़ आहत हुई है।']
+        },
+        sadness: {
+            en: ['I’m sorry you’re feeling this low.', 'That sounds heavy. Thank you for not keeping it inside.'],
+            hi: ['मुझे दुख है कि आप इतना उदास महसूस कर रहे हैं।', 'यह भारी लगता है। इसे भीतर न रखने के लिए धन्यवाद।']
+        },
+        grief: {
+            en: ['I’m so sorry for your loss.', 'Grief is love with nowhere to go. I’m here.'],
+            hi: ['आपके खोने का मुझे बहुत दुख है।', 'शोक वह प्रेम है जिसे जाने की कोई जगह नहीं मिलती। मैं यहाँ हूँ।']
+        },
+        loneliness: {
+            en: ['Feeling alone is so hard. I’m glad you wrote.', 'You’re not as alone as it feels right now — I’m here.'],
+            hi: ['अकेलापन बहुत कठिन होता है। मुझे ख़ुशी है कि आपने लिखा।', 'आप उतने अकेले नहीं जितना इस समय लगता है — मैं यहाँ हूँ।']
+        },
+        confusion: {
+            en: ['Not knowing which way to go is unsettling.', 'It’s okay not to have the answer yet.'],
+            hi: ['किस ओर जाएँ, यह न जानना बेचैन करता है।', 'अभी उत्तर न होना ठीक है।']
+        },
+        guilt: {
+            en: ['Carrying guilt is exhausting. It also shows how much you care.', 'Regret like this means your conscience is alive.'],
+            hi: ['अपराधबोध ढोना थका देता है। यह यह भी दिखाता है कि आपको कितनी परवाह है।', 'ऐसा पछतावा बताता है कि आपका विवेक जीवित है।']
+        },
+        unworthiness: {
+            en: ['It hurts to feel like you’re not enough.', 'The voice telling you that you’re not enough isn’t the whole truth.'],
+            hi: ['यह महसूस करना दुख देता है कि आप पर्याप्त नहीं।', 'जो आवाज़ कहती है कि आप पर्याप्त नहीं, वह पूरा सच नहीं है।']
+        },
+        failure: {
+            en: ['Falling short of something you worked for really hurts.', 'A setback like this can shake you. It doesn’t define you.'],
+            hi: ['जिसके लिए मेहनत की, उसमें पीछे रह जाना सचमुच दुख देता है।', 'ऐसी ठोकर हिला सकती है। पर वह आपकी पहचान नहीं।']
+        },
+        envy: {
+            en: ['Comparison can quietly steal so much joy.', 'Envy is very human. Noticing it’s the first step.'],
+            hi: ['तुलना चुपचाप बहुत सारा आनंद चुरा लेती है।', 'ईर्ष्या बहुत मानवीय है। इसे पहचान लेना पहला क़दम है।']
+        },
+        heartbreak: {
+            en: ['I’m so sorry. Heartbreak is one of the hardest pains there is.', 'When someone we love leaves, the whole world tilts.'],
+            hi: ['मुझे बहुत दुख है। दिल टूटना सबसे कठिन दर्दों में से है।', 'जब कोई प्रिय चला जाता है, तो पूरी दुनिया डगमगा जाती है।']
+        },
+        purpose: {
+            en: ['Searching for your purpose is a meaningful search.', 'Wanting your life to mean something is a good sign.'],
+            hi: ['अपने उद्देश्य की खोज एक सार्थक खोज है।', 'जीवन को अर्थपूर्ण बनाने की चाह एक अच्छा संकेत है।']
+        },
+        craving: {
+            en: ['Cravings can be so strong. Wanting to be free of them takes courage.', 'That pull is real — and so is your wish to be free.'],
+            hi: ['लालसाएँ बहुत प्रबल हो सकती हैं। उनसे मुक्त होना चाहना साहस है।', 'वह खिंचाव सच्चा है — और मुक्त होने की आपकी चाह भी।']
+        },
+        lust: {
+            en: ['Thank you for being honest about this. Desire is human — nothing here is judged.', 'It takes honesty to name this. There is no shame here.'],
+            hi: ['इस बारे में ईमानदार होने के लिए धन्यवाद। इच्छा मानवीय है — यहाँ कुछ भी परखा नहीं जाता।', 'इसे नाम देने के लिए ईमानदारी चाहिए। यहाँ कोई शर्म नहीं।']
+        },
+        emptiness: {
+            en: ['Feeling empty is its own kind of heavy.', 'Numbness is often a tired heart, resting. I’m here.'],
+            hi: ['ख़ालीपन अपने ढंग का भारीपन है।', 'सुन्नपन अक्सर एक थका हुआ हृदय होता है जो विश्राम कर रहा है। मैं यहाँ हूँ।']
+        },
+        pride: {
+            en: ['Noticing your own ego takes real honesty.', 'It’s rare, and good, that you can see this in yourself.'],
+            hi: ['अपना अहंकार पहचानने के लिए सच्ची ईमानदारी चाहिए।', 'यह दुर्लभ और अच्छा है कि आप इसे अपने भीतर देख पा रहे हैं।']
+        },
+        love: {
+            en: ['How lovely — love changes everything it touches.', 'That’s a beautiful thing to feel.'],
+            hi: ['कितना सुंदर — प्रेम जिसे छूता है, उसे बदल देता है।', 'यह महसूस करना कितना सुंदर है।']
+        },
+        devotion: {
+            en: ['That longing for the Divine is precious.', 'What a beautiful thing to want.'],
+            hi: ['ईश्वर के लिए यह चाह अनमोल है।', 'कितनी सुंदर चाह है।']
+        },
+        inertia: {
+            en: ['Feeling stuck is frustrating — and very common.', 'Some days everything feels heavy to start.'],
+            hi: ['अटका हुआ महसूस करना झुँझलाने वाला है — और बहुत आम भी।', 'कुछ दिन हर शुरुआत भारी लगती है।']
+        },
+        peace: {
+            en: ['What a gift, to feel this stillness.', 'Peace like this is worth noticing.'],
+            hi: ['इस स्थिरता को महसूस करना कितना बड़ा उपहार है।', 'ऐसी शांति पर ध्यान देना चाहिए।']
+        },
+        gratitude: {
+            en: ['That’s wonderful — I’m glad with you.', 'Joy deserves to be noticed. Thank you for bringing it here.'],
+            hi: ['यह बहुत अच्छा है — मुझे आपके साथ ख़ुशी है।', 'आनंद पर ध्यान दिया जाना चाहिए। इसे यहाँ लाने के लिए धन्यवाद।']
+        }
+    };
+
+    // -----------------------------------------------------------------------
+    // Anchors — verses chosen by hand for each feeling and each situation.
+    // They are the first place the engine looks; everything else it finds is
+    // weighed against them. (Checked line by line against the corpus.)
+    // -----------------------------------------------------------------------
+
+    const ANCHORS = {
+        emotions: {
+            anxiety: ['2_47', '18_66', '9_22', '2_48', '6_35', '2_14'],
+            fear: ['2_23', '18_66', '4_10', '9_31', '2_40', '6_40', '2_20'],
+            stress: ['2_48', '2_50', '5_10', '6_17', '18_66', '2_47'],
+            anger: ['2_63', '2_62', '5_26', '16_2', '12_13', '2_56', '5_23'],
+            sadness: ['2_14', '6_5', '6_22', '9_22', '18_66', '2_3'],
+            grief: ['2_20', '2_22', '2_13', '2_11', '2_27', '2_12'],
+            loneliness: ['6_30', '4_3', '18_64', '5_29', '9_29', '10_20', '18_61'],
+            confusion: ['18_63', '3_35', '2_7', '18_47', '2_41', '4_34'],
+            guilt: ['4_36', '9_30', '18_66', '6_40', '4_37', '9_31'],
+            unworthiness: ['6_5', '9_29', '18_64', '12_14', '6_6', '15_7'],
+            failure: ['2_40', '2_47', '6_40', '2_48', '2_38', '4_22', '6_44'],
+            envy: ['3_35', '18_47', '16_3', '4_22', '6_32', '12_13'],
+            heartbreak: ['2_14', '2_70', '5_21', '2_71', '6_30', '2_62'],
+            purpose: ['3_35', '18_46', '18_47', '3_19', '2_50', '18_45'],
+            craving: ['2_62', '3_39', '6_35', '2_59', '5_22', '2_58', '6_26'],
+            lust: ['7_11', '2_62', '3_37', '3_41', '2_59', '6_35', '2_60'],
+            emptiness: ['5_21', '6_22', '6_20', '15_7', '2_20', '6_5'],
+            pride: ['13_8', '3_27', '16_4', '12_13', '18_58', '5_18'],
+            love: ['12_13', '10_41', '6_32', '9_29', '12_14'],
+            devotion: ['9_26', '9_22', '4_11', '18_65', '12_8', '9_34'],
+            inertia: ['2_3', '3_8', '6_5', '6_16', '18_39', '6_17'],
+            peace: ['6_19', '2_70', '2_71', '5_29', '6_27', '6_15'],
+            gratitude: ['9_26', '9_27', '10_41', '2_48', '12_14']
+        },
+        topics: {
+            work: ['2_47', '3_8', '2_50', '18_46', '3_19', '3_35'],
+            study: ['2_47', '2_40', '6_5', '2_48', '6_26', '2_41'],
+            family: ['12_13', '6_9', '12_15', '16_3', '5_18', '3_20'],
+            love: ['12_13', '2_62', '2_14', '6_32', '2_71'],
+            friendship: ['12_13', '6_9', '4_3', '5_29', '12_18'],
+            health: ['2_14', '2_23', '6_17', '18_66', '2_20', '9_22'],
+            loss: ['2_20', '2_22', '2_13', '2_27', '2_11'],
+            money: ['9_22', '4_22', '2_47', '2_70', '18_66'],
+            future: ['18_66', '9_22', '2_47', '6_40', '2_40'],
+            faith: ['9_22', '4_11', '9_26', '7_21', '7_16', '18_65'],
+            meaning: ['3_35', '2_20', '15_7', '18_46', '10_20'],
+            self: ['6_5', '6_6', '3_35', '9_29', '12_14'],
+            habits: ['6_26', '6_35', '6_5', '2_58', '3_41', '6_17'],
+            sleep: ['6_17', '6_19', '2_70', '18_66', '5_21'],
+            decision: ['18_63', '3_35', '18_47', '2_41', '2_48'],
+            marriage: ['3_35', '18_63', '2_48', '12_13', '18_47'],
+            conflict: ['12_13', '16_3', '12_18', '2_56', '16_2'],
+            injustice: ['5_15', '12_18', '2_47', '18_66', '2_38', '6_32']
+        }
+    };
+
+    // When someone names a situation but no feeling ("my investors pulled
+    // out"), this is the feeling most people in that place carry.
+    const TOPIC_DEFAULT = {
+        work: 'anxiety', study: 'anxiety', family: 'sadness', love: 'confusion', friendship: 'sadness', health: 'anxiety',
+        loss: 'grief', money: 'anxiety', future: 'anxiety', faith: 'confusion', meaning: 'confusion', self: 'unworthiness',
+        habits: 'guilt', decision: 'confusion', marriage: 'stress', conflict: 'anger', injustice: 'anger', sleep: 'anxiety'
+    };
+
+    // -----------------------------------------------------------------------
+    // Counsel — what the Gita says to a feeling inside a particular life.
+    //   ack:    the first words, naming both ("…about your career")
+    //   bridge: the teaching, carried into that situation
+    //   step:   one small thing to do today
+    // -----------------------------------------------------------------------
+
+    const COUNSEL = {
+        'anxiety:work': {
+            en: {
+                ack: 'It’s frightening when your work and your future feel uncertain.',
+                bridge: 'Worry about a career lives in a future that has not happened yet. Krishna\'s answer to Arjuna was not "everything will work out" — it was "your right is to the work, never to its fruits" (2.47). Today\'s effort is yours; the result was never yours to carry. And nothing sincere is wasted: even a little of this effort protects you from great fear (2.40).',
+                step: 'Write down the one piece of work that is truly in your hands this week. Give it your best hour tomorrow — and let the rest wait.'
+            },
+            hi: {
+                ack: 'जब काम और आगे का रास्ता अनिश्चित लगे, तो डर लगना स्वाभाविक है।',
+                bridge: 'करियर की चिंता उस भविष्य में रहती है जो अभी आया ही नहीं। अर्जुन को कृष्ण का उत्तर "सब ठीक हो जाएगा" नहीं था, बल्कि "तुम्हारा अधिकार कर्म पर है, फल पर कभी नहीं" (2.47)। आज का प्रयास आपका है; परिणाम का बोझ कभी आपका था ही नहीं। और सच्चा प्रयास व्यर्थ नहीं जाता — इसका थोड़ा-सा भी बड़े भय से बचाता है (2.40)।',
+                step: 'इस सप्ताह जो एक काम सचमुच आपके हाथ में है, उसे लिख लीजिए। कल अपना सबसे अच्छा एक घंटा उसे दीजिए — बाक़ी को इंतज़ार करने दीजिए।'
+            }
+        },
+        'anxiety:study': {
+            en: {
+                ack: 'Exam worry can make every hour feel like it’s being measured.',
+                bridge: 'The Gita was spoken to someone frozen before the biggest test of his life. Its advice: put your whole heart into the preparation, and loosen your grip on the result (2.47). Marks are a fruit — they come later, and they are not the measure of you. Even a little steady effort counts forever (2.40).',
+                step: 'Plan only today\'s study, in three small blocks. When your mind runs to the result, bring it gently back to the page — again and again (6.26).'
+            },
+            hi: {
+                ack: 'परीक्षा की चिंता हर घंटे को नापा-तौला सा महसूस कराती है।',
+                bridge: 'गीता उस व्यक्ति से कही गई थी जो अपने जीवन की सबसे बड़ी परीक्षा से पहले जम गया था। उसकी सलाह: तैयारी में पूरा मन लगाइए, और नतीजे पर पकड़ ढीली कीजिए (2.47)। अंक फल हैं — वे बाद में आते हैं, और वे आपकी पहचान नहीं। थोड़ा-सा स्थिर प्रयास भी हमेशा गिना जाता है (2.40)।',
+                step: 'सिर्फ़ आज की पढ़ाई तय कीजिए, तीन छोटे हिस्सों में। जब मन नतीजे की ओर भागे, उसे धीरे से पन्ने पर लौटाइए — बार-बार (6.26)।'
+            }
+        },
+        'anxiety:future': {
+            en: {
+                ack: 'Not knowing what is ahead can keep the mind running all night.',
+                bridge: 'The Gita does not hand you a map of the future. It offers something steadier: "I carry what you lack and protect what you have" (9.22). Your part is the next right step; the road beyond it is held by something larger than your worry. "Do not grieve" (18.66) was said to people standing exactly where you are.',
+                step: 'Write the question that scares you. Under it, write only the next step you can take this week. Leave the rest of the page empty — it is not yours yet.'
+            },
+            hi: {
+                ack: 'आगे क्या होगा, यह न जानना मन को रात भर दौड़ाता रहता है।',
+                bridge: 'गीता भविष्य का नक़्शा नहीं देती। वह कुछ ज़्यादा स्थिर देती है: "जो तुम्हारे पास नहीं, वह मैं लाता हूँ; जो है, उसकी रक्षा करता हूँ" (9.22)। आपका काम अगला सही क़दम है; उसके आगे का रास्ता आपकी चिंता से कहीं बड़ी शक्ति ने थामा है। "शोक मत करो" (18.66) ठीक आपकी जगह खड़े लोगों से कहा गया था।',
+                step: 'जो प्रश्न आपको डराता है, उसे लिखिए। उसके नीचे सिर्फ़ वह अगला क़दम लिखिए जो आप इस सप्ताह उठा सकते हैं। बाक़ी पन्ना ख़ाली छोड़ दीजिए — वह अभी आपका नहीं।'
+            }
+        },
+        'anxiety:health': {
+            en: {
+                ack: 'When it’s your body — or the body of someone you love — fear goes very deep.',
+                bridge: 'The Gita\'s first comfort is about exactly this: the body changes, as it did from childhood to youth to age, but what you truly are is untouched (2.13, 2.23). That does not make the hospital less real. It means the fear does not get the last word. Do what the doctors ask, and let the rest be carried (18.66).',
+                step: 'Before the next appointment, sit for one minute and breathe slowly. Say quietly: "My body is being cared for. I am more than my body."'
+            },
+            hi: {
+                ack: 'जब बात अपने शरीर की हो — या किसी अपने के — तो डर बहुत गहरा उतरता है।',
+                bridge: 'गीता की पहली सांत्वना ठीक इसी के बारे में है: शरीर बदलता है, जैसे बचपन से जवानी और बुढ़ापे तक, पर आप जो सचमुच हैं, उसे कुछ नहीं छूता (2.13, 2.23)। इससे अस्पताल कम सच नहीं हो जाता। इसका अर्थ है कि अंतिम शब्द डर का नहीं होगा। डॉक्टर जो कहें, वह कीजिए — और बाक़ी को थामे जाने दीजिए (18.66)।',
+                step: 'अगली मुलाक़ात से पहले एक मिनट बैठकर धीरे साँस लीजिए। मन में कहिए: "मेरे शरीर की देखभाल हो रही है। मैं अपने शरीर से कहीं अधिक हूँ।"'
+            }
+        },
+        'anxiety:money': {
+            en: {
+                ack: 'Money worries have a way of following you into every room.',
+                bridge: 'The Gita is honest that we must act — "action is better than inaction" (3.8). It also says the one who leans on the Divine is looked after: "I carry what you lack and preserve what you have" (9.22). Do the practical things fully. Then let contentment with what is here (4.22) quiet the voice that says it is never enough.',
+                step: 'Write every money worry on one page, with one small action beside each. Do the smallest one today. Paper holds fear better than the mind does.'
+            },
+            hi: {
+                ack: 'पैसों की चिंता हर कमरे तक आपके पीछे-पीछे चली आती है।',
+                bridge: 'गीता साफ़ कहती है कि कर्म ज़रूरी है — "कर्म न करने से कर्म करना श्रेष्ठ है" (3.8)। वह यह भी कहती है कि जो ईश्वर पर भरोसा रखता है, उसकी देखभाल होती है: "जो तुम्हारे पास नहीं, वह मैं लाता हूँ; जो है, उसकी रक्षा करता हूँ" (9.22)। व्यावहारिक काम पूरे मन से कीजिए। फिर जो पास है उसमें संतोष (4.22) उस आवाज़ को शांत करे जो कहती है कि कभी काफ़ी नहीं।',
+                step: 'हर चिंता एक पन्ने पर लिखिए, और हर एक के आगे एक छोटा क़दम। सबसे छोटा आज कर डालिए। काग़ज़ डर को मन से बेहतर थामता है।'
+            }
+        },
+        'anxiety:family': {
+            en: {
+                ack: 'Worrying about the people you love is one of the heaviest kinds of worry.',
+                bridge: 'You can love your family fully and still not control what happens to them. The Gita asks for exactly that balance: care with your whole heart, act where you can, and leave the outcome to a hand larger than yours (2.47, 18.66). Your steadiness is itself a gift to them.',
+                step: 'Do one caring thing for them today that is fully in your hands — a call, a meal, a word. Let that be enough for today.'
+            },
+            hi: {
+                ack: 'अपनों की चिंता सबसे भारी चिंताओं में से एक है।',
+                bridge: 'आप अपने परिवार से पूरा प्रेम कर सकते हैं और फिर भी जो उनके साथ होता है, उस पर नियंत्रण नहीं रख सकते। गीता ठीक यही संतुलन माँगती है: पूरे हृदय से परवाह कीजिए, जहाँ कर सकते हैं वहाँ कर्म कीजिए, और परिणाम उस हाथ पर छोड़िए जो आपसे बड़ा है (2.47, 18.66)। आपकी स्थिरता अपने आप में उनके लिए एक उपहार है।',
+                step: 'आज उनके लिए एक ऐसा काम कीजिए जो पूरी तरह आपके हाथ में हो — एक फ़ोन, एक भोजन, एक बात। आज के लिए उतना काफ़ी है।'
+            }
+        },
+        'anxiety:love': {
+            en: {
+                ack: 'Love can make the heart restless — wondering, waiting, overthinking.',
+                bridge: 'The Gita knows how the mind works: dwelling on someone becomes attachment, attachment becomes longing, longing becomes restlessness (2.62). The way out is not to love less, but to cling less — to care for them and let them be free. A love that does not grasp can finally rest (2.71).',
+                step: 'For today, do not check, do not re-read, do not rehearse conversations. Each time the thought comes, breathe once and wish them well.'
+            },
+            hi: {
+                ack: 'प्रेम मन को बेचैन कर सकता है — सोचते, इंतज़ार करते, ज़रूरत से ज़्यादा सोचते।',
+                bridge: 'गीता मन की चाल पहचानती है: किसी के बारे में बार-बार सोचना आसक्ति बनता है, आसक्ति लालसा, और लालसा बेचैनी (2.62)। रास्ता कम प्रेम करना नहीं, कम जकड़ना है — उनकी परवाह करना और उन्हें स्वतंत्र रहने देना। जो प्रेम पकड़ता नहीं, वह आख़िरकार विश्राम कर पाता है (2.71)।',
+                step: 'आज न जाँचिए, न दोबारा पढ़िए, न बातचीत का अभ्यास कीजिए। हर बार जब विचार आए, एक साँस लीजिए और उनके लिए शुभकामना कीजिए।'
+            }
+        },
+        'stress:work': {
+            en: {
+                ack: 'It sounds like work is asking for more than you have right now.',
+                bridge: 'The Gita calls yoga "skill in action" (2.50) — and skill includes knowing what not to carry. Do your work as an offering, fully, without welding yourself to every outcome (2.47). And it is practical about the body: rest and work in balance (6.17). Exhaustion is not devotion.',
+                step: 'List everything on your plate. Circle the three things that truly matter this week. For one other item, ask for help — or let it go.'
+            },
+            hi: {
+                ack: 'लगता है काम इस समय आपसे उससे ज़्यादा माँग रहा है जितना आपके पास है।',
+                bridge: 'गीता योग को "कर्मों में कुशलता" कहती है (2.50) — और कुशलता में यह जानना भी शामिल है कि क्या नहीं उठाना। अपना काम अर्पण की तरह, पूरे मन से कीजिए, पर हर परिणाम से ख़ुद को जोड़े बिना (2.47)। गीता शरीर के बारे में भी व्यावहारिक है: काम और विश्राम में संतुलन (6.17)। थककर चूर होना भक्ति नहीं है।',
+                step: 'अपने सारे काम लिखिए। इस सप्ताह सचमुच ज़रूरी तीन पर गोला बनाइए। किसी एक और काम के लिए मदद माँगिए — या उसे छोड़ दीजिए।'
+            }
+        },
+        'stress:study': {
+            en: {
+                ack: 'So much to study and so little time — that pressure is real.',
+                bridge: 'Arjuna, too, felt the weight of everything at once. Krishna\'s advice was to steady the mind before acting: "evenness of mind is yoga" (2.48). One focused hour is worth more than five anxious ones — the Gita praises a mind that is one-pointed (2.41).',
+                step: 'Choose one subject and one chapter for the next hour. Phone in another room. When the hour ends, take three breaths before the next.'
+            },
+            hi: {
+                ack: 'इतना पढ़ना और इतना कम समय — यह दबाव सच्चा है।',
+                bridge: 'अर्जुन ने भी सब कुछ एक साथ का बोझ महसूस किया था। कृष्ण की सलाह थी कि कर्म से पहले मन को स्थिर करो: "समत्वं योग उच्यते" (2.48)। एकाग्र एक घंटा घबराए हुए पाँच घंटों से बेहतर है — गीता एकनिष्ठ बुद्धि की प्रशंसा करती है (2.41)।',
+                step: 'अगले एक घंटे के लिए एक विषय और एक अध्याय चुनिए। फ़ोन दूसरे कमरे में। घंटा पूरा होने पर अगले से पहले तीन साँसें लीजिए।'
+            }
+        },
+        'stress:marriage': {
+            en: {
+                ack: 'Pressure about marriage from the people you love is one of the hardest kinds — love and duty pulling in different directions.',
+                bridge: 'The Gita was spoken to someone caught between loyalty to his family and what he knew was right. Its answer was neither rebellion nor giving in, but clarity: know your own dharma (3.35), act from steadiness rather than fear (2.48), and speak honestly — "reflect on this fully, then do as you wish" (18.63). You can honour your family and still be truthful about your own heart.',
+                step: 'Write, in three sentences, what you want them to understand. Choose a calm moment — not during an argument — and say just those three sentences.'
+            },
+            hi: {
+                ack: 'अपनों की ओर से शादी का दबाव सबसे कठिन दबावों में से है — प्रेम और कर्तव्य अलग-अलग दिशाओं में खींचते हैं।',
+                bridge: 'गीता उस व्यक्ति से कही गई थी जो अपने परिवार के प्रति निष्ठा और जो उसे सही लगता था, उसके बीच फँसा था। उसका उत्तर न विद्रोह था, न हार मान लेना — बल्कि स्पष्टता: अपना धर्म पहचानो (3.35), डर से नहीं, स्थिरता से कर्म करो (2.48), और ईमानदारी से बात करो — "इस पर पूरी तरह विचार करो, फिर जैसा चाहो वैसा करो" (18.63)। आप अपने परिवार का सम्मान करते हुए भी अपने मन के प्रति सच्चे रह सकते हैं।',
+                step: 'तीन वाक्यों में लिखिए कि आप उन्हें क्या समझाना चाहते हैं। कोई शांत पल चुनिए — झगड़े के बीच नहीं — और सिर्फ़ वही तीन वाक्य कहिए।'
+            }
+        },
+        'anxiety:sleep': {
+            en: {
+                ack: 'A mind that won’t switch off makes the night very long.',
+                bridge: 'At night the mind replays and rehearses, because it is trying to keep you safe. The Gita’s image of a settled mind is "a lamp in a windless place" (6.19) — not a mind with no thoughts, but one the wind no longer pushes around. Nothing has to be solved before morning. Balance in sleep and waking is itself part of yoga (6.17).',
+                step: 'Keep a notebook by your bed. Write each circling thought as one line, and tell yourself: "It’s on the page — I can pick it up tomorrow." Then breathe out slowly, longer than you breathe in.'
+            },
+            hi: {
+                ack: 'जो मन बंद ही न हो, वह रात को बहुत लंबा बना देता है।',
+                bridge: 'रात में मन बातें दोहराता और पहले से अभ्यास करता है, क्योंकि वह आपको सुरक्षित रखना चाहता है। गीता में शांत मन की छवि है "वायुरहित स्थान में दीपक" (6.19) — ऐसा मन जिसमें विचार न हों, ऐसा नहीं; बल्कि ऐसा जिसे हवा अब इधर-उधर नहीं धकेलती। सुबह से पहले कुछ भी सुलझाना ज़रूरी नहीं। सोने और जागने में संतुलन स्वयं योग का हिस्सा है (6.17)।',
+                step: 'बिस्तर के पास एक कॉपी रखिए। हर घूमता विचार एक पंक्ति में लिखिए, और स्वयं से कहिए: "यह पन्ने पर है — कल उठा लूँगा/लूँगी।" फिर धीरे साँस छोड़िए, लेने से ज़्यादा लंबी।'
+            }
+        },
+        'unworthiness:work': {
+            en: {
+                ack: 'Feeling like the least capable person in the room is exhausting.',
+                bridge: 'Comparison at work makes someone else’s strengths the measure of your worth. The Gita says your own way of working, even imperfect, is better than imitating another’s (3.35) — and that what is yours is the quality of your effort, not how it ranks (2.47). Most people in that room feel the same way, quietly.',
+                step: 'Write three things you did well at work this month. Then ask one colleague the question you have been afraid to ask — curiosity is not weakness.'
+            },
+            hi: {
+                ack: 'कमरे में सबसे कम सक्षम होने का एहसास बहुत थका देता है।',
+                bridge: 'काम पर तुलना किसी और की ख़ूबियों को आपके मूल्य का पैमाना बना देती है। गीता कहती है कि आपका अपना काम करने का ढंग, अधूरा भी, किसी और की नक़ल से बेहतर है (3.35) — और आपका है आपके प्रयास का गुण, न कि उसकी रैंक (2.47)। उस कमरे में ज़्यादातर लोग चुपचाप ऐसा ही महसूस करते हैं।',
+                step: 'इस महीने काम पर आपने जो तीन चीज़ें अच्छी कीं, उन्हें लिखिए। फिर किसी सहकर्मी से वह प्रश्न पूछिए जिसे पूछने से आप डरते रहे हैं — जिज्ञासा कमज़ोरी नहीं है।'
+            }
+        },
+        'guilt:love': {
+            en: {
+                ack: 'Carrying what you did in a relationship is heavy — and it says something good that it weighs on you.',
+                bridge: 'The Gita does not excuse wrong action, and it does not condemn the person who did it. Even the most burdened can cross over (4.36), and honest knowledge — seeing clearly what happened and why — burns old actions the way fire burns wood (4.37). The way forward is truth and repair, not endless shame.',
+                step: 'Write honestly what happened and what led to it. Then choose one truthful step — a conversation, an apology, a boundary — and take it from steadiness, not panic.'
+            },
+            hi: {
+                ack: 'रिश्ते में आपने जो किया, उसे ढोना भारी है — और यह अच्छी बात कहता है कि वह आपको भारी लग रहा है।',
+                bridge: 'गीता ग़लत कर्म को उचित नहीं ठहराती, और उसे करने वाले व्यक्ति को दोषी भी नहीं ठहराती। सबसे भारी बोझ वाला भी पार हो सकता है (4.36), और सच्चा ज्ञान — साफ़ देखना कि क्या हुआ और क्यों — पुराने कर्मों को वैसे जला देता है जैसे आग लकड़ी को (4.37)। आगे का रास्ता सच और सुधार है, अंतहीन शर्म नहीं।',
+                step: 'ईमानदारी से लिखिए कि क्या हुआ और किस वजह से हुआ। फिर एक सच्चा क़दम चुनिए — एक बातचीत, एक माफ़ी, एक सीमा — और उसे घबराहट से नहीं, स्थिरता से उठाइए।'
+            }
+        },
+        'stress:family': {
+            en: {
+                ack: 'Carrying everyone at home can leave no room for you.',
+                bridge: 'Duty to family is real dharma — but the Gita never asks you to break while doing it. It praises the one "by whom no one is disturbed, and who is disturbed by no one" (12.15). Care for them, and let some of the weight rest on God, not only on you (18.66).',
+                step: 'Take fifteen minutes today that belong only to you — a walk, a cup of tea, silence. It is not selfish; it is how you keep giving.'
+            },
+            hi: {
+                ack: 'घर में सबका बोझ उठाते-उठाते अपने लिए कोई जगह नहीं बचती।',
+                bridge: 'परिवार के प्रति कर्तव्य सच्चा धर्म है — पर गीता कभी नहीं कहती कि उसे निभाते हुए आप टूट जाएँ। वह उसकी प्रशंसा करती है "जिससे कोई व्याकुल नहीं होता और जो किसी से व्याकुल नहीं होता" (12.15)। उनकी देखभाल कीजिए, और थोड़ा बोझ ईश्वर पर भी रहने दीजिए, सिर्फ़ आप पर नहीं (18.66)।',
+                step: 'आज पंद्रह मिनट सिर्फ़ अपने लिए रखिए — एक सैर, एक कप चाय, थोड़ा मौन। यह स्वार्थ नहीं; इसी से आप देते रह पाते हैं।'
+            }
+        },
+        'sadness:love': {
+            en: {
+                ack: 'When love hurts, the sadness reaches everywhere.',
+                bridge: 'The Gita does not tell you not to feel this. It tells you that feelings — even this one — come and go like seasons (2.14), and that you are the one who remains. There is a joy within you that no one else gave you, so no one can take it away (5.21).',
+                step: 'Write them a letter you will never send. Say everything. Then close the page — you have let it out without needing anything back.'
+            },
+            hi: {
+                ack: 'जब प्रेम दुख देता है, तो उदासी हर जगह फैल जाती है।',
+                bridge: 'गीता यह नहीं कहती कि ऐसा महसूस मत कीजिए। वह कहती है कि भाव — यह भाव भी — ऋतुओं की तरह आते-जाते हैं (2.14), और आप वह हैं जो बने रहते हैं। आपके भीतर एक आनंद है जो किसी और ने नहीं दिया, इसलिए कोई छीन भी नहीं सकता (5.21)।',
+                step: 'उन्हें एक पत्र लिखिए जो आप कभी नहीं भेजेंगे। सब कुछ कह दीजिए। फिर पन्ना बंद कर दीजिए — आपने बदले में कुछ चाहे बिना मन हल्का कर लिया।'
+            }
+        },
+        'sadness:family': {
+            en: {
+                ack: 'Sadness at home is hard, because home is where we go to feel better.',
+                bridge: 'The Gita sees family clearly — love, duty, and hurt too. It asks for a heart that is "friendly and compassionate to all, without ill will" (12.13), and that includes you. You can love them and still be hurt by them. Both can be true.',
+                step: 'Tell one person in your family one true, gentle sentence about how you feel — or write it first, if saying it is too hard.'
+            },
+            hi: {
+                ack: 'घर में उदासी कठिन होती है, क्योंकि घर ही वह जगह है जहाँ हम बेहतर महसूस करने जाते हैं।',
+                bridge: 'गीता परिवार को साफ़ देखती है — प्रेम, कर्तव्य, और चोट भी। वह ऐसा हृदय माँगती है जो "सबके प्रति मित्रवत और करुणामय हो, द्वेष से रहित" (12.13) — और इसमें आप स्वयं भी शामिल हैं। आप उनसे प्रेम कर सकते हैं और फिर भी उनसे आहत हो सकते हैं। दोनों सच हो सकते हैं।',
+                step: 'परिवार में किसी एक से अपने मन की एक सच्ची, कोमल बात कहिए — या अगर कहना कठिन हो, तो पहले लिख लीजिए।'
+            }
+        },
+        'sadness:friendship': {
+            en: {
+                ack: 'Feeling distant from friends can make the whole world feel quieter.',
+                bridge: 'Friendships change, and it hurts when they do. The Gita\'s ideal is a heart that stays "the same toward friend and foe" (12.18) — not cold, but steady, so your worth does not rise and fall with who replies. And Krishna himself says, "I am the friend of all beings" (5.29). You are never without a friend.',
+                step: 'Reach out to one person you have not spoken to in a while — no reason needed. Just: "thinking of you."'
+            },
+            hi: {
+                ack: 'दोस्तों से दूरी पूरी दुनिया को थोड़ा और ख़ामोश कर देती है।',
+                bridge: 'दोस्तियाँ बदलती हैं, और जब बदलती हैं तो दुख होता है। गीता का आदर्श ऐसा हृदय है जो "मित्र और शत्रु के प्रति समान रहे" (12.18) — ठंडा नहीं, स्थिर — ताकि आपका मूल्य इस पर न टिका हो कि किसका जवाब आया। और कृष्ण स्वयं कहते हैं, "मैं सब प्राणियों का मित्र हूँ" (5.29)। आप कभी मित्रहीन नहीं हैं।',
+                step: 'किसी ऐसे व्यक्ति से संपर्क कीजिए जिससे बहुत दिनों से बात नहीं हुई — बिना किसी कारण के। बस: "तुम्हारी याद आई।"'
+            }
+        },
+        'sadness:self': {
+            en: {
+                ack: 'It hurts to feel this way about yourself.',
+                bridge: 'The Gita has a striking line: "you are your own best friend, and your own worst enemy" (6.5). Right now the voice inside is being an enemy. The practice is to lift yourself by your own self — to start speaking to yourself the way a true friend would.',
+                step: 'Write the harshest thing you said to yourself this week. Beside it, write what a loving friend would say instead. Read the second one aloud.'
+            },
+            hi: {
+                ack: 'अपने बारे में ऐसा महसूस करना दुख देता है।',
+                bridge: 'गीता की एक अद्भुत पंक्ति है: "मनुष्य स्वयं ही अपना मित्र है और स्वयं ही अपना शत्रु" (6.5)। इस समय भीतर की आवाज़ शत्रु बनी हुई है। अभ्यास यह है कि स्वयं से स्वयं को ऊपर उठाएँ — अपने आप से वैसे बात करना शुरू करें जैसे एक सच्चा मित्र करता।',
+                step: 'इस सप्ताह आपने स्वयं से जो सबसे कठोर बात कही, उसे लिखिए। उसके आगे लिखिए कि एक प्रेम करने वाला मित्र उसकी जगह क्या कहता। दूसरी पंक्ति ज़ोर से पढ़िए।'
+            }
+        },
+        'grief:loss': {
+            en: {
+                ack: 'I’m so sorry. Losing someone changes the shape of every day.',
+                bridge: 'The Gita\'s very first teaching was spoken to a man overwhelmed by grief. Its comfort is this: the one you love was never only a body. "As a person sets aside worn-out clothes and puts on new ones" (2.22), so the self moves on — it was not born and does not die (2.20). Your love for them does not end either. It changes form, as they did.',
+                step: 'Write down one memory of them as fully as you can — the room, the voice, the words. Keep it in your journal.'
+            },
+            hi: {
+                ack: 'मुझे बहुत दुख है। किसी को खोना हर दिन का आकार बदल देता है।',
+                bridge: 'गीता की पहली शिक्षा शोक में डूबे एक व्यक्ति से कही गई थी। उसकी सांत्वना यह है: जिन्हें आप प्रेम करते हैं, वे कभी केवल शरीर नहीं थे। "जैसे मनुष्य पुराने वस्त्र छोड़कर नए पहनता है" (2.22), वैसे ही आत्मा आगे बढ़ती है — वह न जन्मी, न मरती है (2.20)। उनके लिए आपका प्रेम भी समाप्त नहीं होता। वह रूप बदलता है, जैसे उन्होंने बदला।',
+                step: 'उनकी एक याद जितनी पूरी हो सके उतनी लिखिए — वह कमरा, वह आवाज़, वे शब्द। उसे अपनी डायरी में रख लीजिए।'
+            }
+        },
+        'anger:family': {
+            en: {
+                ack: 'Anger at family is complicated — because you also love them.',
+                bridge: 'The Gita takes anger seriously: it clouds memory and judgment, and we say things we cannot take back (2.63). It does not ask you to pretend nothing happened. It asks you to wait until the fire settles, then speak from steadiness, not heat. Forgiveness, it says, is a mark of a divine heart (16.3) — when you are ready, not before.',
+                step: 'Before you say anything, take three slow breaths and wait an hour. Then write, in one sentence, what you actually need from them.'
+            },
+            hi: {
+                ack: 'परिवार पर गुस्सा उलझा हुआ होता है — क्योंकि आप उनसे प्रेम भी करते हैं।',
+                bridge: 'गीता क्रोध को गंभीरता से लेती है: वह स्मृति और विवेक को ढक देता है, और हम ऐसी बातें कह देते हैं जो वापस नहीं ले सकते (2.63)। वह यह नहीं कहती कि ऐसा दिखाइए जैसे कुछ हुआ ही नहीं। वह कहती है कि आग ठंडी होने तक रुकिए, फिर गर्मी से नहीं, स्थिरता से बोलिए। क्षमा, वह कहती है, दैवी हृदय का लक्षण है (16.3) — जब आप तैयार हों, उससे पहले नहीं।',
+                step: 'कुछ कहने से पहले तीन धीमी साँसें लीजिए और एक घंटा रुकिए। फिर एक वाक्य में लिखिए कि आपको उनसे वास्तव में क्या चाहिए।'
+            }
+        },
+        'anger:work': {
+            en: {
+                ack: 'Anger at work is hard — you often can’t even show it.',
+                bridge: 'The Gita\'s advice for the workplace is surprisingly modern: do your part with excellence (2.50), and do not let someone else\'s behaviour decide your state of mind. The one "who is not disturbed by others" (12.15) keeps their power. Anger, it warns, ends in poor judgment (2.63) — exactly what you cannot afford at work.',
+                step: 'Write the message you want to send — then do not send it. Tomorrow, rewrite it with only the facts and one clear request.'
+            },
+            hi: {
+                ack: 'काम पर गुस्सा कठिन है — अक्सर आप उसे दिखा भी नहीं सकते।',
+                bridge: 'दफ़्तर के लिए गीता की सलाह आश्चर्यजनक रूप से आधुनिक है: अपना काम उत्कृष्टता से कीजिए (2.50), और किसी और के व्यवहार को अपने मन की स्थिति तय न करने दीजिए। "जो दूसरों से व्याकुल नहीं होता" (12.15), उसकी शक्ति उसके पास रहती है। क्रोध, वह चेताती है, विवेक के नाश में समाप्त होता है (2.63) — ठीक वही जो काम पर आप नहीं झेल सकते।',
+                step: 'जो संदेश भेजना चाहते हैं, उसे लिखिए — पर भेजिए मत। कल उसे दोबारा लिखिए, सिर्फ़ तथ्यों और एक स्पष्ट माँग के साथ।'
+            }
+        },
+        'anger:conflict': {
+            en: {
+                ack: 'After a fight, the mind keeps replaying every word.',
+                bridge: 'The Gita describes this exactly: replaying it feeds the anger, anger clouds judgment, and we lose ourselves (2.62–63). The way back is not winning the argument in your head. It is letting the heat pass, then choosing what you want the relationship to be. "Free from anger, the wise find peace everywhere" (5.26).',
+                step: 'Each time the argument replays today, say inwardly "not now", and take one slow breath. Decide tomorrow, not tonight, what to say.'
+            },
+            hi: {
+                ack: 'झगड़े के बाद मन हर शब्द को बार-बार दोहराता रहता है।',
+                bridge: 'गीता ठीक यही बताती है: बार-बार दोहराना क्रोध को बढ़ाता है, क्रोध विवेक को ढकता है, और हम स्वयं को खो देते हैं (2.62–63)। लौटने का रास्ता मन में बहस जीतना नहीं है। गर्मी को गुज़रने दीजिए, फिर चुनिए कि आप यह रिश्ता कैसा चाहते हैं। "क्रोध से मुक्त ज्ञानी हर जगह शांति पाते हैं" (5.26)।',
+                step: 'आज जब भी झगड़ा मन में दोहराए, भीतर कहिए "अभी नहीं", और एक धीमी साँस लीजिए। क्या कहना है, यह आज रात नहीं, कल तय कीजिए।'
+            }
+        },
+        'anger:injustice': {
+            en: {
+                ack: 'Being treated unfairly leaves a deep sting.',
+                bridge: 'The Gita does not say unfairness does not matter — Arjuna\'s whole battle is about injustice. But it separates two things: what was done to you, and what you do now. Do what is right, steadily, without letting resentment poison you (2.38). And each person carries their own karma; you do not have to carry theirs (5.15).',
+                step: 'Write what happened in plain facts. Then write one thing you can rightly do about it — and one thing you choose to let go.'
+            },
+            hi: {
+                ack: 'अन्याय का व्यवहार एक गहरी चुभन छोड़ जाता है।',
+                bridge: 'गीता यह नहीं कहती कि अन्याय से कोई फ़र्क़ नहीं पड़ता — अर्जुन का पूरा युद्ध अन्याय के बारे में है। पर वह दो बातें अलग करती है: आपके साथ जो हुआ, और अब आप क्या करते हैं। जो सही है, वह स्थिरता से कीजिए, कड़वाहट को ज़हर बनने दिए बिना (2.38)। और हर व्यक्ति अपना कर्म स्वयं ढोता है; आपको उनका नहीं ढोना (5.15)।',
+                step: 'जो हुआ उसे सीधे तथ्यों में लिखिए। फिर एक बात लिखिए जो आप इसके बारे में उचित रूप से कर सकते हैं — और एक बात जिसे आप छोड़ना चुनते हैं।'
+            }
+        },
+        'confusion:decision': {
+            en: {
+                ack: 'Standing between two paths is exactly where the Gita begins.',
+                bridge: 'Arjuna stood exactly here — torn, unsure, unable to choose (2.7). Krishna did not decide for him. He gave him a way to see: choose the path that is truly yours, even if imperfect, over one that only looks better (3.35). And at the very end he says, "reflect on this fully, then do as you wish" (18.63). The choice is yours — made from clarity, not fear.',
+                step: 'Write both options. Under each, answer one question: "If fear and other people\'s opinions did not exist, which would I choose?" Sleep on it before deciding.'
+            },
+            hi: {
+                ack: 'दो राहों के बीच खड़े होना — गीता ठीक यहीं से शुरू होती है।',
+                bridge: 'अर्जुन ठीक यहीं खड़े थे — दुविधा में, अनिश्चित, चुन पाने में असमर्थ (2.7)। कृष्ण ने उनके लिए निर्णय नहीं लिया। उन्होंने देखने का एक ढंग दिया: वह मार्ग चुनिए जो सचमुच आपका है, भले अधूरा हो, उसके बजाय जो बस बेहतर दिखता है (3.35)। और अंत में वे कहते हैं, "इस पर पूरी तरह विचार करो, फिर जैसा चाहो वैसा करो" (18.63)। चुनाव आपका है — डर से नहीं, स्पष्टता से किया हुआ।',
+                step: 'दोनों विकल्प लिखिए। हर एक के नीचे एक प्रश्न का उत्तर दीजिए: "अगर डर और दूसरों की राय न होती, तो मैं क्या चुनता/चुनती?" निर्णय से पहले एक रात सो लीजिए।'
+            }
+        },
+        'confusion:work': {
+            en: {
+                ack: 'Not knowing which direction to take in your work is unsettling.',
+                bridge: 'The Gita\'s answer to career confusion is svadharma — your own path, shaped by your nature (18.47). It is better to do your own work imperfectly than to succeed at someone else\'s. The question is not "what pays most" or "what impresses", but "what work can I offer as worship?" (18.46).',
+                step: 'Write three moments when work felt meaningful to you, even briefly. Look for what they share — that thread is a clue to your svadharma.'
+            },
+            hi: {
+                ack: 'काम में कौन-सी दिशा लें, यह न जानना बेचैन करता है।',
+                bridge: 'करियर की उलझन का गीता का उत्तर है स्वधर्म — आपका अपना मार्ग, जो आपके स्वभाव से बना है (18.47)। किसी और के काम में सफल होने से बेहतर है अपना काम अधूरा करना। प्रश्न यह नहीं कि "सबसे ज़्यादा पैसा किसमें है" या "किससे लोग प्रभावित होंगे", बल्कि यह कि "कौन-सा काम मैं पूजा की तरह अर्पित कर सकता हूँ?" (18.46)।',
+                step: 'ऐसे तीन पल लिखिए जब काम आपको अर्थपूर्ण लगा, भले थोड़ी देर के लिए। देखिए उनमें क्या समान है — वही धागा आपके स्वधर्म का संकेत है।'
+            }
+        },
+        'confusion:love': {
+            en: {
+                ack: 'Matters of the heart can leave you unsure of what you feel or want.',
+                bridge: 'The Gita would say: before you decide what to do, steady the mind (2.48). A confused heart chooses from fear or longing; a steady one chooses from clarity. Ask what love would look like if it did not need to possess (2.71) — that answer is usually the true one.',
+                step: 'Spend ten minutes writing honestly: "What I want. What I fear. What I know." Read it again tomorrow morning.'
+            },
+            hi: {
+                ack: 'दिल की बातें कभी-कभी यह भी नहीं समझने देतीं कि हम क्या महसूस करते हैं या क्या चाहते हैं।',
+                bridge: 'गीता कहेगी: क्या करना है, यह तय करने से पहले मन को स्थिर कीजिए (2.48)। उलझा हुआ हृदय डर या लालसा से चुनता है; स्थिर हृदय स्पष्टता से। पूछिए कि अगर प्रेम को अधिकार की ज़रूरत न होती, तो वह कैसा दिखता (2.71) — वही उत्तर अक्सर सच्चा होता है।',
+                step: 'दस मिनट ईमानदारी से लिखिए: "मैं क्या चाहता/चाहती हूँ। मुझे किस बात का डर है। मैं क्या जानता/जानती हूँ।" कल सुबह इसे फिर पढ़िए।'
+            }
+        },
+        'confusion:meaning': {
+            en: {
+                ack: 'These are the very questions Arjuna asked.',
+                bridge: 'The Gita was given for exactly these questions. Its answer starts within: you are "an eternal part" of the Divine (15.7), not an accident. Meaning is not found by thinking alone — it is found by living your own dharma (3.35) and offering your work as worship (18.46). Clarity tends to come while walking, not before.',
+                step: 'For one week, end each day by writing one moment that felt true. At the end of the week, read them together.'
+            },
+            hi: {
+                ack: 'ये वही प्रश्न हैं जो अर्जुन ने पूछे थे।',
+                bridge: 'गीता ठीक इन्हीं प्रश्नों के लिए दी गई थी। उसका उत्तर भीतर से शुरू होता है: आप ईश्वर के "सनातन अंश" हैं (15.7), कोई संयोग नहीं। अर्थ केवल सोचने से नहीं मिलता — अपने धर्म को जीने (3.35) और अपने काम को पूजा की तरह अर्पित करने (18.46) से मिलता है। स्पष्टता अक्सर चलते-चलते आती है, पहले नहीं।',
+                step: 'एक सप्ताह तक हर दिन के अंत में एक ऐसा पल लिखिए जो सच्चा लगा। सप्ताह के अंत में सबको साथ पढ़िए।'
+            }
+        },
+        'confusion:faith': {
+            en: {
+                ack: 'Doubt about faith isn’t a failure — it’s part of the path.',
+                bridge: 'The Gita welcomes seekers who question. Krishna says four kinds of people come to him, including the troubled and the curious (7.16). Whatever form your faith takes, it is he who makes it steady (7.21). You do not need certainty to begin — only honesty.',
+                step: 'Write your honest question to God, exactly as it is. You do not have to answer it. Asking is already a kind of prayer.'
+            },
+            hi: {
+                ack: 'आस्था पर संदेह असफलता नहीं — यह मार्ग का हिस्सा है।',
+                bridge: 'गीता प्रश्न पूछने वाले साधकों का स्वागत करती है। कृष्ण कहते हैं कि चार प्रकार के लोग उनके पास आते हैं, जिनमें दुखी और जिज्ञासु भी हैं (7.16)। आपकी आस्था जिस भी रूप में हो, उसे स्थिर वही करते हैं (7.21)। शुरू करने के लिए निश्चितता नहीं, केवल ईमानदारी चाहिए।',
+                step: 'ईश्वर से अपना ईमानदार प्रश्न लिखिए, जैसा है वैसा। उसका उत्तर देना ज़रूरी नहीं। पूछना अपने आप में एक प्रार्थना है।'
+            }
+        },
+        'loneliness:friendship': {
+            en: {
+                ack: 'Feeling alone even among people is one of the quietest kinds of pain.',
+                bridge: 'The Gita has words for exactly this: "one who sees me everywhere, and everything in me — I am never lost to them, and they are never lost to me" (6.30). Krishna calls himself "the friend of all beings" (5.29). Loneliness is real, but you are not unaccompanied.',
+                step: 'Send one honest message today — not "how are you", but "I have been missing having someone to talk to." Let one person in.'
+            },
+            hi: {
+                ack: 'लोगों के बीच रहकर भी अकेलापन महसूस करना सबसे शांत दर्दों में से एक है।',
+                bridge: 'गीता के पास ठीक इसके लिए शब्द हैं: "जो मुझे सब जगह देखता है और सबको मुझमें, उससे मैं कभी दूर नहीं होता, और वह मुझसे कभी दूर नहीं होता" (6.30)। कृष्ण स्वयं को "सब प्राणियों का मित्र" कहते हैं (5.29)। अकेलापन सच है, पर आप बिना साथ के नहीं हैं।',
+                step: 'आज एक ईमानदार संदेश भेजिए — "कैसे हो" नहीं, बल्कि "मुझे किसी से बात करने की कमी महसूस हो रही थी।" किसी एक को भीतर आने दीजिए।'
+            }
+        },
+        'loneliness:love': {
+            en: {
+                ack: 'Longing for someone to share your life with is a deep and human ache.',
+                bridge: 'The Gita sees that ache and answers it twice. First: you are already deeply loved — "you are very dear to me" (18.64). Second: love grows from wholeness, not emptiness; one who is content within (2.55) loves more freely when love comes. The waiting does not mean you are unworthy of it.',
+                step: 'Do one thing this week that you would love to share with someone — and do it fully, for yourself, first.'
+            },
+            hi: {
+                ack: 'किसी के साथ जीवन बाँटने की चाह एक गहरी और मानवीय कसक है।',
+                bridge: 'गीता उस कसक को देखती है, और उसका दो बार उत्तर देती है। पहला: आप पहले से गहराई से प्रिय हैं — "तुम मुझे अत्यंत प्रिय हो" (18.64)। दूसरा: प्रेम ख़ालीपन से नहीं, पूर्णता से बढ़ता है; जो भीतर संतुष्ट है (2.55), वह प्रेम आने पर अधिक खुलकर प्रेम करता है। इंतज़ार का अर्थ यह नहीं कि आप उसके योग्य नहीं।',
+                step: 'इस सप्ताह एक ऐसा काम कीजिए जिसे आप किसी के साथ बाँटना चाहते — और पहले स्वयं के लिए, पूरे मन से कीजिए।'
+            }
+        },
+        'loneliness:family': {
+            en: {
+                ack: 'Feeling alone inside your own family is a particular kind of loneliness.',
+                bridge: 'Sometimes the people closest to us cannot see us clearly. The Gita does not make you wait for them to: "I am seated in the heart of every being" (10.20) — including yours. You are seen. And in the meantime, it asks you to be your own friend (6.5).',
+                step: 'Find one person — inside the family or outside it — who can listen, and tell them one true thing this week.'
+            },
+            hi: {
+                ack: 'अपने ही परिवार में अकेलापन एक अलग तरह का अकेलापन है।',
+                bridge: 'कभी-कभी सबसे क़रीबी लोग हमें साफ़ नहीं देख पाते। गीता आपको उनकी प्रतीक्षा नहीं कराती: "मैं हर प्राणी के हृदय में स्थित हूँ" (10.20) — आपके भी। आपको देखा जा रहा है। और तब तक वह आपसे अपना मित्र बनने को कहती है (6.5)।',
+                step: 'एक व्यक्ति खोजिए — परिवार के भीतर या बाहर — जो सुन सके, और इस सप्ताह उसे एक सच्ची बात बताइए।'
+            }
+        },
+        'failure:study': {
+            en: {
+                ack: 'A result like this can feel like it says something about you. It doesn’t.',
+                bridge: 'The Gita was made for this moment. "Your right is to the effort, never to its fruit" (2.47) — a result is one fruit, on one day. Your worth was never in a marksheet. And it promises: "on this path, no effort is ever lost" (2.40). What you learned while preparing is still yours.',
+                step: 'Write three things you understand now that you did not a year ago. Then choose one small step for the next attempt — just one.'
+            },
+            hi: {
+                ack: 'ऐसा नतीजा लगता है जैसे आपके बारे में कुछ कह रहा हो। वह नहीं कहता।',
+                bridge: 'गीता इसी पल के लिए बनी है। "तुम्हारा अधिकार प्रयास पर है, फल पर कभी नहीं" (2.47) — नतीजा एक दिन का एक फल है। आपका मूल्य कभी अंकपत्र में नहीं था। और वह वचन देती है: "इस मार्ग में कोई प्रयास व्यर्थ नहीं जाता" (2.40)। तैयारी में जो सीखा, वह अब भी आपका है।',
+                step: 'तीन ऐसी बातें लिखिए जो आप आज समझते हैं और एक साल पहले नहीं समझते थे। फिर अगले प्रयास के लिए एक छोटा क़दम चुनिए — सिर्फ़ एक।'
+            }
+        },
+        'failure:work': {
+            en: {
+                ack: 'When work doesn’t go the way you hoped, it can shake your confidence.',
+                bridge: 'The Gita asks you to stay "the same in success and failure" (2.48) — not because results do not matter, but because you are more than any one result. Your effort was real. "One who does good never comes to a bad end" (6.40). This is a chapter, not the whole story.',
+                step: 'Write what this taught you in one sentence, and one thing you will do differently. Then close the file for today.'
+            },
+            hi: {
+                ack: 'जब काम उम्मीद के मुताबिक़ न हो, तो आत्मविश्वास डगमगा सकता है।',
+                bridge: 'गीता कहती है कि "सफलता और असफलता में समान रहो" (2.48) — इसलिए नहीं कि परिणाम मायने नहीं रखते, बल्कि इसलिए कि आप किसी एक परिणाम से कहीं अधिक हैं। आपका प्रयास सच्चा था। "भलाई करने वाले की कभी दुर्गति नहीं होती" (6.40)। यह एक अध्याय है, पूरी कहानी नहीं।',
+                step: 'एक वाक्य में लिखिए कि इससे आपने क्या सीखा, और एक बात जो आप अलग ढंग से करेंगे। फिर आज के लिए वह फ़ाइल बंद कर दीजिए।'
+            }
+        },
+        'unworthiness:self': {
+            en: {
+                ack: 'It’s painful to carry the feeling that you’re not enough.',
+                bridge: 'The Gita never measures you by comparison. It says you are "an eternal part" of the Divine (15.7), and calls those who love God "very dear" (12.14). The voice saying you are not enough is the mind acting as an enemy (6.6) — and a mind can be taught to be a friend again.',
+                step: 'Each morning this week, say one true and kind thing about yourself aloud — even if it feels awkward. Especially if it does.'
+            },
+            hi: {
+                ack: 'यह एहसास ढोना दर्दनाक है कि आप पर्याप्त नहीं हैं।',
+                bridge: 'गीता आपको कभी तुलना से नहीं नापती। वह कहती है कि आप ईश्वर के "सनातन अंश" हैं (15.7), और जो उनसे प्रेम करते हैं, उन्हें वे "अत्यंत प्रिय" कहते हैं (12.14)। जो आवाज़ कहती है कि आप पर्याप्त नहीं, वह शत्रु बना हुआ मन है (6.6) — और मन को फिर से मित्र बनना सिखाया जा सकता है।',
+                step: 'इस सप्ताह हर सुबह अपने बारे में एक सच्ची और दयालु बात ज़ोर से कहिए — भले अटपटा लगे। ख़ासकर तब, जब अटपटा लगे।'
+            }
+        },
+        'unworthiness:love': {
+            en: {
+                ack: 'Feeling unworthy of love is one of the loneliest feelings there is.',
+                bridge: 'The Gita turns this around: you do not earn love by being enough — you are already loved. "Hear my supreme word: you are very dear to me" (18.64). Someone\'s choice not to love you is about their path, not your worth (3.35).',
+                step: 'Write the names of three people who have truly cared for you. Read the list whenever the feeling returns.'
+            },
+            hi: {
+                ack: 'प्रेम के योग्य न होने का एहसास सबसे अकेले एहसासों में से है।',
+                bridge: 'गीता इसे पलट देती है: पर्याप्त होकर आप प्रेम नहीं कमाते — आप पहले से प्रिय हैं। "मेरा परम वचन सुनो: तुम मुझे अत्यंत प्रिय हो" (18.64)। किसी का आपसे प्रेम न करना उनके मार्ग की बात है, आपके मूल्य की नहीं (3.35)।',
+                step: 'ऐसे तीन लोगों के नाम लिखिए जिन्होंने सचमुच आपकी परवाह की। जब यह एहसास लौटे, वह सूची पढ़िए।'
+            }
+        },
+        'guilt:family': {
+            en: {
+                ack: 'Guilt toward family can sit very heavily.',
+                bridge: 'The Gita offers real hope for regret: even the most burdened "can cross over on the boat of knowledge" (4.36). Guilt is useful only as long as it turns you toward repair; after that, it has done its work. "I will free you; do not grieve" (18.66).',
+                step: 'If an apology is owed, write it today — simply, without excuses. If it cannot be given, write it anyway, and keep it.'
+            },
+            hi: {
+                ack: 'परिवार के प्रति अपराधबोध बहुत भारी होकर बैठ जाता है।',
+                bridge: 'गीता पछतावे के लिए सच्ची आशा देती है: सबसे भारी बोझ वाला भी "ज्ञान की नौका से पार हो सकता है" (4.36)। अपराधबोध तब तक उपयोगी है जब तक वह आपको सुधार की ओर मोड़े; उसके बाद उसका काम पूरा हो जाता है। "मैं तुम्हें मुक्त करूँगा; शोक मत करो" (18.66)।',
+                step: 'अगर कोई माफ़ी बाक़ी है, आज लिखिए — सीधे, बिना बहानों के। अगर दी नहीं जा सकती, तब भी लिखिए, और रख लीजिए।'
+            }
+        },
+        'guilt:habits': {
+            en: {
+                ack: 'Slipping back into a habit you’re fighting can bring a wave of shame.',
+                bridge: 'The Gita is realistic: "the mind is restless and hard to tame — but it can be held by practice and detachment" (6.35). Practice means falling and returning, again and again (6.26). Shame keeps the cycle going; gentleness breaks it. One slip is not who you are.',
+                step: 'Do not punish yourself today. Notice what came just before the slip — the time, the feeling, the place — and write it down. Tomorrow\'s change begins there.'
+            },
+            hi: {
+                ack: 'जिस आदत से लड़ रहे हैं, उसमें फिर फिसल जाना शर्म की लहर ला सकता है।',
+                bridge: 'गीता यथार्थवादी है: "मन चंचल है और वश में करना कठिन — पर अभ्यास और वैराग्य से वश में होता है" (6.35)। अभ्यास का अर्थ है गिरना और लौटना, बार-बार (6.26)। शर्म इस चक्र को चलाती रहती है; कोमलता उसे तोड़ती है। एक फिसलन आपकी पहचान नहीं।',
+                step: 'आज स्वयं को सज़ा मत दीजिए। देखिए कि फिसलने से ठीक पहले क्या था — समय, भाव, जगह — और उसे लिख लीजिए। कल का बदलाव वहीं से शुरू होता है।'
+            }
+        },
+        'heartbreak:love': {
+            en: {
+                ack: 'A broken heart hurts in a way that is hard to explain to anyone.',
+                bridge: 'The Gita does not rush you past this pain. It says pleasure and pain come and go like seasons — "bear them patiently" (2.14). What you gave was real, and it was never wasted. And there is a joy within you that does not depend on any one person (5.21). It is still there, under the hurt.',
+                step: 'Let yourself grieve today — and do one small thing that belongs only to you. Not to forget them, but to remember yourself.'
+            },
+            hi: {
+                ack: 'टूटा दिल ऐसे दुख देता है जिसे किसी को समझाना कठिन है।',
+                bridge: 'गीता आपको इस दर्द से जल्दी आगे नहीं धकेलती। वह कहती है कि सुख और दुख ऋतुओं की तरह आते-जाते हैं — "इन्हें धैर्य से सहो" (2.14)। आपने जो दिया वह सच्चा था, और कभी व्यर्थ नहीं गया। और आपके भीतर एक आनंद है जो किसी एक व्यक्ति पर निर्भर नहीं (5.21)। वह अब भी वहीं है, चोट के नीचे।',
+                step: 'आज स्वयं को शोक करने दीजिए — और एक छोटा काम कीजिए जो सिर्फ़ आपका हो। उन्हें भूलने के लिए नहीं, स्वयं को याद रखने के लिए।'
+            }
+        },
+        'envy:self': {
+            en: {
+                ack: 'Comparing yourself to others can quietly drain the joy from your own life.',
+                bridge: 'Comparison makes someone else\'s path the measure of yours. The Gita says your own path, even imperfectly lived, is better than another\'s done perfectly (3.35). Their highlights are not your assignment. "Whatever is beautiful comes from a spark of my splendour" (10.41) — and that includes what is beautiful in you.',
+                step: 'Mute three accounts that make you feel small. Then write three things in your own life you would not trade.'
+            },
+            hi: {
+                ack: 'दूसरों से तुलना धीरे-धीरे आपके अपने जीवन का आनंद सोख लेती है।',
+                bridge: 'तुलना किसी और के मार्ग को आपके मार्ग का पैमाना बना देती है। गीता कहती है कि आपका अपना मार्ग, अधूरा जिया हुआ भी, किसी और के पूरी तरह निभाए मार्ग से बेहतर है (3.35)। उनकी चमक-दमक आपका काम नहीं। "जो कुछ भी सुंदर है, वह मेरे तेज के अंश से है" (10.41) — और इसमें आपके भीतर का सौंदर्य भी शामिल है।',
+                step: 'ऐसे तीन अकाउंट म्यूट कीजिए जो आपको छोटा महसूस कराते हैं। फिर अपने जीवन की तीन ऐसी चीज़ें लिखिए जिन्हें आप किसी के बदले न दें।'
+            }
+        },
+        'envy:work': {
+            en: {
+                ack: 'Watching others move ahead at work can sting.',
+                bridge: 'The Gita\'s answer is svadharma: better your own work done imperfectly than another\'s done perfectly (18.47). Their promotion is their path. One who is "content with whatever comes, free of envy, the same in success and failure" is never bound, it says (4.22).',
+                step: 'Congratulate the person you envy — sincerely, in one line. Then write one skill you will grow this month, for yourself, not against them.'
+            },
+            hi: {
+                ack: 'काम पर दूसरों को आगे बढ़ते देखना चुभ सकता है।',
+                bridge: 'गीता का उत्तर स्वधर्म है: दूसरे का काम अच्छी तरह करने से अपना काम अधूरा करना बेहतर है (18.47)। उनकी तरक़्क़ी उनका मार्ग है। "जो मिले उसमें संतुष्ट, ईर्ष्या से मुक्त, सफलता और असफलता में समान" — ऐसा व्यक्ति, वह कहती है, कभी बँधता नहीं (4.22)।',
+                step: 'जिससे ईर्ष्या है, उसे सच्चे मन से एक पंक्ति में बधाई दीजिए। फिर एक कौशल लिखिए जो आप इस महीने बढ़ाएँगे — अपने लिए, उनके ख़िलाफ़ नहीं।'
+            }
+        },
+        'lust:love': {
+            en: {
+                ack: 'Desire for someone can be overwhelming — and it’s nothing to be ashamed of.',
+                bridge: 'The Gita does not treat desire as dirty: the Divine is present "in desire that does not go against dharma" (7.11). Its caution is about being ruled by it — dwelling on someone, then clinging, then craving (2.62). Desire held with respect for the other person can grow into love. Desire that only wants to take tends to leave you emptier.',
+                step: 'When the pull is strong, pause and ask: "What do I actually want here — closeness, comfort, to be seen?" Name it honestly. That is how steering it begins.'
+            },
+            hi: {
+                ack: 'किसी के प्रति इच्छा बहुत प्रबल हो सकती है — और इसमें शर्म की कोई बात नहीं।',
+                bridge: 'गीता इच्छा को गंदा नहीं मानती: ईश्वर "उस काम में है जो धर्म के विरुद्ध नहीं" (7.11)। उसकी सावधानी उसके वश में होने के बारे में है — किसी पर बार-बार सोचना, फिर चिपकना, फिर लालसा (2.62)। दूसरे के प्रति सम्मान के साथ रखी इच्छा प्रेम बन सकती है। जो इच्छा केवल लेना चाहती है, वह अक्सर और ख़ाली छोड़ जाती है।',
+                step: 'जब खिंचाव प्रबल हो, रुककर पूछिए: "मुझे यहाँ वास्तव में क्या चाहिए — निकटता, सांत्वना, देखा जाना?" ईमानदारी से उसे नाम दीजिए। उसे दिशा देना यहीं से शुरू होता है।'
+            }
+        },
+        'lust:habits': {
+            en: {
+                ack: 'Fighting a habit like this takes real courage — and you’re already fighting.',
+                bridge: 'The Gita describes this struggle precisely: the senses are so strong they "carry away even a wise mind" (2.60), and desire is never satisfied by feeding it (3.39). But it also gives the way: "stop the enemy at the gate" (3.41) — catch the first thought, before the habit takes over — and replace the lower pull with a higher one (2.59). Relapse is not the end; returning is the practice (6.26).',
+                step: 'Find your most common trigger moment — late at night, alone, phone in bed. Change one thing about it tonight: let the phone charge outside the room.'
+            },
+            hi: {
+                ack: 'ऐसी आदत से लड़ने के लिए सच्चा साहस चाहिए — और आप लड़ ही रहे हैं।',
+                bridge: 'गीता इस संघर्ष को सटीक बताती है: इंद्रियाँ इतनी प्रबल हैं कि "ज्ञानी के मन को भी बहा ले जाती हैं" (2.60), और इच्छा पूरी करने से कभी शांत नहीं होती (3.39)। पर वह रास्ता भी देती है: "शत्रु को द्वार पर ही रोको" (3.41) — आदत हावी होने से पहले पहला विचार पकड़ो — और नीचे के खिंचाव की जगह ऊँचा लक्ष्य रखो (2.59)। फिसलना अंत नहीं; लौटना ही अभ्यास है (6.26)।',
+                step: 'अपना सबसे आम कमज़ोर पल पहचानिए — देर रात, अकेले, बिस्तर में फ़ोन। आज रात उसमें एक बात बदलिए: फ़ोन कमरे के बाहर चार्ज हो।'
+            }
+        },
+        'inertia:study': {
+            en: {
+                ack: 'When you can’t make yourself study, it’s easy to feel stuck and guilty at the same time.',
+                bridge: 'This heaviness is tamas, and the Gita\'s first word to a stuck Arjuna was simple: "Stand up" (2.3). You do not need to feel motivated first — action is better than inaction (3.8), and motivation usually arrives after starting. Lift yourself by your own self (6.5), even a little.',
+                step: 'Set a timer for ten minutes and study only one page. When it rings, you may stop — but you probably will not.'
+            },
+            hi: {
+                ack: 'जब पढ़ने का मन ही न करे, तो अटके होने और अपराधबोध का एहसास एक साथ होता है।',
+                bridge: 'यह भारीपन तमस् है, और अटके हुए अर्जुन से गीता का पहला शब्द सीधा था: "उठो" (2.3)। पहले प्रेरित महसूस करना ज़रूरी नहीं — कर्म न करने से कर्म करना श्रेष्ठ है (3.8), और प्रेरणा अक्सर शुरू करने के बाद आती है। स्वयं से स्वयं को ऊपर उठाइए (6.5), थोड़ा ही सही।',
+                step: 'दस मिनट का टाइमर लगाइए और सिर्फ़ एक पन्ना पढ़िए। घंटी बजे तो रुक सकते हैं — पर शायद रुकेंगे नहीं।'
+            }
+        },
+        'inertia:work': {
+            en: {
+                ack: 'Some days, work feels impossible to start.',
+                bridge: 'The Gita is kind but firm about this heaviness: "do your work, for action is better than inaction" (3.8). It does not ask for heroics — just the next small act, done as an offering. Balance helps too: enough sleep and enough rest make starting easier (6.17).',
+                step: 'Write the smallest possible first step of the task — something that takes five minutes — and do only that, now.'
+            },
+            hi: {
+                ack: 'कुछ दिन काम शुरू करना असंभव-सा लगता है।',
+                bridge: 'गीता ऐसे भारीपन के प्रति दयालु पर दृढ़ है: "अपना कर्म करो, क्योंकि कर्म न करने से कर्म करना श्रेष्ठ है" (3.8)। वह वीरता नहीं माँगती — बस अगला छोटा काम, अर्पण की तरह किया हुआ। संतुलन भी मदद करता है: पर्याप्त नींद और विश्राम शुरुआत को आसान बनाते हैं (6.17)।',
+                step: 'अपने काम का सबसे छोटा संभव पहला क़दम लिखिए — कुछ ऐसा जो पाँच मिनट ले — और अभी सिर्फ़ वही कीजिए।'
+            }
+        },
+        'emptiness:meaning': {
+            en: {
+                ack: 'Feeling empty, as if you’re only going through the motions, is exhausting in its own way.',
+                bridge: 'The Gita would say the emptiness is not the truth about you — it is a cloud over it. There is a joy within that needs nothing from outside (5.21); once it is found, "even great sorrow cannot shake you" (6.22). And you are not random: "you are my eternal part" (15.7). Meaning often returns through small, true actions before it returns as a feeling.',
+                step: 'Do one thing today purely because it is good — not useful, not impressive. Notice how you feel afterwards.'
+            },
+            hi: {
+                ack: 'ख़ालीपन महसूस करना, जैसे बस दिन काट रहे हों, अपने ढंग से थका देने वाला है।',
+                bridge: 'गीता कहेगी कि यह ख़ालीपन आपका सच नहीं — उस पर छाया एक बादल है। भीतर एक आनंद है जिसे बाहर से कुछ नहीं चाहिए (5.21); वह मिल जाए तो "बड़ा दुख भी विचलित नहीं कर पाता" (6.22)। और आप कोई संयोग नहीं: "तुम मेरे सनातन अंश हो" (15.7)। अर्थ अक्सर भावना बनकर लौटने से पहले छोटे, सच्चे कामों के रास्ते लौटता है।',
+                step: 'आज एक काम सिर्फ़ इसलिए कीजिए क्योंकि वह अच्छा है — उपयोगी या प्रभावशाली होने के लिए नहीं। फिर देखिए कि बाद में कैसा लगता है।'
+            }
+        },
+        'gratitude:study': {
+            en: {
+                ack: 'That’s wonderful news — all that effort, and here is its fruit.',
+                bridge: 'Enjoy this fully; you earned it. The Gita would add one gentle thing: offer it (9.27). Success held lightly stays sweet — and the same steadiness that carried you here (2.48) will carry you through whatever comes next.',
+                step: 'Thank one person who helped you get here — a teacher, a parent, a friend — by name, today.'
+            },
+            hi: {
+                ack: 'बहुत अच्छी ख़बर है — इतनी मेहनत, और यह रहा उसका फल।',
+                bridge: 'इसका पूरा आनंद लीजिए; आपने इसे कमाया है। गीता बस एक कोमल बात जोड़ेगी: इसे अर्पित कीजिए (9.27)। हल्के से थामी सफलता मीठी बनी रहती है — और जिस स्थिरता ने आपको यहाँ पहुँचाया (2.48), वही आगे भी साथ देगी।',
+                step: 'जिसने यहाँ तक पहुँचने में मदद की — कोई शिक्षक, माता-पिता, मित्र — उसे आज नाम लेकर धन्यवाद दीजिए।'
+            }
+        },
+        'gratitude:work': {
+            en: {
+                ack: 'Congratulations — this is worth celebrating.',
+                bridge: 'The Gita calls work done well a form of worship (18.46). Let this success be an offering too — enjoyed, shared, and held lightly (9.27). Remember how this moment feels; the same balance (2.48) will steady you on harder days.',
+                step: 'Celebrate with someone today, and write one line about what you did right — for a future day that will need it.'
+            },
+            hi: {
+                ack: 'बधाई हो — यह जश्न मनाने लायक़ है।',
+                bridge: 'गीता अच्छे से किए गए काम को पूजा का एक रूप कहती है (18.46)। इस सफलता को भी एक अर्पण बनने दीजिए — आनंद से, बाँटकर, हल्के हाथों से थामी हुई (9.27)। इस पल का एहसास याद रखिए; वही संतुलन (2.48) कठिन दिनों में आपको स्थिर रखेगा।',
+                step: 'आज किसी के साथ जश्न मनाइए, और एक पंक्ति लिखिए कि आपने क्या सही किया — किसी ऐसे दिन के लिए जब इसकी ज़रूरत होगी।'
+            }
+        },
+        'gratitude:love': {
+            en: {
+                ack: 'What beautiful news — I’m so glad for you.',
+                bridge: 'Love is one of the ways the Divine shows itself: "whatever is beautiful comes from a spark of my splendour" (10.41). The Gita\'s blessing for love is that it stays generous — feeling the other\'s joy as your own (6.32), and never needing to possess.',
+                step: 'Write down what you love about this moment, so you can read it again on an ordinary day.'
+            },
+            hi: {
+                ack: 'कितनी सुंदर ख़बर है — मुझे आपके लिए बहुत ख़ुशी है।',
+                bridge: 'प्रेम उन रास्तों में से है जिनसे ईश्वर स्वयं को प्रकट करते हैं: "जो कुछ भी सुंदर है, वह मेरे तेज के अंश से है" (10.41)। प्रेम के लिए गीता का आशीर्वाद है कि वह उदार बना रहे — दूसरे के सुख को अपना सुख माने (6.32), और कभी अधिकार न चाहे।',
+                step: 'इस पल में आपको क्या प्रिय है, वह लिख लीजिए, ताकि किसी साधारण दिन फिर पढ़ सकें।'
+            }
+        }
+    };
+
+    // Where no counsel is written for the exact pair, a close one speaks.
+    const COUNSEL_ALIASES = {
+        'fear:work': 'anxiety:work', 'fear:study': 'anxiety:study', 'fear:future': 'anxiety:future', 'fear:health': 'anxiety:health',
+        'fear:money': 'anxiety:money', 'fear:family': 'anxiety:family', 'fear:love': 'anxiety:love', 'fear:decision': 'confusion:decision',
+        'anxiety:decision': 'confusion:decision', 'stress:decision': 'confusion:decision', 'stress:money': 'anxiety:money',
+        'stress:future': 'anxiety:future', 'stress:health': 'anxiety:health', 'confusion:future': 'anxiety:future',
+        'sadness:loss': 'grief:loss', 'heartbreak:loss': 'grief:loss', 'sadness:study': 'failure:study', 'sadness:work': 'failure:work',
+        'sadness:meaning': 'emptiness:meaning', 'emptiness:work': 'confusion:work', 'purpose:work': 'confusion:work',
+        'purpose:meaning': 'confusion:meaning', 'loneliness:meaning': 'emptiness:meaning', 'heartbreak:family': 'sadness:family',
+        'anger:love': 'anger:conflict', 'anger:friendship': 'anger:conflict', 'sadness:conflict': 'anger:conflict',
+        'unworthiness:study': 'failure:study', 'heartbreak:injustice': 'heartbreak:love',
+        'craving:habits': 'guilt:habits', 'inertia:habits': 'inertia:work', 'envy:friendship': 'envy:self',
+        'sadness:health': 'anxiety:health',
+        'anxiety:marriage': 'stress:marriage', 'fear:marriage': 'stress:marriage', 'confusion:marriage': 'stress:marriage',
+        'sadness:marriage': 'stress:marriage', 'anger:marriage': 'stress:marriage', 'gratitude:marriage': 'gratitude:love',
+        'stress:sleep': 'anxiety:sleep', 'fear:sleep': 'anxiety:sleep', 'guilt:sleep': 'anxiety:sleep', 'sadness:sleep': 'anxiety:sleep', 'grief:family': 'grief:loss', 'gratitude:family': 'gratitude:love',
+        'love:love': 'gratitude:love', 'loneliness:self': 'unworthiness:self', 'confusion:self': 'unworthiness:self',
+        'heartbreak:friendship': 'sadness:friendship', 'stress:self': 'unworthiness:self', 'anxiety:self': 'unworthiness:self'
+    };
+
+    // Which feeling the counsel answers: what they wrote now; else the feeling
+    // their situation carries, when that has counsel; else what came before.
+    function counselFeeling(profile) {
+        if (profile.fresh) return profile.fresh;
+        if (profile.inferred && counselFor(profile.inferred, profile.topics)) return profile.inferred;
+        return profile.primary || profile.inferred || null;
+    }
+
+    function counselFor(emotion, topics) {
+        if (!emotion) return null;
+        const ordered = [...topics].sort((a, b) => TOPIC_PRIORITY.indexOf(a) - TOPIC_PRIORITY.indexOf(b));
+        for (const topic of ordered) {
+            const key = `${emotion}:${topic}`;
+            const found = COUNSEL[key] || COUNSEL[COUNSEL_ALIASES[key]];
+            if (found) return found;
+        }
+        return null;
+    }
+
+    // -----------------------------------------------------------------------
     // Āśīrvāda — every answer ends with a blessing. The Gita meets despair
     // with a smile (2.10); a reply should leave the reader lighter.
     // -----------------------------------------------------------------------
@@ -758,13 +1978,22 @@
         purpose: { en: 'May you find the work that is truly yours, and give it your whole heart.', hi: 'आपको वह काम मिले जो सचमुच आपका है, और आप उसे पूरा हृदय दें।' },
         craving: { en: 'May you find the joy that needs nothing from outside (5.21).', hi: 'आपको वह आनंद मिले जिसे बाहर से कुछ नहीं चाहिए (5.21)।' },
         peace: { en: 'May this stillness stay with you, like a lamp that does not flicker.', hi: 'यह स्थिरता आपके साथ रहे, उस दीये की तरह जो काँपता नहीं।' },
-        gratitude: { en: 'May your joy become an offering, and return to you many times over.', hi: 'आपका आनंद एक अर्पण बने, और कई गुना होकर लौटे।' }
+        gratitude: { en: 'May your joy become an offering, and return to you many times over.', hi: 'आपका आनंद एक अर्पण बने, और कई गुना होकर लौटे।' },
+        lust: { en: 'May desire become energy you steer, not a current that steers you.', hi: 'इच्छा ऐसी ऊर्जा बने जिसे आप दिशा दें — ऐसी धारा नहीं जो आपको बहा ले जाए।' },
+        emptiness: { en: 'May something small and good find you today, and remind you that you are not empty — only resting.', hi: 'आज कोई छोटी, अच्छी बात आप तक पहुँचे, और याद दिलाए कि आप ख़ाली नहीं — बस विश्राम में हैं।' },
+        pride: { en: 'May you stand tall and bow easily — both at once.', hi: 'आप सिर ऊँचा रखें और सहजता से झुक भी सकें — दोनों एक साथ।' },
+        love: { en: 'May your love be a lamp, never a chain.', hi: 'आपका प्रेम दीपक बने, ज़ंजीर कभी नहीं।' },
+        devotion: { en: 'May your longing for the Divine be met by the Divine’s longing for you (9.29).', hi: 'ईश्वर के लिए आपकी चाह का उत्तर आपके लिए ईश्वर की चाह से मिले (9.29)।' },
+        inertia: { en: 'May the first small step be easy, and the next one easier.', hi: 'पहला छोटा क़दम आसान हो, और अगला उससे भी आसान।' }
     };
 
     const NEUTRAL_BLESSING = { en: 'May you leave a little lighter than you came.', hi: 'आप जितने आए थे, उससे थोड़े हल्के होकर जाएँ।' };
 
     function guidanceFor(verse, profile, lang) {
-        const entry = (profile.primary && GUIDANCE[profile.primary]) || NEUTRAL_GUIDANCE;
+        const feeling = counselFeeling(profile);
+        const counsel = counselFor(feeling, profile.topics)?.[lang];
+        const base = (feeling && GUIDANCE[feeling]) || NEUTRAL_GUIDANCE;
+        const entry = counsel ? { practice: base.practice, [lang]: { bridge: counsel.bridge, step: counsel.step } } : base;
         const simple = verse.notification_short && (verse.notification_short[lang] || verse.notification_short.en);
         const situation = lang === 'en' ? matchingSituation(verse, profile) : null;
         return {
@@ -773,7 +2002,8 @@
             bridge: entry[lang].bridge,
             step: entry[lang].step,
             practice: entry.practice,
-            blessing: ((profile.primary && BLESSINGS[profile.primary]) || NEUTRAL_BLESSING)[lang],
+            blessing: ((feeling && BLESSINGS[feeling]) || NEUTRAL_BLESSING)[lang],
+            counselled: Boolean(counsel),
             emotion: profile.primary
         };
     }
@@ -783,33 +2013,436 @@
     function acknowledge(profile, lang, random) {
         const emotion = profile.primary && EMOTIONS[profile.primary];
         if (!emotion) return pick(NEUTRAL_ACKS[lang], random);
-        return pick(ACKS[lang], random)(emotion[lang]);
+        // Two heavy feelings at once are named together: "your grief — and your anger too".
+        const second = profile.emotions.find((name) => name !== profile.primary && HEAVY(name));
+        if (HEAVY(profile.primary) && second && EMOTIONS[second] && !['lust', 'pride', 'emptiness', 'inertia'].includes(profile.primary)) {
+            return PERSONAL.both[lang](emotion[lang].noun, EMOTIONS[second][lang].noun);
+        }
+        const voice = VOICE[profile.primary]?.[lang];
+        return voice ? pick(voice, random) : pick(ACKS[lang], random)(emotion[lang]);
+    }
+
+    // -----------------------------------------------------------------------
+    // Understanding what kind of message this is. Not everything is a feeling:
+    // people say hello, say thank you, ask what karma means, ask who they are
+    // talking to, or simply didn't understand the last verse.
+    // -----------------------------------------------------------------------
+
+    const GREETINGS = {
+        devotional: [
+            { terms: ['jai shri krishna', 'jai shree krishna', 'jai sri krishna', 'जय श्री कृष्ण'], reply: { en: 'Jai Shri Krishna', hi: 'जय श्री कृष्ण' } },
+            { terms: ['radhe radhe', 'radhey radhey', 'राधे राधे'], reply: { en: 'Radhe Radhe', hi: 'राधे राधे' } },
+            { terms: ['hare krishna', 'hare krsna', 'हरे कृष्ण'], reply: { en: 'Hare Krishna', hi: 'हरे कृष्ण' } },
+            { terms: ['ram ram', 'jai shri ram', 'jai siya ram', 'राम राम', 'जय श्री राम', 'जय सिया राम'], reply: { en: 'Ram Ram', hi: 'राम राम' } }
+        ],
+        plain: ['hi', 'hii', 'hiii', 'hello', 'helo', 'hey', 'heyy', 'hola', 'namaste', 'namaskar', 'namaskaram', 'pranam', 'vanakkam',
+            'good morning', 'good afternoon', 'good evening', 'good night', 'sat sri akal', 'नमस्ते', 'नमस्कार', 'प्रणाम', 'सुप्रभात']
+    };
+
+    const THANKS_TERMS = ['thank you', 'thanks', 'thank u', 'thanku', 'thankyou', 'thx', 'ty', 'dhanyavad', 'dhanyawad', 'shukriya',
+        'धन्यवाद', 'शुक्रिया', 'that helped', 'this helped', 'it helped', 'helped me', 'feel better now', 'feeling better',
+        'better now', 'feel lighter', 'accha laga', 'acha laga', 'अच्छा लगा'];
+    const WANTING = ['want', 'how', 'need', 'wish', 'can i', 'could', 'chahta', 'chahti', 'चाहता', 'चाहती', 'kaise', 'कैसे'];
+
+    const ACK_TERMS = ['ok', 'okay', 'okk', 'okay okay', 'ok ok', 'hmm', 'hm', 'hmm ok', 'hmmm', 'k', 'yes', 'yeah', 'yep', 'fine', 'alright',
+        'i see', 'got it', 'right', 'sure', 'acha', 'accha', 'achha', 'theek hai', 'thik hai', 'thik h', 'haan', 'ha', 'ठीक है', 'अच्छा', 'हाँ', 'हम्म'];
+
+    const SELF_TERMS = ['who are you', 'what are you', 'what can you do', 'how does this work', 'how do you work', 'are you real',
+        'are you ai', 'are you an ai', 'are you a bot', 'are you human', 'are you a person', 'are you krishna', 'are you god',
+        'what is sakha', 'tum kaun ho', 'aap kaun ho', 'aap kon ho', 'tum kon ho', 'तुम कौन हो', 'आप कौन हैं', 'आप कौन हो'];
+
+    const EXPLAIN_TERMS = ['i dont understand', 'i do not understand', 'dont get it', 'didnt understand', 'did not understand',
+        'not clear', 'what does that mean', 'what does this mean', 'what do you mean', 'explain', 'simpler', 'simple words',
+        'easy words', 'elaborate', 'in detail', 'samajh nahi', 'samjha nahi', 'samjhi nahi', 'samjhao', 'samjhaiye', 'matlab kya',
+        'iska matlab', 'iska kya matlab', 'how do i apply', 'how to apply', 'how can i apply', 'apply this', 'how do i live this',
+        'what should i do with this', 'what do i do now', 'समझ नहीं', 'समझाइए', 'समझाओ', 'इसका मतलब', 'इसका अर्थ'];
+
+    const QUESTION_CUES = ['what is', 'whats', 'what are', 'what does', 'what do', 'why do', 'why does', 'why is', 'why are', 'meaning of', 'define', 'explain', 'tell me about',
+        'who is', 'who was', 'who are', 'kya hai', 'kya hota', 'kya hote', 'kya matlab', 'kaun hai', 'kaun the', 'kon hai',
+        'matlab', 'kya hai', 'क्या है', 'क्या होता', 'क्या होती', 'कौन है', 'कौन थे', 'का अर्थ', 'का मतलब', 'मतलब', 'बताइए', 'बताओ'];
+
+    // A plain-words glossary. Each entry is anchored in the verse that
+    // teaches it, so the answer is the Gita's, not ours.
+    const GLOSSARY = {
+        dharma: {
+            terms: ['dharma', 'dharm', 'svadharma', 'swadharma', 'धर्म', 'स्वधर्म'],
+            verse: '3_35',
+            en: { title: 'Dharma — what is rightly yours to do', body: 'Dharma is the right way to act for who you are and where you stand — your duty, but also your nature. The Gita says it is better to live your own dharma imperfectly than someone else\'s perfectly (3.35). So the question is not "what would look best?" but "what is mine to do?"' },
+            hi: { title: 'धर्म — जो सचमुच आपका करने योग्य है', body: 'धर्म का अर्थ है आप जो हैं और जहाँ खड़े हैं, उसके अनुसार सही ढंग से कर्म करना — आपका कर्तव्य, और आपका स्वभाव भी। गीता कहती है कि दूसरे के धर्म को अच्छी तरह निभाने से अपना धर्म अधूरा निभाना भी बेहतर है (3.35)। इसलिए प्रश्न यह नहीं कि "क्या अच्छा दिखेगा?", बल्कि यह कि "मेरा करने योग्य क्या है?"' }
+        },
+        karma: {
+            terms: ['karma', 'karm', 'nishkama', 'nishkam', 'कर्म', 'निष्काम'],
+            verse: '2_47',
+            en: { title: 'Karma — action, and letting go of its fruit', body: 'Karma simply means action — and the trace every action leaves. The Gita\'s teaching is not "you get what you deserve" but "act fully, and let go of the fruit" (2.47). The effort is yours to give; the outcome is not yours to own.' },
+            hi: { title: 'कर्म — कर्म करना, और उसके फल को छोड़ना', body: 'कर्म का अर्थ है कार्य — और हर कार्य जो छाप छोड़ता है। गीता की शिक्षा "जैसा करोगे वैसा भरोगे" भर नहीं है, बल्कि "पूरे मन से कर्म करो और फल को छोड़ दो" है (2.47)। प्रयास देना आपका काम है; परिणाम पर आपका अधिकार नहीं।' }
+        },
+        yoga: {
+            terms: ['yoga', 'yog', 'योग'],
+            verse: '2_48',
+            en: { title: 'Yoga — steadiness of mind', body: 'In the Gita, yoga is not exercise. It means union, and steadiness: "evenness of mind is called yoga" (2.48) — acting well while staying the same in success and failure. There are several paths — action (karma), knowledge (jñāna), devotion (bhakti), meditation (dhyāna) — all leading to the same calm centre.' },
+            hi: { title: 'योग — मन की स्थिरता', body: 'गीता में योग व्यायाम नहीं है। इसका अर्थ है जुड़ना, और स्थिर रहना: "समत्वं योग उच्यते" — मन की समता ही योग है (2.48), यानी सफलता और असफलता में एक-सा रहते हुए अच्छे से कर्म करना। इसके कई मार्ग हैं — कर्म, ज्ञान, भक्ति, ध्यान — और सब उसी शांत केंद्र तक ले जाते हैं।' }
+        },
+        atman: {
+            terms: ['atman', 'atma', 'aatma', 'aatman', 'the soul', 'soul', 'आत्मा'],
+            verse: '2_20',
+            en: { title: 'Ātman — the self that does not break', body: 'The ātman is your true self — not your body, your thoughts or your roles, but the awareness beneath them. The Gita says it is never born and never dies (2.20); weapons cannot cut it and fire cannot burn it (2.23). Whatever you are going through is happening to you. It is not who you are.' },
+            hi: { title: 'आत्मा — वह स्वरूप जो टूटता नहीं', body: 'आत्मा आपका सच्चा स्वरूप है — आपका शरीर, विचार या भूमिकाएँ नहीं, बल्कि उनके नीचे की चेतना। गीता कहती है कि यह न जन्म लेती है, न मरती है (2.20); इसे शस्त्र काट नहीं सकते, आग जला नहीं सकती (2.23)। आप जिससे गुज़र रहे हैं, वह आपके साथ हो रहा है — वह आप नहीं हैं।' }
+        },
+        moksha: {
+            terms: ['moksha', 'moksh', 'mukti', 'liberation', 'nirvana', 'मोक्ष', 'मुक्ति'],
+            verse: '2_71',
+            en: { title: 'Moksha — freedom', body: 'Moksha is freedom — from fear, from the endless pull of wanting, from the cycle of birth and death. The Gita says it begins in this very life: one who lets go of "I" and "mine" and moves free of craving "attains peace" (2.71).' },
+            hi: { title: 'मोक्ष — मुक्ति', body: 'मोक्ष मुक्ति है — भय से, इच्छाओं के अनंत खिंचाव से, जन्म-मृत्यु के चक्र से। गीता कहती है कि यह इसी जीवन में शुरू होता है: जो "मैं" और "मेरा" छोड़कर कामना से मुक्त होकर चलता है, वह "शांति पाता है" (2.71)।' }
+        },
+        bhakti: {
+            terms: ['bhakti', 'bhakt', 'devotion', 'भक्ति', 'भक्त'],
+            verse: '9_26',
+            en: { title: 'Bhakti — love turned toward God', body: 'Bhakti is devotion — love turned toward the Divine. The Gita says it needs no wealth or ritual: "a leaf, a flower, a fruit or a little water, offered with love — I accept it" (9.26). It is the simplest path, and open to anyone, in any state.' },
+            hi: { title: 'भक्ति — ईश्वर की ओर मुड़ा प्रेम', body: 'भक्ति ईश्वर के प्रति प्रेम है। गीता कहती है कि इसके लिए धन या विधि-विधान ज़रूरी नहीं: "पत्र, पुष्प, फल या थोड़ा जल — प्रेम से अर्पित हो तो मैं स्वीकार करता हूँ" (9.26)। यह सबसे सरल मार्ग है, हर किसी के लिए, हर हाल में।' }
+        },
+        guna: {
+            terms: ['guna', 'gunas', 'sattva', 'satva', 'rajas', 'tamas', 'गुण', 'सत्त्व', 'सत्व', 'रजस्', 'रजोगुण', 'तमस्', 'तमोगुण'],
+            verse: '14_5',
+            en: { title: 'The three guṇas', body: 'The guṇas are the three qualities that colour everything in nature, including your moods: sattva (clarity, calm), rajas (drive, restlessness) and tamas (heaviness, inertia) (14.5). None of them is you. Noticing which one is strong today is already the first step beyond it (14.23).' },
+            hi: { title: 'तीन गुण', body: 'गुण प्रकृति के तीन रंग हैं जो हर चीज़ को रंगते हैं — आपके मन को भी: सत्त्व (स्पष्टता, शांति), रजस् (दौड़, बेचैनी) और तमस् (भारीपन, आलस) (14.5)। इनमें से कोई भी आप नहीं हैं। आज कौन-सा गुण प्रबल है, यह देख लेना ही उससे आगे बढ़ने का पहला क़दम है (14.23)।' }
+        },
+        maya: {
+            terms: ['maya', 'माया', 'illusion'],
+            verse: '7_14',
+            en: { title: 'Māyā — the veil', body: 'Māyā is the power that makes the passing world seem like all there is. The Gita calls it hard to cross — yet those who turn to the Divine go beyond it (7.14). It is why things feel so permanent while they hurt, and why they change anyway.' },
+            hi: { title: 'माया — परदा', body: 'माया वह शक्ति है जो इस बदलते संसार को ही सब कुछ दिखाती है। गीता इसे पार करना कठिन बताती है — फिर भी जो ईश्वर की शरण लेते हैं, वे इसके पार चले जाते हैं (7.14)। इसीलिए दुःख के समय सब कुछ स्थायी लगता है — और फिर भी बदल जाता है।' }
+        },
+        krishna: {
+            terms: ['krishna', 'krsna', 'kanha', 'kanhaiya', 'shri krishna', 'shree krishna', 'कृष्ण', 'कान्हा', 'श्रीकृष्ण'],
+            verse: '10_20',
+            en: { title: 'Krishna', body: 'In the Gita, Krishna is Arjuna\'s charioteer, friend and teacher — and, as he reveals, the Divine itself: "I am the Self seated in the heart of every being" (10.20). He does not speak from a throne but from beside Arjuna, in the chariot, as a friend.' },
+            hi: { title: 'कृष्ण', body: 'गीता में कृष्ण अर्जुन के सारथी, सखा और गुरु हैं — और, जैसा वे स्वयं बताते हैं, स्वयं ईश्वर: "मैं हर प्राणी के हृदय में स्थित आत्मा हूँ" (10.20)। वे सिंहासन से नहीं, रथ में अर्जुन के पास बैठकर, एक मित्र की तरह बोलते हैं।' }
+        },
+        arjuna: {
+            terms: ['arjuna', 'arjun', 'अर्जुन'],
+            verse: '2_7',
+            en: { title: 'Arjuna', body: 'Arjuna is a great warrior who, on the eve of battle, breaks down — grieving, confused, unable to act. The Gita begins with his despair (2.7), not his strength. That is why it speaks so well to anyone who feels lost: it was spoken first to someone who was.' },
+            hi: { title: 'अर्जुन', body: 'अर्जुन एक महान योद्धा हैं जो युद्ध से ठीक पहले टूट जाते हैं — शोक में, उलझन में, कुछ करने में असमर्थ। गीता उनकी शक्ति से नहीं, उनकी निराशा से शुरू होती है (2.7)। इसीलिए यह हर उस व्यक्ति से इतनी गहराई से बात करती है जो खोया हुआ महसूस करता है — क्योंकि यह पहले ऐसे ही व्यक्ति से कही गई थी।' }
+        },
+        gita: {
+            terms: ['gita', 'geeta', 'bhagavad gita', 'bhagwad gita', 'bhagavad geeta', 'गीता', 'भगवद्गीता', 'भगवद गीता'],
+            verse: '4_3',
+            en: { title: 'The Bhagavad Gītā', body: 'The Bhagavad Gītā — "the song of the Divine" — is a 700-verse conversation inside the Mahābhārata, between Krishna and Arjuna on a battlefield. It answers the oldest questions: how to act, how to bear pain, what lasts. Krishna says he shares it because Arjuna is his friend (4.3).' },
+            hi: { title: 'भगवद्गीता', body: 'भगवद्गीता — "ईश्वर का गीत" — महाभारत के भीतर 700 श्लोकों का संवाद है, रणभूमि में कृष्ण और अर्जुन के बीच। यह सबसे पुराने प्रश्नों का उत्तर देती है: कैसे कर्म करें, दुःख कैसे सहें, क्या शाश्वत है। कृष्ण कहते हैं कि वे यह इसलिए कह रहे हैं क्योंकि अर्जुन उनके सखा हैं (4.3)।' }
+        },
+        om: {
+            terms: ['om', 'aum', 'ॐ', 'ओम', 'ओ३म्'],
+            verse: '8_13',
+            en: { title: 'Om', body: 'Om is the sacred sound of the whole — beginning, middle and end. The Gita says one who remembers the Divine while chanting Om reaches the highest (8.13). Chanting it slowly, even three times, can gather a scattered mind.' },
+            hi: { title: 'ॐ', body: 'ॐ सम्पूर्ण का पवित्र नाद है — आरंभ, मध्य और अंत। गीता कहती है कि जो ॐ का उच्चारण करते हुए ईश्वर का स्मरण करता है, वह परम गति पाता है (8.13)। इसे धीरे-धीरे, तीन बार भी जपना बिखरे मन को समेट सकता है।' }
+        },
+        dhyana: {
+            terms: ['dhyana', 'dhyan', 'meditation', 'meditate', 'ध्यान'],
+            verse: '6_19',
+            practice: 'dhyana',
+            en: { title: 'Dhyāna — meditation', body: 'Dhyāna is sitting still and letting the mind rest on one thing. The Gita is practical about it — a quiet place, a steady seat, the body upright, the gaze soft (6.11–13) — and promises a mind like "a lamp in a windless place" (6.19). Five minutes is a real beginning.' },
+            hi: { title: 'ध्यान', body: 'ध्यान का अर्थ है शांत बैठकर मन को एक चीज़ पर टिकने देना। गीता इस बारे में व्यावहारिक है — शांत स्थान, स्थिर आसन, सीधा शरीर, कोमल दृष्टि (6.11–13) — और ऐसे मन का वचन देती है जो "वायुरहित स्थान में दीपक" जैसा हो (6.19)। पाँच मिनट भी एक सच्ची शुरुआत है।' }
+        },
+        surrender: {
+            terms: ['surrender', 'sharanagati', 'sharan', 'samarpan', 'शरणागति', 'शरण', 'समर्पण'],
+            verse: '18_66',
+            en: { title: 'Surrender — setting the weight down', body: 'Surrender in the Gita is not giving up. It is setting down a weight you were never meant to carry alone: "take refuge in me alone; I will free you; do not grieve" (18.66). You still act. You simply stop gripping the outcome.' },
+            hi: { title: 'शरणागति — बोझ नीचे रखना', body: 'गीता में समर्पण हार मानना नहीं है। यह उस बोझ को नीचे रखना है जिसे आपको अकेले कभी नहीं उठाना था: "मेरी शरण में आओ; मैं तुम्हें मुक्त करूँगा; शोक मत करो" (18.66)। आप कर्म करते रहते हैं — बस परिणाम को जकड़ना छोड़ देते हैं।' }
+        },
+        detachment: {
+            terms: ['detachment', 'non attachment', 'nonattachment', 'vairagya', 'anasakti', 'वैराग्य', 'अनासक्ति'],
+            verse: '6_35',
+            en: { title: 'Detachment — caring without clutching', body: 'Detachment does not mean not caring. It means caring fully about the work and the people while loosening your grip on how things must turn out. The Gita pairs it with practice: "by practice and detachment the restless mind is held" (6.35).' },
+            hi: { title: 'वैराग्य — परवाह करना, जकड़ना नहीं', body: 'वैराग्य का अर्थ परवाह न करना नहीं है। इसका अर्थ है काम और लोगों की पूरी परवाह करते हुए इस पकड़ को ढीला करना कि सब कुछ कैसा होना ही चाहिए। गीता इसे अभ्यास के साथ जोड़ती है: "अभ्यास और वैराग्य से चंचल मन वश में होता है" (6.35)।' }
+        },
+        rebirth: {
+            terms: ['reincarnation', 'rebirth', 'punarjanm', 'punarjanam', 'punar janm', 'after death', 'life after death', 'पुनर्जन्म', 'मृत्यु के बाद'],
+            verse: '2_22',
+            en: { title: 'What happens after death', body: 'The Gita teaches that the self moves on as a person changes clothes: "as one sets aside worn garments and puts on new ones, the self takes on new bodies" (2.22). Death, in this view, is a change of form — not the end of who someone is.' },
+            hi: { title: 'मृत्यु के बाद क्या होता है', body: 'गीता सिखाती है कि आत्मा वैसे ही आगे बढ़ती है जैसे कोई वस्त्र बदलता है: "जैसे मनुष्य पुराने वस्त्र छोड़कर नए पहन लेता है, वैसे ही आत्मा नए शरीर धारण करती है" (2.22)। इस दृष्टि से मृत्यु रूप का बदलना है — व्यक्ति के होने का अंत नहीं।' }
+        },
+        sthitaprajna: {
+            terms: ['sthitaprajna', 'sthita prajna', 'sthitpragya', 'steady wisdom', 'स्थितप्रज्ञ'],
+            verse: '2_56',
+            en: { title: 'Sthitaprajña — steady wisdom', body: 'A sthitaprajña is a person of steady wisdom — "not shaken by sorrow, not craving pleasure, free of fear and anger" (2.56). It is the Gita\'s picture of a calm, grown-up heart: something to grow toward, not a test to pass.' },
+            hi: { title: 'स्थितप्रज्ञ — स्थिर बुद्धि', body: 'स्थितप्रज्ञ वह है जिसकी बुद्धि स्थिर है — "दुःख में जो विचलित नहीं होता, सुख की लालसा नहीं रखता, भय और क्रोध से मुक्त है" (2.56)। यह एक शांत, परिपक्व हृदय की गीता की छवि है: जिसकी ओर बढ़ना है, कोई परीक्षा नहीं जिसे पास करना है।' }
+        },
+        suffering: {
+            terms: ['bad things happen', 'why is there suffering', 'why do people suffer', 'why do we suffer', 'why does god allow',
+                'why god allows', 'suffering', 'dukh kyun', 'दुख क्यों', 'दुःख क्यों'],
+            verse: '2_14',
+            en: { title: 'Why do bad things happen?', body: 'The Gita does not pretend suffering is not real, and it does not blame the one who suffers. It offers three ways of seeing. Pain and pleasure are passing contacts, like winter and summer — they come and go (2.14). The deepest part of you is never harmed by them (2.23). And God "takes no one’s sin or merit"; it is our not-seeing that makes the world look cruel or random (5.15). It does not answer every "why" — but it shows how to bear it, and who you are while you do.' },
+            hi: { title: 'बुरी बातें क्यों होती हैं?', body: 'गीता यह नहीं दिखाती कि दुख सच्चा नहीं, और न ही दुखी व्यक्ति को दोष देती है। वह देखने के तीन ढंग देती है। सुख और दुख आते-जाते संपर्क हैं, सर्दी और गर्मी की तरह (2.14)। आपका सबसे गहरा स्वरूप उनसे कभी आहत नहीं होता (2.23)। और ईश्वर "किसी का पाप या पुण्य नहीं लेते"; हमारा न देख पाना ही संसार को क्रूर या बेतरतीब दिखाता है (5.15)। यह हर "क्यों" का उत्तर नहीं देती — पर यह दिखाती है कि उसे कैसे सहें, और सहते हुए आप कौन हैं।' }
+        },
+        avatar: {
+            terms: ['avatar', 'avatara', 'avtaar', 'avtar', 'अवतार'],
+            verse: '4_7',
+            en: { title: 'Avatāra — the Divine taking form', body: 'An avatāra is the Divine taking form in the world. "Whenever goodness declines and wrong rises, I come forth" (4.7) — Krishna\'s promise that the world is never abandoned.' },
+            hi: { title: 'अवतार — ईश्वर का रूप लेना', body: 'अवतार ईश्वर का संसार में रूप लेना है। "जब-जब धर्म की हानि और अधर्म की वृद्धि होती है, तब-तब मैं प्रकट होता हूँ" (4.7) — कृष्ण का वचन कि यह संसार कभी अकेला नहीं छोड़ा जाता।' }
+        },
+        brahman: {
+            terms: ['brahman', 'brahm', 'ब्रह्म'],
+            verse: '5_18',
+            en: { title: 'Brahman — the one reality', body: 'Brahman is the one reality behind everything — beyond form, yet present in all. That is why the Gita says the wise see the same Self in a scholar, a cow, an elephant, a dog and an outcast (5.18).' },
+            hi: { title: 'ब्रह्म — एक ही सत्य', body: 'ब्रह्म वह एक सत्य है जो हर चीज़ के पीछे है — रूप से परे, फिर भी सब में उपस्थित। इसीलिए गीता कहती है कि ज्ञानी विद्वान, गाय, हाथी, कुत्ते और चांडाल में एक ही आत्मा देखते हैं (5.18)।' }
+        }
+    };
+
+    function lookupConcept(normalised) {
+        for (const [id, entry] of Object.entries(GLOSSARY)) {
+            if (entry.terms.some((term) => has(normalised, term))) return { id, ...entry };
+        }
+        return null;
+    }
+
+    const QUESTION_START = /^\s*(why|how|what|who|where|when|is|are|am|can|could|should|will|would|do|does|did|kya|kyun|kyu|kaise|kab|kahan|kaun|क्या|क्यों|कैसे|कब|कहाँ|कौन)\b/iu;
+    const isQuestion = (text) => /\?\s*$/.test(String(text || '')) || QUESTION_START.test(String(text || ''));
+
+    const wordCount = (normalised) => normalised.trim().split(' ').filter((word) => word && word !== '|').length;
+
+    function detectIntent(text, { lastVerseId = null } = {}) {
+        const normalised = normalise(text);
+        if (normalised === ' ') return null;
+        const words = wordCount(normalised);
+        const feelings = detectEmotions(text).filter((name) => !['peace', 'gratitude', 'love', 'devotion'].includes(name));
+
+        // "What is karma?" — or just "karma?"
+        const concept = lookupConcept(normalised);
+        if (concept && (QUESTION_CUES.some((cue) => has(normalised, cue)) || words <= 2) && words <= 14) {
+            return { kind: 'concept', concept };
+        }
+        if (SELF_TERMS.some((term) => has(normalised, term)) && words <= 10) return { kind: 'self', godQuestion: has(normalised, 'are you krishna') || has(normalised, 'are you god') };
+        if (lastVerseId && words <= 12 && EXPLAIN_TERMS.some((term) => has(normalised, term))) return { kind: 'explain' };
+        if (words <= 3 && ACK_TERMS.includes(normalised.replace(/\|/g, ' ').trim().replace(/\s+/g, ' '))) return { kind: 'ack' };
+        if (!feelings.length && words <= 8 && THANKS_TERMS.some((term) => has(normalised, term)) && !WANTING.some((term) => has(normalised, term))) {
+            return { kind: 'thanks' };
+        }
+        if (!feelings.length && words <= 5 && !detectTopics(text).length) {
+            const devotional = GREETINGS.devotional.find((item) => item.terms.some((term) => has(normalised, term)));
+            if (devotional) return { kind: 'greeting', reply: devotional.reply };
+            if (GREETINGS.plain.some((term) => has(normalised, term))) return { kind: 'greeting', reply: null };
+        }
+        return null;
+    }
+
+    // -----------------------------------------------------------------------
+    // Safety — someone being hurt by another person needs help before a verse.
+    // -----------------------------------------------------------------------
+
+    const SAFETY_TERMS = ['hits me', 'beats me', 'beating me', 'beat me up', 'slaps me', 'abuses me', 'abusing me', 'abused',
+        'abusive', 'molest*', 'rape*', 'sexually assault*', 'assaulted', 'harass*', 'domestic violence', 'unsafe at home',
+        'not safe at home', 'threatens me', 'threatening me', 'stalking me', 'stalker', 'touches me', 'maarta hai', 'maarti hai',
+        'maarte hai', 'marta hai', 'pitai', 'maar peet', 'मारता है', 'मारती है', 'मारते हैं', 'पिटाई', 'छेड़छाड़', 'उत्पीड़न', 'बलात्कार'];
+
+    const SAFETY_RESPONSE = {
+        en: 'What you are describing sounds unsafe, and you deserve to be safe. Please reach someone who can help right now — a person you trust, or one of these lines. They are free and confidential.\n\nHelp, right now:\n• Emergency (India): 112\n• Women Helpline (India): 181\n• Childline (India): 1098\n• Tele-MANAS (India): 14416\n• Anywhere in the world: https://findahelpline.com\n\nWhen you are safe, I am here to sit with you and the Gita.',
+        hi: 'आप जो बता रहे हैं वह असुरक्षित लगता है, और आप सुरक्षित रहने के हक़दार हैं। कृपया अभी किसी ऐसे व्यक्ति से संपर्क करें जो मदद कर सके — किसी भरोसेमंद इंसान से, या इनमें से किसी हेल्पलाइन से। ये निःशुल्क और गोपनीय हैं।\n\nअभी मदद:\n• आपातकाल (भारत): 112\n• महिला हेल्पलाइन (भारत): 181\n• चाइल्डलाइन (भारत): 1098\n• टेली-मानस (भारत): 14416\n• दुनिया में कहीं भी: https://findahelpline.com\n\nजब आप सुरक्षित हों, मैं आपके और गीता के साथ बैठने के लिए यहीं हूँ।'
+    };
+
+    function detectSafety(text) {
+        const normalised = normalise(text);
+        if (normalised === ' ') return false;
+        return SAFETY_TERMS.some((term) => {
+            const index = findTerm(normalised, term);
+            return index !== -1 && !negated(normalised, index, term.split(' ').length);
+        });
+    }
+
+    // -----------------------------------------------------------------------
+    // The person. Everything here comes from their own device — what they
+    // chose to be called, what they wrote about before (as a situation label,
+    // never their words), feelings that keep returning, today's intention,
+    // and verses that moved them. It shapes the reply; it never leaves.
+    // -----------------------------------------------------------------------
+
+    const LIGHT_FEELINGS = ['peace', 'gratitude', 'love', 'devotion'];
+    const HEAVY = (emotion) => Boolean(emotion) && !LIGHT_FEELINGS.includes(emotion);
+
+    function cleanName(name) {
+        if (typeof name !== 'string') return null;
+        const trimmed = name.replace(/[^\p{L}\p{M} .'-]/gu, '').trim().slice(0, 24);
+        return trimmed || null;
+    }
+
+    const withName = (sentence, name, lang) => {
+        if (!name) return sentence;
+        if (lang === 'hi') return `${name}, ${sentence}`;
+        const keepCapital = /^(I\b|I’|I')/.test(sentence);
+        return `${name}, ${keepCapital ? sentence : `${sentence.charAt(0).toLowerCase()}${sentence.slice(1)}`}`;
+    };
+
+    const PERSONAL = {
+        returning: {
+            en: (label) => `You wrote about ${label} before, too. Thank you for trusting me with it again.`,
+            hi: (label) => `आपने पहले भी ${label} के बारे में लिखा था। फिर से भरोसा करने के लिए धन्यवाद।`
+        },
+        recurring: {
+            en: 'This feeling has visited you before this week. Coming back to sit with it is itself a kind of strength.',
+            hi: 'यह भाव इस सप्ताह पहले भी आया है। लौटकर इसके साथ बैठना अपने आप में एक शक्ति है।'
+        },
+        sankalpa: {
+            en: (quality) => ` This morning you chose ${quality}. Moments like this are where it is lived.`,
+            hi: (quality) => ` आज सुबह आपने ${quality} का संकल्प लिया था। ऐसे ही पलों में वह जिया जाता है।`
+        },
+        night: {
+            en: 'It is late. Be gentle with yourself tonight — nothing has to be solved before morning.',
+            hi: 'रात हो चुकी है। आज रात स्वयं के प्रति कोमल रहिए — सुबह से पहले कुछ भी सुलझाना ज़रूरी नहीं।'
+        },
+        long: {
+            en: 'Thank you for writing all of this. It takes courage to put it into words.',
+            hi: 'यह सब लिखने के लिए धन्यवाद। इसे शब्दों में रखने के लिए हिम्मत चाहिए।'
+        },
+        invite: {
+            en: 'If you tell me a little more — what happened, and how it sits with you — I can find a verse closer to your heart.',
+            hi: 'अगर आप थोड़ा और बताएँ — क्या हुआ, और मन पर कैसा लग रहा है — तो मैं आपके और क़रीब का श्लोक ढूँढ सकता हूँ।'
+        },
+        both: {
+            en: (a, b) => `I hear your ${a} — and your ${b} too.`,
+            hi: (a, b) => `आपके शब्दों में ${a} भी है और ${b} भी।`
+        },
+        smalltalk: {
+            en: (name) => `I’m here${name ? `, ${name}` : ''}. Tell me a little more — how are you, really? You can write about anything: what happened today, what’s worrying you, or what you’re hoping for.`,
+            hi: (name) => `मैं यहाँ हूँ${name ? `, ${name}` : ''}। थोड़ा और बताइए — आप सच में कैसे हैं? कुछ भी लिख सकते हैं: आज क्या हुआ, किस बात की चिंता है, या किस बात की आशा।`
+        }
+    };
+
+    // "Tamish — may the next step be enough…"
+    const withBlessingName = (blessing, name, lang) => {
+        if (!name || !/^(May|आप|आपका|आपकी|आपको|यह|अगला|प्रेम|इच्छा|ईश्वर|आज|रास्ता|पहला)/.test(blessing)) return name ? `${name}, ${blessing}` : blessing;
+        if (lang === 'hi') return `${name}, ${blessing}`;
+        return `${name} — ${blessing.charAt(0).toLowerCase()}${blessing.slice(1)}`;
+    };
+
+    // Reply in Hindi when someone writes in Devanagari, whatever the setting.
+    function replyLanguage(text, settings) {
+        if (settings.language === 'hi') return 'hi';
+        const letters = String(text || '').match(/\p{L}/gu) || [];
+        if (!letters.length) return 'en';
+        const devanagari = letters.filter((char) => /[ऀ-ॿ]/.test(char)).length;
+        return devanagari / letters.length > 0.4 ? 'hi' : 'en';
+    }
+
+    function findVerse(verses, id) {
+        return id ? verses.find((verse) => verse.id === id) || null : null;
+    }
+
+    function simpleOf(verse, lang) {
+        return verse?.notification_short ? (verse.notification_short[lang] || verse.notification_short.en) : null;
+    }
+
+    function respondToIntent(intent, { verses, lang, name, person, profile, lastVerse }) {
+        const greetingName = name ? (lang === 'hi' ? `, ${name}` : `, ${name}`) : '';
+        if (intent.kind === 'greeting') {
+            const salutation = intent.reply ? intent.reply[lang] : (lang === 'hi' ? 'नमस्ते' : 'Namaste');
+            const last = person?.lastVisit;
+            const lastLabel = last?.topic && TOPICS[last.topic] ? TOPICS[last.topic].label[lang] : null;
+            const daysAgo = last?.at ? (Date.now() - Date.parse(last.at)) / 86400000 : Infinity;
+            const continuity = lastLabel && daysAgo >= 0.5 && daysAgo < 30
+                ? (lang === 'hi' ? ` पिछली बार आपने ${lastLabel} के बारे में लिखा था। अब वह कैसा है?` : ` Last time, you wrote about ${lastLabel}. How is that now?`)
+                : '';
+            const message = lang === 'hi'
+                ? `${salutation} 🙏 मैं यहाँ हूँ${greetingName}।${continuity}\n\nआज मन में क्या है? एक शब्द भी काफ़ी है — या सब कुछ लिख दीजिए।`
+                : `${salutation} 🙏 I'm here${greetingName}.${continuity}\n\nWhat is on your heart today? A word is enough — or write everything.`;
+            return { message, verse: null, context: { intent: 'greeting' } };
+        }
+        if (intent.kind === 'ack') {
+            const message = lang === 'hi'
+                ? `आराम से${greetingName}। अगर मन में कुछ और हो — या वही बात किसी और कोण से — तो मैं यहीं हूँ।`
+                : `Take your time${greetingName}. If something else is on your mind — or the same thing, from another side — I’m here.`;
+            return { message, verse: null, context: { intent: 'ack' } };
+        }
+        if (intent.kind === 'thanks') {
+            const message = lang === 'hi'
+                ? `मुझे ख़ुशी है${greetingName}। जब भी ज़रूरत हो, लौट आइए — मैं यहीं हूँ।`
+                : `I'm glad${greetingName}. Come back whenever you need — I'll be here.`;
+            return { message, verse: null, guidance: { blessing: NEUTRAL_BLESSING[lang] }, context: { intent: 'thanks' } };
+        }
+        if (intent.kind === 'self') {
+            const notGod = intent.godQuestion
+                ? (lang === 'hi' ? 'नहीं — मैं कृष्ण नहीं हूँ, केवल उनके शब्दों को साथ लेकर चलने वाला एक मित्र। ' : 'No — I am not Krishna, only a friend who carries his words. ')
+                : '';
+            const message = lang === 'hi'
+                ? `${notGod}मैं सखा हूँ — न कोई व्यक्ति, न कोई गुरु, बल्कि भगवद्गीता के इर्द-गिर्द बना एक शांत मित्र। अपने मन की बात किसी भी शब्दों में कहिए — हिन्दी, अंग्रेज़ी या हिंग्लिश। मैं वह श्लोक ढूँढूँगा जो उससे बात करता है, उसे सरल शब्दों में कहूँगा, और एक छोटा क़दम सुझाऊँगा। आप जो लिखते हैं, वह केवल इसी डिवाइस पर पढ़ा जाता है।`
+                : `${notGod}I'm Sakha — not a person and not a guru, but a quiet friend built around the Bhagavad Gita. Tell me what's on your heart in any words — English, Hindi or Hinglish. I'll find the verse that speaks to it, say it simply, and suggest one small step. What you write is read only on this device.`;
+            const verse = findVerse(verses, '4_3');
+            return { message, verse, guidance: verse ? { simple: simpleOf(verse, lang) } : null, context: { intent: 'self' } };
+        }
+        if (intent.kind === 'concept') {
+            const entry = intent.concept;
+            const verse = findVerse(verses, entry.verse);
+            const title = entry[lang].title;
+            const message = `${/[.?!।]$/.test(title) ? title : `${title}.`}\n\n${entry[lang].body}`;
+            const guidance = verse ? { simple: simpleOf(verse, lang), practice: entry.practice || null, step: null } : null;
+            return { message, verse, guidance, context: { intent: 'concept', concept: intent.concept.id } };
+        }
+        if (intent.kind === 'explain' && lastVerse) {
+            const entry = (profile.primary && GUIDANCE[profile.primary]) || NEUTRAL_GUIDANCE;
+            const simple = simpleOf(lastVerse, lang);
+            const moments = (lastVerse.life_situations || []).slice(0, 3);
+            const ref = `${lastVerse.chapter}.${lastVerse.verse || lastVerse.verse_number}`;
+            const parts = lang === 'hi'
+                ? [
+                    `इसे और सरल ढंग से कहूँ (${ref}):`,
+                    simple ? `सरल शब्दों में: ${simple}` : null,
+                    lastVerse.meaning_hi ? `पूरा अर्थ: ${lastVerse.meaning_hi}` : null,
+                    `आज इसे ऐसे जिएँ: ${entry.hi.step}`
+                ]
+                : [
+                    `Let me say it more simply (${ref}):`,
+                    simple ? `In plain words: ${simple}` : null,
+                    moments.length ? `It is for moments like ${moments.length > 1 ? `${moments.slice(0, -1).join(', ')} or ${moments[moments.length - 1]}` : moments[0]}.` : null,
+                    `How to live it today: ${entry.en.step}`
+                ];
+            return { message: parts.filter(Boolean).join('\n\n'), verse: null, context: { intent: 'explain', explained: lastVerse.id } };
+        }
+        return null;
     }
 
     /**
-     * @param {{ text?: string, mood?: string, settings?: object, history?: string[], exclude?: string[] }} input
+     * @param {{ text?: string, mood?: string, settings?: object, history?: string[], exclude?: string[],
+     *           another?: boolean, lastVerseId?: string, person?: object }} input
      * @param {{ verses: object[], chapters: object[], timeOfDay?: string, random?: () => number, offline?: boolean }} corpus
      */
     function respond(input, corpus) {
-        const { text = null, mood = null, settings = {}, history = [], exclude = [], another = false } = input || {};
+        const { text = null, mood = null, settings = {}, history = [], exclude = [], another = false, lastVerseId = null, person = null } = input || {};
         const { verses = [], chapters = [], timeOfDay = null, random = Math.random, offline = false } = corpus || {};
-        const lang = settings.language === 'hi' ? 'hi' : 'en';
+        const lang = replyLanguage(text, settings);
         const depth = settings.depth || 'standard';
         const extra = offline ? { offline: true } : {};
+        const name = cleanName(person?.name);
 
+        // Human help comes before scripture, always.
         if (detectCrisis(text) || (!text && detectCrisis(mood))) {
             return { message: CRISIS_RESPONSE[lang], verse: null, context: { crisis_detected: true, ...extra } };
+        }
+        if (text && detectSafety(text)) {
+            return { message: SAFETY_RESPONSE[lang], verse: null, context: { crisis_detected: true, safety: true, ...extra } };
         }
 
         if (text && shouldMirror(text)) {
             return {
-                message: `${pick(MIRROR[lang], random)}\n\n${pick(GROUNDING[lang], random)}`,
+                message: `${withName(pick(MIRROR[lang], random), name, lang)}\n\n${pick(GROUNDING[lang], random)}`,
                 verse: null,
                 context: { mirrored: true, ...extra }
             };
         }
 
-        const profile = buildProfile({ text, mood, history, timeOfDay });
+        const profile = buildProfile({ text, mood, history, timeOfDay, person });
+
+        // Not every message is a feeling: hello, thank you, "what is karma?",
+        // "who are you?", "I don't understand".
+        if (text && !another) {
+            const intent = detectIntent(text, { lastVerseId });
+            if (intent) {
+                const reply = respondToIntent(intent, { verses, lang, name, person, profile, lastVerse: findVerse(verses, lastVerseId) });
+                if (reply) return { ...reply, context: { ...reply.context, language: lang, engine: ENGINE_VERSION, ...extra } };
+            }
+        }
+
+        if (text && !another && !mood && !profile.primary && !profile.topics.length && wordCount(normalise(text)) <= 8 && !isQuestion(text)) {
+            return { message: PERSONAL.smalltalk[lang](name), verse: null, context: { intent: 'smalltalk', invite: true, language: lang, engine: ENGINE_VERSION, ...extra } };
+        }
+
         const verse = pickVerse(rankVerses(verses, chapters, profile), { exclude, random });
         if (!verse) {
             return {
@@ -820,9 +2453,12 @@
         }
 
         const verseText = (lang === 'hi' ? verse.meaning_hi : verse.meaning_en) || verse.meaning_en || verse.meaning_hi;
+        const topic = profile.topics[0] || null;
         const context = {
             emotion: profile.primary,
             emotions: profile.emotions,
+            topics: profile.topics,
+            language: lang,
             engine: ENGINE_VERSION,
             ...extra
         };
@@ -831,25 +2467,64 @@
             return { message: `"${verseText}"`, verse, context: { ...context, silent_mode: true } };
         }
 
-        const heard = Boolean(profile.primary || profile.keywords.length || mood);
-        const ack = another
+        const heard = Boolean(profile.primary || profile.keywords.length || mood || topic);
+        const heavy = !profile.primary || HEAVY(profile.primary);
+        const understood = Boolean(profile.primary || topic || mood);
+        const counsel = counselFor(counselFeeling(profile), profile.topics)?.[lang] || null;
+
+        // First paragraph: being heard.
+        const opening = [];
+        if (!another && text && text.length > 280) opening.push(PERSONAL.long[lang]);
+        let ack = another
             ? pick(ANOTHER[lang], random)
-            : heard ? acknowledge(profile, lang, random) : UNHEARD[lang];
-        const ground = pick(GROUNDING[lang], random);
+            : counsel ? counsel.ack : heard ? acknowledge(profile, lang, random) : UNHEARD[lang];
+        const useName = !another && heard && name && (!history.length || random() < 0.35);
+        if (useName) ack = withName(ack, name, lang);
+        opening.push(ack);
+        if (!another && topic && heavy && !counsel) opening.push(TOPICS[topic].line[lang]);
+
+        // Second paragraph: what this person has carried before (from their device).
+        let personal = null;
+        const previous = topic && person?.topics?.[topic];
+        const previousAgo = previous?.last ? (Date.now() - Date.parse(previous.last)) / 3600000 : 0;
+        if (!another && previous && previous.count >= 1 && previousAgo >= 6) {
+            personal = PERSONAL.returning[lang](TOPICS[topic].label[lang]);
+        } else if (!another && HEAVY(profile.primary) && (person?.recurring?.[profile.primary] || 0) >= 2) {
+            personal = PERSONAL.recurring[lang];
+        }
+
+        const ground = !heavy ? pick(LIGHT_GROUNDING[lang], random)
+            : timeOfDay === 'night' && !another ? PERSONAL.night[lang] : pick(GROUNDING[lang], random);
         const guidance = guidanceFor(verse, profile, lang);
+        if (name && guidance.blessing) guidance.blessing = withBlessingName(guidance.blessing, name, lang);
+        const quality = person?.sankalpa && (person.sankalpa[lang] || person.sankalpa.en);
+        if (quality && HEAVY(profile.primary) && guidance.bridge) guidance.bridge += PERSONAL.sankalpa[lang](quality);
+        const invite = !another && !understood;
+        const concern = Boolean(text) && detectConcern(text);
 
         let message;
         if (depth === 'brief') {
-            message = `${ack}\n\n"${verseText}"`;
+            message = [opening.join(' '), `"${verseText}"`].join('\n\n');
             guidance.bridge = null;
-        } else if (depth === 'deep') {
-            const invitation = lang === 'hi' ? 'इस विचार के साथ कुछ पल बैठें।' : 'Sit with this thought for a moment.';
-            message = [`${ack} ${pick(REFLECTIONS[lang], random)}`, `"${verseText}"`, `${ground} ${invitation}`].join('\n\n');
         } else {
-            message = [`${ack} ${pick(REFLECTIONS[lang], random)}`, `"${verseText}"`, ground].join('\n\n');
+            const invitation = depth === 'deep' ? ` ${lang === 'hi' ? 'इस विचार के साथ कुछ पल बैठें।' : 'Sit with this thought for a moment.'}` : '';
+            message = [
+                opening.join(' '),
+                personal,
+                pick((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random),
+                `"${verseText}"`,
+                `${ground}${invitation}`,
+                invite ? PERSONAL.invite[lang] : null,
+                concern ? CONCERN_LINE[lang] : null
+            ].filter(Boolean).join('\n\n');
         }
 
-        return { message, verse, guidance, context: { ...context, self_limited: !heard || undefined } };
+        return {
+            message,
+            verse,
+            guidance,
+            context: { ...context, self_limited: !heard || undefined, invite: invite || undefined, remembered: Boolean(personal) || undefined, concern: concern || undefined }
+        };
     }
 
     // -----------------------------------------------------------------------
@@ -924,6 +2599,17 @@
         CRISIS_TERMS,
         BLESSINGS,
         EMOTIONS,
+        TOPICS,
+        GLOSSARY,
+        GUIDANCE,
+        COUNSEL,
+        COUNSEL_ALIASES,
+        ANCHORS,
+        VOICE,
+        detectTopics,
+        detectIntent,
+        detectSafety,
+        detectConcern,
         normalise,
         detectCrisis,
         detectEmotions,

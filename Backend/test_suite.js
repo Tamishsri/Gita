@@ -21,7 +21,7 @@ async function runTests() {
     }
 
     // 1. Data Loader Test
-    console.log('[1/8] Testing Data Loader & All 18 Chapters...');
+    console.log('[1/9] Testing Data Loader & All 18 Chapters...');
     loadData();
     const allVerses = getVerses();
     assert(allVerses.length >= 700, `Loaded ${allVerses.length} total verses across all chapters`);
@@ -42,7 +42,7 @@ async function runTests() {
     assert(allChaptersHaveVerses, 'Every chapter from 1 to 18 has valid verses and metadata');
 
     // 2. Search Functionality
-    console.log('\n[2/8] Testing Multi-Dimensional Search...');
+    console.log('\n[2/9] Testing Multi-Dimensional Search...');
     const searchTerms = ['peace', 'karma', 'fear', 'duty', '2_47', 'death', 'meditation'];
     for (const term of searchTerms) {
         const { results } = searchService.searchVerses(allVerses, term);
@@ -68,7 +68,7 @@ async function runTests() {
     assert(searchService.searchVerses(allVerses, 'शांति').results.length > 0, 'Hindi query "शांति" finds verses through the Hindi translations');
 
     // 3. AI Service - Sacred Verse Selection by Mood
-    console.log('\n[3/8] Testing AI Service Mood Matching...');
+    console.log('\n[3/9] Testing AI Service Mood Matching...');
     const testMoods = ['peace', 'anxious', 'sad', 'angry', 'confused', 'happy', 'grateful'];
     for (const mood of testMoods) {
         const result = await aiService.generateResponse({
@@ -80,7 +80,7 @@ async function runTests() {
     }
 
     // 4. Crisis Safety Protocols
-    console.log('\n[4/8] Testing Crisis Safety Protocols & Helplines...');
+    console.log('\n[4/9] Testing Crisis Safety Protocols & Helplines...');
     const crisisPrompts = [
         'I want to end my life',
         'Feeling suicidal and hopeless',
@@ -103,7 +103,7 @@ async function runTests() {
     }
 
     // 5. Hindi Language Support
-    console.log('\n[5/8] Testing Hindi Response & Translations...');
+    console.log('\n[5/9] Testing Hindi Response & Translations...');
     const hindiResult = await aiService.generateResponse({
         text: 'मुझे बहुत चिंता हो रही है',
         mood: 'anxious',
@@ -113,7 +113,7 @@ async function runTests() {
     assert(hindiResult.message.length > 20, `Generated contemplative response in Hindi`);
 
     // 6. HTTP API — the real Express app on an ephemeral port
-    console.log('\n[6/8] Testing HTTP Endpoints...');
+    console.log('\n[6/9] Testing HTTP Endpoints...');
     process.env.NODE_ENV = 'test';
     const app = require('./src/app');
     const server = await new Promise((resolve) => {
@@ -169,7 +169,7 @@ async function runTests() {
     }
 
     // 7. One engine everywhere — the offline worker runs the shared Wisdom Engine
-    console.log('\n[7/8] Testing Offline Engine Is The Shared Engine...');
+    console.log('\n[7/9] Testing Offline Engine Is The Shared Engine...');
     const fs = require('fs');
     const path = require('path');
     const engine = require('../shared/wisdom-engine');
@@ -182,7 +182,7 @@ async function runTests() {
     assert(crisisHi.message.includes('14416') && /[ऀ-ॿ]/.test(crisisHi.message), 'Hindi crisis reply is in Hindi and carries Tele-MANAS');
 
     // 8. The sanctuary's listening — safety, understanding, variety
-    console.log('\n[8/8] Testing AI Safety, Understanding & Variety...');
+    console.log('\n[8/9] Testing AI Safety, Understanding & Variety...');
     const corpus = { verses: allVerses, chapters: chaptersMeta };
     // mulberry32: a small, well-distributed seeded generator for repeatable tests.
     const seeded = (seed) => () => {
@@ -258,8 +258,118 @@ async function runTests() {
     assert(unblessed.length === 0, `Every feeling has a blessing in English and Hindi${unblessed.length ? ` — missing: ${unblessed.join(', ')}` : ''}`);
     const blessedEn = engine.respond({ text: 'I failed my exam and feel like a failure' }, { ...corpus, random: seeded(3) });
     const blessedHi = engine.respond({ text: 'mujhe bahut gussa aa raha hai', settings: { language: 'hi' } }, { ...corpus, random: seeded(4) });
-    const blessedNeutral = engine.respond({ text: 'tell me something' }, { ...corpus, random: seeded(5) });
+    const blessedNeutral = engine.respond({ text: 'I was walking home tonight and kept thinking about the conversation we had at dinner' }, { ...corpus, random: seeded(5) });
     assert(/^May /.test(blessedEn.guidance?.blessing || '') && /[ऀ-ॿ]/.test(blessedHi.guidance?.blessing || '') && Boolean(blessedNeutral.guidance?.blessing), 'Answers carry a blessing — English, Hindi, and when no feeling is named');
+
+    // ------------------------------------------------------------------
+    console.log('\n[9/9] Testing Understanding Anyone, In Their Own Words...');
+    const say = (text, extra = {}, seed = 3) => engine.respond({ text, history: [], ...extra }, { ...corpus, random: seeded(seed), timeOfDay: 'afternoon' });
+    const verseExists = (ref) => allVerses.some((v) => v.id === ref.replace('.', '_'));
+
+    // The person's name opens the reply, and the counsel fits their situation.
+    const tamish = say('I am feeling scared about my career', { person: { name: 'Tamish' } });
+    assert(/^Tamish, /.test(tamish.message) && /2\.47/.test(tamish.guidance.bridge) && /^Tamish — may/.test(tamish.guidance.blessing),
+        `A named person is answered by name, with counsel for their situation ("${tamish.message.split('\n')[0]}")`);
+
+    // The whole spectrum: every feeling the lexicon knows is reachable in plain words.
+    const spectrum = {
+        lust: 'I keep having lustful thoughts', emptiness: 'I just feel numb and empty', pride: 'my ego is getting out of control',
+        love: 'I think I am falling for her', devotion: 'I want to feel closer to Krishna', inertia: 'I have no motivation to do anything',
+        envy: 'I am jealous of my cousin', craving: 'I cannot stop smoking', purpose: 'what am i doing with my life',
+        guilt: 'I lied to my best friend', heartbreak: 'she cheated on me', grief: 'my grandfather passed away',
+        loneliness: 'I feel so alone', unworthiness: 'I feel like a burden to everyone', failure: 'I failed my exam',
+        confusion: 'I dont know what to do', stress: 'I am so overwhelmed', anger: 'I am furious at my brother',
+        sadness: 'I feel so sad today', fear: 'I am terrified of tomorrow', anxiety: 'I am so anxious', peace: 'I feel peaceful today',
+        gratitude: 'I got into IIT'
+    };
+    const unreached = Object.entries(spectrum).filter(([feeling, text]) => engine.detectEmotions(text)[0] !== feeling);
+    assert(unreached.length === 0 && Object.keys(spectrum).length === Object.keys(engine.EMOTIONS).length,
+        `All ${Object.keys(engine.EMOTIONS).length} feelings are understood${unreached.length ? ` — missed: ${unreached.map(([f, t]) => `"${t}"→${engine.detectEmotions(t)[0]} (want ${f})`).join(' | ')}` : ''}`);
+
+    // Desire is met without shame, as the Gita meets it.
+    const lust = say('I keep having lustful thoughts and I feel ashamed');
+    const lustVerses = Array.from({ length: 12 }, (_, i) => say('I keep having lustful thoughts and I feel ashamed', {}, i + 1).verse);
+    assert(/7\.11/.test(lust.guidance.bridge) && !/sinner|sinful|dirty|disgusting/i.test(`${lust.message} ${lust.guidance.bridge}`)
+        && lustVerses.every((v) => !/sinners?\b/i.test(v.meaning_en) && !/\bsin|sinner|evil/i.test(v.notification_short?.en || '')),
+        'Lust is answered with the Gita’s own balance (7.11), never with shame');
+
+    // Not every message is a feeling.
+    const hello = say('namaste');
+    const thanks = say('thank you, that really helped');
+    const karma = say('what is karma?');
+    const karmaHi = say('कर्म क्या है?');
+    const who = say('who are you?');
+    assert(hello.verse === null && /Namaste/.test(hello.message) && thanks.context.intent === 'thanks' && karma.verse?.id === '2_47'
+        && karmaHi.context.language === 'hi' && /[ऀ-ॿ]/.test(karmaHi.message) && who.context.intent === 'self' && /on this device/.test(who.message),
+        'Greetings, thanks, "what is karma?" (English and Hindi) and "who are you?" are each answered as what they are');
+
+    const explain = say('I dont understand', { lastVerseId: '2_47' });
+    assert(explain.context.intent === 'explain' && explain.message.includes('Focus on the work, not the reward'),
+        '"I don\'t understand" re-explains the last verse in plain words');
+
+    const why = say('why do bad things happen to good people');
+    const gibberish = say('asdfgh');
+    assert(why.context.intent === 'concept' && why.verse && gibberish.verse === null && gibberish.context.intent === 'smalltalk',
+        'A real question gets a real answer; small talk and gibberish get a gentle question back, not a random verse');
+
+    // Safety: hurt by someone else → help first. Figures of speech are not alarms.
+    const unsafe = say('my husband hits me when he drinks');
+    const figure = say('it hit me hard that I am getting older');
+    assert(unsafe.context.safety && unsafe.message.includes('112') && unsafe.verse === null && !figure.context.safety,
+        'Someone being hurt at home is given emergency lines first; "it hit me hard" is not mistaken for violence');
+
+    // Unseen words still find their situation and its counsel.
+    const founder = say('my investors pulled out of the startup and I have to tell my team tomorrow');
+    assert(founder.guidance.counselled && founder.context.topics[0] === 'work' && !engine.isNarrative(founder.verse),
+        'A message with no feeling words still finds its situation and fitting counsel');
+
+    // Mixed messages: heavy feelings lead; others' good news is not the person's joy.
+    const autopilot = say('Lately I feel like I am living on autopilot. My friends are getting married and moving forward and I feel stuck and empty.');
+    assert(autopilot.context.emotion !== 'gratitude' && !/wonderful/i.test(autopilot.message),
+        'Someone else\'s good news inside a heavy message is not mistaken for joy');
+
+    const iCheated = engine.detectEmotions('I cheated on my partner')[0];
+    const cheatedOn = engine.detectEmotions('my partner cheated on me')[0];
+    const forgive = engine.detectEmotions('main apne aap ko kabhi maaf nahi kar paunga')[0];
+    assert(iCheated === 'guilt' && cheatedOn === 'heartbreak' && forgive === 'guilt',
+        'Who did what is understood: "I cheated" is guilt, "cheated on me" is heartbreak; "maaf nahi kar paunga" is guilt');
+
+    const career = say('my parents want me to become a doctor but I love music');
+    const okay = say('hmm ok', { history: ['I feel lost'] });
+    const tumour = say('I went to the doctor and they found a tumour', { history: ['I feel lost'] });
+    assert(career.guidance.counselled && /3\.35/.test(career.guidance.bridge) && !career.context.topics.includes('health')
+        && okay.context.intent === 'ack' && okay.verse === null && /2\.13|2\.23|18\.66/.test(tumour.guidance.bridge),
+        'A career someone else chose is a question of svadharma; "hmm ok" is met with patience; a new diagnosis outweighs an earlier mood');
+
+    const devanagari = say('मुझे अपने भविष्य की बहुत चिंता है');
+    assert(devanagari.context.language === 'hi' && /[ऀ-ॿ]/.test(devanagari.guidance.bridge), 'Writing in Devanagari is answered in Hindi');
+
+    // Memory from the person's own device shapes the reply.
+    const remembered = say('my exams are tomorrow and I am so anxious', {
+        person: { name: 'Riya', topics: { study: { count: 2, last: new Date(Date.now() - 2 * 86400000).toISOString() } }, sankalpa: { en: 'Steadiness', hi: 'धैर्य' } }
+    });
+    const recurring = say('I feel anxious again', { person: { recurring: { anxiety: 3 } } });
+    assert(remembered.context.remembered && /before, too/.test(remembered.message) && /Steadiness/.test(remembered.guidance.bridge)
+        && recurring.context.remembered && /visited you before/.test(recurring.message),
+        'What the person carried before, and the intention they set today, are woven into the reply');
+
+    const burden = say('I feel like a burden to everyone');
+    assert(burden.context.concern && /14416/.test(burden.message), 'Warning signs short of crisis add a quiet line pointing to a human');
+
+    // Integrity: every verse the counsel cites is a real verse.
+    const cited = new Set();
+    const collect = (text) => (String(text).match(/\((\d{1,2}\.\d{1,2})(?:[–,]\s?\d{1,2}(?:\.\d{1,2})?)*\)/g) || [])
+        .flatMap((group) => group.match(/\d{1,2}\.\d{1,2}/g)).forEach((ref) => cited.add(ref));
+    Object.values(engine.COUNSEL).forEach((entry) => ['en', 'hi'].forEach((lang) => ['ack', 'bridge', 'step'].forEach((key) => collect(entry[lang][key]))));
+    Object.values(engine.GLOSSARY).forEach((entry) => ['en', 'hi'].forEach((lang) => collect(entry[lang].body)));
+    Object.values(engine.BLESSINGS).forEach((entry) => collect(entry.en));
+    const anchorIds = [...Object.values(engine.ANCHORS.emotions), ...Object.values(engine.ANCHORS.topics)].flat();
+    const badRefs = [...cited].filter((ref) => !verseExists(ref));
+    const badAnchors = anchorIds.filter((id) => !allVerses.find((v) => v.id === id) || engine.isNarrative(allVerses.find((v) => v.id === id)));
+    const incomplete = Object.entries(engine.COUNSEL).filter(([, e]) => !['en', 'hi'].every((l) => e[l]?.ack && e[l]?.bridge && e[l]?.step)).map(([k]) => k);
+    const brokenAliases = Object.entries(engine.COUNSEL_ALIASES).filter(([, target]) => !engine.COUNSEL[target]).map(([k]) => k);
+    assert(!badRefs.length && !badAnchors.length && !incomplete.length && !brokenAliases.length && cited.size > 40,
+        `Every cited verse (${cited.size}) and anchor (${anchorIds.length}) is real; all ${Object.keys(engine.COUNSEL).length} counsels speak both languages${badRefs.length ? ` — missing refs: ${badRefs}` : ''}${badAnchors.length ? ` — bad anchors: ${badAnchors}` : ''}${incomplete.length ? ` — incomplete: ${incomplete}` : ''}${brokenAliases.length ? ` — broken aliases: ${brokenAliases}` : ''}`);
 
     console.log('\n====================================================');
     console.log(`TOTAL: ${passed} PASSED, ${failed} FAILED`);

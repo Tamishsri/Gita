@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, ArrowUp } from 'lucide-react';
+import { ArrowRight, ArrowUp, Lock } from 'lucide-react';
 import MoodSelector from './MoodSelector';
 import DailyVerse from './DailyVerse';
 import SavedLine from './SavedLine';
@@ -12,6 +12,7 @@ import { useI18n, localeFor } from '../i18n';
 import { MOD_KEY } from '../lib/platform';
 import { DAY_EVENT, qualityById, readDay } from '../lib/day';
 import { practiceById, practiceForNow } from '../lib/practices';
+import { usePreferences } from '../contexts/PreferencesContext';
 
 function greetingKey(date) {
     const hour = date.getHours();
@@ -21,31 +22,120 @@ function greetingKey(date) {
     return 'home.greeting.night';
 }
 
+const NAME_ASKED_KEY = 'lgNameAsked';
+
+// "What should I call you?" — asked once, gently, and kept on this device.
+function NameAsk() {
+    const { t } = useI18n();
+    const { updateSettings } = usePreferences();
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState('');
+    const [hidden, setHidden] = useState(() => {
+        try {
+            return Boolean(localStorage.getItem(NAME_ASKED_KEY));
+        } catch {
+            return false;
+        }
+    });
+    if (hidden) return null;
+
+    const close = () => {
+        try {
+            localStorage.setItem(NAME_ASKED_KEY, new Date().toISOString());
+        } catch {
+            // the question will simply be asked again
+        }
+        setHidden(true);
+    };
+
+    if (!open) {
+        return (
+            <button type="button" className="name-ask__open" onClick={() => setOpen(true)}>
+                {t('home.name.ask')}
+            </button>
+        );
+    }
+
+    return (
+        <form
+            className="name-ask"
+            onSubmit={(event) => {
+                event.preventDefault();
+                const name = value.trim();
+                if (!name) return;
+                updateSettings({ name });
+                close();
+            }}
+        >
+            <label className="sr-only" htmlFor="name-input">{t('home.name.label')}</label>
+            <div className="name-ask__row">
+                <input
+                    id="name-input"
+                    className="name-ask__input"
+                    value={value}
+                    onChange={(event) => setValue(event.target.value)}
+                    placeholder={t('home.name.placeholder')}
+                    maxLength={24}
+                    autoComplete="given-name"
+                    autoFocus
+                    enterKeyHint="done"
+                />
+                <button type="submit" className="btn btn--gold btn--sm" disabled={!value.trim()}>{t('home.name.save')}</button>
+            </div>
+            <p className="name-ask__note">
+                {t('home.name.note')}{' '}
+                <button type="button" className="btn btn--link btn--sm" onClick={close}>{t('common.notNow')}</button>
+            </p>
+        </form>
+    );
+}
+
 // Ask the Gita directly — the front door for anyone who arrives with a question.
+// It grows as they write: a sentence, or everything they have been carrying.
 function AskField({ onAsk }) {
     const { t } = useI18n();
+    const hasKeyboard = useHasKeyboard();
     const [text, setText] = useState('');
+    const areaRef = useRef(null);
+
+    useLayoutEffect(() => {
+        const area = areaRef.current;
+        if (!area) return;
+        area.style.height = 'auto';
+        area.style.height = `${Math.min(area.scrollHeight, 240)}px`;
+    }, [text]);
+
     const submit = (event) => {
-        event.preventDefault();
+        event?.preventDefault();
         if (text.trim()) onAsk(text.trim());
     };
+
     return (
-        <form className="ask" onSubmit={submit}>
-            <label className="sr-only" htmlFor="ask-input">{t('home.ask.label')}</label>
-            <input
-                id="ask-input"
-                className="ask__input"
-                value={text}
-                onChange={(event) => setText(event.target.value)}
-                placeholder={t('home.ask.placeholder')}
-                autoComplete="off"
-                enterKeyHint="send"
-                maxLength={2000}
-            />
-            <button type="submit" className="ask__send" disabled={!text.trim()} aria-label={t('home.ask.send')}>
-                <ArrowUp size={18} />
-            </button>
-        </form>
+        <div className="ask-wrap">
+            <form className={`ask${text.includes('\n') || text.length > 60 ? ' is-long' : ''}`} onSubmit={submit}>
+                <label className="sr-only" htmlFor="ask-input">{t('home.ask.label')}</label>
+                <textarea
+                    id="ask-input"
+                    ref={areaRef}
+                    className="ask__input"
+                    value={text}
+                    onChange={(event) => setText(event.target.value)}
+                    onKeyDown={(event) => {
+                        // On a keyboard, Enter sends and Shift+Enter starts a new line;
+                        // on a phone, the keyboard's own key adds a line and the arrow sends.
+                        if (hasKeyboard && event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) submit(event);
+                    }}
+                    placeholder={t('home.ask.placeholder')}
+                    rows={1}
+                    autoComplete="off"
+                    maxLength={2000}
+                />
+                <button type="submit" className="ask__send" disabled={!text.trim()} aria-label={t('home.ask.send')}>
+                    <ArrowUp size={18} />
+                </button>
+            </form>
+            <p className="ask__privacy"><Lock size={11} aria-hidden="true" /> {t('home.ask.privacy')}</p>
+        </div>
     );
 }
 
@@ -91,10 +181,13 @@ function Home({ settings, onSelectMood, onAsk, onSelectVerse, openPractice, open
                 <span className="hero__date">
                     {now.toLocaleDateString(localeFor(lang), { weekday: 'long', day: 'numeric', month: 'long' })}
                 </span>
-                <h1 className="hero__greeting">{t(greetingKey(now))}</h1>
+                <h1 className="hero__greeting">
+                    {t(greetingKey(now))}{settings.name ? <>, <span className="hero__name">{settings.name}</span></> : null}
+                </h1>
                 <p className="hero__question">
                     {settings.silentMode ? t('home.question.silent') : t('home.question')}
                 </p>
+                {!settings.name && <NameAsk />}
                 {quality && (
                     <span className="sankalpa-note">
                         {t('home.sankalpa.today')}

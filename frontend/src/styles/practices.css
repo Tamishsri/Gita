@@ -894,3 +894,52 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+/* What Sakha remembers — open, and releasable */
+.memory {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: var(--gold-wash);
+    border: 1px solid var(--line-gold);
+}
+
+.memory .path__note {
+    margin-top: 0;
+}
+
+.memory__line {
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-md);
+    color: var(--text-1);
+}
+
+.memory__group {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.memory__group .chip-row {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.memory__label {
+    font-size: var(--fs-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+
+.memory__empty {
+    margin: var(--space-3) 0 0;
+    color: var(--text-2);
+    line-height: 1.65;
+}
+
+.memory__forget,
+.memory .journal-entry__confirm {
+    margin-top: var(--space-4);
+}

@@ -5,7 +5,8 @@ import VoiceInput from './VoiceInput';
 import BreathCircle from './BreathCircle';
 import VerseDisplay from './VerseDisplay';
 import { Diya, SunGlyph } from './ui/Ornaments';
-import { askSanctuary } from '../lib/gitaApi';
+import { askSakha } from '../lib/localSakha';
+import { buildPerson, rememberConversation } from '../lib/person';
 import { addReflection, verseRef } from '../lib/verse';
 import { recentVerseIds, recordPath } from '../lib/path';
 import { openPractice } from '../lib/bus';
@@ -18,6 +19,12 @@ let messageSeq = 0;
 const nextId = () => `m${Date.now().toString(36)}${(messageSeq += 1)}`;
 
 const isQuote = (paragraph) => /^["“].*["”]$/s.test(paragraph.trim());
+
+// Proper quotation marks and apostrophes for anything the engine says.
+const typeset = (text = '') => String(text)
+    .replace(/(^|[\s(—–-])"/g, '$1“')
+    .replace(/"/g, '”')
+    .replace(/(\w)'(\w)/g, '$1’$2');
 
 // Split a reply around the quoted verse so the folio can sit in its place:
 // [words before] → [verse] → [words after].
@@ -67,6 +74,25 @@ function SupportMessage({ content }) {
     );
 }
 
+// Ways to begin, for when it is hard to know how to start.
+const STARTER_KEYS = ['lately', 'worried', 'cantStop', 'today', 'good'];
+
+function Starters({ onPick }) {
+    const { t } = useI18n();
+    return (
+        <div className="starters" role="group" aria-label={t('sanctuary.startersLabel')}>
+            {STARTER_KEYS.map((key) => {
+                const text = t(`sanctuary.starter.${key}`);
+                return (
+                    <button key={key} type="button" className="starter" onClick={() => onPick(`${text} `)}>
+                        {text}…
+                    </button>
+                );
+            })}
+        </div>
+    );
+}
+
 // The verse carried into plain words and one small step.
 function Guidance({ guidance, verse, language }) {
     const { t } = useI18n();
@@ -80,12 +106,12 @@ function Guidance({ guidance, verse, language }) {
         if (!note.trim()) return;
         addReflection({
             verse,
-            citation: `${t('guidance.stepCitation')} — ${t('verse.bg')} ${verseRef(verse)}`,
+            citation: verse ? `${t('guidance.stepCitation')} — ${t('verse.bg')} ${verseRef(verse)}` : t('guidance.stepCitation'),
             verseText: guidance.step,
             note,
             kind: 'step'
         });
-        recordPath('reflection', { verseId: verse.id, kind: 'step' });
+        recordPath('reflection', { verseId: verse?.id || null, kind: 'step' });
         toast(t('toast.reflectionKept'), { icon: 'journal', tone: 'gold' });
         setNote('');
         setWriting(false);
@@ -102,16 +128,13 @@ function Guidance({ guidance, verse, language }) {
             {guidance.bridge && (
                 <div className="guidance__block">
                     <span className="eyebrow">{t('guidance.forYou')}</span>
-                    {guidance.situation && language === 'en' && (
-                        <p className="guidance__situation">{t('guidance.speaksTo', { situation: guidance.situation })}</p>
-                    )}
-                    <p className="guidance__bridge">{guidance.bridge}</p>
+                    <p className="guidance__bridge">{typeset(guidance.bridge)}</p>
                 </div>
             )}
             {guidance.step && (
                 <div className="guidance__block guidance__block--step">
                     <span className="eyebrow">{t('guidance.step')}</span>
-                    <p className="guidance__step">{guidance.step}</p>
+                    <p className="guidance__step">{typeset(guidance.step)}</p>
                     <div className="text-actions text-actions--start">
                         {practice && (
                             <button type="button" className="text-action" onClick={() => openPractice(practice.id, { minutes: 5 })}>
@@ -154,7 +177,7 @@ function Guidance({ guidance, verse, language }) {
                     <SunGlyph size={26} className="guidance__blessing-glyph" />
                     <div>
                         <span className="eyebrow">{t('guidance.blessing')}</span>
-                        <p className={language === 'hi' ? 'is-hi' : ''}>{guidance.blessing}</p>
+                        <p className={language === 'hi' ? 'is-hi' : ''}>{typeset(guidance.blessing)}</p>
                     </div>
                 </div>
             )}
@@ -179,6 +202,9 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
     const started = useRef(false);
     const shownIds = useRef([]);
     const history = useRef([]);
+    const lastVerseId = useRef(initialVerse?.id || null);
+    // One conversation, so Sakha can tell "this visit" from "before".
+    const session = useRef(`s${Date.now().toString(36)}`);
     const language = settings.language === 'hi' ? 'hi' : 'en';
 
     const scrollToMessage = useCallback((id) => {
@@ -241,12 +267,22 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
 
         try {
             const exclude = [...new Set([...recentVerseIds(30), ...shownIds.current])].slice(-40);
-            const data = await askSanctuary({ ...request, settings, history: history.current.slice(-3), exclude });
+            const person = buildPerson(settings, { session: session.current });
+            const data = await askSakha({
+                ...request,
+                settings,
+                history: history.current.slice(-3),
+                exclude,
+                lastVerseId: lastVerseId.current,
+                person
+            });
             if (text) history.current.push(text);
+            rememberConversation(session.current, data.context);
             const content = data.message || data.response || '';
             const id = nextId();
             if (data.verse) {
                 shownIds.current.push(data.verse.id);
+                lastVerseId.current = data.verse.id;
                 recordPath('verse', { verseId: data.verse.id, emotion: data.context?.emotion || null, mood: moodContext || mood || null });
             }
             setMessages((list) => [...list, { id, role: 'assistant', content, verse: data.verse, guidance: data.guidance, context: data.context || {} }]);
@@ -357,7 +393,7 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                                 onClick={isRevealing ? finishReveal : undefined}
                                                 title={isRevealing ? t('sanctuary.tapToReveal') : undefined}
                                             >
-                                                {leadText.split(/\n{2,}/).map((paragraph, p) => <p key={p}>{paragraph}</p>)}
+                                                {leadText.split(/\n{2,}/).map((paragraph, p) => <p key={p}>{typeset(paragraph)}</p>)}
                                             </div>
                                         )
                                     )}
@@ -370,8 +406,19 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
 
                                     {message.verse && !isRevealing && <VerseDisplay verse={message.verse} language={language} />}
 
-                                    {message.verse && !isRevealing && (
+                                    {message.guidance && !isRevealing && (message.verse || message.guidance.blessing) && (
                                         <Guidance guidance={message.guidance} verse={message.verse} language={language} />
+                                    )}
+
+                                    {message.context?.invite && !isRevealing && index === messages.length - 1 && !settings.silentMode && (
+                                        <Starters onPick={(starter) => {
+                                            setInputText(starter);
+                                            requestAnimationFrame(() => {
+                                                const area = textareaRef.current;
+                                                area?.focus();
+                                                area?.setSelectionRange(starter.length, starter.length);
+                                            });
+                                        }} />
                                     )}
 
                                     {trail.length > 0 && !isRevealing && (
@@ -381,7 +428,7 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                             animate={{ opacity: 1 }}
                                             transition={{ delay: 0.8, duration: 0.9 }}
                                         >
-                                            {trail.map((paragraph, p) => <p key={p}>{paragraph}</p>)}
+                                            {trail.map((paragraph, p) => <p key={p}>{typeset(paragraph)}</p>)}
                                         </motion.div>
                                     )}
 

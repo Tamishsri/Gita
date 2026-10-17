@@ -95,6 +95,21 @@ function Settings({ isOpen, onClose, settings, onUpdate, onResetBreathSession, o
             <SheetHeader icon={SettingsIcon} eyebrow={t('settings.eyebrow')} title={t('settings.title')} onClose={onClose} />
 
             <div className="sheet__body sheet__body--padded settings">
+                <Group title={t('settings.group.you')}>
+                    <Row label={t('settings.name')} description={t('settings.nameDesc')} stacked>
+                        <input
+                            className="input settings-name"
+                            value={settings.name || ''}
+                            onChange={(event) => set({ name: event.target.value.slice(0, 24) })}
+                            onBlur={(event) => set({ name: event.target.value.trim() })}
+                            placeholder={t('home.name.placeholder')}
+                            aria-label={t('settings.name')}
+                            autoComplete="given-name"
+                            maxLength={24}
+                        />
+                    </Row>
+                </Group>
+
                 <Group title={t('settings.group.light')}>
                     <Row label={t('settings.theme')} description={t('settings.themeDesc')} stacked>
                         <div className="theme-grid" role="radiogroup" aria-label={t('settings.theme')}>

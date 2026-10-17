@@ -62,9 +62,27 @@ function livingGitaServiceWorker() {
     };
 }
 
+// The same engine the API and the service worker run, offered to the app as
+// an ES module — so a conversation is understood on the device itself and
+// what someone writes never has to leave it.
+function wisdomEngineModule() {
+    const id = 'virtual:wisdom-engine';
+    const resolvedId = `\0${id}`;
+    const file = resolve(root, '../shared/wisdom-engine.js');
+    return {
+        name: 'wisdom-engine-module',
+        resolveId: (source) => (source === id ? resolvedId : null),
+        load(source) {
+            if (source !== resolvedId) return null;
+            this.addWatchFile(file);
+            return `const module = { exports: {} };\n${readFileSync(file, 'utf8')}\nexport default module.exports;\n`;
+        }
+    };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), livingGitaServiceWorker()],
+    plugins: [react(), wisdomEngineModule(), livingGitaServiceWorker()],
     server: {
         port: 5173,
         proxy: apiProxy

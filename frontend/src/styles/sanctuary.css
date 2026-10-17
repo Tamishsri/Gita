@@ -1456,3 +1456,30 @@
     font-size: var(--fs-md);
     line-height: 1.7;
 }
+
+/* Ways to begin — for when it is hard to know where to start */
+.starters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.starter {
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--text-2);
+    background: var(--surface-1);
+    border: 1px solid var(--line-strong);
+    transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.starter:hover,
+.starter:focus-visible {
+    color: var(--gold-200);
+    border-color: var(--line-gold);
+    background: var(--gold-wash);
+}
