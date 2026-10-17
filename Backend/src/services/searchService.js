@@ -3,7 +3,7 @@
 // (core theme > emotional tone > life situation > translation > the rest).
 // The logic lives in the shared Wisdom Engine so offline search is identical.
 
-const engine = require('../../../shared/wisdom-engine');
+const engine = require('../engine');
 
 module.exports = {
     searchVerses: engine.searchVerses,

@@ -4,9 +4,26 @@ const path = require('path');
 let allVerses = [];
 let allChapters = [];
 
-const loadData = () => {
+const DATASET = path.join(__dirname, '../../../Dataset/Phase_1');
+
+// In a deployment only this service's folder ships, so the build writes the
+// whole Gita into one file beside this loader (see scripts/bundle.js).
+function loadBundled() {
     try {
-        const datasetPath = path.join(__dirname, '../../../Dataset/Phase_1');
+        const bundled = require('./gita.generated.json');
+        allVerses = bundled.verses;
+        allChapters = bundled.chapters;
+        console.log(`Loaded ${allVerses.length} verses & ${allChapters.length} chapters from the bundled dataset.`);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+const loadData = () => {
+    if (!fs.existsSync(DATASET) && loadBundled()) return;
+    try {
+        const datasetPath = DATASET;
         let tempVerses = [];
         let tempChapters = [];
 

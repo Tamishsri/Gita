@@ -34,3 +34,10 @@ Thumbs.db
 desktop.ini
 *.swp
 .idea/
+
+# Backend build output (scripts/bundle.js) — generated for deployment
+Backend/src/data/gita.generated.json
+Backend/src/shared/
+
+# Vercel
+.vercel/

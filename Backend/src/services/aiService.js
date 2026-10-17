@@ -2,7 +2,7 @@
 // Wisdom Engine (shared/wisdom-engine.js), which the offline service worker
 // also runs — this module only binds it to the loaded corpus.
 
-const engine = require('../../../shared/wisdom-engine');
+const engine = require('../engine');
 const { getVerses, getChaptersMeta } = require('../data/loader');
 
 const getTimeOfDay = () => {

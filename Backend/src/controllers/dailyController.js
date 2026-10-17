@@ -1,4 +1,4 @@
-const engine = require('../../../shared/wisdom-engine');
+const engine = require('../engine');
 const { getVerses } = require('../data/loader');
 
 // @desc    Verse of the day

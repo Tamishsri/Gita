@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "node scripts/bundle.js",
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "test": "node test_suite.js"
