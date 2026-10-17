@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Check, Download, RefreshCw, Sparkles, Waves, WifiOff, Feather, Heart, Footprints } from 'lucide-react';
 import { TOAST_EVENT } from '../../lib/toast';
@@ -54,7 +55,8 @@ function ToastHost() {
         setToasts((list) => list.filter((existing) => existing.id !== item.id));
     };
 
-    return (
+    // In a portal, so toasts stay usable while a modal makes the page inert.
+    return createPortal(
         <div className="toast-host" role="status" aria-live="polite">
             <AnimatePresence initial={false}>
                 {toasts.map((item) => {
@@ -80,7 +82,8 @@ function ToastHost() {
                     );
                 })}
             </AnimatePresence>
-        </div>
+        </div>,
+        document.body
     );
 }
 

@@ -4,12 +4,12 @@ import { ChevronUp, CloudRain, Orbit, Pause, Play, Sparkles, Volume1, Volume2, V
 import { SOUND_MODES, useSoundscape } from './SoundscapeEngine';
 import { playChime } from '../lib/chime';
 import { useLayer } from '../lib/layers';
+import { useI18n } from '../i18n';
 
 export const SOUND_ICONS = { auto: Sparkles, ocean: Waves, rain: CloudRain, om: Orbit };
 
-const SCENE_LABELS = { ocean: 'Ocean', rain: 'Rain', om: 'Cosmic Om' };
-
 export function SoundPanel({ onModeChange }) {
+    const { t } = useI18n();
     const { isPlaying, soundMode, activeSound, volume, play, stop, setVolume } = useSoundscape();
 
     const chooseMode = (mode) => {
@@ -21,38 +21,32 @@ export function SoundPanel({ onModeChange }) {
         <div className="sound-panel">
             <div className="section__head">
                 <div>
-                    <span className="eyebrow">Soundscape</span>
-                    <p className="faint" style={{ fontSize: '0.75rem', marginTop: 2 }}>
-                        {isPlaying ? `Now playing · ${SCENE_LABELS[activeSound]}` : 'Synthesised live on your device'}
+                    <span className="eyebrow">{t('sound.title')}</span>
+                    <p className="faint" style={{ fontSize: '0.8rem', marginTop: 2 }}>
+                        {isPlaying ? t('sound.nowPlaying', { name: t(`sound.${activeSound}.label`) }) : t('sound.synthesised')}
                     </p>
                 </div>
                 <button
                     type="button"
-                    className={`icon-btn${isPlaying ? ' is-on' : ''}`}
+                    className={`icon-btn icon-btn--ring${isPlaying ? ' is-on' : ''}`}
                     onClick={() => (isPlaying ? stop() : play())}
-                    aria-label={isPlaying ? 'Pause soundscape' : 'Play soundscape'}
+                    aria-label={isPlaying ? t('sound.pause') : t('sound.play')}
                 >
                     {isPlaying ? <Pause size={16} /> : <Play size={16} />}
                 </button>
             </div>
 
-            <div className="sound-modes" role="group" aria-label="Soundscape">
+            <div className="sound-modes" role="group" aria-label={t('sound.title')}>
                 {SOUND_MODES.map((mode) => {
                     const Icon = SOUND_ICONS[mode.id];
                     const active = soundMode === mode.id;
                     return (
-                        <button
-                            key={mode.id}
-                            type="button"
-                            className="sound-mode"
-                            aria-pressed={active}
-                            onClick={() => chooseMode(mode.id)}
-                        >
+                        <button key={mode.id} type="button" className="sound-mode" aria-pressed={active} onClick={() => chooseMode(mode.id)}>
                             <span className="sound-mode__head">
-                                {mode.label}
+                                {t(`sound.${mode.id}.label`)}
                                 <Icon size={15} />
                             </span>
-                            <span>{mode.id === 'auto' && active ? `Follows your mood · ${SCENE_LABELS[activeSound]}` : mode.description}</span>
+                            <span>{mode.id === 'auto' && active ? t('sound.auto.following', { name: t(`sound.${activeSound}.label`) }) : t(`sound.${mode.id}.desc`)}</span>
                         </button>
                     );
                 })}
@@ -69,20 +63,18 @@ export function SoundPanel({ onModeChange }) {
                     value={volume}
                     onChange={(event) => setVolume(Number(event.target.value))}
                     style={{ '--fill': `${Math.round(volume * 100)}%` }}
-                    aria-label="Soundscape volume"
+                    aria-label={t('sound.volume')}
                 />
-                <span style={{ minWidth: 30, textAlign: 'right' }}>{Math.round(volume * 100)}%</span>
+                <span style={{ minWidth: 32, textAlign: 'right' }}>{Math.round(volume * 100)}%</span>
             </label>
 
             <div className="sound-panel__footer">
                 <button type="button" className="btn btn--soft btn--sm" onClick={() => playChime('bowl', { force: true })}>
-                    <Bell size={14} />
-                    Strike the singing bowl
+                    <Bell size={14} /> {t('sound.bowl')}
                 </button>
                 {isPlaying && (
                     <button type="button" className="btn btn--ghost btn--sm" onClick={stop}>
-                        <VolumeX size={14} />
-                        Silence
+                        <VolumeX size={14} /> {t('sound.silence')}
                     </button>
                 )}
             </div>
@@ -90,8 +82,9 @@ export function SoundPanel({ onModeChange }) {
     );
 }
 
-// Desktop: a quiet floating control in the corner with a popover of scenes.
+// Desktop: a quiet control in the corner with a popover of scenes.
 function SoundDock({ onModeChange }) {
+    const { t } = useI18n();
     const { isPlaying, activeSound, toggleSound } = useSoundscape();
     const [open, setOpen] = useState(false);
     const rootRef = useRef(null);
@@ -115,10 +108,10 @@ function SoundDock({ onModeChange }) {
                 {open && (
                     <motion.div
                         className="sound-popover"
-                        initial={{ opacity: 0, y: 8, scale: 0.97 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 6 }}
+                        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <SoundPanel onModeChange={onModeChange} />
                     </motion.div>
@@ -130,28 +123,26 @@ function SoundDock({ onModeChange }) {
                     type="button"
                     className="sound-dock__toggle"
                     onClick={toggleSound}
-                    aria-label={isPlaying ? 'Pause soundscape' : 'Play soundscape'}
-                    title={isPlaying ? 'Pause soundscape' : 'Play soundscape'}
+                    aria-label={isPlaying ? t('sound.pause') : t('sound.play')}
+                    title={isPlaying ? t('sound.pause') : t('sound.play')}
                 >
                     <span className="sound-dock__orb">
                         {isPlaying ? <SceneIcon size={15} /> : <Volume2 size={15} />}
                     </span>
-                    {isPlaying ? SCENE_LABELS[activeSound] : 'Soundscape'}
+                    {isPlaying ? t(`sound.${activeSound}.label`) : t('sound.title')}
                     {isPlaying && (
-                        <span className="sound-bars" aria-hidden="true">
-                            <i /><i /><i />
-                        </span>
+                        <span className="sound-bars" aria-hidden="true"><i /><i /><i /></span>
                     )}
                 </button>
                 <button
                     type="button"
-                    className="icon-btn icon-btn--sm icon-btn--plain"
+                    className="icon-btn icon-btn--sm"
                     onClick={() => setOpen((value) => !value)}
                     aria-expanded={open}
-                    aria-label="Soundscape options"
-                    title="Soundscape options"
+                    aria-label={t('sound.options')}
+                    title={t('sound.options')}
                 >
-                    <ChevronUp size={16} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.25s ease' }} />
+                    <ChevronUp size={16} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s ease' }} />
                 </button>
             </div>
         </div>

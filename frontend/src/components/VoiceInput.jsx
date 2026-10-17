@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Mic, Square } from 'lucide-react';
 import { haptic } from '../lib/haptics';
+import { useI18n } from '../i18n';
 
 const Recognition = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
 
 // Speak instead of type. The recogniser is created once per language; the
 // latest onTranscript is read from a ref so re-renders never restart it.
 function VoiceInput({ onTranscript, disabled, language = 'en' }) {
+    const { t } = useI18n();
     const [listening, setListening] = useState(false);
     const [interim, setInterim] = useState('');
     const recognitionRef = useRef(null);
@@ -88,7 +90,7 @@ function VoiceInput({ onTranscript, disabled, language = 'en' }) {
                         exit={{ opacity: 0, y: 4 }}
                     >
                         <span className="breathing-dots" aria-hidden="true"><span /><span /><span /></span>
-                        <span>{interim || (language === 'hi' ? 'सुन रहे हैं…' : 'Listening…')}</span>
+                        <span>{interim || t('voice.listening')}</span>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -98,8 +100,8 @@ function VoiceInput({ onTranscript, disabled, language = 'en' }) {
                 onClick={toggle}
                 disabled={disabled}
                 aria-pressed={listening}
-                aria-label={listening ? 'Stop listening' : 'Speak instead of typing'}
-                title={listening ? 'Stop listening' : 'Speak your thought'}
+                aria-label={listening ? t('voice.stop') : t('voice.speak')}
+                title={listening ? t('voice.stop') : t('voice.speak')}
             >
                 {listening ? <Square size={14} fill="currentColor" /> : <Mic size={18} />}
             </button>

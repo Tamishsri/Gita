@@ -21,6 +21,7 @@ const AUTO_BY_MOOD = {
     grateful: 'ocean',
     anxious: 'rain',
     sad: 'rain',
+    lonely: 'om',
     overwhelmed: 'rain',
     stressed: 'om',
     angry: 'om',

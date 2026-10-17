@@ -1,4 +1,5 @@
 import { toast } from '../lib/toast';
+import { t } from '../i18n';
 
 // Service worker lifecycle for the installed sanctuary.
 //
@@ -46,7 +47,7 @@ export function registerServiceWorker() {
                 if (document.visibilityState === 'visible') registration.update().catch(() => {});
             });
         } catch (error) {
-            console.warn('[Living Gita] Service worker registration failed:', error);
+            console.warn('[Sakha] Service worker registration failed:', error);
         }
     };
 
@@ -60,7 +61,7 @@ export function registerServiceWorker() {
         if (event.data?.type !== 'WISDOM_READY') return;
         if (localStorage.getItem(OFFLINE_NOTICE_KEY)) return;
         localStorage.setItem(OFFLINE_NOTICE_KEY, new Date().toISOString());
-        toast(`All ${event.data.verses} verses are now kept on this device — the sanctuary works offline.`, {
+        toast(t('update.offlineReady', { count: event.data.verses }), {
             tone: 'gold',
             icon: 'offline',
             duration: 5200
@@ -76,10 +77,10 @@ export function registerServiceWorker() {
 
 function announceUpdate(worker) {
     waitingWorker = worker;
-    toast('A refreshed sanctuary is ready.', {
+    toast(t('update.ready'), {
         tone: 'gold',
         icon: 'refresh',
-        action: { label: 'Refresh', onClick: applyUpdate }
+        action: { label: t('update.reload'), onClick: applyUpdate }
     });
 }
 
@@ -124,7 +125,7 @@ export function captureInstallPrompt() {
         deferredPrompt = null;
         installed = true;
         window.dispatchEvent(new Event(INSTALL_EVENT));
-        toast('Living Gita is installed. Find it on your home screen.', { tone: 'gold', icon: 'install' });
+        toast(t('update.installed'), { tone: 'gold', icon: 'install' });
     });
 }
 

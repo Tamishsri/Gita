@@ -1,24 +1,57 @@
 {
   "id": "/",
-  "name": "Living Gita — A Quiet Sanctuary",
-  "short_name": "Living Gita",
-  "description": "Meet the Bhagavad Gita through what you feel. All 701 verses, a 4-7-8 breathing ritual, a private journal and 7-day walks — offline and private.",
+  "name": "Sakha — the Gita, as a friend",
+  "short_name": "Sakha",
+  "description": "Bring what you feel to the Bhagavad Gita and hear what it says, in plain words — with one small step, a blessing, and nothing leaving your device.",
   "lang": "en",
   "dir": "ltr",
   "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
-  "background_color": "#0a0e14",
-  "theme_color": "#0a0e14",
-  "categories": ["lifestyle", "health", "books", "education"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#fbf6ec",
+  "theme_color": "#fbf6ec",
+  "categories": [
+    "lifestyle",
+    "health",
+    "books",
+    "education"
+  ],
   "prefer_related_applications": false,
   "icons": [
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
-    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
   ],
   "shortcuts": [
     {
@@ -26,21 +59,39 @@
       "short_name": "Search",
       "description": "Search all 701 verses by feeling",
       "url": "/?open=search",
-      "icons": [{ "src": "/icons/shortcut-96.png", "sizes": "96x96", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icons/shortcut-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Reflections Journal",
       "short_name": "Journal",
       "description": "Your private reflections",
       "url": "/?open=journal",
-      "icons": [{ "src": "/icons/shortcut-96.png", "sizes": "96x96", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icons/shortcut-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "18 Chapters",
       "short_name": "Chapters",
       "description": "Read the Gita chapter by chapter",
       "url": "/?open=chapters",
-      "icons": [{ "src": "/icons/shortcut-96.png", "sizes": "96x96", "type": "image/png" }]
+      "icons": [
+        {
+          "src": "/icons/shortcut-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }

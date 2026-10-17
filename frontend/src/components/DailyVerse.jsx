@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Sparkles, Volume2, Square, Copy, Heart, Image as ImageIcon, ArrowRight } from 'lucide-react';
+import { Volume2, Square, Heart, Image as ImageIcon, ArrowRight } from 'lucide-react';
+import Sloka from './Sloka';
+import { KolamRule } from './ui/Ornaments';
 import { fetchDaily } from '../lib/gitaApi';
-import { sanskritLines, verseMeaning, verseRef } from '../lib/verse';
+import { verseMeaning, verseRef } from '../lib/verse';
 import { useVerseActions } from '../hooks/useVerseActions';
+import { useI18n } from '../i18n';
 
+// One verse for the day, set like a page of a manuscript.
 function DailyVerse({ language = 'en', onSelectVerse }) {
+    const { t } = useI18n();
     const [state, setState] = useState({ status: 'loading', verse: null });
     const reduceMotion = useReducedMotion();
-    const { copy, save, card, listen, speakingId, canListen } = useVerseActions(language);
+    const { save, card, listen, speakingId, canListen } = useVerseActions(language);
 
     useEffect(() => {
         let alive = true;
@@ -20,21 +25,19 @@ function DailyVerse({ language = 'en', onSelectVerse }) {
         };
     }, []);
 
-    const today = new Date().toLocaleDateString(language === 'hi' ? 'hi-IN' : undefined, { weekday: 'long', month: 'long', day: 'numeric' });
-
     if (state.status === 'error' || state.status === 'empty') return null;
 
     if (state.status === 'loading') {
         return (
             <section className="section" aria-busy="true">
-                <div className="section__head">
-                    <span className="eyebrow"><Sparkles size={13} /> Verse for today</span>
+                <div className="section__head section__head--center">
+                    <span className="eyebrow">{t('daily.title')}</span>
                 </div>
                 <div className="card card--featured daily-verse">
-                    <div className="skeleton" style={{ height: 22, width: '82%', margin: '0 auto 10px' }} />
-                    <div className="skeleton" style={{ height: 22, width: '70%', margin: '0 auto 24px' }} />
-                    <div className="skeleton" style={{ height: 16, width: '92%', margin: '0 auto 8px' }} />
-                    <div className="skeleton" style={{ height: 16, width: '64%', margin: '0 auto' }} />
+                    <div className="skeleton" style={{ height: 22, width: '78%', margin: '0 auto 12px' }} />
+                    <div className="skeleton" style={{ height: 22, width: '64%', margin: '0 auto 28px' }} />
+                    <div className="skeleton" style={{ height: 16, width: '88%', margin: '0 auto 10px' }} />
+                    <div className="skeleton" style={{ height: 16, width: '60%', margin: '0 auto' }} />
                 </div>
             </section>
         );
@@ -42,57 +45,57 @@ function DailyVerse({ language = 'en', onSelectVerse }) {
 
     const { verse } = state;
     const key = `daily_${verse.id}`;
-    const isSpeaking = speakingId === key;
+    const speaking = speakingId === key;
     const meaning = verseMeaning(verse, language);
+    const simple = verse.notification_short && (verse.notification_short[language] || verse.notification_short.en);
 
     return (
         <section className="section" aria-labelledby="daily-verse-title">
-            <div className="section__head">
-                <span className="eyebrow" id="daily-verse-title"><Sparkles size={13} /> Verse for today</span>
-                <span className="faint" style={{ fontSize: 'var(--fs-sm)' }}>{today}</span>
+            <div className="section__head section__head--center">
+                <span className="eyebrow" id="daily-verse-title">{t('daily.title')}</span>
             </div>
 
             <motion.article
                 className="card card--featured daily-verse"
-                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-                <span className="daily-verse__glow" aria-hidden="true" />
-                {verse.sanskrit && (
-                    <p className="sanskrit daily-verse__sanskrit" lang="sa">
-                        {sanskritLines(verse.sanskrit).map((line, index) => <span key={index}>{line}</span>)}
-                    </p>
+                <span className="daily-verse__ref">{t('verse.bg')} · {verseRef(verse)}</span>
+                {simple && <p className={`verse-heart${language === 'hi' ? ' verse-heart--hi' : ''}`}>{simple}</p>}
+                <Sloka verse={verse} className="daily-verse__sanskrit" />
+                <KolamRule width={160} />
+                {simple ? (
+                    <details className="verse-full">
+                        <summary>{t('verse.fullMeaning')}</summary>
+                        <blockquote className={`translation daily-verse__meaning${language === 'hi' && verse.meaning_hi ? ' translation--hi' : ''}`}>
+                            {meaning}
+                        </blockquote>
+                    </details>
+                ) : (
+                    <blockquote className={`translation daily-verse__meaning${language === 'hi' && verse.meaning_hi ? ' translation--hi' : ''}`}>
+                        {meaning}
+                    </blockquote>
                 )}
-                <div className="ornament" aria-hidden="true"><span className="ornament__gem" /></div>
-                <blockquote className={`translation daily-verse__meaning${language === 'hi' && verse.meaning_hi ? ' translation--hi' : ''}`}>
-                    {meaning}
-                </blockquote>
 
-                <footer className="daily-verse__foot">
-                    <span className="eyebrow eyebrow--muted">Bhagavad Gita · {verseRef(verse)}</span>
-                    <div className="daily-verse__tools">
-                        {canListen && (
-                            <button type="button" className={`icon-btn icon-btn--sm${isSpeaking ? ' is-on' : ''}`} onClick={() => listen(verse, key)} aria-label={isSpeaking ? 'Stop listening' : 'Listen'} title={isSpeaking ? 'Stop' : 'Listen'}>
-                                {isSpeaking ? <Square size={12} fill="currentColor" /> : <Volume2 size={15} />}
-                            </button>
-                        )}
-                        <button type="button" className="icon-btn icon-btn--sm" onClick={() => copy(verse)} aria-label="Copy verse" title="Copy">
-                            <Copy size={15} />
+                <footer className="text-actions">
+                    {canListen && (
+                        <button type="button" className={`text-action${speaking ? ' is-on' : ''}`} onClick={() => listen(verse, key)}>
+                            {speaking ? <Square size={12} fill="currentColor" /> : <Volume2 size={15} />}
+                            {speaking ? t('verse.stop') : t('verse.listen')}
                         </button>
-                        <button type="button" className="icon-btn icon-btn--sm" onClick={() => save(verse)} aria-label="Save this line" title="Save line">
-                            <Heart size={15} />
+                    )}
+                    <button type="button" className="text-action" onClick={() => save(verse)}>
+                        <Heart size={15} /> {t('verse.keep')}
+                    </button>
+                    <button type="button" className="text-action" onClick={() => card(verse)}>
+                        <ImageIcon size={15} /> {t('verse.card')}
+                    </button>
+                    {onSelectVerse && (
+                        <button type="button" className="text-action" onClick={() => onSelectVerse(verse)}>
+                            {t('verse.sitWith')} <ArrowRight size={14} />
                         </button>
-                        <button type="button" className="icon-btn icon-btn--sm" onClick={() => card(verse)} aria-label="Create a wisdom card" title="Wisdom card">
-                            <ImageIcon size={15} />
-                        </button>
-                        {onSelectVerse && (
-                            <button type="button" className="btn btn--outline btn--sm" onClick={() => onSelectVerse(verse)}>
-                                Sit with it
-                                <ArrowRight size={14} />
-                            </button>
-                        )}
-                    </div>
+                    )}
                 </footer>
             </motion.article>
         </section>

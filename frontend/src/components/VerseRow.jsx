@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import { Copy, Heart, Image as ImageIcon, Square, Volume2, ArrowRight } from 'lucide-react';
-import { sanskritLines, verseMeaning, verseNumber, verseRef } from '../lib/verse';
+import Sloka from './Sloka';
+import { verseMeaning, verseNumber, verseRef } from '../lib/verse';
+import { useI18n } from '../i18n';
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -13,62 +15,53 @@ function Highlight({ text, query }) {
     ));
 }
 
-// A verse in a list: number, śloka, meaning, and the same quiet gestures as
-// the full verse card.
+// A verse in a list: number, śloka, meaning, its plain-words essence, and the
+// same quiet gestures as the full folio.
 function VerseRow({ verse, language, actions, idPrefix = 'row', query, showChapter = false, onSit }) {
+    const { t } = useI18n();
     const meaning = verseMeaning(verse, language);
+    const simple = verse.notification_short && (verse.notification_short[language] || verse.notification_short.en);
     const speakId = `${idPrefix}_${verse.id}`;
     const speaking = actions.speakingId === speakId;
     const isHindi = language === 'hi' && verse.meaning_hi;
 
     return (
-        <article className="verse-row" aria-label={`Bhagavad Gita ${verseRef(verse)}`}>
+        <article className="verse-row" aria-label={`${t('verse.bg')} ${verseRef(verse)}`}>
             <header className="verse-row__head">
-                <span className="verse-row__number" aria-hidden="true">{showChapter ? verseRef(verse) : verseNumber(verse)}</span>
-                <span className="eyebrow eyebrow--muted">
-                    {showChapter ? `Chapter ${verse.chapter} · Verse ${verseNumber(verse)}` : `Verse ${verseNumber(verse)}`}
-                </span>
+                <span className="verse-row__number">{showChapter ? verseRef(verse) : verseNumber(verse)}</span>
                 <div className="verse-row__tools">
                     {actions.canListen && (
-                        <button type="button" className={`icon-btn icon-btn--xs icon-btn--plain${speaking ? ' is-on' : ''}`} onClick={() => actions.listen(verse, speakId)} aria-label={speaking ? 'Stop' : 'Listen'} title={speaking ? 'Stop' : 'Listen'}>
-                            {speaking ? <Square size={11} fill="currentColor" /> : <Volume2 size={14} />}
+                        <button type="button" className={`icon-btn icon-btn--xs${speaking ? ' is-on' : ''}`} onClick={() => actions.listen(verse, speakId)} aria-label={speaking ? t('verse.stop') : t('verse.listen')} title={speaking ? t('verse.stop') : t('verse.listen')}>
+                            {speaking ? <Square size={11} fill="currentColor" /> : <Volume2 size={15} />}
                         </button>
                     )}
-                    <button type="button" className="icon-btn icon-btn--xs icon-btn--plain" onClick={() => actions.copy(verse)} aria-label="Copy" title="Copy">
-                        <Copy size={14} />
+                    <button type="button" className="icon-btn icon-btn--xs" onClick={() => actions.copy(verse)} aria-label={t('verse.copy')} title={t('verse.copy')}>
+                        <Copy size={15} />
                     </button>
-                    <button type="button" className="icon-btn icon-btn--xs icon-btn--plain" onClick={() => actions.save(verse)} aria-label="Save line" title="Save line">
-                        <Heart size={14} />
+                    <button type="button" className="icon-btn icon-btn--xs" onClick={() => actions.save(verse)} aria-label={t('verse.keep')} title={t('verse.keep')}>
+                        <Heart size={15} />
                     </button>
-                    <button type="button" className="icon-btn icon-btn--xs icon-btn--plain" onClick={() => actions.card(verse)} aria-label="Wisdom card" title="Wisdom card">
-                        <ImageIcon size={14} />
+                    <button type="button" className="icon-btn icon-btn--xs" onClick={() => actions.card(verse)} aria-label={t('verse.card')} title={t('verse.card')}>
+                        <ImageIcon size={15} />
                     </button>
                 </div>
             </header>
 
-            {verse.sanskrit && (
-                <p className="sanskrit verse-row__sanskrit" lang="sa">
-                    {sanskritLines(verse.sanskrit).map((line, index) => <span key={index}>{line}</span>)}
-                </p>
-            )}
+            <Sloka verse={verse} className="verse-row__sanskrit" />
 
             <p className={`verse-row__meaning${isHindi ? ' translation--hi' : ''}`}>
                 <Highlight text={meaning} query={query} />
             </p>
 
-            <footer className="verse-row__foot">
-                <div className="chip-row">
-                    {(verse.core_theme || []).slice(0, 2).map((theme) => (
-                        <span key={theme} className="chip chip--muted">{theme}</span>
-                    ))}
-                </div>
-                {onSit && (
-                    <button type="button" className="btn btn--outline btn--sm" onClick={() => onSit(verse)}>
-                        Sit with verse
-                        <ArrowRight size={13} />
+            {simple && <p className="verse-row__simple">{simple}</p>}
+
+            {onSit && (
+                <footer className="verse-row__foot">
+                    <button type="button" className="text-action" onClick={() => onSit(verse)}>
+                        {t('verse.sitWith')} <ArrowRight size={14} />
                     </button>
-                )}
-            </footer>
+                </footer>
+            )}
         </article>
     );
 }

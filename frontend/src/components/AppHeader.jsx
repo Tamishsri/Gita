@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, BookOpen, Download, Feather, Info, Search, Settings as SettingsIcon, Volume2, Waves } from 'lucide-react';
-import LotusMark from './ui/LotusMark';
+import { ArrowLeft, Download, Search, Settings as SettingsIcon, Volume2, Waves } from 'lucide-react';
+import { Diya } from './ui/Ornaments';
 import { moodById } from './MoodSelector';
 import { useSoundscape } from './SoundscapeEngine';
 import { MOD_KEY } from '../lib/platform';
 import { verseRef } from '../lib/verse';
+import { useI18n } from '../i18n';
 
-function AppHeader({ view, mood, verse, journalCount, isMobile, install, onHome, openPanel, openPalette, onOpenSound }) {
+const NAV = ['practice', 'chapters', 'journal', 'path'];
+
+function AppHeader({ view, mood, verse, activePanel, journalCount, isMobile, install, onHome, openPanel, openPalette, onOpenSound }) {
+    const { t } = useI18n();
     const [scrolled, setScrolled] = useState(false);
     const { isPlaying } = useSoundscape();
 
@@ -20,76 +24,81 @@ function AppHeader({ view, mood, verse, journalCount, isMobile, install, onHome,
     const moodInfo = moodById(mood);
     const inSanctuary = view === 'sanctuary';
 
+    let title = t('sanctuary.eyebrow');
+    let subtitle = t('sanctuary.headerSub');
+    if (verse) {
+        title = `${t('verse.bg')} ${verseRef(verse)}`;
+        subtitle = t('sanctuary.withVerse');
+    } else if (moodInfo) {
+        title = t(`mood.${moodInfo.id}.word`);
+        subtitle = t('sanctuary.headerSub');
+    }
+
     return (
         <header className={`app-header${scrolled || inSanctuary ? ' is-scrolled' : ''}`}>
             <div className="app-header__inner">
                 {inSanctuary ? (
                     <div className="header-context">
-                        <button type="button" className="icon-btn" onClick={onHome} aria-label="Return to sanctuary home" title="Home (Esc)">
-                            <ArrowLeft size={18} />
+                        <button type="button" className="icon-btn" onClick={onHome} aria-label={t('header.home')} title={t('header.homeEsc')}>
+                            <ArrowLeft size={19} />
                         </button>
                         <div className="header-context__title">
-                            {verse ? (
-                                <>
-                                    <strong>Bhagavad Gita {verseRef(verse)}</strong>
-                                    <span>Sitting with a verse</span>
-                                </>
-                            ) : (
-                                <>
-                                    <strong>{moodInfo ? moodInfo.label : mood ? mood.charAt(0).toUpperCase() + mood.slice(1) : 'Sanctuary'}</strong>
-                                    <span>{moodInfo ? <span lang="hi">{moodInfo.hindi}</span> : 'Sitting with the Gita'}</span>
-                                </>
-                            )}
+                            <strong>{title}</strong>
+                            <span>{subtitle}</span>
                         </div>
                     </div>
                 ) : (
-                    <button type="button" className="brand" onClick={onHome} aria-label="Living Gita — home">
-                        <LotusMark size={30} className="brand__mark" />
+                    <button type="button" className="brand" onClick={onHome} aria-label={t('header.brandHome')}>
+                        <Diya size={40} steady />
                         <span className="brand__text">
-                            <span className="brand__name">Living Gita</span>
-                            <span className="brand__tagline">A quiet sanctuary</span>
+                            <span className="brand__name">{t('brand.name')}</span>
+                            <span className="brand__tagline">{t('header.tagline')}</span>
                         </span>
                     </button>
                 )}
 
-                <nav className="header-actions" aria-label="Sanctuary">
+                {!isMobile && !inSanctuary && (
+                    <nav className="header-nav" aria-label={t('header.nav')}>
+                        {NAV.map((id) => (
+                            <button
+                                key={id}
+                                type="button"
+                                className="header-nav__link"
+                                aria-current={activePanel === id ? 'true' : undefined}
+                                onClick={() => openPanel(id)}
+                            >
+                                {t(`nav.${id}`)}
+                                {id === 'journal' && journalCount > 0 && <span className="badge">{journalCount > 99 ? '99+' : journalCount}</span>}
+                            </button>
+                        ))}
+                    </nav>
+                )}
+
+                <div className="header-actions">
+                    {!isMobile && install?.available && install.canPrompt && (
+                        <button type="button" className="install-chip" onClick={install.install}>
+                            <Download size={13} /> {t('install.short')}
+                        </button>
+                    )}
                     {isMobile ? (
                         <>
-                            <button type="button" className={`icon-btn${isPlaying ? ' is-on' : ''}`} onClick={onOpenSound} aria-label="Soundscape">
-                                {isPlaying ? <Waves size={18} /> : <Volume2 size={18} />}
+                            <button type="button" className="icon-btn" onClick={() => openPanel('search')} aria-label={t('nav.search')}>
+                                <Search size={19} />
                             </button>
-                            <button type="button" className="icon-btn" onClick={() => openPanel('about')} aria-label="About and safety">
-                                <Info size={18} />
+                            <button type="button" className={`icon-btn${isPlaying ? ' is-on' : ''}`} onClick={onOpenSound} aria-label={t('sound.title')}>
+                                {isPlaying ? <Waves size={19} /> : <Volume2 size={19} />}
                             </button>
                         </>
                     ) : (
-                        <>
-                            <button type="button" className="search-trigger" onClick={openPalette} aria-label="Search verses, chapters and moods" aria-keyshortcuts="Control+K Meta+K">
-                                <Search size={15} />
-                                <span>Search verses, chapters, moods…</span>
-                                <span className="kbd-group"><span className="kbd">{MOD_KEY}</span><span className="kbd">K</span></span>
-                            </button>
-                            {install?.available && install.canPrompt && (
-                                <button type="button" className="install-chip" onClick={install.install}>
-                                    <Download size={13} /> Install app
-                                </button>
-                            )}
-                            <button type="button" className="icon-btn" onClick={() => openPanel('chapters')} aria-label="18 Chapters" title="18 Chapters (C)">
-                                <BookOpen size={17} />
-                            </button>
-                            <button type="button" className="icon-btn" onClick={() => openPanel('journal')} aria-label="Reflections journal" title="Reflections journal (J)">
-                                <Feather size={17} />
-                                {journalCount > 0 && <span className="badge">{journalCount > 99 ? '99+' : journalCount}</span>}
-                            </button>
-                            <button type="button" className="icon-btn" onClick={() => openPanel('about')} aria-label="About and safety" title="About & safety">
-                                <Info size={17} />
-                            </button>
-                            <button type="button" className="icon-btn" onClick={() => openPanel('settings')} aria-label="Preferences" title="Preferences">
-                                <SettingsIcon size={17} />
-                            </button>
-                        </>
+                        <button type="button" className="search-trigger" onClick={openPalette} aria-label={t('header.searchAll')} aria-keyshortcuts="Control+K Meta+K">
+                            <Search size={15} />
+                            <span className="kbd-group"><span className="kbd">{MOD_KEY}</span><span className="kbd">K</span></span>
+                        </button>
                     )}
-                </nav>
+                    <button type="button" className="icon-btn" onClick={() => openPanel('settings')} aria-label={t('nav.settings')} title={t('nav.settings')}>
+                        <SettingsIcon size={19} />
+                    </button>
+                </div>
             </div>
         </header>
     );

@@ -1,38 +1,47 @@
 import { sanskritLines, verseMeaning, verseNumber, verseRef } from './verse';
+import { ensureScriptFont, scriptById, transliterate } from './script';
+import { BRAND } from './brand';
 
-// Renders a verse as a museum-print card on an offscreen canvas.
-// Everything is drawn procedurally — gradients, grain, mandala, frame and
-// lotus — so the PNG is crisp at full resolution and needs no assets.
+// Renders a verse as a lamplit manuscript page on an offscreen canvas.
+// Everything is drawn procedurally — paper grain, mandala, double rule, the
+// lamp — so the PNG is crisp at full resolution and needs no assets.
 
 export const CARD_FORMATS = {
-    portrait: { width: 1080, height: 1350, label: 'Portrait', hint: '4:5 · feed' },
-    square: { width: 1080, height: 1080, label: 'Square', hint: '1:1 · post' },
-    story: { width: 1080, height: 1920, label: 'Story', hint: '9:16 · status' }
+    portrait: { width: 1080, height: 1350, label: 'portrait', hint: '4:5' },
+    square: { width: 1080, height: 1080, label: 'square', hint: '1:1' },
+    story: { width: 1080, height: 1920, label: 'story', hint: '9:16' }
 };
 
-const GOLD = '#d4af37';
-const GOLD_LIGHT = '#ecd48a';
-const IVORY = '#f1e8d4';
-const IVORY_SOFT = 'rgba(241, 232, 212, 0.72)';
+const MARIGOLD = '#e3a14a';
+const MARIGOLD_LIGHT = '#f2c987';
+const KUMKUM = '#c8553a';
+const IVORY = '#efe4cd';
+const IVORY_SOFT = 'rgba(239, 228, 205, 0.74)';
 
 const FONTS = {
-    devanagari: '"Noto Serif Devanagari", "Nirmala UI", "Kohinoor Devanagari", serif',
-    display: '"Playfair Display", Georgia, serif',
-    sacred: '"Cinzel", "Playfair Display", serif',
-    ui: '"Inter", system-ui, sans-serif'
+    sanskrit: '"Tiro Devanagari Sanskrit", "Noto Serif Devanagari", "Nirmala UI", serif',
+    display: '"Cormorant Garamond", Georgia, serif',
+    ui: '"Mukta", "Noto Sans Devanagari", system-ui, sans-serif'
 };
 
-export async function ensureCardFonts() {
+function scriptFont(scriptId) {
+    const script = scriptById(scriptId);
+    return script.font ? `"${script.font}", ${FONTS.sanskrit}` : FONTS.sanskrit;
+}
+
+export async function ensureCardFonts(scriptId = 'deva') {
     if (typeof document === 'undefined' || !document.fonts?.load) return;
+    await Promise.race([ensureScriptFont(scriptId), new Promise((resolve) => setTimeout(resolve, 2500))]);
     const loads = [
-        `500 48px ${FONTS.devanagari}`,
-        `400 48px ${FONTS.devanagari}`,
-        `italic 400 48px ${FONTS.display}`,
-        `400 48px ${FONTS.display}`,
-        `600 32px ${FONTS.sacred}`,
-        `400 32px ${FONTS.sacred}`
-    ].map((font) => document.fonts.load(font, 'धर्म Gita ABC').catch(() => null));
-    await Promise.race([Promise.all(loads), new Promise((resolve) => setTimeout(resolve, 2500))]);
+        `400 48px ${FONTS.sanskrit}`,
+        `italic 400 48px ${FONTS.sanskrit}`,
+        `italic 500 48px ${FONTS.display}`,
+        `500 48px ${FONTS.display}`,
+        `500 32px ${FONTS.ui}`,
+        `400 32px ${FONTS.ui}`,
+        `400 48px ${scriptFont(scriptId)}`
+    ].map((font) => document.fonts.load(font, 'धर्म Gita ABC ধর্ম ધર્મ ధర్మ ಧರ್ಮ ധര്മ த⁴ர்ம').catch(() => null));
+    await Promise.race([Promise.all(loads), new Promise((resolve) => setTimeout(resolve, 3000))]);
 }
 
 // ---------------------------------------------------------------------------
@@ -60,13 +69,22 @@ function spacedWidth(ctx, text, spacing) {
     return [...text].reduce((total, char) => total + ctx.measureText(char).width + spacing, -spacing);
 }
 
-// Letter-spaced caps (never used for Devanagari, where spacing breaks ligatures).
+// Letter-spaced Latin capitals; never used for Indic scripts, where spacing
+// would break the ligatures.
 function drawSpaced(ctx, text, x, y, spacing) {
+    if (/[^ -ɏ\s·—]/.test(text)) {
+        ctx.fillText(text, x - ctx.measureText(text).width / 2, y);
+        return;
+    }
     let cursor = x - spacedWidth(ctx, text, spacing) / 2;
     [...text].forEach((char) => {
         ctx.fillText(char, cursor, y);
         cursor += ctx.measureText(char).width + spacing;
     });
+}
+
+function centred(ctx, text, x, y) {
+    ctx.fillText(text, x - ctx.measureText(text).width / 2, y);
 }
 
 // ---------------------------------------------------------------------------
@@ -75,15 +93,15 @@ function drawSpaced(ctx, text, x, y, spacing) {
 
 function grain(ctx, width, height) {
     const tile = document.createElement('canvas');
-    tile.width = tile.height = 160;
+    tile.width = tile.height = 180;
     const tctx = tile.getContext('2d');
-    const image = tctx.createImageData(160, 160);
+    const image = tctx.createImageData(180, 180);
     for (let i = 0; i < image.data.length; i += 4) {
-        const value = 200 + Math.random() * 55;
+        const value = 210 + Math.random() * 45;
         image.data[i] = value;
-        image.data[i + 1] = value * 0.95;
-        image.data[i + 2] = value * 0.85;
-        image.data[i + 3] = Math.random() * 16;
+        image.data[i + 1] = value * 0.93;
+        image.data[i + 2] = value * 0.8;
+        image.data[i + 3] = Math.random() * 15;
     }
     tctx.putImageData(image, 0, 0);
     ctx.save();
@@ -92,30 +110,24 @@ function grain(ctx, width, height) {
     ctx.restore();
 }
 
-function background(ctx, width, height) {
+function background(ctx, width, height, lampY) {
     const base = ctx.createLinearGradient(0, 0, 0, height);
-    base.addColorStop(0, '#0d121b');
-    base.addColorStop(0.5, '#0a0e14');
-    base.addColorStop(1, '#110d07');
+    base.addColorStop(0, '#0f1018');
+    base.addColorStop(0.55, '#0c0d14');
+    base.addColorStop(1, '#120d09');
     ctx.fillStyle = base;
     ctx.fillRect(0, 0, width, height);
 
-    const crown = ctx.createRadialGradient(width / 2, height * 0.3, 0, width / 2, height * 0.3, width * 0.85);
-    crown.addColorStop(0, 'rgba(212, 175, 55, 0.20)');
-    crown.addColorStop(0.45, 'rgba(212, 175, 55, 0.06)');
-    crown.addColorStop(1, 'rgba(212, 175, 55, 0)');
-    ctx.fillStyle = crown;
+    const lamp = ctx.createRadialGradient(width / 2, lampY, 0, width / 2, lampY, width * 0.9);
+    lamp.addColorStop(0, 'rgba(232, 170, 92, 0.24)');
+    lamp.addColorStop(0.35, 'rgba(232, 170, 92, 0.07)');
+    lamp.addColorStop(1, 'rgba(232, 170, 92, 0)');
+    ctx.fillStyle = lamp;
     ctx.fillRect(0, 0, width, height);
 
-    const ember = ctx.createRadialGradient(width / 2, height * 1.05, 0, width / 2, height * 1.05, width * 0.7);
-    ember.addColorStop(0, 'rgba(180, 110, 40, 0.18)');
-    ember.addColorStop(1, 'rgba(180, 110, 40, 0)');
-    ctx.fillStyle = ember;
-    ctx.fillRect(0, 0, width, height);
-
-    const vignette = ctx.createRadialGradient(width / 2, height / 2, Math.min(width, height) * 0.35, width / 2, height / 2, Math.max(width, height) * 0.75);
+    const vignette = ctx.createRadialGradient(width / 2, height / 2, Math.min(width, height) * 0.35, width / 2, height / 2, Math.max(width, height) * 0.78);
     vignette.addColorStop(0, 'rgba(0, 0, 0, 0)');
-    vignette.addColorStop(1, 'rgba(0, 0, 0, 0.55)');
+    vignette.addColorStop(1, 'rgba(0, 0, 0, 0.6)');
     ctx.fillStyle = vignette;
     ctx.fillRect(0, 0, width, height);
 
@@ -125,34 +137,21 @@ function background(ctx, width, height) {
 function mandala(ctx, cx, cy, radius) {
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.strokeStyle = 'rgba(212, 175, 55, 0.075)';
+    ctx.strokeStyle = 'rgba(227, 161, 74, 0.06)';
     ctx.lineWidth = 1.5;
-
-    [1, 0.82, 0.62, 0.4].forEach((scale) => {
+    [1, 0.8, 0.58].forEach((scale) => {
         ctx.beginPath();
         ctx.arc(0, 0, radius * scale, 0, Math.PI * 2);
         ctx.stroke();
     });
-
     const petals = 16;
     for (let i = 0; i < petals; i++) {
         ctx.save();
         ctx.rotate((i / petals) * Math.PI * 2);
         ctx.beginPath();
-        ctx.moveTo(0, -radius * 0.4);
-        ctx.quadraticCurveTo(radius * 0.13, -radius * 0.71, 0, -radius * 0.98);
-        ctx.quadraticCurveTo(-radius * 0.13, -radius * 0.71, 0, -radius * 0.4);
-        ctx.stroke();
-        ctx.restore();
-    }
-
-    ctx.strokeStyle = 'rgba(212, 175, 55, 0.045)';
-    for (let i = 0; i < 48; i++) {
-        ctx.save();
-        ctx.rotate((i / 48) * Math.PI * 2);
-        ctx.beginPath();
-        ctx.moveTo(0, -radius * 1.02);
-        ctx.lineTo(0, -radius * 1.1);
+        ctx.moveTo(0, -radius * 0.58);
+        ctx.quadraticCurveTo(radius * 0.12, -radius * 0.79, 0, -radius * 0.99);
+        ctx.quadraticCurveTo(-radius * 0.12, -radius * 0.79, 0, -radius * 0.58);
         ctx.stroke();
         ctx.restore();
     }
@@ -160,114 +159,107 @@ function mandala(ctx, cx, cy, radius) {
 }
 
 function frame(ctx, width, height) {
-    const outer = 40;
+    const outer = 42;
     const inner = 58;
     ctx.save();
-    ctx.strokeStyle = 'rgba(212, 175, 55, 0.7)';
+    ctx.strokeStyle = 'rgba(227, 161, 74, 0.62)';
     ctx.lineWidth = 2;
     ctx.strokeRect(outer, outer, width - outer * 2, height - outer * 2);
-    ctx.strokeStyle = 'rgba(212, 175, 55, 0.28)';
+    ctx.strokeStyle = 'rgba(227, 161, 74, 0.24)';
     ctx.lineWidth = 1;
     ctx.strokeRect(inner, inner, width - inner * 2, height - inner * 2);
 
-    // Corner gems with short flourishes.
-    const corners = [[inner, inner, 1, 1], [width - inner, inner, -1, 1], [inner, height - inner, 1, -1], [width - inner, height - inner, -1, -1]];
-    corners.forEach(([x, y, dx, dy]) => {
-        ctx.fillStyle = GOLD;
+    // Bindu at the head and foot of the page, kolam dots at the corners.
+    [[width / 2, outer], [width / 2, height - outer]].forEach(([x, y]) => {
+        ctx.fillStyle = '#0c0d14';
         ctx.beginPath();
-        ctx.moveTo(x, y - 9);
-        ctx.lineTo(x + 9, y);
-        ctx.lineTo(x, y + 9);
-        ctx.lineTo(x - 9, y);
-        ctx.closePath();
+        ctx.arc(x, y, 12, 0, Math.PI * 2);
         ctx.fill();
-        ctx.strokeStyle = 'rgba(212, 175, 55, 0.55)';
-        ctx.lineWidth = 1.5;
+        ctx.fillStyle = KUMKUM;
         ctx.beginPath();
-        ctx.moveTo(x + dx * 18, y);
-        ctx.lineTo(x + dx * 70, y);
-        ctx.moveTo(x, y + dy * 18);
-        ctx.lineTo(x, y + dy * 70);
-        ctx.stroke();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    [[inner, inner], [width - inner, inner], [inner, height - inner], [width - inner, height - inner]].forEach(([x, y]) => {
+        ctx.fillStyle = MARIGOLD;
+        [[0, 0, 3.5], [14, 0, 2], [0, 14, 2], [-14, 0, 2], [0, -14, 2]].forEach(([dx, dy, r]) => {
+            ctx.beginPath();
+            ctx.arc(x + dx, y + dy, r, 0, Math.PI * 2);
+            ctx.fill();
+        });
     });
     ctx.restore();
 }
 
-function lotus(ctx, cx, cy, size, color = GOLD) {
-    const petal = (h, w) => {
-        const r = (h * h + w * w) / (2 * w);
-        const theta = Math.asin(h / r);
-        ctx.beginPath();
-        ctx.arc(-(r - w), 0, r, -theta, theta);
-        ctx.arc(r - w, 0, r, Math.PI - theta, Math.PI + theta);
-        ctx.closePath();
-    };
-    const unit = size / 100;
-    const layers = [[-66, 17, 8, 0.5], [66, 17, 8, 0.5], [-34, 22, 9, 0.75], [34, 22, 9, 0.75], [0, 26, 10, 1]];
-
+function diya(ctx, cx, cy, size) {
+    const unit = size / 120;
     ctx.save();
-    ctx.translate(cx, cy);
+    ctx.translate(cx - 60 * unit, cy - 60 * unit);
     ctx.scale(unit, unit);
-    ctx.translate(0, 12);
-    layers.forEach(([angle, h, w, alpha]) => {
-        ctx.save();
-        ctx.rotate((angle * Math.PI) / 180);
-        ctx.translate(0, -h);
-        petal(h, w);
-        ctx.globalAlpha = alpha;
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        ctx.lineWidth = 1.6;
-        ctx.strokeStyle = '#0a0e14';
-        ctx.stroke();
-        ctx.restore();
-    });
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 3;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(-27, 3);
-    ctx.lineTo(27, 3);
-    ctx.stroke();
-    ctx.restore();
 
-    ctx.fillStyle = color;
+    const halo = ctx.createRadialGradient(60, 52, 0, 60, 52, 60);
+    halo.addColorStop(0, 'rgba(246, 200, 121, 0.5)');
+    halo.addColorStop(0.45, 'rgba(227, 154, 69, 0.14)');
+    halo.addColorStop(1, 'rgba(227, 154, 69, 0)');
+    ctx.fillStyle = halo;
     ctx.beginPath();
-    ctx.arc(cx, cy - 38 * unit, 3.6 * unit, 0, Math.PI * 2);
+    ctx.arc(60, 52, 60, 0, Math.PI * 2);
     ctx.fill();
+
+    const flame = ctx.createLinearGradient(60, 20, 60, 74);
+    flame.addColorStop(0, '#fff3d6');
+    flame.addColorStop(0.35, '#f7c56e');
+    flame.addColorStop(0.8, '#e2832f');
+    flame.addColorStop(1, '#b4502a');
+    ctx.fillStyle = flame;
+    ctx.beginPath();
+    ctx.moveTo(60, 22);
+    ctx.bezierCurveTo(70, 38, 75, 50, 70, 62);
+    ctx.bezierCurveTo(67, 70, 53, 70, 50, 62);
+    ctx.bezierCurveTo(45, 50, 51, 38, 60, 22);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255, 248, 232, 0.85)';
+    ctx.beginPath();
+    ctx.moveTo(60, 46);
+    ctx.bezierCurveTo(64, 53, 64, 60, 60, 65);
+    ctx.bezierCurveTo(56, 60, 56, 53, 60, 46);
+    ctx.fill();
+
+    const clay = ctx.createLinearGradient(0, 74, 0, 100);
+    clay.addColorStop(0, '#c0703f');
+    clay.addColorStop(1, '#6e3418');
+    ctx.fillStyle = clay;
+    ctx.beginPath();
+    ctx.moveTo(22, 76);
+    ctx.bezierCurveTo(30, 98, 90, 98, 98, 76);
+    ctx.bezierCurveTo(92, 79, 74, 81, 60, 81);
+    ctx.bezierCurveTo(46, 81, 28, 79, 22, 76);
+    ctx.fill();
+    ctx.fillStyle = KUMKUM;
+    ctx.beginPath();
+    ctx.arc(60, 88, 2.4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
 }
 
-function divider(ctx, cx, y, half = 120) {
+function kolamRule(ctx, cx, y, half = 130) {
     ctx.save();
-    const left = ctx.createLinearGradient(cx - half, 0, cx - 18, 0);
-    left.addColorStop(0, 'rgba(212, 175, 55, 0)');
-    left.addColorStop(1, 'rgba(212, 175, 55, 0.75)');
-    ctx.strokeStyle = left;
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = 'rgba(227, 161, 74, 0.5)';
+    ctx.lineWidth = 1.2;
     ctx.beginPath();
     ctx.moveTo(cx - half, y);
-    ctx.lineTo(cx - 18, y);
-    ctx.stroke();
-
-    const right = ctx.createLinearGradient(cx + 18, 0, cx + half, 0);
-    right.addColorStop(0, 'rgba(212, 175, 55, 0.75)');
-    right.addColorStop(1, 'rgba(212, 175, 55, 0)');
-    ctx.strokeStyle = right;
-    ctx.beginPath();
-    ctx.moveTo(cx + 18, y);
+    ctx.lineTo(cx - 34, y);
+    ctx.moveTo(cx + 34, y);
     ctx.lineTo(cx + half, y);
     ctx.stroke();
-
-    ctx.fillStyle = GOLD_LIGHT;
-    ctx.shadowColor = 'rgba(212, 175, 55, 0.8)';
-    ctx.shadowBlur = 14;
+    ctx.strokeStyle = 'rgba(227, 161, 74, 0.7)';
     ctx.beginPath();
-    ctx.moveTo(cx, y - 7);
-    ctx.lineTo(cx + 7, y);
-    ctx.lineTo(cx, y + 7);
-    ctx.lineTo(cx - 7, y);
-    ctx.closePath();
+    ctx.ellipse(cx - 13, y, 13, 9, 0, 0, Math.PI * 2);
+    ctx.ellipse(cx + 13, y, 13, 9, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.fillStyle = KUMKUM;
+    ctx.beginPath();
+    ctx.arc(cx, y, 3.6, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 }
@@ -276,11 +268,14 @@ function divider(ctx, cx, y, half = 120) {
 // Layout
 // ---------------------------------------------------------------------------
 
-function measureBlock(ctx, { sanskrit, meaning, hindi, width, sanskritSize, meaningSize, includeSanskrit }) {
-    const sanskritFont = `500 ${sanskritSize}px ${FONTS.devanagari}`;
-    const meaningFont = hindi ? `400 ${meaningSize}px ${FONTS.devanagari}` : `italic 400 ${meaningSize}px ${FONTS.display}`;
-    const sanskritLeading = sanskritSize * 1.62;
-    const meaningLeading = meaningSize * (hindi ? 1.72 : 1.5);
+function measureBlock(ctx, { sanskrit, meaning, essence, hindi, width, sanskritSize, meaningSize, includeSanskrit, sanskritFamily, italicSanskrit }) {
+    const sanskritFont = `${italicSanskrit ? 'italic ' : ''}400 ${sanskritSize}px ${sanskritFamily}`;
+    const meaningFont = hindi ? `400 ${meaningSize}px ${FONTS.ui}` : `italic 500 ${meaningSize}px ${FONTS.display}`;
+    const essenceSize = Math.round(meaningSize * 0.66);
+    const essenceFont = `400 ${essenceSize}px ${FONTS.ui}`;
+    const sanskritLeading = sanskritSize * 1.7;
+    const meaningLeading = meaningSize * (hindi ? 1.75 : 1.42);
+    const essenceLeading = essenceSize * 1.6;
 
     let sanskritRows = [];
     if (includeSanskrit && sanskrit.length) {
@@ -289,17 +284,29 @@ function measureBlock(ctx, { sanskrit, meaning, hindi, width, sanskritSize, mean
     }
     ctx.font = meaningFont;
     const meaningRows = wrap(ctx, `“${meaning}”`, width - 20);
+    ctx.font = essenceFont;
+    const essenceRows = essence ? wrap(ctx, essence, width - 60) : [];
 
-    const dividerSpace = sanskritRows.length ? 104 : 0;
-    const height = sanskritRows.length * sanskritLeading + dividerSpace + meaningRows.length * meaningLeading;
-    return { sanskritRows, meaningRows, sanskritFont, meaningFont, sanskritLeading, meaningLeading, dividerSpace, height };
+    const dividerSpace = sanskritRows.length ? 96 : 0;
+    const essenceSpace = essenceRows.length ? 46 : 0;
+    const height = sanskritRows.length * sanskritLeading + dividerSpace + meaningRows.length * meaningLeading + essenceSpace + essenceRows.length * essenceLeading;
+    return { sanskritRows, meaningRows, essenceRows, sanskritFont, meaningFont, essenceFont, sanskritLeading, meaningLeading, essenceLeading, dividerSpace, essenceSpace, height };
 }
 
 /**
+ * @param {object} verse
+ * @param {{ format?: string, language?: string, includeSanskrit?: boolean, includeEssence?: boolean, script?: string, labels?: object }} options
  * @returns {Promise<HTMLCanvasElement>}
  */
-export async function renderWisdomCard(verse, { format = 'portrait', language = 'en', includeSanskrit = true } = {}) {
-    await ensureCardFonts();
+export async function renderWisdomCard(verse, {
+    format = 'portrait',
+    language = 'en',
+    includeSanskrit = true,
+    includeEssence = true,
+    script = 'deva',
+    labels = {}
+} = {}) {
+    await ensureCardFonts(script);
 
     const { width, height } = CARD_FORMATS[format] || CARD_FORMATS.portrait;
     const canvas = document.createElement('canvas');
@@ -309,57 +316,57 @@ export async function renderWisdomCard(verse, { format = 'portrait', language = 
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';
 
-    background(ctx, width, height);
-    mandala(ctx, width / 2, height * 0.5, width * 0.4);
+    const cx = width / 2;
+    const headerTop = format === 'story' ? 220 : 128;
+    background(ctx, width, height, headerTop);
+    mandala(ctx, cx, height * 0.52, width * 0.4);
     frame(ctx, width, height);
 
-    const cx = width / 2;
     const hindi = language === 'hi' && Boolean(verse.meaning_hi);
     const meaning = verseMeaning(verse, hindi ? 'hi' : 'en');
-    const sanskrit = sanskritLines(verse.sanskrit);
+    const sanskrit = sanskritLines(transliterate(verse.sanskrit, script, verse.iast));
+    const essenceText = includeEssence && verse.notification_short ? (verse.notification_short[hindi ? 'hi' : 'en'] || verse.notification_short.en) : null;
 
-    // Header
-    const headerTop = format === 'story' ? 210 : 130;
-    ctx.save();
-    ctx.shadowColor = 'rgba(212, 175, 55, 0.55)';
-    ctx.shadowBlur = 26;
-    lotus(ctx, cx, headerTop + 4, 84);
-    ctx.restore();
-    ctx.textAlign = 'left';
-    ctx.fillStyle = GOLD_LIGHT;
-    ctx.font = `500 30px ${FONTS.devanagari}`;
-    const title = 'श्रीमद्भगवद्गीता';
-    ctx.fillText(title, cx - ctx.measureText(title).width / 2, headerTop + 78);
-    ctx.fillStyle = 'rgba(241, 232, 212, 0.58)';
-    ctx.font = `600 21px ${FONTS.sacred}`;
-    drawSpaced(ctx, `CHAPTER ${verse.chapter} · VERSE ${verseNumber(verse)}`, cx, headerTop + 118, 6);
+    // Header: the lamp, the name of the text, and where this verse lives.
+    diya(ctx, cx, headerTop, 104);
+    ctx.fillStyle = MARIGOLD_LIGHT;
+    ctx.font = `400 32px ${FONTS.sanskrit}`;
+    centred(ctx, 'श्रीमद्भगवद्गीता', cx, headerTop + 90);
+    ctx.fillStyle = 'rgba(239, 228, 205, 0.55)';
+    ctx.font = `500 21px ${FONTS.ui}`;
+    drawSpaced(ctx, labels.chapterLine || `CHAPTER ${verse.chapter} · VERSE ${verseNumber(verse)}`, cx, headerTop + 128, 5);
 
-    // Footer
-    const footerBase = height - (format === 'story' ? 200 : 118);
-    ctx.fillStyle = GOLD;
-    ctx.font = `600 26px ${FONTS.sacred}`;
-    drawSpaced(ctx, 'LIVING GITA', cx, footerBase, 11);
-    ctx.fillStyle = 'rgba(241, 232, 212, 0.45)';
-    ctx.font = `italic 400 22px ${FONTS.display}`;
-    const tagline = 'a quiet sanctuary';
-    ctx.fillText(tagline, cx - ctx.measureText(tagline).width / 2, footerBase + 38);
+    // Footer: the name, quietly.
+    const footerBase = height - (format === 'story' ? 210 : 122);
+    ctx.fillStyle = MARIGOLD;
+    ctx.font = `500 30px ${FONTS.display}`;
+    drawSpaced(ctx, labels.brand || BRAND.name.en.toUpperCase(), cx, footerBase, 10);
+    ctx.fillStyle = 'rgba(239, 228, 205, 0.45)';
+    ctx.font = `italic 500 24px ${FONTS.display}`;
+    centred(ctx, labels.tagline || 'a quiet sanctuary', cx, footerBase + 38);
 
     // Body — shrink type until everything fits between header and footer.
-    const top = headerTop + 190;
-    const bottom = footerBase - 150;
+    const top = headerTop + 196;
+    const bottom = footerBase - 140;
     const available = bottom - top;
     const textWidth = width - 2 * (format === 'square' ? 150 : 140);
+    const italicSanskrit = script === 'iast';
 
     let layout = null;
     let sanskritSize = format === 'story' ? 50 : 44;
-    let meaningSize = format === 'story' ? 46 : hindi ? 36 : 40;
+    let meaningSize = format === 'story' ? 52 : hindi ? 38 : 46;
     let showSanskrit = includeSanskrit;
-    for (let attempt = 0; attempt < 40; attempt++) {
-        layout = measureBlock(ctx, { sanskrit, meaning, hindi, width: textWidth, sanskritSize, meaningSize, includeSanskrit: showSanskrit });
+    let showEssence = Boolean(essenceText);
+    for (let attempt = 0; attempt < 50; attempt++) {
+        layout = measureBlock(ctx, {
+            sanskrit, meaning, essence: showEssence ? essenceText : null, hindi, width: textWidth,
+            sanskritSize, meaningSize, includeSanskrit: showSanskrit, sanskritFamily: scriptFont(script), italicSanskrit
+        });
         if (layout.height <= available) break;
-        if (sanskritSize > 30) sanskritSize -= 2;
-        if (meaningSize > 26) meaningSize -= 2;
-        else if (showSanskrit && sanskritSize <= 30) showSanskrit = false; // last resort: let the translation breathe
+        if (showEssence && attempt > 6) showEssence = false;
+        else if (sanskritSize > 30) sanskritSize -= 2;
+        if (meaningSize > 28) meaningSize -= 2;
+        else if (showSanskrit && sanskritSize <= 30) showSanskrit = false;
     }
 
     let y = top + Math.max(0, (available - layout.height) / 2);
@@ -367,14 +374,14 @@ export async function renderWisdomCard(verse, { format = 'portrait', language = 
     if (layout.sanskritRows.length) {
         ctx.font = layout.sanskritFont;
         ctx.fillStyle = IVORY;
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.25)';
-        ctx.shadowBlur = 18;
+        ctx.shadowColor = 'rgba(232, 170, 92, 0.22)';
+        ctx.shadowBlur = 16;
         layout.sanskritRows.forEach((row) => {
             y += layout.sanskritLeading;
-            ctx.fillText(row, cx - ctx.measureText(row).width / 2, y - layout.sanskritLeading * 0.28);
+            centred(ctx, row, cx, y - layout.sanskritLeading * 0.3);
         });
         ctx.shadowBlur = 0;
-        divider(ctx, cx, y + layout.dividerSpace / 2 - 6, 130);
+        kolamRule(ctx, cx, y + layout.dividerSpace / 2 - 8);
         y += layout.dividerSpace;
     }
 
@@ -382,13 +389,22 @@ export async function renderWisdomCard(verse, { format = 'portrait', language = 
     ctx.fillStyle = IVORY_SOFT;
     layout.meaningRows.forEach((row) => {
         y += layout.meaningLeading;
-        ctx.fillText(row, cx - ctx.measureText(row).width / 2, y - layout.meaningLeading * 0.3);
+        centred(ctx, row, cx, y - layout.meaningLeading * 0.3);
     });
 
-    // Citation
-    ctx.fillStyle = GOLD;
-    ctx.font = `400 24px ${FONTS.sacred}`;
-    drawSpaced(ctx, `— BHAGAVAD GITA ${verseRef(verse)} —`, cx, Math.min(y + 74, footerBase - 84), 4);
+    if (layout.essenceRows.length) {
+        y += layout.essenceSpace;
+        ctx.font = layout.essenceFont;
+        ctx.fillStyle = 'rgba(242, 201, 135, 0.78)';
+        layout.essenceRows.forEach((row) => {
+            y += layout.essenceLeading;
+            centred(ctx, row, cx, y - layout.essenceLeading * 0.3);
+        });
+    }
+
+    ctx.fillStyle = MARIGOLD;
+    ctx.font = `500 22px ${FONTS.ui}`;
+    drawSpaced(ctx, labels.citation || `BHAGAVAD GITA ${verseRef(verse)}`, cx, Math.min(y + 70, footerBase - 80), 4);
 
     return canvas;
 }
@@ -400,5 +416,5 @@ export function canvasToBlob(canvas) {
 }
 
 export function cardFileName(verse, format) {
-    return `Living-Gita-BG-${verse.chapter}.${verseNumber(verse)}-${format}.png`;
+    return `${BRAND.slug}-BG-${verse.chapter}.${verseNumber(verse)}-${format}.png`;
 }

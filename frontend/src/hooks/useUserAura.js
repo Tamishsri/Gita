@@ -5,17 +5,19 @@ import { useCallback, useEffect, useState } from 'react';
 // adds a soft aura in a soothing counter-colour — cool blue for anger, sage for
 // stress — rather than mirroring the feeling back.
 
+// Matches the mood words on the home page (MoodSelector) — lamplight hues.
 const MOOD_AURAS = {
-    anxious: '110, 184, 172',
-    stressed: '140, 186, 146',
-    overwhelmed: '140, 186, 146',
-    angry: '104, 146, 214',
-    confused: '164, 146, 214',
-    lost: '164, 146, 214',
-    sad: '128, 150, 210',
-    peace: '212, 175, 55',
-    happy: '222, 152, 118',
-    grateful: '222, 152, 118'
+    anxious: '120, 186, 176',
+    stressed: '150, 188, 150',
+    overwhelmed: '150, 188, 150',
+    angry: '120, 156, 218',
+    confused: '170, 152, 216',
+    lost: '170, 152, 216',
+    sad: '140, 160, 214',
+    lonely: '196, 160, 210',
+    peace: '232, 178, 92',
+    happy: '226, 156, 120',
+    grateful: '226, 156, 120'
 };
 
 export function getTimeOfDay(date = new Date()) {
@@ -45,7 +47,7 @@ export function useUserAura() {
     useEffect(() => {
         const root = document.documentElement;
         const rgb = mood ? MOOD_AURAS[mood] || MOOD_AURAS.peace : null;
-        root.style.setProperty('--mood-rgb', rgb || '212, 175, 55');
+        root.style.setProperty('--mood-rgb', rgb || '220, 150, 64');
         root.style.setProperty('--mood-strength', rgb ? '0.11' : '0');
     }, [mood]);
 

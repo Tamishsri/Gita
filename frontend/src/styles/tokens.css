@@ -1,72 +1,110 @@
 /* ==========================================================================
-   Living Gita — Design Tokens
-   A night temple: deep ink, warm ivory text, and gold used sparingly.
+   Sakha — Design Tokens · "Dīpa" (lamplight)
+
+   A manuscript read by an oil lamp at night. Night ink, sandalwood-ivory
+   text, marigold flame light; vermilion kumkum and peacock teal used rarely,
+   like pigment in a margin. Flat, paper-like surfaces — no glass, no neon.
    ========================================================================== */
 
 :root {
     color-scheme: dark;
 
-    /* Ink — the night sky the whole sanctuary rests on */
-    --ink-950: #06080c;
-    --ink-900: #0a0e14;
-    --ink-850: #0d1219;
-    --ink-800: #111720;
-    --ink-750: #151c27;
-    --ink-700: #1b2331;
+    /* Night ink */
+    --ink-950: #08090e;
+    --ink-900: #0d0e15;
+    --ink-850: #11121a;
+    --ink-800: #15161f;
+    --ink-750: #1a1b25;
+    --ink-700: #21222e;
 
-    /* Gold — light, not decoration */
-    --gold-200: #f5e4b0;
-    --gold-300: #ecd48a;
-    --gold-400: #e0bf62;
-    --gold-500: #d4af37;
-    --gold-600: #b48f2a;
-    --gold-700: #85691f;
-    --gold-rgb: 212, 175, 55;
+    /* Marigold — the lamp's flame (kept under the --gold-* names used everywhere) */
+    --gold-200: #f7e1b5;
+    --gold-300: #f0c886;
+    --gold-400: #e8ad5a;
+    --gold-500: #dc9640;
+    --gold-600: #b5772d;
+    --gold-700: #845623;
+    --gold-rgb: 220, 150, 64;
 
-    /* Text — warm ivory, never pure white */
-    --text-1: #ede6d6;
-    --text-2: #b3ab9b;
-    --text-3: #7f796c;
-    --text-on-gold: #17120a;
+    /* Pigments, used sparingly */
+    --kumkum: #c8553a;
+    --kumkum-rgb: 200, 85, 58;
+    --peacock: #5aa59c;
+    --peacock-rgb: 90, 165, 156;
+    --indigo: #6b78c4;
+
+    /* Sandalwood text — never pure white */
+    --text-1: #efe4cd;
+    --text-2: #bcb09a;
+    --text-3: #857c6c;
+    --text-on-gold: #1c1307;
 
     /* Semantic */
-    --danger: #d9775f;
-    --danger-soft: rgba(217, 119, 95, 0.14);
+    --danger: #d9735a;
+    --danger-soft: rgba(217, 115, 90, 0.12);
     --sage: #9cc3a2;
 
-    /* Lines & surfaces */
-    --line: rgba(236, 212, 138, 0.09);
-    --line-strong: rgba(236, 212, 138, 0.18);
-    --line-gold: rgba(var(--gold-rgb), 0.38);
-    --surface-1: rgba(17, 23, 32, 0.62);
-    --surface-2: rgba(21, 28, 39, 0.78);
-    --surface-3: rgba(27, 35, 49, 0.92);
-    --surface-sunken: rgba(4, 6, 10, 0.35);
-    --gold-wash: rgba(var(--gold-rgb), 0.08);
-    --gold-wash-strong: rgba(var(--gold-rgb), 0.14);
+    /* Lines — hairlines of ink on paper */
+    --line: rgba(239, 228, 205, 0.075);
+    --line-strong: rgba(239, 228, 205, 0.14);
+    --line-gold: rgba(var(--gold-rgb), 0.34);
 
-    /* Elevation */
+    /* Surfaces — flat leaves of paper in lamplight */
+    --surface-1: #12131b;
+    --surface-2: #161721;
+    --surface-3: #1c1d28;
+    --surface-sunken: rgba(4, 5, 9, 0.38);
+    --leaf: linear-gradient(180deg, rgba(255, 244, 222, 0.032), rgba(255, 244, 222, 0.012));
+    --gold-wash: rgba(var(--gold-rgb), 0.075);
+    --gold-wash-strong: rgba(var(--gold-rgb), 0.13);
+
+    /* Elevation — barely there */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-    --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
-    --shadow-lg: 0 30px 80px -24px rgba(0, 0, 0, 0.75);
-    --glow-gold: 0 0 0 1px rgba(var(--gold-rgb), 0.35), 0 8px 32px -8px rgba(var(--gold-rgb), 0.35);
-    --inner-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+    --shadow-md: 0 14px 34px -18px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 34px 80px -28px rgba(0, 0, 0, 0.85);
+    --glow-gold: 0 0 0 1px rgba(var(--gold-rgb), 0.3), 0 10px 34px -12px rgba(var(--gold-rgb), 0.35);
+    --inner-highlight: inset 0 1px 0 rgba(255, 244, 222, 0.035);
 
-    /* Type */
-    --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
-    --font-sacred: "Cinzel", "Playfair Display", serif;
-    --font-devanagari: "Noto Serif Devanagari", "Playfair Display", serif;
-    --font-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* Roles that change with the theme (see [data-theme="dawn"] below).
+       lift: a raised wash · hair: a hairline · shade: shadow and vignette */
+    --lift-rgb: 255, 244, 222;
+    --lift-k: 1;
+    --hair-rgb: 239, 228, 205;
+    --hair-k: 1;
+    --shade-rgb: 0, 0, 0;
+    --shade-k: 1;
+    --bg-rgb: 13, 14, 21;
+    --scrim: rgba(5, 5, 9, 0.66);
+    --surface-float: #191a24;
+    --accent-fill: var(--gold-400);
+    --accent-fill-hover: var(--gold-300);
+    --accent-fill-deep: var(--gold-500);
+    --eyebrow-color: rgba(240, 200, 134, 0.82);
+    --kumkum-text: #f0b3a3;
+    --kumkum-text-strong: #ffd7cc;
 
-    --fs-xs: 0.75rem;
-    --fs-sm: 0.8125rem;
-    --fs-base: 0.9375rem;
-    --fs-md: 1.0625rem;
-    --fs-lg: clamp(1.15rem, 1.05rem + 0.4vw, 1.3rem);
-    --fs-xl: clamp(1.45rem, 1.25rem + 0.9vw, 1.85rem);
-    --fs-2xl: clamp(1.9rem, 1.5rem + 1.8vw, 2.7rem);
+    /* Type — chosen from the Indian and classical traditions */
+    --font-display: "Cormorant Garamond", "Cormorant", Garamond, "Iowan Old Style", Georgia, serif;
+    --font-ui: "Mukta", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-sanskrit: "Tiro Devanagari Sanskrit", "Noto Serif Devanagari", "Nirmala UI", serif;
+    --font-devanagari: "Tiro Devanagari Sanskrit", "Noto Serif Devanagari", serif;
+    --font-script: var(--font-sanskrit); /* swapped when the śloka is read in another script */
+    --font-sacred: var(--font-ui);
 
-    /* Space */
+    --fs-xs: 0.78rem;
+    --fs-sm: 0.875rem;
+    --fs-base: 1.0625rem;
+    --fs-md: 1.15rem;
+    --fs-lg: clamp(1.3rem, 1.18rem + 0.45vw, 1.5rem);
+    --fs-xl: clamp(1.65rem, 1.42rem + 0.9vw, 2.1rem);
+    --fs-2xl: clamp(2.3rem, 1.85rem + 1.9vw, 3.3rem);
+
+    --leading-tight: 1.15;
+    --leading-text: 1.75;
+    --leading-sanskrit: 2.05;
+    --measure: 60ch;
+
+    /* Space — generous; peace needs room */
     --space-1: 4px;
     --space-2: 8px;
     --space-3: 12px;
@@ -77,26 +115,28 @@
     --space-10: 40px;
     --space-12: 48px;
     --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
 
-    /* Shape */
-    --radius-xs: 6px;
-    --radius-sm: 10px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
+    /* Shape — soft, but not bubbly */
+    --radius-xs: 5px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
     --radius-pill: 999px;
 
     /* Motion — slow, deliberate, never bouncy */
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-    --dur-fast: 160ms;
-    --dur-base: 260ms;
-    --dur-slow: 520ms;
+    --dur-fast: 180ms;
+    --dur-base: 320ms;
+    --dur-slow: 700ms;
 
     /* Layout */
     --column: 680px;
-    --header-h: 64px;
-    --tabbar-h: 64px;
+    --header-h: 68px;
+    --tabbar-h: 66px;
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --safe-left: env(safe-area-inset-left, 0px);
@@ -112,11 +152,11 @@
     --z-palette: 1100;
     --z-toast: 1200;
 
-    /* Atmosphere — rewritten by time of day and mood (see useUserAura) */
-    --sky-rgb: 212, 175, 55;
-    --sky-strength: 0.13;
-    --horizon-rgb: 120, 90, 40;
-    --mood-rgb: 212, 175, 55;
+    /* Atmosphere — the lamp's light, rewritten by time of day and mood */
+    --lamp-rgb: 232, 170, 92;
+    --lamp-strength: 0.11;
+    --dusk-rgb: 70, 66, 130;
+    --mood-rgb: 220, 150, 64;
     --mood-strength: 0;
 
     /* Legacy aliases so older markup keeps rendering correctly */
@@ -133,27 +173,137 @@
     --font-sans: var(--font-ui);
 }
 
-/* Time-of-day skies. The palette stays nocturnal; only the light changes. */
+/* The lamp burns differently through the day. */
 :root[data-time="dawn"] {
-    --sky-rgb: 222, 150, 120;
-    --sky-strength: 0.15;
-    --horizon-rgb: 150, 96, 120;
+    --lamp-rgb: 236, 160, 120;
+    --lamp-strength: 0.12;
+    --dusk-rgb: 110, 80, 120;
 }
 
 :root[data-time="day"] {
-    --sky-rgb: 224, 186, 92;
-    --sky-strength: 0.15;
-    --horizon-rgb: 140, 104, 44;
+    --lamp-rgb: 236, 184, 108;
+    --lamp-strength: 0.12;
+    --dusk-rgb: 90, 76, 60;
 }
 
 :root[data-time="dusk"] {
-    --sky-rgb: 210, 128, 82;
-    --sky-strength: 0.14;
-    --horizon-rgb: 96, 70, 140;
+    --lamp-rgb: 230, 140, 82;
+    --lamp-strength: 0.13;
+    --dusk-rgb: 92, 62, 112;
 }
 
 :root[data-time="night"] {
-    --sky-rgb: 104, 124, 210;
-    --sky-strength: 0.12;
-    --horizon-rgb: 60, 50, 110;
+    --lamp-rgb: 228, 162, 84;
+    --lamp-strength: 0.1;
+    --dusk-rgb: 52, 54, 110;
+}
+
+/* ==========================================================================
+   Prabhāta — dawn. The default look: morning light on fresh paper.
+
+   "Smiling, as it were, Krishna spoke" (2.10) — the Gita answers despair
+   with warmth. Saffron sun, lotus pink, peacock blue and the yellow of
+   Krishna's pītāmbara, on paper the colour of first light.
+   ========================================================================== */
+
+:root[data-theme="dawn"] {
+    color-scheme: light;
+
+    /* Paper — the "ink" scale becomes the page in daylight */
+    --ink-950: #f1e7d6;
+    --ink-900: #fbf6ec;
+    --ink-850: #f8f0e2;
+    --ink-800: #f3e9d8;
+    --ink-750: #ede1cc;
+    --ink-700: #e5d6bd;
+
+    /* Saffron — deeper steps first, because on paper darker reads stronger */
+    --gold-200: #6e430c;
+    --gold-300: #8a5512;
+    --gold-400: #a6681a;
+    --gold-500: #c47d24;
+    --gold-600: #df9a3e;
+    --gold-700: #eebc72;
+    --gold-rgb: 222, 138, 40;
+
+    --kumkum: #c4432b;
+    --kumkum-rgb: 196, 67, 43;
+    --peacock: #1b7d78;
+    --peacock-rgb: 27, 125, 120;
+    --indigo: #3d4fae;
+    --lotus: #d8577a;
+    --lotus-rgb: 216, 87, 122;
+
+    --text-1: #2a1c10;
+    --text-2: #5b4732;
+    --text-3: #8a745c;
+    --text-on-gold: #2b1903;
+
+    --danger: #b3412a;
+    --danger-soft: rgba(179, 65, 42, 0.09);
+    --sage: #3c7a4c;
+
+    --line: rgba(110, 72, 28, 0.12);
+    --line-strong: rgba(110, 72, 28, 0.2);
+    --line-gold: rgba(var(--gold-rgb), 0.5);
+
+    --surface-1: #fffcf6;
+    --surface-2: #fffaf2;
+    --surface-3: #fbf2e3;
+    --surface-sunken: rgba(150, 100, 40, 0.06);
+    --surface-float: #fffdf9;
+    --leaf: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.55));
+    --gold-wash: rgba(var(--gold-rgb), 0.11);
+    --gold-wash-strong: rgba(var(--gold-rgb), 0.2);
+
+    --shadow-sm: 0 1px 2px rgba(120, 76, 28, 0.08);
+    --shadow-md: 0 16px 34px -18px rgba(120, 76, 28, 0.3);
+    --shadow-lg: 0 34px 70px -28px rgba(120, 76, 28, 0.36);
+    --glow-gold: 0 0 0 1px rgba(var(--gold-rgb), 0.35), 0 12px 30px -12px rgba(var(--gold-rgb), 0.45);
+    --inner-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    --lift-rgb: 255, 255, 255;
+    --lift-k: 13;
+    --hair-rgb: 92, 60, 24;
+    --hair-k: 1.5;
+    --shade-rgb: 120, 76, 28;
+    --shade-k: 0.32;
+    --bg-rgb: 251, 246, 236;
+    --scrim: rgba(74, 46, 18, 0.3);
+    --accent-fill: #f0a23a;
+    --accent-fill-hover: #f6b453;
+    --accent-fill-deep: #e08c22;
+    --eyebrow-color: #a35f12;
+    --kumkum-text: #a8381f;
+    --kumkum-text-strong: #8c2c16;
+
+    /* The sky: sunrise above, a little peacock-blue below, lotus to one side */
+    --lamp-rgb: 255, 184, 100;
+    --lamp-strength: 0.5;
+    --dusk-rgb: 110, 186, 196;
+    --mood-strength-scale: 1.6;
+}
+
+:root[data-theme="dawn"][data-time="day"] {
+    --lamp-rgb: 255, 196, 112;
+    --lamp-strength: 0.46;
+    --dusk-rgb: 120, 190, 205;
+}
+
+:root[data-theme="dawn"][data-time="dawn"] {
+    --lamp-rgb: 255, 168, 120;
+    --lamp-strength: 0.55;
+    --dusk-rgb: 236, 150, 170;
+}
+
+:root[data-theme="dawn"][data-time="dusk"] {
+    --lamp-rgb: 255, 156, 92;
+    --lamp-strength: 0.52;
+    --dusk-rgb: 200, 140, 190;
+}
+
+:root[data-theme="dawn"][data-time="night"] {
+    --lamp-rgb: 255, 176, 96;
+    --lamp-strength: 0.42;
+    --dusk-rgb: 140, 160, 220;
 }

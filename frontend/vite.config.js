@@ -41,15 +41,19 @@ function livingGitaServiceWorker() {
 
             const precache = [...new Set(['/', ...built, ...publicFiles])].sort();
             const template = readFileSync(resolve(root, 'src/pwa/sw.js'), 'utf8');
+            // The same engine the API runs, so offline answers match online ones.
+            const engine = readFileSync(resolve(root, '../shared/wisdom-engine.js'), 'utf8');
 
             const hash = createHash('sha256');
             hash.update(template);
+            hash.update(engine);
             hash.update(precache.join('|'));
             listFiles(publicDir).forEach((file) => hash.update(readFileSync(file)));
             Object.values(bundle).forEach((item) => hash.update(item.type === 'chunk' ? item.code : item.source));
             const version = hash.digest('hex').slice(0, 12);
 
             const source = template
+                .replace('/*__WISDOM_ENGINE__*/', () => engine)
                 .replace('__BUILD_VERSION__', version)
                 .replace('__PRECACHE_MANIFEST__', JSON.stringify(precache, null, 4));
 

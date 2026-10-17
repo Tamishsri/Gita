@@ -1,46 +1,63 @@
 /* ==========================================================================
-   UI primitives — buttons, chips, controls, surfaces
+   UI primitives — leaves, folios, buttons, quiet controls
    ========================================================================== */
 
 /* ---------- Surfaces ---------- */
 
+/* A leaf: a flat sheet of paper in lamplight. */
 .glass,
-.glass-effect {
-    background: var(--surface-1);
-    -webkit-backdrop-filter: blur(18px) saturate(135%);
-    backdrop-filter: blur(18px) saturate(135%);
+.glass-effect,
+.card {
+    position: relative;
+    background: var(--leaf), var(--surface-1);
     border: 1px solid var(--line);
-    box-shadow: var(--inner-highlight), var(--shadow-md);
+    box-shadow: var(--inner-highlight);
 }
 
 .card {
-    position: relative;
     border-radius: var(--radius-lg);
-    padding: var(--space-6);
-    background: var(--surface-1);
-    -webkit-backdrop-filter: blur(18px) saturate(135%);
-    backdrop-filter: blur(18px) saturate(135%);
-    border: 1px solid var(--line);
-    box-shadow: var(--inner-highlight), var(--shadow-md);
+    padding: var(--space-8);
 }
 
+/* A folio: a manuscript page with a double rule, for sacred text. */
 .card--featured {
-    border: 1px solid transparent;
-    background:
-        linear-gradient(var(--surface-2), var(--surface-2)) padding-box,
-        linear-gradient(140deg, rgba(var(--gold-rgb), 0.55), rgba(var(--gold-rgb), 0.06) 38%, rgba(var(--gold-rgb), 0.04) 62%, rgba(var(--gold-rgb), 0.32)) border-box;
+    border: 1px solid rgba(var(--gold-rgb), 0.26);
+    box-shadow:
+        inset 0 0 0 5px var(--surface-1),
+        inset 0 0 0 6px rgba(var(--gold-rgb), 0.12),
+        var(--shadow-md);
+}
+
+.card--featured::before,
+.card--featured::after {
+    /* bindu at the head and foot of the page */
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--kumkum);
+    box-shadow: 0 0 0 4px var(--surface-1);
+    transform: translateX(-50%);
+}
+
+.card--featured::before {
+    top: -4px;
+}
+
+.card--featured::after {
+    bottom: -4px;
 }
 
 .card--quiet {
     background: var(--surface-sunken);
     box-shadow: none;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
 }
 
 @media (max-width: 639px) {
     .card {
-        padding: var(--space-5);
+        padding: var(--space-6) var(--space-5);
         border-radius: var(--radius-md);
     }
 }
@@ -48,35 +65,34 @@
 /* ---------- Buttons ---------- */
 
 .btn {
-    --btn-h: 40px;
+    --btn-h: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 9px;
     height: var(--btn-h);
-    padding: 0 18px;
+    padding: 0 20px;
     border-radius: var(--radius-pill);
     font-family: var(--font-ui);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    letter-spacing: 0.005em;
+    letter-spacing: 0.01em;
     white-space: nowrap;
     border: 1px solid transparent;
     transition:
         background-color var(--dur-fast) ease,
         border-color var(--dur-fast) ease,
         color var(--dur-fast) ease,
-        box-shadow var(--dur-base) ease,
         transform var(--dur-fast) ease,
         opacity var(--dur-fast) ease;
 }
 
 .btn:active:not(:disabled) {
-    transform: scale(0.97);
+    transform: scale(0.98);
 }
 
 .btn:disabled {
-    opacity: 0.45;
+    opacity: 0.4;
 }
 
 .btn svg {
@@ -84,46 +100,47 @@
 }
 
 .btn--sm {
-    --btn-h: 32px;
-    padding: 0 12px;
-    font-size: 0.8125rem;
-    gap: 6px;
+    --btn-h: 36px;
+    padding: 0 14px;
+    font-size: 0.875rem;
+    gap: 7px;
 }
 
 .btn--lg {
-    --btn-h: 50px;
-    padding: 0 26px;
-    font-size: 0.9375rem;
+    --btn-h: 52px;
+    padding: 0 28px;
+    font-size: 1rem;
 }
 
 .btn--block {
     width: 100%;
 }
 
+/* The flame: one flat colour, no gradients, no glow. */
 .btn--gold {
     color: var(--text-on-gold);
-    background: linear-gradient(180deg, var(--gold-300) 0%, var(--gold-500) 55%, var(--gold-600) 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 24px -10px rgba(var(--gold-rgb), 0.55);
+    background: var(--accent-fill);
 }
 
 .btn--gold:hover:not(:disabled) {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 10px 32px -8px rgba(var(--gold-rgb), 0.7);
+    background: var(--accent-fill-hover);
 }
 
 .btn--outline {
-    color: var(--gold-300);
-    border-color: var(--line-gold);
-    background: rgba(var(--gold-rgb), 0.03);
+    color: var(--text-1);
+    border-color: var(--line-strong);
+    background: transparent;
 }
 
 .btn--outline:hover:not(:disabled) {
-    background: var(--gold-wash-strong);
-    border-color: rgba(var(--gold-rgb), 0.6);
+    border-color: rgba(var(--gold-rgb), 0.5);
+    color: var(--gold-200);
 }
 
 .btn--outline.is-on {
-    background: var(--gold-wash-strong);
-    border-color: rgba(var(--gold-rgb), 0.65);
+    color: var(--gold-200);
+    border-color: rgba(var(--gold-rgb), 0.55);
+    background: var(--gold-wash);
 }
 
 .btn--ghost {
@@ -133,48 +150,76 @@
 
 .btn--ghost:hover:not(:disabled) {
     color: var(--text-1);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(var(--lift-rgb), calc(0.035 * var(--lift-k)));
 }
 
 .btn--soft {
     color: var(--text-1);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(var(--lift-rgb), calc(0.035 * var(--lift-k)));
     border-color: var(--line);
 }
 
 .btn--soft:hover:not(:disabled) {
     border-color: var(--line-strong);
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(var(--lift-rgb), calc(0.06 * var(--lift-k)));
 }
 
 .btn--danger {
     color: #fff3ef;
-    background: #b5543f;
+    background: #a94b36;
 }
 
 .btn--danger:hover:not(:disabled) {
-    background: #c55f48;
+    background: #b9563f;
 }
 
-.btn--link {
+/* A quiet text action, like a word underlined in pencil. */
+.btn--link,
+.text-action {
     height: auto;
     padding: 4px 2px;
     border-radius: var(--radius-xs);
     color: var(--text-2);
+    background: none;
+    border: 0;
     text-decoration: underline;
-    text-decoration-color: rgba(179, 171, 155, 0.35);
-    text-underline-offset: 4px;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
+    font-weight: 400;
+    transition: color var(--dur-fast) ease, text-decoration-color var(--dur-fast) ease;
 }
 
-.btn--link:hover {
-    color: var(--text-1);
-    text-decoration-color: currentColor;
+.btn--link:hover,
+.text-action:hover {
+    color: var(--gold-200);
+    text-decoration-color: rgba(var(--gold-rgb), 0.6);
+}
+
+.text-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: var(--fs-sm);
+    cursor: pointer;
+}
+
+.text-action.is-on {
+    color: var(--gold-300);
+}
+
+.text-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 22px;
 }
 
 /* Icon buttons */
 
 .icon-btn {
-    --size: 40px;
+    --size: 42px;
     position: relative;
     display: inline-grid;
     place-items: center;
@@ -183,62 +228,54 @@
     flex-shrink: 0;
     border-radius: 50%;
     color: var(--text-2);
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid var(--line);
-    transition:
-        color var(--dur-fast) ease,
-        background-color var(--dur-fast) ease,
-        border-color var(--dur-fast) ease,
-        transform var(--dur-fast) ease;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease, border-color var(--dur-fast) ease;
 }
 
 .icon-btn:hover:not(:disabled) {
-    color: var(--gold-300);
-    border-color: var(--line-gold);
-    background: var(--gold-wash);
+    color: var(--gold-200);
+    background: rgba(var(--lift-rgb), calc(0.045 * var(--lift-k)));
 }
 
 .icon-btn:active:not(:disabled) {
-    transform: scale(0.93);
+    transform: scale(0.94);
 }
 
 .icon-btn.is-on {
     color: var(--gold-300);
-    border-color: var(--line-gold);
-    background: var(--gold-wash-strong);
+    background: var(--gold-wash);
 }
 
 .icon-btn--sm {
-    --size: 32px;
+    --size: 36px;
 }
 
 .icon-btn--xs {
-    --size: 28px;
+    --size: 30px;
 }
 
 .icon-btn--plain {
     background: transparent;
-    border-color: transparent;
 }
 
-.icon-btn--plain:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: transparent;
+.icon-btn--ring {
+    border-color: var(--line);
 }
 
 .badge {
     position: absolute;
-    top: -4px;
-    right: -4px;
-    min-width: 18px;
-    height: 18px;
+    top: 2px;
+    right: 2px;
+    min-width: 17px;
+    height: 17px;
     padding: 0 5px;
     border-radius: var(--radius-pill);
-    background: var(--gold-500);
-    color: var(--text-on-gold);
+    background: var(--kumkum);
+    color: #fff4ec;
     font-size: 0.625rem;
-    font-weight: 700;
-    line-height: 18px;
+    font-weight: 600;
+    line-height: 17px;
     text-align: center;
     box-shadow: 0 0 0 2px var(--ink-900);
 }
@@ -249,46 +286,49 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    height: 26px;
-    padding: 0 11px;
+    height: 28px;
+    padding: 0 12px;
     border-radius: var(--radius-pill);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--gold-300);
-    background: var(--gold-wash);
-    border: 1px solid rgba(var(--gold-rgb), 0.16);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-2);
+    background: transparent;
+    border: 1px solid var(--line-strong);
     white-space: nowrap;
-    text-transform: capitalize;
+}
+
+.chip::first-letter {
+    text-transform: uppercase;
 }
 
 .chip--muted {
-    color: var(--text-2);
-    background: rgba(255, 255, 255, 0.035);
+    color: var(--text-3);
     border-color: var(--line);
 }
 
 button.chip {
-    height: 32px;
-    padding: 0 14px;
+    height: 34px;
+    padding: 0 15px;
+    font-size: 0.875rem;
     transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
 button.chip:hover {
-    border-color: var(--line-gold);
-    background: var(--gold-wash-strong);
+    color: var(--text-1);
+    border-color: rgba(var(--gold-rgb), 0.45);
 }
 
 button.chip.is-active,
 button.chip[aria-pressed="true"] {
     color: var(--text-on-gold);
-    background: var(--gold-400);
+    background: var(--accent-fill);
     border-color: var(--gold-400);
 }
 
 .chip-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 8px 10px;
 }
 
 .chip-row--scroll {
@@ -310,21 +350,20 @@ button.chip[aria-pressed="true"] {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
-    gap: 4px;
-    padding: 4px;
+    gap: 2px;
+    padding: 3px;
     border-radius: var(--radius-md);
     background: var(--surface-sunken);
     border: 1px solid var(--line);
 }
 
 .segmented button {
-    min-height: 36px;
+    min-height: 38px;
     padding: 6px 10px;
-    border-radius: var(--radius-sm);
-    font-size: 0.8125rem;
-    font-weight: 500;
+    border-radius: 9px;
+    font-size: 0.9rem;
     color: var(--text-2);
-    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+    transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
 .segmented button:hover {
@@ -334,7 +373,7 @@ button.chip[aria-pressed="true"] {
 .segmented button[aria-pressed="true"] {
     color: var(--gold-200);
     background: var(--ink-700);
-    box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), 0.32), var(--shadow-sm);
+    box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), 0.24);
 }
 
 /* ---------- Switch ---------- */
@@ -345,7 +384,7 @@ button.chip[aria-pressed="true"] {
     height: 28px;
     flex-shrink: 0;
     border-radius: var(--radius-pill);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(var(--lift-rgb), calc(0.07 * var(--lift-k)));
     border: 1px solid var(--line-strong);
     transition: background-color var(--dur-base) ease, border-color var(--dur-base) ease;
 }
@@ -358,19 +397,22 @@ button.chip[aria-pressed="true"] {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: var(--text-2);
-    box-shadow: var(--shadow-sm);
+    background: var(--text-3);
     transition: transform var(--dur-base) var(--ease-out), background-color var(--dur-base) ease;
 }
 
 .switch[aria-checked="true"] {
-    background: rgba(var(--gold-rgb), 0.35);
-    border-color: rgba(var(--gold-rgb), 0.6);
+    background: rgba(var(--gold-rgb), 0.3);
+    border-color: rgba(var(--gold-rgb), 0.55);
 }
 
 .switch[aria-checked="true"]::after {
     transform: translateX(18px);
-    background: var(--gold-300);
+    background: var(--accent-fill-hover);
+}
+
+.switch:disabled {
+    opacity: 0.4;
 }
 
 /* ---------- Inputs ---------- */
@@ -396,14 +438,14 @@ button.chip[aria-pressed="true"] {
 .input,
 .textarea {
     width: 100%;
-    min-height: 44px;
+    min-height: 46px;
     padding: 10px 16px;
     border-radius: var(--radius-md);
     background: var(--surface-sunken);
     border: 1px solid var(--line-strong);
     color: var(--text-1);
-    font-size: 0.9375rem;
-    transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease, background-color var(--dur-fast) ease;
+    font-size: 1rem;
+    transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
 .input::placeholder,
@@ -413,9 +455,8 @@ button.chip[aria-pressed="true"] {
 
 .input:focus,
 .textarea:focus {
-    border-color: rgba(var(--gold-rgb), 0.55);
-    box-shadow: 0 0 0 4px rgba(var(--gold-rgb), 0.1);
-    background: rgba(4, 6, 10, 0.5);
+    border-color: rgba(var(--gold-rgb), 0.5);
+    background: var(--scrim);
 }
 
 .input--pill {
@@ -423,22 +464,42 @@ button.chip[aria-pressed="true"] {
 }
 
 .field > svg + .input {
-    padding-left: 44px;
+    padding-left: 46px;
 }
 
 .field .input:has(+ .field__clear) {
-    padding-right: 44px;
+    padding-right: 46px;
 }
 
 .input--lg {
-    min-height: 52px;
-    font-size: 1rem;
+    min-height: 54px;
+    font-size: 1.05rem;
 }
 
 .textarea {
-    min-height: 96px;
+    min-height: 110px;
     resize: vertical;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-family: var(--font-ui);
+}
+
+/* Writing paper: a ruled textarea for reflections. */
+.textarea--paper {
+    border: 0;
+    border-radius: 0;
+    background:
+        repeating-linear-gradient(180deg, transparent 0, transparent calc(1.85em - 1px), rgba(var(--hair-rgb), calc(0.07 * var(--hair-k))) calc(1.85em - 1px), rgba(var(--hair-rgb), calc(0.07 * var(--hair-k))) 1.85em);
+    background-attachment: local;
+    padding: 0.35em 2px;
+    line-height: 1.85em;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    min-height: calc(1.85em * 4 + 0.7em);
+    resize: none;
+}
+
+.textarea--paper:focus {
+    background-color: transparent;
 }
 
 /* ---------- Keyboard caps ---------- */
@@ -452,11 +513,10 @@ button.chip[aria-pressed="true"] {
     border-radius: 6px;
     font-family: var(--font-ui);
     font-size: 0.6875rem;
-    font-weight: 600;
-    color: var(--text-2);
-    background: rgba(255, 255, 255, 0.05);
+    font-weight: 500;
+    color: var(--text-3);
+    background: rgba(var(--lift-rgb), calc(0.035 * var(--lift-k)));
     border: 1px solid var(--line-strong);
-    border-bottom-width: 2px;
     line-height: 1;
 }
 
@@ -466,34 +526,34 @@ button.chip[aria-pressed="true"] {
     align-items: center;
 }
 
-/* ---------- Ornament divider ---------- */
+/* ---------- Ornament divider (kolam-inspired fallback) ---------- */
 
 .ornament {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    color: rgba(var(--gold-rgb), 0.7);
+    gap: 14px;
+    color: rgba(var(--gold-rgb), 0.6);
 }
 
 .ornament::before,
 .ornament::after {
     content: "";
     height: 1px;
-    flex: 0 1 72px;
-    background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), 0.5));
+    flex: 0 1 80px;
+    background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), 0.38));
 }
 
 .ornament::after {
-    background: linear-gradient(90deg, rgba(var(--gold-rgb), 0.5), transparent);
+    background: linear-gradient(90deg, rgba(var(--gold-rgb), 0.38), transparent);
 }
 
 .ornament__gem {
     width: 6px;
     height: 6px;
-    transform: rotate(45deg);
-    background: var(--gold-400);
-    box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.6);
+    border-radius: 50%;
+    background: var(--kumkum);
+    box-shadow: -12px 0 0 -1.5px rgba(var(--gold-rgb), 0.6), 12px 0 0 -1.5px rgba(var(--gold-rgb), 0.6);
 }
 
 /* ---------- Loading ---------- */
@@ -502,7 +562,7 @@ button.chip[aria-pressed="true"] {
     position: relative;
     overflow: hidden;
     border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(var(--lift-rgb), calc(0.035 * var(--lift-k)));
 }
 
 .skeleton::after {
@@ -510,8 +570,8 @@ button.chip[aria-pressed="true"] {
     position: absolute;
     inset: 0;
     transform: translateX(-100%);
-    background: linear-gradient(90deg, transparent, rgba(236, 212, 138, 0.07), transparent);
-    animation: shimmer 1.6s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb), 0.08), transparent);
+    animation: shimmer 2s ease-in-out infinite;
 }
 
 @keyframes shimmer {
@@ -522,37 +582,37 @@ button.chip[aria-pressed="true"] {
 
 .breathing-dots {
     display: inline-flex;
-    gap: 7px;
+    gap: 8px;
     align-items: center;
 }
 
 .breathing-dots span {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: var(--gold-400);
-    animation: breathe-dot 1.8s var(--ease-in-out) infinite;
+    background: var(--accent-fill);
+    animation: breathe-dot 2.2s var(--ease-in-out) infinite;
 }
 
 .breathing-dots span:nth-child(2) {
-    animation-delay: 0.22s;
+    animation-delay: 0.3s;
 }
 
 .breathing-dots span:nth-child(3) {
-    animation-delay: 0.44s;
+    animation-delay: 0.6s;
 }
 
 @keyframes breathe-dot {
 
     0%,
     100% {
-        opacity: 0.25;
+        opacity: 0.2;
         transform: scale(0.8);
     }
 
     50% {
-        opacity: 1;
-        transform: scale(1.1);
+        opacity: 0.9;
+        transform: scale(1.05);
     }
 }
 
@@ -561,8 +621,8 @@ button.chip[aria-pressed="true"] {
 .empty-state {
     display: grid;
     justify-items: center;
-    gap: 10px;
-    padding: var(--space-12) var(--space-6);
+    gap: 12px;
+    padding: var(--space-16) var(--space-6);
     text-align: center;
     color: var(--text-2);
 }
@@ -574,7 +634,7 @@ button.chip[aria-pressed="true"] {
 .empty-state p {
     max-width: 36ch;
     font-size: var(--fs-sm);
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 .empty-state__mark {

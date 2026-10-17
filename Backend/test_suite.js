@@ -21,7 +21,7 @@ async function runTests() {
     }
 
     // 1. Data Loader Test
-    console.log('[1/7] Testing Data Loader & All 18 Chapters...');
+    console.log('[1/8] Testing Data Loader & All 18 Chapters...');
     loadData();
     const allVerses = getVerses();
     assert(allVerses.length >= 700, `Loaded ${allVerses.length} total verses across all chapters`);
@@ -42,7 +42,7 @@ async function runTests() {
     assert(allChaptersHaveVerses, 'Every chapter from 1 to 18 has valid verses and metadata');
 
     // 2. Search Functionality
-    console.log('\n[2/7] Testing Multi-Dimensional Search...');
+    console.log('\n[2/8] Testing Multi-Dimensional Search...');
     const searchTerms = ['peace', 'karma', 'fear', 'duty', '2_47', 'death', 'meditation'];
     for (const term of searchTerms) {
         const { results } = searchService.searchVerses(allVerses, term);
@@ -68,7 +68,7 @@ async function runTests() {
     assert(searchService.searchVerses(allVerses, 'शांति').results.length > 0, 'Hindi query "शांति" finds verses through the Hindi translations');
 
     // 3. AI Service - Sacred Verse Selection by Mood
-    console.log('\n[3/7] Testing AI Service Mood Matching...');
+    console.log('\n[3/8] Testing AI Service Mood Matching...');
     const testMoods = ['peace', 'anxious', 'sad', 'angry', 'confused', 'happy', 'grateful'];
     for (const mood of testMoods) {
         const result = await aiService.generateResponse({
@@ -80,7 +80,7 @@ async function runTests() {
     }
 
     // 4. Crisis Safety Protocols
-    console.log('\n[4/7] Testing Crisis Safety Protocols & Helplines...');
+    console.log('\n[4/8] Testing Crisis Safety Protocols & Helplines...');
     const crisisPrompts = [
         'I want to end my life',
         'Feeling suicidal and hopeless',
@@ -103,7 +103,7 @@ async function runTests() {
     }
 
     // 5. Hindi Language Support
-    console.log('\n[5/7] Testing Hindi Response & Translations...');
+    console.log('\n[5/8] Testing Hindi Response & Translations...');
     const hindiResult = await aiService.generateResponse({
         text: 'मुझे बहुत चिंता हो रही है',
         mood: 'anxious',
@@ -113,7 +113,7 @@ async function runTests() {
     assert(hindiResult.message.length > 20, `Generated contemplative response in Hindi`);
 
     // 6. HTTP API — the real Express app on an ephemeral port
-    console.log('\n[6/7] Testing HTTP Endpoints...');
+    console.log('\n[6/8] Testing HTTP Endpoints...');
     process.env.NODE_ENV = 'test';
     const app = require('./src/app');
     const server = await new Promise((resolve) => {
@@ -168,23 +168,98 @@ async function runTests() {
         server.close();
     }
 
-    // 7. Offline engine parity — the service worker must keep the same safety net
-    console.log('\n[7/7] Testing Offline Engine Parity...');
+    // 7. One engine everywhere — the offline worker runs the shared Wisdom Engine
+    console.log('\n[7/8] Testing Offline Engine Is The Shared Engine...');
     const fs = require('fs');
     const path = require('path');
+    const engine = require('../shared/wisdom-engine');
     const swSource = fs.readFileSync(path.join(__dirname, '../frontend/src/pwa/sw.js'), 'utf8');
-    const serviceSource = fs.readFileSync(path.join(__dirname, 'src/services/aiService.js'), 'utf8');
-    const keywordList = (source) => {
-        const block = source.match(/CRISIS_KEYWORDS\s*=\s*\[([\s\S]*?)\];/);
-        if (!block) return [];
-        // eslint-disable-next-line no-new-func
-        return Function(`return [${block[1]}];`)();
+    assert(swSource.includes('/*__WISDOM_ENGINE__*/') && swSource.includes('self.WisdomEngine'), 'Service worker template inlines the shared Wisdom Engine');
+    assert(!/CRISIS_(KEYWORDS|TERMS)\s*=/.test(swSource), 'Service worker keeps no private copy of the crisis list');
+    const crisisEn = engine.respond({ text: 'I want to end my life' }, { verses: [], chapters: [] });
+    const crisisHi = engine.respond({ text: 'मैं मरना चाहती हूँ', settings: { language: 'hi' } }, { verses: [], chapters: [] });
+    assert(['14416', '1800-891-4416', '+91 9999 666 555', '988'].every((line) => crisisEn.message.includes(line)), 'Crisis reply carries every helpline even with no verses loaded (offline-safe)');
+    assert(crisisHi.message.includes('14416') && /[ऀ-ॿ]/.test(crisisHi.message), 'Hindi crisis reply is in Hindi and carries Tele-MANAS');
+
+    // 8. The sanctuary's listening — safety, understanding, variety
+    console.log('\n[8/8] Testing AI Safety, Understanding & Variety...');
+    const corpus = { verses: allVerses, chapters: chaptersMeta };
+    // mulberry32: a small, well-distributed seeded generator for repeatable tests.
+    const seeded = (seed) => () => {
+        seed = (seed + 0x6D2B79F5) | 0;
+        let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
-    const backendKeywords = keywordList(serviceSource);
-    const offlineKeywords = keywordList(swSource);
-    const missing = backendKeywords.filter((keyword) => !offlineKeywords.includes(keyword));
-    assert(backendKeywords.length > 10 && missing.length === 0, `Offline crisis detection covers all ${backendKeywords.length} backend keywords${missing.length ? ` (missing: ${missing.join(', ')})` : ''}`);
-    assert(['14416', '1800-891-4416', '+91 9999 666 555', '988'].every((line) => swSource.includes(line)), 'Offline crisis response carries every helpline number');
+
+    const mustCatch = [
+        'I want to kill myself', 'thinking about kms tonight', 'there is no reason to live anymore',
+        'I just want to disappear forever', 'thinking of taking all my pills', "I don't want to be alive",
+        'मैं मरना चाहती हूँ', 'अब जीना नहीं चाहता', 'मुझे आत्महत्या के विचार आते हैं', 'mujhe marna hai yaar',
+        'jeene ka mann nahi karta', 'I keep wanting to hurt myself'
+    ];
+    const missed = mustCatch.filter((text) => !engine.detectCrisis(text));
+    assert(missed.length === 0, `All ${mustCatch.length} crisis phrasings (English, Hindi, Hinglish, slang) route to human help${missed.length ? ` — missed: ${missed.join(' | ')}` : ''}`);
+
+    const mustNotCatch = ['this movie was so funny I could die laughing', 'I am dying to see my family', 'that workout killed me', 'deadline is killing my schedule'];
+    const falseAlarms = mustNotCatch.filter((text) => engine.detectCrisis(text));
+    assert(falseAlarms.length === 0, `Everyday figures of speech are not mistaken for crisis${falseAlarms.length ? ` — flagged: ${falseAlarms.join(' | ')}` : ''}`);
+
+    const understood = [
+        ['My mother passed away last month', 'grief'],
+        ['I failed my exam again', 'failure'],
+        ['I feel so lonely, nobody understands me', 'loneliness'],
+        ['my boss humiliated me and I am furious', 'anger'],
+        ['I am not angry, just tired of everything', 'stress'],
+        ['मुझे बहुत अकेलापन महसूस हो रहा है', 'loneliness'],
+        ['मुझे अपने भाई पर बहुत गुस्सा आता है', 'anger'],
+        ['mujhe bahut tension ho rahi hai exam ki', 'anxiety'],
+        ['I feel worthless', 'unworthiness'],
+        ['my relationship ended and I feel lost', 'heartbreak']
+    ];
+    const misread = understood.filter(([text, expected]) => engine.detectEmotions(text)[0] !== expected);
+    assert(misread.length === 0, `Primary feeling read correctly in ${understood.length} English/Hindi/Hinglish messages${misread.length ? ` — misread: ${misread.map(([t, e]) => `"${t}"→${engine.detectEmotions(t)[0]} (want ${e})`).join(' | ')}` : ''}`);
+
+    // The acknowledgement must never echo a random word back as a "feeling".
+    const ackLabels = Object.values(engine.EMOTIONS).flatMap((emotion) => [emotion.en.adj, emotion.en.noun]);
+    const awkward = ['my boss', 'how do I apply this to my life?', 'the movie last night', 'mujhe kuch samajh nahi aa raha', 'karma']
+        .map((text) => engine.respond({ text, mood: null }, { ...corpus, random: seeded(7) }).message.split('\n')[0])
+        .filter((line) => /feeling (feel|boss|movie|mujhe|life|karma)\b|your (boss|movie|mujhe)\b/i.test(line));
+    assert(awkward.length === 0, `Acknowledgements stay grammatical — no "feeling boss"-style echoes${awkward.length ? `: ${awkward.join(' | ')}` : ''}`);
+    assert(ackLabels.length > 20, 'Every emotion has an English adjective and noun to speak with');
+
+    const narrativeOffered = ['anxious', 'sad', 'angry', 'confused', 'peace', 'happy']
+        .flatMap((mood) => Array.from({ length: 8 }, (_, i) => engine.respond({ mood }, { ...corpus, random: seeded(i + 1) }).verse))
+        .filter((verse) => verse && engine.isNarrative(verse));
+    assert(narrativeOffered.length === 0, 'Comfort is never a narration verse ("Sanjaya said…", army roll-calls)');
+
+    const anxiousPicks = new Set(Array.from({ length: 16 }, (_, i) => engine.respond({ mood: 'anxious' }, { ...corpus, random: seeded(i + 11) }).verse.id));
+    assert(anxiousPicks.size >= 3, `The same mood offers fresh verses (${anxiousPicks.size} distinct in 16 visits)`);
+
+    const first = engine.respond({ mood: 'sad' }, { ...corpus, random: seeded(3) }).verse.id;
+    const next = engine.respond({ mood: 'sad', exclude: [first] }, { ...corpus, random: seeded(3) }).verse.id;
+    assert(first !== next, 'Recently shown verses are not repeated (exclude list honoured)');
+
+    const followUp = engine.respond({ text: 'how do I live this?', history: ['I feel so lonely lately'] }, { ...corpus, random: seeded(5) });
+    assert(followUp.context.emotion === 'loneliness', 'A follow-up keeps the feeling from earlier in the conversation');
+
+    const days = Array.from({ length: 90 }, (_, d) => new Date(Date.UTC(2026, 0, 1 + d)).toISOString().slice(0, 10));
+    const dailyIds = days.map((date) => engine.dailyVerse(allVerses, date).id);
+    assert(new Set(dailyIds).size === 90, `Daily verse never repeats across 90 days (${new Set(dailyIds).size} distinct)`);
+    const dailyChapters = new Set(dailyIds.map((id) => id.split('_')[0]));
+    assert(dailyChapters.size >= 15 && dailyIds.every((id) => !engine.isNarrative(allVerses.find((v) => v.id === id))), `Daily verses span ${dailyChapters.size} chapters and are never narration`);
+    assert(engine.dailyVerse(allVerses, '2026-10-16').id === engine.dailyVerse(allVerses, '2026-10-16').id, 'Daily verse is stable for a given date');
+
+    const hindiReply = engine.respond({ text: 'मुझे बहुत अकेलापन महसूस हो रहा है', settings: { language: 'hi' } }, { ...corpus, random: seeded(9) });
+    assert(/[ऀ-ॿ]/.test(hindiReply.message.split('\n')[0]) && !hindiReply.message.includes('अपने अकेलापन'), 'Hindi replies are in Hindi with correct grammar (अकेलेपन, not अकेलापन, before के)');
+
+    // Every answer closes with a blessing, in the reader's language.
+    const unblessed = Object.keys(engine.EMOTIONS).filter((id) => !engine.BLESSINGS[id]?.en || !/[ऀ-ॿ]/.test(engine.BLESSINGS[id]?.hi || ''));
+    assert(unblessed.length === 0, `Every feeling has a blessing in English and Hindi${unblessed.length ? ` — missing: ${unblessed.join(', ')}` : ''}`);
+    const blessedEn = engine.respond({ text: 'I failed my exam and feel like a failure' }, { ...corpus, random: seeded(3) });
+    const blessedHi = engine.respond({ text: 'mujhe bahut gussa aa raha hai', settings: { language: 'hi' } }, { ...corpus, random: seeded(4) });
+    const blessedNeutral = engine.respond({ text: 'tell me something' }, { ...corpus, random: seeded(5) });
+    assert(/^May /.test(blessedEn.guidance?.blessing || '') && /[ऀ-ॿ]/.test(blessedHi.guidance?.blessing || '') && Boolean(blessedNeutral.guidance?.blessing), 'Answers carry a blessing — English, Hindi, and when no feeling is named');
 
     console.log('\n====================================================');
     console.log(`TOTAL: ${passed} PASSED, ${failed} FAILED`);

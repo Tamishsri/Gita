@@ -4,29 +4,26 @@ import {
     copyText, openWisdomCard, saveLine, speechTextFor, verseKey, verseMeaning, verseRef, verseShareText
 } from '../lib/verse';
 import { startJourney } from '../lib/journey';
+import { recordPath } from '../lib/path';
 import { playChime } from '../lib/chime';
 import { haptic } from '../lib/haptics';
 import { toast } from '../lib/toast';
+import { t } from '../i18n';
 
-// Every surface that shows a verse offers the same gestures — copy, save,
+// Every surface that shows a verse offers the same gestures — copy, keep,
 // walk, card, listen — so they live here once.
 export function useVerseActions(language = 'en') {
     const { speak, stop, speakingId, isSupported } = useVoiceReader();
 
     const copy = useCallback(async (verse) => {
         const ok = await copyText(verseShareText(verse, language));
-        toast(ok ? `Bhagavad Gita ${verseRef(verse)} copied` : 'Copying is blocked here — try selecting the text instead.', {
-            icon: ok ? 'check' : undefined
-        });
+        toast(ok ? t('toast.verseCopied', { ref: verseRef(verse) }) : t('toast.copyBlocked'), { icon: ok ? 'check' : undefined });
         return ok;
     }, [language]);
 
     const save = useCallback((verse) => {
         const result = saveLine(verseMeaning(verse, language) || verse.sanskrit, verse);
-        toast(result.replaced ? 'Line saved — the previous one has gently faded.' : 'Line saved. It will greet you on the home screen.', {
-            icon: 'heart',
-            tone: 'gold'
-        });
+        toast(result.replaced ? t('toast.lineReplaced') : t('toast.lineKept'), { icon: 'heart', tone: 'gold' });
     }, [language]);
 
     const walk = useCallback((verse) => {
@@ -34,12 +31,10 @@ export function useVerseActions(language = 'en') {
         if (result.ok) {
             playChime('soft');
             haptic('success');
-            toast(`Your 7-day walk with ${verseRef(verse)} begins today.`, { icon: 'walk', tone: 'gold' });
+            recordPath('walk', { verseId: verse.id, day: 0 });
+            toast(t('toast.walkBegins', { ref: verseRef(verse) }), { icon: 'walk', tone: 'gold' });
         } else {
-            toast(`You are already walking with ${verseRef(result.journey.verse)}. Release it from the home screen to begin anew.`, {
-                icon: 'walk',
-                duration: 5200
-            });
+            toast(t('toast.walkActive', { ref: verseRef(result.journey.verse) }), { icon: 'walk', duration: 5200 });
         }
         return result.ok;
     }, []);

@@ -1,5 +1,6 @@
 import { playChime } from './chime';
 import { haptic } from './haptics';
+import { appName } from './brand';
 
 // ---------------------------------------------------------------------------
 // Reading a verse
@@ -48,7 +49,7 @@ export function speechTextFor(verse, language = 'en') {
 export function verseShareText(verse, language = 'en') {
     const meaning = verseMeaning(verse, language);
     const sanskrit = verse.sanskrit ? `${verse.sanskrit}\n\n` : '';
-    return `${sanskrit}"${meaning}"\n\n— Bhagavad Gita ${verseRef(verse)}\n🕊️ Living Gita`;
+    return `${sanskrit}"${meaning}"\n\n— Bhagavad Gita ${verseRef(verse)}\n🪔 ${appName(language)}`;
 }
 
 // Accepts "2.47", "2:47", "2_47", "2 47", "BG 2.47", "ch 2 v 47", "chapter 2 verse 47".

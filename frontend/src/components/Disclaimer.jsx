@@ -1,42 +1,59 @@
 import React from 'react';
 import { HeartHandshake, LifeBuoy, Phone, Globe, Sparkles, Shield, Sprout } from 'lucide-react';
 import Sheet, { SheetHeader } from './ui/Sheet';
-import LotusMark from './ui/LotusMark';
+import { Diya, KolamRule } from './ui/Ornaments';
+import { useI18n } from '../i18n';
 
 const HELPLINES = [
-    { name: 'Tele-MANAS (India)', detail: '24/7, free & confidential', numbers: ['14416', '1800-891-4416'] },
-    { name: 'Vandrevala Foundation (India)', detail: '24/7 call or WhatsApp', numbers: ['+91 9999 666 555'] },
-    { name: '988 Suicide & Crisis Lifeline', detail: 'US & Canada — call or text', numbers: ['988'] }
+    { id: 'telemanas', numbers: ['14416', '1800-891-4416'] },
+    { id: 'vandrevala', numbers: ['+91 9999 666 555'] },
+    { id: 'lifeline', numbers: ['988'] }
+];
+
+// The principles behind every design choice, each from the Gita.
+const PRINCIPLES = [
+    { id: 'samvada', sa: 'संवाद', ref: '18.70' },
+    { id: 'dipa', sa: 'दीप', ref: '6.19' },
+    { id: 'nishkama', sa: 'निष्काम', ref: '2.47' },
+    { id: 'samatva', sa: 'समत्व', ref: '2.48' },
+    { id: 'aparigraha', sa: 'अपरिग्रह', ref: '6.10' },
+    { id: 'svadharma', sa: 'स्वधर्म', ref: '3.35' }
 ];
 
 function Disclaimer({ isOpen, onClose }) {
+    const { t } = useI18n();
     return (
-        <Sheet isOpen={isOpen} onClose={onClose} label="About Living Gita and safety" width={600} size="tall">
+        <Sheet isOpen={isOpen} onClose={onClose} label={t('about.title')} width={640} size="tall">
             <SheetHeader
-                leading={<span className="sheet__icon sheet__icon--lotus"><LotusMark size={22} /></span>}
-                eyebrow="About & safety"
-                title="A quiet space, built with restraint"
+                leading={<span className="sheet__icon sheet__icon--lamp"><Diya size={34} steady /></span>}
+                eyebrow={t('about.eyebrow')}
+                title={t('about.title')}
                 onClose={onClose}
             />
 
             <div className="sheet__body sheet__body--padded about">
-                <p className="about__lede">
-                    Living Gita is a place to meet the Bhagavad Gita through what you are feeling right now — all 701 verses,
-                    offered gently, one at a time.
-                </p>
+                <p className="about__lede">{t('about.lede')}</p>
+
+                <section className="about__name">
+                    <span className="about__name-sa" lang="sa">सखा</span>
+                    <div>
+                        <h3>{t('about.name')}</h3>
+                        <p>{t('about.nameBody')}</p>
+                    </div>
+                </section>
 
                 <section className="support-card" aria-labelledby="crisis-heading">
                     <div className="support-card__head">
                         <LifeBuoy size={18} aria-hidden="true" />
-                        <h3 id="crisis-heading" className="eyebrow">If you are in crisis</h3>
+                        <h3 id="crisis-heading" className="eyebrow">{t('about.crisis')}</h3>
                     </div>
-                    <p>Please reach out to a person right now. You do not have to carry this alone.</p>
+                    <p>{t('about.crisisBody')}</p>
                     <ul className="helplines">
                         {HELPLINES.map((line) => (
-                            <li key={line.name}>
+                            <li key={line.id}>
                                 <div>
-                                    <strong>{line.name}</strong>
-                                    <span>{line.detail}</span>
+                                    <strong>{t(`about.help.${line.id}.name`)}</strong>
+                                    <span>{t(`about.help.${line.id}.detail`)}</span>
                                 </div>
                                 <div className="helplines__numbers">
                                     {line.numbers.map((number) => (
@@ -49,8 +66,8 @@ function Disclaimer({ isOpen, onClose }) {
                         ))}
                         <li>
                             <div>
-                                <strong>Anywhere in the world</strong>
-                                <span>Find a free helpline near you</span>
+                                <strong>{t('about.help.world.name')}</strong>
+                                <span>{t('about.help.world.detail')}</span>
                             </div>
                             <div className="helplines__numbers">
                                 <a className="btn btn--outline btn--sm" href="https://findahelpline.com" target="_blank" rel="noreferrer">
@@ -62,34 +79,54 @@ function Disclaimer({ isOpen, onClose }) {
                 </section>
 
                 <section className="about__section">
-                    <h3>What this is not</h3>
+                    <h3>{t('about.shaped')}</h3>
+                    <p>{t('about.shapedLede')}</p>
+                    <ul className="principles">
+                        {PRINCIPLES.map((principle) => (
+                            <li key={principle.id} className="principle">
+                                <span className="principle__sa" lang="sa">{principle.sa}</span>
+                                <div>
+                                    <strong>{t(`about.p.${principle.id}.title`)} <span className="faint">· {principle.ref}</span></strong>
+                                    <p>{t(`about.p.${principle.id}.body`)}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+
+                <KolamRule />
+
+                <section className="about__section">
+                    <h3>{t('about.not')}</h3>
                     <ul className="about__list">
-                        <li><Shield size={15} aria-hidden="true" /> Not therapy, diagnosis or mental-health treatment</li>
-                        <li><Shield size={15} aria-hidden="true" /> Not a replacement for professional or medical care</li>
-                        <li><Shield size={15} aria-hidden="true" /> Not religious instruction, and never conversion</li>
+                        <li><Shield size={15} aria-hidden="true" /> {t('about.not1')}</li>
+                        <li><Shield size={15} aria-hidden="true" /> {t('about.not2')}</li>
+                        <li><Shield size={15} aria-hidden="true" /> {t('about.not3')}</li>
                     </ul>
                 </section>
 
                 <section className="about__section">
-                    <h3>Our approach</h3>
+                    <h3>{t('about.approach')}</h3>
                     <ul className="about__list">
-                        <li><Sparkles size={15} aria-hidden="true" /> Your agency to choose silence or engagement — “Not today” is always an answer</li>
-                        <li><HeartHandshake size={15} aria-hidden="true" /> Emotional safety before spiritual teaching</li>
-                        <li><Sprout size={15} aria-hidden="true" /> Non-attachment — even to this app. Everything can be released.</li>
+                        <li><Sparkles size={15} aria-hidden="true" /> {t('about.approach1')}</li>
+                        <li><HeartHandshake size={15} aria-hidden="true" /> {t('about.approach2')}</li>
+                        <li><Sprout size={15} aria-hidden="true" /> {t('about.approach3')}</li>
                     </ul>
                 </section>
 
                 <section className="about__section">
-                    <h3>Privacy</h3>
-                    <p>
-                        No accounts and no analytics. Your reflections, saved lines and walks are stored only in this browser.
-                        Conversations are answered by the sanctuary’s own server and are never stored or shared.
-                    </p>
+                    <h3>{t('about.privacy')}</h3>
+                    <p>{t('about.privacyBody')}</p>
+                </section>
+
+                <section className="about__section">
+                    <h3>{t('about.source')}</h3>
+                    <p>{t('about.sourceBody')}</p>
                 </section>
 
                 <footer className="about__footer">
-                    <LotusMark size={26} />
-                    <p>This app is designed with restraint.<br />Peace is our only metric.</p>
+                    <Diya size={40} steady />
+                    <p>{t('about.footer1')}<br />{t('about.footer2')}</p>
                 </footer>
             </div>
         </Sheet>

@@ -1,15 +1,17 @@
-import React, { useId } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useDragControls, useReducedMotion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useLayer } from '../../lib/layers';
 import { haptic } from '../../lib/haptics';
 import { useIsMobile } from '../../hooks/useMediaQuery';
+import { useI18n } from '../../i18n';
 
-// One surface, two shapes: a centred glass modal on desktop and a draggable
-// bottom sheet with a pull handle on phones (< 640px). Rendered into <body>
-// so transformed ancestors can never trap it, and registered as a layer so
-// Escape always closes the top-most one.
+// One surface, two shapes: a centred page on desktop and a draggable bottom
+// sheet with a pull handle on phones (< 640px). Rendered into <body> so
+// transformed ancestors can never trap it; registered as a layer so Escape
+// closes the top-most one and the page behind becomes inert. Focus moves in
+// on open and returns where it was on close.
 
 const DISMISS_DISTANCE = 110;
 const DISMISS_VELOCITY = 650;
@@ -28,21 +30,37 @@ function Sheet({
     const isMobile = useIsMobile();
     const dragControls = useDragControls();
     const reduceMotion = useReducedMotion();
+    const panelRef = useRef(null);
 
     useLayer(isOpen, { onEscape: onEscape || onClose, blocksHotkeys });
+
+    useEffect(() => {
+        if (!isOpen) return undefined;
+        const previous = document.activeElement;
+        const frame = requestAnimationFrame(() => {
+            const panel = panelRef.current;
+            if (panel && !panel.contains(document.activeElement)) panel.focus({ preventScroll: true });
+        });
+        return () => {
+            cancelAnimationFrame(frame);
+            if (previous instanceof HTMLElement && document.contains(previous)) {
+                requestAnimationFrame(() => previous.focus({ preventScroll: true }));
+            }
+        };
+    }, [isOpen]);
 
     const panelMotion = isMobile
         ? {
             initial: { y: '100%' },
             animate: { y: 0 },
             exit: { y: '100%' },
-            transition: reduceMotion ? { duration: 0 } : { type: 'spring', damping: 38, stiffness: 340, mass: 0.9 }
+            transition: reduceMotion ? { duration: 0 } : { type: 'spring', damping: 40, stiffness: 320, mass: 0.95 }
         }
         : {
-            initial: { opacity: 0, y: 18, scale: 0.985 },
-            animate: { opacity: 1, y: 0, scale: 1 },
-            exit: { opacity: 0, y: 12, scale: 0.99 },
-            transition: { duration: reduceMotion ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }
+            initial: { opacity: 0, y: 16 },
+            animate: { opacity: 1, y: 0 },
+            exit: { opacity: 0, y: 10 },
+            transition: { duration: reduceMotion ? 0 : 0.38, ease: [0.22, 1, 0.36, 1] }
         };
 
     const handleDragEnd = (_, info) => {
@@ -61,13 +79,15 @@ function Sheet({
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: reduceMotion ? 0 : 0.24 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.28 }}
                     onClick={onClose}
                 >
                     <motion.div
+                        ref={panelRef}
                         role="dialog"
                         aria-modal="true"
                         aria-label={label}
+                        tabIndex={-1}
                         className={`sheet sheet--${size}${isMobile ? ' sheet--mobile' : ''} ${className}`}
                         style={isMobile ? undefined : { maxWidth: width }}
                         onClick={(event) => event.stopPropagation()}
@@ -80,11 +100,7 @@ function Sheet({
                         {...panelMotion}
                     >
                         {isMobile && (
-                            <div
-                                className="sheet__grip"
-                                onPointerDown={(event) => dragControls.start(event)}
-                                aria-hidden="true"
-                            >
+                            <div className="sheet__grip" onPointerDown={(event) => dragControls.start(event)} aria-hidden="true">
                                 <span />
                             </div>
                         )}
@@ -98,13 +114,14 @@ function Sheet({
 }
 
 export function SheetHeader({ icon: Icon, eyebrow, title, subtitle, onClose, actions, leading, titleId }) {
+    const { t } = useI18n();
     const fallbackId = useId();
     return (
         <header className="sheet__header">
             {leading}
             {!leading && Icon && (
                 <span className="sheet__icon" aria-hidden="true">
-                    <Icon size={18} />
+                    <Icon size={20} />
                 </span>
             )}
             <div className="sheet__titles">
@@ -115,7 +132,7 @@ export function SheetHeader({ icon: Icon, eyebrow, title, subtitle, onClose, act
             <div className="sheet__actions">
                 {actions}
                 {onClose && (
-                    <button type="button" className="icon-btn icon-btn--sm icon-btn--plain" onClick={onClose} aria-label="Close">
+                    <button type="button" className="icon-btn icon-btn--sm" onClick={onClose} aria-label={t('common.close')}>
                         <X size={18} />
                     </button>
                 )}

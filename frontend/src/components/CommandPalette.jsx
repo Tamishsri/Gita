@@ -2,28 +2,21 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-    Search, BookOpen, Feather, Home, Image as ImageIcon, Wind, Languages, EyeOff, Settings as SettingsIcon,
-    Info, Download, Hash, Bell, VolumeX, CornerDownLeft, BookMarked, Loader2
+    Search, BookOpen, Feather, Home, Image as ImageIcon, Languages, EyeOff, Settings as SettingsIcon,
+    Info, Download, Hash, Bell, VolumeX, CornerDownLeft, BookMarked, Loader2, MessageCircle
 } from 'lucide-react';
 import { useLayer } from '../lib/layers';
 import { fetchChapters, fetchDaily, fetchVerse, searchVerses } from '../lib/gitaApi';
 import { openWisdomCard, parseVerseRef, verseMeaning, verseRef } from '../lib/verse';
 import { playChime } from '../lib/chime';
+import { PRACTICES } from '../lib/practices';
 import { MOODS } from './MoodSelector';
 import { SOUND_ICONS } from './SoundDock';
 import { SOUND_MODES } from './SoundscapeEngine';
-import LotusMark from './ui/LotusMark';
+import { Diya, PathGlyph } from './ui/Ornaments';
+import { useI18n } from '../i18n';
 
-const GROUP_LABELS = {
-    jump: 'Go to verse',
-    actions: 'Actions',
-    moods: 'How is your heart?',
-    sound: 'Soundscape',
-    chapters: 'Chapters',
-    verses: 'Verses'
-};
-
-const GROUP_ORDER = ['jump', 'actions', 'moods', 'sound', 'chapters', 'verses'];
+const GROUP_ORDER = ['jump', 'ask', 'actions', 'practices', 'moods', 'sound', 'chapters', 'verses'];
 
 function score(item, query) {
     if (!query) return 1;
@@ -40,12 +33,10 @@ function score(item, query) {
     return total;
 }
 
-function truncate(text, length = 96) {
-    if (!text) return '';
-    return text.length > length ? `${text.slice(0, length).trimEnd()}…` : text;
-}
+const truncate = (text, length = 110) => (!text ? '' : text.length > length ? `${text.slice(0, length).trimEnd()}…` : text);
 
 function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount, install }) {
+    const { t } = useI18n();
     const [query, setQuery] = useState('');
     const [activeIndex, setActiveIndex] = useState(0);
     const [chapters, setChapters] = useState([]);
@@ -54,14 +45,12 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
 
     const inputRef = useRef(null);
     const listRef = useRef(null);
-    const pointerMoved = useRef(false);
 
     useLayer(isOpen, { onEscape: onClose, blocksHotkeys: true });
 
     const trimmed = query.trim().toLowerCase();
     const parsedRef = useMemo(() => parseVerseRef(query), [query]);
 
-    // Reset every time the palette opens.
     useEffect(() => {
         if (!isOpen) return;
         setQuery('');
@@ -71,7 +60,6 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
         fetchChapters().then(setChapters).catch(() => {});
     }, [isOpen]);
 
-    // Live preview for "2.47"-style references.
     useEffect(() => {
         if (!parsedRef) {
             setJumpPreview(null);
@@ -87,7 +75,6 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
         };
     }, [parsedRef]);
 
-    // Debounced full-text search across all 701 verses.
     useEffect(() => {
         if (!isOpen || parsedRef || trimmed.length < 3) {
             setVerseResults({ query: '', items: [], loading: false });
@@ -112,28 +99,33 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
         const list = [];
         const add = (group, item) => list.push({ group, ...item });
 
-        add('actions', { id: 'search', icon: Search, title: 'Open Wisdom Finder', subtitle: 'Browse all 701 verses by feeling or topic', keys: ['/'], keywords: 'search find verses topics', run: () => actions.openPanel('search') });
-        add('actions', { id: 'journal', icon: Feather, title: 'Open Reflections Journal', subtitle: journalCount ? `${journalCount} ${journalCount === 1 ? 'entry' : 'entries'} kept on this device` : 'Your private notes', keys: ['J'], keywords: 'notes diary', run: () => actions.openPanel('journal') });
-        add('actions', { id: 'chapters', icon: BookOpen, title: 'Browse 18 Chapters', subtitle: 'Read the Gita chapter by chapter', keys: ['C'], keywords: 'read reader adhyaya', run: () => actions.openPanel('chapters') });
-        if (view === 'sanctuary') {
-            add('actions', { id: 'home', icon: Home, title: 'Return to Sanctuary home', keys: ['Esc'], keywords: 'back', run: actions.goHome });
-        }
-        add('actions', { id: 'daily-card', icon: ImageIcon, title: "Create a Wisdom Card of today's verse", subtitle: 'A shareable image for status, stories or wallpaper', keywords: 'share image png instagram whatsapp daily', run: () => fetchDaily().then((data) => data?.verse && openWisdomCard(data.verse, settings.language)).catch(() => {}) });
-        add('actions', { id: 'breaths', icon: Wind, title: 'Begin the 3-Breaths ritual', subtitle: '4-7-8 pranayama to re-center', keywords: 'breathe pranayama calm reset', run: actions.beginBreaths });
-        add('actions', { id: 'language', icon: Languages, title: settings.language === 'hi' ? 'Switch wisdom to English' : 'हिंदी में पढ़ें — Switch wisdom to Hindi', keywords: 'language hindi english', run: actions.toggleLanguage });
-        add('actions', { id: 'silent', icon: EyeOff, title: settings.silentMode ? 'Turn off Silent Presence' : 'Turn on Silent Presence', subtitle: 'Verses only, without conversation', keywords: 'quiet silent mode', run: actions.toggleSilent });
-        add('actions', { id: 'settings', icon: SettingsIcon, title: 'Sanctuary preferences', keywords: 'settings options', run: () => actions.openPanel('settings') });
-        add('actions', { id: 'about', icon: Info, title: 'About Living Gita & safety', subtitle: 'Crisis helplines and our approach', keywords: 'help crisis helpline disclaimer', run: () => actions.openPanel('about') });
-        if (install?.available) {
-            add('actions', { id: 'install', icon: Download, title: 'Install Living Gita', subtitle: 'Works offline, opens like an app', keywords: 'pwa app install offline', run: actions.install });
-        }
+        add('actions', { id: 'search', icon: Search, title: t('palette.finder'), subtitle: t('palette.finderSub'), keys: ['/'], keywords: 'search find verses topics', run: () => actions.openPanel('search') });
+        add('actions', { id: 'journal', icon: Feather, title: t('palette.journal'), subtitle: journalCount ? t('journal.entries', { count: journalCount }) : t('palette.journalSub'), keys: ['J'], keywords: 'notes diary reflections', run: () => actions.openPanel('journal') });
+        add('actions', { id: 'chapters', icon: BookOpen, title: t('palette.chapters'), subtitle: t('palette.chaptersSub'), keys: ['C'], keywords: 'read reader adhyaya', run: () => actions.openPanel('chapters') });
+        add('actions', { id: 'path', icon: PathGlyph, title: t('palette.path'), subtitle: t('palette.pathSub'), keywords: 'path history weather progress', run: () => actions.openPanel('path') });
+        if (view === 'sanctuary') add('actions', { id: 'home', icon: Home, title: t('palette.home'), keys: ['Esc'], keywords: 'back', run: actions.goHome });
+        add('actions', { id: 'daily-card', icon: ImageIcon, title: t('palette.dailyCard'), subtitle: t('palette.dailyCardSub'), keywords: 'share image png instagram whatsapp daily', run: () => fetchDaily().then((data) => data?.verse && openWisdomCard(data.verse, settings.language)).catch(() => {}) });
+        add('actions', { id: 'language', icon: Languages, title: settings.language === 'hi' ? t('palette.toEnglish') : t('palette.toHindi'), keywords: 'language hindi english हिंदी', run: actions.toggleLanguage });
+        add('actions', { id: 'silent', icon: EyeOff, title: settings.silentMode ? t('palette.silentOff') : t('palette.silentOn'), subtitle: t('settings.silentDesc'), keywords: 'quiet silent mode', run: actions.toggleSilent });
+        add('actions', { id: 'settings', icon: SettingsIcon, title: t('nav.settings'), keywords: 'settings options preferences script', run: () => actions.openPanel('settings') });
+        add('actions', { id: 'about', icon: Info, title: t('about.short'), subtitle: t('palette.aboutSub'), keywords: 'help crisis helpline disclaimer principles', run: () => actions.openPanel('about') });
+        if (install?.available) add('actions', { id: 'install', icon: Download, title: t('install.title'), subtitle: t('install.cardBody'), keywords: 'pwa app install offline', run: actions.install });
+
+        PRACTICES.forEach((practice) => add('practices', {
+            id: `practice-${practice.id}`,
+            icon: practice.glyph,
+            title: t(`practice.${practice.id}.title`),
+            subtitle: `${t(`practice.${practice.id}.yoga`)} · ${practice.ref}`,
+            keywords: `practice ${practice.id} ${t(`practice.${practice.id}.desc`)}`,
+            run: () => actions.openPractice(practice.id)
+        }));
 
         MOODS.forEach((mood) => add('moods', {
             id: `mood-${mood.id}`,
             icon: mood.icon,
-            title: mood.label,
-            subtitle: mood.hint,
-            keywords: `${mood.id} feeling mood ${mood.hindi}`,
+            title: t(`mood.${mood.id}.word`),
+            subtitle: t(`mood.${mood.id}.hint`),
+            keywords: `${mood.id} feeling mood`,
             tint: mood.rgb,
             run: () => actions.selectMood(mood.id)
         }));
@@ -141,27 +133,27 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
         SOUND_MODES.forEach((mode) => add('sound', {
             id: `sound-${mode.id}`,
             icon: SOUND_ICONS[mode.id],
-            title: `Play ${mode.label}`,
-            subtitle: mode.description,
+            title: t('palette.playSound', { name: t(`sound.${mode.id}.label`) }),
+            subtitle: t(`sound.${mode.id}.desc`),
             keywords: 'sound ambient music soundscape audio',
             run: () => actions.playSound(mode.id)
         }));
-        add('sound', { id: 'sound-mute', icon: VolumeX, title: 'Silence the soundscape', keywords: 'mute stop sound quiet', run: actions.muteSound });
-        add('sound', { id: 'bowl', icon: Bell, title: 'Strike the singing bowl', subtitle: '432 Hz with harmonics', keywords: 'chime bell bowl tibetan', keepOpen: true, run: () => playChime('bowl', { force: true }) });
+        add('sound', { id: 'sound-mute', icon: VolumeX, title: t('palette.silence'), keywords: 'mute stop sound quiet', run: actions.muteSound });
+        add('sound', { id: 'bowl', icon: Bell, title: t('sound.bowl'), subtitle: t('palette.bowlSub'), keywords: 'chime bell bowl tibetan', keepOpen: true, run: () => playChime('bowl', { force: true }) });
 
         const chapterList = chapters.length ? chapters : Array.from({ length: 18 }, (_, index) => ({ chapter: index + 1 }));
         chapterList.forEach((chapter) => add('chapters', {
             id: `chapter-${chapter.chapter}`,
             icon: BookMarked,
             badge: chapter.chapter,
-            title: chapter.name_english ? `${chapter.chapter}. ${chapter.name_english.replace(/\s*\(.*\)$/, '')}` : `Chapter ${chapter.chapter}`,
+            title: chapter.name_english ? `${chapter.chapter}. ${chapter.name_english.replace(/\s*\(.*\)$/, '')}` : `${t('chapters.chapter')} ${chapter.chapter}`,
             subtitle: [chapter.name_sanskrit, chapter.name_english?.match(/\((.*)\)/)?.[1]].filter(Boolean).join(' · '),
             keywords: `chapter adhyaya ${chapter.chapter} ${(chapter.helps_with || []).join(' ')}`,
             run: () => actions.openChapter(chapter.chapter)
         }));
 
         return list;
-    }, [actions, chapters, install?.available, journalCount, settings.language, settings.silentMode, view]);
+    }, [actions, chapters, install?.available, journalCount, settings.language, settings.silentMode, view, t]);
 
     const items = useMemo(() => {
         const groups = {};
@@ -173,12 +165,22 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                 group: 'jump',
                 id: `jump-${parsedRef.id}`,
                 icon: Hash,
-                title: `Bhagavad Gita ${parsedRef.chapter}.${parsedRef.verse}`,
-                subtitle: ready
-                    ? truncate(verseMeaning(jumpPreview.verse, settings.language), 120)
-                    : missing ? 'This verse is not in the collection' : 'Finding the verse…',
+                title: `${t('verse.bg')} ${parsedRef.chapter}.${parsedRef.verse}`,
+                subtitle: ready ? truncate(verseMeaning(jumpPreview.verse, settings.language)) : missing ? t('palette.missing') : t('palette.finding'),
                 disabled: missing,
                 run: () => (ready ? actions.selectVerse(jumpPreview.verse) : fetchVerse(parsedRef.id).then(actions.selectVerse).catch(() => {}))
+            }];
+        }
+
+        // Anything longer than a word can simply be asked.
+        if (!parsedRef && trimmed.length > 3 && trimmed.includes(' ')) {
+            groups.ask = [{
+                group: 'ask',
+                id: 'ask',
+                icon: MessageCircle,
+                title: t('palette.ask', { query: query.trim() }),
+                subtitle: t('palette.askSub'),
+                run: () => actions.ask(query.trim())
             }];
         }
 
@@ -190,7 +192,7 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
 
         if (trimmed) {
             Object.keys(groups).forEach((key) => {
-                if (key !== 'jump') groups[key].sort((a, b) => b.score - a.score);
+                if (!['jump', 'ask'].includes(key)) groups[key].sort((a, b) => b.score - a.score);
             });
             if (groups.chapters) groups.chapters = groups.chapters.slice(0, 6);
         }
@@ -200,14 +202,14 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                 group: 'verses',
                 id: `verse-${verse.id}`,
                 icon: BookOpen,
-                title: `Bhagavad Gita ${verseRef(verse)}`,
-                subtitle: truncate(verseMeaning(verse, settings.language), 120),
+                title: `${t('verse.bg')} ${verseRef(verse)}`,
+                subtitle: truncate(verseMeaning(verse, settings.language)),
                 run: () => actions.selectVerse(verse)
             }));
         }
 
         return GROUP_ORDER.flatMap((key) => groups[key] || []);
-    }, [actions, jumpPreview, parsedRef, settings.language, staticItems, trimmed, verseResults.items]);
+    }, [actions, jumpPreview, parsedRef, settings.language, staticItems, trimmed, query, verseResults.items, t]);
 
     useEffect(() => setActiveIndex(0), [trimmed]);
 
@@ -264,11 +266,11 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                         className="palette"
                         role="dialog"
                         aria-modal="true"
-                        aria-label="Command palette"
-                        initial={{ opacity: 0, y: -10, scale: 0.985 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -6, scale: 0.99 }}
-                        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                        aria-label={t('palette.label')}
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <div className="palette__search">
                             <Search size={18} aria-hidden="true" />
@@ -277,7 +279,7 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                                 value={query}
                                 onChange={(event) => setQuery(event.target.value)}
                                 onKeyDown={onKeyDown}
-                                placeholder="Search verses, chapters, moods — or type 2.47"
+                                placeholder={t('palette.placeholder')}
                                 role="combobox"
                                 aria-expanded="true"
                                 aria-controls="palette-list"
@@ -286,23 +288,15 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                                 autoComplete="off"
                                 spellCheck="false"
                             />
-                            {verseResults.loading && <Loader2 size={16} className="palette__spinner" aria-label="Searching" />}
+                            {verseResults.loading && <Loader2 size={16} className="palette__spinner" aria-label={t('search.seeking')} />}
                             <button type="button" className="kbd palette__esc" onClick={onClose}>esc</button>
                         </div>
 
-                        <div
-                            ref={listRef}
-                            id="palette-list"
-                            className="palette__list"
-                            role="listbox"
-                            onMouseMove={() => {
-                                pointerMoved.current = true;
-                            }}
-                        >
+                        <div ref={listRef} id="palette-list" className="palette__list" role="listbox">
                             {items.length === 0 && !verseResults.loading && (
                                 <div className="palette__empty">
-                                    <p>Nothing matches “{query}”.</p>
-                                    <span>Try a feeling like <em>fear</em>, a chapter number, or a verse such as <em>2.47</em>.</span>
+                                    <p>{t('palette.none', { query })}</p>
+                                    <span>{t('palette.noneHint')}</span>
                                 </div>
                             )}
 
@@ -313,7 +307,7 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                                 const active = index === activeIndex;
                                 return (
                                     <React.Fragment key={item.id}>
-                                        {showLabel && <div className="palette__group" role="presentation">{GROUP_LABELS[item.group]}</div>}
+                                        {showLabel && <div className="palette__group" role="presentation">{t(`palette.group.${item.group}`)}</div>}
                                         <div
                                             id={`palette-${item.id}`}
                                             data-index={index}
@@ -321,26 +315,18 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                                             aria-selected={active}
                                             aria-disabled={item.disabled || undefined}
                                             className={`palette__item${active ? ' is-active' : ''}${item.disabled ? ' is-disabled' : ''}`}
-                                            onMouseMove={() => {
-                                                if (pointerMoved.current && !active) setActiveIndex(index);
-                                            }}
+                                            onMouseMove={() => !active && setActiveIndex(index)}
                                             onClick={() => runItem(item)}
                                         >
-                                            <span
-                                                className="palette__icon"
-                                                style={item.tint ? { '--tile-rgb': item.tint } : undefined}
-                                                data-tinted={item.tint ? 'true' : undefined}
-                                            >
-                                                {item.badge ? <span className="palette__badge">{item.badge}</span> : <Icon size={16} />}
+                                            <span className="palette__icon" style={item.tint ? { '--tile-rgb': item.tint } : undefined} data-tinted={item.tint ? 'true' : undefined}>
+                                                {item.badge ? <span className="palette__badge">{item.badge}</span> : <Icon size={17} />}
                                             </span>
                                             <span className="palette__text">
                                                 <span className="palette__title">{item.title}</span>
                                                 {item.subtitle && <span className="palette__subtitle">{item.subtitle}</span>}
                                             </span>
                                             {item.keys ? (
-                                                <span className="kbd-group palette__keys">
-                                                    {item.keys.map((key) => <span key={key} className="kbd">{key}</span>)}
-                                                </span>
+                                                <span className="kbd-group palette__keys">{item.keys.map((key) => <span key={key} className="kbd">{key}</span>)}</span>
                                             ) : active ? (
                                                 <CornerDownLeft size={14} className="palette__enter" aria-hidden="true" />
                                             ) : null}
@@ -352,20 +338,17 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                             {verseResults.loading && !verseResults.items.length && trimmed.length >= 3 && (
                                 <div className="palette__loading">
                                     <span className="breathing-dots"><span /><span /><span /></span>
-                                    Searching the verses…
+                                    {t('palette.searching')}
                                 </div>
                             )}
                         </div>
 
                         <footer className="palette__footer">
-                            <span className="palette__brand">
-                                <LotusMark size={16} />
-                                Living Gita
-                            </span>
+                            <span className="palette__brand"><Diya size={20} steady /> {t('brand.name')}</span>
                             <span className="palette__hints">
-                                <span><span className="kbd">↑</span><span className="kbd">↓</span> move</span>
-                                <span><span className="kbd">↵</span> open</span>
-                                <span><span className="kbd">esc</span> close</span>
+                                <span><span className="kbd">↑</span><span className="kbd">↓</span> {t('palette.move')}</span>
+                                <span><span className="kbd">↵</span> {t('palette.open')}</span>
+                                <span><span className="kbd">esc</span> {t('common.close')}</span>
                             </span>
                         </footer>
                     </motion.div>

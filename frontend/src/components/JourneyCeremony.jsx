@@ -2,16 +2,18 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Check, Feather, Image as ImageIcon, X } from 'lucide-react';
-import LotusMark from './ui/LotusMark';
+import { Diya } from './ui/Ornaments';
 import { JOURNEY_DAYS, JOURNEY_LENGTH } from '../lib/journey';
 import { verseMeaning, verseRef } from '../lib/verse';
 import { useLayer } from '../lib/layers';
 import { playChime } from '../lib/chime';
 import { haptic } from '../lib/haptics';
+import { useI18n } from '../i18n';
 
-// The closing of a 7-day walk: three bowl strikes, expanding rings of light,
-// and a gentle accounting of the week — with no judgement for missed days.
+// The closing of a 7-day walk: three bowl strikes, rings of lamplight, and a
+// gentle accounting of the week — with no judgement for missed days.
 function JourneyCeremony({ journey, isOpen, onClose, onKeepInJournal, onRelease, onCreateCard, language = 'en' }) {
+    const { t } = useI18n();
     const reduceMotion = useReducedMotion();
     useLayer(isOpen, { onEscape: onClose, blocksHotkeys: true });
 
@@ -34,38 +36,29 @@ function JourneyCeremony({ journey, isOpen, onClose, onKeepInJournal, onRelease,
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: reduceMotion ? 0 : 0.8 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.9 }}
                 >
                     <div className="ceremony__rings" aria-hidden="true">
-                        {[0, 1, 2, 3].map((ring) => (
-                            <span key={ring} style={{ animationDelay: `${ring * 1.6}s` }} />
-                        ))}
+                        {[0, 1, 2, 3].map((ring) => <span key={ring} style={{ animationDelay: `${ring * 1.75}s` }} />)}
                     </div>
 
-                    <button type="button" className="icon-btn ceremony__close" onClick={onClose} aria-label="Close">
+                    <button type="button" className="icon-btn icon-btn--ring ceremony__close" onClick={onClose} aria-label={t('common.close')}>
                         <X size={18} />
                     </button>
 
                     <motion.div
                         className="ceremony__content"
-                        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                        initial={reduceMotion ? false : { opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ delay: 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <motion.span
-                            className="ceremony__mark"
-                            initial={reduceMotion ? false : { scale: 0.6, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ delay: 0.2, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <LotusMark size={76} ring />
-                        </motion.span>
-
-                        <span className="eyebrow">The circle is complete</span>
-                        <h2 id="ceremony-title" className="ceremony__title">Seven days. One verse.<br /><em>A quieter mind.</em></h2>
+                        <Diya size={110} steady />
+                        <span className="eyebrow">{t('ceremony.eyebrow')}</span>
+                        <h2 id="ceremony-title" className="ceremony__title">{t('ceremony.title1')}<br /><em>{t('ceremony.title2')}</em></h2>
                         <p className="ceremony__lede">
-                            You walked {honoured} of {JOURNEY_LENGTH} days with Bhagavad Gita {verseRef(journey.verse)}.
-                            {honoured < JOURNEY_LENGTH ? ' The days in between were part of the path too.' : ' Every single day, honoured.'}
+                            {t('ceremony.walked', { count: honoured, total: JOURNEY_LENGTH, ref: verseRef(journey.verse) })}
+                            {' '}
+                            {honoured < JOURNEY_LENGTH ? t('ceremony.between') : t('ceremony.every')}
                         </p>
 
                         <ol className="ceremony__days">
@@ -74,7 +67,7 @@ function JourneyCeremony({ journey, isOpen, onClose, onKeepInJournal, onRelease,
                                 return (
                                     <li key={day.day} className={done ? 'is-done' : ''}>
                                         <span className="ceremony__day-dot">{done ? <Check size={12} strokeWidth={3} /> : day.day}</span>
-                                        <span>{day.title}</span>
+                                        <span>{t(`journey.d${day.day}.title`)}</span>
                                     </li>
                                 );
                             })}
@@ -85,22 +78,18 @@ function JourneyCeremony({ journey, isOpen, onClose, onKeepInJournal, onRelease,
                         </blockquote>
 
                         <p className="ceremony__blessing">
-                            May this wisdom keep walking with you.
+                            {t('ceremony.blessing')}
                             <span lang="sa">ॐ शान्तिः शान्तिः शान्तिः</span>
                         </p>
 
                         <div className="ceremony__actions">
                             <button type="button" className="btn btn--gold btn--lg" onClick={onKeepInJournal}>
-                                <Feather size={16} />
-                                Keep in journal &amp; release
+                                <Feather size={16} /> {t('ceremony.keep')}
                             </button>
                             <button type="button" className="btn btn--outline" onClick={onCreateCard}>
-                                <ImageIcon size={15} />
-                                Create a wisdom card
+                                <ImageIcon size={15} /> {t('ceremony.card')}
                             </button>
-                            <button type="button" className="btn btn--link" onClick={onRelease}>
-                                Release with gratitude
-                            </button>
+                            <button type="button" className="btn btn--link" onClick={onRelease}>{t('ceremony.release')}</button>
                         </div>
                     </motion.div>
                 </motion.div>

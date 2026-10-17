@@ -160,9 +160,50 @@ function strike(ctx, destination, preset, when, intensity = 1) {
     }
 }
 
+// A bead passing between the fingers: a tiny, warm wooden click.
+function tick(ctx, destination) {
+    const now = ctx.currentTime + 0.005;
+    const length = Math.floor(ctx.sampleRate * 0.03);
+    const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 6);
+    }
+    const source = ctx.createBufferSource();
+    const band = ctx.createBiquadFilter();
+    const body = ctx.createOscillator();
+    const amp = ctx.createGain();
+    const bodyAmp = ctx.createGain();
+
+    source.buffer = buffer;
+    band.type = 'bandpass';
+    band.frequency.value = 1900;
+    band.Q.value = 2.2;
+    amp.gain.value = 0.35;
+
+    body.type = 'sine';
+    body.frequency.setValueAtTime(420, now);
+    body.frequency.exponentialRampToValueAtTime(260, now + 0.06);
+    bodyAmp.gain.setValueAtTime(0.0001, now);
+    bodyAmp.gain.exponentialRampToValueAtTime(0.12, now + 0.004);
+    bodyAmp.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+
+    source.connect(band);
+    band.connect(amp);
+    amp.connect(destination);
+    body.connect(bodyAmp);
+    bodyAmp.connect(destination);
+    source.start(now);
+    body.start(now);
+    body.stop(now + 0.1);
+    body.onended = () => {
+        [source, band, amp, body, bodyAmp].forEach((node) => node.disconnect());
+    };
+}
+
 /**
  * Strike the singing bowl.
- * @param {'bowl' | 'soft' | 'ceremony'} kind
+ * @param {'bowl' | 'soft' | 'ceremony' | 'tick'} kind
  * @param {{ force?: boolean }} options  force ignores the user's chime preference (used for previews)
  */
 export async function playChime(kind = 'bowl', { force = false } = {}) {
@@ -179,7 +220,9 @@ export async function playChime(kind = 'bowl', { force = false } = {}) {
     const { input } = getBus(ctx);
     const now = ctx.currentTime + 0.02;
 
-    if (kind === 'ceremony') {
+    if (kind === 'tick') {
+        tick(ctx, input);
+    } else if (kind === 'ceremony') {
         strike(ctx, input, PRESETS.bowl, now, 1);
         strike(ctx, input, PRESETS.bowl, now + 2.6, 0.62);
         strike(ctx, input, PRESETS.soft, now + 5.0, 0.8);

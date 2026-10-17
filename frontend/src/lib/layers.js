@@ -41,12 +41,28 @@ export function hotkeysBlocked() {
     return stack.some((layer) => layer.blocksHotkeys);
 }
 
+// While a modal is open the page behind it is inert: it cannot scroll, be
+// tabbed into, or be read by a screen reader. Overlays render in portals
+// outside #root, so they stay interactive.
+function setBackgroundInert(inert) {
+    const root = document.getElementById('root');
+    if (!root) return;
+    if (inert) root.setAttribute('inert', '');
+    else root.removeAttribute('inert');
+}
+
 function lockBodyScroll() {
     lockCount += 1;
-    if (lockCount === 1) document.body.classList.add('is-scroll-locked');
+    if (lockCount === 1) {
+        document.body.classList.add('is-scroll-locked');
+        setBackgroundInert(true);
+    }
 }
 
 function unlockBodyScroll() {
     lockCount = Math.max(0, lockCount - 1);
-    if (lockCount === 0) document.body.classList.remove('is-scroll-locked');
+    if (lockCount === 0) {
+        document.body.classList.remove('is-scroll-locked');
+        setBackgroundInert(false);
+    }
 }

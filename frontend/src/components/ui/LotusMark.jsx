@@ -1,6 +1,6 @@
 import React from 'react';
 
-// The Living Gita lotus — five vesica petals rising from still water, with a
+// The Sakha lotus — five vesica petals rising from still water, with a
 // bindu above. Drawn from the same geometry as the app icon and wisdom cards.
 
 function petal(halfHeight, halfWidth) {

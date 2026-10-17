@@ -15,7 +15,7 @@ class ErrorBoundary extends React.Component {
     }
 
     componentDidCatch(error, info) {
-        console.error('[Living Gita] Unexpected error:', error, info?.componentStack);
+        console.error('[Sakha] Unexpected error:', error, info?.componentStack);
     }
 
     render() {

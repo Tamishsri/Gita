@@ -1,4 +1,4 @@
-// Generates the Living Gita app icons with no dependencies:
+// Generates the Sakha app icons with no dependencies:
 // a signed-distance-field rasteriser (4×4 supersampled) and a tiny PNG encoder.
 //
 //   node scripts/generate-icons.mjs

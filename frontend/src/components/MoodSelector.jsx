@@ -1,51 +1,49 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CloudRain, Mountain, Flame, Compass, Sunrise, HandHeart } from 'lucide-react';
+import { CloudRain, Mountain, Flame, Compass, Sunrise, HandHeart, Droplets, Moon } from 'lucide-react';
+import { useI18n } from '../i18n';
 
-// Each mood carries a soothing counter-colour (rgb) that also tints the sky
-// once chosen — see useUserAura.
+// Each mood carries a soothing counter-colour (rgb) that also tints the
+// lamplight once chosen — see useUserAura.
 export const MOODS = [
-    { id: 'anxious', label: 'Anxious', hindi: 'चिंतित', hint: 'A restless, racing mind', icon: CloudRain, rgb: '110, 184, 172' },
-    { id: 'stressed', label: 'Stressed', hindi: 'तनावग्रस्त', hint: 'Carrying too much at once', icon: Mountain, rgb: '140, 186, 146' },
-    { id: 'angry', label: 'Angry', hindi: 'क्रोधित', hint: 'A fire that needs cooling', icon: Flame, rgb: '104, 146, 214' },
-    { id: 'confused', label: 'Confused', hindi: 'उलझन में', hint: 'Searching for direction', icon: Compass, rgb: '164, 146, 214' },
-    { id: 'peace', label: 'Seeking Peace', hindi: 'शांति की खोज', hint: 'Longing for stillness', icon: Sunrise, rgb: '212, 175, 55' },
-    { id: 'happy', label: 'Grateful', hindi: 'कृतज्ञ', hint: 'A heart that is full', icon: HandHeart, rgb: '222, 152, 118' }
+    { id: 'anxious', icon: CloudRain, rgb: '120, 186, 176' },
+    { id: 'stressed', icon: Mountain, rgb: '150, 188, 150' },
+    { id: 'angry', icon: Flame, rgb: '120, 156, 218' },
+    { id: 'confused', icon: Compass, rgb: '170, 152, 216' },
+    { id: 'sad', icon: Droplets, rgb: '140, 160, 214' },
+    { id: 'lonely', icon: Moon, rgb: '196, 160, 210' },
+    { id: 'peace', icon: Sunrise, rgb: '232, 178, 92' },
+    { id: 'happy', icon: HandHeart, rgb: '226, 156, 120' }
 ];
 
 export const moodById = (id) => MOODS.find((mood) => mood.id === id);
 
+// "Today, my heart is — anxious · weighed down · angry · …"
 function MoodSelector({ onSelect }) {
+    const { t } = useI18n();
     const reduceMotion = useReducedMotion();
 
     return (
-        <div className="mood-grid" role="list">
-            {MOODS.map((mood, index) => {
-                const Icon = mood.icon;
-                return (
-                    <motion.button
-                        key={mood.id}
+        <ul className="mood-words">
+            {MOODS.map((mood, index) => (
+                <motion.li
+                    key={mood.id}
+                    initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 + index * 0.07, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <button
                         type="button"
-                        role="listitem"
-                        className="mood-tile"
+                        className="mood-word"
                         style={{ '--tile-rgb': mood.rgb }}
                         onClick={() => onSelect(mood.id)}
-                        initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.05 + index * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        whileTap={{ scale: 0.97 }}
-                        aria-label={`${mood.label} — ${mood.hint}`}
+                        title={t(`mood.${mood.id}.hint`)}
                     >
-                        <span className="mood-tile__medallion" aria-hidden="true">
-                            <Icon size={20} strokeWidth={1.6} />
-                        </span>
-                        <span className="mood-tile__label">{mood.label}</span>
-                        <span className="mood-tile__hindi" lang="hi">{mood.hindi}</span>
-                        <span className="mood-tile__hint">{mood.hint}</span>
-                    </motion.button>
-                );
-            })}
-        </div>
+                        {t(`mood.${mood.id}.word`)}
+                    </button>
+                </motion.li>
+            ))}
+        </ul>
     );
 }
 
