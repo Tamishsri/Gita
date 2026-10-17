@@ -21,7 +21,7 @@ async function runTests() {
     }
 
     // 1. Data Loader Test
-    console.log('[1/10] Testing Data Loader & All 18 Chapters...');
+    console.log('[1/11] Testing Data Loader & All 18 Chapters...');
     loadData();
     const allVerses = getVerses();
     assert(allVerses.length >= 700, `Loaded ${allVerses.length} total verses across all chapters`);
@@ -42,7 +42,7 @@ async function runTests() {
     assert(allChaptersHaveVerses, 'Every chapter from 1 to 18 has valid verses and metadata');
 
     // 2. Search Functionality
-    console.log('\n[2/10] Testing Multi-Dimensional Search...');
+    console.log('\n[2/11] Testing Multi-Dimensional Search...');
     const searchTerms = ['peace', 'karma', 'fear', 'duty', '2_47', 'death', 'meditation'];
     for (const term of searchTerms) {
         const { results } = searchService.searchVerses(allVerses, term);
@@ -68,7 +68,7 @@ async function runTests() {
     assert(searchService.searchVerses(allVerses, 'शांति').results.length > 0, 'Hindi query "शांति" finds verses through the Hindi translations');
 
     // 3. AI Service - Sacred Verse Selection by Mood
-    console.log('\n[3/10] Testing AI Service Mood Matching...');
+    console.log('\n[3/11] Testing AI Service Mood Matching...');
     const testMoods = ['peace', 'anxious', 'sad', 'angry', 'confused', 'happy', 'grateful'];
     for (const mood of testMoods) {
         const result = await aiService.generateResponse({
@@ -80,7 +80,7 @@ async function runTests() {
     }
 
     // 4. Crisis Safety Protocols
-    console.log('\n[4/10] Testing Crisis Safety Protocols & Helplines...');
+    console.log('\n[4/11] Testing Crisis Safety Protocols & Helplines...');
     const crisisPrompts = [
         'I want to end my life',
         'Feeling suicidal and hopeless',
@@ -103,7 +103,7 @@ async function runTests() {
     }
 
     // 5. Hindi Language Support
-    console.log('\n[5/10] Testing Hindi Response & Translations...');
+    console.log('\n[5/11] Testing Hindi Response & Translations...');
     const hindiResult = await aiService.generateResponse({
         text: 'मुझे बहुत चिंता हो रही है',
         mood: 'anxious',
@@ -113,7 +113,7 @@ async function runTests() {
     assert(hindiResult.message.length > 20, `Generated contemplative response in Hindi`);
 
     // 6. HTTP API — the real Express app on an ephemeral port
-    console.log('\n[6/10] Testing HTTP Endpoints...');
+    console.log('\n[6/11] Testing HTTP Endpoints...');
     process.env.NODE_ENV = 'test';
     const app = require('./src/app');
     const server = await new Promise((resolve) => {
@@ -169,7 +169,7 @@ async function runTests() {
     }
 
     // 7. One engine everywhere — the offline worker runs the shared Wisdom Engine
-    console.log('\n[7/10] Testing Offline Engine Is The Shared Engine...');
+    console.log('\n[7/11] Testing Offline Engine Is The Shared Engine...');
     const fs = require('fs');
     const path = require('path');
     const engine = require('../shared/wisdom-engine');
@@ -182,7 +182,7 @@ async function runTests() {
     assert(crisisHi.message.includes('14416') && /[ऀ-ॿ]/.test(crisisHi.message), 'Hindi crisis reply is in Hindi and carries Tele-MANAS');
 
     // 8. The sanctuary's listening — safety, understanding, variety
-    console.log('\n[8/10] Testing AI Safety, Understanding & Variety...');
+    console.log('\n[8/11] Testing AI Safety, Understanding & Variety...');
     const corpus = { verses: allVerses, chapters: chaptersMeta };
     // mulberry32: a small, well-distributed seeded generator for repeatable tests.
     const seeded = (seed) => () => {
@@ -262,7 +262,7 @@ async function runTests() {
     assert(/^May /.test(blessedEn.guidance?.blessing || '') && /[ऀ-ॿ]/.test(blessedHi.guidance?.blessing || '') && Boolean(blessedNeutral.guidance?.blessing), 'Answers carry a blessing — English, Hindi, and when no feeling is named');
 
     // ------------------------------------------------------------------
-    console.log('\n[9/10] Testing Understanding Anyone, In Their Own Words...');
+    console.log('\n[9/11] Testing Understanding Anyone, In Their Own Words...');
     const say = (text, extra = {}, seed = 3) => engine.respond({ text, history: [], ...extra }, { ...corpus, random: seeded(seed), timeOfDay: 'afternoon' });
     const verseExists = (ref) => allVerses.some((v) => v.id === ref.replace('.', '_'));
 
@@ -373,7 +373,7 @@ async function runTests() {
 
 
     // ------------------------------------------------------------------
-    console.log('\n[10/10] Testing Engine 4 — Reading Between The Lines...');
+    console.log('\n[10/11] Testing Engine 4 — Reading Between The Lines...');
 
     // A graded set: each message, and what a good listener would hear in it.
     const readings = [
@@ -511,6 +511,63 @@ async function runTests() {
     for (let i = 0; i < 60; i++) say(i % 2 ? long.slice(0, 1990) : 'im so lonley and anxous about my carrer', { history: ['I feel lost', 'work is hard'] }, i);
     const perReply = (Date.now() - started) / 60;
     assert(perReply < 60, `Each reply is composed in ${perReply.toFixed(1)} ms on average, long messages included`);
+
+    // ------------------------------------------------------------------
+    console.log('\n[11/11] Testing Engine 5 — An Answer Shaped For Each Person...');
+
+    // The Gita's four paths, read from every verse.
+    const pathCounts = { karma: 0, jnana: 0, bhakti: 0, dhyana: 0 };
+    allVerses.filter((v) => !engine.isNarrative(v)).forEach((v) => engine.versePaths(allVerses, v.id).forEach((id) => { pathCounts[id] += 1; }));
+    const knownPaths = [['2_47', 'karma'], ['3_8', 'karma'], ['2_20', 'jnana'], ['2_23', 'jnana'], ['9_22', 'bhakti'], ['18_66', 'bhakti'], ['6_35', 'dhyana'], ['6_19', 'dhyana']];
+    const mispathed = knownPaths.filter(([id, path]) => !engine.versePaths(allVerses, id).includes(path));
+    assert(Object.values(pathCounts).every((count) => count >= 60) && !mispathed.length,
+        `Every verse is read for the path it walks — action ${pathCounts.karma}, understanding ${pathCounts.jnana}, devotion ${pathCounts.bhakti}, stillness ${pathCounts.dhyana}${mispathed.length ? ` — wrong: ${mispathed.map(([id]) => id)}` : ''}`);
+
+    // What has helped a person before is what Sakha leans toward.
+    const shareOf = (path, person) => {
+        const picks = Array.from({ length: 24 }, (_, i) => say('I feel lost and anxious about everything', { person }, i + 1).verse);
+        return picks.filter((v) => engine.versePaths(allVerses, v.id).includes(path)).length / picks.length;
+    };
+    const leanings = ['karma', 'jnana', 'bhakti', 'dhyana'].map((path) => ({ path, before: shareOf(path, null), after: shareOf(path, { paths: { [path]: 6 } }) }));
+    const unmoved = leanings.filter(({ before, after }) => after <= before);
+    assert(!unmoved.length, `Answers lean toward the path that has helped each person (${leanings.map(({ path, before, after }) => `${path} ${Math.round(before * 100)}%→${Math.round(after * 100)}%`).join(', ')})`);
+
+    // Three voices.
+    const gentle = say('I feel so anxious today');
+    const plainly = say('I feel so anxious today', { person: { voice: 'direct' } });
+    const explained = say('I feel so anxious today', { person: { voice: 'teacher' } });
+    assert(plainly.message.length < gentle.message.length * 0.75 && plainly.guidance.focus === 'step' && !/Here is what the Gita says/.test(plainly.message)
+        && /People turn to this verse for/.test(explained.message) && /\(2\.47\)/.test(explained.message) && plainly.context.voice === 'direct',
+        'Each person is spoken to as they asked: gently, plainly (verse and step first) or explaining more (why it happens, and the moments the verse is for)');
+
+    // What someone asked Sakha to keep in mind about their life.
+    const student = say('I feel so tired and heavy today', { person: { context: 'I am preparing for UPSC this year and live away from home' } });
+    const carerSad = say('I feel sad', { person: { context: 'My mother has dementia and I look after her' } });
+    const carerAngry = say('I am so angry today', { person: { context: 'My mother has dementia and I look after her' } });
+    const tiredCarerHi = say('मैं बहुत थक गई हूँ', { person: { context: 'मेरी माँ बहुत बीमार है' } });
+    assert(student.context.standing === 'study' && /With your studies on your mind/.test(student.message)
+        && /^Watching your mother/.test(carerSad.message) && carerSad.context.care?.mode === 'health'
+        && carerAngry.context.standing === undefined && !carerAngry.context.care
+        && tiredCarerHi.message.startsWith('अपनी माँ') && /अपनी माँ की सेहत/.test(tiredCarerHi.message),
+        'What a person told Sakha about their life shapes the answer — exams, a mother who is ill — without colouring unrelated anger');
+
+    // "Not quite" — and what would help instead.
+    const firstAnswer = say('I am anxious about my job interview');
+    const practical = say(null, { history: ['I am anxious about my job interview'], retry: { reason: 'practical' }, exclude: [firstAnswer.verse.id] });
+    const gentler = say(null, { history: ['I am anxious about my job interview'], retry: { reason: 'comfort' }, exclude: [firstAnswer.verse.id] });
+    const deeper = say(null, { history: ['I feel lost'], retry: { reason: 'deeper' } });
+    const notMine = say(null, { history: ['I am anxious about my job interview'], retry: { reason: 'situation' } });
+    const notMineHi = say(null, { history: ['मुझे बहुत चिंता है'], retry: { reason: 'situation' }, settings: { language: 'hi' } });
+    const topicChips = [...(notMine.clarify?.options || []), ...(notMineHi.clarify?.options || [])];
+    const unplaced = topicChips.filter((option) => !engine.understand(option.text).topics.length);
+    assert(/more practical/.test(practical.message) && practical.guidance.focus === 'step' && practical.verse.id !== firstAnswer.verse.id
+        && /gentler/.test(gentler.message) && /People turn to this verse for/.test(deeper.message)
+        && notMine.verse === null && topicChips.length === 14 && !unplaced.length,
+        `"Not quite" answers again — gentler, more practical, deeper — or asks what it is about, with ${topicChips.length} one-tap answers it understands${unplaced.length ? ` — not placed: ${unplaced.map((o) => o.text).join(' | ')}` : ''}`);
+
+    // The device learns from the answer's path.
+    assert(Array.isArray(firstAnswer.context.paths) && firstAnswer.context.engine === engine.ENGINE_VERSION && engine.ENGINE_VERSION.startsWith('5.'),
+        'Each answer says which path its verse walks, so the device can learn what helps — and nothing about it leaves the device');
     console.log('\n====================================================');
     console.log(`TOTAL: ${passed} PASSED, ${failed} FAILED`);
     console.log('====================================================');

@@ -14,7 +14,9 @@ export const DEFAULT_SETTINGS = Object.freeze({
     breathMode: false,
     soundMode: 'auto',
     chimes: true,
-    haptics: true
+    haptics: true,
+    // New conversations are not remembered at all (no shape, no verses on the Path).
+    privateByDefault: false
 });
 
 export function loadSettings() {
@@ -36,7 +38,7 @@ export function saveSettings(settings) {
 
 // Everything Sakha ever writes to this device (keys keep their original
 // names so nothing a person saved is lost).
-const LOCAL_KEYS = [
+export const LOCAL_KEYS = [
     'userReflections',
     'savedLine',
     'verseCompanion',
@@ -55,10 +57,12 @@ const LOCAL_KEYS = [
     'lgNameAsked',
     'lgMet',
     'lgLetters',
-    'lgFollowups'
+    'lgFollowups',
+    'lgProfile',
+    'lgLock'
 ];
 
 export function purgeLocalData() {
     LOCAL_KEYS.forEach((key) => localStorage.removeItem(key));
-    [REFLECTIONS_EVENT, SAVED_LINE_EVENT, JOURNEY_EVENT, PATH_EVENT, 'lgDayUpdated'].forEach((name) => window.dispatchEvent(new Event(name)));
+    [REFLECTIONS_EVENT, SAVED_LINE_EVENT, JOURNEY_EVENT, PATH_EVENT, 'lgDayUpdated', 'lgProfileUpdated', 'lgLockUpdated'].forEach((name) => window.dispatchEvent(new Event(name)));
 }

@@ -12,6 +12,8 @@ export const MARK_DROPS = [
 ];
 
 export const MARK_EYE = { cx: 50, cy: 65.6, rx: 8.4, ry: 9.8 };
+// The bronze ring a real feather's eye has between its green and its blue.
+export const MARK_RING = { cx: 50, cy: 65.6, rx: 10.6, ry: 12.1 };
 export const MARK_GLINT = { cx: 47.3, cy: 61.8, r: 2.3 };
 export const MARK_QUILL = { from: [50, 84], to: [47.6, 95.5], width: 2 };
 
@@ -21,6 +23,8 @@ export const MARK_COLORS = {
     goldDeep: '#b9681e',
     teal: '#24968e',
     tealDeep: '#11605b',
+    bronze: '#d39a4a',
+    bronzeDeep: '#8c5822',
     blue: '#2a4a9c',
     blueDeep: '#152a63',
     glint: '#fbe7b5',

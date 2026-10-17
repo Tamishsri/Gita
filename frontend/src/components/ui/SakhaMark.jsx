@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { MARK_COLORS as C, MARK_DROPS, MARK_EYE, MARK_GLINT, MARK_QUILL, QUILL_PATH, dropPath } from '../../lib/sakhaMark';
+import { MARK_COLORS as C, MARK_DROPS, MARK_EYE, MARK_GLINT, MARK_QUILL, MARK_RING, QUILL_PATH, dropPath } from '../../lib/sakhaMark';
 
 const [GOLD, TEAL] = MARK_DROPS;
 const GOLD_PATH = dropPath(GOLD);
@@ -31,6 +31,10 @@ function SakhaMark({ size = 32, tile = false, className = '', title }) {
                     <stop offset="0" stopColor={C.teal} />
                     <stop offset="1" stopColor={C.tealDeep} />
                 </linearGradient>
+                <radialGradient id={`${id}-bronze`} cx="48" cy="62" r="14" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stopColor={C.bronze} />
+                    <stop offset="1" stopColor={C.bronzeDeep} />
+                </radialGradient>
                 <radialGradient id={`${id}-blue`} cx="47" cy="61" r="13" gradientUnits="userSpaceOnUse">
                     <stop offset="0" stopColor={C.blue} />
                     <stop offset="1" stopColor={C.blueDeep} />
@@ -47,6 +51,7 @@ function SakhaMark({ size = 32, tile = false, className = '', title }) {
                 <path d={QUILL_PATH} fill="none" stroke={C.goldDeep} strokeWidth={MARK_QUILL.width} strokeLinecap="round" />
                 <path d={GOLD_PATH} fill={`url(#${id}-gold)`} />
                 <path d={TEAL_PATH} fill={`url(#${id}-teal)`} stroke={C.seam} strokeWidth="1.3" />
+                <ellipse cx={MARK_RING.cx} cy={MARK_RING.cy} rx={MARK_RING.rx} ry={MARK_RING.ry} fill={`url(#${id}-bronze)`} />
                 <ellipse cx={MARK_EYE.cx} cy={MARK_EYE.cy} rx={MARK_EYE.rx} ry={MARK_EYE.ry} fill={`url(#${id}-blue)`} />
                 <circle cx={MARK_GLINT.cx} cy={MARK_GLINT.cy} r={MARK_GLINT.r} fill={C.glint} />
             </g>

@@ -9,8 +9,6 @@ import { fetchVerse } from '../lib/gitaApi';
 import { readLearned } from './practices/Svadhyaya';
 import { toast } from '../lib/toast';
 import { useI18n, localeFor } from '../i18n';
-import { usePreferences } from '../contexts/PreferencesContext';
-import { forgetConversations, summariseMemory } from '../lib/person';
 
 const DAY_MS = 86400000;
 
@@ -21,63 +19,6 @@ const EMOTION_TO_MOOD = {
     guilt: 'sad', unworthiness: 'sad', failure: 'stressed', envy: 'angry', craving: 'stressed', lust: 'stressed',
     emptiness: 'sad', pride: 'confused', love: 'happy', devotion: 'peace', inertia: 'stressed'
 };
-
-// What Sakha remembers: shown openly, released with one tap.
-function Memory({ events }) {
-    const { t } = useI18n();
-    const { settings } = usePreferences();
-    const [confirm, setConfirm] = useState(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const memory = useMemo(() => summariseMemory(settings), [settings, events]);
-    const hasAny = memory.topics.length || memory.feelings.length;
-
-    return (
-        <section className="path__section memory">
-            <h3 className="eyebrow">{t('path.memory')}</h3>
-            <p className="path__note">{t('path.memoryNote')}</p>
-            {memory.name && <p className="memory__line">{t('path.memoryName', { name: memory.name })}</p>}
-            {hasAny ? (
-                <>
-                    {memory.topics.length > 0 && (
-                        <div className="memory__group">
-                            <span className="memory__label">{t('path.memoryTopics')}</span>
-                            <ul className="chip-row">
-                                {memory.topics.slice(0, 8).map(([id, item]) => (
-                                    <li key={id} className="chip">{t(`topic.${id}`)} <span className="faint">· {item.count}</span></li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                    {memory.feelings.length > 0 && (
-                        <div className="memory__group">
-                            <span className="memory__label">{t('path.memoryFeelings')}</span>
-                            <ul className="chip-row">
-                                {memory.feelings.slice(0, 6).map(([id, count]) => (
-                                    <li key={id} className="chip">{t(`feeling.${id}`)} <span className="faint">· {count}</span></li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                    {confirm ? (
-                        <span className="journal-entry__confirm">
-                            {t('path.forgetConfirm')}
-                            <button type="button" className="btn btn--danger btn--sm" onClick={() => {
-                                forgetConversations();
-                                setConfirm(false);
-                                toast(t('path.forgotten'), { icon: 'check' });
-                            }}>{t('path.forget')}</button>
-                            <button type="button" className="btn btn--ghost btn--sm" onClick={() => setConfirm(false)}>{t('common.keep')}</button>
-                        </span>
-                    ) : (
-                        <button type="button" className="btn btn--link btn--sm memory__forget" onClick={() => setConfirm(true)}>{t('path.forget')}</button>
-                    )}
-                </>
-            ) : (
-                <p className="memory__empty">{t('path.memoryEmpty')}</p>
-            )}
-        </section>
-    );
-}
 
 function summarise(events) {
     const now = Date.now();
@@ -128,7 +69,7 @@ function summarise(events) {
     };
 }
 
-function PathView({ isOpen, onClose, onSelectVerse }) {
+function PathView({ isOpen, onClose, onSelectVerse, onOpenYou }) {
     const { t, lang } = useI18n();
     const [events, setEvents] = useState(readPath);
     const [confirm, setConfirm] = useState(false);
@@ -261,7 +202,13 @@ function PathView({ isOpen, onClose, onSelectVerse }) {
                             </section>
                         )}
 
-                        <Memory events={events} />
+                        <section className="path__section">
+                            <h3 className="eyebrow">{t('path.memory')}</h3>
+                            <p className="path__note">{t('path.memoryMoved')}</p>
+                            <button type="button" className="text-action" onClick={() => { onClose(); onOpenYou?.(); }}>
+                                {t('you.title')} <ArrowRight size={13} />
+                            </button>
+                        </section>
 
                         <p className="path__principle">{t('path.principle')}</p>
                     </>

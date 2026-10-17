@@ -11,6 +11,7 @@ import './styles/shell.css';
 import './styles/sanctuary.css';
 import './styles/panels.css';
 import './styles/practices.css';
+import './styles/you.css';
 
 // Listen for the install prompt before React mounts so it is never missed.
 captureInstallPrompt();

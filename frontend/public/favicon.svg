@@ -3,6 +3,7 @@
 <radialGradient id="dawn" cx="50" cy="38" r="70" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff8ea"/><stop offset="1" stop-color="#f3dcb8"/></radialGradient>
 <linearGradient id="gold" x1="0" y1="12" x2="0" y2="84" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f7cd7f"/><stop offset="0.55" stop-color="#e39a35"/><stop offset="1" stop-color="#b9681e"/></linearGradient>
 <linearGradient id="teal" x1="0" y1="32" x2="0" y2="80" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#24968e"/><stop offset="1" stop-color="#11605b"/></linearGradient>
+<radialGradient id="bronze" cx="48" cy="62" r="14" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#d39a4a"/><stop offset="1" stop-color="#8c5822"/></radialGradient>
 <radialGradient id="blue" cx="47" cy="61" r="13" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2a4a9c"/><stop offset="1" stop-color="#152a63"/></radialGradient>
 </defs>
 <rect width="100" height="100" rx="24" fill="url(#dawn)"/>
@@ -10,6 +11,7 @@
 <path d="M50 84Q49.6 89.75 47.6 95.5" fill="none" stroke="#b9681e" stroke-width="2" stroke-linecap="round"/>
 <path d="M51.048 12.615L70.959 48.308A24 24 0 1 1 29.041 48.308L48.952 12.615A1.2 1.2 0 0 1 51.048 12.615Z" fill="url(#gold)"/>
 <path d="M50.886 31.537L63.823 56.27A15.6 15.6 0 1 1 36.177 56.27L49.114 31.537A1 1 0 0 1 50.886 31.537Z" fill="url(#teal)" stroke="#fbe3ad" stroke-width="1.3"/>
+<ellipse cx="50" cy="65.6" rx="10.6" ry="12.1" fill="url(#bronze)"/>
 <ellipse cx="50" cy="65.6" rx="8.4" ry="9.8" fill="url(#blue)"/>
 <circle cx="47.3" cy="61.8" r="2.3" fill="#fbe7b5"/>
 </g>

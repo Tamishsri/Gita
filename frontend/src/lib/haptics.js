@@ -7,6 +7,7 @@ const PATTERNS = {
     soft: [8],
     breath: [22],
     success: [14, 70, 22],
+    error: [40, 60, 40],
     ceremony: [30, 110, 30, 110, 70]
 };
 

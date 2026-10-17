@@ -1,7 +1,7 @@
 import { sanskritLines, verseMeaning, verseNumber, verseRef } from './verse';
 import { ensureScriptFont, scriptById, transliterate } from './script';
 import { BRAND } from './brand';
-import { MARK_COLORS, MARK_DROPS, MARK_EYE, MARK_GLINT, MARK_QUILL, QUILL_PATH, dropPath } from './sakhaMark';
+import { MARK_COLORS, MARK_DROPS, MARK_EYE, MARK_GLINT, MARK_QUILL, MARK_RING, QUILL_PATH, dropPath } from './sakhaMark';
 
 // Renders a verse as a lamplit manuscript page on an offscreen canvas.
 // Everything is drawn procedurally — paper grain, mandala, double rule, the
@@ -224,6 +224,13 @@ function sakhaMark(ctx, cx, cy, size) {
     ctx.strokeStyle = MARK_COLORS.seam;
     ctx.lineWidth = 1.3;
     ctx.stroke(teal);
+    const bronze = ctx.createRadialGradient(48, 62, 0, 48, 62, 14);
+    bronze.addColorStop(0, MARK_COLORS.bronze);
+    bronze.addColorStop(1, MARK_COLORS.bronzeDeep);
+    ctx.fillStyle = bronze;
+    ctx.beginPath();
+    ctx.ellipse(MARK_RING.cx, MARK_RING.cy, MARK_RING.rx, MARK_RING.ry, 0, 0, Math.PI * 2);
+    ctx.fill();
     const blue = ctx.createRadialGradient(47, 61, 0, 47, 61, 13);
     blue.addColorStop(0, MARK_COLORS.blue);
     blue.addColorStop(1, MARK_COLORS.blueDeep);

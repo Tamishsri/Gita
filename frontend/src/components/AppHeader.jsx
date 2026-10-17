@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, Download, Search, Settings as SettingsIcon, Volume2, Waves } from 'lucide-react';
+import { ArrowLeft, Download, Search, Settings as SettingsIcon, UserRound, Volume2, Waves } from 'lucide-react';
 import SakhaMark from './ui/SakhaMark';
 import { moodById } from './MoodSelector';
 import { useSoundscape } from './SoundscapeEngine';
@@ -9,7 +9,7 @@ import { useI18n } from '../i18n';
 
 const NAV = ['practice', 'chapters', 'journal', 'path'];
 
-function AppHeader({ view, mood, verse, activePanel, journalCount, isMobile, install, onHome, openPanel, openPalette, onOpenSound }) {
+function AppHeader({ view, mood, verse, activePanel, journalCount, isMobile, install, onHome, openPanel, openPalette, onOpenSound, name }) {
     const { t } = useI18n();
     const [scrolled, setScrolled] = useState(false);
     const { isPlaying } = useSoundscape();
@@ -95,6 +95,15 @@ function AppHeader({ view, mood, verse, activePanel, journalCount, isMobile, ins
                             <span className="kbd-group"><span className="kbd">{MOD_KEY}</span><span className="kbd">K</span></span>
                         </button>
                     )}
+                    <button
+                        type="button"
+                        className={`you-chip${activePanel === 'you' ? ' is-on' : ''}`}
+                        onClick={() => openPanel('you')}
+                        aria-label={t('you.open')}
+                        title={t('you.open')}
+                    >
+                        {(name || '').trim() ? (name.trim()[0] || '').toUpperCase() : <UserRound size={16} aria-hidden="true" />}
+                    </button>
                     <button type="button" className="icon-btn" onClick={() => openPanel('settings')} aria-label={t('nav.settings')} title={t('nav.settings')}>
                         <SettingsIcon size={19} />
                     </button>

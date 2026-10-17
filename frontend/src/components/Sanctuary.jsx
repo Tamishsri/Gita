@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowUp, LifeBuoy, RotateCcw, WifiOff, Feather, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowUp, LifeBuoy, RotateCcw, WifiOff, Feather, ArrowRight, Sparkles, Heart, EyeOff, LogOut } from 'lucide-react';
 import VoiceInput from './VoiceInput';
 import BreathCircle from './BreathCircle';
 import VerseDisplay from './VerseDisplay';
 import { Diya, SunGlyph } from './ui/Ornaments';
 import { askSakha } from '../lib/localSakha';
-import { buildPerson, rememberConversation } from '../lib/person';
+import { buildPerson, learnFromFeedback, rememberConversation } from '../lib/person';
+import { quickExit } from '../lib/privacy';
 import { addReflection, verseRef } from '../lib/verse';
 import { recentVerseIds, recordPath } from '../lib/path';
 import { openPractice } from '../lib/bus';
@@ -55,7 +56,7 @@ function linkify(line) {
     return parts;
 }
 
-function SupportMessage({ content }) {
+function SupportMessage({ content, safety }) {
     const { t } = useI18n();
     const lines = content.split('\n').map((line) => line.trim()).filter(Boolean);
     const intro = lines.filter((line) => !line.startsWith('•') && !line.endsWith(':'));
@@ -70,7 +71,59 @@ function SupportMessage({ content }) {
             {intro.map((line) => <p key={line}>{line}</p>)}
             {heading && <p className="support-card__subhead">{heading.replace(/:$/, '')}</p>}
             <ul>{helplines.map((line) => <li key={line}>{linkify(line)}</li>)}</ul>
+            {safety && (
+                <div className="support-card__exit">
+                    <button type="button" className="btn btn--outline btn--sm" onClick={quickExit}>
+                        <LogOut size={14} /> {t('support.quickExit')}
+                    </button>
+                    <span className="faint">{t('support.quickExitNote')}</span>
+                </div>
+            )}
         </div>
+    );
+}
+
+// "Did this help?" — the answer teaches Sakha what helps this person, on
+// this device. "Not quite" asks what would help instead, and answers again.
+const RETRY_REASONS = ['comfort', 'practical', 'deeper', 'situation'];
+
+function Feedback({ state, onHelped, onNotQuite, onReason, disabled }) {
+    const { t } = useI18n();
+    const reduceMotion = useReducedMotion();
+    if (state === 'helped') {
+        return <p className="feedback feedback--thanks" role="status"><Heart size={14} aria-hidden="true" /> {t('feedback.thanks')}</p>;
+    }
+    if (state === 'sent') return null;
+    return (
+        <motion.div
+            className="feedback"
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3, duration: 0.6 }}
+        >
+            {state === 'open' ? (
+                <div className="feedback__reasons" role="group" aria-label={t('feedback.what')}>
+                    <span className="feedback__label">{t('feedback.what')}</span>
+                    <div className="begin-chips begin-chips--answers">
+                        {RETRY_REASONS.map((reason) => (
+                            <button key={reason} type="button" className="begin-chip" onClick={() => onReason(reason)} disabled={disabled}>
+                                {t(`feedback.reason.${reason}`)}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <div className="feedback__ask">
+                    <span className="feedback__label">{t('feedback.ask')}</span>
+                    <button type="button" className="feedback__btn" onClick={onHelped} disabled={disabled}>
+                        <Heart size={14} aria-hidden="true" /> {t('feedback.helped')}
+                    </button>
+                    <button type="button" className="feedback__btn" onClick={onNotQuite} disabled={disabled}>
+                        {t('feedback.notQuite')}
+                    </button>
+                </div>
+            )}
+        </motion.div>
     );
 }
 
@@ -217,6 +270,11 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
     // One conversation, so Sakha can tell "this visit" from "before".
     const session = useRef(`s${Date.now().toString(36)}`);
     const language = settings.language === 'hi' ? 'hi' : 'en';
+    // A private conversation leaves nothing behind: no shape, no verses on the Path, nothing learned.
+    const [privateChat, setPrivateChat] = useState(Boolean(settings.privateByDefault));
+    const privateRef = useRef(privateChat);
+    useEffect(() => { privateRef.current = privateChat; }, [privateChat]);
+    const [feedback, setFeedback] = useState({}); // message id → open | helped | sent
 
     const scrollToMessage = useCallback((id) => {
         requestAnimationFrame(() => {
@@ -263,9 +321,9 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
 
     useEffect(() => () => clearTimeout(revealTimer.current), []);
 
-    const send = useCallback(async (text, moodContext, { retry = false, another = false } = {}) => {
-        if (!text && !moodContext) return;
-        const request = { text: text || null, mood: moodContext || mood, another };
+    const send = useCallback(async (text, moodContext, { retry = false, another = false, refine = null } = {}) => {
+        if (!text && !moodContext && !refine) return;
+        const request = { text: text || null, mood: moodContext || mood, another: another || Boolean(refine), refine };
         setLastRequest(request);
 
         if (text && !retry) {
@@ -279,8 +337,10 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
         try {
             const exclude = [...new Set([...recentVerseIds(30), ...shownIds.current])].slice(-40);
             const person = buildPerson(settings, { session: session.current });
+            const { refine: reason, ...ask } = request;
             const data = await askSakha({
-                ...request,
+                ...ask,
+                retry: reason ? { reason } : undefined,
                 settings,
                 history: history.current.slice(-3),
                 exclude,
@@ -290,13 +350,13 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
             });
             if (text) history.current.push(text);
             if (data.context?.counsel) usedCounsel.current.push(data.context.counsel);
-            rememberConversation(session.current, data.context);
+            if (!privateRef.current) rememberConversation(session.current, data.context);
             const content = data.message || data.response || '';
             const id = nextId();
             if (data.verse) {
                 shownIds.current.push(data.verse.id);
                 lastVerseId.current = data.verse.id;
-                recordPath('verse', { verseId: data.verse.id, emotion: data.context?.emotion || null, mood: moodContext || mood || null });
+                if (!privateRef.current) recordPath('verse', { verseId: data.verse.id, emotion: data.context?.emotion || null, mood: moodContext || mood || null });
             }
             setMessages((list) => [...list, {
                 id,
@@ -357,6 +417,17 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
 
     const another = () => send(null, lastRequest?.mood || mood || 'peace', { another: true });
 
+    const markHelped = (message) => {
+        setFeedback((current) => ({ ...current, [message.id]: 'helped' }));
+        if (!privateRef.current) learnFromFeedback({ verseId: message.verse?.id, paths: message.context?.paths, helped: true });
+    };
+
+    const refineAnswer = (message, reason) => {
+        setFeedback((current) => ({ ...current, [message.id]: 'sent' }));
+        if (!privateRef.current) learnFromFeedback({ verseId: message.verse?.id, paths: message.context?.paths, helped: false, reason });
+        send(null, lastRequest?.mood || mood || null, { refine: reason });
+    };
+
     const hasGuidance = messages.some((message) => message.role === 'assistant' && !message.failed);
     const placeholder = hasTranslation(`sanctuary.placeholder.${mood}`)
         ? t(`sanctuary.placeholder.${mood}`)
@@ -369,6 +440,16 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
             <div className="samvada-intro">
                 <span className="eyebrow">{t('sanctuary.eyebrow')}</span>
                 <p>{t('sanctuary.intro')}</p>
+                <button
+                    type="button"
+                    className={`private-toggle${privateChat ? ' is-on' : ''}`}
+                    aria-pressed={privateChat}
+                    onClick={() => setPrivateChat((value) => !value)}
+                    title={t('sanctuary.privateHint')}
+                >
+                    <EyeOff size={13} aria-hidden="true" />
+                    {privateChat ? t('sanctuary.privateOn') : t('sanctuary.privateOff')}
+                </button>
             </div>
 
             <div className="conversation" ref={conversationRef} aria-live="polite">
@@ -406,7 +487,7 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                             >
                                 <div className="msg__body">
                                     {crisis ? (
-                                        <SupportMessage content={message.content} />
+                                        <SupportMessage content={message.content} safety={Boolean(message.context?.safety)} />
                                     ) : (
                                         leadText && (
                                             <div
@@ -446,10 +527,21 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                         <Clarify clarify={message.clarify} onPick={(text) => send(text)} disabled={loading} />
                                     )}
 
+                                    {message.verse && !crisis && !isRevealing && !message.failed && !settings.silentMode
+                                        && (index === messages.length - 1 || feedback[message.id] === 'helped') && message.context?.engine && (
+                                        <Feedback
+                                            state={feedback[message.id]}
+                                            disabled={loading}
+                                            onHelped={() => markHelped(message)}
+                                            onNotQuite={() => setFeedback((current) => ({ ...current, [message.id]: 'open' }))}
+                                            onReason={(reason) => refineAnswer(message, reason)}
+                                        />
+                                    )}
+
                                     {message.failed && lastRequest && index === messages.length - 1 && (
                                         <button type="button" className="btn btn--outline btn--sm" onClick={() => {
                                             setMessages((list) => list.filter((item) => item.id !== message.id));
-                                            send(lastRequest.text, lastRequest.text ? null : lastRequest.mood, { retry: true, another: lastRequest.another });
+                                            send(lastRequest.text, lastRequest.text ? null : lastRequest.mood, { retry: true, another: lastRequest.another, refine: lastRequest.refine });
                                         }}>
                                             <RotateCcw size={14} /> {t('common.tryAgain')}
                                         </button>

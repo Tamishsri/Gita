@@ -459,6 +459,13 @@ button.chip[aria-pressed="true"] {
     background: var(--scrim);
 }
 
+/* In daylight a focused field brightens rather than darkens. */
+:root[data-theme="dawn"] .input:focus,
+:root[data-theme="dawn"] .textarea:focus {
+    background: #fffdf8;
+    box-shadow: 0 0 0 3px rgba(var(--gold-rgb), 0.14);
+}
+
 .input--pill {
     border-radius: var(--radius-pill);
 }

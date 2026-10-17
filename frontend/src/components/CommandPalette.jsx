@@ -3,8 +3,10 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
     Search, BookOpen, Feather, Home, Image as ImageIcon, Languages, EyeOff, Settings as SettingsIcon,
-    Info, Download, Hash, Bell, VolumeX, CornerDownLeft, BookMarked, Loader2, MessageCircle
+    Info, Download, Hash, Bell, VolumeX, CornerDownLeft, BookMarked, Loader2, MessageCircle, Lock, ShieldCheck, LogOut
 } from 'lucide-react';
+import { isLockEnabled } from '../lib/lock';
+import { quickExit } from '../lib/privacy';
 import { useLayer } from '../lib/layers';
 import { fetchChapters, fetchDaily, fetchVerse, searchVerses } from '../lib/gitaApi';
 import { openWisdomCard, parseVerseRef, verseMeaning, verseRef } from '../lib/verse';
@@ -109,6 +111,9 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
         add('actions', { id: 'daily-card', icon: ImageIcon, title: t('palette.dailyCard'), subtitle: t('palette.dailyCardSub'), keywords: 'share image png instagram whatsapp daily', run: () => fetchDaily().then((data) => data?.verse && openWisdomCard(data.verse, settings.language)).catch(() => {}) });
         add('actions', { id: 'language', icon: Languages, title: settings.language === 'hi' ? t('palette.toEnglish') : t('palette.toHindi'), keywords: 'language hindi english हिंदी', run: actions.toggleLanguage });
         add('actions', { id: 'silent', icon: EyeOff, title: settings.silentMode ? t('palette.silentOff') : t('palette.silentOn'), subtitle: t('settings.silentDesc'), keywords: 'quiet silent mode', run: actions.toggleSilent });
+        add('actions', { id: 'you', icon: ShieldCheck, title: t('palette.you'), subtitle: t('palette.youSub'), keywords: 'me profile privacy voice path data passcode lock export', run: () => actions.openPanel('you') });
+        if (isLockEnabled()) add('actions', { id: 'lock', icon: Lock, title: t('palette.lock'), subtitle: t('palette.lockSub'), keywords: 'lock passcode hide close', run: actions.lockNow });
+        add('actions', { id: 'exit', icon: LogOut, title: t('palette.exit'), subtitle: t('palette.exitSub'), keywords: 'quick exit leave hide safety', run: quickExit });
         add('actions', { id: 'settings', icon: SettingsIcon, title: t('nav.settings'), keywords: 'settings options preferences script', run: () => actions.openPanel('settings') });
         add('actions', { id: 'about', icon: Info, title: t('about.short'), subtitle: t('palette.aboutSub'), keywords: 'help crisis helpline disclaimer principles', run: () => actions.openPanel('about') });
         if (install?.available) add('actions', { id: 'install', icon: Download, title: t('install.title'), subtitle: t('install.cardBody'), keywords: 'pwa app install offline', run: actions.install });

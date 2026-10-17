@@ -10,7 +10,7 @@ import { deflateSync } from 'node:zlib';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MARK_COLORS, MARK_DROPS, MARK_EYE, MARK_GLINT, MARK_QUILL, QUILL_PATH, dropPath, sdDrop } from '../src/lib/sakhaMark.js';
+import { MARK_COLORS, MARK_DROPS, MARK_EYE, MARK_GLINT, MARK_QUILL, MARK_RING, QUILL_PATH, dropPath, sdDrop } from '../src/lib/sakhaMark.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = resolve(root, 'public/icons');
@@ -114,6 +114,11 @@ function shade(x, y, { contentScale, rounded }) {
     if (teal < 0.65) {
         color = teal > -0.65 ? C.seam : mixColor(C.teal, C.tealDeep, clamp((Y - 32) / 48));
     }
+    const rx = (X - MARK_RING.cx) / MARK_RING.rx;
+    const ry = (Y - MARK_RING.cy) / MARK_RING.ry;
+    if (rx * rx + ry * ry < 1) {
+        color = mixColor(C.bronze, C.bronzeDeep, clamp(Math.hypot(X - 48, Y - 62) / 14));
+    }
     const ex = (X - MARK_EYE.cx) / MARK_EYE.rx;
     const ey = (Y - MARK_EYE.cy) / MARK_EYE.ry;
     if (ex * ex + ey * ey < 1) {
@@ -173,6 +178,7 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 <radialGradient id="dawn" cx="50" cy="38" r="70" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff8ea"/><stop offset="1" stop-color="#f3dcb8"/></radialGradient>
 <linearGradient id="gold" x1="0" y1="12" x2="0" y2="84" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${MARK_COLORS.goldLight}"/><stop offset="0.55" stop-color="${MARK_COLORS.gold}"/><stop offset="1" stop-color="${MARK_COLORS.goldDeep}"/></linearGradient>
 <linearGradient id="teal" x1="0" y1="32" x2="0" y2="80" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${MARK_COLORS.teal}"/><stop offset="1" stop-color="${MARK_COLORS.tealDeep}"/></linearGradient>
+<radialGradient id="bronze" cx="48" cy="62" r="14" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${MARK_COLORS.bronze}"/><stop offset="1" stop-color="${MARK_COLORS.bronzeDeep}"/></radialGradient>
 <radialGradient id="blue" cx="47" cy="61" r="13" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${MARK_COLORS.blue}"/><stop offset="1" stop-color="${MARK_COLORS.blueDeep}"/></radialGradient>
 </defs>
 <rect width="100" height="100" rx="24" fill="url(#dawn)"/>
@@ -180,6 +186,7 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 <path d="${QUILL_PATH}" fill="none" stroke="${MARK_COLORS.goldDeep}" stroke-width="${MARK_QUILL.width}" stroke-linecap="round"/>
 <path d="${dropPath(GOLD_DROP)}" fill="url(#gold)"/>
 <path d="${dropPath(TEAL_DROP)}" fill="url(#teal)" stroke="${MARK_COLORS.seam}" stroke-width="1.3"/>
+<ellipse cx="${MARK_RING.cx}" cy="${MARK_RING.cy}" rx="${MARK_RING.rx}" ry="${MARK_RING.ry}" fill="url(#bronze)"/>
 <ellipse cx="${MARK_EYE.cx}" cy="${MARK_EYE.cy}" rx="${MARK_EYE.rx}" ry="${MARK_EYE.ry}" fill="url(#blue)"/>
 <circle cx="${MARK_GLINT.cx}" cy="${MARK_GLINT.cy}" r="${MARK_GLINT.r}" fill="${MARK_COLORS.glint}"/>
 </g>

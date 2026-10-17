@@ -18,6 +18,8 @@ import WisdomCardStudio from './components/WisdomCardStudio';
 import PracticeHub from './components/PracticeHub';
 import PathView from './components/PathView';
 import Letters from './components/Letters';
+import YouPanel from './components/YouPanel';
+import LockScreen from './components/LockScreen';
 import Japa from './components/practices/Japa';
 import Dhyana from './components/practices/Dhyana';
 import Sankalpa from './components/practices/Sankalpa';
@@ -50,9 +52,10 @@ import { recordPath } from './lib/path';
 import { fetchDaily, fetchVerse } from './lib/gitaApi';
 import { prepareSakha } from './lib/localSakha';
 import { readJourney, startJourney } from './lib/journey';
+import { LOCK_EVENT, RELOCK_AFTER_MS, isLockEnabled } from './lib/lock';
 import { moodById } from './components/MoodSelector';
 
-const PANELS = ['settings', 'about', 'chapters', 'search', 'journal', 'practice', 'path', 'letters'];
+const PANELS = ['settings', 'about', 'chapters', 'search', 'journal', 'practice', 'path', 'letters', 'you'];
 const ROOMS = ['japa', 'dhyana', 'sankalpa', 'sandhya', 'svadhyaya'];
 
 function hasActiveBreathSession() {
@@ -66,7 +69,7 @@ function hasActiveBreathSession() {
     return null;
 }
 
-function AppContent({ settings, setSettings }) {
+function AppContent({ settings, setSettings, onLockNow }) {
     const { t } = useI18n();
     const [sessionIntent, setSessionIntent] = useState(hasActiveBreathSession);
     const [needsBreathCheck, setNeedsBreathCheck] = useState(() => !sessionIntent);
@@ -213,8 +216,9 @@ function AppContent({ settings, setSettings }) {
             updateSettings({ silentMode: !settings.silentMode });
             toast(settings.silentMode ? t('toast.silentOff') : t('toast.silentOn'));
         },
-        install: install.install
-    }), [openPanel, openChapter, openPractice, goHome, selectMood, selectVerse, ask, beginBreaths, playSound, soundscape.stop, settings.language, settings.silentMode, updateSettings, install.install, t]);
+        install: install.install,
+        lockNow: onLockNow
+    }), [openPanel, openChapter, openPractice, goHome, selectMood, selectVerse, ask, beginBreaths, playSound, soundscape.stop, settings.language, settings.silentMode, updateSettings, install.install, onLockNow, t]);
 
     // ----- global effects ---------------------------------------------------
 
@@ -283,7 +287,8 @@ function AppContent({ settings, setSettings }) {
 
     useEffect(() => {
         const mood = session?.mood && moodById(session.mood);
-        if (!session) document.title = t('meta.title');
+        // With a passcode set, the tab never says what someone is going through.
+        if (!session || isLockEnabled()) document.title = t('meta.title');
         else if (session.verse) document.title = `${t('verse.bg')} ${verseRef(session.verse)} · ${t('brand.name')}`;
         else if (mood) document.title = `${t(`mood.${mood.id}.word`)} · ${t('brand.name')}`;
         else document.title = `${t('sanctuary.eyebrow')} · ${t('brand.name')}`;
@@ -365,6 +370,7 @@ function AppContent({ settings, setSettings }) {
                         openPanel={openPanel}
                         openPalette={() => setPaletteOpen(true)}
                         onOpenSound={() => setSoundSheetOpen(true)}
+                        name={settings.name}
                     />
 
                     <main id="main" className="app-main">
@@ -439,8 +445,9 @@ function AppContent({ settings, setSettings }) {
             <WisdomSearch isOpen={activePanel === 'search'} onClose={closePanel} language={settings.language} onSelectVerse={selectVerse} />
             <ReflectionJournal isOpen={activePanel === 'journal'} onClose={closePanel} onSelectVerse={selectVerse} />
             <PracticeHub isOpen={activePanel === 'practice'} onClose={closePanel} onOpen={openPractice} />
-            <PathView isOpen={activePanel === 'path'} onClose={closePanel} onSelectVerse={selectVerse} />
+            <PathView isOpen={activePanel === 'path'} onClose={closePanel} onSelectVerse={selectVerse} onOpenYou={() => openPanel('you')} />
             <Letters isOpen={activePanel === 'letters'} onClose={closePanel} />
+            <YouPanel isOpen={activePanel === 'you'} onClose={closePanel} onLockNow={onLockNow} />
 
             <Japa isOpen={room?.id === 'japa'} onClose={() => setRoom(null)} />
             <Dhyana isOpen={room?.id === 'dhyana'} onClose={() => setRoom(null)} minutes={room?.minutes} />
@@ -496,13 +503,59 @@ function App() {
 
     const updateSettings = useCallback((patch) => setSettings((current) => ({ ...current, ...patch })), []);
 
+    // The passcode lock. While locked, nothing of the person's is mounted.
+    const [locked, setLocked] = useState(isLockEnabled);
+    const [unlockKey, setUnlockKey] = useState(0);
+    const lockNow = useCallback(() => {
+        if (isLockEnabled()) setLocked(true);
+    }, []);
+
+    useEffect(() => {
+        let hiddenAt = null;
+        const onVisibility = () => {
+            if (document.visibilityState === 'hidden') hiddenAt = Date.now();
+            else if (hiddenAt && Date.now() - hiddenAt > RELOCK_AFTER_MS && isLockEnabled()) setLocked(true);
+        };
+        const onLockChange = () => {
+            if (!isLockEnabled()) setLocked(false);
+        };
+        document.addEventListener('visibilitychange', onVisibility);
+        window.addEventListener(LOCK_EVENT, onLockChange);
+        return () => {
+            document.removeEventListener('visibilitychange', onVisibility);
+            window.removeEventListener(LOCK_EVENT, onLockChange);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (locked) document.title = 'Sakha';
+    }, [locked]);
+
     return (
         <ErrorBoundary>
             <PreferencesProvider settings={settings} updateSettings={updateSettings}>
                 <AdaptiveThemeProvider>
-                    <SoundscapeProvider initialSoundMode={settings.soundMode}>
-                        <AppContent settings={settings} setSettings={setSettings} />
-                    </SoundscapeProvider>
+                    {locked ? (
+                        <>
+                            <div className="atmosphere" aria-hidden="true" />
+                            <LockScreen
+                                name={settings.name}
+                                onUnlock={() => {
+                                    setLocked(false);
+                                    setUnlockKey((key) => key + 1);
+                                }}
+                                onErased={() => {
+                                    setSettings(loadSettings());
+                                    setLocked(false);
+                                    setUnlockKey((key) => key + 1);
+                                }}
+                            />
+                        </>
+                    ) : (
+                        <SoundscapeProvider key={unlockKey} initialSoundMode={settings.soundMode}>
+                            <AppContent settings={settings} setSettings={setSettings} onLockNow={lockNow} />
+                        </SoundscapeProvider>
+                    )}
                 </AdaptiveThemeProvider>
             </PreferencesProvider>
         </ErrorBoundary>

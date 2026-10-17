@@ -1,0 +1,793 @@
+/* ==========================================================================
+   You — what Sakha knows about a person, how it learns, and how it keeps
+   their privacy: the lock, the "You" panel, feedback, private conversations.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   The lock
+   -------------------------------------------------------------------------- */
+
+.lock__panel {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+}
+
+.lock__mark {
+    margin-bottom: var(--space-2);
+    filter: drop-shadow(0 10px 18px rgba(var(--shade-rgb), calc(0.22 * var(--shade-k))));
+}
+
+.lock .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lock__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-xl);
+    line-height: 1.1;
+}
+
+.lock__message {
+    min-height: 1.6em;
+    font-size: var(--fs-sm);
+    color: var(--text-2);
+}
+
+.lock__message.is-alert {
+    color: var(--kumkum-text, var(--danger));
+}
+
+.lock__dots {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin: var(--space-2) 0 var(--space-4);
+}
+
+.lock__dots span {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line-gold);
+    transition: background-color var(--dur-fast) ease, transform var(--dur-fast) ease;
+}
+
+.lock__dots span.is-filled {
+    background: var(--accent-fill);
+    border-color: var(--accent-fill);
+    transform: scale(1.08);
+}
+
+.lock__pad {
+    display: grid;
+    grid-template-columns: repeat(3, 72px);
+    gap: 14px 22px;
+    justify-content: center;
+}
+
+.lock__key {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    color: var(--text-1);
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm), var(--inner-highlight);
+    transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease, transform 90ms ease;
+}
+
+.lock__key:hover:not(:disabled) {
+    border-color: var(--line-gold);
+    background: var(--gold-wash);
+}
+
+.lock__key:active:not(:disabled) {
+    transform: scale(0.94);
+    background: var(--gold-wash-strong);
+}
+
+.lock__key--back {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--text-2);
+}
+
+.lock__key:disabled {
+    opacity: 0.45;
+}
+
+.lock__forgot-link {
+    margin-top: var(--space-3);
+}
+
+.lock__forgot {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    text-align: left;
+    color: var(--text-2);
+    line-height: 1.6;
+}
+
+.lock__forgot-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.lock__note {
+    margin-top: var(--space-4);
+    font-size: var(--fs-xs);
+    color: var(--text-3);
+}
+
+/* --------------------------------------------------------------------------
+   The header's "you"
+   -------------------------------------------------------------------------- */
+
+.you-chip {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gold-300);
+    background: radial-gradient(circle at 35% 30%, rgba(var(--gold-rgb), 0.22), rgba(var(--gold-rgb), 0.08));
+    border: 1px solid var(--line-gold);
+    transition: box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease;
+}
+
+.you-chip:hover,
+.you-chip.is-on {
+    box-shadow: var(--glow-gold);
+}
+
+/* --------------------------------------------------------------------------
+   The "You" panel
+   -------------------------------------------------------------------------- */
+
+.you {
+    display: grid;
+    gap: var(--space-8);
+}
+
+/* Blocks of their own inside a settings card get the same inner margin as a row. */
+.you .settings-group__rows > :not(.settings-row):not(.privacy-note) {
+    padding: var(--space-4) var(--space-5);
+}
+
+.you .settings-group__rows > .memory {
+    border: 0;
+    border-radius: 0;
+    background: none;
+}
+
+.you .settings-group__rows > .path__note {
+    margin: 0;
+    font-size: var(--fs-xs);
+}
+
+.you__hello {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(120deg, var(--gold-wash-strong), transparent 80%);
+    border: 1px solid var(--line-gold);
+}
+
+.you__hello p {
+    font-family: var(--font-display);
+    font-size: var(--fs-md);
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--text-1);
+}
+
+/* How Sakha speaks */
+.voice-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.voice-option {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 4px;
+    padding: var(--space-3) var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    text-align: left;
+    background: var(--surface-sunken);
+    border: 1px solid var(--line);
+    transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.voice-option:hover {
+    border-color: var(--line-strong);
+}
+
+.voice-option[aria-checked="true"] {
+    border-color: rgba(var(--gold-rgb), 0.8);
+    background: rgba(var(--gold-rgb), 0.15);
+    box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), 0.5), var(--shadow-sm);
+}
+
+/* A radio mark, so the choice reads at a glance in any light */
+.voice-option::after {
+    content: "";
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line-strong);
+    transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+
+.voice-option[aria-checked="true"]::after {
+    border-color: var(--accent-fill-deep);
+    box-shadow: inset 0 0 0 3.5px var(--surface-1), inset 0 0 0 8px var(--accent-fill-deep);
+}
+
+.voice-option__name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-1);
+}
+
+.voice-option__hint {
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    color: var(--text-2);
+}
+
+.voice-option__sample {
+    margin-top: var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.98rem;
+    line-height: 1.45;
+    color: var(--text-3);
+}
+
+/* What helps — the lotus of four paths */
+.you-paths {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    padding: var(--space-2) 0;
+}
+
+.you-paths__text {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.you-paths__lead {
+    font-family: var(--font-display);
+    font-size: var(--fs-md);
+    line-height: 1.45;
+    color: var(--text-1);
+}
+
+.path-lotus {
+    flex-shrink: 0;
+    overflow: visible;
+}
+
+.path-lotus__halo {
+    fill: none;
+    stroke: var(--line-gold);
+    stroke-dasharray: 2 6;
+}
+
+.path-lotus__petal {
+    fill: rgba(var(--petal-rgb), 0.22);
+    stroke: rgba(var(--petal-rgb), 0.85);
+    stroke-width: 1.4;
+    transition: d var(--dur-slow) var(--ease-out), opacity var(--dur-base) ease;
+}
+
+.path-lotus__heart {
+    fill: var(--accent-fill);
+}
+
+.path-choices {
+    display: grid;
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.path-choices--grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.path-choice {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-3);
+    row-gap: 2px;
+    align-items: center;
+    padding: var(--space-3) var(--space-8) var(--space-3) var(--space-3);
+    border-radius: var(--radius-md);
+    text-align: left;
+    background: var(--surface-sunken);
+    border: 1px solid var(--line);
+    transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.path-choice:hover {
+    border-color: rgba(var(--petal-rgb), 0.45);
+}
+
+.path-choice[aria-checked="true"] {
+    border-color: rgba(var(--petal-rgb), 0.85);
+    background: rgba(var(--petal-rgb), 0.14);
+    box-shadow: inset 0 0 0 1px rgba(var(--petal-rgb), 0.45), var(--shadow-sm);
+}
+
+.path-choice__dot {
+    grid-row: span 2;
+    width: 12px;
+    height: 12px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: rgba(var(--petal-rgb), 0.85);
+}
+
+.path-choice__name {
+    font-weight: 500;
+    color: var(--text-1);
+}
+
+.path-choice__name:first-letter {
+    text-transform: uppercase;
+}
+
+.path-choice__hint {
+    font-size: var(--fs-xs);
+    line-height: 1.45;
+    color: var(--text-2);
+}
+
+.path-choice__check {
+    position: absolute;
+    top: 50%;
+    right: var(--space-3);
+    transform: translateY(-50%);
+    color: rgba(var(--petal-rgb), 1);
+}
+
+/* Keep in mind about my life */
+.you-context {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.you-context__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.you-context__actions .faint {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: var(--fs-xs);
+}
+
+/* Privacy */
+.you-lock__actions,
+.you-data__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.passcode-form {
+    display: grid;
+    gap: var(--space-3);
+    width: 100%;
+    max-width: 320px;
+}
+
+.passcode-field {
+    display: grid;
+    gap: 4px;
+    font-size: var(--fs-xs);
+    color: var(--text-2);
+}
+
+.passcode-field .input {
+    letter-spacing: 0.5em;
+    font-size: 1.15rem;
+}
+
+.passcode-form__error {
+    font-size: var(--fs-sm);
+    color: var(--kumkum-text, var(--danger));
+}
+
+.passcode-form__actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.you__quiet {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: var(--fs-xs);
+    line-height: 1.55;
+    color: var(--text-3);
+}
+
+.you__quiet svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   In the conversation
+   -------------------------------------------------------------------------- */
+
+.private-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-3);
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.02em;
+    color: var(--text-3);
+    border: 1px dashed var(--line-strong);
+    transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.private-toggle:hover {
+    color: var(--text-2);
+    border-color: var(--line-gold);
+}
+
+.private-toggle.is-on {
+    color: var(--text-1);
+    border-style: solid;
+    border-color: rgba(84, 106, 176, 0.55);
+    background: rgba(84, 106, 176, 0.1);
+}
+
+.feedback {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px dashed var(--line-strong);
+}
+
+.feedback__ask {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.feedback__label {
+    margin-right: var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-md);
+    color: var(--text-2);
+}
+
+.feedback__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-sm);
+    color: var(--text-2);
+    background: var(--surface-1);
+    border: 1px solid var(--line-strong);
+    transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.feedback__btn:hover:not(:disabled) {
+    color: var(--text-1);
+    border-color: var(--line-gold);
+    background: var(--gold-wash);
+}
+
+.feedback__btn:first-of-type svg {
+    color: var(--kumkum);
+}
+
+.feedback__reasons {
+    display: grid;
+    gap: var(--space-1);
+}
+
+.feedback__reasons .begin-chips {
+    margin-top: var(--space-1);
+}
+
+.feedback--thanks {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-md);
+    color: var(--text-2);
+}
+
+.feedback--thanks svg {
+    color: var(--kumkum);
+    fill: rgba(var(--kumkum-rgb), 0.25);
+}
+
+.support-card__exit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+}
+
+.support-card__exit .faint {
+    font-size: var(--fs-xs);
+}
+
+/* --------------------------------------------------------------------------
+   The first meeting — "make it yours"
+   -------------------------------------------------------------------------- */
+
+.welcome__panel--yours {
+    max-width: 560px;
+    gap: var(--space-5);
+}
+
+.welcome__title--sm {
+    font-size: var(--fs-xl);
+}
+
+.welcome__question {
+    display: grid;
+    gap: var(--space-3);
+    width: 100%;
+    text-align: left;
+}
+
+.welcome__question h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: var(--fs-md);
+    color: var(--text-1);
+    text-align: center;
+}
+
+.voice-options--compact .voice-option {
+    padding: var(--space-3);
+}
+
+.welcome__fine {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-xs);
+    color: var(--text-3);
+}
+
+.welcome__panel--yours .welcome__actions {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Phones
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+    .voice-options {
+        grid-template-columns: 1fr;
+    }
+
+    .voice-option__sample {
+        display: none;
+    }
+
+    .you-paths {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .path-choices--grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lock__pad {
+        grid-template-columns: repeat(3, 68px);
+        gap: 12px 20px;
+    }
+
+    .lock__key {
+        width: 68px;
+        height: 68px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .path-lotus__petal,
+    .lock__dots span,
+    .lock__key {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   Fit to every device — small phones, short screens, landscape, touch.
+   ========================================================================== */
+
+/* The conversation title never wraps under the header's buttons. */
+.header-context {
+    flex: 1;
+}
+
+.header-context__title span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 400px) {
+    .header-context__title span {
+        display: none;
+    }
+
+    .header-context__title strong {
+        font-size: 1.15rem;
+    }
+
+    /* The composer stays one comfortable line on the smallest phones. */
+    .composer {
+        padding-left: 16px;
+    }
+
+    .composer__input::placeholder {
+        font-size: 1rem;
+    }
+
+    .composer__note {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 var(--space-2);
+    }
+}
+
+/* Short screens (small phones, landscape): less chrome around the words. */
+@media (max-height: 620px) {
+    .composer-dock {
+        padding-top: var(--space-2);
+    }
+
+    .composer__note {
+        display: none;
+    }
+
+    .lock__panel {
+        gap: var(--space-2);
+    }
+
+    .lock__mark {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 0;
+    }
+
+    .lock__title {
+        font-size: var(--fs-lg);
+    }
+
+    .lock__pad {
+        grid-template-columns: repeat(3, 58px);
+        gap: 10px 18px;
+    }
+
+    .lock__key {
+        width: 58px;
+        height: 58px;
+        font-size: 1.6rem;
+    }
+
+    .lock__note {
+        display: none;
+    }
+}
+
+/* Fingers need room: small text buttons grow a tappable height on touch screens. */
+@media (pointer: coarse) {
+    .text-action,
+    .verse-card__iast-toggle,
+    .btn--link {
+        min-height: 36px;
+    }
+
+    .text-action[aria-haspopup] {
+        min-width: 36px;
+        justify-content: center;
+    }
+}
+
+/* In a conversation on narrower screens (tablets, landscape phones), the
+   sound control rises above the composer instead of covering its send button. */
+@media (max-width: 1180px) {
+    .app-shell.is-sanctuary ~ .sound-dock {
+        bottom: calc(max(var(--space-6), var(--safe-bottom)) + 104px);
+    }
+}
+
+@media (max-width: 1180px) and (max-height: 620px) {
+    .app-shell.is-sanctuary ~ .sound-dock {
+        bottom: calc(max(var(--space-3), var(--safe-bottom)) + 96px);
+    }
+}
+
+/* Feedback and one-tap answers line up with the guidance column on wide screens. */
+.msg__body > .feedback,
+.msg__body > .begin-chips--answers {
+    justify-self: center;
+    width: 100%;
+    max-width: var(--measure);
+}
+
+/* Small text buttons keep a usable height everywhere (tablets are touch screens too). */
+.verse-card__iast-toggle {
+    min-height: 32px;
+}
+
+.text-action[aria-haspopup] {
+    min-width: 32px;
+    min-height: 32px;
+    justify-content: center;
+}
+
+@media (max-height: 620px) {
+    .threshold.lock,
+    .threshold.welcome {
+        padding-top: calc(var(--safe-top) + var(--space-5));
+        padding-bottom: calc(var(--safe-bottom) + var(--space-5));
+    }
+}

@@ -16,7 +16,7 @@ import { LANGUAGES, useI18n } from '../i18n';
 // One short word — dharma — shown in each script, so every tile reads at a glance.
 const SAMPLE = 'धर्म';
 
-function Group({ title, children }) {
+export function Group({ title, children }) {
     return (
         <section className="settings-group">
             <h3 className="eyebrow">{title}</h3>
@@ -25,7 +25,7 @@ function Group({ title, children }) {
     );
 }
 
-function Row({ label, description, children, stacked = false }) {
+export function Row({ label, description, children, stacked = false }) {
     return (
         <div className={`settings-row${stacked ? ' settings-row--stacked' : ''}`}>
             <div className="settings-row__text">
@@ -37,13 +37,13 @@ function Row({ label, description, children, stacked = false }) {
     );
 }
 
-function Switch({ checked, onChange, label, disabled }) {
+export function Switch({ checked, onChange, label, disabled }) {
     return (
         <button type="button" role="switch" className="switch" aria-checked={checked} aria-label={label} disabled={disabled} onClick={() => onChange(!checked)} />
     );
 }
 
-function Segmented({ value, options, onChange, label }) {
+export function Segmented({ value, options, onChange, label }) {
     return (
         <div className="segmented" role="group" aria-label={label}>
             {options.map((option) => (
@@ -291,6 +291,13 @@ function Settings({ isOpen, onClose, settings, onUpdate, onResetBreathSession, o
                 </Group>
 
                 <Group title={t('settings.group.privacy')}>
+                    <button type="button" className="settings-link" onClick={() => openPanel?.('you')}>
+                        <span>
+                            <strong>{t('you.title')}</strong>
+                            <span>{t('settings.youDesc')}</span>
+                        </span>
+                        <ArrowRight size={16} />
+                    </button>
                     <div className="privacy-note">
                         <ShieldCheck size={18} aria-hidden="true" />
                         <p>{t('settings.privacy')}</p>

@@ -20,7 +20,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
-    const ENGINE_VERSION = '4.0.0';
+    const ENGINE_VERSION = '5.0.0';
 
     // -----------------------------------------------------------------------
     // Text normalisation
@@ -353,7 +353,7 @@
         },
         health: {
             terms: ['sick', 'illness', 'ill', 'disease', 'hospital', 'surgery', 'operation', 'cancer', 'diagnos*', 'doctor said', 'doctors said', 'saw a doctor', 'health',
-                'chronic', 'pain in', 'my body', 'therapy', 'medicine*', 'chemo*', 'tumou*', 'tumor*', 'biopsy', 'scan results', 'icu', 'dialysis', 'pregnan*', 'miscarriage', 'bimar*', 'beemar*', 'बीमार*', 'अस्पताल', 'इलाज', 'ऑपरेशन'],
+                'chronic', 'pain in', 'my body', 'therapy', 'medicine*', 'chemo*', 'tumou*', 'tumor*', 'biopsy', 'scan results', 'icu', 'dialysis', 'pregnan*', 'miscarriage', 'bimar*', 'beemar*', 'sehat', 'tabiyat', 'बीमार*', 'अस्पताल', 'इलाज', 'ऑपरेशन', 'सेहत', 'तबीयत'],
             concepts: ['body', 'impermanence', 'enduring a hard time', 'staying strong in pain', 'courage', 'fear of death', 'surrender', 'soul'],
             label: { en: 'your health', hi: 'सेहत' },
             line: { en: 'When the body struggles, the mind carries it too.', hi: 'जब शरीर संघर्ष करता है, तो मन भी उसका भार उठाता है।' }
@@ -367,7 +367,7 @@
         },
         money: {
             terms: ['money', 'debt', 'loan', 'loans', 'emi', 'bills', 'rent', 'broke', 'financial*', 'finances', 'savings', 'poor',
-                'poverty', 'paisa', 'paise', 'karza', 'karz', 'पैसा', 'पैसे', 'कर्ज', 'क़र्ज़', 'उधार'],
+                'poverty', 'paisa', 'paise', 'paison', 'karza', 'karz', 'पैसा', 'पैसे', 'पैसों', 'कर्ज', 'क़र्ज़', 'उधार'],
             concepts: ['contentment', 'security', 'trust', 'duty', 'detachment', 'divine assurance', 'protection'],
             label: { en: 'money', hi: 'पैसा' },
             line: { en: 'Money worries have a way of reaching into everything.', hi: 'पैसों की चिंता धीरे-धीरे हर चीज़ में उतर आती है।' }
@@ -395,7 +395,7 @@
         },
         self: {
             terms: ['confidence', 'self esteem', 'selfesteem', 'my looks', 'ugly', 'fat', 'body image', 'insecure', 'compare myself',
-                'comparing myself', 'comparison', 'social media', 'instagram', 'not enough', 'imposter', 'impostor', 'khud se nafrat',
+                'comparing myself', 'comparison', 'social media', 'instagram', 'not enough', 'imposter', 'impostor', 'how i see myself', 'the way i see myself', 'self worth', 'khud se nafrat',
                 'आत्मविश्वास', 'हीन'],
             concepts: ['self-worth', 'confidence', 'inner strength', 'equal vision', 'swadharma', 'mind as friend', 'being your own best friend'],
             label: { en: 'how you see yourself', hi: 'स्वयं को देखने का ढंग' },
@@ -1108,6 +1108,7 @@
             meaningHi: verse.meaning_hi || '',
             short: `${verse.notification_short?.en || ''} ${verse.notification_short?.hi || ''}`.toLowerCase()
         }]));
+        prepared.forEach((fields) => { fields.paths = pathsOf(fields); });
         const index = { df, lexicon, prepared, conceptHits: new Map(), wordHits: new Map(), size: verses.length || 1 };
         if (indexCache) indexCache.set(verses, index);
         return index;
@@ -1161,7 +1162,7 @@
     function scoreVerse(verse, profile, context) {
         const { helpsByChapter, index, resonance, concepts, words } = context;
         let score = verse.meaning_en ? 10 : 0;
-        const { tones, themes } = index.prepared.get(verse.id) || { tones: lower(verse.emotional_tone), themes: lower(verse.core_theme) };
+        const { tones, themes, paths = [] } = index.prepared.get(verse.id) || { tones: lower(verse.emotional_tone), themes: lower(verse.core_theme) };
 
         concepts.forEach(({ hits, weight }) => { score += (hits.get(verse.id) || 0) * weight; });
         // The person's own words, matched against what each verse is about,
@@ -1169,6 +1170,9 @@
         words.forEach(({ hits, weight }) => { score += (hits.get(verse.id) || 0) * weight; });
 
         score += profile.anchors?.get(verse.id) || 0;
+
+        // The path that has helped this person before.
+        if (profile.paths && paths.length) score += 18 * Math.max(...paths.map((id) => profile.paths[id] || 0));
 
         // Verses like the ones this person has kept before speak their language.
         if (resonance.chapters.has(verse.chapter)) score += 2;
@@ -1201,7 +1205,38 @@
         worry: { anchors: ['9_22', '18_66', '2_47', '6_32', '2_14', '12_13'], concepts: ['divine assurance', 'surrender', 'faith', 'protection', 'caring'] }
     };
 
-    function buildProfile({ text, mood, history = [], timeOfDay, person = null, reading = null, lexicon = null }) {
+    // Situations someone can ask Sakha to keep in mind ("I'm preparing for
+    // UPSC", "my mother has dementia"), answered as part of their life.
+    const STANDING_TOPICS = ['study', 'work', 'family', 'marriage', 'health', 'loss', 'money', 'future', 'love', 'friendship', 'faith',
+        'habits', 'decision', 'conflict'];
+
+    // What someone looking after a loved one often feels, and is answered as a carer.
+    const CARER_FEELINGS = ['sadness', 'stress', 'anxiety', 'fear', 'loneliness', 'emptiness', 'guilt', 'inertia'];
+    // Feelings that usually belong to a person's whole situation (not anger or
+    // envy, which are about something in particular).
+    const STANDING_FEELINGS = [...CARER_FEELINGS, 'failure', 'unworthiness', 'confusion', 'purpose', 'heartbreak', 'grief'];
+
+    function standingOf(person, lexicon) {
+        const note = typeof person?.context === 'string' ? person.context.trim().slice(0, 600) : '';
+        if (!note) return null;
+        const read = understand(note, { lexicon });
+        if (read.care) {
+            return { topics: read.care.state === 'health' ? ['health', 'family'] : ['family'], care: { relation: read.care.relation, state: read.care.state } };
+        }
+        const topics = read.topics.filter((id) => STANDING_TOPICS.includes(id));
+        return topics.length ? { topics, care: null } : null;
+    }
+
+    function standingLabel(standing, lang) {
+        if (standing.care) {
+            const who = RELATION_NAMES[standing.care.relation][lang];
+            if (lang === 'hi') return `${who} की ${standing.care.state === 'health' ? 'सेहत' : 'हालत'}`;
+            return `${who}’s ${standing.care.state === 'health' ? 'health' : 'wellbeing'}`;
+        }
+        return TOPICS[standing.topics[0]].label[lang];
+    }
+
+    function buildProfile({ text, mood, history = [], timeOfDay, person = null, reading = null, lexicon = null, retry = null }) {
         const read = reading || understand(text, { lexicon });
         const care = read.care;
         // "A verse about patience": the subject they ask for is the whole need.
@@ -1224,29 +1259,40 @@
         // What the feeling is about: their situation, or the one from earlier.
         const textTopics = subject ? subject.topics : read.topics;
         const carriedTopics = textTopics.length || subject ? [] : detectTopics(history.slice(-3).join(' '));
-        const topics = [...new Set([...textTopics, ...carriedTopics])].slice(0, 3);
+        let topics = [...new Set([...textTopics, ...carriedTopics])].slice(0, 3);
+        // Nothing said about what it is about? What they told Sakha about
+        // their life is part of the answer ("I'm so tired" while preparing for exams).
+        const firstFeeling = textEmotions[0] || carried[0] || moodEmotion;
+        const standing = !topics.length && !care && !subject && STANDING_FEELINGS.includes(firstFeeling) ? standingOf(person, lexicon) : null;
+        if (standing) topics = standing.topics.slice(0, 2);
+        const carer = standing?.care && CARER_FEELINGS.includes(firstFeeling)
+            ? { ...standing.care, mode: standing.care.state, kind: 'standing', own: firstFeeling } : null;
+        const caring = care || carer;
+        // For a carer, the situation is the backdrop; the verse is for them.
+        const topicScale = caring ? 0.5 : 1;
         topics.forEach((id, index) => {
-            TOPICS[id].concepts.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, index === 0 ? 0.55 : 0.35)));
+            TOPICS[id].concepts.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, (index === 0 ? 0.55 : 0.35) * topicScale)));
         });
-        if (care) CARE[care.mode].concepts.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, 0.8)));
-        if (!emotions.length && !topics.length && !care && !subject) {
-            COMFORT_CONCEPTS.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, 0.35)));
+        if (caring) CARE[caring.mode].concepts.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, 0.8)));
+        if ((!emotions.length && !topics.length && !care && !subject) || retry === 'comfort') {
+            COMFORT_CONCEPTS.forEach((concept) => weights.set(concept, Math.max(weights.get(concept) || 0, retry === 'comfort' ? 0.8 : 0.35)));
         }
 
         // A situation named without a feeling ("my investors pulled out") still
         // carries one; take the feeling most people in that place would have.
         // (Also when the only feeling is carried over from earlier: a new, serious situation is answered for itself.)
-        const inferred = !textEmotions.length && !care && !subject && textTopics.length && read.words >= 6 ? TOPIC_DEFAULT[textTopics[0]] || null : null;
+        const inferred = !textEmotions.length && !caring && !subject && textTopics.length && read.words >= 6 ? TOPIC_DEFAULT[textTopics[0]] || null : null;
         if (inferred) addConcepts(inferred, 0.5);
 
         // Hand-chosen verses for this feeling and situation come first.
         const anchors = new Map();
         const anchor = (ids, top, step) => (ids || []).forEach((id, index) => anchors.set(id, Math.max(anchors.get(id) || 0, top - index * step)));
-        if (care) anchor(CARE[care.mode].anchors, 30, 2);
-        emotions.forEach((name, index) => anchor(ANCHORS.emotions[name], index === 0 ? (care ? 12 : 26) : 10, index === 0 ? 2 : 1));
+        if (caring) anchor(CARE[caring.mode].anchors, 30, 2);
+        emotions.forEach((name, index) => anchor(ANCHORS.emotions[name], index === 0 ? (caring ? 12 : 26) : 10, index === 0 ? 2 : 1));
         if (inferred) anchor(ANCHORS.emotions[inferred], 14, 1);
-        if (!emotions.length && !topics.length && !care && !subject) anchor(COMFORT_ANCHORS, 18, 1);
-        topics.forEach((id, index) => anchor(ANCHORS.topics[id], index === 0 ? (care ? 6 : 16) : (care ? 3 : 8), index === 0 ? 2 : 1));
+        if ((!emotions.length && !topics.length && !caring && !subject) || retry === 'comfort') anchor(COMFORT_ANCHORS, 18, 1);
+        const topicTop = caring ? 6 : standing ? 9 : 16;
+        topics.forEach((id, index) => anchor(ANCHORS.topics[id], index === 0 ? topicTop : (caring ? 3 : 8), index === 0 ? 2 : 1));
 
         // A free-text mood such as a chapter theme ("fear of death") is a
         // concept too — and so is the subject of a verse they ask for.
@@ -1262,15 +1308,69 @@
             topics,
             inferred,
             anchors,
-            care,
+            care: caring,
             ask: read.ask,
             about: read.about,
             relief: read.relief,
             intensity: read.intensity,
             time: read.time,
+            standing,
+            paths: pathAffinity(person, retry),
             resonant: Array.isArray(person?.resonant) ? person.resonant.slice(0, 40) : [],
             timeOfDay
         };
+    }
+
+    // -----------------------------------------------------------------------
+    // The four paths. The Gita offers more than one way through: action
+    // (karma), understanding (jñāna), devotion (bhakti) and stillness
+    // (dhyāna). Each person leans toward one; Sakha learns which, on their
+    // device, and leans with them.
+    // -----------------------------------------------------------------------
+
+    const PATHS = {
+        karma: ['action', 'duty', 'duties', 'work', 'karma', 'effort', 'service', 'svadharma', 'swadharma', 'sacrifice', 'yajna',
+            'responsib', 'perform', 'leadership', 'fruits', 'determination', 'do your', 'deeds'],
+        jnana: ['knowledge', 'wisdom', 'soul', 'self-realization', 'atman', 'eternal', 'understand', 'discrimination', 'intellect',
+            'truth', 'brahman', 'ignorance', 'impermanen', 'clarity', 'realiz', 'immortal', 'never born', 'unchanging', 'wise'],
+        bhakti: ['devotion', 'devotee', 'surrender', 'faith', 'worship', 'grace', 'refuge', 'dear to me', 'dear to god', 'offer',
+            'remember me', 'think of me', 'friend of all', 'beloved', 'take refuge'],
+        dhyana: ['meditat', 'stillness', 'still mind', 'discipline', 'senses', 'sense control', 'breath', 'pranayama', 'concentrat',
+            'samadhi', 'solitude', 'restless', 'self-control', 'calm', 'posture', 'pratyahara', 'steady mind', 'control the mind',
+            'mind is', 'quiet']
+    };
+    const PATH_IDS = Object.keys(PATHS);
+
+    function pathsOf(fields) {
+        const headline = `${fields.themes.join(' ')} ${fields.situations.join(' ')} ${fields.short}`;
+        const scores = PATH_IDS.map((id) => ({
+            id,
+            score: PATHS[id].reduce((sum, term) => sum + (headline.includes(term) ? 2 : 0) + (fields.meaning.includes(term) ? 1 : 0), 0)
+        }));
+        const top = Math.max(...scores.map((item) => item.score));
+        if (top < 2) return [];
+        return scores.filter((item) => item.score >= Math.max(2, top * 0.6)).map((item) => item.id);
+    }
+
+    function versePaths(verses, id) {
+        return verses.length ? corpusIndex(verses).prepared.get(id)?.paths || [] : [];
+    }
+
+    // How strongly this person leans to each path, 0–1: what they chose,
+    // what has helped them, and what they just asked for ("something practical").
+    const RETRY_LEANS = { practical: 'karma', deeper: 'jnana', comfort: 'bhakti' };
+
+    function pathAffinity(person, retry) {
+        const raw = {};
+        PATH_IDS.forEach((id) => {
+            const value = Number(person?.paths?.[id]);
+            raw[id] = Number.isFinite(value) && value > 0 ? value : 0;
+        });
+        const top = Math.max(...Object.values(raw));
+        const affinity = {};
+        PATH_IDS.forEach((id) => { affinity[id] = top > 0 ? raw[id] / top : 0; });
+        if (retry && RETRY_LEANS[retry]) affinity[RETRY_LEANS[retry]] = Math.max(affinity[RETRY_LEANS[retry]], retry === 'comfort' ? 0.6 : 1);
+        return Object.values(affinity).some((value) => value > 0) ? affinity : null;
     }
 
     function rankVerses(verses, chapters, profile) {
@@ -1304,7 +1404,7 @@
         const candidates = (pool.length ? pool : ranked).slice(0, 12);
         if (!candidates.length) return null;
         const best = candidates[0].score;
-        const floor = best > 0 ? best * (focused ? 0.88 : 0.66) : best - 1;
+        const floor = best > 0 ? best * (focused ? 0.88 : 0.7) : best - 1;
         const shortlist = candidates.filter((item) => item.score >= floor).slice(0, 6);
         // Linear, softened weights: the best verse is likeliest, but every
         // strong match gets its turn over the days.
@@ -3150,6 +3250,40 @@ Go on${greetingName} — I’m here.`;
         }
     };
 
+    // "Not quite" — and what would help instead.
+    const RETRY = {
+        comfort: { en: 'Let me offer something gentler.', hi: 'तो कुछ और कोमल सुनिए।' },
+        practical: { en: 'Here is something more practical — about what you can do.', hi: 'अब कुछ ज़्यादा व्यावहारिक — इस बारे में कि आप क्या कर सकते हैं।' },
+        deeper: { en: 'Let us go a little deeper.', hi: 'आइए, थोड़ा और गहराई में चलें।' },
+        situation: {
+            en: 'I may have misread what this is about. What is it mostly about?',
+            hi: 'हो सकता है मैंने ग़लत समझा। यह मुख्य रूप से किस बारे में है?'
+        }
+    };
+    const RETRY_REASONS = Object.keys(RETRY);
+
+    const TOPIC_CLARIFY = {
+        en: [['Work', 'It is about my work'], ['Studies', 'It is about my studies'], ['Family', 'It is about my family'],
+            ['Relationship', 'It is about my relationship'], ['Health', 'It is about my health'], ['Money', 'It is about money'],
+            ['Myself', 'It is about how I see myself']],
+        hi: [['काम', 'यह मेरे काम के बारे में है'], ['पढ़ाई', 'यह मेरी पढ़ाई के बारे में है'], ['परिवार', 'यह मेरे परिवार के बारे में है'],
+            ['रिश्ता', 'यह मेरे रिश्ते के बारे में है'], ['सेहत', 'यह मेरी सेहत के बारे में है'], ['पैसा', 'यह पैसों के बारे में है'],
+            ['ख़ुद', 'यह मेरे आत्मविश्वास के बारे में है']]
+    };
+
+    // How Sakha speaks, as each person chose: gently (the default), plainly,
+    // or explaining more.
+    const VOICES = ['gentle', 'direct', 'teacher'];
+    // For someone who likes things explained: the moments this verse was
+    // written for (its headline is already shown with the verse itself).
+    const MOMENTS = {
+        en: (moments) => `People turn to this verse for ${moments.length > 1 ? `${moments.slice(0, -1).join(', ')} and ${moments[moments.length - 1]}` : moments[0]}.`
+    };
+    const STANDING_LINE = {
+        en: (label) => `With ${label} on your mind these days, this makes sense.`,
+        hi: (label) => `${label} इन दिनों आपके मन पर है — ऐसे में यह महसूस होना स्वाभाविक है।`
+    };
+
     // When a message cannot be read with confidence, ask — with answers one
     // tap away — rather than guess.
     const CLARIFY = {
@@ -3187,13 +3321,19 @@ Go on${greetingName} — I’m here.`;
 
     /**
      * @param {{ text?: string, mood?: string, settings?: object, history?: string[], exclude?: string[], another?: boolean,
-     *           lastVerseId?: string, person?: object, used?: string[] }} input
+     *           lastVerseId?: string, person?: object, used?: string[], retry?: { reason: string } }} input
      *   history: the person's earlier messages in this conversation (most recent last)
      *   used:    counsel already given in this conversation ("anxiety:work"), never repeated
+     *   retry:   "not quite" — comfort | practical | deeper | situation
+     *   person:  from their device only — name, voice, paths, context, memory (see frontend/src/lib/person.js)
      * @param {{ verses: object[], chapters: object[], timeOfDay?: string, random?: () => number, offline?: boolean }} corpus
      */
     function respond(input, corpus) {
-        const { text = null, mood = null, settings = {}, history = [], exclude = [], another = false, lastVerseId = null, person = null, used = [] } = input || {};
+        const { text = null, mood = null, settings = {}, history = [], exclude = [], another: anotherAsked = false, lastVerseId = null, person = null, used = [] } = input || {};
+        // "Not quite": another answer, shaped by what would help instead.
+        const retry = RETRY_REASONS.includes(input?.retry?.reason) ? input.retry.reason : null;
+        const another = Boolean(anotherAsked || retry);
+        const voice = VOICES.includes(person?.voice) ? person.voice : 'gentle';
         const { verses = [], chapters = [], timeOfDay = null, random = Math.random, offline = false } = corpus || {};
         const lang = replyLanguage(text, settings);
         const depth = settings.depth || 'standard';
@@ -3221,7 +3361,17 @@ Go on${greetingName} — I’m here.`;
         const lexicon = verses.length ? corpusIndex(verses).lexicon : null;
         const reading = understand(text, { lexicon });
         const earlier = text && !another ? history.slice(-3).filter((line) => typeof line === 'string').map((line) => understand(line, { lexicon })) : [];
-        const profile = buildProfile({ text, mood, history, timeOfDay, person, reading, lexicon });
+        const profile = buildProfile({ text, mood, history, timeOfDay, person, reading, lexicon, retry });
+
+        // "Not my situation": ask what it is about, with the answers one tap away.
+        if (retry === 'situation') {
+            return {
+                message: RETRY.situation[lang],
+                verse: null,
+                clarify: { question: RETRY.situation[lang], options: TOPIC_CLARIFY[lang].map(([label, line]) => ({ label, text: line })) },
+                context: stamp({ intent: 'clarify', clarify: true })
+            };
+        }
 
         // Not every message is a feeling: hello, thank you, "what is karma?",
         // "who are you?", "I don't understand", "I just want to vent".
@@ -3263,6 +3413,8 @@ Go on${greetingName} — I’m here.`;
             emotion: profile.primary,
             emotions: profile.emotions,
             topics: profile.topics,
+            // Which of the four paths this verse walks, so the device can learn what helps.
+            paths: versePaths(verses, verse.id),
             language: lang,
             engine: ENGINE_VERSION,
             ...extra
@@ -3285,10 +3437,12 @@ Go on${greetingName} — I’m here.`;
 
         // First paragraph: being heard.
         const opening = [];
-        if (!another && text && text.length > 280) opening.push(PERSONAL.long[lang]);
+        const plain = voice === 'direct';
+        if (!another && text && text.length > 280 && !plain) opening.push(PERSONAL.long[lang]);
         if (listening && reading.ask === 'vent') opening.push(LISTEN[lang]);
         let ack;
-        if (another) ack = pick(ANOTHER[lang], random);
+        if (retry) ack = RETRY[retry][lang];
+        else if (another) ack = pick(ANOTHER[lang], random);
         else if (verseAsk) ack = VERSE_ON[lang](verseAsk);
         else if (care) ack = CARE_COUNSEL[care.mode][lang].ack(RELATION_NAMES[care.relation][lang]);
         else if (relief) ack = trajectory === 'easing' ? TRAJECTORY.easing[lang] : pick(RELIEF.ack[lang], random);
@@ -3297,11 +3451,12 @@ Go on${greetingName} — I’m here.`;
         const useName = !another && heard && name && (!history.length || random() < 0.35);
         if (useName) ack = withName(ack, name, lang);
         opening.push(ack);
-        if (!another && !verseAsk && !relief) {
+        if (!another && !verseAsk && !relief && !plain) {
             if (reading.mixed && !care) opening.push(MIXED[lang]);
             // "Why do I always get so angry?" asks about a pattern; it is not a cry.
             const asking = reading.ask === 'why' || reading.ask === 'how';
-            if (heavy && reading.intensity === 'high' && profile.primary && !asking && !care) opening.push(pick(INTENSE[lang], random));
+            const alreadyHeavy = /weigh|press|heavy|a lot|too much|भारी|दबाव|बहुत सारी/i.test(ack);
+            if (heavy && reading.intensity === 'high' && profile.primary && !asking && !care && !alreadyHeavy) opening.push(pick(INTENSE[lang], random));
             else if (heavy && reading.intensity === 'low' && profile.primary && !care) opening.push(GENTLE[lang]);
             else if (!heavy && reading.intensity === 'high') opening.push(pick(JOYFUL[lang], random));
             if (topic && heavy && !counsel && !care) opening.push(TOPICS[topic].line[lang]);
@@ -3317,6 +3472,8 @@ Go on${greetingName} — I’m here.`;
             personal = RELIEF.keep[lang];
         } else if (trajectory) {
             personal = TRAJECTORY[trajectory][lang];
+        } else if (!another && profile.standing) {
+            personal = STANDING_LINE[lang](standingLabel(profile.standing, lang));
         } else if (!another && !verseAsk && previous && previous.count >= 1 && previousAgo >= 6) {
             personal = PERSONAL.returning[lang](TOPICS[topic].label[lang]);
         } else if (!another && !verseAsk && HEAVY(profile.primary) && (person?.recurring?.[profile.primary] || 0) >= 2) {
@@ -3324,7 +3481,9 @@ Go on${greetingName} — I’m here.`;
         }
 
         // "Why do I always…?" — where the feeling comes from, as the Gita sees it.
-        const roots = !another && reading.ask === 'why' && HEAVY(profile.primary) && !care
+        // Someone who likes things explained hears it without asking.
+        const wantsWhy = reading.ask === 'why' || (voice === 'teacher' && !listening && !verseAsk && profile.primary);
+        const roots = !another && wantsWhy && HEAVY(profile.primary) && !care
             ? (ROOTS[profile.primary] || ROOTS.default)[lang] : null;
 
         const ground = !heavy ? pick(LIGHT_GROUNDING[lang], random)
@@ -3342,14 +3501,18 @@ Go on${greetingName} — I’m here.`;
         const rootRef = roots && (roots.match(/\((\d{1,2}\.\d{1,2})/) || [])[1];
         if (rootRef && guidance.bridge && guidance.bridge.includes(`(${rootRef}`)) guidance.bridge = null;
         const howAsked = !another && !listening && reading.ask === 'how' && Boolean(guidance.step);
-        if (howAsked) guidance.focus = 'step';
+        // Asked how, asked for something practical, or likes it plain: the step leads.
+        if ((howAsked || retry === 'practical' || plain) && guidance.step && !listening) guidance.focus = 'step';
         const clarify = !another && text && !understood ? clarifyFor(lang) : null;
         const concern = Boolean(text) && detectConcern(text);
         const careLine = care && care.mode === 'mind' && !another ? CARE_LINE[lang] : null;
 
-        const reflection = verseAsk ? null
+        const reflection = verseAsk || plain ? null
             : listening ? LISTEN_REFLECTION[lang]
                 : pick((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random);
+        const moments = (voice === 'teacher' || retry === 'deeper') && lang === 'en'
+            ? (verse.life_situations || []).filter((item) => typeof item === 'string' && item.length < 48).slice(0, 3).map((item) => item.toLowerCase())
+            : [];
 
         let message;
         if (depth === 'brief') {
@@ -3364,7 +3527,8 @@ Go on${greetingName} — I’m here.`;
                 howAsked ? HOW[lang] : null,
                 reflection,
                 `"${verseText}"`,
-                verseAsk ? null : `${ground}${invitation}`,
+                moments.length ? MOMENTS.en(moments) : null,
+                verseAsk || plain ? null : `${ground}${invitation}`,
                 clarify ? clarify.question : null,
                 careLine,
                 concern ? CONCERN_LINE[lang] : null
@@ -3387,6 +3551,9 @@ Go on${greetingName} — I’m here.`;
                 ask: reading.ask || undefined,
                 listening: listening || undefined,
                 trajectory: trajectory || undefined,
+                retry: retry || undefined,
+                voice: voice !== 'gentle' ? voice : undefined,
+                standing: profile.standing ? profile.standing.topics[0] : undefined,
                 reading: text ? {
                     intensity: reading.intensity,
                     time: reading.time,
@@ -3476,6 +3643,8 @@ Go on${greetingName} — I’m here.`;
         GUIDANCE,
         COUNSEL,
         COUNSEL_ALIASES,
+        PATHS,
+        versePaths,
         CARE,
         CARE_COUNSEL,
         ROOTS,
