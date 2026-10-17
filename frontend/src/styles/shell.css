@@ -1260,3 +1260,175 @@
     color: var(--text-3);
     text-align: center;
 }
+
+/* --------------------------------------------------------------------------
+   The mark, in the header
+   -------------------------------------------------------------------------- */
+
+.brand__mark {
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 8px rgba(var(--gold-rgb), 0.28));
+    transition: transform var(--dur-base) var(--ease-out);
+}
+
+.brand:hover .brand__mark {
+    transform: translateY(-1px) rotate(-4deg);
+}
+
+.home-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-1) var(--space-3);
+}
+
+.home-links__dot {
+    color: var(--text-3);
+}
+
+/* --------------------------------------------------------------------------
+   Since we last spoke — the follow-up; and a letter that has arrived
+   -------------------------------------------------------------------------- */
+
+.followup,
+.letter-arrived {
+    width: min(100%, 560px);
+    margin: var(--space-6) auto 0;
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(120% 120% at 0% 0%, rgba(var(--gold-rgb), 0.12), transparent 60%),
+        var(--surface-1);
+    border: 1px solid var(--line-gold);
+    box-shadow: var(--shadow-md);
+}
+
+.followup__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.followup__close {
+    margin-left: auto;
+}
+
+.followup__line {
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-lg);
+    line-height: 1.45;
+    color: var(--text-1);
+}
+
+.followup__choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.followup__choice {
+    flex: 1 1 0;
+    min-width: 96px;
+    padding: 10px 14px;
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--text-1);
+    background: var(--surface-sunken);
+    border: 1px solid var(--line-strong);
+    transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.followup__choice:hover {
+    border-color: var(--line-gold);
+    background: var(--gold-wash);
+}
+
+.followup__choice.is-lighter:hover {
+    color: var(--sage);
+    border-color: color-mix(in srgb, var(--sage) 45%, transparent);
+    background: color-mix(in srgb, var(--sage) 10%, transparent);
+}
+
+.followup__choice.is-harder:hover {
+    color: var(--kumkum-text);
+    border-color: color-mix(in srgb, var(--kumkum) 40%, transparent);
+    background: color-mix(in srgb, var(--kumkum) 8%, transparent);
+}
+
+.followup__ask {
+    margin-top: var(--space-4);
+}
+
+.letter-arrived {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.letter-arrived__glyph {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    color: var(--gold-300);
+    background: var(--gold-wash);
+    animation: letter-arrive 2.6s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes letter-arrive {
+    from {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    to {
+        transform: translateY(-3px) rotate(2deg);
+    }
+}
+
+.letter-arrived__text {
+    flex: 1;
+    display: grid;
+    gap: 2px;
+    min-width: 180px;
+}
+
+.letter-arrived__text strong {
+    font-family: var(--font-display);
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--text-1);
+}
+
+.letter-arrived__text > span:last-child {
+    font-size: var(--fs-sm);
+    color: var(--text-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .letter-arrived__glyph,
+    .welcome__mark::before {
+        animation: none;
+    }
+}
+
+/* Letters and follow-ups sit together, close to the greeting */
+.home-notes {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: calc(var(--space-12) * -1);
+}
+
+.home-notes:empty {
+    display: none;
+}
+
+.home-notes > .followup,
+.home-notes > .letter-arrived {
+    margin-top: 0;
+}

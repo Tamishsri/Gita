@@ -13,7 +13,8 @@ import { PRACTICES } from '../lib/practices';
 import { MOODS } from './MoodSelector';
 import { SOUND_ICONS } from './SoundDock';
 import { SOUND_MODES } from './SoundscapeEngine';
-import { Diya, PathGlyph } from './ui/Ornaments';
+import { LetterGlyph, PathGlyph } from './ui/Ornaments';
+import SakhaMark from './ui/SakhaMark';
 import { useI18n } from '../i18n';
 
 const GROUP_ORDER = ['jump', 'ask', 'actions', 'practices', 'moods', 'sound', 'chapters', 'verses'];
@@ -103,6 +104,7 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
         add('actions', { id: 'journal', icon: Feather, title: t('palette.journal'), subtitle: journalCount ? t('journal.entries', { count: journalCount }) : t('palette.journalSub'), keys: ['J'], keywords: 'notes diary reflections', run: () => actions.openPanel('journal') });
         add('actions', { id: 'chapters', icon: BookOpen, title: t('palette.chapters'), subtitle: t('palette.chaptersSub'), keys: ['C'], keywords: 'read reader adhyaya', run: () => actions.openPanel('chapters') });
         add('actions', { id: 'path', icon: PathGlyph, title: t('palette.path'), subtitle: t('palette.pathSub'), keywords: 'path history weather progress', run: () => actions.openPanel('path') });
+        add('actions', { id: 'letters', icon: LetterGlyph, title: t('palette.letters'), subtitle: t('palette.lettersSub'), keywords: 'letter future self capsule write later patra', run: () => actions.openPanel('letters') });
         if (view === 'sanctuary') add('actions', { id: 'home', icon: Home, title: t('palette.home'), keys: ['Esc'], keywords: 'back', run: actions.goHome });
         add('actions', { id: 'daily-card', icon: ImageIcon, title: t('palette.dailyCard'), subtitle: t('palette.dailyCardSub'), keywords: 'share image png instagram whatsapp daily', run: () => fetchDaily().then((data) => data?.verse && openWisdomCard(data.verse, settings.language)).catch(() => {}) });
         add('actions', { id: 'language', icon: Languages, title: settings.language === 'hi' ? t('palette.toEnglish') : t('palette.toHindi'), keywords: 'language hindi english हिंदी', run: actions.toggleLanguage });
@@ -344,7 +346,7 @@ function CommandPalette({ isOpen, onClose, actions, settings, view, journalCount
                         </div>
 
                         <footer className="palette__footer">
-                            <span className="palette__brand"><Diya size={20} steady /> {t('brand.name')}</span>
+                            <span className="palette__brand"><SakhaMark size={18} /> {t('brand.name')}</span>
                             <span className="palette__hints">
                                 <span><span className="kbd">↑</span><span className="kbd">↓</span> {t('palette.move')}</span>
                                 <span><span className="kbd">↵</span> {t('palette.open')}</span>

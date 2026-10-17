@@ -1,9 +1,11 @@
 import React from 'react';
-import LotusMark from './LotusMark';
+import SakhaMark from './SakhaMark';
+import { t } from '../../i18n';
 
-// If anything in the sanctuary breaks, show a calm page with a way back —
-// never a blank screen. Reflections and settings live in localStorage, so a
-// reload loses nothing.
+// If anything breaks, show a calm page with a way back — never a blank
+// screen. Reflections and settings live on the device, so a reload loses
+// nothing. (This sits outside the language provider, so it reads the
+// current language directly.)
 class ErrorBoundary extends React.Component {
     constructor(props) {
         super(props);
@@ -24,14 +26,12 @@ class ErrorBoundary extends React.Component {
         return (
             <div className="threshold" role="alert">
                 <section className="threshold__panel">
-                    <span className="threshold__mark"><LotusMark size={56} ring /></span>
-                    <span className="eyebrow">A moment of stillness</span>
-                    <h1 className="threshold__title">Something went quiet.</h1>
-                    <p className="threshold__lede">
-                        The sanctuary stumbled. Your reflections and walks are safe on this device.
-                    </p>
+                    <span className="threshold__mark"><SakhaMark size={72} tile /></span>
+                    <span className="eyebrow">{t('error.eyebrow')}</span>
+                    <h1 className="threshold__title">{t('error.title')}</h1>
+                    <p className="threshold__lede">{t('error.body')}</p>
                     <button type="button" className="btn btn--gold btn--lg" onClick={() => window.location.reload()}>
-                        Return to the sanctuary
+                        {t('error.return')}
                     </button>
                 </section>
             </div>

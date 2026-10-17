@@ -1,6 +1,7 @@
 import { sanskritLines, verseMeaning, verseNumber, verseRef } from './verse';
 import { ensureScriptFont, scriptById, transliterate } from './script';
 import { BRAND } from './brand';
+import { MARK_COLORS, MARK_DROPS, MARK_EYE, MARK_GLINT, MARK_QUILL, QUILL_PATH, dropPath } from './sakhaMark';
 
 // Renders a verse as a lamplit manuscript page on an offscreen canvas.
 // Everything is drawn procedurally — paper grain, mandala, double rule, the
@@ -191,53 +192,48 @@ function frame(ctx, width, height) {
     ctx.restore();
 }
 
-function diya(ctx, cx, cy, size) {
-    const unit = size / 120;
+// The Sakha mark — a peacock feather's eye that is also a flame — with a
+// soft halo of morning light behind it.
+function sakhaMark(ctx, cx, cy, size) {
+    const scale = size / 100;
     ctx.save();
-    ctx.translate(cx - 60 * unit, cy - 60 * unit);
-    ctx.scale(unit, unit);
-
-    const halo = ctx.createRadialGradient(60, 52, 0, 60, 52, 60);
-    halo.addColorStop(0, 'rgba(246, 200, 121, 0.5)');
-    halo.addColorStop(0.45, 'rgba(227, 154, 69, 0.14)');
-    halo.addColorStop(1, 'rgba(227, 154, 69, 0)');
+    const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * 0.9);
+    halo.addColorStop(0, 'rgba(246, 200, 121, 0.38)');
+    halo.addColorStop(1, 'rgba(246, 200, 121, 0)');
     ctx.fillStyle = halo;
     ctx.beginPath();
-    ctx.arc(60, 52, 60, 0, Math.PI * 2);
+    ctx.arc(cx, cy, size * 0.9, 0, Math.PI * 2);
     ctx.fill();
 
-    const flame = ctx.createLinearGradient(60, 20, 60, 74);
-    flame.addColorStop(0, '#fff3d6');
-    flame.addColorStop(0.35, '#f7c56e');
-    flame.addColorStop(0.8, '#e2832f');
-    flame.addColorStop(1, '#b4502a');
-    ctx.fillStyle = flame;
+    ctx.translate(cx - 50 * scale, cy - 53.5 * scale);
+    ctx.scale(scale, scale);
+    const vertical = (top, bottom, stops) => {
+        const gradient = ctx.createLinearGradient(0, top, 0, bottom);
+        stops.forEach(([offset, color]) => gradient.addColorStop(offset, color));
+        return gradient;
+    };
+    ctx.strokeStyle = MARK_COLORS.goldDeep;
+    ctx.lineWidth = MARK_QUILL.width;
+    ctx.lineCap = 'round';
+    ctx.stroke(new Path2D(QUILL_PATH));
+    ctx.fillStyle = vertical(12, 84, [[0, MARK_COLORS.goldLight], [0.55, MARK_COLORS.gold], [1, MARK_COLORS.goldDeep]]);
+    ctx.fill(new Path2D(dropPath(MARK_DROPS[0])));
+    const teal = new Path2D(dropPath(MARK_DROPS[1]));
+    ctx.fillStyle = vertical(32, 80, [[0, MARK_COLORS.teal], [1, MARK_COLORS.tealDeep]]);
+    ctx.fill(teal);
+    ctx.strokeStyle = MARK_COLORS.seam;
+    ctx.lineWidth = 1.3;
+    ctx.stroke(teal);
+    const blue = ctx.createRadialGradient(47, 61, 0, 47, 61, 13);
+    blue.addColorStop(0, MARK_COLORS.blue);
+    blue.addColorStop(1, MARK_COLORS.blueDeep);
+    ctx.fillStyle = blue;
     ctx.beginPath();
-    ctx.moveTo(60, 22);
-    ctx.bezierCurveTo(70, 38, 75, 50, 70, 62);
-    ctx.bezierCurveTo(67, 70, 53, 70, 50, 62);
-    ctx.bezierCurveTo(45, 50, 51, 38, 60, 22);
+    ctx.ellipse(MARK_EYE.cx, MARK_EYE.cy, MARK_EYE.rx, MARK_EYE.ry, 0, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = 'rgba(255, 248, 232, 0.85)';
+    ctx.fillStyle = MARK_COLORS.glint;
     ctx.beginPath();
-    ctx.moveTo(60, 46);
-    ctx.bezierCurveTo(64, 53, 64, 60, 60, 65);
-    ctx.bezierCurveTo(56, 60, 56, 53, 60, 46);
-    ctx.fill();
-
-    const clay = ctx.createLinearGradient(0, 74, 0, 100);
-    clay.addColorStop(0, '#c0703f');
-    clay.addColorStop(1, '#6e3418');
-    ctx.fillStyle = clay;
-    ctx.beginPath();
-    ctx.moveTo(22, 76);
-    ctx.bezierCurveTo(30, 98, 90, 98, 98, 76);
-    ctx.bezierCurveTo(92, 79, 74, 81, 60, 81);
-    ctx.bezierCurveTo(46, 81, 28, 79, 22, 76);
-    ctx.fill();
-    ctx.fillStyle = KUMKUM;
-    ctx.beginPath();
-    ctx.arc(60, 88, 2.4, 0, Math.PI * 2);
+    ctx.arc(MARK_GLINT.cx, MARK_GLINT.cy, MARK_GLINT.r, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 }
@@ -328,7 +324,7 @@ export async function renderWisdomCard(verse, {
     const essenceText = includeEssence && verse.notification_short ? (verse.notification_short[hindi ? 'hi' : 'en'] || verse.notification_short.en) : null;
 
     // Header: the lamp, the name of the text, and where this verse lives.
-    diya(ctx, cx, headerTop, 104);
+    sakhaMark(ctx, cx, headerTop, 92);
     ctx.fillStyle = MARIGOLD_LIGHT;
     ctx.font = `400 32px ${FONTS.sanskrit}`;
     centred(ctx, 'श्रीमद्भगवद्गीता', cx, headerTop + 90);

@@ -13,6 +13,8 @@ import { MOD_KEY } from '../lib/platform';
 import { DAY_EVENT, qualityById, readDay } from '../lib/day';
 import { practiceById, practiceForNow } from '../lib/practices';
 import { usePreferences } from '../contexts/PreferencesContext';
+import FollowUp from './FollowUp';
+import { LetterArrived } from './Letters';
 
 function greetingKey(date) {
     const hour = date.getHours();
@@ -197,6 +199,11 @@ function Home({ settings, onSelectMood, onAsk, onSelectVerse, openPractice, open
                 )}
             </motion.header>
 
+            <div className="home-notes">
+                <LetterArrived />
+                <FollowUp name={settings.name} onAsk={onAsk} />
+            </div>
+
             <motion.section className="moods" aria-label={t('home.moods.label')} {...rise(0.15)}>
                 <span className="moods__prompt">{t('home.moods.prompt')}</span>
                 <AnimatePresence mode="wait" initial={false}>
@@ -246,6 +253,10 @@ function Home({ settings, onSelectMood, onAsk, onSelectVerse, openPractice, open
                 <div className="home-links">
                     <button type="button" className="btn btn--link" onClick={() => openPanel('practice')}>
                         {t('home.practice.all')}
+                    </button>
+                    <span className="home-links__dot" aria-hidden="true">·</span>
+                    <button type="button" className="btn btn--link" onClick={() => openPanel('letters')}>
+                        {t('home.letter')}
                     </button>
                 </div>
             </motion.section>

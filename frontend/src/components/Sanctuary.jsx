@@ -80,11 +80,11 @@ const STARTER_KEYS = ['lately', 'worried', 'cantStop', 'today', 'good'];
 function Starters({ onPick }) {
     const { t } = useI18n();
     return (
-        <div className="starters" role="group" aria-label={t('sanctuary.startersLabel')}>
+        <div className="begin-chips" role="group" aria-label={t('sanctuary.startersLabel')}>
             {STARTER_KEYS.map((key) => {
                 const text = t(`sanctuary.starter.${key}`);
                 return (
-                    <button key={key} type="button" className="starter" onClick={() => onPick(`${text} `)}>
+                    <button key={key} type="button" className="begin-chip" onClick={() => onPick(`${text} `)}>
                         {text}…
                     </button>
                 );

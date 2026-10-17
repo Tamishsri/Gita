@@ -52,7 +52,10 @@ const LOCAL_KEYS = [
     'lgJapa',
     'lgLearned',
     'lgReading',
-    'lgNameAsked'
+    'lgNameAsked',
+    'lgMet',
+    'lgLetters',
+    'lgFollowups'
 ];
 
 export function purgeLocalData() {

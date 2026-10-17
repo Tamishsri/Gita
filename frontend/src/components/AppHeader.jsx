@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Download, Search, Settings as SettingsIcon, Volume2, Waves } from 'lucide-react';
-import { Diya } from './ui/Ornaments';
+import SakhaMark from './ui/SakhaMark';
 import { moodById } from './MoodSelector';
 import { useSoundscape } from './SoundscapeEngine';
 import { MOD_KEY } from '../lib/platform';
@@ -49,7 +49,7 @@ function AppHeader({ view, mood, verse, activePanel, journalCount, isMobile, ins
                     </div>
                 ) : (
                     <button type="button" className="brand" onClick={onHome} aria-label={t('header.brandHome')}>
-                        <Diya size={40} steady />
+                        <SakhaMark size={38} className="brand__mark" />
                         <span className="brand__text">
                             <span className="brand__name">{t('brand.name')}</span>
                             <span className="brand__tagline">{t('header.tagline')}</span>

@@ -190,3 +190,13 @@ export const SunGlyph = glyph(
         <path d="M24 6 V11 M24 37 V42 M6 24 H11 M37 24 H42 M11.3 11.3 L14.8 14.8 M33.2 33.2 L36.7 36.7 M11.3 36.7 L14.8 33.2 M33.2 14.8 L36.7 11.3" />
     </>
 );
+
+// Patra — a letter, folded and sealed with kumkum
+export const LetterGlyph = glyph(
+    <>
+        <rect x="7" y="13" width="34" height="23" rx="2.5" />
+        <path d="M7.8 14.5 L24 27 L40.2 14.5" />
+        <path d="M7.8 35 L19 25.5 M40.2 35 L29 25.5" opacity="0.5" />
+        <circle cx="24" cy="27.5" r="3.6" fill="var(--kumkum, #c8553a)" stroke="none" />
+    </>
+);

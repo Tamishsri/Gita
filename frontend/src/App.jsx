@@ -7,6 +7,7 @@ import TabBar from './components/TabBar';
 import Home from './components/Home';
 import Sanctuary from './components/Sanctuary';
 import ThreeBreaths from './components/ThreeBreaths';
+import Welcome, { hasMet } from './components/Welcome';
 import Settings from './components/Settings';
 import Disclaimer from './components/Disclaimer';
 import ChapterExplorer from './components/ChapterExplorer';
@@ -16,6 +17,7 @@ import CommandPalette from './components/CommandPalette';
 import WisdomCardStudio from './components/WisdomCardStudio';
 import PracticeHub from './components/PracticeHub';
 import PathView from './components/PathView';
+import Letters from './components/Letters';
 import Japa from './components/practices/Japa';
 import Dhyana from './components/practices/Dhyana';
 import Sankalpa from './components/practices/Sankalpa';
@@ -50,7 +52,7 @@ import { prepareSakha } from './lib/localSakha';
 import { readJourney, startJourney } from './lib/journey';
 import { moodById } from './components/MoodSelector';
 
-const PANELS = ['settings', 'about', 'chapters', 'search', 'journal', 'practice', 'path'];
+const PANELS = ['settings', 'about', 'chapters', 'search', 'journal', 'practice', 'path', 'letters'];
 const ROOMS = ['japa', 'dhyana', 'sankalpa', 'sandhya', 'svadhyaya'];
 
 function hasActiveBreathSession() {
@@ -68,6 +70,7 @@ function AppContent({ settings, setSettings }) {
     const { t } = useI18n();
     const [sessionIntent, setSessionIntent] = useState(hasActiveBreathSession);
     const [needsBreathCheck, setNeedsBreathCheck] = useState(() => !sessionIntent);
+    const [met, setMet] = useState(hasMet);
 
     // A conversation: begun from a mood, a verse, or a question.
     const [session, setSession] = useState(null); // { mood, verse, text, key }
@@ -289,7 +292,7 @@ function AppContent({ settings, setSettings }) {
     // ----- keyboard ---------------------------------------------------------
 
     useEffect(() => {
-        if (needsBreathCheck) return undefined;
+        if (needsBreathCheck || !met) return undefined;
 
         const onKeyDown = (event) => {
             const key = event.key;
@@ -332,7 +335,7 @@ function AppContent({ settings, setSettings }) {
 
         window.addEventListener('keydown', onKeyDown);
         return () => window.removeEventListener('keydown', onKeyDown);
-    }, [needsBreathCheck, session, goHome, openPanel]);
+    }, [needsBreathCheck, met, session, goHome, openPanel]);
 
     // ----- render -----------------------------------------------------------
 
@@ -343,7 +346,9 @@ function AppContent({ settings, setSettings }) {
         <>
             <div className="atmosphere" aria-hidden="true" />
 
-            {needsBreathCheck ? (
+            {!met ? (
+                <Welcome onDone={() => setMet(true)} />
+            ) : needsBreathCheck ? (
                 <ThreeBreaths onComplete={handleBreathComplete} />
             ) : (
                 <div className={`app-shell${view === 'sanctuary' ? ' is-sanctuary' : ''}`}>
@@ -435,6 +440,7 @@ function AppContent({ settings, setSettings }) {
             <ReflectionJournal isOpen={activePanel === 'journal'} onClose={closePanel} onSelectVerse={selectVerse} />
             <PracticeHub isOpen={activePanel === 'practice'} onClose={closePanel} onOpen={openPractice} />
             <PathView isOpen={activePanel === 'path'} onClose={closePanel} onSelectVerse={selectVerse} />
+            <Letters isOpen={activePanel === 'letters'} onClose={closePanel} />
 
             <Japa isOpen={room?.id === 'japa'} onClose={() => setRoom(null)} />
             <Dhyana isOpen={room?.id === 'dhyana'} onClose={() => setRoom(null)} minutes={room?.minutes} />

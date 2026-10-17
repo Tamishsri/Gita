@@ -1458,14 +1458,14 @@
 }
 
 /* Ways to begin — for when it is hard to know where to start */
-.starters {
+.begin-chips {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
     margin-top: var(--space-4);
 }
 
-.starter {
+.begin-chip {
     padding: 8px 14px;
     border-radius: var(--radius-pill);
     font-family: var(--font-display);
@@ -1477,9 +1477,135 @@
     transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.starter:hover,
-.starter:focus-visible {
+.begin-chip:hover,
+.begin-chip:focus-visible {
     color: var(--gold-200);
     border-color: var(--line-gold);
     background: var(--gold-wash);
+}
+
+/* --------------------------------------------------------------------------
+   The first meeting
+   -------------------------------------------------------------------------- */
+
+.welcome__panel {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-4);
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+}
+
+.welcome__mark {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 148px;
+    height: 148px;
+    margin-bottom: var(--space-2);
+}
+
+.welcome__mark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(var(--gold-rgb), 0.24), transparent 72%);
+    animation: welcome-glow 6s var(--ease-in-out) infinite alternate;
+}
+
+.welcome__mark .sakha-mark {
+    position: relative;
+    filter: drop-shadow(0 10px 18px rgba(var(--shade-rgb), calc(0.25 * var(--shade-k))));
+}
+
+@keyframes welcome-glow {
+    from {
+        transform: scale(0.94);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: scale(1.06);
+        opacity: 1;
+    }
+}
+
+.welcome__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-2xl);
+    line-height: 1.05;
+}
+
+.welcome__lede {
+    max-width: 34ch;
+    font-family: var(--font-display);
+    font-size: var(--fs-lg);
+    line-height: 1.55;
+    color: var(--text-2);
+}
+
+.welcome__promises {
+    display: grid;
+    gap: var(--space-3);
+    width: 100%;
+    margin: var(--space-2) 0;
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    list-style: none;
+    text-align: left;
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+}
+
+.welcome__promises li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+    color: var(--text-2);
+}
+
+.welcome__promises svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--gold-400);
+}
+
+.welcome__name {
+    display: grid;
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.welcome__name label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-md);
+    color: var(--text-1);
+}
+
+.welcome__name .name-ask__input {
+    width: 100%;
+    flex: none;
+}
+
+.welcome__actions .btn {
+    min-width: 200px;
+}
+
+.welcome__verse {
+    margin-top: var(--space-4);
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--text-3);
+}
+
+.welcome__verse cite {
+    font-style: normal;
+    font-size: var(--fs-sm);
 }
