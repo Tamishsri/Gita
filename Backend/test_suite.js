@@ -666,6 +666,20 @@ async function runTests() {
     const grieving = converse(['my husband passed away last month', 'why did god take him', 'I keep setting out two cups of tea']);
     assert(grieving.slice(1).every((r) => !/smallest next action|ten minutes and do only|three tasks/i.test(r.guidance?.step || '')),
         'Someone grieving is never handed a productivity task when a step is replaced');
+
+        // A verse chosen for one person, for one day.
+        const worried = { name: 'Riya', recurring: { anxiety: 3 }, topics: { study: { count: 3 } } };
+        const carer = { name: 'Sunita', context: 'My mother has dementia and I look after her' };
+        const week = ['2026-10-18', '2026-10-19', '2026-10-20', '2026-10-21', '2026-10-22'];
+        const riyaWeek = week.map((date) => engine.verseForToday({ person: worried, date }, corpus));
+        const sameDay = engine.verseForToday({ person: worried, date: week[0] }, corpus).verse.id === riyaWeek[0].verse.id;
+        const carerToday = engine.verseForToday({ person: carer, date: week[0] }, corpus);
+        const seen = engine.verseForToday({ person: worried, date: week[0], exclude: [riyaWeek[0].verse.id] }, corpus);
+        assert(sameDay && new Set(riyaWeek.map((pick) => pick.verse.id)).size >= 4 && riyaWeek[0].reason.key === 'daily.for.feeling'
+            && riyaWeek[0].reason.vars.feeling === 'anxiety' && carerToday.reason.key === 'daily.for.care'
+            && engine.verseForToday({ person: {}, date: week[0] }, corpus) === null && seen.verse.id !== riyaWeek[0].verse.id
+            && riyaWeek.every((pick) => !engine.isNarrative(pick.verse)),
+            `Each person gets a verse chosen for them each day — the same all day, a different one most days (${new Set(riyaWeek.map((pick) => pick.verse.id)).size} in 5), with the reason why, never one they just saw`);
     }
     console.log('\n====================================================');
     console.log(`TOTAL: ${passed} PASSED, ${failed} FAILED`);

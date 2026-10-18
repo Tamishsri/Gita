@@ -151,7 +151,7 @@ function Svadhyaya({ isOpen, onClose, verse: initialVerse }) {
                             <button
                                 type="button"
                                 className={`text-action${speakingThis ? ' is-on' : ''}`}
-                                onClick={() => (speakingThis ? stop() : speak(`learn_${verse.id}`, verse.sanskrit, 'hi'))}
+                                onClick={() => (speakingThis ? stop() : speak(`learn_${verse.id}`, verse.sanskrit, 'hi', { sanskrit: true }))}
                             >
                                 {speakingThis ? <Square size={12} fill="currentColor" /> : <Volume2 size={15} />} {t('svadhyaya.listen')}
                             </button>

@@ -1,3 +1,4 @@
+import { numberWords } from './speech';
 import { playChime } from './chime';
 import { haptic } from './haptics';
 import { appName } from './brand';
@@ -44,6 +45,21 @@ export function speechTextFor(verse, language = 'en') {
     const meaning = verseMeaning(verse, language);
     if (language === 'hi') return verse.meaning_hi || verse.sanskrit || meaning;
     return `${meaning}. Bhagavad Gita, ${verseCitation(verse)}.`;
+}
+
+/** A verse as a recitation: the śloka, then its meaning, then where it comes from. */
+export function speechSectionsFor(verse, language = 'en') {
+    const chapter = Number(verse.chapter);
+    const number = Number(verse.verse || verse.verse_number);
+    const meaning = verseMeaning(verse, language);
+    const source = language === 'hi'
+        ? `भगवद्गीता, अध्याय ${chapter}, श्लोक ${number}।`
+        : `Bhagavad Gita, chapter ${numberWords(chapter)}, verse ${numberWords(number)}.`;
+    return [
+        verse.sanskrit ? { text: verse.sanskrit, lang: 'hi', sanskrit: true } : null,
+        meaning ? { text: meaning, lang: language === 'hi' ? 'hi' : 'en' } : null,
+        { text: source, lang: language === 'hi' ? 'hi' : 'en' }
+    ].filter(Boolean);
 }
 
 export function verseShareText(verse, language = 'en') {

@@ -3927,6 +3927,64 @@ Go on${greetingName} — I’m here.`;
         return source[index];
     }
 
+    // -----------------------------------------------------------------------
+    // A verse chosen for one person, for one day
+    //
+    // From what their device knows — the feeling that has visited most this
+    // week, the situation on their mind, what they asked Sakha to keep in
+    // mind, the path that has helped them — one verse, the same all day,
+    // with the reason it was chosen. Without enough to go on, null: the
+    // shared verse of the day is shown instead.
+    // -----------------------------------------------------------------------
+
+    function dayHash(text) {
+        let hash = 2166136261;
+        for (const char of String(text)) {
+            hash ^= char.codePointAt(0);
+            hash = Math.imul(hash, 16777619);
+        }
+        return hash >>> 0;
+    }
+
+    function verseForToday({ person = null, date = null, exclude = [] } = {}, { verses = [], chapters = [] } = {}) {
+        if (!verses.length || !isValidDate(date) || !person) return null;
+        const recurring = Object.entries(person.recurring || {}).filter(([id]) => EMOTIONS[id]).sort((a, b) => b[1] - a[1]);
+        const topics = Object.entries(person.topics || {}).filter(([id]) => TOPICS[id]).sort((a, b) => b[1].count - a[1].count);
+        const feeling = recurring.length && recurring[0][1] >= 2 ? recurring[0][0] : null;
+        const topic = topics.length ? topics[0][0] : null;
+        const standing = standingOf(person, corpusIndex(verses).lexicon);
+        const lean = pathAffinity(person, null);
+        const leaning = lean ? Object.entries(lean).sort((a, b) => b[1] - a[1])[0] : null;
+        if (!feeling && !topic && !standing && !(leaning && leaning[1] > 0)) return null;
+
+        const seedTopic = topic || standing?.topics?.[0] || null;
+        const profile = buildProfile({
+            text: null,
+            // A carer's day carries its own weight: their verse is chosen as a carer's.
+            mood: feeling || (standing?.care ? 'stress' : null),
+            history: seedTopic ? [TOPICS[seedTopic].terms.find((term) => !term.includes('*')) || seedTopic] : [],
+            person,
+            timeOfDay: null
+        });
+        const avoid = new Set(exclude);
+        const ranked = rankVerses(verses, chapters, profile)
+            .filter((item) => !avoid.has(item.verse.id) && !isNarrative(item.verse) && item.verse.notification_short?.en)
+            .slice(0, 5);
+        if (!ranked.length) return null;
+        // Walk through this person's closest verses a day at a time, so the
+        // same one does not come back day after day.
+        const day = Math.floor(Date.parse(`${date}T00:00:00Z`) / 86400000);
+        const chosen = ranked[(day + dayHash(person.name || '')) % ranked.length].verse;
+
+        let reason = null;
+        if (feeling && HEAVY(feeling)) reason = { key: 'daily.for.feeling', vars: { feeling } };
+        else if (feeling) reason = { key: 'daily.for.light', vars: { feeling } };
+        else if (standing?.care) reason = { key: 'daily.for.care', vars: { relation: standing.care.relation } };
+        else if (seedTopic) reason = { key: 'daily.for.topic', vars: { topic: seedTopic } };
+        else if (leaning) reason = { key: 'daily.for.path', vars: { path: leaning[0] } };
+        return { verse: chosen, reason };
+    }
+
     return {
         ENGINE_VERSION,
         CRISIS_TERMS,
@@ -3962,6 +4020,7 @@ Go on${greetingName} — I’m here.`;
         searchVerses,
         searchScore,
         dailyVerse,
+        verseForToday,
         isValidDate
     };
 });

@@ -101,6 +101,14 @@ const hi = {
     'verse.sitWith': 'इसके साथ बैठें',
     'verse.notePlaceholder': 'यह श्लोक आपके भीतर क्या जगाता है?',
     'verse.saveReflection': 'मनन सहेजें',
+    'daily.forYou': 'आज आपके लिए चुना गया',
+    'daily.for.feeling': 'क्योंकि इस सप्ताह {feeling} बार-बार आया है।',
+    'daily.for.light': 'ताकि यह अच्छा समय आपके साथ बना रहे।',
+    'daily.for.care': 'आपके लिए — जो किसी अपने की देखभाल कर रहे हैं।',
+    'daily.for.topic': 'क्योंकि {topic} आपके मन पर रहा है।',
+    'daily.for.path': '{path} का एक श्लोक — वैसा, जो आपकी मदद करता है।',
+    'daily.shared': 'सबके लिए आज का श्लोक',
+    'daily.backToYours': 'आपका श्लोक',
     'daily.title': 'आज का श्लोक',
 
     // ── सूचनाएँ ───────────────────────────────────────────────────────────
@@ -619,13 +627,13 @@ const hi = {
     'sound.auto.desc': 'आपके मन के अनुसार',
     'sound.ocean.label': 'सागर',
     'sound.ocean.short': 'सागर',
-    'sound.ocean.desc': 'दूर किनारे पर धीमी लहरें',
+    'sound.ocean.desc': 'दूर किनारे पर लहरें, हर एक अपने समय से',
     'sound.rain.label': 'वर्षा',
     'sound.rain.short': 'वर्षा',
-    'sound.rain.desc': 'पत्तों पर हल्की बारिश',
-    'sound.om.label': 'ॐ',
-    'sound.om.short': 'ॐ',
-    'sound.om.desc': 'एक गहरा, स्थिर स्वर',
+    'sound.rain.desc': 'हल्की बारिश, पत्तों पर गिरती बूँदें',
+    'sound.om.label': 'तानपुरा',
+    'sound.om.short': 'तानपुरा',
+    'sound.om.desc': 'चार तारों का स्वर, नीचे ॐ',
 
     // ── आवाज़ ─────────────────────────────────────────────────────────────
     'voice.speak': 'बोलकर कहें',

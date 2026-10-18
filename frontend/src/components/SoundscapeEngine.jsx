@@ -1,15 +1,17 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { getAudioContext } from '../lib/audio';
 
-// Procedural ambient soundscapes, synthesised live with the Web Audio API.
+// Ambient soundscapes, synthesised live with the Web Audio API — modelled on
+// the real thing rather than on a loop: waves that arrive in their own time,
+// rain with drops landing here and there, a tanpura plucked by a human hand.
 // One provider lives at the app root so sound carries across every screen;
 // switching scenes crossfades instead of cutting.
 
 export const SOUND_MODES = [
     { id: 'auto', label: 'Auto', description: 'Follows your mood' },
-    { id: 'ocean', label: 'Ocean', description: 'Slow surf, brown noise' },
-    { id: 'rain', label: 'Rain', description: 'Soft rainfall, pink noise' },
-    { id: 'om', label: 'Cosmic Om', description: '130.81 Hz binaural drone' }
+    { id: 'ocean', label: 'Ocean', description: 'Waves on a far shore, each in its own time' },
+    { id: 'rain', label: 'Rain', description: 'Soft rain, drops landing on leaves' },
+    { id: 'om', label: 'Tanpura', description: 'Four strings, Sa and Pa, with Om beneath' }
 ];
 
 const VOLUME_KEY = 'lgSoundVolume';
@@ -44,7 +46,8 @@ const SoundContext = createContext({
     toggleSound: noop,
     setSoundMode: noop,
     setVolume: noop,
-    setMood: noop
+    setMood: noop,
+    duck: noop
 });
 
 export function useSoundscape() {
@@ -125,106 +128,248 @@ function lfo(ctx, frequency, depth, target) {
 // Scenes — each returns { output, nodes } so it can be faded and torn down
 // ---------------------------------------------------------------------------
 
+// A JS timer that a scene's teardown can stop like any audio node.
+function scheduler(tick, everyMs) {
+    let timer = null;
+    const loop = () => {
+        tick();
+        timer = setTimeout(loop, everyMs);
+    };
+    loop();
+    return { stop: () => clearTimeout(timer), disconnect: () => {} };
+}
+
+const between = (low, high) => low + Math.random() * (high - low);
+
+// A short, bright burst — the excitation for a plucked string or a drop.
+function burstBuffer(ctx, seconds = 0.03, decay = 6) {
+    const length = Math.max(1, Math.floor(ctx.sampleRate * seconds));
+    const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i++) data[i] = (Math.random() * 2 - 1) * Math.exp((-decay * i) / length);
+    return buffer;
+}
+
+// One plucked string (Karplus–Strong): a burst of noise circling a tuned
+// delay line, losing a little brightness each time round — the way a real
+// string rings and fades. Torn down by itself once it has died away.
+function pluck(ctx, destination, frequency, at, level, excitation) {
+    const burst = ctx.createBufferSource();
+    burst.buffer = excitation;
+    const colour = ctx.createBiquadFilter();
+    colour.type = 'lowpass';
+    colour.frequency.value = 2400;
+    const delay = ctx.createDelay(1);
+    delay.delayTime.value = 1 / frequency;
+    const damp = ctx.createBiquadFilter();
+    damp.type = 'lowpass';
+    damp.frequency.value = 3600;
+    const feedback = ctx.createGain();
+    feedback.gain.value = 0.9965;
+    const out = ctx.createGain();
+    out.gain.value = level;
+
+    burst.connect(colour);
+    colour.connect(delay);
+    delay.connect(damp);
+    damp.connect(feedback);
+    feedback.connect(delay);
+    damp.connect(out);
+    out.connect(destination);
+    burst.start(at);
+    // Let it ring, then fade the tail and let go.
+    out.gain.setValueAtTime(level, at + 5.5);
+    out.gain.linearRampToValueAtTime(0.0001, at + 7);
+    const life = (at - ctx.currentTime + 7.2) * 1000;
+    setTimeout(() => [burst, colour, delay, damp, feedback, out].forEach((node) => {
+        try { node.disconnect(); } catch { /* already gone */ }
+    }), Math.max(0, life));
+}
+
 const SCENES = {
+    // The sea is never regular: each wave arrives in its own time, gathers,
+    // breaks brighter, and draws back over a quiet, constant hush.
     ocean(ctx) {
         const output = ctx.createGain();
         const nodes = [];
-        const buffer = noiseBuffer(ctx, 'brown');
+        const buffer = noiseBuffer(ctx, 'brown', 8);
 
-        // Two decorrelated surf layers, panned apart, washing at different rates.
-        [[-0.45, 0.085, 0], [0.45, 0.062, 2.7]].forEach(([pan, rate, offset]) => {
+        const hush = loopedSource(ctx, buffer, 1.3);
+        const hushFilter = ctx.createBiquadFilter();
+        const hushLevel = ctx.createGain();
+        hushFilter.type = 'lowpass';
+        hushFilter.frequency.value = 420;
+        hushLevel.gain.value = 0.16;
+        hush.connect(hushFilter);
+        hushFilter.connect(hushLevel);
+        hushLevel.connect(output);
+        nodes.push(hush, hushFilter, hushLevel);
+
+        [[-0.5, 0], [0.5, 3.4]].forEach(([pan, offset], layer) => {
             const source = loopedSource(ctx, buffer, offset);
             const filter = ctx.createBiquadFilter();
             const swell = ctx.createGain();
             filter.type = 'lowpass';
-            filter.frequency.value = 700;
-            filter.Q.value = 0.4;
-            swell.gain.value = 0.42;
+            filter.frequency.value = 450;
+            filter.Q.value = 0.5;
+            swell.gain.value = 0.08;
             source.connect(filter);
             filter.connect(swell);
             panned(ctx, swell, pan).connect(output);
-            nodes.push(source, filter, swell,
-                lfo(ctx, rate, 0.3, swell.gain),
-                lfo(ctx, rate, 380, filter.frequency));
+
+            let next = ctx.currentTime + 0.5 + layer * between(2, 4);
+            const wave = () => {
+                while (next < ctx.currentTime + 12) {
+                    const rise = between(2, 3.6);
+                    const fall = between(3, 5.5);
+                    const peak = between(0.32, 0.62);
+                    swell.gain.setTargetAtTime(peak, next, rise / 3);
+                    filter.frequency.setTargetAtTime(between(900, 1500), next, rise / 3);
+                    swell.gain.setTargetAtTime(between(0.06, 0.12), next + rise, fall / 3);
+                    filter.frequency.setTargetAtTime(between(380, 520), next + rise, fall / 3);
+                    next += rise + fall + between(0.5, 4);
+                }
+            };
+            nodes.push(source, filter, swell, scheduler(wave, 4000));
         });
 
-        output.gain.value = 0.85;
+        output.gain.value = 0.9;
         return { output, nodes };
     },
 
+    // Rain that is alive: a soft bed whose strength drifts, and drops landing
+    // on leaves here and there — never in a pattern.
     rain(ctx) {
         const output = ctx.createGain();
         const nodes = [];
         const pink = noiseBuffer(ctx, 'pink');
 
+        const bed = ctx.createGain();
+        bed.gain.value = 0.5;
+        bed.connect(output);
         [[-0.35, 0], [0.35, 3.1]].forEach(([pan, offset]) => {
             const source = loopedSource(ctx, pink, offset);
             const high = ctx.createBiquadFilter();
             const low = ctx.createBiquadFilter();
-            const level = ctx.createGain();
             high.type = 'highpass';
-            high.frequency.value = 380;
+            high.frequency.value = 420;
             low.type = 'lowpass';
-            low.frequency.value = 5200;
-            level.gain.value = 0.55;
+            low.frequency.value = 4800;
             source.connect(high);
             high.connect(low);
-            low.connect(level);
-            panned(ctx, level, pan).connect(output);
-            nodes.push(source, high, low, level);
+            panned(ctx, low, pan).connect(bed);
+            nodes.push(source, high, low);
         });
 
-        // Distant low rumble beneath the rainfall.
         const rumble = loopedSource(ctx, noiseBuffer(ctx, 'brown', 5));
         const rumbleFilter = ctx.createBiquadFilter();
         const rumbleLevel = ctx.createGain();
         rumbleFilter.type = 'lowpass';
-        rumbleFilter.frequency.value = 220;
-        rumbleLevel.gain.value = 0.35;
+        rumbleFilter.frequency.value = 200;
+        rumbleLevel.gain.value = 0.28;
         rumble.connect(rumbleFilter);
         rumbleFilter.connect(rumbleLevel);
         rumbleLevel.connect(output);
-        nodes.push(rumble, rumbleFilter, rumbleLevel, lfo(ctx, 0.05, 0.12, rumbleLevel.gain));
+        nodes.push(rumble, rumbleFilter, rumbleLevel, bed);
+
+        // The shower's strength wanders slowly, as real rain does.
+        nodes.push(scheduler(() => {
+            bed.gain.setTargetAtTime(between(0.36, 0.62), ctx.currentTime, 2.5);
+        }, 3500));
+
+        const drop = burstBuffer(ctx, 0.05, 9);
+        let nextDrop = ctx.currentTime + 0.2;
+        nodes.push(scheduler(() => {
+            while (nextDrop < ctx.currentTime + 0.6) {
+                const source = ctx.createBufferSource();
+                source.buffer = drop;
+                const tone = ctx.createBiquadFilter();
+                tone.type = 'bandpass';
+                tone.frequency.value = between(1800, 6500);
+                tone.Q.value = between(4, 10);
+                const level = ctx.createGain();
+                level.gain.value = between(0.05, 0.22);
+                source.connect(tone);
+                tone.connect(level);
+                panned(ctx, level, between(-0.9, 0.9)).connect(output);
+                source.start(nextDrop);
+                source.onended = () => [source, tone, level].forEach((node) => {
+                    try { node.disconnect(); } catch { /* already gone */ }
+                });
+                nextDrop += between(0.04, 0.32);
+            }
+        }, 250));
 
         output.gain.value = 0.75;
         return { output, nodes };
     },
 
+    // A tanpura: four strings plucked in turn — Pa, Sa, Sa, low Sa — each
+    // left to ring into the next, with a soft Om beneath them.
     om(ctx) {
         const output = ctx.createGain();
         const nodes = [];
-        const soften = ctx.createBiquadFilter();
-        const breath = ctx.createGain();
-        soften.type = 'lowpass';
-        soften.frequency.value = 900;
-        breath.gain.value = 0.75;
-        soften.connect(breath);
-        breath.connect(output);
 
-        // Left ear 130.81 Hz (C3), right ear 131.5 Hz: a ~0.7 Hz binaural beat.
-        const voices = [
-            { frequency: 130.81, type: 'sine', gain: 0.5, pan: -0.85 },
-            { frequency: 131.5, type: 'sine', gain: 0.5, pan: 0.85 },
-            { frequency: 261.63, type: 'triangle', gain: 0.1, pan: 0 },
-            { frequency: 196.0, type: 'sine', gain: 0.07, pan: 0 },
-            { frequency: 65.41, type: 'sine', gain: 0.2, pan: 0 }
+        // The strings pass through a gentle saturation, the tanpura's buzzing bridge (jawari).
+        const jawari = ctx.createWaveShaper();
+        const curve = new Float32Array(1024);
+        for (let i = 0; i < curve.length; i++) {
+            const x = (i / (curve.length - 1)) * 2 - 1;
+            curve[i] = Math.tanh(2.2 * x) / Math.tanh(2.2);
+        }
+        jawari.curve = curve;
+        const strings = ctx.createGain();
+        strings.gain.value = 0.55;
+        strings.connect(jawari);
+        const warmth = ctx.createBiquadFilter();
+        warmth.type = 'lowpass';
+        warmth.frequency.value = 2800;
+        jawari.connect(warmth);
+        warmth.connect(output);
+        nodes.push(jawari, strings, warmth);
+
+        const SA = 130.81;
+        const cycle = [
+            { frequency: SA * 0.749, level: 0.5 },  // Pa, below Sa
+            { frequency: SA, level: 0.42 },
+            { frequency: SA, level: 0.4 },
+            { frequency: SA / 2, level: 0.62 }    // kharaj — low Sa
         ];
+        const excitation = burstBuffer(ctx, 0.028, 5);
+        let nextPluck = ctx.currentTime + 0.4;
+        let step = 0;
+        nodes.push(scheduler(() => {
+            while (nextPluck < ctx.currentTime + 2.5) {
+                const string = cycle[step % cycle.length];
+                // A human hand: never exactly on time, never exactly as loud.
+                pluck(ctx, strings, string.frequency, nextPluck + between(-0.03, 0.03), string.level * between(0.88, 1.08), excitation);
+                nextPluck += step % cycle.length === cycle.length - 1 ? between(1.5, 1.8) : between(1.05, 1.2);
+                step += 1;
+            }
+        }, 900));
 
-        voices.forEach((voice) => {
+        // Om, very softly, beneath the strings — a slow breath in and out.
+        const hum = ctx.createGain();
+        const humFilter = ctx.createBiquadFilter();
+        humFilter.type = 'lowpass';
+        humFilter.frequency.value = 700;
+        hum.gain.value = 0.16;
+        humFilter.connect(hum);
+        hum.connect(output);
+        [[SA, -0.6, 0.35], [SA + 0.7, 0.6, 0.35], [SA / 2, 0, 0.3]].forEach(([frequency, pan, level]) => {
             const osc = ctx.createOscillator();
-            const level = ctx.createGain();
-            osc.type = voice.type;
-            osc.frequency.value = voice.frequency;
-            level.gain.value = voice.gain;
-            osc.connect(level);
-            panned(ctx, level, voice.pan).connect(soften);
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = frequency;
+            gain.gain.value = level;
+            osc.connect(gain);
+            panned(ctx, gain, pan).connect(humFilter);
             osc.start();
-            nodes.push(osc, level);
+            nodes.push(osc, gain);
         });
+        nodes.push(hum, humFilter, lfo(ctx, 0.07, 0.07, hum.gain));
 
-        // A slow swell, roughly one long breath every twelve seconds.
-        nodes.push(soften, breath, lfo(ctx, 0.083, 0.22, breath.gain));
-        output.gain.value = 0.42;
+        output.gain.value = 0.62;
         return { output, nodes };
     }
 };
@@ -346,6 +491,15 @@ export function SoundscapeProvider({ children, mood: moodProp = null, initialSou
 
     const toggleSound = useCallback(() => (isPlaying ? stop() : play()), [isPlaying, play, stop]);
 
+    // While a verse is read aloud, the sound steps back, then returns.
+    const ducked = useRef(false);
+    const duck = useCallback((on) => {
+        const master = masterRef.current;
+        ducked.current = Boolean(on);
+        if (!master || !isPlaying) return;
+        master.gain.setTargetAtTime(on ? volume * 0.3 : volume, master.context.currentTime, on ? 0.25 : 0.8);
+    }, [isPlaying, volume]);
+
     const setSoundMode = useCallback((mode) => setSoundModeState(mode), []);
 
     const setVolume = useCallback((value) => {
@@ -361,7 +515,7 @@ export function SoundscapeProvider({ children, mood: moodProp = null, initialSou
 
     useEffect(() => {
         const master = masterRef.current;
-        if (master && isPlaying) master.gain.setTargetAtTime(volume, master.context.currentTime, 0.15);
+        if (master && isPlaying) master.gain.setTargetAtTime(ducked.current ? volume * 0.3 : volume, master.context.currentTime, 0.15);
     }, [volume, isPlaying]);
 
     useEffect(() => () => {
@@ -380,8 +534,9 @@ export function SoundscapeProvider({ children, mood: moodProp = null, initialSou
         toggleSound,
         setSoundMode,
         setVolume,
-        setMood
-    }), [isPlaying, soundMode, activeSound, volume, play, stop, toggleSound, setSoundMode, setVolume]);
+        setMood,
+        duck
+    }), [isPlaying, soundMode, activeSound, volume, play, stop, toggleSound, setSoundMode, setVolume, duck]);
 
     return <SoundContext.Provider value={value}>{children}</SoundContext.Provider>;
 }

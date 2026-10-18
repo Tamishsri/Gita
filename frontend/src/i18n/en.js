@@ -101,6 +101,14 @@ const en = {
     'verse.sitWith': 'Sit with this',
     'verse.notePlaceholder': 'What does this verse stir in you?',
     'verse.saveReflection': 'Keep reflection',
+    'daily.forYou': 'Chosen for you today',
+    'daily.for.feeling': 'Because {feeling} has been visiting you this week.',
+    'daily.for.light': 'To keep this good season with you.',
+    'daily.for.care': 'For you, as you look after someone you love.',
+    'daily.for.topic': 'Because {topic} has been on your mind.',
+    'daily.for.path': 'A verse of {path} — the kind that helps you.',
+    'daily.shared': 'Today’s verse for everyone',
+    'daily.backToYours': 'Back to your verse',
     'daily.title': 'Today’s verse',
 
     // ── Toasts ────────────────────────────────────────────────────────────
@@ -624,13 +632,13 @@ const en = {
     'sound.auto.desc': 'Follows how you feel',
     'sound.ocean.label': 'Ocean',
     'sound.ocean.short': 'Ocean',
-    'sound.ocean.desc': 'Slow surf on a far shore',
+    'sound.ocean.desc': 'Waves on a far shore, each in its own time',
     'sound.rain.label': 'Rain',
     'sound.rain.short': 'Rain',
-    'sound.rain.desc': 'Soft rain on leaves',
-    'sound.om.label': 'Om',
-    'sound.om.short': 'Om',
-    'sound.om.desc': 'A low, steady drone',
+    'sound.rain.desc': 'Soft rain, drops landing on leaves',
+    'sound.om.label': 'Tanpura',
+    'sound.om.short': 'Tanpura',
+    'sound.om.desc': 'Four plucked strings, with Om beneath',
 
     // ── Voice ─────────────────────────────────────────────────────────────
     'voice.speak': 'Speak instead',

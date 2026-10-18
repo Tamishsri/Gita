@@ -11,6 +11,8 @@ Sakha is a quiet place to bring what you feel to the Bhagavad Gita and hear what
 - **Remembers the conversation.** It notices when things are easing, growing heavier or still there, and never gives the same counsel twice in one conversation.
 - **Becomes yours.** Sakha learns, on your device, which of the Gita's four paths helps you — action, understanding, devotion or stillness — from what you choose and from "This helped" / "Not quite". It speaks the way you asked (gently, plainly, or explaining more), and remembers what you told it about your life ("I'm preparing for exams", "I look after my mother"), so "I'm so tired" is answered as part of that life. "Not quite" answers again: gentler, more practical, deeper, or asks what it is really about.
 - **Learns you, the way a friend does.** When Sakha can't tell what you mean ("meh") and you clarify, it learns your word for that feeling — next time, "meh" is understood, and it says so. It notices when you tend to come and how those times feel ("Evenings have been heavy lately"), remembers an exam or interview you mentioned and asks afterwards how it went, and shows all of it as a plain portrait you can read and erase.
+- **A verse chosen for you, every day.** Once Sakha knows you a little, the verse of the day is yours — chosen on your device from what has been on your heart this week, with a line saying why ("Because worry has been visiting you this week"). It is the same all day and different most days.
+- **Recited, not read out.** "Listen" sounds a soft bell, recites the śloka in a Hindi voice with rests at each half-line, then the meaning phrase by phrase with a reader's breaths, using the most natural voice the device has; the ambient sound dips while it speaks. The soundscapes are modelled on the real thing: waves that arrive in their own time, rain with drops landing on leaves, and a tanpura plucked by a (simulated) human hand.
 - **Never says the same thing twice in a conversation.** Openings, steps and situations are remembered within each conversation; a carer who writes again is met as themselves, someone venting keeps being listened to, and a replaced step suits the feeling — gentle for grief, practical for pressure.
 - **Answers you by name.** Sakha asks what to call you, remembers what you've shared before (as labels, never your words), and follows up: *"Last time, you told me about your studies. How is it now?"*
 - **Private by design.** Conversations are understood **in the browser itself** — your words are never sent to any server. Everything you keep lives on your device and can be released at any time.
@@ -42,7 +44,7 @@ Open http://localhost:5173.
 ## Checks
 
 ```bash
-cd Backend && npm test          # 106 tests: safety, graded understanding, personalisation, many-person conversations, API
+cd Backend && npm test          # 107 tests: safety, graded understanding, personalisation, many-person conversations, API
 cd frontend && npm run lint     # ESLint
 cd frontend && npm run check:i18n   # every interface key exists in English and Hindi
 cd frontend && npm run build    # production build with the offline service worker

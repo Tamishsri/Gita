@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useVoiceReader } from './useVoiceReader';
 import {
-    copyText, openWisdomCard, saveLine, speechTextFor, verseKey, verseMeaning, verseRef, verseShareText
+    copyText, openWisdomCard, saveLine, speechSectionsFor, verseKey, verseMeaning, verseRef, verseShareText
 } from '../lib/verse';
 import { startJourney } from '../lib/journey';
 import { recordPath } from '../lib/path';
@@ -45,7 +45,7 @@ export function useVerseActions(language = 'en') {
         if (speakingId === id) {
             stop();
         } else {
-            speak(id, speechTextFor(verse, language), language);
+            speak(id, speechSectionsFor(verse, language), language);
         }
     }, [language, speak, speakingId, stop]);
 

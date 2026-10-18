@@ -938,3 +938,26 @@
     color: var(--text-2);
     text-align: center;
 }
+
+/* The verse chosen for one person, and why */
+.daily-verse__why {
+    max-width: 40ch;
+    margin: calc(-1 * var(--space-1)) auto var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-md);
+    line-height: 1.45;
+    color: var(--text-2);
+    text-align: center;
+}
+
+.daily-verse--mine {
+    border-color: rgba(var(--gold-rgb), 0.55);
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(var(--gold-rgb), 0.18) inset;
+}
+
+.daily-verse__switch {
+    justify-self: center;
+    margin: var(--space-2) auto 0;
+    display: block;
+}
