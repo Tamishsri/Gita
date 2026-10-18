@@ -290,8 +290,10 @@
     transition: border-color var(--dur-base) ease, background-color var(--dur-base) ease;
 }
 
-.quality:hover {
-    border-color: rgba(var(--gold-rgb), 0.35);
+@media (hover: hover) {
+    .quality:hover {
+        border-color: rgba(var(--gold-rgb), 0.35);
+    }
 }
 
 .quality[aria-pressed="true"] {
@@ -489,8 +491,10 @@
     transition: border-color var(--dur-base) ease;
 }
 
-.starter:hover {
-    border-color: rgba(var(--gold-rgb), 0.35);
+@media (hover: hover) {
+    .starter:hover {
+        border-color: rgba(var(--gold-rgb), 0.35);
+    }
 }
 
 .starter__ref {
@@ -564,8 +568,10 @@
     vertical-align: baseline;
 }
 
-.svadhyaya__blank:hover {
-    background: var(--gold-wash);
+@media (hover: hover) {
+    .svadhyaya__blank:hover {
+        background: var(--gold-wash);
+    }
 }
 
 .svadhyaya__meaning {
@@ -611,8 +617,10 @@
     transition: border-color var(--dur-base) ease;
 }
 
-.practice-item:hover {
-    border-color: rgba(var(--gold-rgb), 0.35);
+@media (hover: hover) {
+    .practice-item:hover {
+        border-color: rgba(var(--gold-rgb), 0.35);
+    }
 }
 
 .practice-item.is-suggested {

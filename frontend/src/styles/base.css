@@ -36,6 +36,9 @@ body {
     overscroll-behavior-y: none;
 }
 
+/* While a sheet is open the page behind cannot scroll — on iOS too, which
+   only honours this on the root element. */
+html.is-scroll-locked,
 body.is-scroll-locked {
     overflow: hidden;
 }
@@ -89,8 +92,10 @@ a {
     text-underline-offset: 4px;
 }
 
-a:hover {
-    text-decoration-color: currentColor;
+@media (hover: hover) {
+    a:hover {
+        text-decoration-color: currentColor;
+    }
 }
 
 h1,
@@ -161,9 +166,11 @@ textarea:focus-visible {
     background-clip: padding-box;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(var(--hair-rgb), calc(0.22 * var(--hair-k)));
-    background-clip: padding-box;
+@media (hover: hover) {
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(var(--hair-rgb), calc(0.22 * var(--hair-k)));
+        background-clip: padding-box;
+    }
 }
 
 /* --------------------------------------------------------------------------

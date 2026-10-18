@@ -149,8 +149,10 @@
     transition: color var(--dur-fast) ease;
 }
 
-.header-nav__link:hover {
-    color: var(--text-1);
+@media (hover: hover) {
+    .header-nav__link:hover {
+        color: var(--text-1);
+    }
 }
 
 .header-nav__link[aria-current="true"] {
@@ -187,9 +189,11 @@
     transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
-.search-trigger:hover {
-    color: var(--text-2);
-    border-color: var(--line-strong);
+@media (hover: hover) {
+    .search-trigger:hover {
+        color: var(--text-2);
+        border-color: var(--line-strong);
+    }
 }
 
 .install-chip {
@@ -205,8 +209,10 @@
     border: 1px solid var(--line-gold);
 }
 
-.install-chip:hover {
-    background: var(--gold-wash);
+@media (hover: hover) {
+    .install-chip:hover {
+        background: var(--gold-wash);
+    }
 }
 
 /* ---------- Mobile tab bar ---------- */
@@ -414,15 +420,26 @@
     transition: opacity var(--dur-base) ease, transform var(--dur-slow) var(--ease-out);
 }
 
-.mood-word:hover,
 .mood-word:focus-visible {
     color: rgb(var(--tile-rgb, var(--gold-rgb)));
 }
 
-.mood-word:hover::after,
+@media (hover: hover) {
+    .mood-word:hover {
+        color: rgb(var(--tile-rgb, var(--gold-rgb)));
+    }
+}
+
 .mood-word:focus-visible::after {
     opacity: 0.85;
     transform: scaleX(1);
+}
+
+@media (hover: hover) {
+    .mood-word:hover::after {
+        opacity: 0.85;
+        transform: scaleX(1);
+    }
 }
 
 .mood-word small {
@@ -580,8 +597,10 @@
     transition: border-color var(--dur-base) ease;
 }
 
-.invitation:hover {
-    border-color: rgba(var(--gold-rgb), 0.35);
+@media (hover: hover) {
+    .invitation:hover {
+        border-color: rgba(var(--gold-rgb), 0.35);
+    }
 }
 
 .invitation__glyph {
@@ -852,8 +871,10 @@
     transition: color var(--dur-fast) ease;
 }
 
-.sound-dock__toggle:hover {
-    color: var(--text-1);
+@media (hover: hover) {
+    .sound-dock__toggle:hover {
+        color: var(--text-1);
+    }
 }
 
 .sound-dock__orb {
@@ -944,8 +965,10 @@
     transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.sound-mode:hover {
-    border-color: var(--line-strong);
+@media (hover: hover) {
+    .sound-mode:hover {
+        border-color: var(--line-strong);
+    }
 }
 
 .sound-mode[aria-pressed="true"] {
@@ -1177,15 +1200,25 @@
     transition: transform var(--dur-base) var(--ease-out);
 }
 
-.mood-word:hover::before,
 .mood-word:focus-visible::before {
     transform: scale(1.35);
 }
 
-/* On paper the soft mood hues need more ink to be read. */
-:root[data-theme="dawn"] .mood-word:hover,
+@media (hover: hover) {
+    .mood-word:hover::before {
+        transform: scale(1.35);
+    }
+}
+
 :root[data-theme="dawn"] .mood-word:focus-visible {
     color: color-mix(in srgb, rgb(var(--tile-rgb, var(--gold-rgb))) 55%, var(--text-1));
+}
+
+@media (hover: hover) {
+    /* On paper the soft mood hues need more ink to be read. */
+:root[data-theme="dawn"] .mood-word:hover {
+        color: color-mix(in srgb, rgb(var(--tile-rgb, var(--gold-rgb))) 55%, var(--text-1));
+    }
 }
 
 :root[data-theme="dawn"] .mood-word::before {
@@ -1210,9 +1243,11 @@
     transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease;
 }
 
-.name-ask__open:hover {
-    color: var(--gold-300);
-    border-color: var(--line-gold);
+@media (hover: hover) {
+    .name-ask__open:hover {
+        color: var(--gold-300);
+        border-color: var(--line-gold);
+    }
 }
 
 .name-ask {
@@ -1271,8 +1306,10 @@
     transition: transform var(--dur-base) var(--ease-out);
 }
 
-.brand:hover .brand__mark {
-    transform: translateY(-1px) rotate(-4deg);
+@media (hover: hover) {
+    .brand:hover .brand__mark {
+        transform: translateY(-1px) rotate(-4deg);
+    }
 }
 
 .home-links {
@@ -1342,21 +1379,27 @@
     transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
-.followup__choice:hover {
-    border-color: var(--line-gold);
-    background: var(--gold-wash);
+@media (hover: hover) {
+    .followup__choice:hover {
+        border-color: var(--line-gold);
+        background: var(--gold-wash);
+    }
 }
 
-.followup__choice.is-lighter:hover {
-    color: var(--sage);
-    border-color: color-mix(in srgb, var(--sage) 45%, transparent);
-    background: color-mix(in srgb, var(--sage) 10%, transparent);
+@media (hover: hover) {
+    .followup__choice.is-lighter:hover {
+        color: var(--sage);
+        border-color: color-mix(in srgb, var(--sage) 45%, transparent);
+        background: color-mix(in srgb, var(--sage) 10%, transparent);
+    }
 }
 
-.followup__choice.is-harder:hover {
-    color: var(--kumkum-text);
-    border-color: color-mix(in srgb, var(--kumkum) 40%, transparent);
-    background: color-mix(in srgb, var(--kumkum) 8%, transparent);
+@media (hover: hover) {
+    .followup__choice.is-harder:hover {
+        color: var(--kumkum-text);
+        border-color: color-mix(in srgb, var(--kumkum) 40%, transparent);
+        background: color-mix(in srgb, var(--kumkum) 8%, transparent);
+    }
 }
 
 .followup__ask {

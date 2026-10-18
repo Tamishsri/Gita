@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useDragControls, useReducedMotion } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -12,6 +12,9 @@ import { useI18n } from '../../i18n';
 // transformed ancestors can never trap it; registered as a layer so Escape
 // closes the top-most one and the page behind becomes inert. Focus moves in
 // on open and returns where it was on close.
+
+// On phones the header, not just the little grip, can be pulled down to close.
+const SheetDragContext = createContext(null);
 
 const DISMISS_DISTANCE = 110;
 const DISMISS_VELOCITY = 650;
@@ -63,6 +66,13 @@ function Sheet({
             transition: { duration: reduceMotion ? 0 : 0.38, ease: [0.22, 1, 0.36, 1] }
         };
 
+    // Drag starts from the grip or the header — never from its buttons or fields.
+    const startDrag = (event) => {
+        if (!isMobile) return;
+        if (event.target instanceof Element && event.target.closest('button, a, input, textarea, select, [role="button"], [role="switch"]')) return;
+        dragControls.start(event);
+    };
+
     const handleDragEnd = (_, info) => {
         if (info.offset.y > DISMISS_DISTANCE || info.velocity.y > DISMISS_VELOCITY) {
             haptic('soft');
@@ -104,7 +114,9 @@ function Sheet({
                                 <span />
                             </div>
                         )}
-                        {children}
+                        <SheetDragContext.Provider value={isMobile ? startDrag : null}>
+                            {children}
+                        </SheetDragContext.Provider>
                     </motion.div>
                 </motion.div>
             )}
@@ -116,8 +128,9 @@ function Sheet({
 export function SheetHeader({ icon: Icon, eyebrow, title, subtitle, onClose, actions, leading, titleId }) {
     const { t } = useI18n();
     const fallbackId = useId();
+    const startDrag = useContext(SheetDragContext);
     return (
-        <header className="sheet__header">
+        <header className={`sheet__header${startDrag ? ' sheet__header--draggable' : ''}`} onPointerDown={startDrag || undefined}>
             {leading}
             {!leading && Icon && (
                 <span className="sheet__icon" aria-hidden="true">

@@ -87,9 +87,11 @@
     transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease, transform 90ms ease;
 }
 
-.lock__key:hover:not(:disabled) {
-    border-color: var(--line-gold);
-    background: var(--gold-wash);
+@media (hover: hover) {
+    .lock__key:hover:not(:disabled) {
+        border-color: var(--line-gold);
+        background: var(--gold-wash);
+    }
 }
 
 .lock__key:active:not(:disabled) {
@@ -155,9 +157,14 @@
     transition: box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease;
 }
 
-.you-chip:hover,
 .you-chip.is-on {
     box-shadow: var(--glow-gold);
+}
+
+@media (hover: hover) {
+    .you-chip:hover {
+        box-shadow: var(--glow-gold);
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -224,8 +231,10 @@
     transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.voice-option:hover {
-    border-color: var(--line-strong);
+@media (hover: hover) {
+    .voice-option:hover {
+        border-color: var(--line-strong);
+    }
 }
 
 .voice-option[aria-checked="true"] {
@@ -340,8 +349,10 @@
     transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.path-choice:hover {
-    border-color: rgba(var(--petal-rgb), 0.45);
+@media (hover: hover) {
+    .path-choice:hover {
+        border-color: rgba(var(--petal-rgb), 0.45);
+    }
 }
 
 .path-choice[aria-checked="true"] {
@@ -473,9 +484,11 @@
     transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.private-toggle:hover {
-    color: var(--text-2);
-    border-color: var(--line-gold);
+@media (hover: hover) {
+    .private-toggle:hover {
+        color: var(--text-2);
+        border-color: var(--line-gold);
+    }
 }
 
 .private-toggle.is-on {
@@ -520,10 +533,12 @@
     transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.feedback__btn:hover:not(:disabled) {
-    color: var(--text-1);
-    border-color: var(--line-gold);
-    background: var(--gold-wash);
+@media (hover: hover) {
+    .feedback__btn:hover:not(:disabled) {
+        color: var(--text-1);
+        border-color: var(--line-gold);
+        background: var(--gold-wash);
+    }
 }
 
 .feedback__btn:first-of-type svg {
@@ -815,10 +830,12 @@
     animation: glint-catch 7s ease-in-out infinite;
 }
 
-.brand:hover .sakha-mark__feather {
-    transform-box: view-box;
-    transform-origin: 50px 92px;
-    animation: feather-sway 2.6s var(--ease-in-out) 1;
+@media (hover: hover) {
+    .brand:hover .sakha-mark__feather {
+        transform-box: view-box;
+        transform-origin: 50px 92px;
+        animation: feather-sway 2.6s var(--ease-in-out) 1;
+    }
 }
 
 @keyframes feather-sway {
@@ -840,9 +857,15 @@
 @media (prefers-reduced-motion: reduce) {
     .sakha-mark--alive .sakha-mark__feather,
     .sakha-mark--alive .sakha-mark__eye,
-    .sakha-mark--alive .sakha-mark__glint,
-    .brand:hover .sakha-mark__feather {
+    .sakha-mark--alive .sakha-mark__glint {
         animation: none;
+    }
+
+    @media (hover: hover) {
+        .brand:hover .sakha-mark__feather {
+            animation: none;
+    
+        }
     }
 }
 
@@ -915,9 +938,11 @@
     transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.chip__remove:hover {
-    color: var(--text-1);
-    background: var(--gold-wash);
+@media (hover: hover) {
+    .chip__remove:hover {
+        color: var(--text-1);
+        background: var(--gold-wash);
+    }
 }
 
 @media (pointer: coarse) {
@@ -960,4 +985,56 @@
     justify-self: center;
     margin: var(--space-2) auto 0;
     display: block;
+}
+
+/* ==========================================================================
+   Touch: taps that feel immediate, drags that go where the finger means.
+   ========================================================================== */
+
+/* No double-tap zoom delay on anything that can be tapped. */
+a,
+label,
+summary,
+select,
+[role="button"],
+[role="radio"],
+[role="switch"],
+[role="tab"],
+.chip,
+.begin-chip {
+    touch-action: manipulation;
+}
+
+/* A drag that starts on the dim backdrop never scrolls the page behind;
+   inside the sheet, its own scroll area still scrolls freely. */
+.sheet-overlay,
+.palette-overlay {
+    touch-action: none;
+}
+
+.sheet__header--draggable {
+    touch-action: none;
+    cursor: grab;
+}
+
+.sheet__header--draggable:active {
+    cursor: grabbing;
+}
+
+/* Lists and panels scroll on their own, without dragging the page along. */
+.sheet__body,
+.palette__list,
+.conversation {
+    overscroll-behavior: contain;
+}
+
+/* Where there is no hover, a tap shows itself as a press instead. */
+@media (hover: none) {
+    button:not(:disabled):active,
+    [role="button"]:active,
+    [role="radio"]:active,
+    .chip:active {
+        opacity: 0.8;
+        transition: opacity 60ms ease;
+    }
 }

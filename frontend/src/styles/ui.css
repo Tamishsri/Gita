@@ -122,8 +122,10 @@
     background: var(--accent-fill);
 }
 
-.btn--gold:hover:not(:disabled) {
-    background: var(--accent-fill-hover);
+@media (hover: hover) {
+    .btn--gold:hover:not(:disabled) {
+        background: var(--accent-fill-hover);
+    }
 }
 
 .btn--outline {
@@ -132,9 +134,11 @@
     background: transparent;
 }
 
-.btn--outline:hover:not(:disabled) {
-    border-color: rgba(var(--gold-rgb), 0.5);
-    color: var(--gold-200);
+@media (hover: hover) {
+    .btn--outline:hover:not(:disabled) {
+        border-color: rgba(var(--gold-rgb), 0.5);
+        color: var(--gold-200);
+    }
 }
 
 .btn--outline.is-on {
@@ -148,9 +152,11 @@
     background: transparent;
 }
 
-.btn--ghost:hover:not(:disabled) {
-    color: var(--text-1);
-    background: rgba(var(--lift-rgb), calc(0.035 * var(--lift-k)));
+@media (hover: hover) {
+    .btn--ghost:hover:not(:disabled) {
+        color: var(--text-1);
+        background: rgba(var(--lift-rgb), calc(0.035 * var(--lift-k)));
+    }
 }
 
 .btn--soft {
@@ -159,9 +165,11 @@
     border-color: var(--line);
 }
 
-.btn--soft:hover:not(:disabled) {
-    border-color: var(--line-strong);
-    background: rgba(var(--lift-rgb), calc(0.06 * var(--lift-k)));
+@media (hover: hover) {
+    .btn--soft:hover:not(:disabled) {
+        border-color: var(--line-strong);
+        background: rgba(var(--lift-rgb), calc(0.06 * var(--lift-k)));
+    }
 }
 
 .btn--danger {
@@ -169,8 +177,10 @@
     background: #a94b36;
 }
 
-.btn--danger:hover:not(:disabled) {
-    background: #b9563f;
+@media (hover: hover) {
+    .btn--danger:hover:not(:disabled) {
+        background: #b9563f;
+    }
 }
 
 /* A quiet text action, like a word underlined in pencil. */
@@ -190,10 +200,12 @@
     transition: color var(--dur-fast) ease, text-decoration-color var(--dur-fast) ease;
 }
 
-.btn--link:hover,
-.text-action:hover {
-    color: var(--gold-200);
-    text-decoration-color: rgba(var(--gold-rgb), 0.6);
+@media (hover: hover) {
+    .btn--link:hover,
+    .text-action:hover {
+        color: var(--gold-200);
+        text-decoration-color: rgba(var(--gold-rgb), 0.6);
+    }
 }
 
 .text-action {
@@ -233,9 +245,11 @@
     transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease, border-color var(--dur-fast) ease;
 }
 
-.icon-btn:hover:not(:disabled) {
-    color: var(--gold-200);
-    background: rgba(var(--lift-rgb), calc(0.045 * var(--lift-k)));
+@media (hover: hover) {
+    .icon-btn:hover:not(:disabled) {
+        color: var(--gold-200);
+        background: rgba(var(--lift-rgb), calc(0.045 * var(--lift-k)));
+    }
 }
 
 .icon-btn:active:not(:disabled) {
@@ -313,9 +327,11 @@ button.chip {
     transition: background-color var(--dur-fast) ease, border-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
-button.chip:hover {
-    color: var(--text-1);
-    border-color: rgba(var(--gold-rgb), 0.45);
+@media (hover: hover) {
+    button.chip:hover {
+        color: var(--text-1);
+        border-color: rgba(var(--gold-rgb), 0.45);
+    }
 }
 
 button.chip.is-active,
@@ -366,8 +382,10 @@ button.chip[aria-pressed="true"] {
     transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
-.segmented button:hover {
-    color: var(--text-1);
+@media (hover: hover) {
+    .segmented button:hover {
+        color: var(--text-1);
+    }
 }
 
 .segmented button[aria-pressed="true"] {

@@ -54,6 +54,7 @@ function setBackgroundInert(inert) {
 function lockBodyScroll() {
     lockCount += 1;
     if (lockCount === 1) {
+        document.documentElement.classList.add('is-scroll-locked');
         document.body.classList.add('is-scroll-locked');
         setBackgroundInert(true);
     }
@@ -62,6 +63,7 @@ function lockBodyScroll() {
 function unlockBodyScroll() {
     lockCount = Math.max(0, lockCount - 1);
     if (lockCount === 0) {
+        document.documentElement.classList.remove('is-scroll-locked');
         document.body.classList.remove('is-scroll-locked');
         setBackgroundInert(false);
     }

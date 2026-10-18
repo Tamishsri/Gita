@@ -268,8 +268,10 @@
     transition: border-color var(--dur-base) ease, background-color var(--dur-base) ease;
 }
 
-.intent-card:hover {
-    border-color: rgba(var(--gold-rgb), 0.38);
+@media (hover: hover) {
+    .intent-card:hover {
+        border-color: rgba(var(--gold-rgb), 0.38);
+    }
 }
 
 .intent-card.is-selected {
@@ -610,9 +612,11 @@
     color: var(--text-2);
 }
 
-.composer__icon:hover:not(:disabled) {
-    color: var(--gold-200);
-    background: rgba(var(--lift-rgb), calc(0.05 * var(--lift-k)));
+@media (hover: hover) {
+    .composer__icon:hover:not(:disabled) {
+        color: var(--gold-200);
+        background: rgba(var(--lift-rgb), calc(0.05 * var(--lift-k)));
+    }
 }
 
 .composer__icon.is-listening {
@@ -766,8 +770,10 @@
     text-underline-offset: 4px;
 }
 
-.verse-card__iast-toggle:hover {
-    color: var(--text-2);
+@media (hover: hover) {
+    .verse-card__iast-toggle:hover {
+        color: var(--text-2);
+    }
 }
 
 .verse-card__iast {
@@ -860,10 +866,16 @@
     text-align: left;
 }
 
-.more__menu button:hover,
 .more__menu button:focus-visible {
     background: rgba(var(--lift-rgb), calc(0.05 * var(--lift-k)));
     color: var(--gold-200);
+}
+
+@media (hover: hover) {
+    .more__menu button:hover {
+        background: rgba(var(--lift-rgb), calc(0.05 * var(--lift-k)));
+        color: var(--gold-200);
+    }
 }
 
 .more__menu svg {
@@ -1417,9 +1429,11 @@
     display: none;
 }
 
-.verse-full > summary:hover {
-    color: var(--gold-300);
-    border-color: var(--line-gold);
+@media (hover: hover) {
+    .verse-full > summary:hover {
+        color: var(--gold-300);
+        border-color: var(--line-gold);
+    }
 }
 
 .verse-full[open] > summary {
@@ -1486,11 +1500,18 @@
     transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
 
-.begin-chip:hover,
 .begin-chip:focus-visible {
     color: var(--gold-200);
     border-color: var(--line-gold);
     background: var(--gold-wash);
+}
+
+@media (hover: hover) {
+    .begin-chip:hover {
+        color: var(--gold-200);
+        border-color: var(--line-gold);
+        background: var(--gold-wash);
+    }
 }
 
 /* Answers to "which is closest?" — one tap, sent as they are */
