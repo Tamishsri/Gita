@@ -8,12 +8,15 @@ const TEAL_PATH = dropPath(TEAL);
 /**
  * The Sakha mark — a peacock feather's eye that is also a flame.
  * `tile` sets it on a small dawn-coloured square, as on the app icon.
+ * `alive` lets it breathe: the feather sways from its quill, the eye
+ * softens and returns, and now and then the light catches its glint
+ * (stilled for anyone who prefers reduced motion).
  */
-function SakhaMark({ size = 32, tile = false, className = '', title }) {
+function SakhaMark({ size = 32, tile = false, alive = false, className = '', title }) {
     const id = useId().replace(/:/g, '');
     return (
         <svg
-            className={`sakha-mark${tile ? ' sakha-mark--tile' : ''} ${className}`}
+            className={`sakha-mark${tile ? ' sakha-mark--tile' : ''}${alive && !tile ? ' sakha-mark--alive' : ''} ${className}`}
             width={size}
             height={size}
             viewBox={tile ? '0 0 100 100' : '14 8 72 90'}
@@ -48,12 +51,14 @@ function SakhaMark({ size = 32, tile = false, className = '', title }) {
             </defs>
             {tile && <rect width="100" height="100" rx="24" fill={`url(#${id}-dawn)`} />}
             <g transform={tile ? 'translate(50 50) scale(0.8) translate(-50 -53.5)' : undefined}>
-                <path d={QUILL_PATH} fill="none" stroke={C.goldDeep} strokeWidth={MARK_QUILL.width} strokeLinecap="round" />
-                <path d={GOLD_PATH} fill={`url(#${id}-gold)`} />
-                <path d={TEAL_PATH} fill={`url(#${id}-teal)`} stroke={C.seam} strokeWidth="1.3" />
-                <ellipse cx={MARK_RING.cx} cy={MARK_RING.cy} rx={MARK_RING.rx} ry={MARK_RING.ry} fill={`url(#${id}-bronze)`} />
-                <ellipse cx={MARK_EYE.cx} cy={MARK_EYE.cy} rx={MARK_EYE.rx} ry={MARK_EYE.ry} fill={`url(#${id}-blue)`} />
-                <circle cx={MARK_GLINT.cx} cy={MARK_GLINT.cy} r={MARK_GLINT.r} fill={C.glint} />
+                <g className="sakha-mark__feather">
+                    <path d={QUILL_PATH} fill="none" stroke={C.goldDeep} strokeWidth={MARK_QUILL.width} strokeLinecap="round" />
+                    <path d={GOLD_PATH} fill={`url(#${id}-gold)`} />
+                    <path d={TEAL_PATH} fill={`url(#${id}-teal)`} stroke={C.seam} strokeWidth="1.3" />
+                    <ellipse cx={MARK_RING.cx} cy={MARK_RING.cy} rx={MARK_RING.rx} ry={MARK_RING.ry} fill={`url(#${id}-bronze)`} />
+                    <ellipse className="sakha-mark__eye" cx={MARK_EYE.cx} cy={MARK_EYE.cy} rx={MARK_EYE.rx} ry={MARK_EYE.ry} fill={`url(#${id}-blue)`} />
+                    <circle className="sakha-mark__glint" cx={MARK_GLINT.cx} cy={MARK_GLINT.cy} r={MARK_GLINT.r} fill={C.glint} />
+                </g>
             </g>
         </svg>
     );

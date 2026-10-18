@@ -29,9 +29,12 @@ function FollowUp({ name, onAsk }) {
     if (!item) return null;
 
     const topic = item.topic ? t(`followup.topic.${item.topic}`) : null;
-    const about = topic
-        ? t('followup.about', { topic })
-        : t('followup.carrying', { feeling: t(`feeling.${item.emotion}`).toLowerCase() });
+    const event = item.event || null;
+    const about = event
+        ? t(`followup.event.${event}`)
+        : topic
+            ? t('followup.about', { topic })
+            : t('followup.carrying', { feeling: t(`feeling.${item.emotion}`).toLowerCase() });
 
     const answer = (value) => {
         answered.current = true;
@@ -41,8 +44,10 @@ function FollowUp({ name, onAsk }) {
         if (value === 'lighter') {
             celebrate('gentle');
             setTimeout(() => setItem(null), 5200);
+        } else if (event && value === 'same') {
+            setTimeout(() => setItem(null), 6000);
         } else {
-            setText(topic ? t('followup.prefill', { topic }) : t('followup.prefillFeeling'));
+            setText(event ? t(`followup.event.${event}.prefill`) : topic ? t('followup.prefill', { topic }) : t('followup.prefillFeeling'));
         }
     };
 
@@ -80,21 +85,23 @@ function FollowUp({ name, onAsk }) {
                 {stage === 'ask' && (
                     <>
                         <p className="followup__line">
-                            {name ? `${name}, ` : ''}{name ? about.charAt(0).toLowerCase() + about.slice(1) : about} {t('followup.howNow')}
+                            {name ? `${name}, ` : ''}{name ? about.charAt(0).toLowerCase() + about.slice(1) : about}{event ? '' : ` ${t('followup.howNow')}`}
                         </p>
-                        <div className="followup__choices" role="group" aria-label={t('followup.howNow')}>
-                            <button type="button" className="followup__choice is-lighter" onClick={() => answer('lighter')}>{t('followup.lighter')}</button>
-                            <button type="button" className="followup__choice" onClick={() => answer('same')}>{t('followup.same')}</button>
-                            <button type="button" className="followup__choice is-harder" onClick={() => answer('harder')}>{t('followup.harder')}</button>
+                        <div className="followup__choices" role="group" aria-label={event ? about : t('followup.howNow')}>
+                            <button type="button" className="followup__choice is-lighter" onClick={() => answer('lighter')}>{t(event ? 'followup.event.well' : 'followup.lighter')}</button>
+                            <button type="button" className="followup__choice" onClick={() => answer('same')}>{t(event ? 'followup.event.waiting' : 'followup.same')}</button>
+                            <button type="button" className="followup__choice is-harder" onClick={() => answer('harder')}>{t(event ? 'followup.event.notWell' : 'followup.harder')}</button>
                         </div>
                     </>
                 )}
 
-                {stage === 'lighter' && <p className="followup__line">{t('followup.gladLine')}</p>}
+                {stage === 'lighter' && <p className="followup__line">{t(event ? 'followup.event.gladLine' : 'followup.gladLine')}</p>}
 
-                {(stage === 'same' || stage === 'harder') && (
+                {event && stage === 'same' && <p className="followup__line">{t('followup.event.waitingLine')}</p>}
+
+                {((stage === 'same' && !event) || stage === 'harder') && (
                     <>
-                        <p className="followup__line">{t(stage === 'same' ? 'followup.sameLine' : 'followup.harderLine')}</p>
+                        <p className="followup__line">{t(stage === 'same' ? 'followup.sameLine' : event ? 'followup.event.harderLine' : 'followup.harderLine')}</p>
                         <form className="ask followup__ask" onSubmit={send}>
                             <textarea
                                 className="ask__input"

@@ -6,7 +6,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'src');
-const NAMESPACES = /^(about|breaths|card|ceremony|chapters|common|daily|dhyana|guidance|guna|header|home|install|intent|japa|journal|journey|keys|meta|mood|nav|offline|palette|path|practice|practiceHub|sanctuary|sandhya|sankalpa|saved|search|settings|sound|support|svadhyaya|time|toast|update|verse|voice)\./;
+const NAMESPACES = /^(about|breaths|card|ceremony|chapters|common|daily|dhyana|guidance|guna|header|home|install|intent|japa|journal|journey|keys|meta|mood|nav|offline|palette|path|practice|practiceHub|sanctuary|sandhya|sankalpa|saved|search|settings|sound|support|svadhyaya|time|toast|update|verse|voice|you|lock|feedback|path4|followup|welcome|letters|topic|feeling)\./;
 
 function walk(dir) {
     return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {

@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Check, Download, EyeOff, KeyRound, Lock, ShieldCheck } from 'lucide-react';
+import { Check, Download, EyeOff, KeyRound, Lock, ShieldCheck, X } from 'lucide-react';
 import Sheet, { SheetHeader } from './ui/Sheet';
 import SakhaMark from './ui/SakhaMark';
 import PathLotus, { PATH_COLOURS } from './ui/PathLotus';
 import { Group, Row, Switch } from './Settings';
 import { usePreferences } from '../contexts/PreferencesContext';
 import {
-    CONTEXT_LIMIT, PATH_IDS, PROFILE_EVENT, VOICES, choosePath, forgetConversations, leaningPath, readProfile, summariseMemory, updateProfile
+    CONTEXT_LIMIT, PATH_IDS, PROFILE_EVENT, VOICES, choosePath, forgetConversations, forgetWord, leaningPath, learnedWords, portraitOf,
+    readProfile, summariseMemory, updateProfile
 } from '../lib/person';
 import { PATH_EVENT } from '../lib/path';
 import { LOCK_EVENT, clearPasscode, isLockEnabled, isValidPasscode, lockSupported, setPasscode, verifyPasscode } from '../lib/lock';
@@ -119,7 +120,22 @@ function YouPanel({ isOpen, onClose, onLockNow }) {
     const memory = useMemo(() => summariseMemory(settings), [settings, tick, isOpen]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const storage = useMemo(() => (isOpen ? describeStorage() : null), [isOpen, tick]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const portrait = useMemo(() => portraitOf(settings), [settings, tick, isOpen, profile]);
+    const words = learnedWords(profile);
     const leaning = leaningPath(profile);
+
+    // A portrait line, with its labels said in the reader's language.
+    const portraitLine = ({ key, vars = {} }) => {
+        const line = t(key, {
+            ...vars,
+            a: vars.a ? t(`topic.${vars.a}`).toLowerCase() : undefined,
+            b: vars.b ? t(`topic.${vars.b}`).toLowerCase() : undefined,
+            feeling: vars.feeling ? t(`feeling.${vars.feeling}`).toLowerCase() : undefined,
+            path: vars.path ? t(`path4.${vars.path}.name`) : undefined
+        });
+        return line.charAt(0).toUpperCase() + line.slice(1);
+    };
     const chosen = profile.chosenPath;
     const noteChanged = note.trim() !== (profile.context || '').trim();
 
@@ -147,9 +163,19 @@ function YouPanel({ isOpen, onClose, onLockNow }) {
             <SheetHeader icon={ShieldCheck} eyebrow={t('you.eyebrow')} title={t('you.title')} subtitle={t('you.subtitle')} onClose={onClose} />
             <div className="sheet__body sheet__body--padded you">
                 <div className="you__hello">
-                    <SakhaMark size={52} />
+                    <SakhaMark size={52} alive />
                     <p>{settings.name ? t('you.helloNamed', { name: settings.name }) : t('you.hello')}</p>
                 </div>
+
+                <section className="portrait" aria-label={t('you.portrait.title')}>
+                    <h3 className="eyebrow">{t('you.portrait.title')}</h3>
+                    <ul className="portrait__lines">
+                        {portrait.lines.map((line) => (
+                            <li key={`${line.key}-${JSON.stringify(line.vars || {})}`}>{portraitLine(line)}</li>
+                        ))}
+                    </ul>
+                    <p className="portrait__note">{t('you.portrait.note')}</p>
+                </section>
 
                 <Group title={t('you.voice.title')}>
                     <div className="voice-options" role="radiogroup" aria-label={t('you.voice.title')}>
@@ -225,6 +251,26 @@ function YouPanel({ isOpen, onClose, onLockNow }) {
                 <Group title={t('path.memory')}>
                     <div className="memory">
                         <p className="path__note">{t('path.memoryNote')}</p>
+                        {words.length > 0 && (
+                            <div className="memory__group">
+                                <span className="memory__label">{t('you.words.title')}</span>
+                                <ul className="chip-row">
+                                    {words.map(([phrase, feeling]) => (
+                                        <li key={phrase} className="chip chip--word">
+                                            “{phrase}” <span className="faint">→ {t(`feeling.${feeling}`).toLowerCase()}</span>
+                                            <button
+                                                type="button"
+                                                className="chip__remove"
+                                                onClick={() => setProfile(forgetWord(phrase))}
+                                                aria-label={t('you.words.forget', { word: phrase })}
+                                            >
+                                                <X size={12} />
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                         {memory.topics.length || memory.feelings.length ? (
                             <>
                                 {memory.topics.length > 0 && (

@@ -21,10 +21,33 @@ export function readFollowups() {
     }
 }
 
+// Something they said was coming — an exam, an interview, a surgery — once
+// its day has passed: "How did your exam go?" (asked from the evening of
+// that day for up to six days; the label and the day are all that was kept).
+const EVENT_KINDS = ['exam', 'interview', 'surgery', 'results', 'presentation', 'appointment', 'wedding', 'hearing', 'match'];
+
+function pendingEvent(asks, now) {
+    const answered = readFollowups();
+    for (let i = asks.length - 1; i >= 0; i--) {
+        const event = asks[i].event;
+        if (!event || !EVENT_KINDS.includes(event.kind)) continue;
+        const due = Date.parse(event.dueAt);
+        if (!Number.isFinite(due)) continue;
+        const key = `event:${asks[i].session}:${event.kind}`;
+        if (answered[key]) continue;
+        if (now >= due + 2 * HOUR && now <= due + 6 * DAY) {
+            return { session: asks[i].session, key, event: event.kind, topic: (asks[i].topics || [])[0] || null, emotion: asks[i].emotion || null, at: asks[i].at };
+        }
+    }
+    return null;
+}
+
 /** The last conversation, if it is old enough to ask about and not yet asked. */
 export function pendingFollowUp(now = Date.now()) {
     const asks = readPath().filter((event) => event.kind === 'ask' && event.session);
     if (!asks.length) return null;
+    const upcoming = pendingEvent(asks, now);
+    if (upcoming) return upcoming;
     const latest = asks[asks.length - 1];
     const age = now - Date.parse(latest.at);
     if (age < 6 * HOUR || age > 10 * DAY) return null;
@@ -42,10 +65,10 @@ export function pendingFollowUp(now = Date.now()) {
 export function answerFollowUp(item, answer) {
     try {
         const all = readFollowups();
-        all[item.session] = { answer, at: new Date().toISOString() };
+        all[item.key || item.session] = { answer, at: new Date().toISOString() };
         localStorage.setItem(FOLLOWUPS_KEY, JSON.stringify(all));
     } catch {
         // the question will simply be asked again
     }
-    if (answer !== 'dismissed') recordPath('followup', { answer, topic: item.topic, emotion: item.emotion });
+    if (answer !== 'dismissed') recordPath('followup', { answer, topic: item.topic, emotion: item.emotion, ...(item.event ? { event: item.event } : {}) });
 }

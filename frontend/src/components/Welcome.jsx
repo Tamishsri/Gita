@@ -73,7 +73,7 @@ function Welcome({ onDone }) {
                 {step === 1 ? (
                     <motion.form key="hello" className="welcome__panel" onSubmit={next} exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}>
                         <motion.div className="welcome__mark" {...rise(0)}>
-                            <SakhaMark size={104} />
+                            <SakhaMark size={104} alive />
                         </motion.div>
                         <motion.span className="eyebrow" {...rise(0.25)}>{t('welcome.eyebrow')}</motion.span>
                         <motion.h1 className="welcome__title" {...rise(0.4)}>{t('welcome.title')}</motion.h1>

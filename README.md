@@ -10,6 +10,8 @@ Sakha is a quiet place to bring what you feel to the Bhagavad Gita and hear what
 - **Reads between the lines.** Before answering, Sakha reads each message the way a friend would: what follows "but" matters most; *"a bit nervous"* is not *"SO scared!!"*; *"I used to be anxious, but I'm better now"* is relief; *"my mom is depressed"* is answered for the one who cares for her; *"I just want to vent"* gets listening, not advice; *"how do I…"* leads with the step and *"why do I…"* with where the feeling comes from; *"a verse about patience"* gets one. Typos (*"lonley"*, *"anxous"*) and emoji are understood, and real words are never "corrected". When it can't tell what you mean, it asks — with the likely answers one tap away.
 - **Remembers the conversation.** It notices when things are easing, growing heavier or still there, and never gives the same counsel twice in one conversation.
 - **Becomes yours.** Sakha learns, on your device, which of the Gita's four paths helps you — action, understanding, devotion or stillness — from what you choose and from "This helped" / "Not quite". It speaks the way you asked (gently, plainly, or explaining more), and remembers what you told it about your life ("I'm preparing for exams", "I look after my mother"), so "I'm so tired" is answered as part of that life. "Not quite" answers again: gentler, more practical, deeper, or asks what it is really about.
+- **Learns you, the way a friend does.** When Sakha can't tell what you mean ("meh") and you clarify, it learns your word for that feeling — next time, "meh" is understood, and it says so. It notices when you tend to come and how those times feel ("Evenings have been heavy lately"), remembers an exam or interview you mentioned and asks afterwards how it went, and shows all of it as a plain portrait you can read and erase.
+- **Never says the same thing twice in a conversation.** Openings, steps and situations are remembered within each conversation; a carer who writes again is met as themselves, someone venting keeps being listened to, and a replaced step suits the feeling — gentle for grief, practical for pressure.
 - **Answers you by name.** Sakha asks what to call you, remembers what you've shared before (as labels, never your words), and follows up: *"Last time, you told me about your studies. How is it now?"*
 - **Private by design.** Conversations are understood **in the browser itself** — your words are never sent to any server. Everything you keep lives on your device and can be released at any time.
 - **Private and safe by design.** An optional passcode lock (only a salted hash is kept), private conversations that leave nothing behind, a "What Sakha knows about you" page to see, change, download or erase everything, and a Quick exit for anyone who may be watched.
@@ -40,7 +42,7 @@ Open http://localhost:5173.
 ## Checks
 
 ```bash
-cd Backend && npm test          # 96 tests: safety, graded understanding, personalisation, counsel integrity, API
+cd Backend && npm test          # 106 tests: safety, graded understanding, personalisation, many-person conversations, API
 cd frontend && npm run lint     # ESLint
 cd frontend && npm run check:i18n   # every interface key exists in English and Hindi
 cd frontend && npm run build    # production build with the offline service worker

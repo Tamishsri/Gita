@@ -15,6 +15,7 @@ import { practiceById, practiceForNow } from '../lib/practices';
 import { usePreferences } from '../contexts/PreferencesContext';
 import FollowUp from './FollowUp';
 import { LetterArrived } from './Letters';
+import { heavyHourNow } from '../lib/person';
 
 function greetingKey(date) {
     const hour = date.getHours();
@@ -150,6 +151,8 @@ function Home({ settings, onSelectMood, onAsk, onSelectVerse, openPractice, open
     const hasKeyboard = useHasKeyboard();
     const isMobile = useIsMobile();
     const now = new Date();
+    // When this part of the day has often been heavy lately, say so gently.
+    const [heavyHour] = useState(() => heavyHourNow(now));
 
     useEffect(() => {
         const update = () => setDay(readDay());
@@ -189,6 +192,7 @@ function Home({ settings, onSelectMood, onAsk, onSelectVerse, openPractice, open
                 <p className="hero__question">
                     {settings.silentMode ? t('home.question.silent') : t('home.question')}
                 </p>
+                {heavyHour && !settings.silentMode && <p className="hero__rhythm">{t(`home.rhythm.${heavyHour}`)}</p>}
                 {!settings.name && <NameAsk />}
                 {quality && (
                     <span className="sankalpa-note">

@@ -6,7 +6,7 @@ import BreathCircle from './BreathCircle';
 import VerseDisplay from './VerseDisplay';
 import { Diya, SunGlyph } from './ui/Ornaments';
 import { askSakha } from '../lib/localSakha';
-import { buildPerson, learnFromFeedback, rememberConversation } from '../lib/person';
+import { buildPerson, learnFromFeedback, learnWord, rememberConversation } from '../lib/person';
 import { quickExit } from '../lib/privacy';
 import { addReflection, verseRef } from '../lib/verse';
 import { recentVerseIds, recordPath } from '../lib/path';
@@ -266,6 +266,8 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
     const history = useRef([]);
     // Counsel already given in this conversation, so it is never repeated.
     const usedCounsel = useRef([]);
+    // What Sakha has already said here (opening lines and steps), so its words stay fresh.
+    const said = useRef([]);
     const lastVerseId = useRef(initialVerse?.id || null);
     // One conversation, so Sakha can tell "this visit" from "before".
     const session = useRef(`s${Date.now().toString(36)}`);
@@ -346,11 +348,19 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                 exclude,
                 lastVerseId: lastVerseId.current,
                 used: usedCounsel.current,
+                said: said.current.slice(-12),
                 person
             });
             if (text) history.current.push(text);
             if (data.context?.counsel) usedCounsel.current.push(data.context.counsel);
-            if (!privateRef.current) rememberConversation(session.current, data.context);
+            const opening = String(data.message || '').split(/\n{2,}/)[0];
+            if (opening) said.current.push(opening);
+            if (data.guidance?.step) said.current.push(data.guidance.step);
+            if (!privateRef.current) {
+                rememberConversation(session.current, data.context);
+                // "I mean I'm sad", right after "meh": Sakha learns this person's word.
+                if (data.context?.learn) learnWord(data.context.learn);
+            }
             const content = data.message || data.response || '';
             const id = nextId();
             if (data.verse) {

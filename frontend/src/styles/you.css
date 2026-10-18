@@ -791,3 +791,150 @@
         padding-bottom: calc(var(--safe-bottom) + var(--space-5));
     }
 }
+
+/* ==========================================================================
+   The living mark — the feather sways from its quill, the eye breathes,
+   and now and then the light catches the glint.
+   ========================================================================== */
+
+.sakha-mark--alive .sakha-mark__feather {
+    transform-box: view-box;
+    transform-origin: 50px 92px;
+    animation: feather-sway 8s var(--ease-in-out) infinite;
+}
+
+.sakha-mark--alive .sakha-mark__eye {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: eye-breathe 5.5s var(--ease-in-out) infinite;
+}
+
+.sakha-mark--alive .sakha-mark__glint {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: glint-catch 7s ease-in-out infinite;
+}
+
+.brand:hover .sakha-mark__feather {
+    transform-box: view-box;
+    transform-origin: 50px 92px;
+    animation: feather-sway 2.6s var(--ease-in-out) 1;
+}
+
+@keyframes feather-sway {
+    0%, 100% { transform: rotate(-1.8deg); }
+    50% { transform: rotate(1.8deg); }
+}
+
+@keyframes eye-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.045); }
+}
+
+@keyframes glint-catch {
+    0%, 78%, 100% { opacity: 0.9; transform: scale(1); }
+    86% { opacity: 1; transform: scale(1.45); }
+    92% { opacity: 0.95; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sakha-mark--alive .sakha-mark__feather,
+    .sakha-mark--alive .sakha-mark__eye,
+    .sakha-mark--alive .sakha-mark__glint,
+    .brand:hover .sakha-mark__feather {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   How Sakha understands you — a short portrait, in plain sentences
+   ========================================================================== */
+
+.portrait {
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(120% 90% at 0% 0%, rgba(var(--gold-rgb), 0.12), transparent 60%),
+        radial-gradient(90% 80% at 100% 100%, rgba(84, 106, 176, 0.08), transparent 60%),
+        var(--surface-1);
+    border: 1px solid var(--line-gold);
+    box-shadow: var(--shadow-sm), var(--inner-highlight);
+}
+
+.portrait__lines {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.portrait__lines li {
+    position: relative;
+    padding-left: var(--space-5);
+    font-family: var(--font-display);
+    font-size: var(--fs-md);
+    line-height: 1.5;
+    color: var(--text-1);
+}
+
+.portrait__lines li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.62em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: rgba(var(--gold-rgb), 0.7);
+}
+
+.portrait__note {
+    font-size: var(--fs-xs);
+    color: var(--text-3);
+}
+
+.chip--word {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 4px;
+}
+
+.chip__remove {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: var(--text-3);
+    transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.chip__remove:hover {
+    color: var(--text-1);
+    background: var(--gold-wash);
+}
+
+@media (pointer: coarse) {
+    .chip__remove {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* The home greeting, when this part of the day has often been heavy lately */
+.hero__rhythm {
+    max-width: 36ch;
+    margin: var(--space-2) auto 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-md);
+    line-height: 1.5;
+    color: var(--text-2);
+    text-align: center;
+}

@@ -78,7 +78,7 @@ function LockScreen({ name, onUnlock, onErased }) {
     return (
         <main className="threshold lock" id="main">
             <div className="lock__panel">
-                <SakhaMark size={68} className="lock__mark" />
+                <SakhaMark size={68} alive className="lock__mark" />
                 <span className="eyebrow"><Lock size={11} aria-hidden="true" /> {t('lock.eyebrow')}</span>
                 <h1 className="lock__title">{name ? t('lock.titleNamed', { name }) : t('lock.title')}</h1>
 

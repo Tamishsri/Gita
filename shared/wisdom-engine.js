@@ -20,7 +20,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
-    const ENGINE_VERSION = '5.0.0';
+    const ENGINE_VERSION = '6.0.0';
 
     // -----------------------------------------------------------------------
     // Text normalisation
@@ -127,7 +127,8 @@
     const EMOTIONS = {
         anxiety: {
             terms: ['anxious', 'anxiety', 'worr*', 'nervous', 'panic*', 'uneasy', 'restless*', 'overthink*', 'racing', 'on edge',
-                'tension', 'tense', 'chinta', 'ghabrahat', 'bechain*', 'pareshan*', 'replay*', 'cant stop thinking', 'keep thinking about', 'what if', 'preshan*', 'dara hua', 'dari hui', 'चिंता', 'चिंतित', 'घबराहट', 'बेचैन*', 'परेशान*'],
+                'tension', 'tense', 'chinta', 'ghabrahat', 'bechain*', 'pareshan*', 'replay*', 'cant stop thinking', 'keep thinking about', 'what if', 'preshan*', 'dara hua', 'dari hui', 'mind wont shut up',
+                'mind wont stop', 'cant switch off', 'racing thoughts', 'thoughts wont stop', 'mind is racing', 'cant turn off my mind', 'चिंता', 'चिंतित', 'घबराहट', 'बेचैन*', 'परेशान*'],
             concepts: ['fear', 'anxiety', 'freedom from anxiety', 'worry', 'worrying', 'uncertainty', 'restless', 'calm', 'steady', 'equanimity', 'emotional stability', 'staying calm', 'overthinking', 'security', 'trusting god', 'divine assurance', 'managing stress'],
             en: { adj: 'anxious', noun: 'anxiety' },
             hi: { noun: 'चिंता', g: 'f' }
@@ -140,7 +141,8 @@
         },
         stress: {
             terms: ['stress*', 'pressure', 'overwhelm*', 'forcing me', 'force kar*', 'pressurising me', 'pressurizing me', 'dabav', 'thak gaya', 'thak gayi', 'burnout', 'burnt out', 'burned out', 'workload', 'deadline*', 'too much',
-                'exhausted', 'drained', 'tired', 'thak*', 'done with everything', 'so done', 'had enough', 'fed up', 'तनाव', 'दबाव', 'थक*',
+                'exhausted', 'drained', 'tired', 'thak*', 'done with everything', 'so done', 'had enough', 'fed up', 'rough week', 'tough week',
+                'hectic', 'so much to do', 'तनाव', 'दबाव', 'थक*',
                 'थकान', 'बोझ'],
             concepts: ['stress', 'managing stress', 'handling pressure', 'burnout', 'avoiding burnout', 'doing difficult tasks', 'balance', 'equanimity', 'detached action', 'steady', 'surrender', 'emotional overwhelm'],
             en: { adj: 'overwhelmed', noun: 'stress' },
@@ -157,7 +159,9 @@
             hi: { noun: 'क्रोध', g: 'm' }
         },
         sadness: {
-            terms: ['sad', 'sadness', 'depress*', 'unhappy', 'miserable', 'cry*', 'tears', 'hopeless*', 'heavy heart', 'feel down', 'feeling down', 'keep pretending', 'pretending to be', 'bura laga', 'bura lag raha', 'bura lagta', 'it hurts', 'really hurt', 'so hurt', 'pretend to be fine', 'fake smile', 'hiding my pain', 'hide my pain', 'brave face', 'dil bhari', 'rona aa',
+            terms: ['sad', 'sadness', 'depress*', 'unhappy', 'miserable', 'cry*', 'tears', 'hopeless*', 'heavy heart', 'feel down', 'feeling down',
+                'not okay', 'not ok', 'not fine', 'not doing well', 'not good', 'feeling off', 'feel off', 'not myself', 'not feeling myself',
+                'feel like disappearing', 'want to disappear', 'want to vanish', 'rough day', 'bad day', 'hard day', 'low today', 'feeling low', 'keep pretending', 'pretending to be', 'bura laga', 'bura lag raha', 'bura lagta', 'it hurts', 'really hurt', 'so hurt', 'pretend to be fine', 'fake smile', 'hiding my pain', 'hide my pain', 'brave face', 'dil bhari', 'rona aa',
                 'udaas', 'udas', 'dukhi', 'उदास*', 'दुखी', 'दुःख*', 'दुख', 'रो रहा', 'रो रही', 'निराश*'],
             concepts: ['grief', 'sorrow', 'sadness', 'compassion', 'hope', 'hopeful', 'comforting', 'enduring a hard time', 'staying strong in pain', 'bad phase', 'impermanence', 'resilient', 'end of grief', 'reassuring'],
             en: { adj: 'low', noun: 'sadness' },
@@ -172,6 +176,8 @@
         },
         loneliness: {
             terms: ['lonely', 'loneliness', 'alone', 'isolated', 'nobody', 'no one', 'abandoned', 'left out', 'misunderstood',
+                'never listen to me', 'dont listen to me', 'doesnt listen to me', 'nobody listens', 'no one listens', 'dont understand me',
+                'nobody understands', 'no one understands',
                 'akela', 'akeli', 'akelapan', 'अकेला', 'अकेली', 'अकेलापन', 'अकेले'],
             concepts: ['never feeling alone', 'never lost', 'feeling loved', 'seeking a friend', 'friend', 'friendship', 'intimacy', 'divine presence', 'feeling god', 'being misunderstood', 'caring', 'affectionate', 'loving', 'intimate', 'reassured', 'security'],
             en: { adj: 'alone', noun: 'loneliness' },
@@ -194,6 +200,8 @@
         unworthiness: {
             terms: ['worthless', 'useless', 'not good enough', 'inadequate', 'insecure', 'self doubt', 'hate myself', 'smarter than me', 'better than me',
                 'not as good as', 'not smart enough', 'a burden', 'burden to', 'nobody needs me', 'no one needs me', 'imposter', 'impostor', 'a disappointment',
+                'comparing me', 'compare me', 'compares me', 'compared me', 'never good enough', 'khud se nafrat', 'apne aap se nafrat',
+                'खुद से नफ़रत', 'ख़ुद से नफ़रत', 'खुद से नफरत',
                 'loser', 'no confidence', 'बेकार', 'नाकाम*', 'nikamma', 'bekaar'],
             concepts: ['negative self-talk', 'being your own best friend', 'mind as friend', 'self-motivation', 'self-help', 'self-doubt', 'confidence', 'trying to boost confidence', 'inner strength', 'overcoming weakness', 'self-pity', 'empowering', 'encouraging'],
             en: { adj: 'not good enough', noun: 'self-doubt' },
@@ -273,6 +281,7 @@
         },
         inertia: {
             terms: ['lazy', 'laziness', 'unmotivated', 'no motivation', 'not motivated', 'cant get up', 'cant get out of bed',
+                'bored', 'boredom', 'so boring',
                 'procrastinat*', 'wasting time', 'wasting my time', 'waste my time', 'cant start', 'cant focus on anything', 'aalas', 'aalsi', 'आलस', 'आलसी'],
             concepts: ['action', 'call to action', 'overcoming weakness', 'discipline', 'determination', 'inner strength', 'self-motivation'],
             en: { adj: 'stuck', noun: 'feeling of being stuck' },
@@ -353,13 +362,14 @@
         },
         health: {
             terms: ['sick', 'illness', 'ill', 'disease', 'hospital', 'surgery', 'operation', 'cancer', 'diagnos*', 'doctor said', 'doctors said', 'saw a doctor', 'health',
-                'chronic', 'pain in', 'my body', 'therapy', 'medicine*', 'chemo*', 'tumou*', 'tumor*', 'biopsy', 'scan results', 'icu', 'dialysis', 'pregnan*', 'miscarriage', 'bimar*', 'beemar*', 'sehat', 'tabiyat', 'बीमार*', 'अस्पताल', 'इलाज', 'ऑपरेशन', 'सेहत', 'तबीयत'],
+                'chronic', 'pain in', 'my body', 'therapy', 'medicine*', 'chemo*', 'tumou*', 'tumor*', 'biopsy', 'scan results', 'icu', 'dialysis', 'pregnan*', 'miscarriage', 'bimar*', 'beemar*', 'sehat', 'tabiyat', 'बीमार*', 'अस्पताल', 'इलाज', 'ऑपरेशन', 'सेहत', 'तबीयत',
+                'कैंसर', 'कीमो*', 'डायलिसिस', 'ट्यूमर', 'डिमेंशिया'],
             concepts: ['body', 'impermanence', 'enduring a hard time', 'staying strong in pain', 'courage', 'fear of death', 'surrender', 'soul'],
             label: { en: 'your health', hi: 'सेहत' },
             line: { en: 'When the body struggles, the mind carries it too.', hi: 'जब शरीर संघर्ष करता है, तो मन भी उसका भार उठाता है।' }
         },
         loss: {
-            terms: ['died', 'death', 'passed away', 'funeral', 'dying', 'lost my', 'no more with us', 'mar gaya', 'mar gayi',
+            terms: ['died', 'death', 'passed away', 'funeral', 'is dying', 'was dying', 'lost my', 'no more with us', 'mar gaya', 'mar gayi',
                 'chal base', 'guzar gaye', 'गुजर गए', 'गुज़र गए', 'मृत्यु', 'मौत', 'नहीं रहे'],
             concepts: ['death', 'soul', 'eternal', 'immortality', 'grief', 'comfort in loss', 'impermanence', 'cycle of life'],
             label: { en: 'your loss', hi: 'बिछड़ना' },
@@ -395,7 +405,7 @@
         },
         self: {
             terms: ['confidence', 'self esteem', 'selfesteem', 'my looks', 'ugly', 'fat', 'body image', 'insecure', 'compare myself',
-                'comparing myself', 'comparison', 'social media', 'instagram', 'not enough', 'imposter', 'impostor', 'how i see myself', 'the way i see myself', 'self worth', 'khud se nafrat',
+                'comparing myself', 'comparison', 'compare my life', 'not enough', 'imposter', 'impostor', 'how i see myself', 'the way i see myself', 'self worth', 'khud se nafrat',
                 'आत्मविश्वास', 'हीन'],
             concepts: ['self-worth', 'confidence', 'inner strength', 'equal vision', 'swadharma', 'mind as friend', 'being your own best friend'],
             label: { en: 'how you see yourself', hi: 'स्वयं को देखने का ढंग' },
@@ -410,6 +420,7 @@
         },
         sleep: {
             terms: ['cant sleep', 'cannot sleep', 'couldnt sleep', 'insomnia', 'nightmare*', 'awake at night', 'awake for hours', 'no sleep',
+                'at night', 'every night', 'all night',
                 'not sleeping', 'sleepless', 'up all night', 'neend nahi', 'नींद नहीं', 'सो नहीं'],
             concepts: ['peace', 'calm', 'meditation', 'steady', 'stillness', 'surrender'],
             label: { en: 'rest', hi: 'नींद' },
@@ -783,7 +794,7 @@
         'kaise help', 'उनकी मदद', 'मदद करूँ', 'देखभाल'];
     const ILLNESS = ['sick', 'ill', 'illness', 'health', 'cancer', 'hospital', 'hospitalised', 'hospitalized', 'icu', 'surgery',
         'chemo*', 'diagnos*', 'disease', 'dementia', 'alzheimer*', 'stroke', 'heart attack', 'tumou*', 'tumor*', 'bimar*',
-        'beemar*', 'बीमार*', 'अस्पताल'];
+        'beemar*', 'बीमार*', 'अस्पताल', 'कैंसर', 'बीमारी', 'कीमो*', 'डायलिसिस', 'ट्यूमर', 'डिमेंशिया', 'ऑपरेशन', 'इलाज'];
     // Feelings that, seen in someone else, call for care (not anger, envy…).
     const CARE_FEELINGS = ['sadness', 'anxiety', 'fear', 'stress', 'loneliness', 'emptiness', 'unworthiness', 'failure', 'inertia',
         'heartbreak', 'confusion', 'craving', 'guilt'];
@@ -800,11 +811,23 @@
         }, -1);
     }
 
+    // The particular word someone used, when it says more than the category:
+    // "your husband" is warmer than "your partner".
+    const RELATION_WORDS_SPECIFIC = {
+        husband: 'husband', pati: 'husband', 'पति': 'husband', wife: 'wife', patni: 'wife', 'पत्नी': 'wife',
+        girlfriend: 'girlfriend', boyfriend: 'boyfriend', son: 'son', beta: 'son', 'बेटा': 'son', daughter: 'daughter', beti: 'daughter',
+        'बेटी': 'daughter', grandmother: 'grandmother', grandma: 'grandmother', nani: 'grandmother', dadi: 'grandmother', 'दादी': 'grandmother',
+        'नानी': 'grandmother', grandfather: 'grandfather', grandpa: 'grandfather', nana: 'grandfather', dada: 'grandfather', 'दादा': 'grandfather',
+        'नाना': 'grandfather'
+    };
+
     function relationIn(clauseText) {
         let best = null;
         Object.entries(RELATIONS).forEach(([relation, terms]) => {
-            const index = firstIndex(clauseText, terms);
-            if (index !== -1 && (!best || index < best.index)) best = { relation, index };
+            terms.forEach((term) => {
+                const index = findTerm(clauseText, term);
+                if (index !== -1 && (!best || index < best.index)) best = { relation: RELATION_WORDS_SPECIFIC[term] || relation, index };
+            });
         });
         return best;
     }
@@ -907,7 +930,8 @@
     const LIGHT = ['peace', 'gratitude', 'love', 'devotion'];
     const EMPTY_READING = Object.freeze({
         feelings: [], primary: null, topics: [], intensity: 'medium', intensityScore: 1, time: 'present', relief: false, care: null,
-        mixed: false, ask: null, about: null, corrections: [], emoji: [], confidence: 0, normalised: ' ', words: 0
+        mixed: false, ask: null, about: null, corrections: [], emoji: [], learned: [], masking: false, event: null, confidence: 0,
+        normalised: ' ', words: 0
     });
 
     /**
@@ -919,7 +943,42 @@
      *   ask: 'vent'|'how'|'why'|'verse'|null, about: string|null, corrections: {from: string, to: string}[], emoji: string[],
      *   confidence: number, normalised: string, words: number }}
      */
-    function understand(text, { lexicon = null } = {}) {
+    // "I'm fine, I guess" after something heavy is rarely fine.
+    const MASKING_TERMS = ['fine i guess', 'im fine i guess', 'i guess im fine', 'its nothing', 'it doesnt matter', 'doesnt matter',
+        'never mind', 'nevermind', 'nvm', 'its fine', 'im fine', 'i am fine', 'whatever', 'forget it', 'leave it', 'sab theek hai',
+        'theek hoon', 'koi baat nahi', 'chhodo', 'कोई बात नहीं', 'सब ठीक है', 'छोड़ो'];
+
+    // Something coming up that Sakha can ask about afterwards — as a label
+    // and a day, never the words.
+    const EVENT_KINDS = {
+        exam: ['exam', 'exams', 'test', 'mock test', 'paper', 'boards', 'board exam', 'neet', 'jee', 'upsc', 'cat exam', 'pariksha',
+            'परीक्षा', 'इम्तिहान', 'पेपर'],
+        interview: ['interview', 'interviews', 'इंटरव्यू'],
+        surgery: ['surgery', 'operation', 'ऑपरेशन'],
+        results: ['result', 'results', 'रिज़ल्ट', 'नतीजा', 'नतीजे'],
+        presentation: ['presentation', 'pitch', 'viva', 'demo'],
+        appointment: ['appointment', 'scan', 'biopsy', 'checkup', 'check up'],
+        wedding: ['wedding', 'शादी'],
+        hearing: ['hearing', 'court date'],
+        match: ['match', 'tournament', 'competition', 'performance', 'audition']
+    };
+    const EVENT_WHEN = [
+        ['dayafter', ['day after tomorrow', 'parso', 'परसों']],
+        ['tomorrow', ['tomorrow', 'kal', 'कल']],
+        ['today', ['today', 'tonight', 'this evening', 'aaj', 'आज']],
+        ['nextweek', ['next week', 'agle hafte', 'अगले हफ़्ते', 'अगले सप्ताह']],
+        ['monday', ['monday', 'on monday']], ['tuesday', ['tuesday']], ['wednesday', ['wednesday']], ['thursday', ['thursday']],
+        ['friday', ['friday']], ['saturday', ['saturday']], ['sunday', ['sunday']]
+    ];
+
+    function eventIn(normalised) {
+        const kind = Object.keys(EVENT_KINDS).find((id) => EVENT_KINDS[id].some((term) => has(normalised, term)));
+        if (!kind) return null;
+        const when = EVENT_WHEN.find(([, terms]) => terms.some((term) => has(normalised, term)));
+        return when ? { kind, when: when[0] } : null;
+    }
+
+    function understand(text, { lexicon = null, personal = null } = {}) {
         if (!text || typeof text !== 'string') return { ...EMPTY_READING };
         const raw = text.slice(0, 4000);
         const emoji = emojiFeelings(raw);
@@ -946,6 +1005,20 @@
             });
         });
         emoji.forEach((count, id) => scores.set(id, (scores.get(id) || 0) + count));
+
+        // Words this person has taught Sakha: for them, "meh" means sad.
+        const learnedHits = [];
+        if (personal && typeof personal === 'object') {
+            Object.entries(personal).forEach(([phrase, feelings]) => {
+                if (typeof phrase !== 'string' || !phrase.trim() || !feelings || typeof feelings !== 'object') return;
+                const index = findTerm(normalised, phrase);
+                if (index === -1 || negated(normalised, index, phrase.split(' ').length)) return;
+                const [feeling, count] = Object.entries(feelings).filter(([id]) => EMOTIONS[id]).sort((a, b) => b[1] - a[1])[0] || [];
+                if (!feeling) return;
+                scores.set(feeling, (scores.get(feeling) || 0) + Math.min(2, 1 + (Number(count) || 0) * 0.25));
+                learnedHits.push(phrase);
+            });
+        }
 
         // A light feeling leads only when it clearly outweighs a heavy one:
         // "my friends are moving on and I feel stuck" is not joy.
@@ -1011,6 +1084,9 @@
             about,
             corrections,
             emoji: [...emoji.keys()],
+            learned: learnedHits,
+            masking: wordCount(normalised) <= 8 && MASKING_TERMS.some((term) => has(normalised, term)),
+            event: eventIn(normalised),
             confidence: Math.round(confidence * 100) / 100,
             normalised,
             words: wordCount(normalised)
@@ -1171,6 +1247,11 @@
 
         score += profile.anchors?.get(verse.id) || 0;
 
+        // Verses about death and rebirth are for grief and for fear of dying —
+        // not for an ordinary low day.
+        const fields = index.prepared.get(verse.id);
+        if (!profile.deathWelcome && fields && DEATH_THEMES.test(`${themes.join(' ')} ${fields.situations.join(' ')} ${fields.short}`)) score -= 18;
+
         // The path that has helped this person before.
         if (profile.paths && paths.length) score += 18 * Math.max(...paths.map((id) => profile.paths[id] || 0));
 
@@ -1316,6 +1397,9 @@
             time: read.time,
             standing,
             paths: pathAffinity(person, retry),
+            // Grief, fear, illness, or a question about death: verses on death belong here.
+            deathWelcome: ['grief', 'fear'].includes(textEmotions[0] || carried[0] || moodEmotion) || topics.includes('loss') || topics.includes('health')
+                || Boolean(caring) || /death|die|soul|rebirth|atman|mort/.test(String(mood || '')),
             resonant: Array.isArray(person?.resonant) ? person.resonant.slice(0, 40) : [],
             timeOfDay
         };
@@ -1340,6 +1424,7 @@
             'mind is', 'quiet']
     };
     const PATH_IDS = Object.keys(PATHS);
+    const DEATH_THEMES = /\b(death|dying|die|dies|slain|killing|reincarnation|rebirth|immortal\w*|never born|garments|bodies|transmigration|goodbye|grief|mourning|funeral|loss of a)\b/;
 
     function pathsOf(fields) {
         const headline = `${fields.themes.join(' ')} ${fields.situations.join(' ')} ${fields.short}`;
@@ -1484,6 +1569,8 @@
     // Warning signs short of crisis: answered with the verse, and a quiet
     // reminder that a human is a phone call away.
     const CONCERN_TERMS = ['a burden', 'burden to', 'cant do this anymore', 'cannot do this anymore', 'no way out', 'trapped',
+        'nothing matters', 'feel like disappearing', 'want to vanish', 'no point anymore', 'whats the point of anything',
+        'kuch matter nahi karta',
         'want to disappear', 'giving up', 'give up', 'tired of everything', 'nobody would care', 'no one would care',
         'nobody would notice', 'hopeless', 'thak gaya hoon zindagi se', 'sab khatam', 'बोझ हूँ', 'सब ख़त्म', 'सब खत्म'];
 
@@ -2613,6 +2700,14 @@
         child: { en: 'your child', hi: 'अपने बच्चे' },
         friend: { en: 'your friend', hi: 'अपने दोस्त' },
         grandparent: { en: 'your grandparent', hi: 'अपने बुज़ुर्गों' },
+        husband: { en: 'your husband', hi: 'अपने पति' },
+        wife: { en: 'your wife', hi: 'अपनी पत्नी' },
+        girlfriend: { en: 'your girlfriend', hi: 'अपनी गर्लफ़्रेंड' },
+        boyfriend: { en: 'your boyfriend', hi: 'अपने बॉयफ़्रेंड' },
+        son: { en: 'your son', hi: 'अपने बेटे' },
+        daughter: { en: 'your daughter', hi: 'अपनी बेटी' },
+        grandmother: { en: 'your grandmother', hi: 'अपनी दादी-नानी' },
+        grandfather: { en: 'your grandfather', hi: 'अपने दादा-नाना' },
         someone: { en: 'someone you love', hi: 'किसी अपने' }
     };
 
@@ -2774,16 +2869,30 @@
 
     const pick = (list, random) => list[Math.floor(random() * list.length) % list.length];
 
-    function acknowledge(profile, lang, random) {
+    // What Sakha already said in this conversation, made comparable.
+    const plainText = (text) => String(text || '').toLowerCase().replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ').trim();
+
+    // Pick from a list, avoiding anything already said in this conversation.
+    function pickFresh(list, random, said = []) {
+        if (!said.length) return pick(list, random);
+        const spoken = said.map(plainText);
+        const fresh = list.filter((item) => {
+            const sample = plainText(typeof item === 'function' ? item({ noun: '', obl: '', g: 'm' }) : item).slice(0, 40);
+            return !spoken.some((line) => sample && line.includes(sample));
+        });
+        return pick(fresh.length ? fresh : list, random);
+    }
+
+    function acknowledge(profile, lang, random, said = []) {
         const emotion = profile.primary && EMOTIONS[profile.primary];
-        if (!emotion) return pick(NEUTRAL_ACKS[lang], random);
+        if (!emotion) return pickFresh(NEUTRAL_ACKS[lang], random, said);
         // Two heavy feelings at once are named together: "your grief — and your anger too".
         const second = profile.emotions.find((name) => name !== profile.primary && HEAVY(name));
         if (HEAVY(profile.primary) && second && EMOTIONS[second] && !['lust', 'pride', 'emptiness', 'inertia'].includes(profile.primary)) {
             return PERSONAL.both[lang](emotion[lang].noun, EMOTIONS[second][lang].noun);
         }
         const voice = VOICE[profile.primary]?.[lang];
-        return voice ? pick(voice, random) : pick(ACKS[lang], random)(emotion[lang]);
+        return voice ? pickFresh(voice, random, said) : pickFresh(ACKS[lang], random, said)(emotion[lang]);
     }
 
     // -----------------------------------------------------------------------
@@ -2822,7 +2931,7 @@
         'iska matlab', 'iska kya matlab', 'how do i apply', 'how to apply', 'how can i apply', 'apply this', 'how do i live this',
         'what should i do with this', 'what do i do now', 'समझ नहीं', 'समझाइए', 'समझाओ', 'इसका मतलब', 'इसका अर्थ'];
 
-    const QUESTION_CUES = ['what is', 'whats', 'what are', 'what does', 'what do', 'why do', 'why does', 'why is', 'why are', 'meaning of', 'define', 'explain', 'tell me about',
+    const QUESTION_CUES = ['what is', 'whats', 'what are', 'what does', 'what do', 'what happens', 'is there', 'why do', 'why does', 'why is', 'why are', 'meaning of', 'define', 'explain', 'tell me about',
         'who is', 'who was', 'who are', 'kya hai', 'kya hota', 'kya hote', 'kya matlab', 'kaun hai', 'kaun the', 'kon hai',
         'matlab', 'kya hai', 'क्या है', 'क्या होता', 'क्या होती', 'कौन है', 'कौन थे', 'का अर्थ', 'का मतलब', 'मतलब', 'बताइए', 'बताओ'];
 
@@ -2953,6 +3062,53 @@
         }
     };
 
+    // Practices someone can ask how to do.
+    const HOW_CONCEPTS = ['dhyana', 'yoga', 'bhakti', 'surrender', 'detachment', 'om', 'karma'];
+
+    const ETHICS_PATTERNS = [
+        / (?:is it|isnt it|is it really|would it be) (?:wrong|bad|a sin|sinful|selfish|okay|ok|fine|normal|alright|allowed) (?:to|if i|that i) (.+)/,
+        / (?:kya|क्या) (.+) (?:galat|paap|गलत|ग़लत|पाप) (?:hai|है)/,
+        / (?:am i|is it) (?:a bad person|wrong|selfish) (?:for|to|because) (.+)/
+    ];
+
+    function ethicsQuestion(normalised) {
+        const clean = normalised.replace(/\|/g, ' ');
+        for (const pattern of ETHICS_PATTERNS) {
+            const match = clean.match(pattern);
+            if (!match) continue;
+            const about = match[1].trim().split(' ').filter((word) => word && !['i', 'to', 'me', 'my', 'a', 'an', 'the', 'so', 'much'].includes(word)).slice(0, 5).join(' ');
+            if (!about) continue;
+            const feeling = understand(about).primary;
+            return { about, feeling: feeling && HEAVY(feeling) ? feeling : null };
+        }
+        return null;
+    }
+
+    const ETHICS = {
+        want: {
+            verse: '7_11',
+            en: {
+                title: 'Wanting, by itself, is not wrong.',
+                body: 'The Gita does not ask you to stop wanting. Krishna says he is present in desire itself — "I am desire that does not go against dharma" (7.11). What it warns against is wanting that rules you: desire that hardens into craving, and craving that turns to anger when it is blocked (3.37, 2.62). So the question is not "is it wrong to want this?" but "does this wanting keep me honest, kind and free?" If it does, pursue it fully — and hold the outcome lightly (2.47).'
+            },
+            hi: {
+                title: 'चाहना अपने आप में ग़लत नहीं है।',
+                body: 'गीता आपसे चाहना छोड़ने को नहीं कहती। कृष्ण कहते हैं कि वे स्वयं कामना में भी हैं — "धर्म के विरुद्ध न जाने वाली कामना मैं हूँ" (7.11)। वह उस चाह से सावधान करती है जो आप पर राज करने लगे: जो लालसा बन जाए, और रुकने पर क्रोध (3.37, 2.62)। इसलिए प्रश्न यह नहीं कि "क्या यह चाहना ग़लत है?", बल्कि यह कि "क्या यह चाह मुझे सच्चा, दयालु और मुक्त रखती है?" अगर हाँ, तो पूरे मन से उसके लिए कर्म कीजिए — और परिणाम को हल्के हाथों से थामिए (2.47)।'
+            }
+        },
+        feel: {
+            verse: '2_14',
+            en: {
+                title: 'Feeling it is not wrong.',
+                body: 'Feelings arrive like weather; the Gita calls them contacts with the world that come and go, like winter and summer (2.14). What matters is what you do while one passes: not acting from it in a way you will regret (2.63), and not hating yourself for having it. Notice it, name it, and let it move through you without letting it steer.'
+            },
+            hi: {
+                title: 'ऐसा महसूस करना ग़लत नहीं है।',
+                body: 'भाव मौसम की तरह आते हैं; गीता उन्हें संसार के संपर्क कहती है जो सर्दी-गर्मी की तरह आते-जाते हैं (2.14)। मायने यह रखता है कि जब तक वह भाव है, आप क्या करते हैं: उसके बहाव में ऐसा कुछ न करें जिसका पछतावा हो (2.63), और उसे महसूस करने के लिए ख़ुद से नफ़रत न करें। उसे देखिए, नाम दीजिए, और बिना उसे दिशा सौंपे गुज़र जाने दीजिए।'
+            }
+        }
+    };
+
     function lookupConcept(normalised) {
         for (const [id, entry] of Object.entries(GLOSSARY)) {
             if (entry.terms.some((term) => has(normalised, term))) return { id, ...entry };
@@ -2978,11 +3134,15 @@
             const concept = lookupConcept(` ${read.about} `);
             return concept ? { kind: 'concept', concept } : null;
         }
-        // "What is karma?" — or just "karma?"
+        // "Is it wrong to want money?" — a question of conscience, not a feeling.
+        const ethics = ethicsQuestion(normalised);
+        if (ethics) return { kind: 'ethics', ...ethics };
+        // "What is karma?" — or just "karma?" — or "how do I meditate?"
         const concept = lookupConcept(normalised);
         if (concept && (QUESTION_CUES.some((cue) => has(normalised, cue)) || words <= 2) && words <= 14) {
             return { kind: 'concept', concept };
         }
+        if (concept && read.ask === 'how' && HOW_CONCEPTS.includes(concept.id) && words <= 9) return { kind: 'concept', concept };
         if (SELF_TERMS.some((term) => has(normalised, term)) && words <= 10) return { kind: 'self', godQuestion: has(normalised, 'are you krishna') || has(normalised, 'are you god') };
         if (lastVerseId && words <= 12 && EXPLAIN_TERMS.some((term) => has(normalised, term))) return { kind: 'explain' };
         if (words <= 3 && ACK_TERMS.includes(normalised.replace(/\|/g, ' ').trim().replace(/\s+/g, ' '))) return { kind: 'ack' };
@@ -3013,9 +3173,13 @@
         hi: 'आप जो बता रहे हैं वह असुरक्षित लगता है, और आप सुरक्षित रहने के हक़दार हैं। कृपया अभी किसी ऐसे व्यक्ति से संपर्क करें जो मदद कर सके — किसी भरोसेमंद इंसान से, या इनमें से किसी हेल्पलाइन से। ये निःशुल्क और गोपनीय हैं।\n\nअभी मदद:\n• आपातकाल (भारत): 112\n• महिला हेल्पलाइन (भारत): 181\n• चाइल्डलाइन (भारत): 1098\n• टेली-मानस (भारत): 14416\n• दुनिया में कहीं भी: https://findahelpline.com\n\nजब आप सुरक्षित हों, मैं आपके और गीता के साथ बैठने के लिए यहीं हूँ।'
     };
 
+    // Violence someone sees at home is as urgent as violence against them.
+    const WITNESSED = / (hits|beats|slaps|kicks|punches|chokes|abuses|hurts|hit|beat|slapped|kicked|punched) (my|our) (mother|father|sister|brother|wife|husband|child|children|kids|son|daughter|grandmother|grandfather) /;
+
     function detectSafety(text) {
         const normalised = normalise(text);
         if (normalised === ' ') return false;
+        if (WITNESSED.test(normalised)) return true;
         return SAFETY_TERMS.some((term) => {
             const index = findTerm(normalised, term);
             return index !== -1 && !negated(normalised, index, term.split(' ').length);
@@ -3151,6 +3315,13 @@ Go on${greetingName} — I’m here.`;
             const verse = findVerse(verses, '4_3');
             return { message, verse, guidance: verse ? { simple: simpleOf(verse, lang) } : null, context: { intent: 'self' } };
         }
+        if (intent.kind === 'ethics') {
+            const entry = ETHICS[intent.feeling ? 'feel' : 'want'];
+            const verse = findVerse(verses, entry.verse);
+            const message = `${entry[lang].title}\n\n${entry[lang].body}`;
+            const guidance = verse ? { simple: simpleOf(verse, lang), step: null } : null;
+            return { message, verse, guidance, context: { intent: 'ethics' } };
+        }
         if (intent.kind === 'concept') {
             const entry = intent.concept;
             const verse = findVerse(verses, entry.verse);
@@ -3284,6 +3455,94 @@ Go on${greetingName} — I’m here.`;
         hi: (label) => `${label} इन दिनों आपके मन पर है — ऐसे में यह महसूस होना स्वाभाविक है।`
     };
 
+    // Grief is not a season to wait out; it is love looking for its person.
+    ROOTS.grief = {
+        en: 'The Gita does not call grief wrong — it begins with Arjuna in tears (2.1). What it offers is a way of seeing the one you love: the self is never born and never dies (2.20), only its clothes change (2.22). Grief is love, still looking for its person.',
+        hi: 'गीता शोक को ग़लत नहीं कहती — वह आँसुओं में डूबे अर्जुन से ही शुरू होती है (2.1)। वह अपने प्रिय को देखने का एक ढंग देती है: आत्मा न जन्म लेती है, न मरती है (2.20), केवल उसके वस्त्र बदलते हैं (2.22)। शोक वह प्रेम है जो अब भी अपने प्रिय को खोज रहा है।'
+    };
+
+    // The second time someone sends a word or two, a lighter door.
+    const SMALLTALK_AGAIN = {
+        en: (name) => `No pressure${name ? `, ${name}` : ''}. Even one word is enough — or tap whichever is closest, and we can begin there.`,
+        hi: (name) => `कोई जल्दी नहीं${name ? `, ${name}` : ''}। एक शब्द भी काफ़ी है — या जो सबसे क़रीब लगे उसे चुन लीजिए, वहीं से शुरू करते हैं।`
+    };
+
+    // When a word this person taught Sakha comes back.
+    const REMEMBERED_WORD = {
+        en: (word) => `I remember what “${word}” means for you.`,
+        hi: (word) => `मुझे याद है कि आपके लिए “${word}” का क्या मतलब है।`
+    };
+
+    // "I'm fine, I guess" after something heavy.
+    const MASKING = {
+        en: 'You said you’re fine — and maybe you are. But if something is sitting under that "I guess", you can set it down here.',
+        hi: 'आपने कहा कि सब ठीक है — शायद हो भी। पर अगर उस "ठीक" के नीचे कुछ दबा है, तो उसे यहाँ रख सकते हैं।'
+    };
+
+    // When the same carer writes again: their own feeling, met as theirs.
+    const CARE_AGAIN = {
+        en: ['That fear is the other face of your love.', 'Caring this much is tiring. Be gentle with yourself too.', 'You are holding a great deal for someone else. Who is holding you?'],
+        hi: ['यह डर भी आपके प्रेम का ही दूसरा रूप है।', 'इतनी परवाह करना थका देता है। अपने साथ भी कोमल रहिए।', 'आप किसी और के लिए बहुत कुछ थामे हुए हैं। आपको कौन थामे हुए है?']
+    };
+
+    // Small, concrete things to do — for "something practical", and so a
+    // step is never offered twice in one conversation.
+    const PRACTICAL_STEPS = {
+        en: [
+            'Set a timer for ten minutes and do only the first small piece of what is in front of you. Stop when it rings.',
+            'Write the whole problem as one sentence. Under it, write the smallest next action — and do that one today.',
+            'Tell one person what you are facing, and ask for one specific kind of help.',
+            'Walk for ten minutes without your phone. Decide your next step only when you are back.',
+            'Put today’s three tasks on paper. Do only the first. Cross it out by hand.',
+            'Before you sleep, write down one thing that went right today, however small.'
+        ],
+        hi: [
+            'दस मिनट का टाइमर लगाइए और सामने के काम का सिर्फ़ पहला छोटा हिस्सा कीजिए। घंटी बजते ही रुक जाइए।',
+            'पूरी समस्या को एक वाक्य में लिखिए। उसके नीचे सबसे छोटा अगला क़दम लिखिए — और वही आज कीजिए।',
+            'किसी एक व्यक्ति को बताइए कि आप किससे गुज़र रहे हैं, और एक ख़ास तरह की मदद माँगिए।',
+            'फ़ोन के बिना दस मिनट टहलिए। अगला क़दम लौटकर ही तय कीजिए।',
+            'आज के तीन काम काग़ज़ पर लिखिए। सिर्फ़ पहला कीजिए। उसे हाथ से काट दीजिए।',
+            'सोने से पहले एक बात लिखिए जो आज ठीक हुई, चाहे कितनी भी छोटी हो।'
+        ]
+    };
+
+    const GENTLE_STEPS = {
+        en: [
+            'Light a lamp or a candle, and sit with it for one minute. Nothing else.',
+            'Drink a glass of water slowly. Then rest a hand on your heart for three breaths.',
+            'Step outside for five minutes and notice three things you can see.',
+            'Write one honest sentence about how today really is. You do not have to share it.',
+            'Let one person know today is hard. A single message is enough.',
+            'Before bed, put on something soothing and let your shoulders drop.'
+        ],
+        hi: [
+            'एक दीया या मोमबत्ती जलाइए, और एक मिनट उसके साथ बैठिए। बस इतना।',
+            'धीरे-धीरे एक गिलास पानी पीजिए। फिर तीन साँसों तक अपना हाथ दिल पर रखिए।',
+            'पाँच मिनट बाहर निकलिए और तीन चीज़ें देखिए जो आपको दिखती हैं।',
+            'आज सच में कैसा है, इस पर एक सच्चा वाक्य लिखिए। किसी को दिखाना ज़रूरी नहीं।',
+            'किसी एक व्यक्ति को बताइए कि आज का दिन कठिन है। एक संदेश काफ़ी है।',
+            'सोने से पहले कुछ सुकून देने वाला सुनिए, और कंधों को ढीला छोड़ दीजिए।'
+        ]
+    };
+    const PRACTICAL_FEELINGS = ['stress', 'anxiety', 'failure', 'inertia', 'confusion', 'purpose', 'craving', 'lust', 'anger', 'envy', 'pride'];
+
+    // Words that carry no feeling of their own, never learned as one.
+    const NEVER_LEARN = new Set(['fine', 'ok', 'okay', 'good', 'nothing', 'whatever', 'yes', 'no', 'hmm', 'hm', 'idk', 'yeah', 'sure',
+        'thanks', 'today', 'nahi', 'haan', 'theek', 'acha', 'accha', 'kuch', 'sab']);
+
+    // An unclear message followed by a clear one teaches Sakha this person's
+    // own words for a feeling ("meh" → sad). Only short phrases, only on their device.
+    // `before` is the message that came before it: if that one was clear, the
+    // unclear message was simply carried by it and teaches nothing.
+    function phraseToLearn(read, before) {
+        if (!read || read.primary || read.topics.length || read.ask || read.masking || read.words > 6) return null;
+        if (before && (before.primary || before.topics.length)) return null;
+        const words = read.normalised.trim().split(' ')
+            .filter((word) => word && word !== '|' && word.length > 1 && !STOP_WORDS.has(word) && !NEVER_LEARN.has(word) && !/^\d+$/.test(word))
+            .slice(0, 4);
+        return words.length ? words.join(' ') : null;
+    }
+
     // When a message cannot be read with confidence, ask — with answers one
     // tap away — rather than guess.
     const CLARIFY = {
@@ -3325,11 +3584,14 @@ Go on${greetingName} — I’m here.`;
      *   history: the person's earlier messages in this conversation (most recent last)
      *   used:    counsel already given in this conversation ("anxiety:work"), never repeated
      *   retry:   "not quite" — comfort | practical | deeper | situation
+     *   said:    what Sakha already said in this conversation, so it never repeats itself
      *   person:  from their device only — name, voice, paths, context, memory (see frontend/src/lib/person.js)
      * @param {{ verses: object[], chapters: object[], timeOfDay?: string, random?: () => number, offline?: boolean }} corpus
      */
     function respond(input, corpus) {
-        const { text = null, mood = null, settings = {}, history = [], exclude = [], another: anotherAsked = false, lastVerseId = null, person = null, used = [] } = input || {};
+        const { text = null, mood = null, settings = {}, history = [], exclude = [], another: anotherAsked = false, lastVerseId = null, person = null, used = [], said: saidInput = [] } = input || {};
+        // What Sakha already said in this conversation (its opening lines and steps).
+        const said = Array.isArray(saidInput) ? saidInput.filter((line) => typeof line === 'string').slice(-12) : [];
         // "Not quite": another answer, shaped by what would help instead.
         const retry = RETRY_REASONS.includes(input?.retry?.reason) ? input.retry.reason : null;
         const another = Boolean(anotherAsked || retry);
@@ -3359,8 +3621,11 @@ Go on${greetingName} — I’m here.`;
 
         // Read the message once; everything below answers the reading.
         const lexicon = verses.length ? corpusIndex(verses).lexicon : null;
-        const reading = understand(text, { lexicon });
-        const earlier = text && !another ? history.slice(-3).filter((line) => typeof line === 'string').map((line) => understand(line, { lexicon })) : [];
+        const personalWords = person?.lexicon && typeof person.lexicon === 'object' ? person.lexicon : null;
+        const reading = understand(text, { lexicon, personal: personalWords });
+        const earlier = text && !another
+            ? history.slice(-4).filter((line) => typeof line === 'string').map((line) => understand(line, { lexicon, personal: personalWords }))
+            : [];
         const profile = buildProfile({ text, mood, history, timeOfDay, person, reading, lexicon, retry });
 
         // "Not my situation": ask what it is about, with the answers one tap away.
@@ -3384,9 +3649,10 @@ Go on${greetingName} — I’m here.`;
         }
 
         if (text && !another && !mood && !profile.primary && !profile.topics.length && !profile.care && !reading.ask
-            && reading.words <= 8 && !isQuestion(text)) {
+            && reading.words <= 8 && !isQuestion(text) && !detectConcern(text)) {
+            const again = earlier.length > 0 && !earlier[earlier.length - 1].primary;
             return {
-                message: PERSONAL.smalltalk[lang](name),
+                message: again ? SMALLTALK_AGAIN[lang](name) : PERSONAL.smalltalk[lang](name),
                 verse: null,
                 clarify: clarifyFor(lang, { includeGood: true }),
                 context: stamp({ intent: 'smalltalk', clarify: true })
@@ -3407,7 +3673,8 @@ Go on${greetingName} — I’m here.`;
         const care = profile.care;
         const verseAsk = !another && reading.ask === 'verse' && reading.about ? reading.about : null;
         // Listening carries on from "I just want to vent" to whatever comes next.
-        const listening = !another && !verseAsk && (reading.ask === 'vent' || earlier.slice(-1).some((read) => read.ask === 'vent'));
+        const listening = !another && !verseAsk && (reading.ask === 'vent'
+            || (earlier.some((read) => read.ask === 'vent') && !['how', 'why', 'verse'].includes(reading.ask)));
         const relief = !another && reading.relief && !care;
         const context = {
             emotion: profile.primary,
@@ -3428,9 +3695,15 @@ Go on${greetingName} — I’m here.`;
         const heavy = !profile.primary || HEAVY(profile.primary);
         const understood = Boolean(profile.primary || topic || mood || care || verseAsk);
         // Counsel written for this feeling in this life — once per conversation.
+        const usedKeys = Array.isArray(used) ? used : [];
+        const careKey = care ? `care:${care.mode}` : null;
+        const careFresh = Boolean(careKey) && !usedKeys.includes(careKey);
         const counselKey = care || verseAsk || listening ? null : counselKeyFor(counselFeeling(profile), profile.topics);
-        const freshKey = counselKey && !(Array.isArray(used) && used.includes(counselKey)) ? counselKey : null;
+        const freshKey = counselKey && !usedKeys.includes(counselKey) ? counselKey : null;
         const counsel = freshKey ? COUNSEL[freshKey][lang] : null;
+        const firstTurn = !history.length;
+        const earlierTopics = new Set(earlier.flatMap((read) => read.topics));
+        const earlierHeavy = earlier.some((read) => read.primary && HEAVY(read.primary));
 
         // How this conversation has moved: lighter, heavier, or still here.
         const trajectory = another ? null : trajectoryOf(reading, earlier);
@@ -3440,14 +3713,17 @@ Go on${greetingName} — I’m here.`;
         const plain = voice === 'direct';
         if (!another && text && text.length > 280 && !plain) opening.push(PERSONAL.long[lang]);
         if (listening && reading.ask === 'vent') opening.push(LISTEN[lang]);
+        if (!another && reading.learned.length && reading.words <= 4) opening.push(REMEMBERED_WORD[lang](reading.learned[0]));
         let ack;
         if (retry) ack = RETRY[retry][lang];
         else if (another) ack = pick(ANOTHER[lang], random);
         else if (verseAsk) ack = VERSE_ON[lang](verseAsk);
-        else if (care) ack = CARE_COUNSEL[care.mode][lang].ack(RELATION_NAMES[care.relation][lang]);
+        else if (care && careFresh) ack = CARE_COUNSEL[care.mode][lang].ack((RELATION_NAMES[care.relation] || RELATION_NAMES.someone)[lang]);
+        else if (care) ack = pickFresh(CARE_AGAIN[lang], random, said);
+        else if (reading.masking && earlierHeavy) ack = MASKING[lang];
         else if (relief) ack = trajectory === 'easing' ? TRAJECTORY.easing[lang] : pick(RELIEF.ack[lang], random);
         else if (counsel) ack = counsel.ack;
-        else ack = heard ? acknowledge(profile, lang, random) : UNHEARD[lang];
+        else ack = heard ? acknowledge(profile, lang, random, said) : UNHEARD[lang];
         const useName = !another && heard && name && (!history.length || random() < 0.35);
         if (useName) ack = withName(ack, name, lang);
         opening.push(ack);
@@ -3456,10 +3732,11 @@ Go on${greetingName} — I’m here.`;
             // "Why do I always get so angry?" asks about a pattern; it is not a cry.
             const asking = reading.ask === 'why' || reading.ask === 'how';
             const alreadyHeavy = /weigh|press|heavy|a lot|too much|भारी|दबाव|बहुत सारी/i.test(ack);
-            if (heavy && reading.intensity === 'high' && profile.primary && !asking && !care && !alreadyHeavy) opening.push(pick(INTENSE[lang], random));
-            else if (heavy && reading.intensity === 'low' && profile.primary && !care) opening.push(GENTLE[lang]);
-            else if (!heavy && reading.intensity === 'high') opening.push(pick(JOYFUL[lang], random));
-            if (topic && heavy && !counsel && !care) opening.push(TOPICS[topic].line[lang]);
+            if (heavy && reading.intensity === 'high' && profile.primary && !asking && !care && !alreadyHeavy) opening.push(pickFresh(INTENSE[lang], random, said));
+            else if (heavy && reading.intensity === 'low' && ['anxiety', 'fear'].includes(profile.primary) && !care) opening.push(GENTLE[lang]);
+            else if (!heavy && reading.intensity === 'high') opening.push(pickFresh(JOYFUL[lang], random, said));
+            // A situation is named once in a conversation, not every time it comes up.
+            if (topic && heavy && !counsel && !care && !earlierTopics.has(topic)) opening.push(TOPICS[topic].line[lang]);
             if (reading.time === 'future' && ['anxiety', 'fear', 'stress'].includes(profile.primary) && !counsel && !care) opening.push(AHEAD[lang]);
         }
 
@@ -3472,23 +3749,36 @@ Go on${greetingName} — I’m here.`;
             personal = RELIEF.keep[lang];
         } else if (trajectory) {
             personal = TRAJECTORY[trajectory][lang];
-        } else if (!another && profile.standing) {
+        } else if (!another && profile.standing && firstTurn) {
             personal = STANDING_LINE[lang](standingLabel(profile.standing, lang));
-        } else if (!another && !verseAsk && previous && previous.count >= 1 && previousAgo >= 6) {
+        } else if (!another && !verseAsk && firstTurn && previous && previous.count >= 1 && previousAgo >= 6) {
             personal = PERSONAL.returning[lang](TOPICS[topic].label[lang]);
-        } else if (!another && !verseAsk && HEAVY(profile.primary) && (person?.recurring?.[profile.primary] || 0) >= 2) {
+        } else if (!another && !verseAsk && firstTurn && HEAVY(profile.primary) && (person?.recurring?.[profile.primary] || 0) >= 2) {
             personal = PERSONAL.recurring[lang];
         }
 
         // "Why do I always…?" — where the feeling comes from, as the Gita sees it.
         // Someone who likes things explained hears it without asking.
-        const wantsWhy = reading.ask === 'why' || (voice === 'teacher' && !listening && !verseAsk && profile.primary);
+        const wantsWhy = reading.ask === 'why' || (voice === 'teacher' && firstTurn && !listening && !verseAsk && profile.primary);
         const roots = !another && wantsWhy && HEAVY(profile.primary) && !care
             ? (ROOTS[profile.primary] || ROOTS.default)[lang] : null;
 
-        const ground = !heavy ? pick(LIGHT_GROUNDING[lang], random)
-            : timeOfDay === 'night' && !another ? PERSONAL.night[lang] : pick(GROUNDING[lang], random);
-        const guidance = guidanceFor(verse, profile, lang, { counselKey: freshKey });
+        const ground = !heavy ? pickFresh(LIGHT_GROUNDING[lang], random, said)
+            : timeOfDay === 'night' && !another && !said.some((line) => line.includes(PERSONAL.night[lang])) ? PERSONAL.night[lang]
+                : pickFresh(GROUNDING[lang], random, said);
+        const guidance = guidanceFor(verse, care && !careFresh ? { ...profile, care: null } : profile, lang, { counselKey: freshKey });
+        if (care && !careFresh) guidance.blessing = CARE_BLESSING[lang];
+        // A step is never offered twice in a conversation; "something practical" always gets a new one.
+        const spokenStep = (step) => step && said.some((line) => plainText(line).includes(plainText(step).slice(0, 48)));
+        if (guidance.step && (spokenStep(guidance.step) || retry === 'practical')) {
+            const own = profile.primary && GUIDANCE[profile.primary]?.[lang]?.step;
+            const pool = retry === 'practical' || PRACTICAL_FEELINGS.includes(profile.primary) ? PRACTICAL_STEPS : GENTLE_STEPS;
+            guidance.step = retry !== 'practical' && own && !spokenStep(own) && own !== guidance.step ? own
+                : pickFresh(pool[lang], random, [...said, guidance.step]);
+        }
+        // A clarification ("I mean I'm sad") right after an unclear message teaches Sakha that person's words.
+        const learnPhrase = !another && reading.primary && !reading.learned.length && reading.words <= 10
+            ? phraseToLearn(earlier[earlier.length - 1], earlier[earlier.length - 2]) : null;
         if (name && guidance.blessing) guidance.blessing = withBlessingName(guidance.blessing, name, lang);
         const quality = person?.sankalpa && (person.sankalpa[lang] || person.sankalpa.en);
         if (quality && HEAVY(profile.primary) && guidance.bridge && !listening) guidance.bridge += PERSONAL.sankalpa[lang](quality);
@@ -3505,11 +3795,11 @@ Go on${greetingName} — I’m here.`;
         if ((howAsked || retry === 'practical' || plain) && guidance.step && !listening) guidance.focus = 'step';
         const clarify = !another && text && !understood ? clarifyFor(lang) : null;
         const concern = Boolean(text) && detectConcern(text);
-        const careLine = care && care.mode === 'mind' && !another ? CARE_LINE[lang] : null;
+        const careLine = care && care.mode === 'mind' && careFresh && !another ? CARE_LINE[lang] : null;
 
         const reflection = verseAsk || plain ? null
             : listening ? LISTEN_REFLECTION[lang]
-                : pick((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random);
+                : pickFresh((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random, said);
         const moments = (voice === 'teacher' || retry === 'deeper') && lang === 'en'
             ? (verse.life_situations || []).filter((item) => typeof item === 'string' && item.length < 48).slice(0, 3).map((item) => item.toLowerCase())
             : [];
@@ -3546,12 +3836,16 @@ Go on${greetingName} — I’m here.`;
                 remembered: (Boolean(personal) && !relief && !trajectory) || undefined,
                 concern: concern || undefined,
                 clarify: Boolean(clarify) || undefined,
-                counsel: freshKey || undefined,
+                counsel: freshKey || (careFresh ? careKey : undefined),
                 care: care ? { relation: care.relation, mode: care.mode } : undefined,
                 ask: reading.ask || undefined,
                 listening: listening || undefined,
                 trajectory: trajectory || undefined,
                 retry: retry || undefined,
+                // For the device to keep: a word learned, an event to ask about later.
+                learn: learnPhrase ? { phrase: learnPhrase, feeling: reading.primary } : undefined,
+                event: !another && reading.event ? reading.event : undefined,
+                learnedWords: reading.learned.length ? reading.learned : undefined,
                 voice: voice !== 'gentle' ? voice : undefined,
                 standing: profile.standing ? profile.standing.topics[0] : undefined,
                 reading: text ? {

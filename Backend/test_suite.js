@@ -21,7 +21,7 @@ async function runTests() {
     }
 
     // 1. Data Loader Test
-    console.log('[1/11] Testing Data Loader & All 18 Chapters...');
+    console.log('[1/12] Testing Data Loader & All 18 Chapters...');
     loadData();
     const allVerses = getVerses();
     assert(allVerses.length >= 700, `Loaded ${allVerses.length} total verses across all chapters`);
@@ -42,7 +42,7 @@ async function runTests() {
     assert(allChaptersHaveVerses, 'Every chapter from 1 to 18 has valid verses and metadata');
 
     // 2. Search Functionality
-    console.log('\n[2/11] Testing Multi-Dimensional Search...');
+    console.log('\n[2/12] Testing Multi-Dimensional Search...');
     const searchTerms = ['peace', 'karma', 'fear', 'duty', '2_47', 'death', 'meditation'];
     for (const term of searchTerms) {
         const { results } = searchService.searchVerses(allVerses, term);
@@ -68,7 +68,7 @@ async function runTests() {
     assert(searchService.searchVerses(allVerses, 'शांति').results.length > 0, 'Hindi query "शांति" finds verses through the Hindi translations');
 
     // 3. AI Service - Sacred Verse Selection by Mood
-    console.log('\n[3/11] Testing AI Service Mood Matching...');
+    console.log('\n[3/12] Testing AI Service Mood Matching...');
     const testMoods = ['peace', 'anxious', 'sad', 'angry', 'confused', 'happy', 'grateful'];
     for (const mood of testMoods) {
         const result = await aiService.generateResponse({
@@ -80,7 +80,7 @@ async function runTests() {
     }
 
     // 4. Crisis Safety Protocols
-    console.log('\n[4/11] Testing Crisis Safety Protocols & Helplines...');
+    console.log('\n[4/12] Testing Crisis Safety Protocols & Helplines...');
     const crisisPrompts = [
         'I want to end my life',
         'Feeling suicidal and hopeless',
@@ -103,7 +103,7 @@ async function runTests() {
     }
 
     // 5. Hindi Language Support
-    console.log('\n[5/11] Testing Hindi Response & Translations...');
+    console.log('\n[5/12] Testing Hindi Response & Translations...');
     const hindiResult = await aiService.generateResponse({
         text: 'मुझे बहुत चिंता हो रही है',
         mood: 'anxious',
@@ -113,7 +113,7 @@ async function runTests() {
     assert(hindiResult.message.length > 20, `Generated contemplative response in Hindi`);
 
     // 6. HTTP API — the real Express app on an ephemeral port
-    console.log('\n[6/11] Testing HTTP Endpoints...');
+    console.log('\n[6/12] Testing HTTP Endpoints...');
     process.env.NODE_ENV = 'test';
     const app = require('./src/app');
     const server = await new Promise((resolve) => {
@@ -169,7 +169,7 @@ async function runTests() {
     }
 
     // 7. One engine everywhere — the offline worker runs the shared Wisdom Engine
-    console.log('\n[7/11] Testing Offline Engine Is The Shared Engine...');
+    console.log('\n[7/12] Testing Offline Engine Is The Shared Engine...');
     const fs = require('fs');
     const path = require('path');
     const engine = require('../shared/wisdom-engine');
@@ -182,7 +182,7 @@ async function runTests() {
     assert(crisisHi.message.includes('14416') && /[ऀ-ॿ]/.test(crisisHi.message), 'Hindi crisis reply is in Hindi and carries Tele-MANAS');
 
     // 8. The sanctuary's listening — safety, understanding, variety
-    console.log('\n[8/11] Testing AI Safety, Understanding & Variety...');
+    console.log('\n[8/12] Testing AI Safety, Understanding & Variety...');
     const corpus = { verses: allVerses, chapters: chaptersMeta };
     // mulberry32: a small, well-distributed seeded generator for repeatable tests.
     const seeded = (seed) => () => {
@@ -262,7 +262,7 @@ async function runTests() {
     assert(/^May /.test(blessedEn.guidance?.blessing || '') && /[ऀ-ॿ]/.test(blessedHi.guidance?.blessing || '') && Boolean(blessedNeutral.guidance?.blessing), 'Answers carry a blessing — English, Hindi, and when no feeling is named');
 
     // ------------------------------------------------------------------
-    console.log('\n[9/11] Testing Understanding Anyone, In Their Own Words...');
+    console.log('\n[9/12] Testing Understanding Anyone, In Their Own Words...');
     const say = (text, extra = {}, seed = 3) => engine.respond({ text, history: [], ...extra }, { ...corpus, random: seeded(seed), timeOfDay: 'afternoon' });
     const verseExists = (ref) => allVerses.some((v) => v.id === ref.replace('.', '_'));
 
@@ -373,7 +373,7 @@ async function runTests() {
 
 
     // ------------------------------------------------------------------
-    console.log('\n[10/11] Testing Engine 4 — Reading Between The Lines...');
+    console.log('\n[10/12] Testing Engine 4 — Reading Between The Lines...');
 
     // A graded set: each message, and what a good listener would hear in it.
     const readings = [
@@ -513,7 +513,7 @@ async function runTests() {
     assert(perReply < 60, `Each reply is composed in ${perReply.toFixed(1)} ms on average, long messages included`);
 
     // ------------------------------------------------------------------
-    console.log('\n[11/11] Testing Engine 5 — An Answer Shaped For Each Person...');
+    console.log('\n[11/12] Testing Engine 5 — An Answer Shaped For Each Person...');
 
     // The Gita's four paths, read from every verse.
     const pathCounts = { karma: 0, jnana: 0, bhakti: 0, dhyana: 0 };
@@ -566,8 +566,107 @@ async function runTests() {
         `"Not quite" answers again — gentler, more practical, deeper — or asks what it is about, with ${topicChips.length} one-tap answers it understands${unplaced.length ? ` — not placed: ${unplaced.map((o) => o.text).join(' | ')}` : ''}`);
 
     // The device learns from the answer's path.
-    assert(Array.isArray(firstAnswer.context.paths) && firstAnswer.context.engine === engine.ENGINE_VERSION && engine.ENGINE_VERSION.startsWith('5.'),
+    assert(Array.isArray(firstAnswer.context.paths) && firstAnswer.context.engine === engine.ENGINE_VERSION && Number(engine.ENGINE_VERSION.split('.')[0]) >= 5,
         'Each answer says which path its verse walks, so the device can learn what helps — and nothing about it leaves the device');
+
+    // ------------------------------------------------------------------
+    console.log('\n[12/12] Testing Engine 6 — Many People, Many Conversations...');
+    {
+
+    // A whole conversation, as the app holds it: history, counsel used, verses shown, words already said.
+    const converse = (turns, extra = {}, seed = 5) => {
+        const history = []; const used = []; const exclude = []; const said = []; const replies = [];
+        turns.forEach((text, i) => {
+            const r = engine.respond({ text, history: [...history], used: [...used], exclude: [...exclude], said: [...said], ...extra }, { ...corpus, random: seeded(seed + i), timeOfDay: 'evening' });
+            history.push(text);
+            if (r.context?.counsel) used.push(r.context.counsel);
+            if (r.verse) exclude.push(r.verse.id);
+            said.push(r.message.split('\n\n')[0]);
+            if (r.guidance?.step) said.push(r.guidance.step);
+            replies.push(r);
+        });
+        return replies;
+    };
+
+    // Help first: violence someone witnesses at home, and quieter warning signs.
+    const witnessed = ['my dad hits my mom', 'he beats my sister every night', 'my husband hit my son'].map((t) => say(t));
+    const disappearing = say('I feel like disappearing');
+    const nothing = say('nothing matters anymore');
+    assert(witnessed.every((r) => r.context.safety && r.verse === null) && !say('it hit me hard that I am getting older').context.safety
+        && disappearing.context.concern && disappearing.context.intent !== 'smalltalk' && /14416/.test(disappearing.message) && nothing.context.concern,
+        'Violence seen at home gets emergency help; "I feel like disappearing" and "nothing matters" are met with care and a helpline, never small talk');
+
+    // Questions of conscience and practice are answered as what they are.
+    const money = say('is it wrong to want money');
+    const jealous = say('is it wrong to feel jealous of my friend');
+    const paisa = say('kya paise chahna galat hai');
+    const krodh = say('क्या गुस्सा करना पाप है');
+    const after = say('what happens after death');
+    const meditate = say('how do i meditate');
+    assert(money.context.intent === 'ethics' && money.verse?.id === '7_11' && /^Wanting, by itself, is not wrong/.test(money.message)
+        && /^Feeling it is not wrong/.test(jealous.message) && paisa.context.intent === 'ethics' && /[ऀ-ॿ]/.test(krodh.message.split('\n')[0])
+        && after.context.concept === 'rebirth' && meditate.context.concept === 'dhyana',
+        '"Is it wrong to want money?", "…to feel jealous?" (English, Hinglish, Hindi), "what happens after death", "how do I meditate" are each answered as the question they are');
+
+    // Never the same words twice in one conversation.
+    const heartbreakChat = converse(['she left me for someone else', 'i keep checking her instagram', 'i miss her so much', 'i still cant stop thinking about her', 'it hurts']);
+    const openings = heartbreakChat.map((r) => r.message.split('\n\n')[0]);
+    const steps = heartbreakChat.map((r) => r.guidance?.step).filter(Boolean);
+    const sameOpening = openings.filter((line, i) => openings.indexOf(line) !== i);
+    const sameStep = steps.filter((step, i) => steps.indexOf(step) !== i);
+    assert(!sameOpening.length && !sameStep.length,
+        `Across a five-message conversation no opening line and no step is ever repeated${sameOpening.length ? ` — repeated: ${sameOpening[0]}` : ''}${sameStep.length ? ` — step: ${sameStep[0]}` : ''}`);
+
+    // Listening lasts, and a situation is named once.
+    const venting = converse(['I just need to vent', 'my parents never listen to me', 'and today they said I am a disappointment', 'my family always compares me']);
+    const familyLines = venting.filter((r) => /Family is where we love most/.test(r.message)).length;
+    assert(venting.slice(1).every((r) => r.context.listening && r.guidance?.step == null) && familyLines <= 1,
+        'Once someone asks only to be heard, every reply after listens — and the situation is named once, not every time');
+
+    // Learning a person's own words.
+    const unclear = say('meh');
+    const clarified = say('I feel sad about this', { history: ['meh'] });
+    const lexicon = clarified.context.learn ? { [clarified.context.learn.phrase]: { [clarified.context.learn.feeling]: 1 } } : {};
+    const later = say('meh', { person: { lexicon } });
+    const notLearned = [say('nothing matters anymore', { history: ['fine i guess'] }), say('should i text her', { history: ['she left me', 'i keep checking her instagram'] })];
+    assert(unclear.context.intent === 'smalltalk' && clarified.context.learn?.phrase === 'meh' && clarified.context.learn?.feeling === 'sadness'
+        && later.context.emotion === 'sadness' && /I remember what “meh” means for you/.test(later.message) && notLearned.every((r) => !r.context.learn),
+        'Sakha learns a person’s own word for a feeling when they clarify it ("meh" → sad), remembers it next time, and never learns from masking or carried messages');
+
+    // Something coming up, remembered as a label and a day.
+    const events = [['i have a mock test tomorrow', 'exam', 'tomorrow'], ['my interview is on friday', 'interview', 'friday'],
+        ['surgery tomorrow for my mom', 'surgery', 'tomorrow'], ['kal mera exam hai', 'exam', 'tomorrow'], ['मेरी परीक्षा कल है', 'exam', 'tomorrow']];
+    const missedEvents = events.filter(([t, kind, when]) => { const e = say(t).context.event; return !e || e.kind !== kind || e.when !== when; });
+    assert(!missedEvents.length && !say('this exam is killing me').context.event,
+        `Upcoming exams, interviews and surgeries are noticed in three languages, so Sakha can ask how they went${missedEvents.length ? ` — missed: ${missedEvents.map(([t]) => t).join(' | ')}` : ''}`);
+
+    // A carer, in Hindi, over a conversation.
+    const sunita = converse(['आज बहुत थकान है', 'मुझे डर लगता है कि उन्हें कुछ हो न जाए'], { person: { name: 'सुनीता', context: 'मेरे पति को कैंसर है और मैं उनकी देखभाल करती हूँ' } });
+    assert(sunita[0].context.care?.mode === 'health' && /अपने पति/.test(sunita[0].message) && sunita[0].message.split('\n\n')[0] !== sunita[1].message.split('\n\n')[0]
+        && /प्रेम|थका|थामे/.test(sunita[1].message.split('\n\n')[0]),
+        'A wife caring for her husband with cancer (in Hindi) is answered as his carer — and her second message is met freshly, as her own fear');
+
+    // Everyday words, read rightly.
+    const everydayReads = [['mujhe khud se nafrat ho rahi hai', 'unworthiness'], ["i'm not okay", 'sadness'], ['feeling low key off today', 'sadness'],
+        ['my mind wont shut up at night', 'anxiety'], ['im dying of boredom', 'inertia'], ['kinda burnt out ngl', 'stress']];
+    const misreadEveryday = everydayReads.filter(([t, want]) => engine.understand(t).primary !== want);
+    assert(!misreadEveryday.length && engine.understand('my parents keep comparing me to my cousin').primary !== 'envy'
+        && !engine.understand('im dying of boredom').topics.includes('loss'),
+        `Everyday and slang phrasings are read rightly — self-hatred, "not okay", "low key off", a racing mind at night, boredom, burnout${misreadEveryday.length ? ` — misread: ${misreadEveryday.map(([t]) => `"${t}"→${engine.understand(t).primary}`).join(' | ')}` : ''}`);
+
+    // Verses about death are kept for grief, fear and illness.
+    const deathWords = /\b(death|dying|die|slain|reincarnation|rebirth|never born|garments|goodbye|grief|funeral)\b/i;
+    const lowDays = Array.from({ length: 12 }, (_, i) => say("i'm not okay", {}, i + 1).verse);
+    const griefDays = Array.from({ length: 8 }, (_, i) => say('my mother passed away', {}, i + 1).verse);
+    const deathOnLowDays = lowDays.filter((v) => deathWords.test(`${(v.core_theme || []).join(' ')} ${(v.life_situations || []).join(' ')} ${v.notification_short?.en || ''}`));
+    assert(deathOnLowDays.length <= 1 && griefDays.some((v) => deathWords.test(`${(v.core_theme || []).join(' ')} ${(v.life_situations || []).join(' ')} ${v.notification_short?.en || ''}`)),
+        `An ordinary low day is not answered with verses about death (${deathOnLowDays.length} of 12); grief still is`);
+
+    // When a step cannot repeat, the new one suits the feeling.
+    const grieving = converse(['my husband passed away last month', 'why did god take him', 'I keep setting out two cups of tea']);
+    assert(grieving.slice(1).every((r) => !/smallest next action|ten minutes and do only|three tasks/i.test(r.guidance?.step || '')),
+        'Someone grieving is never handed a productivity task when a step is replaced');
+    }
     console.log('\n====================================================');
     console.log(`TOTAL: ${passed} PASSED, ${failed} FAILED`);
     console.log('====================================================');
