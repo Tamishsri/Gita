@@ -42,7 +42,7 @@ function Svadhyaya({ isOpen, onClose, verse: initialVerse }) {
     const [level, setLevel] = useState(0);
     const [revealed, setRevealed] = useState(new Set());
     const [learned, setLearned] = useState(readLearned);
-    const { speak, stop, speakingId, isSupported } = useVoiceReader();
+    const { recite, stop, speakingId, preparingId, isSupported } = useVoiceReader();
 
     useEffect(() => {
         if (!isOpen) {
@@ -150,8 +150,8 @@ function Svadhyaya({ isOpen, onClose, verse: initialVerse }) {
                         {isSupported && (
                             <button
                                 type="button"
-                                className={`text-action${speakingThis ? ' is-on' : ''}`}
-                                onClick={() => (speakingThis ? stop() : speak(`learn_${verse.id}`, verse.sanskrit, 'hi', { sanskrit: true }))}
+                                className={`text-action${speakingThis ? ' is-on' : ''}${preparingId === `learn_${verse.id}` ? ' is-preparing' : ''}`}
+                                onClick={() => (speakingThis ? stop() : recite(`learn_${verse.id}`, verse, 'hi', { parts: ['sloka'] }))}
                             >
                                 {speakingThis ? <Square size={12} fill="currentColor" /> : <Volume2 size={15} />} {t('svadhyaya.listen')}
                             </button>

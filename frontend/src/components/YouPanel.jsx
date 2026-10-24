@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Check, Download, EyeOff, KeyRound, Lock, ShieldCheck, X } from 'lucide-react';
+import { Check, Download, EyeOff, KeyRound, Lock, ShieldCheck, Sparkles, X } from 'lucide-react';
 import Sheet, { SheetHeader } from './ui/Sheet';
 import SakhaMark from './ui/SakhaMark';
 import PathLotus, { PATH_COLOURS } from './ui/PathLotus';
 import { Group, Row, Switch } from './Settings';
 import { usePreferences } from '../contexts/PreferencesContext';
 import {
-    CONTEXT_LIMIT, PATH_IDS, PROFILE_EVENT, VOICES, choosePath, forgetConversations, forgetWord, leaningPath, learnedWords, portraitOf,
+    CONTEXT_LIMIT, PATH_IDS, PROFILE_EVENT, VOICES, choosePaths, chosenPathsOf, forgetConversations, forgetWord, leaningPath, learnedWords, portraitOf,
     readProfile, summariseMemory, updateProfile
 } from '../lib/person';
 import { PATH_EVENT } from '../lib/path';
@@ -14,6 +14,7 @@ import { LOCK_EVENT, clearPasscode, isLockEnabled, isValidPasscode, lockSupporte
 import { describeStorage, exportData } from '../lib/privacy';
 import { DEFAULT_SETTINGS, purgeLocalData } from '../lib/settings';
 import { toast } from '../lib/toast';
+import { haptic } from '../lib/haptics';
 import { useI18n } from '../i18n';
 
 function PasscodeForm({ mode, onDone, onCancel }) {
@@ -136,7 +137,18 @@ function YouPanel({ isOpen, onClose, onLockNow }) {
         });
         return line.charAt(0).toUpperCase() + line.slice(1);
     };
-    const chosen = profile.chosenPath;
+    const chosen = chosenPathsOf(profile);
+    const auto = chosen.length === 0;
+    const pathName = (id) => t(`path4.${id}.name`);
+    const pathList = (ids) => (ids.length < 2 ? ids.map(pathName).join('')
+        : `${ids.slice(0, -1).map(pathName).join(', ')} ${t('list.and')} ${pathName(ids[ids.length - 1])}`);
+    const pathsLead = chosen.length > 1 ? t('you.paths.chosenMany', { paths: pathList(chosen) })
+        : chosen.length === 1 && !(leaning && leaning !== chosen[0]) ? t('you.paths.chosen', { path: pathName(chosen[0]) })
+            : leaning ? t('you.paths.leaning', { path: pathName(leaning) }) : t('you.paths.learning');
+    const togglePath = (id) => {
+        haptic('soft');
+        setProfile(choosePaths(chosen.includes(id) ? chosen.filter((item) => item !== id) : [...chosen, id]));
+    };
     const noteChanged = note.trim() !== (profile.context || '').trim();
 
     const saveNote = () => {
@@ -198,31 +210,39 @@ function YouPanel({ isOpen, onClose, onLockNow }) {
 
                 <Group title={t('you.paths.title')}>
                     <div className="you-paths">
-                        <PathLotus paths={profile.paths} highlight={chosen || leaning} />
+                        <PathLotus paths={profile.paths} highlight={chosen.length === 1 ? chosen[0] : leaning} />
                         <div className="you-paths__text">
-                            <p className="you-paths__lead">
-                                {leaning && leaning === chosen && (profile.paths?.[leaning] || 0) < 5
-                                    ? t('you.paths.chosen', { path: t(`path4.${leaning}.name`) })
-                                    : leaning ? t('you.paths.leaning', { path: t(`path4.${leaning}.name`) }) : t('you.paths.learning')}
-                            </p>
+                            <p className="you-paths__lead">{pathsLead}</p>
                             <p className="faint">{profile.feedback ? t('you.paths.learned', { count: profile.feedback }) : t('you.paths.how')}</p>
                         </div>
                     </div>
-                    <div className="path-choices" role="radiogroup" aria-label={t('you.paths.choose')}>
+                    <p className="path-choices__label">{t('you.paths.choose')}</p>
+                    <div className="path-choices" role="group" aria-label={t('you.paths.choose')}>
+                        <button
+                            type="button"
+                            aria-pressed={auto}
+                            className="path-choice path-choice--auto"
+                            style={{ '--petal-rgb': '226, 104, 156' }}
+                            onClick={() => { haptic('soft'); setProfile(choosePaths([])); }}
+                        >
+                            <span className="path-choice__dot path-choice__dot--auto" aria-hidden="true"><Sparkles size={11} /></span>
+                            <span className="path-choice__name">{t('you.paths.auto')}</span>
+                            <span className="path-choice__hint">{t('you.paths.autoHint')}</span>
+                            {auto && <Check size={15} className="path-choice__check" aria-hidden="true" />}
+                        </button>
                         {PATH_IDS.map((id) => (
                             <button
                                 key={id}
                                 type="button"
-                                role="radio"
-                                aria-checked={chosen === id}
+                                aria-pressed={chosen.includes(id)}
                                 className="path-choice"
                                 style={{ '--petal-rgb': PATH_COLOURS[id] }}
-                                onClick={() => setProfile(choosePath(chosen === id ? null : id))}
+                                onClick={() => togglePath(id)}
                             >
                                 <span className="path-choice__dot" aria-hidden="true" />
                                 <span className="path-choice__name">{t(`path4.${id}.name`)} <span className="faint">· {t(`path4.${id}.sanskrit`)}</span></span>
                                 <span className="path-choice__hint">{t(`path4.${id}.hint`)}</span>
-                                {chosen === id && <Check size={15} className="path-choice__check" aria-hidden="true" />}
+                                {chosen.includes(id) && <Check size={15} className="path-choice__check" aria-hidden="true" />}
                             </button>
                         ))}
                     </div>

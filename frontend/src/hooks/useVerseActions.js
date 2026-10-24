@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useVoiceReader } from './useVoiceReader';
 import {
-    copyText, openWisdomCard, saveLine, speechSectionsFor, verseKey, verseMeaning, verseRef, verseShareText
+    copyText, openWisdomCard, saveLine, verseKey, verseMeaning, verseRef, verseShareText
 } from '../lib/verse';
 import { startJourney } from '../lib/journey';
 import { recordPath } from '../lib/path';
@@ -13,7 +13,7 @@ import { t } from '../i18n';
 // Every surface that shows a verse offers the same gestures — copy, keep,
 // walk, card, listen — so they live here once.
 export function useVerseActions(language = 'en') {
-    const { speak, stop, speakingId, isSupported } = useVoiceReader();
+    const { recite, stop, speakingId, preparingId, isSupported } = useVoiceReader();
 
     const copy = useCallback(async (verse) => {
         const ok = await copyText(verseShareText(verse, language));
@@ -45,9 +45,9 @@ export function useVerseActions(language = 'en') {
         if (speakingId === id) {
             stop();
         } else {
-            speak(id, speechSectionsFor(verse, language), language);
+            recite(id, verse, language);
         }
-    }, [language, speak, speakingId, stop]);
+    }, [language, recite, speakingId, stop]);
 
-    return { copy, save, walk, card, listen, stop, speakingId, canListen: isSupported };
+    return { copy, save, walk, card, listen, stop, speakingId, preparingId, canListen: isSupported };
 }

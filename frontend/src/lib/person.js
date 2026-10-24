@@ -32,7 +32,7 @@ export const PATH_IDS = ['karma', 'jnana', 'bhakti', 'dhyana'];
 export const VOICES = ['gentle', 'direct', 'teacher'];
 export const CONTEXT_LIMIT = 600;
 
-const EMPTY_PROFILE = Object.freeze({ voice: 'gentle', paths: {}, chosenPath: null, context: '', helped: [], feedback: 0, lexicon: {} });
+const EMPTY_PROFILE = Object.freeze({ voice: 'gentle', paths: {}, chosenPaths: [], context: '', helped: [], feedback: 0, lexicon: {} });
 const LEXICON_LIMIT = 40;
 
 export function readProfile() {
@@ -55,14 +55,28 @@ export function updateProfile(patch) {
     return next;
 }
 
-/** "This is me": a path chosen outright counts for more than any single answer. */
-export function choosePath(id) {
-    const profile = readProfile();
-    const paths = { ...profile.paths };
-    if (profile.chosenPath && profile.chosenPath !== id) paths[profile.chosenPath] = Math.max(0, (paths[profile.chosenPath] || 0) - 3);
-    if (id) paths[id] = (paths[id] || 0) + 3;
-    return updateProfile({ paths, chosenPath: id || null });
+/** The paths a person chose for themselves ([] is Auto: Sakha learns from what helps). */
+export function chosenPathsOf(profile = readProfile()) {
+    const list = Array.isArray(profile.chosenPaths) && profile.chosenPaths.length ? profile.chosenPaths
+        : profile.chosenPath ? [profile.chosenPath] : [];
+    return [...new Set(list.filter((id) => PATH_IDS.includes(id)))];
 }
+
+/**
+ * "These are me": paths chosen outright count for more than any single answer.
+ * Any number may be chosen — a life rarely fits one — or none, for Auto.
+ */
+export function choosePaths(ids = []) {
+    const profile = readProfile();
+    const before = chosenPathsOf(profile);
+    const after = [...new Set((Array.isArray(ids) ? ids : []).filter((id) => PATH_IDS.includes(id)))];
+    const paths = { ...profile.paths };
+    before.filter((id) => !after.includes(id)).forEach((id) => { paths[id] = Math.max(0, (paths[id] || 0) - 3); });
+    after.filter((id) => !before.includes(id)).forEach((id) => { paths[id] = (paths[id] || 0) + 3; });
+    return updateProfile({ paths, chosenPaths: after, chosenPath: null });
+}
+
+export const choosePath = (id) => choosePaths(id ? [id] : []);
 
 // What "not quite — something practical" says about a person.
 const REASON_LEANS = { practical: 'karma', deeper: 'jnana', comfort: 'bhakti' };

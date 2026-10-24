@@ -22,7 +22,10 @@ export const DEFAULT_SETTINGS = Object.freeze({
 export function loadSettings() {
     try {
         const stored = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
-        return { ...DEFAULT_SETTINGS, ...stored };
+        const settings = { ...DEFAULT_SETTINGS, ...stored };
+        // The tanpura became singing bowls.
+        if (settings.soundMode === 'om') settings.soundMode = 'bowls';
+        return settings;
     } catch {
         return { ...DEFAULT_SETTINGS };
     }

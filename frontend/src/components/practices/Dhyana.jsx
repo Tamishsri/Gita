@@ -110,7 +110,7 @@ function Dhyana({ isOpen, onClose, minutes: suggestedMinutes }) {
         playChime('bowl');
         haptic('breath');
         if (drone && !soundscape.isPlaying) {
-            soundscape.play('om');
+            soundscape.play('bowls');
             droneStarted.current = true;
         }
         try {

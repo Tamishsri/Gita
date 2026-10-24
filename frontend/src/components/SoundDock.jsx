@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronUp, CloudRain, Orbit, Pause, Play, Sparkles, Volume1, Volume2, VolumeX, Waves, Bell } from 'lucide-react';
+import { ChevronUp, CloudRain, Droplets, Orbit, Pause, Play, Sparkles, Volume1, Volume2, VolumeX, Waves, Bell } from 'lucide-react';
 import { SOUND_MODES, useSoundscape } from './SoundscapeEngine';
 import { playChime } from '../lib/chime';
 import { useLayer } from '../lib/layers';
 import { useI18n } from '../i18n';
 
-export const SOUND_ICONS = { auto: Sparkles, ocean: Waves, rain: CloudRain, om: Orbit };
+export const SOUND_ICONS = { auto: Sparkles, ocean: Waves, rain: CloudRain, stream: Droplets, bowls: Orbit };
 
 export function SoundPanel({ onModeChange }) {
     const { t } = useI18n();

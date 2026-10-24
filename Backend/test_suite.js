@@ -21,7 +21,7 @@ async function runTests() {
     }
 
     // 1. Data Loader Test
-    console.log('[1/12] Testing Data Loader & All 18 Chapters...');
+    console.log('[1/13] Testing Data Loader & All 18 Chapters...');
     loadData();
     const allVerses = getVerses();
     assert(allVerses.length >= 700, `Loaded ${allVerses.length} total verses across all chapters`);
@@ -42,7 +42,7 @@ async function runTests() {
     assert(allChaptersHaveVerses, 'Every chapter from 1 to 18 has valid verses and metadata');
 
     // 2. Search Functionality
-    console.log('\n[2/12] Testing Multi-Dimensional Search...');
+    console.log('\n[2/13] Testing Multi-Dimensional Search...');
     const searchTerms = ['peace', 'karma', 'fear', 'duty', '2_47', 'death', 'meditation'];
     for (const term of searchTerms) {
         const { results } = searchService.searchVerses(allVerses, term);
@@ -68,7 +68,7 @@ async function runTests() {
     assert(searchService.searchVerses(allVerses, 'शांति').results.length > 0, 'Hindi query "शांति" finds verses through the Hindi translations');
 
     // 3. AI Service - Sacred Verse Selection by Mood
-    console.log('\n[3/12] Testing AI Service Mood Matching...');
+    console.log('\n[3/13] Testing AI Service Mood Matching...');
     const testMoods = ['peace', 'anxious', 'sad', 'angry', 'confused', 'happy', 'grateful'];
     for (const mood of testMoods) {
         const result = await aiService.generateResponse({
@@ -80,7 +80,7 @@ async function runTests() {
     }
 
     // 4. Crisis Safety Protocols
-    console.log('\n[4/12] Testing Crisis Safety Protocols & Helplines...');
+    console.log('\n[4/13] Testing Crisis Safety Protocols & Helplines...');
     const crisisPrompts = [
         'I want to end my life',
         'Feeling suicidal and hopeless',
@@ -103,7 +103,7 @@ async function runTests() {
     }
 
     // 5. Hindi Language Support
-    console.log('\n[5/12] Testing Hindi Response & Translations...');
+    console.log('\n[5/13] Testing Hindi Response & Translations...');
     const hindiResult = await aiService.generateResponse({
         text: 'मुझे बहुत चिंता हो रही है',
         mood: 'anxious',
@@ -113,7 +113,7 @@ async function runTests() {
     assert(hindiResult.message.length > 20, `Generated contemplative response in Hindi`);
 
     // 6. HTTP API — the real Express app on an ephemeral port
-    console.log('\n[6/12] Testing HTTP Endpoints...');
+    console.log('\n[6/13] Testing HTTP Endpoints...');
     process.env.NODE_ENV = 'test';
     const app = require('./src/app');
     const server = await new Promise((resolve) => {
@@ -164,12 +164,53 @@ async function runTests() {
         assert((await post('/api/chat', { text: 'x'.repeat(2001) })).status === 400, 'POST /api/chat rejects messages over 2000 characters');
         assert((await post('/api/chat', null, '{"text": ')).status === 400, 'Malformed JSON is a clean 400, not a crash');
         assert((await get('/api/nothing-here')).status === 404, 'Unknown API routes are a JSON 404');
+
+        // Recitation in a human voice: verses only, generated once, never anything a person wrote.
+        const realKey = process.env.ELEVENLABS_API_KEY;
+        const realFetch = global.fetch;
+        try {
+            process.env.ELEVENLABS_API_KEY = '';
+            const off = await get('/api/voice');
+            const offAudio = await fetch(`${base}/api/voice/2_47?part=sloka`);
+            assert(off.body.available === false && offAudio.status === 503 && offAudio.headers.get('cache-control') === 'no-store',
+                'Without an ElevenLabs key the app is told to use the device voice (and the refusal is never cached)');
+
+            process.env.ELEVENLABS_API_KEY = 'test-key';
+            const calls = [];
+            global.fetch = async (url, init) => {
+                if (String(url).startsWith('https://api.elevenlabs.io/')) {
+                    calls.push({ url: String(url), init });
+                    return new Response(Buffer.from('ID3fake-mp3'), { status: 200, headers: { 'Content-Type': 'audio/mpeg' } });
+                }
+                return realFetch(url, init);
+            };
+            const on = await get('/api/voice');
+            const sloka = await fetch(`${base}/api/voice/2_47?part=sloka`);
+            const slokaBytes = Buffer.from(await sloka.arrayBuffer());
+            const again = await fetch(`${base}/api/voice/2_47?part=sloka`);
+            await again.arrayBuffer();
+            const meaningHi = await fetch(`${base}/api/voice/2_47?part=meaning&lang=hi`);
+            await meaningHi.arrayBuffer();
+            const sent = calls.map((call) => JSON.parse(call.init.body));
+            const bad = await Promise.all(['/api/voice/2_47', '/api/voice/2_47?part=chorus', '/api/voice/hello?part=sloka', '/api/voice/99_99?part=sloka']
+                .map(async (path) => (await fetch(base + path)).status));
+            assert(on.body.available === true && sloka.status === 200 && sloka.headers.get('content-type') === 'audio/mpeg'
+                && slokaBytes.toString() === 'ID3fake-mp3' && /immutable/.test(sloka.headers.get('cache-control'))
+                && calls.length === 2 && calls[0].url.includes('/uuyFQegRan8rpIQCGu9K') && calls[0].init.headers['xi-api-key'] === 'test-key'
+                && sent[0].text.startsWith('कर्मण्येवाधिकारस्ते') && !/[०-९]/.test(sent[0].text) && /श्लोक 47/.test(sent[1].text)
+                && bad.join() === '400,400,400,404',
+                'A verse is recited in the chosen voice (Viraj): the śloka without its numbers, the meaning with its source, each generated once, and nothing but a real verse can be asked for');
+        } finally {
+            global.fetch = realFetch;
+            if (realKey === undefined) delete process.env.ELEVENLABS_API_KEY;
+            else process.env.ELEVENLABS_API_KEY = realKey;
+        }
     } finally {
         server.close();
     }
 
     // 7. One engine everywhere — the offline worker runs the shared Wisdom Engine
-    console.log('\n[7/12] Testing Offline Engine Is The Shared Engine...');
+    console.log('\n[7/13] Testing Offline Engine Is The Shared Engine...');
     const fs = require('fs');
     const path = require('path');
     const engine = require('../shared/wisdom-engine');
@@ -182,7 +223,7 @@ async function runTests() {
     assert(crisisHi.message.includes('14416') && /[ऀ-ॿ]/.test(crisisHi.message), 'Hindi crisis reply is in Hindi and carries Tele-MANAS');
 
     // 8. The sanctuary's listening — safety, understanding, variety
-    console.log('\n[8/12] Testing AI Safety, Understanding & Variety...');
+    console.log('\n[8/13] Testing AI Safety, Understanding & Variety...');
     const corpus = { verses: allVerses, chapters: chaptersMeta };
     // mulberry32: a small, well-distributed seeded generator for repeatable tests.
     const seeded = (seed) => () => {
@@ -262,7 +303,7 @@ async function runTests() {
     assert(/^May /.test(blessedEn.guidance?.blessing || '') && /[ऀ-ॿ]/.test(blessedHi.guidance?.blessing || '') && Boolean(blessedNeutral.guidance?.blessing), 'Answers carry a blessing — English, Hindi, and when no feeling is named');
 
     // ------------------------------------------------------------------
-    console.log('\n[9/12] Testing Understanding Anyone, In Their Own Words...');
+    console.log('\n[9/13] Testing Understanding Anyone, In Their Own Words...');
     const say = (text, extra = {}, seed = 3) => engine.respond({ text, history: [], ...extra }, { ...corpus, random: seeded(seed), timeOfDay: 'afternoon' });
     const verseExists = (ref) => allVerses.some((v) => v.id === ref.replace('.', '_'));
 
@@ -373,7 +414,7 @@ async function runTests() {
 
 
     // ------------------------------------------------------------------
-    console.log('\n[10/12] Testing Engine 4 — Reading Between The Lines...');
+    console.log('\n[10/13] Testing Engine 4 — Reading Between The Lines...');
 
     // A graded set: each message, and what a good listener would hear in it.
     const readings = [
@@ -487,7 +528,7 @@ async function runTests() {
     const soft = say('a bit nervous about the interview');
     const mixed = say('I got the job but I am scared I will fail');
     const relieved = say('I used to be anxious all the time but now I feel much better');
-    assert(/more than anyone should|pressing on you|heavy thing to carry/.test(loud.message) && /small unease/.test(soft.message)
+    assert(/hold all of this|too much for one person|really heavy|No wonder it’s heavy/.test(loud.message) && /small unease/.test(soft.message)
         && /both can be true/.test(mixed.message) && mixed.context.emotion === 'fear' && relieved.context.emotion === 'peace'
         && /eased|worst of it/.test(relieved.message) && !/both can be true/.test(autopilot.message),
         'Intensity, mixed news and relief each change how Sakha first answers');
@@ -513,7 +554,7 @@ async function runTests() {
     assert(perReply < 60, `Each reply is composed in ${perReply.toFixed(1)} ms on average, long messages included`);
 
     // ------------------------------------------------------------------
-    console.log('\n[11/12] Testing Engine 5 — An Answer Shaped For Each Person...');
+    console.log('\n[11/13] Testing Engine 5 — An Answer Shaped For Each Person...');
 
     // The Gita's four paths, read from every verse.
     const pathCounts = { karma: 0, jnana: 0, bhakti: 0, dhyana: 0 };
@@ -570,7 +611,7 @@ async function runTests() {
         'Each answer says which path its verse walks, so the device can learn what helps — and nothing about it leaves the device');
 
     // ------------------------------------------------------------------
-    console.log('\n[12/12] Testing Engine 6 — Many People, Many Conversations...');
+    console.log('\n[12/13] Testing Engine 6 — Many People, Many Conversations...');
     {
 
     // A whole conversation, as the app holds it: history, counsel used, verses shown, words already said.
@@ -680,6 +721,53 @@ async function runTests() {
             && engine.verseForToday({ person: {}, date: week[0] }, corpus) === null && seen.verse.id !== riyaWeek[0].verse.id
             && riyaWeek.every((pick) => !engine.isNarrative(pick.verse)),
             `Each person gets a verse chosen for them each day — the same all day, a different one most days (${new Set(riyaWeek.map((pick) => pick.verse.id)).size} in 5), with the reason why, never one they just saw`);
+    }
+
+    // ------------------------------------------------------------------
+    console.log('\n[13/13] Testing Engine 7 — A Friend, Not A Pamphlet...');
+    {
+        // A conversation as the app holds it now: when the last verse was, the feelings so far, the questions asked.
+        const talk = (turns, extra = {}, seed = 11) => {
+            const history = []; const said = []; const thread = []; const exclude = []; const replies = [];
+            let sinceVerse;
+            turns.forEach((text, i) => {
+                const r = engine.respond({ text, history: [...history], said: [...said], thread: [...thread], exclude: [...exclude], sinceVerse, person: { name: 'Tamish' }, ...extra },
+                    { ...corpus, random: seeded(seed + i), timeOfDay: 'evening' });
+                history.push(text);
+                if (r.context?.emotion) thread.push(r.context.emotion);
+                const paragraphs = r.message.split('\n\n');
+                said.push(paragraphs[0]);
+                if (paragraphs.length > 1 && /\?$/.test(paragraphs[paragraphs.length - 1])) said.push(paragraphs[paragraphs.length - 1]);
+                if (r.verse) { exclude.push(r.verse.id); sinceVerse = 0; } else if (sinceVerse !== undefined) sinceVerse += 1;
+                replies.push(r);
+            });
+            return replies;
+        };
+
+        // Right after a verse, "it hurts" is met as itself — a few words and a question, the next verse one tap away.
+        const breakup = talk(['she left me for someone else', 'it hurts', 'i miss her so much', 'we were together 3 years and she just moved on like it was nothing']);
+        const [first, hurts, miss, moved] = breakup;
+        const endsAsking = (r) => /\?$/.test(r.message.trim());
+        const questions = breakup.map((r) => r.message.split('\n\n').pop()).filter((line) => /\?$/.test(line));
+        assert(first.verse && endsAsking(first) && hurts.verse === null && hurts.context.intent === 'stay' && endsAsking(hurts)
+            && hurts.clarify.options.some((option) => engine.understand(option.text).ask === 'verse') && miss.verse,
+            `After a verse, a short "it hurts" gets a friend's words and a question, not another verse (“${hurts.message}”) — and "share a verse" is one tap away`);
+        assert(miss.context.emotion === 'heartbreak' && !['2_20', '2_22', '2_23', '2_12'].includes(miss.verse.id) && !moved.context.reading?.relief
+            && moved.context.emotion !== 'peace' && new Set(questions).size === questions.length && !questions.some((q) => /How long were you two together/.test(q) && q === moved.message.split('\n\n').pop()),
+            `"I miss her" after a breakup is heartbreak, not a death (no verses on the undying soul); "she moved on" is not their relief; no question is asked twice, nor one already answered`);
+
+        // Spoken to like a friend: "bro" is not a brother; "lol" gets a lighter touch; a name is not in every sentence.
+        const bro = say('bro my life is a mess lol');
+        const named = talk(['i failed my exam again', 'i studied so hard for it and still failed', 'my parents will be so disappointed in me', 'i feel like such a failure'], {}, 21);
+        const nameCount = named.filter((r) => r.message.startsWith('Tamish')).length;
+        assert(!bro.context.topics.includes('family') && bro.context.emotion === 'stress' && /^(Oof|Ah, man|Ugh)\./.test(bro.message) && nameCount <= 2,
+            `"bro my life is a mess lol" is overwhelm, said to a friend — not a brother (“${bro.message.split('\n\n')[0]}”); the name opens ${nameCount} of 4 replies, not every one`);
+
+        // Arjuna's own questions are not offered as answers; the voice has no stock phrases left.
+        const answers = ['I feel lost', 'should i quit my job to follow my passion', 'i am scared of the future', 'i cant decide what to study'].map((text, i) => say(text, {}, 30 + i));
+        const STOCK = /Thank you for not|Thank you for naming|Read this slowly|The Gita speaks to this directly|You are the one who stays/;
+        assert(answers.every((r) => r.verse && !['5_1', '3_1', '3_2', '2_7', '6_37', '6_39'].includes(r.verse.id)) && answers.every((r) => !STOCK.test(r.message)),
+            'Answers are Krishna’s words, not Arjuna’s questions, and none of the old stock phrases remain');
     }
     console.log('\n====================================================');
     console.log(`TOTAL: ${passed} PASSED, ${failed} FAILED`);

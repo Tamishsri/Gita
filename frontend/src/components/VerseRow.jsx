@@ -3,6 +3,7 @@ import { Copy, Heart, Image as ImageIcon, Square, Volume2, ArrowRight } from 'lu
 import Sloka from './Sloka';
 import { verseMeaning, verseNumber, verseRef } from '../lib/verse';
 import { useI18n } from '../i18n';
+import Glossed from './ui/Glossed';
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -31,7 +32,7 @@ function VerseRow({ verse, language, actions, idPrefix = 'row', query, showChapt
                 <span className="verse-row__number">{showChapter ? verseRef(verse) : verseNumber(verse)}</span>
                 <div className="verse-row__tools">
                     {actions.canListen && (
-                        <button type="button" className={`icon-btn icon-btn--xs${speaking ? ' is-on' : ''}`} onClick={() => actions.listen(verse, speakId)} aria-label={speaking ? t('verse.stop') : t('verse.listen')} title={speaking ? t('verse.stop') : t('verse.listen')}>
+                        <button type="button" className={`icon-btn icon-btn--xs${speaking ? ' is-on' : ''}${actions.preparingId === speakId ? ' is-preparing' : ''}`} onClick={() => actions.listen(verse, speakId)} aria-label={speaking ? t('verse.stop') : t('verse.listen')} title={speaking ? t('verse.stop') : t('verse.listen')}>
                             {speaking ? <Square size={11} fill="currentColor" /> : <Volume2 size={15} />}
                         </button>
                     )}
@@ -53,7 +54,7 @@ function VerseRow({ verse, language, actions, idPrefix = 'row', query, showChapt
                 <Highlight text={meaning} query={query} />
             </p>
 
-            {simple && <p className="verse-row__simple">{simple}</p>}
+            {simple && <p className="verse-row__simple"><Glossed text={simple} language={language} /></p>}
 
             {onSit && (
                 <footer className="verse-row__foot">

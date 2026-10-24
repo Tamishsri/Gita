@@ -10,6 +10,7 @@ import { recordPath } from '../lib/path';
 import { toast } from '../lib/toast';
 import { usePreferences } from '../contexts/PreferencesContext';
 import { useI18n } from '../i18n';
+import Glossed from './ui/Glossed';
 
 // A verse as a folio: the śloka, its translation, and the same thing in
 // plain words. Gestures are quiet text actions; the rarer ones wait in "more".
@@ -24,7 +25,7 @@ function VerseDisplay({ verse, language = 'en', compact = false }) {
     const noteId = useId();
     const moreRef = useRef(null);
     const reduceMotion = useReducedMotion();
-    const { copy, save, walk, card, listen, speakingId, canListen } = useVerseActions(language);
+    const { copy, save, walk, card, listen, speakingId, preparingId, canListen } = useVerseActions(language);
 
     useEffect(() => {
         if (!moreOpen) return undefined;
@@ -85,7 +86,7 @@ function VerseDisplay({ verse, language = 'en', compact = false }) {
                 <span className="eyebrow">{t('verse.bg')} · {verseRef(verse)}</span>
             </header>
 
-            {simple && <p className={`verse-heart${language === 'hi' ? ' verse-heart--hi' : ''}`}>{simple}</p>}
+            {simple && <p className={`verse-heart${language === 'hi' ? ' verse-heart--hi' : ''}`}><Glossed text={simple} language={language} /></p>}
 
             <Sloka verse={verse} className="verse-card__sanskrit" />
 
@@ -113,14 +114,14 @@ function VerseDisplay({ verse, language = 'en', compact = false }) {
                 <>
                     <KolamRule width={160} />
                     <blockquote className={`translation verse-card__meaning${language === 'hi' && verse.meaning_hi ? ' translation--hi' : ''}`}>
-                        {meaning}
+                        <Glossed text={meaning} language={language} />
                     </blockquote>
                 </>
             )}
 
             <footer className="text-actions verse-card__actions">
                 {canListen && (
-                    <button type="button" className={`text-action${speaking ? ' is-on' : ''}`} onClick={() => listen(verse, key)}>
+                    <button type="button" className={`text-action${speaking ? ' is-on' : ''}${preparingId === key ? ' is-preparing' : ''}`} onClick={() => listen(verse, key)}>
                         {speaking ? <Square size={12} fill="currentColor" /> : <Volume2 size={15} />}
                         {speaking ? t('verse.stop') : t('verse.listen')}
                     </button>

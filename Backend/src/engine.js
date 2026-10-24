@@ -6,7 +6,9 @@
 let engine;
 try {
     engine = require('../../shared/wisdom-engine');
-} catch {
+} catch (error) {
+    // Only a missing file falls back to the bundled copy — a broken engine must fail loudly.
+    if (error.code !== 'MODULE_NOT_FOUND' || !String(error.message).includes('wisdom-engine')) throw error;
     engine = require('./shared/wisdom-engine');
 }
 

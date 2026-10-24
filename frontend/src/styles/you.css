@@ -302,26 +302,88 @@
     color: var(--text-1);
 }
 
+/* The lotus: pink, breathing, opening as Sakha learns this person. */
 .path-lotus {
     flex-shrink: 0;
     overflow: visible;
 }
 
 .path-lotus__halo {
-    fill: none;
-    stroke: var(--line-gold);
-    stroke-dasharray: 2 6;
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: lotus-halo 7s ease-in-out infinite;
 }
 
 .path-lotus__petal {
-    fill: rgba(var(--petal-rgb), 0.22);
-    stroke: rgba(var(--petal-rgb), 0.85);
-    stroke-width: 1.4;
-    transition: d var(--dur-slow) var(--ease-out), opacity var(--dur-base) ease;
+    stroke: rgba(150, 30, 85, 0.28);
+    stroke-width: 0.8;
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: lotus-breathe 7s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.path-lotus__petal--back {
+    opacity: 0.78;
+}
+
+.path-lotus__vein {
+    fill: none;
+    stroke: rgba(255, 240, 246, 0.45);
+    stroke-width: 0.7;
+    stroke-linecap: round;
+    pointer-events: none;
 }
 
 .path-lotus__heart {
-    fill: var(--accent-fill);
+    fill: #f2c14e;
+    stroke: rgba(160, 100, 20, 0.35);
+    stroke-width: 0.6;
+}
+
+.path-lotus__pad {
+    opacity: 0.85;
+}
+
+.path-lotus__ripple {
+    fill: none;
+    stroke: rgba(var(--lotus-glow, 236, 120, 170), 0.35);
+    stroke-width: 0.8;
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: lotus-ripple 6s ease-out infinite;
+}
+
+.path-lotus__ripple--late {
+    animation-delay: -3s;
+}
+
+.path-lotus__pollen circle {
+    fill: #ffe4a3;
+    opacity: 0;
+    animation: lotus-pollen 6.5s ease-in-out infinite;
+}
+
+@keyframes lotus-breathe {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(var(--sway, 0deg)) scale(1.035); }
+}
+
+@keyframes lotus-halo {
+    0%, 100% { opacity: 0.75; transform: scale(0.96); }
+    50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes lotus-ripple {
+    0% { opacity: 0; transform: scale(0.55); }
+    25% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.12); }
+}
+
+@keyframes lotus-pollen {
+    0% { opacity: 0; transform: translateY(8px); }
+    30% { opacity: 0.9; }
+    100% { opacity: 0; transform: translateY(-26px); }
 }
 
 .path-choices {
@@ -355,6 +417,13 @@
     }
 }
 
+.path-choices__label {
+    margin-top: var(--space-2);
+    font-size: var(--fs-xs);
+    color: var(--text-3);
+}
+
+.path-choice[aria-pressed="true"],
 .path-choice[aria-checked="true"] {
     border-color: rgba(var(--petal-rgb), 0.85);
     background: rgba(var(--petal-rgb), 0.14);
@@ -368,6 +437,22 @@
     border-radius: 50% 50% 50% 0;
     transform: rotate(-45deg);
     background: rgba(var(--petal-rgb), 0.85);
+}
+
+.path-choice__dot--auto {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: none;
+    color: #fff;
+    background: linear-gradient(135deg, #f19bbf, #c94a86);
+    box-shadow: 0 0 0 3px rgba(226, 104, 156, 0.16);
+}
+
+.path-choice--wide {
+    grid-column: 1 / -1;
 }
 
 .path-choice__name {
@@ -1036,5 +1121,138 @@ select,
     .chip:active {
         opacity: 0.8;
         transition: opacity 60ms ease;
+    }
+}
+
+.welcome__hint {
+    margin: calc(var(--space-2) * -1) 0 var(--space-3);
+    font-size: var(--fs-xs);
+    color: var(--text-3);
+}
+
+/* A recitation being prepared: the speaker breathes until the first word. */
+.is-preparing svg {
+    animation: preparing 1.1s ease-in-out infinite;
+}
+
+@keyframes preparing {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .path-lotus__halo,
+    .path-lotus__petal,
+    .path-lotus__ripple,
+    .path-lotus__pollen circle,
+    .is-preparing svg {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   The Gita's own words, explained where they stand (ui/Glossed)
+   ========================================================================== */
+
+.gloss {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    text-align: inherit;
+    background: none;
+    border: 0;
+    border-radius: 2px;
+    text-decoration: underline dotted;
+    text-decoration-color: rgba(var(--gold-rgb), 0.7);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.22em;
+    cursor: help;
+    user-select: text;
+    -webkit-user-select: text;
+    touch-action: manipulation;
+    transition: background-color var(--dur-fast) ease, text-decoration-color var(--dur-fast) ease;
+}
+
+.gloss.is-open,
+.gloss:focus-visible {
+    background: var(--gold-wash-strong);
+    text-decoration-color: var(--accent-fill);
+    outline: none;
+}
+
+@media (hover: hover) {
+    .gloss:hover {
+        text-decoration-color: var(--accent-fill);
+    }
+}
+
+.gloss-pop {
+    position: fixed;
+    z-index: 1150;
+    display: grid;
+    gap: 4px;
+    width: max-content;
+    max-width: min(320px, calc(100vw - 24px));
+    padding: 12px 14px 13px;
+    border-radius: var(--radius-md);
+    background: var(--surface-float);
+    border: 1px solid var(--line-gold);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-1);
+    text-align: left;
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+    transition: opacity 140ms ease, transform 180ms var(--ease-out, ease);
+    pointer-events: auto;
+}
+
+.gloss-pop.is-placed {
+    opacity: 1;
+    transform: none;
+}
+
+.gloss-pop::after {
+    content: "";
+    position: absolute;
+    left: calc(var(--arrow, 50%) - 6px);
+    bottom: -6px;
+    width: 12px;
+    height: 12px;
+    background: var(--surface-float);
+    border-right: 1px solid var(--line-gold);
+    border-bottom: 1px solid var(--line-gold);
+    transform: rotate(45deg);
+}
+
+.gloss-pop--below::after {
+    top: -6px;
+    bottom: auto;
+    transform: rotate(-135deg);
+}
+
+.gloss-pop__term {
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    font-weight: 600;
+    color: var(--gold-300);
+}
+
+.gloss-pop__meaning {
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+    color: var(--text-2);
+}
+
+.gloss-pop__meaning.is-hi {
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gloss-pop {
+        transition: none;
     }
 }

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowUp, LifeBuoy, RotateCcw, WifiOff, Feather, ArrowRight, Sparkles, Heart, EyeOff, LogOut } from 'lucide-react';
+import { ArrowUp, LifeBuoy, RotateCcw, WifiOff, Feather, ArrowRight, Sparkles, Heart, EyeOff, LogOut, CornerDownRight } from 'lucide-react';
 import VoiceInput from './VoiceInput';
 import BreathCircle from './BreathCircle';
 import VerseDisplay from './VerseDisplay';
@@ -15,11 +15,14 @@ import { practiceById } from '../lib/practices';
 import { toast } from '../lib/toast';
 import { useHasKeyboard } from '../hooks/useMediaQuery';
 import { hasTranslation, useI18n } from '../i18n';
+import Glossed from './ui/Glossed';
 
 let messageSeq = 0;
 const nextId = () => `m${Date.now().toString(36)}${(messageSeq += 1)}`;
 
 const isQuote = (paragraph) => /^["“].*["”]$/s.test(paragraph.trim());
+// The question a reply ends on, the way a friend's does.
+const isAsk = (paragraph) => /[?？][”"]?$/.test(paragraph.trim());
 
 // Proper quotation marks and apostrophes for anything the engine says.
 const typeset = (text = '') => String(text)
@@ -179,7 +182,7 @@ function Guidance({ guidance, verse, language }) {
     const bridge = (
         <div className="guidance__block">
             <span className="eyebrow">{t(stepFirst ? 'guidance.why' : 'guidance.forYou')}</span>
-            <p className="guidance__bridge">{typeset(guidance.bridge)}</p>
+            <p className="guidance__bridge"><Glossed text={typeset(guidance.bridge)} language={language} /></p>
         </div>
     );
 
@@ -195,7 +198,7 @@ function Guidance({ guidance, verse, language }) {
             {guidance.step && (
                 <div className={`guidance__block guidance__block--step${stepFirst ? ' guidance__block--lead' : ''}`}>
                     <span className="eyebrow">{t(stepFirst ? 'guidance.startHere' : 'guidance.step')}</span>
-                    <p className="guidance__step">{typeset(guidance.step)}</p>
+                    <p className="guidance__step"><Glossed text={typeset(guidance.step)} language={language} /></p>
                     <div className="text-actions text-actions--start">
                         {practice && (
                             <button type="button" className="text-action" onClick={() => openPractice(practice.id, { minutes: 5 })}>
@@ -239,7 +242,7 @@ function Guidance({ guidance, verse, language }) {
                     <SunGlyph size={26} className="guidance__blessing-glyph" />
                     <div>
                         <span className="eyebrow">{t('guidance.blessing')}</span>
-                        <p className={language === 'hi' ? 'is-hi' : ''}>{typeset(guidance.blessing)}</p>
+                        <p className={language === 'hi' ? 'is-hi' : ''}><Glossed text={typeset(guidance.blessing)} language={language} /></p>
                     </div>
                 </div>
             )}
@@ -268,6 +271,10 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
     const usedCounsel = useRef([]);
     // What Sakha has already said here (opening lines and steps), so its words stay fresh.
     const said = useRef([]);
+    // Replies since the last verse (a friend does not answer every line with scripture),
+    // and the feelings this conversation has held so far.
+    const sinceVerse = useRef(null);
+    const thread = useRef([]);
     const lastVerseId = useRef(initialVerse?.id || null);
     // One conversation, so Sakha can tell "this visit" from "before".
     const session = useRef(`s${Date.now().toString(36)}`);
@@ -349,12 +356,21 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                 lastVerseId: lastVerseId.current,
                 used: usedCounsel.current,
                 said: said.current.slice(-12),
+                sinceVerse: sinceVerse.current ?? undefined,
+                thread: thread.current.slice(-8),
                 person
             });
             if (text) history.current.push(text);
             if (data.context?.counsel) usedCounsel.current.push(data.context.counsel);
-            const opening = String(data.message || '').split(/\n{2,}/)[0];
+            const paragraphs = String(data.message || '').split(/\n{2,}/);
+            const opening = paragraphs[0];
             if (opening) said.current.push(opening);
+            // The question it ended on, so the next reply asks something new.
+            const closing = paragraphs[paragraphs.length - 1];
+            if (paragraphs.length > 1 && /[?？]$/.test(closing.trim())) said.current.push(closing);
+            if (data.context?.emotion) thread.current.push(data.context.emotion);
+            if (data.verse) sinceVerse.current = 0;
+            else if (sinceVerse.current !== null) sinceVerse.current += 1;
             if (data.guidance?.step) said.current.push(data.guidance.step);
             if (!privateRef.current) {
                 rememberConversation(session.current, data.context);
@@ -505,7 +521,7 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                                 onClick={isRevealing ? finishReveal : undefined}
                                                 title={isRevealing ? t('sanctuary.tapToReveal') : undefined}
                                             >
-                                                {leadText.split(/\n{2,}/).map((paragraph, p) => <p key={p}>{typeset(paragraph)}</p>)}
+                                                {leadText.split(/\n{2,}/).map((paragraph, p) => <p key={p}><Glossed text={typeset(paragraph)} language={language} /></p>)}
                                             </div>
                                         )
                                     )}
@@ -529,7 +545,16 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                             animate={{ opacity: 1 }}
                                             transition={{ delay: 0.8, duration: 0.9 }}
                                         >
-                                            {trail.map((paragraph, p) => <p key={p}>{typeset(paragraph)}</p>)}
+                                            {trail.map((paragraph, p) => (isAsk(paragraph) ? (
+                                                <div key={p} className="msg__ask">
+                                                    <p><Glossed text={typeset(paragraph)} language={language} /></p>
+                                                    {index === messages.length - 1 && (
+                                                        <button type="button" className="text-action msg__reply" onClick={() => textareaRef.current?.focus()}>
+                                                            <CornerDownRight size={14} /> {t('sanctuary.reply')}
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            ) : <p key={p}><Glossed text={typeset(paragraph)} language={language} /></p>))}
                                         </motion.div>
                                     )}
 

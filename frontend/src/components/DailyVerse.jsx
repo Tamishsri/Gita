@@ -11,6 +11,7 @@ import { localDateKey, recentVerseIds } from '../lib/path';
 import { usePreferences } from '../contexts/PreferencesContext';
 import { useVerseActions } from '../hooks/useVerseActions';
 import { useI18n } from '../i18n';
+import Glossed from './ui/Glossed';
 
 // One verse for the day, set like a page of a manuscript. Once Sakha knows
 // a person a little, it is *their* verse — chosen on their device from what
@@ -22,7 +23,7 @@ function DailyVerse({ language = 'en', onSelectVerse }) {
     const [personal, setPersonal] = useState(null); // { verse, reason }
     const [showShared, setShowShared] = useState(false);
     const reduceMotion = useReducedMotion();
-    const { save, card, listen, speakingId, canListen } = useVerseActions(language);
+    const { save, card, listen, speakingId, preparingId, canListen } = useVerseActions(language);
 
     useEffect(() => {
         let alive = true;
@@ -98,25 +99,25 @@ function DailyVerse({ language = 'en', onSelectVerse }) {
             >
                 <span className="daily-verse__ref">{t('verse.bg')} · {verseRef(verse)}</span>
                 {reason && <p className="daily-verse__why">{reason}</p>}
-                {simple && <p className={`verse-heart${language === 'hi' ? ' verse-heart--hi' : ''}`}>{simple}</p>}
+                {simple && <p className={`verse-heart${language === 'hi' ? ' verse-heart--hi' : ''}`}><Glossed text={simple} language={language} /></p>}
                 <Sloka verse={verse} className="daily-verse__sanskrit" />
                 <KolamRule width={160} />
                 {simple ? (
                     <details className="verse-full">
                         <summary>{t('verse.fullMeaning')}</summary>
                         <blockquote className={`translation daily-verse__meaning${language === 'hi' && verse.meaning_hi ? ' translation--hi' : ''}`}>
-                            {meaning}
+                            <Glossed text={meaning} language={language} />
                         </blockquote>
                     </details>
                 ) : (
                     <blockquote className={`translation daily-verse__meaning${language === 'hi' && verse.meaning_hi ? ' translation--hi' : ''}`}>
-                        {meaning}
+                        <Glossed text={meaning} language={language} />
                     </blockquote>
                 )}
 
                 <footer className="text-actions">
                     {canListen && (
-                        <button type="button" className={`text-action${speaking ? ' is-on' : ''}`} onClick={() => listen(verse, key)}>
+                        <button type="button" className={`text-action${speaking ? ' is-on' : ''}${preparingId === key ? ' is-preparing' : ''}`} onClick={() => listen(verse, key)}>
                             {speaking ? <Square size={12} fill="currentColor" /> : <Volume2 size={15} />}
                             {speaking ? t('verse.stop') : t('verse.listen')}
                         </button>

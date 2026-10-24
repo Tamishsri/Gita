@@ -20,7 +20,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
-    const ENGINE_VERSION = '6.0.0';
+    const ENGINE_VERSION = '7.0.0';
 
     // -----------------------------------------------------------------------
     // Text normalisation
@@ -46,10 +46,25 @@
             .replace(/\s+/g, ' ')
             .trim()
             .split(' ')
-            .map((word) => SHORTHAND[word] ?? word)
+            .map((word, index, words) => addressed(word, index, words) ?? SHORTHAND[word] ?? word)
             .filter(Boolean)
             .join(' ');
         return ` ${cleaned} `;
+    }
+
+    // "bro", "sis", "bhai", "yaar" are usually how a friend is spoken to, not
+    // who is being spoken about: "bro my life is a mess" is not about a brother.
+    // Only "my bro", "his sis", "mera bhai" name a sibling.
+    const OWNERS = new Set(['my', 'his', 'her', 'our', 'your', 'their', 'younger', 'elder', 'older', 'big', 'little', 'baby', 'mera', 'meri', 'mere',
+        'tera', 'uska', 'uski', 'chhota', 'chota', 'bada', 'badi']);
+    const ADDRESS = { bro: 'brother', bruh: null, sis: 'sister', dude: null, bhai: 'bhai', yaar: null, yr: null, yrr: null };
+    function addressed(word, index, words) {
+        if (!(word in ADDRESS)) return undefined;
+        const owned = index > 0 && OWNERS.has(words[index - 1]);
+        if (owned && ADDRESS[word]) return ADDRESS[word];
+        // "bhai ki shaadi" is a brother's wedding; "bhai, help" is a friend.
+        if (word === 'bhai' && ['ki', 'ka', 'ke', 'ko', 'ne', 'se', 'is', 'was', 'has'].includes(words[index + 1])) return 'bhai';
+        return '';
     }
 
     // How people actually type: texting shorthand and the many spellings of
@@ -142,7 +157,7 @@
         stress: {
             terms: ['stress*', 'pressure', 'overwhelm*', 'forcing me', 'force kar*', 'pressurising me', 'pressurizing me', 'dabav', 'thak gaya', 'thak gayi', 'burnout', 'burnt out', 'burned out', 'workload', 'deadline*', 'too much',
                 'exhausted', 'drained', 'tired', 'thak*', 'done with everything', 'so done', 'had enough', 'fed up', 'rough week', 'tough week',
-                'hectic', 'so much to do', 'तनाव', 'दबाव', 'थक*',
+                'hectic', 'so much to do', 'a mess', 'such a mess', 'chaos', 'chaotic', 'तनाव', 'दबाव', 'थक*',
                 'थकान', 'बोझ'],
             concepts: ['stress', 'managing stress', 'handling pressure', 'burnout', 'avoiding burnout', 'doing difficult tasks', 'balance', 'equanimity', 'detached action', 'steady', 'surrender', 'emotional overwhelm'],
             en: { adj: 'overwhelmed', noun: 'stress' },
@@ -772,7 +787,9 @@
             const index = findTerm(clauseText, term);
             if (index === -1) return false;
             const before = clauseText.slice(0, index).trim().split(' ').slice(-3);
-            return !before.some((word) => RELIEF_BLOCKERS.has(word));
+            if (before.some((word) => RELIEF_BLOCKERS.has(word))) return false;
+            // "She just moved on" is her relief, not theirs.
+            return !before.some((word) => OTHER_PEOPLE.has(word));
         });
     }
 
@@ -904,12 +921,16 @@
         new RegExp(`(?:gita|geeta|गीता) (?:mein |में )?${ABOUT} (?:ke bare me|ke bare mein|ke baare me|ke baare mein|par|के बारे में|पर) (?:kya |क्या )?(?:kehti|kahti|batati|कहती|बताती)`, 'u')
     ];
 
+    const SHARE_VERSE = / (?:share|give|show|send|tell|read)(?: me)?(?: a| one| another| some)? (?:verse|shlok|shloka|sloka) | (?:koi |ek )?(?:shlok|shloka|श्लोक) (?:sunao|sunaiye|batao|bataiye|सुनाइए|सुनाओ|बताइए|बताओ) /u;
+
     function askOf(normalised) {
         for (const pattern of VERSE_ASKS) {
             const match = normalised.match(pattern);
             const about = match ? match[1].split(' ').filter((word) => !STOP_WORDS.has(word) && !['koi', 'ek', 'कोई', 'एक'].includes(word)).join(' ') : '';
             if (about) return { ask: 'verse', about };
         }
+        // "Share a verse for this": a verse, about whatever is already on the table.
+        if (SHARE_VERSE.test(normalised)) return { ask: 'verse', about: null };
         for (const kind of ['vent', 'how', 'why']) {
             if (ASKS[kind].some((term) => has(normalised, term))) return { ask: kind, about: null };
         }
@@ -1251,9 +1272,13 @@
         // not for an ordinary low day.
         const fields = index.prepared.get(verse.id);
         if (!profile.deathWelcome && fields && DEATH_THEMES.test(`${themes.join(' ')} ${fields.situations.join(' ')} ${fields.short}`)) score -= 18;
+        // The teaching on the undying self (2.12–2.30) is for death and the fear of it — not for a breakup or a bad day.
+        if (!profile.deathWelcome && ETERNAL_SELF.has(verse.id) && !(profile.paths?.jnana >= 0.6)) score -= 18;
+        // Arjuna's questions and Sanjaya's narration are not answers.
+        if (!krishnaSpeaks(verse)) score -= 12;
 
         // The path that has helped this person before.
-        if (profile.paths && paths.length) score += 18 * Math.max(...paths.map((id) => profile.paths[id] || 0));
+        if (profile.paths && paths.length) score += 22 * Math.max(...paths.map((id) => profile.paths[id] || 0));
 
         // Verses like the ones this person has kept before speak their language.
         if (resonance.chapters.has(verse.chapter)) score += 2;
@@ -1317,15 +1342,25 @@
         return TOPICS[standing.topics[0]].label[lang];
     }
 
-    function buildProfile({ text, mood, history = [], timeOfDay, person = null, reading = null, lexicon = null, retry = null }) {
+    const DEATH_WORDS = / (?:died|dead|death|dying|passed away|passed|funeral|lost my|mourn\p{L}*|cremation|गुज़र|गुजर|मृत्यु|नहीं रहे|मौत) /u;
+
+    function buildProfile({ text, mood, history = [], timeOfDay, person = null, reading = null, lexicon = null, retry = null, thread = [] }) {
         const read = reading || understand(text, { lexicon });
         const care = read.care;
         // "A verse about patience": the subject they ask for is the whole need.
         const subject = read.ask === 'verse' && read.about ? understand(read.about, { lexicon }) : null;
-        const textEmotions = subject ? subject.feelings.map((feeling) => feeling.id)
+        let textEmotions = subject ? subject.feelings.map((feeling) => feeling.id)
             : care && !care.own ? [] : read.feelings.map((feeling) => feeling.id);
+        // "I miss her so much" after "she left me" is a heartbreak, not a death —
+        // unless a death is spoken of somewhere in the conversation.
+        const earlierText = history.slice(-3).join(' ');
+        const earlierFeelings = detectEmotions(earlierText);
+        const breakup = (textEmotions.includes('heartbreak') || earlierFeelings.includes('heartbreak') || thread.includes('heartbreak'))
+            && !DEATH_WORDS.test(read.normalised) && !DEATH_WORDS.test(normalise(earlierText));
+        const asBreakup = (names) => (breakup ? [...new Set(names.map((name) => (name === 'grief' ? 'heartbreak' : name)))] : names);
+        textEmotions = asBreakup(textEmotions);
         // A follow-up like "how do I live this?" carries the feeling from before.
-        const carried = textEmotions.length || care || subject ? [] : detectEmotions(history.slice(-3).join(' '));
+        const carried = textEmotions.length || care || subject ? [] : asBreakup(earlierFeelings);
         const moodEmotion = emotionFromMood(mood);
         const emotions = [...new Set([...textEmotions, ...carried, ...(moodEmotion ? [moodEmotion] : [])])].slice(0, 3);
 
@@ -1426,6 +1461,8 @@
     const PATH_IDS = Object.keys(PATHS);
     const DEATH_THEMES = /\b(death|dying|die|dies|slain|killing|reincarnation|rebirth|immortal\w*|never born|garments|bodies|transmigration|goodbye|grief|mourning|funeral|loss of a)\b/;
 
+    const ETERNAL_SELF = new Set(['2_12', '2_13', '2_16', '2_17', '2_18', '2_19', '2_20', '2_21', '2_22', '2_23', '2_24', '2_25', '2_26', '2_27', '2_28', '2_29', '2_30']);
+
     function pathsOf(fields) {
         const headline = `${fields.themes.join(' ')} ${fields.situations.join(' ')} ${fields.short}`;
         const scores = PATH_IDS.map((id) => ({
@@ -1511,10 +1548,9 @@
         // Built on the noun, never the adjective: "your search for purpose"
         // reads naturally where "feeling searching for your path" would not.
         en: [
-            (e) => `Thank you for naming your ${e.noun}.`,
+            (e) => `I can hear the ${e.noun} in what you wrote.`,
             (e) => `You can bring your ${e.noun} here, just as it is.`,
-            (e) => `There is room here for your ${e.noun}.`,
-            (e) => `I hear your ${e.noun} in what you wrote.`
+            (e) => `There’s room for your ${e.noun} here — all of it.`
         ],
         hi: [
             // Masculine nouns take their oblique form before a postposition (अकेलेपन के साथ).
@@ -1526,19 +1562,202 @@
     };
 
     const NEUTRAL_ACKS = {
-        en: ['Thank you for bringing this here.', 'I am listening.', 'Thank you for saying what is on your heart.'],
-        hi: ['इसे यहाँ लाने के लिए धन्यवाद।', 'मैं सुन रहा हूँ।', 'अपने मन की बात कहने के लिए धन्यवाद।']
+        en: ['I’m listening.', 'Okay — I’m with you.', 'Thanks for telling me.'],
+        hi: ['मैं सुन रहा हूँ।', 'ठीक है — मैं आपके साथ हूँ।', 'बताने के लिए शुक्रिया।']
     };
 
-    // The verse is the answer; these lines only turn the reader toward it.
+    // The verse is the answer; these lines only turn the reader toward it —
+    // the way a friend says "here, read this", not the way a book would.
     const REFLECTIONS = {
-        en: ['Here is what the Gita says.', 'The Gita begins with someone who felt deeply, as you do. Read this slowly.', 'The Gita speaks to this directly.', 'Read this slowly, and let it answer in its own time.'],
-        hi: ['गीता इस पर यह कहती है।', 'गीता एक ऐसे व्यक्ति से शुरू होती है जो आपकी तरह गहराई से महसूस करता था। इसे धीरे-धीरे पढ़ें।', 'गीता इससे सीधे बात करती है।', 'इसे धीरे-धीरे पढ़ें, और इसे अपने समय में उत्तर देने दें।']
+        en: ['There’s a verse I keep coming back to for moments like this.', 'The Gita puts this better than I could.',
+            'Here’s a line I’d want you to have right now.', 'This one has helped a lot of people in exactly this spot.'],
+        hi: ['ऐसे पलों के लिए एक श्लोक है, जिस पर मैं बार-बार लौटता हूँ।', 'गीता इसे मुझसे बेहतर कहती है।',
+            'एक पंक्ति, जो मैं चाहूँगा कि अभी आपके पास हो।', 'ठीक इसी जगह पर बहुत लोगों को इस श्लोक ने सहारा दिया है।']
     };
+
+    // The first time something heavy is said: the Gita itself began there.
+    const ARJUNA = {
+        en: ['Arjuna felt something like this once — right before the hardest day of his life. This is what Krishna told him.',
+            'The whole Gita starts with someone falling apart, so you’re in good company. Here’s what Krishna said to him.'],
+        hi: ['अर्जुन ने भी कभी ऐसा ही महसूस किया था — अपने जीवन के सबसे कठिन दिन से ठीक पहले। कृष्ण ने उनसे यह कहा।',
+            'पूरी गीता ही किसी के टूट जाने से शुरू होती है — आप अकेले नहीं हैं। कृष्ण ने उनसे यह कहा।']
+    };
+
+    // Who speaks a verse. Most of the Gita is Krishna's, but not all of it:
+    // chapter 1, Arjuna's questions, Sanjaya's narration.
+    const NOT_KRISHNA = [[1, 1, 47], [2, 1, 10], [2, 54, 54], [3, 1, 2], [3, 36, 36], [4, 4, 4], [5, 1, 1], [6, 33, 34], [6, 37, 39],
+        [8, 1, 2], [10, 12, 18], [11, 1, 4], [11, 9, 31], [11, 35, 46], [11, 50, 51], [12, 1, 1], [14, 21, 21], [17, 1, 1], [18, 1, 1], [18, 73, 78]];
+    function krishnaSpeaks(verse) {
+        const [chapter, number] = String(verse?.id || '').split('_').map(Number);
+        if (!chapter || !number) return false;
+        return !NOT_KRISHNA.some(([c, from, to]) => c === chapter && number >= from && number <= to);
+    }
 
     const LIGHT_REFLECTIONS = {
-        en: ['Here is a verse to carry this with you.', 'The Gita has a word for moments like this.', 'A verse to hold alongside this feeling.'],
-        hi: ['इस भाव के साथ रखने के लिए एक श्लोक।', 'ऐसे पलों के लिए गीता के पास एक बात है।', 'इस एहसास के साथ थामने को एक श्लोक।']
+        en: ['Here’s one to go with the good news.', 'The Gita has a line for moments like this, too.', 'A verse to keep next to this feeling.'],
+        hi: ['इस अच्छी ख़बर के साथ एक श्लोक।', 'ऐसे पलों के लिए भी गीता के पास एक पंक्ति है।', 'इस एहसास के साथ रखने को एक श्लोक।']
+    };
+
+    // What a friend does after saying their piece: asks. One question, about
+    // this feeling or this part of life, never the same one twice.
+    const FOLLOW_UP = {
+        anxiety: {
+            en: ['What’s the worry that keeps coming back the most?', 'Is this about something coming up, or more of a general unease?'],
+            hi: ['कौन-सी चिंता बार-बार लौटकर आ रही है?', 'यह किसी आने वाली बात को लेकर है, या बस मन बेचैन है?']
+        },
+        fear: {
+            en: ['What are you most afraid might happen?', 'Is someone with you right now, or are you on your own with this?'],
+            hi: ['आपको सबसे ज़्यादा किस बात का डर है?', 'अभी कोई आपके पास है, या आप अकेले हैं?']
+        },
+        stress: {
+            en: ['What’s the one thing weighing on you the most right now?', 'When did you last get a proper break?'],
+            hi: ['इस समय सबसे भारी कौन-सी बात लग रही है?', 'आख़िरी बार आपने ठीक से आराम कब किया था?']
+        },
+        anger: {
+            en: ['What did they actually say or do?', 'Is it this one thing, or has it been building up for a while?'],
+            hi: ['उन्होंने असल में क्या कहा या किया?', 'यह बस आज की बात है, या काफ़ी समय से जमा हो रहा है?']
+        },
+        sadness: {
+            en: ['How long have you been feeling like this?', 'What’s been the hardest part of today?'],
+            hi: ['कब से ऐसा महसूस हो रहा है?', 'आज सबसे मुश्किल क्या रहा?']
+        },
+        grief: {
+            en: ['Would you like to tell me about them?', 'What do you miss most?'],
+            hi: ['क्या आप मुझे उनके बारे में बताना चाहेंगे?', 'आपको सबसे ज़्यादा क्या याद आता है?']
+        },
+        loneliness: {
+            en: ['Is there someone you used to be close to that you’ve drifted from?', 'When did you last feel really understood by someone?'],
+            hi: ['क्या कोई है जिससे आप पहले क़रीब थे, पर अब दूरी आ गई है?', 'आख़िरी बार कब किसी ने आपको सच में समझा था?']
+        },
+        confusion: {
+            en: ['What are the options you’re stuck between?', 'If nobody else’s opinion mattered, which way would you lean?'],
+            hi: ['आप किन रास्तों के बीच अटके हैं?', 'अगर किसी और की राय मायने न रखती, तो आप किस ओर जाते?']
+        },
+        guilt: {
+            en: ['What happened? You can tell me — no judgment here.', 'Is it something you can still make right, or something you have to learn to put down?'],
+            hi: ['क्या हुआ था? बेझिझक बताइए — यहाँ कोई परख नहीं।', 'क्या इसे अब भी ठीक किया जा सकता है, या इसे धीरे-धीरे छोड़ना सीखना होगा?']
+        },
+        unworthiness: {
+            en: ['Whose voice does that “not enough” sound like?', 'When did you start feeling this way about yourself?'],
+            hi: ['यह “काफ़ी नहीं” वाली आवाज़ किसकी लगती है?', 'आपने अपने बारे में ऐसा कब से सोचना शुरू किया?']
+        },
+        failure: {
+            en: ['What happened — do you want to walk me through it?', 'What’s bothering you more: the result itself, or what people will think?'],
+            hi: ['क्या हुआ था — मुझे बताएँगे?', 'ज़्यादा क्या चुभ रहा है: नतीजा, या लोग क्या सोचेंगे?']
+        },
+        envy: {
+            en: ['What is it about their life that stings the most?', 'If you’re honest, what would you want for yourself?'],
+            hi: ['उनकी ज़िंदगी की कौन-सी बात सबसे ज़्यादा चुभती है?', 'सच कहें तो, आप अपने लिए क्या चाहते हैं?']
+        },
+        heartbreak: {
+            en: ['What do you miss most — them, or who you were with them?', 'How long were you two together?'],
+            hi: ['आपको सबसे ज़्यादा क्या याद आता है — वे, या उनके साथ वाले आप?', 'आप दोनों कितने समय साथ थे?']
+        },
+        purpose: {
+            en: ['When did you last lose track of time doing something?', 'What would you do if you knew nobody would judge it?'],
+            hi: ['आख़िरी बार कब कुछ करते हुए आप समय भूल गए थे?', 'अगर कोई परखने वाला न हो, तो आप क्या करना चाहेंगे?']
+        },
+        craving: {
+            en: ['When does the pull get strongest — any particular time or mood?', 'What usually happens right before it hits?'],
+            hi: ['यह खिंचाव सबसे ज़्यादा कब होता है — किसी ख़ास समय या मूड में?', 'इसके ठीक पहले आमतौर पर क्या होता है?']
+        },
+        lust: {
+            en: ['When does it get strongest — late at night, when you’re bored, when you’re lonely?'],
+            hi: ['यह सबसे ज़्यादा कब होता है — देर रात, ऊब में, या अकेलेपन में?']
+        },
+        emptiness: {
+            en: ['Has it felt like this for a while, or did something set it off?', 'Is there anything that still feels even a little bit good?'],
+            hi: ['क्या यह काफ़ी समय से है, या किसी बात से शुरू हुआ?', 'क्या कोई चीज़ अब भी थोड़ी-सी अच्छी लगती है?']
+        },
+        pride: { en: ['What made you notice it today?'], hi: ['आज आपको इसका एहसास किस बात से हुआ?'] },
+        inertia: {
+            en: ['What’s the thing you’re putting off right now?', 'How have you been sleeping?'],
+            hi: ['अभी आप कौन-सा काम टाल रहे हैं?', 'नींद कैसी चल रही है?']
+        },
+        love: { en: ['Tell me about them!', 'How did it start?'], hi: ['उनके बारे में बताइए!', 'यह शुरू कैसे हुआ?'] },
+        devotion: { en: ['How do you like to remember — is there a practice that’s yours?'], hi: ['आप कैसे याद करना या प्रार्थना करना पसंद करते हैं?'] },
+        peace: { en: ['What brought this on? It’s worth remembering.'], hi: ['यह किस बात से आया? याद रखने लायक है।'] },
+        gratitude: {
+            en: ['Tell me more — how did it happen?', 'Who was the first person you told?'],
+            hi: ['और बताइए — यह हुआ कैसे?', 'सबसे पहले आपने किसे बताया?']
+        },
+        default: {
+            en: ['Do you want to tell me more about what happened?', 'What’s been going on?'],
+            hi: ['क्या आप मुझे और बताना चाहेंगे कि क्या हुआ?', 'क्या चल रहा है?']
+        }
+    };
+    const FOLLOW_UP_TOPIC = {
+        study: { en: ['Is it the studying itself, or the pressure around it?'], hi: ['पढ़ाई ख़ुद भारी लग रही है, या उसके आसपास का दबाव?'] },
+        work: { en: ['Is it the work itself, or the people around it?'], hi: ['मुश्किल काम ख़ुद है, या उसके आसपास के लोग?'] },
+        family: { en: ['Who in your family is this about?'], hi: ['यह परिवार में किसके बारे में है?'] },
+        love: { en: ['How are things between you two right now?'], hi: ['अभी आप दोनों के बीच चीज़ें कैसी हैं?'] },
+        health: { en: ['How are you holding up, physically?'], hi: ['शरीर से आप कैसे हैं?'] },
+        money: { en: ['Is this a right-now problem, or a worry about later?'], hi: ['यह अभी की परेशानी है, या आगे की चिंता?'] }
+    };
+
+    // A question is not asked when the message already answered it.
+    const ANSWERED = [
+        [/^(How long|कब से|आप दोनों कितने)/, / (\d+|one|two|three|four|five|six|few|many|ek|do|teen) (years?|months?|weeks?|days?|saal|mahine|साल|महीने|हफ़्ते) |since | से /],
+        [/^What did they actually say/, / (said|told|called me|saying|bola|kaha|कहा|बोला) /],
+        [/^(Who was the first person you told|सबसे पहले आपने किसे)/, / (told|bataya|बताया) /],
+        [/^(What happened|क्या हुआ था)/, / (because|after|when|kyunki|क्योंकि|जब) /]
+    ];
+
+    function followUpFor(profile, lang, random, said = [], normalisedText = ' ') {
+        const pools = [
+            profile.primary && FOLLOW_UP[profile.primary],
+            profile.topics?.[0] && FOLLOW_UP_TOPIC[profile.topics[0]],
+            FOLLOW_UP.default
+        ].filter(Boolean).map((pool) => pool[lang] || pool.en);
+        const spoken = said.map(plainText);
+        for (const pool of pools) {
+            const fresh = pool.filter((line) => !spoken.some((spokenLine) => spokenLine.includes(plainText(line).slice(0, 36)))
+                && !ANSWERED.some(([question, answer]) => question.test(line) && answer.test(normalisedText)));
+            if (fresh.length) return pick(fresh, random);
+        }
+        return null;
+    }
+
+    // Typed like a friend ("bro", "lol", "ngl"): answered a little more like one.
+    const CASUAL = /\b(bro|bruh|lol|lmao|lmfao|ngl|tbh|dude|yaar|haha+|hehe+)\b/i;
+    const CASUAL_OPEN = { en: ['Oof.', 'Ah, man.', 'Ugh.'], hi: ['ओह।', 'उफ़।'] };
+
+    // Right after a verse, a short "it hurts" is met as itself: a few human
+    // words and a question. The next verse is one tap away.
+    const STAY = {
+        missing: {
+            en: ['Of course you do. Missing someone is love that doesn’t know where to go yet.', 'I know. That kind of missing sits right in the chest.'],
+            hi: ['बिल्कुल। किसी की याद वह प्रेम है जिसे अभी जाने की जगह नहीं मिली।', 'मैं समझता हूँ। ऐसी याद सीधे दिल में बैठती है।']
+        },
+        hurt: {
+            en: ['Of course it does. You don’t have to be okay with this yet.', 'Yeah… I know. It’s allowed to hurt.', 'I know. Take all the time you need — I’m right here.'],
+            hi: ['बिल्कुल। अभी ठीक होना ज़रूरी नहीं।', 'हाँ… मैं समझता हूँ। दर्द होना स्वाभाविक है।', 'मैं समझता हूँ। जितना समय चाहिए, लीजिए — मैं यहीं हूँ।']
+        },
+        fear: {
+            en: ['That fear is really loud right now. Let’s slow down for a second — in this moment, you’re okay.', 'Okay. One breath at a time. I’m with you.'],
+            hi: ['यह डर अभी बहुत तेज़ है। एक पल के लिए धीमे चलते हैं — इस क्षण, आप ठीक हैं।', 'ठीक है। एक-एक साँस। मैं आपके साथ हूँ।']
+        },
+        anger: {
+            en: ['Yeah — that would make anyone furious.', 'Fair. Let it all out — I’m listening.'],
+            hi: ['हाँ — इस पर किसी को भी गुस्सा आता।', 'ठीक है। सब कह डालिए — मैं सुन रहा हूँ।']
+        },
+        light: {
+            en: ['That’s really lovely to hear.', 'I love that.'],
+            hi: ['यह सुनकर बहुत अच्छा लगा।', 'वाह, कितना अच्छा।']
+        },
+        open: {
+            en: ['I’m here. Keep going if you want.', 'I hear you. Say more, if you like — I’m not going anywhere.', 'Mm. I’m listening.'],
+            hi: ['मैं यहीं हूँ। चाहें तो और बताइए।', 'मैं सुन रहा हूँ। जो मन में है, कहते रहिए — मैं कहीं नहीं जा रहा।', 'हम्म। मैं सुन रहा हूँ।']
+        }
+    };
+    const STAY_KIND = {
+        grief: 'missing', heartbreak: 'missing', sadness: 'hurt', loneliness: 'hurt', emptiness: 'hurt', unworthiness: 'hurt', failure: 'hurt',
+        guilt: 'hurt', fear: 'fear', anxiety: 'fear', stress: 'fear', anger: 'anger', envy: 'anger',
+        peace: 'light', gratitude: 'light', love: 'light', devotion: 'light'
+    };
+    const STAY_CHIPS = {
+        en: [['Share a verse', 'Share a verse for this'], ['What can I do?', 'What can I do about it?'], ['Just listen', 'I just want to vent']],
+        hi: [['कोई श्लोक', 'इस पर कोई श्लोक सुनाइए'], ['क्या करूँ?', 'मैं इसके बारे में क्या करूँ?'], ['बस सुनिए', 'बस सुन लो']]
     };
 
     const LIGHT_GROUNDING = {
@@ -1547,8 +1766,8 @@
     };
 
     const GROUNDING = {
-        en: ['Take one slow breath before you go on.', 'Nothing needs to be solved in this moment.', 'Feelings come and go, the Gita says (2.14). You are the one who stays.', 'You are more than what you feel right now.'],
-        hi: ['आगे बढ़ने से पहले एक धीमी साँस लें।', 'इस पल में कुछ भी सुलझाना ज़रूरी नहीं।', 'गीता कहती है, भाव आते और जाते हैं (2.14)। आप वह हैं जो बना रहता है।', 'आप अभी जो महसूस कर रहे हैं, उससे कहीं अधिक हैं।']
+        en: ['Take one slow breath before you go on.', 'You don’t have to solve any of this right now.', 'This feeling is real — and it isn’t the whole of you.', 'Go easy on yourself today.'],
+        hi: ['आगे बढ़ने से पहले एक धीमी साँस लीजिए।', 'अभी इसमें से कुछ भी सुलझाना ज़रूरी नहीं।', 'यह एहसास सच्चा है — पर यह पूरे आप नहीं हैं।', 'आज ख़ुद पर थोड़ी नरमी रखिए।']
     };
 
     const MIRROR = {
@@ -1557,13 +1776,13 @@
     };
 
     const ANOTHER = {
-        en: ['Here is another light on the same moment.', 'Another verse, for the same heart.', 'Let this one sit beside the last.'],
-        hi: ['इसी क्षण के लिए एक और प्रकाश।', 'उसी मन के लिए एक और श्लोक।', 'इसे पिछले श्लोक के साथ रहने दें।']
+        en: ['Here’s another way of looking at the same thing.', 'Okay — try this one.', 'Another verse, for the same heart.'],
+        hi: ['इसी बात को देखने का एक और तरीक़ा।', 'ठीक है — यह वाला देखिए।', 'उसी मन के लिए एक और श्लोक।']
     };
 
     const UNHEARD = {
-        en: "I may not have the right words for this — but you don't have to find them alone.",
-        hi: 'हो सकता है मेरे पास इसके लिए सही शब्द न हों — पर आपको उन्हें अकेले नहीं ढूँढना है।'
+        en: 'I’m not sure I fully get it yet — but I’m here, and I want to.',
+        hi: 'शायद मैं अभी पूरी तरह समझ नहीं पाया — पर मैं यहाँ हूँ, और समझना चाहता हूँ।'
     };
 
     // Warning signs short of crisis: answered with the verse, and a quiet
@@ -1899,32 +2118,32 @@
 
     const VOICE = {
         anxiety: {
-            en: ['That sounds like a lot of worry to carry.', 'I can hear how much this is weighing on your mind.'],
-            hi: ['यह बहुत सारी चिंता है उठाने को।', 'मैं समझ सकता हूँ कि यह आपके मन पर कितना भारी है।']
+            en: ['That’s a lot of worry to be carrying around.', 'That kind of worry can sit in your chest all day.'],
+            hi: ['यह तो बहुत सारी चिंता है, अकेले उठाने को।', 'ऐसी चिंता दिन भर सीने पर बैठी रहती है।']
         },
         fear: {
-            en: ['I can hear how scared you’re — and that is okay.', 'Fear like this is so human.'],
-            hi: ['मैं समझ सकता हूँ कि आप कितने डरे हुए हैं — और यह ठीक है।', 'ऐसा डर बहुत मानवीय है।']
+            en: ['That’s genuinely scary. Of course you’re shaken.', 'Anyone would be scared in your place.'],
+            hi: ['यह सच में डराने वाला है। आपका घबराना स्वाभाविक है।', 'आपकी जगह कोई भी डर जाता।']
         },
         stress: {
-            en: ['It sounds like you’re carrying too much right now.', 'That’s a lot of pressure for one person.'],
-            hi: ['लगता है आप इस समय बहुत कुछ उठाए हुए हैं।', 'एक व्यक्ति के लिए यह बहुत दबाव है।']
+            en: ['No wonder you’re stretched thin — that’s a lot.', 'That’s a lot to be juggling at once.'],
+            hi: ['तभी तो आप इतने थके हुए हैं — यह बहुत कुछ है।', 'एक साथ इतना कुछ सँभालना आसान नहीं।']
         },
         anger: {
-            en: ['That sounds really frustrating. Your anger makes sense.', 'Anger usually means something important was hurt.'],
-            hi: ['यह सचमुच झुँझलाने वाला लगता है। आपका गुस्सा समझ में आता है।', 'गुस्से का अर्थ अक्सर होता है कि कुछ ज़रूरी चीज़ आहत हुई है।']
+            en: ['Honestly, that would get under anyone’s skin.', 'Yeah, that’s genuinely frustrating. Your anger makes sense.'],
+            hi: ['सच कहूँ तो, इस पर किसी को भी गुस्सा आता।', 'हाँ, यह सचमुच झुँझलाने वाला है। आपका गुस्सा समझ में आता है।']
         },
         sadness: {
-            en: ['I’m sorry you’re feeling this low.', 'That sounds heavy. Thank you for not keeping it inside.'],
-            hi: ['मुझे दुख है कि आप इतना उदास महसूस कर रहे हैं।', 'यह भारी लगता है। इसे भीतर न रखने के लिए धन्यवाद।']
+            en: ['I’m really sorry you’re feeling this low.', 'That sounds heavy. I’m glad you said it instead of sitting with it alone.'],
+            hi: ['मुझे सच में दुख है कि आप इतना उदास महसूस कर रहे हैं।', 'यह भारी लगता है। अच्छा किया जो आपने कह दिया, अकेले नहीं सहा।']
         },
         grief: {
-            en: ['I’m so sorry for your loss.', 'Grief is love with nowhere to go. I’m here.'],
-            hi: ['आपके खोने का मुझे बहुत दुख है।', 'शोक वह प्रेम है जिसे जाने की कोई जगह नहीं मिलती। मैं यहाँ हूँ।']
+            en: ['I’m so sorry. There’s nothing small about losing someone.', 'Grief is love with nowhere to go. I’m here.'],
+            hi: ['मुझे बहुत दुख है। किसी को खोना कोई छोटी बात नहीं।', 'शोक वह प्रेम है जिसे जाने की कोई जगह नहीं मिलती। मैं यहाँ हूँ।']
         },
         loneliness: {
-            en: ['Feeling alone is so hard. I’m glad you wrote.', 'You’re not as alone as it feels right now — I’m here.'],
-            hi: ['अकेलापन बहुत कठिन होता है। मुझे ख़ुशी है कि आपने लिखा।', 'आप उतने अकेले नहीं जितना इस समय लगता है — मैं यहाँ हूँ।']
+            en: ['Loneliness is such a quiet kind of hard. I’m really glad you wrote.', 'You’re not as alone as it feels right now — I’m right here.'],
+            hi: ['अकेलापन बहुत चुपचाप दुख देता है। मुझे सच में ख़ुशी है कि आपने लिखा।', 'आप उतने अकेले नहीं जितना अभी लगता है — मैं यहीं हूँ।']
         },
         confusion: {
             en: ['Not knowing which way to go is unsettling.', 'It’s okay not to have the answer yet.'],
@@ -1939,16 +2158,16 @@
             hi: ['यह महसूस करना दुख देता है कि आप पर्याप्त नहीं।', 'जो आवाज़ कहती है कि आप पर्याप्त नहीं, वह पूरा सच नहीं है।']
         },
         failure: {
-            en: ['Falling short of something you worked for really hurts.', 'A setback like this can shake you. It doesn’t define you.'],
-            hi: ['जिसके लिए मेहनत की, उसमें पीछे रह जाना सचमुच दुख देता है।', 'ऐसी ठोकर हिला सकती है। पर वह आपकी पहचान नहीं।']
+            en: ['Falling short of something you worked hard for really stings.', 'That’s a rough one. A setback like this can shake you — it doesn’t define you.'],
+            hi: ['जिसके लिए इतनी मेहनत की, उसमें पीछे रह जाना सच में चुभता है।', 'यह मुश्किल है। ऐसी ठोकर हिला देती है — पर यह आपकी पहचान नहीं।']
         },
         envy: {
             en: ['Comparison can quietly steal so much joy.', 'Envy is very human. Noticing it’s the first step.'],
             hi: ['तुलना चुपचाप बहुत सारा आनंद चुरा लेती है।', 'ईर्ष्या बहुत मानवीय है। इसे पहचान लेना पहला क़दम है।']
         },
         heartbreak: {
-            en: ['I’m so sorry. Heartbreak is one of the hardest pains there is.', 'When someone we love leaves, the whole world tilts.'],
-            hi: ['मुझे बहुत दुख है। दिल टूटना सबसे कठिन दर्दों में से है।', 'जब कोई प्रिय चला जाता है, तो पूरी दुनिया डगमगा जाती है।']
+            en: ['I’m really sorry. That kind of hurt goes all the way down.', 'When someone you love leaves, the whole world tilts for a while.'],
+            hi: ['मुझे सच में दुख है। ऐसा दर्द भीतर तक जाता है।', 'जब कोई प्रिय चला जाता है, तो कुछ समय के लिए पूरी दुनिया डगमगा जाती है।']
         },
         purpose: {
             en: ['Searching for your purpose is a meaningful search.', 'Wanting your life to mean something is a good sign.'],
@@ -1979,7 +2198,7 @@
             hi: ['ईश्वर के लिए यह चाह अनमोल है।', 'कितनी सुंदर चाह है।']
         },
         inertia: {
-            en: ['Feeling stuck is frustrating — and very common.', 'Some days everything feels heavy to start.'],
+            en: ['Feeling stuck is so frustrating — and honestly really common.', 'Some days, even starting feels heavy.'],
             hi: ['अटका हुआ महसूस करना झुँझलाने वाला है — और बहुत आम भी।', 'कुछ दिन हर शुरुआत भारी लगती है।']
         },
         peace: {
@@ -1987,8 +2206,8 @@
             hi: ['इस स्थिरता को महसूस करना कितना बड़ा उपहार है।', 'ऐसी शांति पर ध्यान देना चाहिए।']
         },
         gratitude: {
-            en: ['That’s wonderful — I’m glad with you.', 'Joy deserves to be noticed. Thank you for bringing it here.'],
-            hi: ['यह बहुत अच्छा है — मुझे आपके साथ ख़ुशी है।', 'आनंद पर ध्यान दिया जाना चाहिए। इसे यहाँ लाने के लिए धन्यवाद।']
+            en: ['That’s wonderful — I’m so happy for you!', 'Yes! This deserves to be celebrated.'],
+            hi: ['यह तो बहुत बढ़िया है — मुझे आपके लिए बहुत ख़ुशी है!', 'वाह! इसका तो जश्न बनता है।']
         }
     };
 
@@ -2004,7 +2223,7 @@
             fear: ['2_23', '18_66', '4_10', '9_31', '2_40', '6_40', '2_20'],
             stress: ['2_48', '2_50', '5_10', '6_17', '18_66', '2_47'],
             anger: ['2_63', '2_62', '5_26', '16_2', '12_13', '2_56', '5_23'],
-            sadness: ['2_14', '6_5', '6_22', '9_22', '18_66', '2_3'],
+            sadness: ['2_14', '6_5', '6_22', '9_22', '18_66', '12_13'],
             grief: ['2_20', '2_22', '2_13', '2_11', '2_27', '2_12'],
             loneliness: ['6_30', '4_3', '18_64', '5_29', '9_29', '10_20', '18_61'],
             confusion: ['18_63', '3_35', '2_7', '18_47', '2_41', '4_34'],
@@ -2883,15 +3102,33 @@
         return pick(fresh.length ? fresh : list, random);
     }
 
+    // Is every line of this list already said in this conversation?
+    function allSaid(list, said = []) {
+        if (!said.length) return false;
+        const spoken = said.map(plainText);
+        return list.every((item) => {
+            const sample = plainText(typeof item === 'function' ? item({ noun: '', obl: '', g: 'm' }) : item).slice(0, 40);
+            return spoken.some((line) => sample && line.includes(sample));
+        });
+    }
+
+    // Further into a conversation, a friend stops re-announcing the feeling.
+    const ONGOING = {
+        en: ['Yeah. I hear you.', 'I’m still right here with you.', 'That makes sense — of course it’s still there.', 'Okay. I’m with you.'],
+        hi: ['हाँ। मैं सुन रहा हूँ।', 'मैं अब भी यहीं हूँ, आपके साथ।', 'समझ में आता है — बिल्कुल, यह अभी भी है।', 'ठीक है। मैं आपके साथ हूँ।']
+    };
+
     function acknowledge(profile, lang, random, said = []) {
         const emotion = profile.primary && EMOTIONS[profile.primary];
         if (!emotion) return pickFresh(NEUTRAL_ACKS[lang], random, said);
         // Two heavy feelings at once are named together: "your grief — and your anger too".
-        const second = profile.emotions.find((name) => name !== profile.primary && HEAVY(name));
+        const second = profile.emotions.find((name) => name !== profile.primary && HEAVY(name) && name !== 'sadness'
+            && !(['grief', 'heartbreak'].includes(name) && ['grief', 'heartbreak', 'loneliness'].includes(profile.primary)));
         if (HEAVY(profile.primary) && second && EMOTIONS[second] && !['lust', 'pride', 'emptiness', 'inertia'].includes(profile.primary)) {
             return PERSONAL.both[lang](emotion[lang].noun, EMOTIONS[second][lang].noun);
         }
         const voice = VOICE[profile.primary]?.[lang];
+        if (voice && allSaid(voice, said)) return pickFresh(ONGOING[lang], random, said);
         return voice ? pickFresh(voice, random, said) : pickFresh(ACKS[lang], random, said)(emotion[lang]);
     }
 
@@ -3235,12 +3472,12 @@
             hi: 'अगर आप थोड़ा और बताएँ — क्या हुआ, और मन पर कैसा लग रहा है — तो मैं आपके और क़रीब का श्लोक ढूँढ सकता हूँ।'
         },
         both: {
-            en: (a, b) => `I hear your ${a} — and your ${b} too.`,
-            hi: (a, b) => `आपके शब्दों में ${a} भी है और ${b} भी।`
+            en: (a, b) => `There’s ${a} in this — and ${b} too. No wonder it’s heavy.`,
+            hi: (a, b) => `इसमें ${a} भी है, और ${b} भी। भारी लगना स्वाभाविक है।`
         },
         smalltalk: {
-            en: (name) => `I’m here${name ? `, ${name}` : ''}. Tell me a little more — how are you, really? You can write about anything: what happened today, what’s worrying you, or what you’re hoping for.`,
-            hi: (name) => `मैं यहाँ हूँ${name ? `, ${name}` : ''}। थोड़ा और बताइए — आप सच में कैसे हैं? कुछ भी लिख सकते हैं: आज क्या हुआ, किस बात की चिंता है, या किस बात की आशा।`
+            en: (name) => `I’m here${name ? `, ${name}` : ''}. What’s going on — how are you, really?`,
+            hi: (name) => `मैं यहाँ हूँ${name ? `, ${name}` : ''}। क्या चल रहा है — आप सच में कैसे हैं?`
         }
     };
 
@@ -3359,10 +3596,10 @@ Go on${greetingName} — I’m here.`;
     // -----------------------------------------------------------------------
 
     const INTENSE = {
-        en: ['This is more than anyone should have to hold alone.', 'I can feel how hard this is pressing on you.',
-            'That is a heavy thing to carry. Thank you for not carrying it in silence.'],
-        hi: ['यह बहुत भारी लगता है — इतना किसी को अकेले नहीं उठाना चाहिए।', 'मैं महसूस कर सकता हूँ कि यह आप पर कितना दबाव डाल रहा है।',
-            'यह उठाने में बहुत भारी है। इसे चुपचाप न ढोने के लिए धन्यवाद।']
+        en: ['You don’t have to hold all of this at once.', 'That’s too much for one person to carry alone.',
+            'That’s really heavy — I’m glad you’re not keeping it in.'],
+        hi: ['यह सब एक साथ थामना ज़रूरी नहीं।', 'यह एक इंसान के अकेले उठाने के लिए बहुत ज़्यादा है।',
+            'यह सच में भारी है — अच्छा है कि आप इसे भीतर नहीं रख रहे।']
     };
     const JOYFUL = {
         en: ['I can feel your joy from here!', 'This is wonderful — let it fill the whole day.'],
@@ -3395,11 +3632,11 @@ Go on${greetingName} — I’m here.`;
         hi: 'मैं सुन रहा हूँ — न कोई सुधार, न कोई उपदेश। जो है, सब वैसा ही कह दीजिए।'
     };
     const LISTEN_REFLECTION = {
-        en: 'Not advice — only a verse to sit beside you.',
+        en: 'Not advice — just a verse to sit next to you.',
         hi: 'कोई सलाह नहीं — बस आपके पास बैठने के लिए एक श्लोक।'
     };
     const HOW = {
-        en: 'You asked what to do. After the verse there is one small step to start with — it is enough for today.',
+        en: 'You asked what to do — after the verse there’s one small thing to start with. That’s enough for today.',
         hi: 'आपने पूछा कि क्या करें। श्लोक के बाद शुरुआत के लिए एक छोटा क़दम है — आज के लिए इतना काफ़ी है।'
     };
     const VERSE_ON = {
@@ -3626,7 +3863,9 @@ Go on${greetingName} — I’m here.`;
         const earlier = text && !another
             ? history.slice(-4).filter((line) => typeof line === 'string').map((line) => understand(line, { lexicon, personal: personalWords }))
             : [];
-        const profile = buildProfile({ text, mood, history, timeOfDay, person, reading, lexicon, retry });
+        // The feelings of this conversation so far (the device keeps them), beyond the last few messages.
+        const thread = Array.isArray(input?.thread) ? input.thread.filter((name) => typeof name === 'string' && EMOTIONS[name]).slice(-8) : [];
+        const profile = buildProfile({ text, mood, history, timeOfDay, person, reading, lexicon, retry, thread });
 
         // "Not my situation": ask what it is about, with the answers one tap away.
         if (retry === 'situation') {
@@ -3646,6 +3885,24 @@ Go on${greetingName} — I’m here.`;
                 const reply = respondToIntent(intent, { verses, lang, name, person, profile, lastVerse: findVerse(verses, lastVerseId) });
                 if (reply) return { ...reply, context: stamp(reply.context) };
             }
+        }
+
+        // A friend does not answer every sentence with scripture. Right after a
+        // verse, a short "it hurts" or "i miss her so much" is met as itself.
+        const sinceVerse = Number.isFinite(Number(input?.sinceVerse)) && input?.sinceVerse !== null ? Number(input.sinceVerse) : Infinity;
+        const ventedBefore = earlier.some((read) => read.ask === 'vent');
+        const freshTopic = profile.topics.length > 0 && !earlier.some((read) => read.topics.includes(profile.topics[0]));
+        if (text && !another && !mood && history.length && sinceVerse < (ventedBefore ? 2 : 1) && reading.words <= 8 && !reading.ask
+            && !reading.relief && !reading.care && !freshTopic && !isQuestion(text) && !detectConcern(text) && !settings.silentMode) {
+            const kind = reading.masking ? null : STAY_KIND[reading.primary] || 'open';
+            const line = kind ? pickFresh(STAY[kind][lang], random, said) : MASKING[lang];
+            const question = /[?？]$/.test(line) ? null : followUpFor(reading.primary ? { ...profile, primary: reading.primary } : profile, lang, random, said, reading.normalised);
+            return {
+                message: [line, question].filter(Boolean).join(' '),
+                verse: null,
+                clarify: { question: null, options: STAY_CHIPS[lang].map(([label, line]) => ({ label, text: line })) },
+                context: stamp({ intent: 'stay', clarify: true, emotion: profile.primary, emotions: profile.emotions, topics: profile.topics, listening: ventedBefore || undefined })
+            };
         }
 
         if (text && !another && !mood && !profile.primary && !profile.topics.length && !profile.care && !reading.ask
@@ -3724,14 +3981,18 @@ Go on${greetingName} — I’m here.`;
         else if (relief) ack = trajectory === 'easing' ? TRAJECTORY.easing[lang] : pick(RELIEF.ack[lang], random);
         else if (counsel) ack = counsel.ack;
         else ack = heard ? acknowledge(profile, lang, random, said) : UNHEARD[lang];
-        const useName = !another && heard && name && (!history.length || random() < 0.35);
+        // A friend says your name now and then — not at the start of every sentence.
+        const nameRecently = name && said.slice(-3).some((line) => line.includes(name));
+        const casual = lang === 'en' && !another && text && CASUAL.test(text) && HEAVY(profile.primary) && !care && !counsel;
+        const useName = !another && !casual && heard && name && (!history.length || (random() < 0.2 && !nameRecently));
         if (useName) ack = withName(ack, name, lang);
+        if (casual) ack = `${pickFresh(CASUAL_OPEN.en, random, said)} ${ack}`;
         opening.push(ack);
         if (!another && !verseAsk && !relief && !plain) {
             if (reading.mixed && !care) opening.push(MIXED[lang]);
             // "Why do I always get so angry?" asks about a pattern; it is not a cry.
             const asking = reading.ask === 'why' || reading.ask === 'how';
-            const alreadyHeavy = /weigh|press|heavy|a lot|too much|भारी|दबाव|बहुत सारी/i.test(ack);
+            const alreadyHeavy = /weigh|press|heavy|a lot|too much|alone|भारी|दबाव|बहुत सारी|अकेले/i.test(ack);
             if (heavy && reading.intensity === 'high' && profile.primary && !asking && !care && !alreadyHeavy) opening.push(pickFresh(INTENSE[lang], random, said));
             else if (heavy && reading.intensity === 'low' && ['anxiety', 'fear'].includes(profile.primary) && !care) opening.push(GENTLE[lang]);
             else if (!heavy && reading.intensity === 'high') opening.push(pickFresh(JOYFUL[lang], random, said));
@@ -3796,10 +4057,18 @@ Go on${greetingName} — I’m here.`;
         const clarify = !another && text && !understood ? clarifyFor(lang) : null;
         const concern = Boolean(text) && detectConcern(text);
         const careLine = care && care.mode === 'mind' && careFresh && !another ? CARE_LINE[lang] : null;
+        // It ends the way a friend ends: by asking. (Not when the reply already asks something.)
+        const question = !verseAsk && !plain && !clarify && !concern && !careLine && depth !== 'brief' && !(listening && reading.ask === 'vent')
+            ? followUpFor(profile, lang, random, said, reading.normalised) : null;
+        // A blessing closes the first answer; after that, it would be a formula.
+        if (!firstTurn && !relief && !care) guidance.blessing = null;
 
+        // The first time something heavy is said, the Gita's own beginning: Arjuna, falling apart.
+        const arjuna = firstTurn && heavy && profile.primary && !care && !listening && krishnaSpeaks(verse) && random() < 0.5;
         const reflection = verseAsk || plain ? null
             : listening ? LISTEN_REFLECTION[lang]
-                : pickFresh((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random, said);
+                : arjuna ? pick(ARJUNA[lang], random)
+                    : pickFresh((heavy ? REFLECTIONS : LIGHT_REFLECTIONS)[lang], random, said);
         const moments = (voice === 'teacher' || retry === 'deeper') && lang === 'en'
             ? (verse.life_situations || []).filter((item) => typeof item === 'string' && item.length < 48).slice(0, 3).map((item) => item.toLowerCase())
             : [];
@@ -3818,7 +4087,7 @@ Go on${greetingName} — I’m here.`;
                 reflection,
                 `"${verseText}"`,
                 moments.length ? MOMENTS.en(moments) : null,
-                verseAsk || plain ? null : `${ground}${invitation}`,
+                verseAsk || plain ? null : question ? `${invitation.trim() ? `${invitation.trim()} ` : ''}${question}` : `${ground}${invitation}`,
                 clarify ? clarify.question : null,
                 careLine,
                 concern ? CONCERN_LINE[lang] : null

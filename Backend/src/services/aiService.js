@@ -34,6 +34,8 @@ const generateResponse = (arg1, arg2, arg3) => {
             history: cleanList(input.history, 2000).slice(-3),
             exclude: cleanList(input.exclude, 12),
             used: cleanList(input.used, 40),
+            said: cleanList(input.said, 400).slice(-12),
+            sinceVerse: Number.isInteger(input.sinceVerse) && input.sinceVerse >= 0 ? input.sinceVerse : undefined,
             another: input.another === true
         },
         { verses: getVerses(), chapters: getChaptersMeta(), timeOfDay: getTimeOfDay() }

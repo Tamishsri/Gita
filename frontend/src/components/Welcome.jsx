@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { Check, Languages, Lock, Sprout } from 'lucide-react';
+import { Check, Languages, Lock, Sparkles, Sprout } from 'lucide-react';
 import SakhaMark from './ui/SakhaMark';
 import { PATH_COLOURS } from './ui/PathLotus';
 import { usePreferences } from '../contexts/PreferencesContext';
-import { PATH_IDS, VOICES, choosePath, updateProfile } from '../lib/person';
+import { PATH_IDS, VOICES, choosePaths, updateProfile } from '../lib/person';
 import { useI18n } from '../i18n';
 import { playChime } from '../lib/chime';
 import { haptic } from '../lib/haptics';
@@ -28,7 +28,7 @@ function Welcome({ onDone }) {
     const reduceMotion = useReducedMotion();
     const [step, setStep] = useState(1);
     const [name, setName] = useState(settings.name || '');
-    const [path, setPath] = useState(null);
+    const [paths, setPaths] = useState([]);
     const [voice, setVoice] = useState('gentle');
 
     const next = (event) => {
@@ -41,7 +41,7 @@ function Welcome({ onDone }) {
 
     const begin = (personalise) => {
         if (personalise) {
-            if (path) choosePath(path);
+            choosePaths(paths);
             updateProfile({ voice });
         }
         try {
@@ -126,23 +126,35 @@ function Welcome({ onDone }) {
 
                         <section className="welcome__question">
                             <h2>{t('welcome.yours.helps')}</h2>
-                            <div className="path-choices path-choices--grid" role="radiogroup" aria-label={t('welcome.yours.helps')}>
+                            <p className="welcome__hint">{t('welcome.yours.helpsHint')}</p>
+                            <div className="path-choices path-choices--grid" role="group" aria-label={t('welcome.yours.helps')}>
                                 {PATH_IDS.map((id) => (
                                     <button
                                         key={id}
                                         type="button"
-                                        role="radio"
-                                        aria-checked={path === id}
+                                        aria-pressed={paths.includes(id)}
                                         className="path-choice"
                                         style={{ '--petal-rgb': PATH_COLOURS[id] }}
-                                        onClick={() => setPath(path === id ? null : id)}
+                                        onClick={() => setPaths((list) => (list.includes(id) ? list.filter((item) => item !== id) : [...list, id]))}
                                     >
                                         <span className="path-choice__dot" aria-hidden="true" />
                                         <span className="path-choice__name">{t(`path4.${id}.feel`)}</span>
                                         <span className="path-choice__hint">{t(`path4.${id}.name`)} · {t(`path4.${id}.sanskrit`)}</span>
-                                        {path === id && <Check size={15} className="path-choice__check" aria-hidden="true" />}
+                                        {paths.includes(id) && <Check size={15} className="path-choice__check" aria-hidden="true" />}
                                     </button>
                                 ))}
+                                <button
+                                    type="button"
+                                    aria-pressed={paths.length === 0}
+                                    className="path-choice path-choice--auto path-choice--wide"
+                                    style={{ '--petal-rgb': '226, 104, 156' }}
+                                    onClick={() => setPaths([])}
+                                >
+                                    <span className="path-choice__dot path-choice__dot--auto" aria-hidden="true"><Sparkles size={11} /></span>
+                                    <span className="path-choice__name">{t('welcome.yours.auto')}</span>
+                                    <span className="path-choice__hint">{t('you.paths.autoHint')}</span>
+                                    {paths.length === 0 && <Check size={15} className="path-choice__check" aria-hidden="true" />}
+                                </button>
                             </div>
                         </section>
 

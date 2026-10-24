@@ -19,7 +19,9 @@ const SHELL_CACHE = `lg-shell-${VERSION}`;
 const WISDOM_CACHE = 'lg-wisdom-v1';
 const FONT_CACHE = 'lg-fonts-v1';
 const RUNTIME_CACHE = 'lg-runtime-v1';
-const KEEP = new Set([SHELL_CACHE, WISDOM_CACHE, FONT_CACHE, RUNTIME_CACHE]);
+// Recitations in a human voice: each verse once, then from the device.
+const VOICE_CACHE = 'lg-voice-v1';
+const KEEP = new Set([SHELL_CACHE, WISDOM_CACHE, FONT_CACHE, RUNTIME_CACHE, VOICE_CACHE]);
 
 const CHAPTER_COUNT = 18;
 const NETWORK_TIMEOUT_MS = 4500;
@@ -123,6 +125,8 @@ self.addEventListener('fetch', (event) => {
 
         if (request.mode === 'navigate') {
             event.respondWith(navigation(request));
+        } else if (/^\/api\/voice\/[^/]+$/.test(url.pathname)) {
+            event.respondWith(recitation(request));
         } else if (url.pathname.startsWith('/api/')) {
             event.respondWith(api(request, url));
         } else if (url.pathname.startsWith('/assets/')) {
@@ -184,6 +188,18 @@ async function cacheFirst(request, cacheName) {
     if (cached) return cached;
     const response = await fetch(request);
     if (response.ok || response.type === 'opaque') cache.put(request, response.clone());
+    return response;
+}
+
+// A recitation never changes (its URL carries the revision): kept once, played from here after.
+async function recitation(request) {
+    const cache = await caches.open(VOICE_CACHE);
+    const cached = await cache.match(request.url);
+    if (cached) return cached;
+    const response = await fetch(request.url, { credentials: 'same-origin' });
+    if (response.status === 200 && (response.headers.get('content-type') || '').startsWith('audio/')) {
+        cache.put(request.url, response.clone()).catch(() => {});
+    }
     return response;
 }
 

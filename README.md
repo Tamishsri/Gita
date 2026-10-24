@@ -8,11 +8,14 @@ Sakha is a quiet place to bring what you feel to the Bhagavad Gita and hear what
 
 - **Listens in your own words.** 23 feelings (from worry and grief to desire, emptiness and joy) across 17 life situations (studies, work, family, marriage, health, loss, money, faith…). Each pairing has hand-written counsel grounded in real verses.
 - **Reads between the lines.** Before answering, Sakha reads each message the way a friend would: what follows "but" matters most; *"a bit nervous"* is not *"SO scared!!"*; *"I used to be anxious, but I'm better now"* is relief; *"my mom is depressed"* is answered for the one who cares for her; *"I just want to vent"* gets listening, not advice; *"how do I…"* leads with the step and *"why do I…"* with where the feeling comes from; *"a verse about patience"* gets one. Typos (*"lonley"*, *"anxous"*) and emoji are understood, and real words are never "corrected". When it can't tell what you mean, it asks — with the likely answers one tap away.
+- **Talks like a friend.** Replies are short and human, not a pamphlet: a friend's first words, a verse when it helps, and a real question back (*"How long were you two together?"*) — never the same one twice, never one you already answered. Right after a verse, *"it hurts"* is met as itself, with the next verse one tap away. *"bro my life is a mess lol"* is heard as overwhelm said to a friend (not a brother), and your name opens a reply now and then, not every time.
+- **Explains the Gita's own words.** Tap (or hover) *yoga*, *dharma*, *karma*, *Pārtha*, *the modes of nature* and about forty more, in English or Hindi, wherever they appear — a sentence or two, right above the word.
 - **Remembers the conversation.** It notices when things are easing, growing heavier or still there, and never gives the same counsel twice in one conversation.
-- **Becomes yours.** Sakha learns, on your device, which of the Gita's four paths helps you — action, understanding, devotion or stillness — from what you choose and from "This helped" / "Not quite". It speaks the way you asked (gently, plainly, or explaining more), and remembers what you told it about your life ("I'm preparing for exams", "I look after my mother"), so "I'm so tired" is answered as part of that life. "Not quite" answers again: gentler, more practical, deeper, or asks what it is really about.
+- **Becomes yours.** Sakha learns, on your device, which of the Gita's four paths helps you — action, understanding, devotion or stillness — from what you choose and from "This helped" / "Not quite". Choose any of the paths that sound like you, or leave it on Auto and let it learn; a pink lotus opens as it does. It speaks the way you asked (gently, plainly, or explaining more), and remembers what you told it about your life ("I'm preparing for exams", "I look after my mother"), so "I'm so tired" is answered as part of that life. "Not quite" answers again: gentler, more practical, deeper, or asks what it is really about.
 - **Learns you, the way a friend does.** When Sakha can't tell what you mean ("meh") and you clarify, it learns your word for that feeling — next time, "meh" is understood, and it says so. It notices when you tend to come and how those times feel ("Evenings have been heavy lately"), remembers an exam or interview you mentioned and asks afterwards how it went, and shows all of it as a plain portrait you can read and erase.
 - **A verse chosen for you, every day.** Once Sakha knows you a little, the verse of the day is yours — chosen on your device from what has been on your heart this week, with a line saying why ("Because worry has been visiting you this week"). It is the same all day and different most days.
-- **Recited, not read out.** "Listen" sounds a soft bell, recites the śloka in a Hindi voice with rests at each half-line, then the meaning phrase by phrase with a reader's breaths, using the most natural voice the device has; the ambient sound dips while it speaks. The soundscapes are modelled on the real thing: waves that arrive in their own time, rain with drops landing on leaves, and a tanpura plucked by a (simulated) human hand.
+- **Recited by a human voice.** "Listen" sounds a soft bowl, then the śloka and its meaning in a warm devotional narrator's voice (ElevenLabs, "Viraj"). Only verse ids are ever sent — never anything you write — and each recitation is generated once, kept at the edge and on your device. Without a key, the device's most natural voice recites instead, with a reader's pauses.
+- **Sound that is modelled, not looped.** Ocean waves that gather, break into foam and draw back; rain on leaves with a drip now and then; a forest stream over stones; singing bowls (with a real bowl's inharmonic overtones) in a quiet room — all through one room reverb and a gentle compressor, made live on the device.
 - **Never says the same thing twice in a conversation.** Openings, steps and situations are remembered within each conversation; a carer who writes again is met as themselves, someone venting keeps being listened to, and a replaced step suits the feeling — gentle for grief, practical for pressure.
 - **Answers you by name.** Sakha asks what to call you, remembers what you've shared before (as labels, never your words), and follows up: *"Last time, you told me about your studies. How is it now?"*
 - **Private by design.** Conversations are understood **in the browser itself** — your words are never sent to any server. Everything you keep lives on your device and can be released at any time.
@@ -41,10 +44,21 @@ npm run dev
 
 Open http://localhost:5173.
 
+### The recitation voice (optional)
+
+Verses are recited by ElevenLabs when the backend has a key. Put it in `Backend/.env` locally, and in the Vercel project's environment variables (backend service) for the live app:
+
+```bash
+ELEVENLABS_API_KEY=your-key
+# optional: ELEVENLABS_VOICE_ID (default uuyFQegRan8rpIQCGu9K, "Viraj"), ELEVENLABS_MODEL (default eleven_multilingual_v2)
+```
+
+Without it, everything still works and the device's own voice recites.
+
 ## Checks
 
 ```bash
-cd Backend && npm test          # 107 tests: safety, graded understanding, personalisation, many-person conversations, API
+cd Backend && npm test          # 113 tests: safety, graded understanding, personalisation, conversations, recitation API
 cd frontend && npm run lint     # ESLint
 cd frontend && npm run check:i18n   # every interface key exists in English and Hindi
 cd frontend && npm run build    # production build with the offline service worker

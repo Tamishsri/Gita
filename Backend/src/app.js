@@ -12,6 +12,7 @@ loadData();
 const verseRoutes = require('./routes/verseRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const dailyRoutes = require('./routes/dailyRoutes');
+const voiceRoutes = require('./routes/voiceRoutes');
 
 // Middleware
 app.disable('x-powered-by');
@@ -22,6 +23,7 @@ app.use(express.json({ limit: '32kb' }));
 app.use('/api/verses', verseRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/daily', dailyRoutes);
+app.use('/api/voice', voiceRoutes);
 
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to Project K Backend API' });
