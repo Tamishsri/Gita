@@ -3892,7 +3892,9 @@ Go on${greetingName} — I’m here.`;
         const sinceVerse = Number.isFinite(Number(input?.sinceVerse)) && input?.sinceVerse !== null ? Number(input.sinceVerse) : Infinity;
         const ventedBefore = earlier.some((read) => read.ask === 'vent');
         const freshTopic = profile.topics.length > 0 && !earlier.some((read) => read.topics.includes(profile.topics[0]));
-        if (text && !another && !mood && history.length && sinceVerse < (ventedBefore ? 2 : 1) && reading.words <= 8 && !reading.ask
+        // Only a conversation already about feelings: a worry after "what is karma?" deserves a full answer.
+        const feelingsSoFar = earlier.some((read) => read.primary) || thread.length > 0;
+        if (text && !another && !mood && history.length && feelingsSoFar && sinceVerse < (ventedBefore ? 2 : 1) && reading.words <= 8 && !reading.ask
             && !reading.relief && !reading.care && !freshTopic && !isQuestion(text) && !detectConcern(text) && !settings.silentMode) {
             const kind = reading.masking ? null : STAY_KIND[reading.primary] || 'open';
             const line = kind ? pickFresh(STAY[kind][lang], random, said) : MASKING[lang];
