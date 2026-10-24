@@ -124,10 +124,11 @@ function GlossTerm({ text, entry, language }) {
  * Text with the Gita's own words made explainable. Pass a string; strings
  * without such words come back as they were.
  */
-function Glossed({ text, language = 'en' }) {
+function Glossed({ text, language = 'en', skip }) {
+    const skipKey = Array.isArray(skip) ? skip.join(',') : '';
     const parts = useMemo(() => {
         const source = String(text ?? '');
-        const terms = findTerms(source, language);
+        const terms = findTerms(source, language, skipKey ? skipKey.split(',') : []);
         if (!terms.length) return [source];
         const out = [];
         let at = 0;
@@ -138,7 +139,7 @@ function Glossed({ text, language = 'en' }) {
         });
         if (at < source.length) out.push(source.slice(at));
         return out;
-    }, [text, language]);
+    }, [text, language, skipKey]);
 
     return parts.map((part, index) => (typeof part === 'string'
         ? <React.Fragment key={index}>{part}</React.Fragment>

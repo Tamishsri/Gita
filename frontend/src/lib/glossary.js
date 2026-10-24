@@ -270,7 +270,7 @@ const ENTRIES = [
     {
         id: 'sloka',
         en: ['sloka', 'śloka', 'shloka', 'shlok', 'slokas', 'shlokas'],
-        hi: ['श्लोक'],
+        hi: [],
         term: { en: 'Śloka', hi: 'श्लोक' },
         meaning: {
             en: 'A verse of two lines in the Gita’s metre — 700 of them, meant to be recited aloud.',
@@ -411,13 +411,27 @@ function patternFor(language) {
 const PATTERNS = { en: patternFor('en'), hi: patternFor('hi') };
 
 /**
+ * For paragraphs shown together: which words each one should leave alone,
+ * because an earlier paragraph already explains them.
+ * @returns {string[][]}
+ */
+export function glossSkips(paragraphs, language = 'en') {
+    const seen = new Set();
+    return paragraphs.map((paragraph) => {
+        const skip = [...seen];
+        findTerms(paragraph, language, skip).forEach((term) => seen.add(term.entry.id));
+        return skip;
+    });
+}
+
+/**
  * Find the glossary words in a text: the first time each entry appears.
  * @returns {{ start: number, end: number, text: string, entry: object }[]}
  */
-export function findTerms(text, language = 'en') {
+export function findTerms(text, language = 'en', skip = []) {
     if (!text || typeof text !== 'string') return [];
     const found = [];
-    const seen = new Set();
+    const seen = new Set(skip);
     // A Hindi reply can carry English words, and an English one Sanskrit names.
     [PATTERNS[language === 'hi' ? 'hi' : 'en'], PATTERNS[language === 'hi' ? 'en' : 'hi']].forEach(({ insensitive, sensitive, lookup }) => {
         [insensitive, sensitive].filter(Boolean).forEach((pattern) => {

@@ -3532,8 +3532,8 @@ Go on${greetingName} — I’m here.`;
         }
         if (intent.kind === 'ack') {
             const message = lang === 'hi'
-                ? `आराम से${greetingName}। अगर मन में कुछ और हो — या वही बात किसी और कोण से — तो मैं यहीं हूँ।`
-                : `Take your time${greetingName}. If something else is on your mind — or the same thing, from another side — I’m here.`;
+                ? 'हम्म। आराम से — जब मन हो, और बताइए। मैं यहीं हूँ।'
+                : 'Mm. Take your time — say more whenever you want. I’m right here.';
             return { message, verse: null, context: { intent: 'ack' } };
         }
         if (intent.kind === 'thanks') {
@@ -3563,7 +3563,7 @@ Go on${greetingName} — I’m here.`;
             const entry = intent.concept;
             const verse = findVerse(verses, entry.verse);
             const title = entry[lang].title;
-            const message = `${/[.?!।]$/.test(title) ? title : `${title}.`}\n\n${entry[lang].body}`;
+            const message = `${/[.?!।]$/.test(title) ? title : `${title}${lang === 'hi' ? '।' : '.'}`}\n\n${entry[lang].body}`;
             const guidance = verse ? { simple: simpleOf(verse, lang), practice: entry.practice || null, step: null } : null;
             return { message, verse, guidance, context: { intent: 'concept', concept: intent.concept.id } };
         }

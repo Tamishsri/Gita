@@ -16,6 +16,7 @@ import { toast } from '../lib/toast';
 import { useHasKeyboard } from '../hooks/useMediaQuery';
 import { hasTranslation, useI18n } from '../i18n';
 import Glossed from './ui/Glossed';
+import { glossSkips } from '../lib/glossary';
 
 let messageSeq = 0;
 const nextId = () => `m${Date.now().toString(36)}${(messageSeq += 1)}`;
@@ -501,6 +502,9 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                         const isCurrent = reveal?.id === message.id;
                         const isRevealing = isCurrent && !reveal.done;
                         const leadText = isCurrent ? reveal.text : lead.join('\n\n');
+                        const leadParagraphs = leadText.split(/\n{2,}/);
+                        // A word is explained once in a reply, where it first appears.
+                        const skips = glossSkips([...leadParagraphs, ...trail].map((paragraph) => typeset(paragraph)), language);
 
                         return (
                             <motion.div
@@ -521,7 +525,7 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                                 onClick={isRevealing ? finishReveal : undefined}
                                                 title={isRevealing ? t('sanctuary.tapToReveal') : undefined}
                                             >
-                                                {leadText.split(/\n{2,}/).map((paragraph, p) => <p key={p}><Glossed text={typeset(paragraph)} language={language} /></p>)}
+                                                {leadParagraphs.map((paragraph, p) => <p key={p}><Glossed text={typeset(paragraph)} language={language} skip={skips[p]} /></p>)}
                                             </div>
                                         )
                                     )}
@@ -547,14 +551,14 @@ function Sanctuary({ mood, initialVerse, initialText, settings = {}, onBack }) {
                                         >
                                             {trail.map((paragraph, p) => (isAsk(paragraph) ? (
                                                 <div key={p} className="msg__ask">
-                                                    <p><Glossed text={typeset(paragraph)} language={language} /></p>
+                                                    <p><Glossed text={typeset(paragraph)} language={language} skip={skips[leadParagraphs.length + p]} /></p>
                                                     {index === messages.length - 1 && (
                                                         <button type="button" className="text-action msg__reply" onClick={() => textareaRef.current?.focus()}>
                                                             <CornerDownRight size={14} /> {t('sanctuary.reply')}
                                                         </button>
                                                     )}
                                                 </div>
-                                            ) : <p key={p}><Glossed text={typeset(paragraph)} language={language} /></p>))}
+                                            ) : <p key={p}><Glossed text={typeset(paragraph)} language={language} skip={skips[leadParagraphs.length + p]} /></p>))}
                                         </motion.div>
                                     )}
 
